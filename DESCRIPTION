@@ -1,0 +1,26 @@
+Package: BayLum
+Type: Package
+Title: Chronological Bayesian Models Integrating Optically Stimulated
+        Luminescence Dating
+Description: Description:  collection of various R functions for Bayesian analysis of Luminescence data. 
+    This includes, amongst others, data import, export, 
+    application of age models and palaeodose model.
+Date: 2017-05-29
+Version: 0.1.0
+Author: Claire Christophe, Guillaume Guerin, Anne Philippe
+Maintainer: Claire Christophe <claire.christophe@univ-nantes.fr>
+Depends: 
+  R(>= 3.3.2), 
+  utils,
+  coda, 
+  Luminescence (>= 0.7.4),
+  ArchaeoPhases, 
+  rjags (>= 4-6)
+Imports: stats, graphics, grDevices, methods
+License: GPL-3
+LazyData: true
+Suggests: knitr, rmarkdown
+VignetteBuilder: knitr
+RoxygenNote: 6.0.1
+NeedsCompilation: no
+Packaged: 2017-06-01 08:35:10 UTC; claire

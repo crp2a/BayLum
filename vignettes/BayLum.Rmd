@@ -1,0 +1,295 @@
+---
+title: "BayLum"
+author: "Claire Christophe, Guillaume Guerin, Anne Philippe"
+date: '`r Sys.Date()`'
+output:
+  pdf_document:
+    toc: yes
+    toc_depth: '3'
+vignette: |
+  %\VignetteIndexEntry{ArchaeoPhases} 
+  %\VignetteEngine{knitr::rmarkdown} 
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, echo = FALSE, message = FALSE}
+knitr::opts_chunk$set(comment = "")
+options(width = 120, max.print = 100)
+library(BayLum)
+```
+
+# Introduction
+
+BayLum provides a list of functions for a Bayesian analysis for the OSL age estimate of one or various samples with or without stratigraphic constrains, with or without common errors. Compute an age from BIN files, it is possible to consider more than one BIN files per sample. 
+
+For those who already know how to use R, BayLum won't be difficult to use. 
+
+### Installing *BayLum* package
+
+To install BayLum you first need to install [R](https://www.r-project.org) and  [Rstudio](http://www.rstudio.com) that has a nice desktop environment for using R. In addition, you need to install [JAGS](http://mcmc-jags.sourceforge.net) for the Bayesian analysis of the models. Once in R (or in RStudio) you can type:
+
+```{r,eval=FALSE}
+install.packages('BayLum')
+```
+
+at the R command prompt to install BayLum If you then type:
+
+```{r}
+library(BayLum)
+```
+
+it will load in all the BayLum functions.
+
+# 1. Age analysis of one sample
+
+### 1.1. Generate data file from BIN file
+
+A first step is to read information from BIN file.
+
+Let us consider the sample named *GDB3*. 
+All informations concerning this sample (environmental dose, source dose, disc and position of grains,... see "What are the required files in each subfolder?" in help of  **Generate\_DataFile** function) are containing in a subfolder named as the sample *GDB3* located in *inst/extdata/*.
+
+Then, you can use the function **Generate\_DataFile** as follow:
+
+```{r,eval=FALSE}
+Path=c("inst/extdata/") # give the name of the path to data folder
+Names=c("GDB3") # give the name of the folder datat
+Nb_sample=1     # give the number of sample
+DATA1=Generate_DataFile(Path,Names,Nb_sample)
+```
+
+To check if there is no problem in reading information on BIN file and associated .csv files, you can use the folowing function:
+
+```{r, echo=FALSE}
+data("DATA1") # load output of Generate_DataFile function for the sample named "GDB3"
+```
+
+```{r}
+str(DATA1)
+```
+
+In *DATA1*, there is information for the sample named *GDB3*.
+It is expected:
+
+  - 1 list (1 list per sample), for DATA\$LT, DATA\$sLT, DATA1\$ITimes and DATA1\$regDose}
+  - 1 vector of size 2 (a 2 column matrix, with 1 line per sample), for DATA1\$dLab, DATA1\$ddot_env
+  - 1 integer (1 integer per BIN files), for DATA1\$J, DATA1\$K, DATA1\$Nb_measurement.
+  
+You can also see the L/T values as a function of regenerative dose using the function **LT\_RegenDose**:
+
+```{r,eval=FALSE,fig.cap = "inst/LT_RegenDose_plot.pdf"}
+LT_RegenDose(DATA1,Path=c('inst/extdata/'),Names=c("GDB3"))
+```
+
+<!-- ![fig.width=2,fig.height=5](LT_RegenDose_plot.png) -->
+
+<!-- are plot for the first 9 aliquots. -->
+
+### 1.2. Age analysis
+
+To compute age of the sample *GDB3*, you can run the following code:
+
+```{r,eval=FALSE}
+Age=Age_Computation(DATA1,samplename="GDB3",
+                    distribution="cauchy",
+                    LIN_fit=TRUE,Origin_fit=FALSE,
+                    SavePdf=FALSE,SaveEstimates=FALSE,
+                    Taille=10000)
+```
+
+##### Remark on MCMC trajectories
+If MCMC trajectories did not converge, you can add more iteration at the parameter $Taille$ in the function **Age_Computation**, for example $Taille=20000$ or $Taille=50000$. 
+If trajectories are still not converged, you can check if the choice of $distribution$ and growth cruves are good.
+
+##### Remark 1: $LIN\_fit$ and $Origin\_fit$, growth curves option
+
+By default, it is a saturating exponential plus linear growth curve, but the user can choose other growth curves by changing option $LIN\_fit$ and $Origin\_fit$ in the function. We refer to the user manual for more detail. 
+
+What we can recommend is to use ... if you have...
+
+
+##### Remark 2: $distribution$, equivalent dose dispersion option
+
+By default, it is a *cauchy* distribution, but the user can choose other distribution replacing *cauchy* by *gaussian* of *lognormal* in $distribution$ option.  
+
+If you are in this cases: ..... , you can consider .....
+
+##### Remark 3: $SavePdf$ and $SaveEstimates$ option
+
+These two options allow to save directly information. 
+
+$SavePdf=TRUE$ saves a pdf file with MCMC trajectories of parameters $A$ (age), $D$ (palaeodose), $sD$ equivalent doses dispersion. The user must precise $OutputFileName$ and $OutputFilePath$ to define name and path of the pdf file. 
+
+$SaveEstimates=TRUE$ saves a csv file containing Bayes estimates and credible interval at level 68\% and 95\% of the parameters $A$, $D$, $sD$. The user must precise $OutputTableName$ and $OutputTablePath$ to define name and path of the csv file.
+
+##### Remark 4: $PriorAge$ option
+
+By default, an age between 0.01 Ka and 100 ka is expected. 
+If the user has more informations on the sample age it can change $PriorAge$.
+
+For example, if you know that the sample is an old sample, you can choose $PriorAge=c(10,120)$. In contrast, if you know that is a young sample, you can choose $PriorAge=c(0.001,10)$. Note that, it is not possible to consider as lower bound 0, you can consider 0.001. 
+
+You must take care with this option, because $PriorAge$ are the lower bound and the upper bound of the estimated age. If you give a $PriorAge$ too precise it can bias the result. 
+
+
+### 1.3. Various BIN files for one sample
+
+In the previous example we consider the samplest case: one sample, and one BIN file for this sample.
+But we can consider various BIN files for one sample.
+To do this, you write in $Names$ the names of subfolder coresponding to a specific BIN file, both located in $Path$. 
+For example $Names=c("name\_binfile1","name\_binfile2")$.
+Then, you can complete **Generate_DataFile** as follow:
+
+```{r,eval=FALSE}
+Nb_sample=1
+Nb_binfile = length(Names)
+BinPerSample = c(length(Names))
+DATA_BF=Generate_DataFile(Path,
+                          Names,
+                          Nb_sample,
+                          Nb_binfile=Nb_binfile,
+                          BinPerSample=BinPerSample)
+# Computation of age
+Age=Age_Computation(DATA_BF,
+                    samplename="Nom",
+                    BinPerSample=BinPerSample)
+```
+
+# 2. Age analysis of various samples
+
+### 2.1. Generate data file from BIN files
+
+More precisely, the function **Generate\_DataFile** can consider various sample in same time, and consider more than one BIN file per sample.
+
+Assume that we are interested in two samples named: *sample1* and *sample2*. In addition, we have two BIN files for the first sample named: *sample1-1* and *sample1-2*, and one Bin file for the sample2, named *sample2-1*.
+Then we must have 3 subfolders named *sample1-1*, *sample1-2* and *sample2-1*; which each subfolder contains one BIN file named **bin.BIN**, and its associated files **DiscPos.csv**, **DoseEnv.csv**, **DoseSourve.csv** and **rule.csv**. These 3 subfolders are located in *path/*
+
+```{r,eval=FALSE}
+Path=c("Path/") # give the name of the path to data folder
+Names=c("sample1-1","sample1-2","sample2-1") # give the name of the folder datat
+Nb_sample=2    # give the number of sample
+DATA=Generate_DataFile(Path,Names,Nb_sample,Nb_binfile=3,BinPerSample=c(2,1))
+```
+
+
+If the user has already saved informations obtained with **Generate_DataFile** function about samples in RData file. The user can concatenate data with the **Concat_DataFile**. 
+
+For example if *DATA1* is output of sample named "GDB3", and *DATA2* is output of "GDB5",
+
+```{r}
+data("DATA1",envir = environment())
+data("DATA2",envir = environment())
+DATA=Concat_DataFile(DATA2,DATA1)
+str(DATA)
+```
+
+In DATA, there is information for samples named *GDB3* and *GDB5*, then it is expected 
+
+  - 2 lists (1 list per sample) for  DATA\$LT, DATA\$sLT, DATA1\$ITimes and DATA1\$regDose
+  - a matrix with 2 columns (1 line per sample) for DATA1\$dLab, DATA1\$ddot_env
+  - 2 integers (1 integer per BIN files here we have 1 BIN file per sample) for DATA1\$J, DATA1\$K, DATA1\$Nb_measurement.
+
+You can also see the L/T in function of the regenerative doses for each sample, using the $SampleNumber$ option (the number in $SampleNumber$ correponds to the sample whose its position in DATA is this number), as follow:
+
+```{r,eval=FALSE}
+# for the "GDB5"
+LT_RegenDose(DATA,Path=c('inst/extdata/'),Names=c("GDB5"),SampleNumber = 1)
+# for the "GDB3"
+LT_RegenDose(DATA,Path=c('inst/extdata/'),Names=c("GDB3"),SampleNumber = 2)
+```
+
+
+### 2.2. Age analysis without constraint
+
+If there is no stratigraphic constraint, you can compute the following code to analyse simultaneously the age of the sample *GDB5* and *GDB3*.
+
+```{r,eval=FALSE}
+Age=AgeS_Computation(DATA,Nb_sample=2,SampleNames=c("GDB5","GDB3"),Taille=10000)
+```
+
+##### Remark on MCMC trajectories
+If MCMC trajectories did not converge, we refer to remark in 1.2. 
+
+##### Remark
+Options detailled in remark 1, 2, 3 are still available for this function.
+
+As for the function **Age_computation**, age for each sample is by default between 0.01 Ka and 100 ka. 
+If you have more informations on your samples it is possible to change $PriorAge$ parameters. 
+$PriorAge$ is a vector of size = 2*$Nb_sample$, the two first values of $PriorAge$ concern the first sample. 
+
+For example, if you know that sample named *GDB5* is a young sample whose its age is between 0.01 ka and 10 ka, and *GDB3* is an old sample whose age is between 10 ka and 100 ka, 
+$$PriorAge=c(\underbrace{0.01,10}_{GDB5\ prior\ age},\underbrace{10,100}_{GDB3\ prior\ age})$$
+
+
+### 2.3. Stratigraphic constraints
+
+With the function **AgeS_Computation** it is possible to take into account stratigraphic constraints. 
+
+For example, we know that *GDB5* age is supposed lower than *GDB3* age.
+
+#### a) Ordering samples
+
+To take into acount stratigraphic constraints, informations on samples must be ordered. 
+
+Either you inter sample Name (corresponding to subforlder names) in $Names$ parameter of the function **Generate_DataFile**, ordered by order of increasing ages; 
+or you enter saved .RData informations of each sample in **Concat_DataFile**, ordered by order of increasing ages.
+
+```{r,eval=FALSE}
+# using Generate_DataFile function
+Path=c("inst/extdata/")
+Names=c("GDB5","GDB3")
+Nb_sample=2
+Generate_DataFile(Path,Names,Nb_sample)
+
+# using Concat_DataFile function
+data(DATA1,envir = environment()) # .RData on sample GDB3
+data(DATA2,envir = environment()) # .RData on sample GDB5
+DATA=Concat_DataFile(DATA2,DATA1)
+```
+
+
+#### b) Construct stratigraphic matrix
+
+Let us *SC* the matrix containing all information on tratigraphic constraints for this two samples.
+This matrix is defined as follow:
+
+  - the size of the matrix, row number of StratiConstraints matrix is equal to $Nb_sample+1$, and column number is equal to $Nb_sample$.
+
+  - the first line of the matrix, for all i in {1,...,$Nb_Sample$}, StratiConstraints[1,i]=1 that means the lower bound of the sample age given in PriorAge[2i-1] for the sample whose number ID is equal to i, is taken into account.
+
+  - the sample relations, for all j in {2,...,$Nb_Sample$+1} and all i in {j,...,$Nb_Sample$}, *StratiConstraints[j,i]=1* if sample age whose number ID is equal to j-1 is lower than sample age whose number ID is equal to i. Otherwise, *StratiConstraints[j,i]=0*.
+
+The user can use the function *SCMatrix* to define this matrix
+
+```{r}
+SC=SCMatrix(2,c("GDB5","GDB3"))
+1
+```
+
+In our case, *SC* is a matrix with 3 lines and 2 columns. The first line containts c(1,1), the second line containts c(0,1) and the third line contains c(0,0).
+
+```{r,eval=TRUE}
+(SC=matrix(data=c(1,1,0,1,0,0),ncol=2,nrow = (2+1),byrow = T))
+```
+
+#### c) Age computation
+
+```{r,eval=FALSE}
+Age=AgeS_Computation(DATA,Nb_sample=2,SampleNames=c("GDB5","GDB3"),StratiConstraints=SC,Taille=10000)
+```
+
+### 2.4. Common error
+
+...
+
+
+# References
+
+Models used in this package are detailled in the following publication:
+
+  - Combes, B., Philippe, A., Lanos, P., Mercier, N., Tribolo, C., Guerin, G., Guibert, P., Lahaye, C., (2015). A Bayesian central equivalent dose model for optically stimulated luminescence dating. Quaternary Geochronology 28, 62-70.
+  - Combes, B. and Philippe, A. (2017). Bayesian analysis of multiplicative Gaussian error for multiple ages estimation in optically stimulated luminescence dating. Quaternary Geochronology (in press)
+
+For more details on the diagnostic of Markov chain :
+
+  - Robert and Casella (2009). Introducing Monte Carlo Methods with R. Springer Science & Business Media.
