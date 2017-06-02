@@ -1,5 +1,5 @@
 ---
-title: "BayLum"
+title: "BayLum: An Introduction"
 author: "Claire Christophe, Guillaume Guerin, Anne Philippe"
 date: '`r Sys.Date()`'
 output:
@@ -7,8 +7,8 @@ output:
     toc: yes
     toc_depth: '3'
 vignette: |
-  %\VignetteIndexEntry{ArchaeoPhases} 
-  %\VignetteEngine{knitr::rmarkdown} 
+  %\VignetteIndexEntry{BayLum: An Introduction}
+  %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
 
