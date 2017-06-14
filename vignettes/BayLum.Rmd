@@ -1,15 +1,14 @@
 ---
-title: "BayLum: An Introduction"
+title: "BayLum"
 author: "Claire Christophe, Guillaume Guerin, Anne Philippe"
 date: '`r Sys.Date()`'
 output:
   pdf_document:
     toc: yes
     toc_depth: '3'
-vignette: |
-  %\VignetteIndexEntry{BayLum: An Introduction}
-  %\VignetteEngine{knitr::rmarkdown}
-  %\VignetteEncoding{UTF-8}
+  html_document:
+    toc: yes
+vignette: "%\\VignetteIndexEntry{BayLum} \n%\\VignetteEngine{knitr::rmarkdown} \n%\\VignetteEncoding{UTF-8}\n"
 ---
 
 ```{r, echo = FALSE, message = FALSE}
@@ -20,7 +19,11 @@ library(BayLum)
 
 # Introduction
 
-BayLum provides a list of functions for a Bayesian analysis for the OSL age estimate of one or various samples with or without stratigraphic constrains, with or without common errors. Compute an age from BIN files, it is possible to consider more than one BIN files per sample. 
+BayLum provides a collection of various R functions for Bayesian analysis of Luminescence data. This includes, amongst others, data import, export, application of age models and palaeodose model.
+
+It is possible to process data for various samples simultaneously and to consider more than one BIN file per sample.
+Single-grain and Multi-grain OSL measurement can be analysed.
+Stratigraphic constrains and systematic errors can be added in the analyse.
 
 For those who already know how to use R, BayLum won't be difficult to use. 
 
@@ -47,18 +50,18 @@ it will load in all the BayLum functions.
 A first step is to read information from BIN file.
 
 Let us consider the sample named *GDB3*. 
-All informations concerning this sample (environmental dose, source dose, disc and position of grains,... see "What are the required files in each subfolder?" in help of  **Generate\_DataFile** function) are containing in a subfolder named as the sample *GDB3* located in *inst/extdata/*.
+All informations concerning this sample (environmental dose, source dose, disc and position of grains,... see "What are the required files in each subfolder?" section in help of  **Generate\_DataFile** function) are containing in a subfolder named as the sample *GDB3* located in *Path*.
 
-Then, you can use the function **Generate\_DataFile** as follow:
+Then, you can use the function **Generate\_DataFile** as follows:
 
 ```{r,eval=FALSE}
-Path=c("inst/extdata/") # give the name of the path to data folder
+Path=Path # give the name of the path to data folder
 Names=c("GDB3") # give the name of the folder datat
 Nb_sample=1     # give the number of sample
 DATA1=Generate_DataFile(Path,Names,Nb_sample)
 ```
 
-To check if there is no problem in reading information on BIN file and associated .csv files, you can use the folowing function:
+To check if there is no problem, the user can read information on BIN file and associated .csv files as folows:
 
 ```{r, echo=FALSE}
 data("DATA1") # load output of Generate_DataFile function for the sample named "GDB3"
@@ -75,15 +78,26 @@ It is expected:
   - 1 vector of size 2 (a 2 column matrix, with 1 line per sample), for DATA1\$dLab, DATA1\$ddot_env
   - 1 integer (1 integer per BIN files), for DATA1\$J, DATA1\$K, DATA1\$Nb_measurement.
   
-You can also see the L/T values as a function of regenerative dose using the function **LT\_RegenDose**:
+You can also see the Lx/Tx values as a function of regenerative dose using the function **LT\_RegenDose**:
 
 ```{r,eval=FALSE,fig.cap = "inst/LT_RegenDose_plot.pdf"}
-LT_RegenDose(DATA1,Path=c('inst/extdata/'),Names=c("GDB3"))
+LT_RegenDose(DATA1,Path=c('Path'),Names=c("GDB3"),Nb_sample=1)
 ```
 
-<!-- ![fig.width=2,fig.height=5](LT_RegenDose_plot.png) -->
+##### Remark 1
+Here, the example is a single-grain OSL measurements. 
+For a multi-grain OSL measurements, instead of **Generate\_DataFile** function, the user use **Generate\_DataFile_MG**. 
+To have more precision on the .csv file associated to the bin file, we refer to the "What are the required files in each subfolder?" section  in help of this function.
 
-<!-- are plot for the first 9 aliquots. -->
+##### Remark 2
+The user can use the function **save** to save output $DATA1$ as follows:
+```{r,eval=FALSE}
+save(DATA1,file=c(paste(Path,"DATA1.RData",sep="")))
+```
+The user can acced to this file with the function **load**:
+```{r,eval=FALSE}
+load(file=c(paste(Path,"DATA1.RData",sep="")))
+```
 
 ### 1.2. Age analysis
 
@@ -93,24 +107,30 @@ To compute age of the sample *GDB3*, you can run the following code:
 Age=Age_Computation(DATA1,samplename="GDB3",
                     distribution="cauchy",
                     LIN_fit=TRUE,Origin_fit=FALSE,
-                    SavePdf=FALSE,SaveEstimates=FALSE,
                     Taille=10000)
 ```
+
+If $DATA1$ is output of **Generate\_DataFile_MG**, then the user can use **Age_Computation** exactly as in the previous example.
 
 ##### Remark on MCMC trajectories
 If MCMC trajectories did not converge, you can add more iteration at the parameter $Taille$ in the function **Age_Computation**, for example $Taille=20000$ or $Taille=50000$. 
 If trajectories are still not converged, you can check if the choice of $distribution$ and growth cruves are good.
 
-##### Remark 1: $LIN\_fit$ and $Origin\_fit$, growth curves option
+##### Remark 1: $LIN\_fit$ and $Origin\_fit$, dose response curves option
 
-By default, it is a saturating exponential plus linear growth curve, but the user can choose other growth curves by changing option $LIN\_fit$ and $Origin\_fit$ in the function. We refer to the user manual for more detail. 
+By default, a saturating exponential plus linear growth curve is considered, but the user can choose other growth curves by changing option $LIN\_fit$ and $Origin\_fit$ in the function. We refer to the user manual for more detail. 
 
 What we can recommend is to use ... if you have...
 
 
 ##### Remark 2: $distribution$, equivalent dose dispersion option
 
-By default, it is a *cauchy* distribution, but the user can choose other distribution replacing *cauchy* by *gaussian* of *lognormal* in $distribution$ option.  
+By default, a *cauchy* distribution is considered, but the user can choose other distribution replacing *cauchy* by *gaussian* or *lognormal_A* or *lognormal_M* in $distribution$ option.  
+
+The difference between the models: *lognormal_A* and *lognormal_M* is that the equivalent dose dispersion are distributed according to:
+
+ - a lognormal distribution with mean or Average equal to the palaeodose for the first model
+ - a lognormal distribution with Median equal to the palaeodose for the second model. 
 
 If you are in this cases: ..... , you can consider .....
 
@@ -118,9 +138,10 @@ If you are in this cases: ..... , you can consider .....
 
 These two options allow to save directly information. 
 
-$SavePdf=TRUE$ saves a pdf file with MCMC trajectories of parameters $A$ (age), $D$ (palaeodose), $sD$ equivalent doses dispersion. The user must precise $OutputFileName$ and $OutputFilePath$ to define name and path of the pdf file. 
+$SavePdf=TRUE$ saves a pdf file with MCMC trajectories of parameters $A$ (age), $D$ (palaeodose), $sD$ (equivalent doses dispersion). The user must precise $OutputFileName$ and $OutputFilePath$ to define name and path of the pdf file. 
 
-$SaveEstimates=TRUE$ saves a csv file containing Bayes estimates and credible interval at level 68\% and 95\% of the parameters $A$, $D$, $sD$. The user must precise $OutputTableName$ and $OutputTablePath$ to define name and path of the csv file.
+$SaveEstimates=TRUE$ saves a csv file containing Bayes estimates, credible interval at 68\% and 95\%  and the Gelman and Rudin test of convergency of the parameters $A$, $D$, $sD$. 
+The user must precise $OutputTableName$ and $OutputTablePath$ to define name and path of the csv file.
 
 ##### Remark 4: $PriorAge$ option
 
@@ -138,7 +159,7 @@ In the previous example we consider the samplest case: one sample, and one BIN f
 But we can consider various BIN files for one sample.
 To do this, you write in $Names$ the names of subfolder coresponding to a specific BIN file, both located in $Path$. 
 For example $Names=c("name\_binfile1","name\_binfile2")$.
-Then, you can complete **Generate_DataFile** as follow:
+Then, you can complete **Generate_DataFile** (or **Generate_DataFile_MF**) as follows:
 
 ```{r,eval=FALSE}
 Nb_sample=1
@@ -159,7 +180,7 @@ Age=Age_Computation(DATA_BF,
 
 ### 2.1. Generate data file from BIN files
 
-More precisely, the function **Generate\_DataFile** can consider various sample in same time, and consider more than one BIN file per sample.
+More precisely, the function **Generate\_DataFile**  (or **Generate_DataFile_MF**) can consider various samples simultaneously, and can consider more than one BIN file per sample.
 
 Assume that we are interested in two samples named: *sample1* and *sample2*. In addition, we have two BIN files for the first sample named: *sample1-1* and *sample1-2*, and one Bin file for the sample2, named *sample2-1*.
 Then we must have 3 subfolders named *sample1-1*, *sample1-2* and *sample2-1*; which each subfolder contains one BIN file named **bin.BIN**, and its associated files **DiscPos.csv**, **DoseEnv.csv**, **DoseSourve.csv** and **rule.csv**. These 3 subfolders are located in *path/*
@@ -171,8 +192,9 @@ Nb_sample=2    # give the number of sample
 DATA=Generate_DataFile(Path,Names,Nb_sample,Nb_binfile=3,BinPerSample=c(2,1))
 ```
 
+#### **Concat_DataFile** function
 
-If the user has already saved informations obtained with **Generate_DataFile** function about samples in RData file. The user can concatenate data with the **Concat_DataFile**. 
+If the user has already saved informations obtained with **Generate_DataFile** function  (or **Generate_DataFile_MF** function) about samples in RData file. The user can concatenate data with the **Concat_DataFile**. 
 
 For example if *DATA1* is output of sample named "GDB3", and *DATA2* is output of "GDB5",
 
@@ -189,15 +211,13 @@ In DATA, there is information for samples named *GDB3* and *GDB5*, then it is ex
   - a matrix with 2 columns (1 line per sample) for DATA1\$dLab, DATA1\$ddot_env
   - 2 integers (1 integer per BIN files here we have 1 BIN file per sample) for DATA1\$J, DATA1\$K, DATA1\$Nb_measurement.
 
-You can also see the L/T in function of the regenerative doses for each sample, using the $SampleNumber$ option (the number in $SampleNumber$ correponds to the sample whose its position in DATA is this number), as follow:
+You can also see the L/T in function of the regenerative doses for each sample, using the $SampleNumber$ option (the number in $SampleNumber$ correponds to the sample whose its position in DATA is this number), as follows:
 
 ```{r,eval=FALSE}
-# for the "GDB5"
-LT_RegenDose(DATA,Path=c('inst/extdata/'),Names=c("GDB5"),SampleNumber = 1)
-# for the "GDB3"
-LT_RegenDose(DATA,Path=c('inst/extdata/'),Names=c("GDB3"),SampleNumber = 2)
+LT_RegenDose(DATA,Path=c('inst/extdata/'),Names=c("GDB5","GDB3"),Nb_sample = 2,SG=TRUE)
 ```
 
+If $DATA$ is information concerning multi-grain OSL measurements, the user change $SG$ option by $SG=FALSE$
 
 ### 2.2. Age analysis without constraint
 
@@ -215,7 +235,7 @@ Options detailled in remark 1, 2, 3 are still available for this function.
 
 As for the function **Age_computation**, age for each sample is by default between 0.01 Ka and 100 ka. 
 If you have more informations on your samples it is possible to change $PriorAge$ parameters. 
-$PriorAge$ is a vector of size = 2*$Nb_sample$, the two first values of $PriorAge$ concern the first sample. 
+$PriorAge$ is a vector of size = 2*$Nb\_sample$, the two first values of $PriorAge$ concern the first sample and so on. 
 
 For example, if you know that sample named *GDB5* is a young sample whose its age is between 0.01 ka and 10 ka, and *GDB3* is an old sample whose age is between 10 ka and 100 ka, 
 $$PriorAge=c(\underbrace{0.01,10}_{GDB5\ prior\ age},\underbrace{10,100}_{GDB3\ prior\ age})$$
@@ -236,7 +256,7 @@ or you enter saved .RData informations of each sample in **Concat_DataFile**, or
 
 ```{r,eval=FALSE}
 # using Generate_DataFile function
-Path=c("inst/extdata/")
+Path=c("")
 Names=c("GDB5","GDB3")
 Nb_sample=2
 Generate_DataFile(Path,Names,Nb_sample)
@@ -248,10 +268,10 @@ DATA=Concat_DataFile(DATA2,DATA1)
 ```
 
 
-#### b) Construct stratigraphic matrix
+#### b) Construct stratigraphic constraint matrix
 
 Let us *SC* the matrix containing all information on tratigraphic constraints for this two samples.
-This matrix is defined as follow:
+This matrix is defined as follows:
 
   - the size of the matrix, row number of StratiConstraints matrix is equal to $Nb_sample+1$, and column number is equal to $Nb_sample$.
 

@@ -1,10 +1,11 @@
-#' Generates, from one (or several) BIN file(s) of Single-grain OSL measurements, a list of luminescence data and information before statistical analysis
+#' Generates, from one (or several) BIN file(s) of Multi-grain OSL measurements, a list of luminescence data and information before statistical analysis
 #'
 #' This function is used to generate, from the BIN file(s), a list of values of:
-#' \bold{Single-grain} OSL intensities and associated uncertainties, regenerative doses, etc., which will be the input of the Bayesian models.
+#' \bold{Multi-grain} OSL intensities and associated uncertainties, regenerative doses, etc., which will be the input of the Bayesian models.
 #' To be easy-to-use, this function requires a rigorous organisation - all needed files should be arranged in one folder -
-#' of informations concerning each BIN file. \cr
-#' It is possible to process data for various samples simultaneously and to consider more than one BIN file per sample.
+#' of informations concerning each BIN file.\cr
+#' It is possible to process data for various samples simultaneously and to consider more
+#' than one BIN file per sample.
 #'
 #' @param Path character: the path to the project folder, containing one or more subfolders in which the BIN files
 #' are located.
@@ -19,7 +20,7 @@
 #' The length of this vector must be equal to \code{Nb_sample} and the sum of entries of this vector must be equal to \code{Nb_binfile}.
 #' If there is more than one BIN file per sample, see the details section for instructions regarding how to correctly fill \code{BinPerSample} vector.
 #' Otherwise, this vector must contain a list of 1 values.
-#' @param sepDP character (with default): column separator in the DiscPose.csv files.
+#' @param sepD character (with default): column separator in the DiscPose.csv files.
 #' @param sepDE character (with default): column separator in the DoseEnv.csv files.
 #' @param sepDS character (with default): column separator in the DoseLab.csv files.
 #' @param sepR character (with default): column separator in the Rule.csv files.
@@ -33,7 +34,7 @@
 #' Each subfolder can be named, for example, as the sample name followed by a number; it must contain:
 #' \itemize{
 #'   \item \bold{bin.BIN}, the bin file renamed as bin.BIN (note: the name of all files matters);
-#'   \item \bold{DiscPos.csv}, a two columns .csv file containing the list of disc and grain position number of the previously selected grains
+#'   \item \bold{Disc.csv}, a one columns .csv file containing the list of disc number of the previously selected grains
 #'   (typically this list will include the position of grains based on their sensitivity, recycling or other properties);
 #'   \item \bold{DoseEnv.csv}, a two columns file containing the observation of the natural (or environmental),
 #'   dose rate, and its non-shared variance (i.e. after removing all shared errors). Note: the user shall provide the squared value of the error associated
@@ -42,9 +43,9 @@
 #'   and its variance (squared error);
 #'   \item \bold{rule.csv}, a .csv file containing information on
 #'   \itemize{
-#'     \item  beginSignal=  the first channel for summing the natural or regenerative OSL signal (typically 1 or 6);
-#'     \item  endSignal= the last channel for summing the natural or regenerative OSL signal (typically 5 or 10);
-#'     \item  beginBackground= the first channel for background estimation of the natural or regenerative OSL signal (typically 76 or 81);
+#'     \item beginSignal=  the first channel for summing the natural or regenerative OSL signal (typically 1 or 6);
+#'     \item endSignal= the last channel for summing the natural or regenerative OSL signal (typically 5 or 10);
+#'     \item beginBackground= the first channel for background estimation of the natural or regenerative OSL signal (typically 76 or 81);
 #'     \item endBackground= the last channel for background estimation of the natural or regenerative OSL signal (typically 95 or 100);
 #'     \item beginTest,
 #'     \item endTest,
@@ -105,7 +106,7 @@
 #'
 #' @author Claire Christophe, Guillaume Guerin
 #'
-#' @seealso \code{\link{read_BIN2R}}, \code{\link{Concat_DataFile}}, \code{\link{Generate_DataFile_MG}}, \code{\link{LT_RegenDose}}
+#' @seealso \code{\link{read_BIN2R}}, \code{\link{Concat_DataFile}}, \code{\link{LT_RegenDose}}
 #' \code{\link{Age_Computation}}, \code{\link{AgeS_Computation}}, \code{\link{Palaeodose_Computation}}
 #'
 #' @examples
@@ -113,11 +114,11 @@
 #' ## Put path in quotes to go to the folder containing bin.BIN file and associated .csv files
 #' ## Path must be determinated by "/"
 #' # Path=""
-#' ## Enter in quotes the name of the folder containsing bin.BIN file
+#' ## Enter between the "" the name of the folder containsing bin.BIN file
 #' # Names=""
 #' ## give the number of sample
 #' # Nb_sample=1
-#' # DATA=Generate_DataFile(Path,Names,Nb_sample)
+#' # DATA=Generate_DataFile_MG(Path,Names,Nb_sample)
 #' # str(DATA)
 #'
 #' ## to save information in .RData object
@@ -125,30 +126,13 @@
 #' ## to load information containing DATA.RData object
 #' # load(file=c(paste(Path,"DATA.RData",sep="")))
 #'
-#'
-#' ## 2) Example for 2 samples and one Bin file each
-#' ## Put path in quotes to go to the folders containing bin.BIN file for each sample.
-#' ## Path must be determinated by "/"
-#' # Path=""
-#' ## Enter between the "" the names of each folders containsing bin.BIN file
-#' # Names=c("Nom1","Nom2")
-#' ## give the number of sample
-#' # Nb_sample=2
-#' # DATA=Generate_DataFile(Path,Names,Nb_sample)
-#' # str(DATA)
-#'
-#' ## to save information in .RData object
-#' # save(DATA,file=c(paste(Path,'DATA.RData',sep=""))
-#' ## to load information containing DATA.RData object
-#' # load(file=c(paste(Path,"DATA.RData",sep="")
-#'
 #' @export
 
-Generate_DataFile<-function(Path,Names,
+Generate_DataFile_MG<-function(Path,Names,
                             Nb_sample,
                             Nb_binfile=length(Names),
                             BinPerSample=rep(1,Nb_sample),
-                            sepDP=c(","),
+                            sepD=c(","),
                             sepDE=c(","),
                             sepDS=c(","),
                             sepR=c("=")){
@@ -180,7 +164,7 @@ Generate_DataFile<-function(Path,Names,
       print(paste(".bin file number =",bf))
 
       # read files....
-      XLS_file <- read.csv(file=paste(Path,Names[bf],"/DiscPos.csv",sep=""),sep=sepDP)
+      XLS_file <- read.csv(file=paste(Path,Names[bf],"/Disc.csv",sep=""),sep=sepD)
       DL=read.csv(file=paste(Path,Names[bf],"/DoseSource.csv",sep=""),sep=sepDS)
       dd=read.csv(file=paste(Path,Names[bf],"/DoseEnv.csv",sep=""),sep=sepDE)
       rule=read.csv(file=paste(Path,Names[bf],"/rule.csv",sep=""),sep=sepR)
@@ -189,10 +173,9 @@ Generate_DataFile<-function(Path,Names,
       object <- read_BIN2R(paste(Path,Names[bf],"/bin.BIN",sep=""),duplicated.rm = TRUE)
 
       # csv file indicating position and disc selection and preparation to be red
-      XLS_file[[3]]<-XLS_file[[2]]
       XLS_file[[2]]<-XLS_file[[1]]
       XLS_file[[1]] <- object@METADATA$FNAME[1:length(XLS_file[[1]])]
-      names(XLS_file)=c("BIN_FILE","DISC","GRAIN")
+      names(XLS_file)=c("BIN_FILE","DISC")
       head(XLS_file)
 
       # aliquot number
@@ -211,10 +194,10 @@ Generate_DataFile<-function(Path,Names,
       #---------------------------------------
       ind=c()
       for(j in 1:J[bf]){
-        ind=c(ind,object@METADATA[object@METADATA[,"POSITION"]== XLS_file[j,2] & object@METADATA[,"GRAIN"]== XLS_file[j,3],1])
+        ind=c(ind,object@METADATA[object@METADATA[,"POSITION"]== XLS_file[j,2] & object@METADATA[,"LTYPE"]== "OSL",1])
       }
       # what is ind...
-      (object@METADATA[ind[1:20],c("POSITION","GRAIN","IRR_TIME")])
+      (object@METADATA[ind[1:16],c("POSITION","IRR_TIME")])
 
       # regeneration dose number
       Nb_measurement[bf]=length(ind)/J[bf]

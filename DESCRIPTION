@@ -7,7 +7,7 @@ Description: Description:  collection of various R functions for Bayesian analys
     application of age models and palaeodose model.
 Date: 2017-05-29
 Version: 0.1.0
-Author: Claire Christophe [aut, cre], Guillaume Guerin [aut], Anne Philippe [aut]
+Author: Claire Christophe [aut, cre], Guillaume Guerin [aut], Sebastian Kreutzer [aut], Anne Philippe [aut]
 Maintainer: Claire Christophe <claire.christophe@univ-nantes.fr>
 Depends: 
   R(>= 3.3.2), 

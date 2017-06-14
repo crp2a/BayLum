@@ -1,11 +1,11 @@
 #' Bayesian analysis for the OSL age estimation of one sample
 #'
 #' This function computes the age of a sample according to the model developed in Combes and Philippe (2017),
-#' based on an output of the \code{\link{Generate_DataFile}} function.\cr
+#' based on an output of \code{\link{Generate_DataFile}} or \code{\link{Generate_DataFile_MG}}.\cr
 #' A sample, for which data is avalilable in several BIN files, can be analysed.
 #'
 #' @param DATA list of objects: LT, sLT, ITimes, dLab, ddot_env, regDose, J, K, Nb_measurement,
-#' provided by the function \code{\link{Generate_DataFile}}.
+#' provided by the function \code{\link{Generate_DataFile}} or \code{\link{Generate_DataFile_MG}}.
 #' \code{DATA} can contain information for more than one sample.
 #' @param samplename character: name of the sample.
 #' @param SavePdf boolean (with default): if TRUE save graph in pdf file named \code{OutputFileName} in folder \code{OutputFilePath}.
@@ -18,7 +18,7 @@
 #' @param BinPerSample integer vector (with default): vector with the number of BIN files per sample.
 #' If in \code{DATA} there is more than one sample,
 #' the \code{BinPerSample} vector must be the same as that used to run the function
-#' \code{\link{Generate_DataFile}} for generating the \code{DATA} object.
+#' \code{\link{Generate_DataFile}} or in \code{\link{Generate_DataFile_MG}} for generating the \code{DATA} object.
 #' @param PriorAge numeric vector (with default): lower and upper bounds for the sample age parameter.
 #'  \code{length(PriorAge)=2}.
 #' @param LIN_fit logical (with default): if TRUE (default) allows a linear component,
@@ -28,7 +28,7 @@
 #' Please see details for more informations on the proposed growth curves.
 #' @param distribution character (with default): type of distribution that defines
 #' how individual equivalent dose values are distributed around the palaeodose.
-#' Allowed inputs are \bold{"cauchy"}, \bold{"gaussian"} and \bold{"lognormal"}.
+#' Allowed inputs are \bold{"cauchy"}, \bold{"gaussian"}, \bold{"lognormal_A"} and \bold{"lognormal_M"}.
 #' @param I integer (with default): if \code{DATA} contains data from more than one sample,
 #' I indicates the ID number of the sample to be analysed.
 #' @param Taille integer (with default): number of iterations for the MCMC computation (for more information see \code{\link{jags.model}}).
@@ -37,7 +37,10 @@
 #' @param Nb_chaines integer (with default): number of independent chains for the model (for more information see \code{\link{jags.model}}).
 #'
 #' @details
-#' For more flexibility, the user can choose from 4 dose response curves:
+#'
+#' \bold{** Option on growth curves **}
+#'
+#' As for \code{\link{AgeS_Computation}} and \code{\link{Palaeodose_Computation}}, the user can choose from 4 dose response curves:
 #' \itemize{
 #'   \item \bold{Saturating exponential plus linear growth} (\code{AgeMultiBF_EXPLIN}):
 #'
@@ -69,49 +72,56 @@
 #'   }
 #' }
 #'
-#' @return
-#' \bold{1- NUMERICAL OUTPUT}\cr
-# ______________________
+#' \bold{** Option on equivalent dose distribution around the palaeodose **}
 #'
-#' \bold{A list containing the following objects:}
+#' The use can choose between :
 #' \itemize{
-#'  \item \bold{Sampling} that corresponds to a sample of the posterior distributions
-#'  of the Age, palaeodose and equivalent dose dispersion parameters.
-#'  \item \bold{Model_GrowthCurve}, stating which dose response fitting option was chosen;
-#'  \item \bold{Distribution}, stating which distribution was chosen to model the dispersion of
-#'  individual equivalent dose values around the palaeodose of the sample;
-#'  \item \bold{PriorAge}, stating the priors used for the age parameter.
+#'   \item \code{cauchy}: a Cauchy distribution with location parameter equal to the palaeodose of the sample
+#'   \item \code{gaussian}: a Gaussian distribution with mean equal to the palaeodose of the sample
+#'   \item \code{lognormal_A}: a log-normal distribution with mean or \bold{A}verage equal to the palaeodose of the sample
+#'   \item \code{lognormal_M}: a log-normal distribution with \bold{M}edian equal to the palaeodose of the sample
 #' }
 #'
-#' \bold{The Gelman and Rudin test of convergency}
+#' @return
+#' \bold{NUMERICAL OUTPUT}\cr
 #'
-#' Prints the result of the Gelman and Rudin test of convergency for the age, palaeodose and equivalent dose dispersion parameters.
+#' \enumerate{
+#'  \item \bold{A list containing the following objects}:
+#'  \itemize{
+#'   \item \bold{Sampling} that corresponds to a sample of the posterior distributions
+#'  of the Age, palaeodose and equivalent dose dispersion parameters.
+#'   \item \bold{Model_GrowthCurve}, stating which dose response fitting option was chosen;
+#'   \item \bold{Distribution}, stating which distribution was chosen to model the dispersion of
+#'  individual equivalent dose values around the palaeodose of the sample;
+#'   \item \bold{PriorAge}, stating the priors used for the age parameter.
+#'  }
+#'  \item\bold{The Gelman and Rudin test of convergency}: prints the result of the Gelman and Rudin test of convergency for the age, palaeodose and equivalent dose dispersion parameters.
 #' A result close to one is expected.\cr
-#' In addition, the user must visually assess the convergency of the trajectories by looking at the pdf file
+#' In addition, the user must visually assess the convergency of the trajectories by looking at the graph
 #' generated by the function (see 2- for more informations).\cr
 #' If both convergencies (Gelman and Rudin test and plot checking) are satisfactory,
 #' the user can consider the printed estimates as valid. Otherwise, the user may try increasing the number of MCMC interations
 #' (\code{Taille}) to reach convergency.
-#'
-#' \bold{Credible intervals and Bayes estimates}
-#'
-#' Prints the Bayes esitmates, the credible intervals at level 95\% and 68\% for
+#' \item\bold{Credible intervals and Bayes estimates}: prints the Bayes esitmates, the credible intervals at 95\% and 68\% for
 #' the age, palaeodose and equivalent dose dispersion parameters of the sample.
+#' }
 #'
-#' \bold{2- PLOT OUTPUT}
+#' \bold{PLOT OUTPUT}
 #'
-#' A pdf file with the MCMC trajectories and posterior distributions of the age, palaeodose and equivalent dose dispersion parameters.\cr
+#' A graph with the MCMC trajectories and posterior distributions of the age, palaeodose and equivalent dose dispersion parameters is displayed.\cr
 #' The first line of the figure correponds to the age parameter, the second to the palaeodose parameter and the third to the equivalent dose dispersion parameter.
 #' On each line, the plot on the left represents the MCMC trajectories, and the one on the right the posterior distribution of the parameter.
 #'
 #' @author Claire Christophe, Guillaume Guerin
 #'
-#' @seealso \code{\link{Generate_DataFile}}, \code{\link{rjags}} package, \code{\link{MCMC_plot}}
+#' @seealso \code{\link{Generate_DataFile}}, \code{\link{Generate_DataFile_MG}},
+#' \code{\link{rjags}}, \code{\link{MCMC_plot}}
+#' \code{\link{AgeS_Computation}}, \code{\link{Palaeodose_Computation}}
 #'
 #' @references
 #' Combes, Benoit and Philippe, Anne, 2017.
 #' Bayesian analysis of multiplicative Gaussian error for multiple ages estimation in optically stimulated luminescence dating.
-#' Quaternary Geochronology (in press)
+#' Quaternary Geochronology (39, 24-34)
 #'
 #' Combes, B., Philippe, A., Lanos, P., Mercier, N., Tribolo, C., Guerin, G., Guibert, P., Lahaye, C., 2015.
 #' A Bayesian central equivalent dose model for optically stimulated luminescence dating.
@@ -120,37 +130,21 @@
 #' @examples
 #' ## load data file generated by the function Generate_DataFile
 #' # data(DATA1,envir = environment())
-#' # Age=Age_Computation(DATA1,samplename="GDB3",SavePdf=FALSE,Taille=1000)
+#' # Age=Age_Computation(DATA1,samplename="GDB3",Taille=10000)
 #'
 #' @export
 Age_Computation<-function(DATA,samplename,
-                            SavePdf=FALSE,
-                            OutputFileName=c("MCMCplot"),        # path to the subfile where the plot are posed
-                            OutputFilePath=c(''),
-                            SaveEstimates=FALSE,
-                            OutputTableName=c("DATA"),
-                            OutputTablePath=c(''),
-                            BinPerSample=c(1),
-                            PriorAge=c(0.01,100),
-                            LIN_fit = TRUE,
-                            Origin_fit = FALSE,
-                            distribution=c("cauchy"),
-                            I=1,
-                            Taille=50000,t=5,Nb_chaines=3){
-  #library(rjags)
-  #library(coda)
-  #library(lattice)
-  #library(ArchaeoPhases)
+                          SavePdf=FALSE,OutputFileName=c("MCMCplot"),OutputFilePath=c(''),
+                          SaveEstimates=FALSE,OutputTableName=c("DATA"),OutputTablePath=c(''),
+                          BinPerSample=c(1),
+                          PriorAge=c(0.01,100),
+                          LIN_fit = TRUE,Origin_fit = FALSE,
+                          distribution=c("cauchy"),
+                          I=1,
+                          Taille=50000,t=5,Nb_chaines=3){
 
-  load(paste("inst/BUGFiles/","AgeMultiBF_EXPLIN",sep=""))
-  load(paste("inst/BUGFiles/","AgeMultiBF_EXP",sep=""))
-  load(paste("inst/BUGFiles/","AgeMultiBF_EXPZO",sep=""))
-  load(paste("inst/BUGFiles/","AgeMultiBF_EXPLINZO",sep=""))
-
-  U=list("AgeMultiBF_EXPLIN"=AgeMultiBF_EXPLIN,
-         "AgeMultiBF_EXP"=AgeMultiBF_EXP,
-         "AgeMultiBF_EXPZO"=AgeMultiBF_EXPZO,
-         "AgeMultiBF_EXPLINZO"=AgeMultiBF_EXPLINZO)
+  Model_Age<-0
+  data(Model_Age,envir = environment())
 
   if(LIN_fit==TRUE){
     cLIN=c('LIN')
@@ -177,7 +171,7 @@ Age_Computation<-function(DATA,samplename,
                   "Sigma"=DATA$ddot_env[2,(CSBinPerSample[I]-BinPerSample[I]+1)]+DATA$ddot_env[1,(CSBinPerSample[I]-BinPerSample[I]+1)]^2*DATA$dLab[2,(CSBinPerSample[I]-BinPerSample[I]+1)],
                   "xbound"=PriorAge,"index"=index2,"BinPerSample"=BinPerSample[I])
 
-  jags <- jags.model(textConnection(U[[Model_GrowthCurve]][[distribution]]), data = dataList, n.chains = Nb_chaines, n.adapt=Taille)
+  jags <- jags.model(textConnection(Model_Age[[Model_GrowthCurve]][[distribution]]), data = dataList, n.chains = Nb_chaines, n.adapt=Taille)
   update(jags,Taille)
   echantillon = coda.samples(jags,c("A","D","sD"),min(Taille,10000),thin=t)
 
@@ -217,7 +211,8 @@ Age_Computation<-function(DATA,samplename,
   cat("________________________________________________________________________________\n\n")
 
   # Matrix of results
-  R=matrix(data=NA,ncol=5,nrow=3,dimnames=list(c("A","D","sD"),c("lower bound at 95%","lower bound at 68%","Bayes estimate","upper bound at 68%","upper bound at 95%")))
+  R=matrix(data=NA,ncol=8,nrow=3,dimnames=list(c("A","D","sD"),
+          c("lower bound at 95%","lower bound at 68%","Bayes estimate","upper bound at 68%","upper bound at 95%","","Convergencies: Bayes estimate","Convergencies: uppers confidence interval")))
 
   cat(paste("parameter", "\t","Bayes estimate","\t"," confidence interval \n"))
   cat("----------------------------------------------\n")
@@ -255,6 +250,10 @@ Age_Computation<-function(DATA,samplename,
   R[3,3]=round(mean(sample[,3]),3)
   R[3,c(1,5)]=round(HPD_95[2:3],3)
   R[3,c(2,4)]=round(HPD_68[2:3],3)
+
+  R[,6]=c('','','')
+  R[,7]=round(CV$psrf[,1],2)
+  R[,8]=round(CV$psrf[,2],2)
 
   if(SaveEstimates==TRUE){
     write.csv(R,file=c(paste(OutputTablePath,"Estimates",OutputTableName,".csv",sep="")))

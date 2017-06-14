@@ -20,27 +20,28 @@ MCMC_plot(sample, size, SampleNames, Nb_sample = 1, Nb_chaines = 3,
 
 \item{value}{integer vector (with default): position idex used to select age (if available), palaeodose and equivalent dose dispersion parameters for the first sample.}
 
-\item{nom}{character vector (with default): names of the selected parameters with value \code{A} for age (if available), 
+\item{nom}{character vector (with default): names of the selected parameters with value \code{A} for age (if available),
 \code{D} for palaeodose and \code{sD} for equivalent dose dispersion.}
 }
 \value{
 A pdf file with the MCMC trajectories and posterior distributions for each parameter defined in \code{nom}.
 There is one page per sample, which is divided by \code{length(nom)} vertically and by \code{2} horizontally. \cr
-The first line of the figure correponds to the first parameter defined in \code{nom}, and so on. 
+The first line of the figure correponds to the first parameter defined in \code{nom}, and so on.
 On each line, the plot on the left represents the MCMC trajectories, and the one on the right the posterior distributions of the parameter.
 }
 \description{
-This function uses the ouput of \code{\link{coda.samples}} to plot the trajectories of MCMC and densities of the posterior distributions 
-of the age - if it is calculated, palaeodose and equivalent dose dispersion parameters of the sample. 
-This function is used in the function \code{\link{Age_Computation}}.
+This function uses the ouput of \code{\link{coda.samples}} to plot the trajectories of MCMC and densities of the posterior distributions
+of the age - if it is calculated, palaeodose and equivalent dose dispersion parameters of the sample.
+This function is used in the function \code{\link{Age_Computation}}, \code{\link{AgeS_Computation}} and \code{\link{Palaeodose_Computation}}.
 }
 \examples{
-data(MCMCsample,envir = environment()) 
-MCMC_plot(MCMCsample,2000,SampleNames="GDB3",Nb_sample=1,Nb_chaines=3) 
+data(MCMCsample,envir = environment())
+MCMC_plot(sample=MCMCsample,size=2000,SampleNames="GDB3")
 
 }
 \seealso{
-\code{\link{Age_Computation}}, \code{\link{coda.samples}} and \code{\link{rjags}} packages.
+\code{\link{Age_Computation}}, \code{\link{AgeS_Computation}}, \code{\link{Palaeodose_Computation}},
+ \code{\link{coda.samples}} and \code{\link{rjags}} packages.
 }
 \author{
 Claire Christophe, Guillaume Guerin

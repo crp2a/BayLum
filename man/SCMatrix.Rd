@@ -12,13 +12,16 @@ SCMatrix(Nb_sample, Names)
 \item{Names}{charcater vector: sample names.}
 }
 \value{
-A Matrix that summarise the ordered relation between samples. 
+A Matrix that summarise the ordered relation between samples.
 This matrix can be intergrate in \code{AgeS_Computation} function.
 We refer to detail on \code{AgeS_Computation} for more information concerning this matrix.
 }
 \description{
 This function helps to define the stratigraphic relation between samples, with questions.
 The output of this function can be used in function \code{AgeS_Computation}.
+}
+\details{
+Ask if sample \code{i} is younger than sample \code{j} to construc the stratigraphic constrain matrix.
 }
 \examples{
 ## Assume that "sample1" is younger than "sample2"
