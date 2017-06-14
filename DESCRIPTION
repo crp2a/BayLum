@@ -17,9 +17,9 @@ Depends:
   ArchaeoPhases, 
   rjags (>= 4-6)
 Imports: stats, graphics, grDevices, methods
-License: GPL-3
 LazyData: true
-Suggests: knitr, rmarkdown
-VignetteBuilder: knitr
-RoxygenNote: 6.0.1
+Suggests: R.rsp
+VignetteBuilder: R.rsp
+License: GPL-3
 NeedsCompilation: no
+RoxygenNote: 6.0.1

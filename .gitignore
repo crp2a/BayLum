@@ -32,3 +32,10 @@ vignettes/*.pdf
 *.utf8.md
 *.knit.md
 .Rproj.user
+
+# File from the personal build scripts
+BayLum.Rcheck/
+BayLum.BuildResults/*.tar.gz
+BayLum.BuildResults/*.zip
+BayLum.BuildResults/*.tgz
+BayLum.BuildResults/rdepends_*
