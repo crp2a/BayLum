@@ -12,9 +12,9 @@ Maintainer: Claire Christophe <claire.christophe@univ-nantes.fr>
 Depends: 
   R(>= 3.3.2), 
   utils,
-  coda, 
+  coda (>= 0.19-1), 
   Luminescence (>= 0.7.4),
-  ArchaeoPhases, 
+  ArchaeoPhases (>= 1.1), 
   rjags (>= 4-6)
 Imports: stats, graphics, grDevices, methods
 LazyData: true
