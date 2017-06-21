@@ -1,13 +1,15 @@
 ---
-title: "BayLum"
+title: "BayLum - An Introduction"
 author: "Claire Christophe, Guillaume Guerin, Anne Philippe"
 date: '`r Sys.Date()`'
 output:
   rmarkdown::html_vignette:
+    standalone: true
+    self-contained: true
     toc: yes
-  pdf_document:
-    toc: yes
-    toc_depth: '3'
+  # pdf_document:
+  #   toc: yes
+  #   toc_depth: '3'
 vignette: 
   "%\\VignetteIndexEntry{BayLum} 
   \n%\\VignetteEngine{rsp::asis} 
