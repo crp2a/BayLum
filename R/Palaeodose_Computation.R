@@ -138,7 +138,7 @@
 
 Palaeodose_Computation<-function(DATA,SampleNames,Nb_sample,
                                  BinPerSample=rep(1,Nb_sample),
-                                 SavePdf=FALSE,OutputFileName=c('MCMCplot',"summary"),OutputFilePath=c(''),
+                                 SavePdf=FALSE,OutputFileName=c('MCMCplot'),OutputFilePath=c(''),
                                  SaveEstimates=FALSE,OutputTableName=c("DATA"),OutputTablePath=c(''),
                                  LIN_fit = TRUE,Origin_fit = FALSE,
                                  distribution=c("cauchy"),
@@ -197,9 +197,6 @@ Palaeodose_Computation<-function(DATA,SampleNames,Nb_sample,
     sample=rbind(sample,echantillon[[i]])
   }
 
-  if(SavePdf==TRUE){
-    pdf(file=paste(OutputFilePath,OutputFileName[1],".pdf",sep=""),width=8,height=10)
-  }
   MCMC_plot(sample,
             size=length(echantillon[[1]][,1]),
             SampleNames=SampleNames,
@@ -208,8 +205,9 @@ Palaeodose_Computation<-function(DATA,SampleNames,Nb_sample,
             value=c(0,Nb_sample),
             nom=c("D","sD"))
   if(SavePdf==TRUE){
-    dev.off()
+    dev.print(pdf,file=paste(OutputFilePath,OutputFileName[1],'.pdf',sep=""),width=8,height=10)
   }
+
 
   ##--- Graphical interpretation, and print result
 

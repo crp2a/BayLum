@@ -167,9 +167,6 @@ AgeC14_Computation<-function(Data_C14Cal,Data_SigmaC14Cal,Nb_sample,SampleNames,
      Sample=rbind(Sample,echantillon[[i]])
    }
 
-   if(SavePdf==TRUE){
-     pdf(file=paste(OutputFilePath,OutputFileName[1],".pdf",sep=""),width=8,height=10)
-   }
    nom=c()
    for(i in 1:Nb_sample){
      nom=c(nom,paste("A_",SampleNames[i],sep=""))
@@ -193,8 +190,9 @@ AgeC14_Computation<-function(Data_C14Cal,Data_SigmaC14Cal,Nb_sample,SampleNames,
              value=seq(0,(r-1),1),
              nom=nom[(6*q+1):Nb_sample])
    if(SavePdf==TRUE){
-     dev.off()
+     dev.print(pdf,file=paste(OutputFilePath,OutputFileName[1],'.pdf',sep=""),width=8,height=10)
    }
+
 
 
    ##- Gelman and rudin test of convergency of the MCMC
@@ -257,9 +255,6 @@ AgeC14_Computation<-function(Data_C14Cal,Data_SigmaC14Cal,Nb_sample,SampleNames,
    # Representation graphique des resultats
    #        des HPD sur la courbe de calibration
    couleur=rainbow(Nb_sample)
-   if(SavePdf==TRUE){
-     pdf(file=paste(OutputFilePath,OutputFileName[2],".pdf",sep=""),width=8,height=10)
-   }
    par(mfrow=c(1,1),las = 0,mar=c(5,5,2,2))
    xl=c(min(PriorAge[seq(1,(2*Nb_sample-1),2)]),max(PriorAge[seq(2,(2*Nb_sample),2)]))
    plot(xl,xl,col="white",xlab=c("Age"),ylab=c("cal C14"),xaxt="n",yaxt="n",cex.lab=1.8)
@@ -271,13 +266,11 @@ AgeC14_Computation<-function(Data_C14Cal,Data_SigmaC14Cal,Nb_sample,SampleNames,
      lines(U$statistics[i,1],Data_C14Cal[i],col="black",lwd=2,type='p')
    }
    if(SavePdf==TRUE){
-     dev.off()
+     dev.print(pdf,file=paste(OutputFilePath,OutputFileName[2],'.pdf',sep=""),width=8,height=10)
    }
 
+
    #       HPD sur un meme graphe
-   if(SavePdf==TRUE){
-      pdf(file=paste(OutputFilePath,OutputFileName[3],".pdf",sep=""),width=8,height=10)
-  }
    par(mfrow=c(1,1),las = 1,oma=c(2,5,0.5,0.5))
    plot(c(AgePlot95[1,2:3]),c(Nb_sample,Nb_sample),
        ylim=c(0.5,Nb_sample+1),xlim=c((min(AgePlot95[,2])-1),(max(AgePlot95[,3])+1)),
@@ -296,15 +289,13 @@ AgeC14_Computation<-function(Data_C14Cal,Data_SigmaC14Cal,Nb_sample,SampleNames,
      lines(AgePlotMoy[i],(Nb_sample-(i-1)),col="firebrick",lwd=5,type="o")
    }
    if(SavePdf==TRUE){
-     dev.off()
+     dev.print(pdf,file=paste(OutputFilePath,OutputFileName[3],'.pdf',sep=""),width=8,height=10)
    }
+
 
 
 
    #        des densites a posterior l une sous l autre
-   if(SavePdf==TRUE){
-     pdf(file=paste(OutputFilePath,OutputFileName[4],".pdf",sep=""),width=8,height=10)
-   }
    xl=c(min(PriorAge[seq(1,(2*Nb_sample-1),2)]),max(PriorAge[seq(2,(2*Nb_sample),2)]))
    for(l in 1:q){
      par(mfrow=c(6,1),mar=c(2,2,2,2),oma=c(1,1,1,1))
@@ -346,17 +337,16 @@ AgeC14_Computation<-function(Data_C14Cal,Data_SigmaC14Cal,Nb_sample,SampleNames,
    axis(1,cex.axis=2)
    legend(44000,0.002,nom,lty=rep(1,Nb_sample),lwd=rep(3,Nb_sample),col=couleur,bty="n",cex=1.5)
    if(SavePdf==TRUE){
-     dev.off()
+     dev.print(pdf,file=paste(OutputFilePath,OutputFileName[4],'.pdf',sep=""),width=8,height=10)
    }
 
+
    if(Nb_sample<12){
-     if(SavePdf==TRUE){
-       pdf(file=paste(OutputFilePath,OutputFileName[4],".pdf",sep=""),width=8,height=10)
-     }
      pairs(Sample[,c(1:Nb_sample)],cex=0.2,labels=nom,pch=".")
      if(SavePdf==TRUE){
-       dev.off()
+       dev.print(pdf,file=paste(OutputFilePath,OutputFileName[5],'.pdf',sep=""),width=8,height=10)
      }
+
    }
    Info=list("Sampling"=echantillon,"
             Model"=Model, "CalibrationCurve"=CalibrationCurve,

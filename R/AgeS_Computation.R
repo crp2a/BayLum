@@ -292,9 +292,6 @@ AgeS_Computation<-function(DATA,SampleNames,Nb_sample,
     sample=rbind(sample,echantillon[[i]])
   }
 
-  if(SavePdf==TRUE){
-    pdf(file=paste(OutputFilePath,OutputFileName[1],".pdf",sep=""),width=8,height=10)
-  }
   MCMC_plot(sample,
             length(echantillon[[1]][,1]),
             SampleNames=SampleNames,
@@ -302,8 +299,9 @@ AgeS_Computation<-function(DATA,SampleNames,Nb_sample,
             Nb_chaines=Nb_chaines,
             value=c(0,Nb_sample,2*Nb_sample))
   if(SavePdf==TRUE){
-    dev.off()
+    dev.print(pdf,file=paste(OutputFilePath,OutputFileName[1],'.pdf',sep=""),width=8,height=10)
   }
+
   ##--- Graphical interpretation, and print result
 
   ##- Gelman and rudin test of convergency of the MCMC
@@ -388,9 +386,6 @@ AgeS_Computation<-function(DATA,SampleNames,Nb_sample,
   cat("\n----------------------------------------------\n")
 
   #- graphical representation
-  if(SavePdf==TRUE){
-    pdf(file=paste(OutputFilePath,OutputFileName[2],".pdf",sep=""))
-  }
   par(mfrow=c(1,1),las = 1,oma=c(3,5,1,0.5))
   plot(c(AgePlot95[1,2:3]),c(Nb_sample,Nb_sample),
        ylim=c(0.5,Nb_sample+1),xlim=c((min(AgePlot95[,2])-1),(max(AgePlot95[,3])+1)),
@@ -409,18 +404,18 @@ AgeS_Computation<-function(DATA,SampleNames,Nb_sample,
     lines(AgePlotMoy[i],(Nb_sample-(i-1)),col="firebrick",lwd=5,type="o")
   }
   if(SavePdf==TRUE){
-    dev.off()
+    dev.print(pdf,file=paste(OutputFilePath,OutputFileName[2],'.pdf',sep=""),width=8,height=10)
   }
+
 
   # check if there is stratigraphic order between sample.
   #if(sum(StratiConstraints[2:Nb_sample,1:Nb_sample]>0)){
-    if(SavePdf==TRUE){
-      pdf(file=paste(OutputFilePath,OutputFileName[3],".pdf",sep=""))
-    }
+
     pairs(sample[,c(1:Nb_sample)],cex=0.2, labels=SampleNames)
     if(SavePdf==TRUE){
-      dev.off()
+      dev.print(pdf,file=paste(OutputFilePath,OutputFileName[3],'.pdf',sep=""),width=8,height=10)
     }
+
   #}
 
   if(SaveEstimates==TRUE){

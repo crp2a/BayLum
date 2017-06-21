@@ -177,9 +177,7 @@ Age_Computation<-function(DATA,samplename,
 
   CV=gelman.diag(echantillon)
 
-  if(SavePdf==TRUE){
-    pdf(file=paste(OutputFilePath,OutputFileName,'.pdf',sep=""),width=8,height=10)
-  }
+
   sample=echantillon[[1]]
   for(i in 2:Nb_chaines){
     sample=rbind(sample,echantillon[[i]])
@@ -191,9 +189,11 @@ Age_Computation<-function(DATA,samplename,
             Nb_chaines=Nb_chaines,
             value=c(0,1,2),
             nom=c("A","D","sD"))
+
   if(SavePdf==TRUE){
-    dev.off()
+    dev.print(pdf,file=paste(OutputFilePath,OutputFileName,'.pdf',sep=""),width=8,height=10)
   }
+
 
   cat(paste("\n\n>> Sample name <<\n"))
   cat("----------------------------------------------\n")
