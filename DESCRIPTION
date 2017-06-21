@@ -21,5 +21,4 @@ LazyData: true
 Suggests: R.rsp
 VignetteBuilder: R.rsp
 License: GPL-3
-NeedsCompilation: no
 RoxygenNote: 6.0.1

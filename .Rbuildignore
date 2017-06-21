@@ -5,3 +5,4 @@ README.md
 BayLum.BuildResults
 BayLum.BuildScripts
 BayLum.CHECK_AND_BUILD_MacOSX.sh
+.gitignore

@@ -55,9 +55,9 @@ All informations concerning this sample (environmental dose, source dose, disc a
 Then, you can use the function **Generate\_DataFile** as follows:
 
 ```{r,eval=FALSE}
-Path=Path # give the name of the path to data folder
-Names=c("GDB3") # give the name of the folder datat
-Nb_sample=1     # give the number of sample
+Path=system.file("extdata/", package = "BayLum") # give the name of the path to data folder
+Names=c("GDB3") # give the name of the data folder
+Nb_sample=1     # give the number of samples
 DATA1=Generate_DataFile(Path,Names,Nb_sample)
 ```
 
