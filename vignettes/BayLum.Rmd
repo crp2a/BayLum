@@ -1,14 +1,19 @@
 ---
-title: "BayLum"
+title: "BayLum - An Introduction"
 author: "Claire Christophe, Guillaume Guerin, Anne Philippe"
 date: '`r Sys.Date()`'
 output:
-  html_document:
+  rmarkdown::html_vignette:
+    standalone: true
+    self-contained: true
     toc: yes
-  pdf_document:
-    toc: yes
-    toc_depth: '3'
-vignette: "%\\VignetteIndexEntry{BayLum} \n%\\VignetteEngine{knitr::rmarkdown} \n%\\VignetteEncoding{UTF-8}\n"
+  # pdf_document:
+  #   toc: yes
+  #   toc_depth: '3'
+vignette: 
+  "%\\VignetteIndexEntry{BayLum} 
+  \n%\\VignetteEngine{rsp::asis} 
+  \n%\\VignetteEncoding{UTF-8}\n"
 ---
 
 ```{r, echo = FALSE, message = FALSE}
