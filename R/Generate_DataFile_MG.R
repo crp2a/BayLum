@@ -170,7 +170,7 @@ Generate_DataFile_MG<-function(Path,Names,
       rule=read.csv(file=paste(Path,Names[bf],"/rule.csv",sep=""),sep=sepR)
 
       # BIN file analysis
-      object <- read_BIN2R(paste(Path,Names[bf],"/bin.BIN",sep=""),duplicated.rm = TRUE)
+      object <- Luminescence::read_BIN2R(paste(Path,Names[bf],"/bin.BIN",sep=""),duplicated.rm = TRUE)
 
       # csv file indicating position and disc selection and preparation to be red
       XLS_file[[2]]<-XLS_file[[1]]
@@ -194,7 +194,7 @@ Generate_DataFile_MG<-function(Path,Names,
       #---------------------------------------
       ind=c()
       for(j in 1:J[bf]){
-        ind=c(ind,object@METADATA[object@METADATA[,"POSITION"]== XLS_file[j,2] & object@METADATA[,"LTYPE"]== "OSL",1])
+        ind=c(ind,object@METADATA[object@METADATA[,"POSITION"]== XLS_file[j,2] & object@METADATA[,"LTYPE"]== "OSL" & object@METADATA[,"SEL"]==TRUE,1])
       }
       # what is ind...
       (object@METADATA[ind[1:16],c("POSITION","IRR_TIME")])

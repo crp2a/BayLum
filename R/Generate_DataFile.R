@@ -177,7 +177,7 @@ Generate_DataFile<-function(Path,Names,
   for(i in 1:Nb_sample){
     for(nb in 1:BinPerSample[i]){
       bf=bf+1
-      print(paste(".bin file number =",bf))
+      print(paste("File being read:",Names[bf]))
 
       # read files....
       XLS_file <- read.csv(file=paste(Path,Names[bf],"/DiscPos.csv",sep=""),sep=sepDP)
@@ -186,7 +186,7 @@ Generate_DataFile<-function(Path,Names,
       rule=read.csv(file=paste(Path,Names[bf],"/rule.csv",sep=""),sep=sepR)
 
       # BIN file analysis
-      object <- read_BIN2R(paste(Path,Names[bf],"/bin.BIN",sep=""),duplicated.rm = TRUE)
+      object <- Luminescence::read_BIN2R(paste(Path,Names[bf],"/bin.BIN",sep=""),duplicated.rm = TRUE)
 
       # csv file indicating position and disc selection and preparation to be red
       XLS_file[[3]]<-XLS_file[[2]]
@@ -214,7 +214,7 @@ Generate_DataFile<-function(Path,Names,
         ind=c(ind,object@METADATA[object@METADATA[,"POSITION"]== XLS_file[j,2] & object@METADATA[,"GRAIN"]== XLS_file[j,3],1])
       }
       # what is ind...
-      (object@METADATA[ind[1:20],c("POSITION","GRAIN","IRR_TIME")])
+      (object@METADATA[ind[1:40],c("POSITION","GRAIN","IRR_TIME")])
 
       # regeneration dose number
       Nb_measurement[bf]=length(ind)/J[bf]

@@ -19,5 +19,5 @@
 #' It is possible to consider various Bin files per sample,
 #' and to compute ages of samples in stratigraphic contraints and to integrate systematic errors.
 #'
-#' @import utils stats methods graphics grDevices coda Luminescence ArchaeoPhases rjags
+#' @import utils stats methods graphics grDevices coda
 NULL
