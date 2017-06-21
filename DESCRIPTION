@@ -7,10 +7,10 @@ Description:  collection of various R functions for Bayesian analysis of Lumines
     application of age models and palaeodose model.
 Date: 2017-05-29
 Version: 0.1.0
-Author: Claire Christophe, Guillaume Guerin, Sebastian Kreutzer, Anne Philippe
+Author: Claire Christophe [aut, cre], Guillaume Guerin [aut], Sebastian Kreutzer [aut], Anne Philippe [aut]
 Maintainer: Claire Christophe <claire.christophe@univ-nantes.fr>
 Depends: 
-  R(>= 3.3.2), 
+  R(>= 3.4.0), 
   utils,
   coda
 Imports: 
