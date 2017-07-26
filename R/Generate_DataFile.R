@@ -103,7 +103,8 @@
 #' You can save this list in a .RData object. To do this, you can use the fonction \code{\link{save}}.
 #' Then, to load this list you can use the function \code{\link{load}} (see example section fore more details).
 #'
-#' @author Claire Christophe, Guillaume Guerin
+#' @author Claire Christophe, IRAMAT-CRP2A, Universite Bordeaux Montaigne (France), Guillaume Guerin, IRAMAT-CRP2A, Universite Bordeaux Montaigne (France),
+#' Sebastian Kreutzer, IRAMAT-CRP2A, Universite Bordeaux Montaigne (France)
 #'
 #' @seealso \code{\link{read_BIN2R}}, \code{\link{Concat_DataFile}}, \code{\link{Generate_DataFile_MG}}, \code{\link{LT_RegenDose}}
 #' \code{\link{Age_Computation}}, \code{\link{AgeS_Computation}}, \code{\link{Palaeodose_Computation}}
@@ -143,89 +144,100 @@
 #' # load(file=c(paste(Path,"DATA.RData",sep="")
 #'
 #' @export
+Generate_DataFile <- function(Path,
+                              Names,
+                              Nb_sample,
+                              Nb_binfile = length(Names),
+                              BinPerSample = rep(1, Nb_sample),
+                              sepDP = c(","),
+                              sepDE = c(","),
+                              sepDS = c(","),
+                              sepR = c("=")) {
 
-Generate_DataFile<-function(Path,Names,
-                            Nb_sample,
-                            Nb_binfile=length(Names),
-                            BinPerSample=rep(1,Nb_sample),
-                            sepDP=c(","),
-                            sepDE=c(","),
-                            sepDS=c(","),
-                            sepR=c("=")){
 
-  #library(Luminescence)
+
 
   #--- create object needed
   #---------------------------------------
   # BaSAR observations for samples
-  LT=list()     # corresponding to observation of natural and regenerated luminescence signal : N_{k,j}^(i) per sample
-  sLT=list()    # correspondind to error of observation of L : sigma_{N_{K,j}^(i)} per sample
-  ITimes=list() # corresponding to obsevation : t_{k,j}^(i) per sample
+  LT <- list()     # corresponding to observation of natural and regenerated luminescence signal : N_{k,j}^(i) per sample
+  sLT <- list()    # correspondind to error of observation of L : sigma_{N_{K,j}^(i)} per sample
+  ITimes <- list() # corresponding to obsevation : t_{k,j}^(i) per sample
 
   # information on bin file
-  dLab=matrix(1,ncol=Nb_binfile,nrow=2)  # corresponding to dose source rate of the lab : d_{lab} per sample
-  regDose=list()          # computed regenerated dose multiplying the 2 aboves lines per sample
-  J=rep(0,Nb_binfile)     # aliquot number per sample
-  Nb_measurement=rep(0,Nb_binfile) # measurement number per aliquot
-  K=rep(0,Nb_binfile)     # point number considered for the growth curve
-  ddot=matrix(1,ncol=Nb_binfile,nrow=2)   # the dose rate recieved by the sample during the time,
+  dLab <- matrix(1,ncol=Nb_binfile,nrow=2)  # corresponding to dose source rate of the lab : d_{lab} per sample
+  regDose <- list()          # computed regenerated dose multiplying the 2 aboves lines per sample
+  J <- rep(0,Nb_binfile)     # aliquot number per sample
+  Nb_measurement <- rep(0,Nb_binfile) # measurement number per aliquot
+  K <- rep(0,Nb_binfile)     # point number considered for the growth curve
+  ddot <- matrix(1,ncol=Nb_binfile,nrow=2)   # the dose rate recieved by the sample during the time,
   #   if there is various bin file for one sample, they must have the same ddot
 
   #--- read informations
   #---------------------------------------
-  bf=0
+  bf <- 0
   for(i in 1:Nb_sample){
     for(nb in 1:BinPerSample[i]){
-      bf=bf+1
+      bf <- bf+1
       print(paste("File being read:",Names[bf]))
 
       # read files....
       XLS_file <- read.csv(file=paste(Path,Names[bf],"/DiscPos.csv",sep=""),sep=sepDP)
-      DL=read.csv(file=paste(Path,Names[bf],"/DoseSource.csv",sep=""),sep=sepDS)
-      dd=read.csv(file=paste(Path,Names[bf],"/DoseEnv.csv",sep=""),sep=sepDE)
-      rule=read.csv(file=paste(Path,Names[bf],"/rule.csv",sep=""),sep=sepR)
+      DL <- read.csv(file=paste(Path,Names[bf],"/DoseSource.csv",sep=""),sep=sepDS)
+      dd <- read.csv(file=paste(Path,Names[bf],"/DoseEnv.csv",sep=""),sep=sepDE)
+      rule <- read.csv(file=paste(Path,Names[bf],"/rule.csv",sep=""),sep=sepR)
 
       # BIN file analysis
-      object <- Luminescence::read_BIN2R(paste(Path,Names[bf],"/bin.BIN",sep=""),duplicated.rm = TRUE)
+      object <- Luminescence::read_BIN2R(paste0(Path,Names[bf],"/bin.BIN"), duplicated.rm = TRUE)
 
       # csv file indicating position and disc selection and preparation to be red
-      XLS_file[[3]]<-XLS_file[[2]]
-      XLS_file[[2]]<-XLS_file[[1]]
+      XLS_file[[3]] <- XLS_file[[2]]
+      XLS_file[[2]] <- XLS_file[[1]]
       XLS_file[[1]] <- object@METADATA$FNAME[1:length(XLS_file[[1]])]
       names(XLS_file)=c("BIN_FILE","DISC","GRAIN")
-      head(XLS_file)
+      #head(XLS_file)
 
       # aliquot number
-      J[bf]=length(XLS_file[,1])
+      J[bf] <- length(XLS_file[,1])
 
       # data d_lab
-      dLab[,bf]=c(DL$obs[1],DL$var[1])
+      dLab[,bf] <- c(DL$obs[1],DL$var[1])
 
       # data ddot
-      ddot[,bf]=c(dd[[1]],dd[[2]])
+      ddot[,bf] <- c(dd[[1]],dd[[2]])
 
       # information for Lx/Tx
-      prop=(length(c(rule[3,1]:rule[4,1]))/length(c(rule[1,1]:rule[2,1])))
+      prop <- length(c(rule[3,1]:rule[4,1]))/length(c(rule[1,1]:rule[2,1]))
 
       #--- selection of measurement corresponding to the selection done
       #---------------------------------------
-      ind=c()
+      ind <- c()
       for(j in 1:J[bf]){
-        ind=c(ind,object@METADATA[object@METADATA[,"POSITION"]== XLS_file[j,2] & object@METADATA[,"GRAIN"]== XLS_file[j,3],1])
+        ind_add <- object@METADATA[["ID"]][object@METADATA[["POSITION"]] == XLS_file[j,2] & object@METADATA[["GRAIN"]] == XLS_file[j,3]]
+
+        ##return an erro if something is fishy
+        if(length(ind_add)%/%2 == 1){
+          ind <- c(ind,ind_add)
+
+        }else{
+          stop(paste0("[Generate_DataFile()] Number of curves in DISC: ", XLS_file[["DISC"]][j], ", GRAIN: ",XLS_file[["GRAIN"]][j]," are not equal!"), call. = FALSE)
+
+        }
+
       }
-      # what is ind...
-      (object@METADATA[ind[1:40],c("POSITION","GRAIN","IRR_TIME")])
+      # what is ind...it is the record ID
+      ##object@METADATA[ind[1:40],c("POSITION","GRAIN","IRR_TIME")]
 
       # regeneration dose number
-      Nb_measurement[bf]=length(ind)/J[bf]
-      K[bf]=Nb_measurement[bf]/2-(rule[10,1]+1)
+      Nb_measurement[bf] <- length(ind)/J[bf] ##TODO
+      K[bf] <- Nb_measurement[bf]/2-(rule[10,1]+1)
 
       #--- computation of irradiation time
       #---------------------------------------
-      ITemps=matrix(data=NA,nrow=J[bf],ncol=K[bf])
+      ITemps <- matrix(data=NA, nrow=J[bf], ncol=K[bf]) ##TODO
       for(j in 1:J[bf]){
-        indices=ind[seq(((j-1)*Nb_measurement[bf]+3),((j-1)*Nb_measurement[bf]+2*(K[bf]+1)),by=2)]
-        ITemps[j,]=object@METADATA[indices,"IRR_TIME"]
+        indices <- ind[seq(((j-1)*Nb_measurement[bf]+3),((j-1)*Nb_measurement[bf]+2*(K[bf]+1)),by=2)]
+        ITemps[j,] <- object@METADATA[indices,"IRR_TIME"]
       }
       # in memory
       if(nb==1){

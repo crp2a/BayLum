@@ -162,5 +162,6 @@ The function \code{\link{read_BIN2R}} developped in \code{\link{Luminescence}} p
 \code{\link{Age_Computation}}, \code{\link{AgeS_Computation}}, \code{\link{Palaeodose_Computation}}
 }
 \author{
-Claire Christophe, Guillaume Guerin
+Claire Christophe, IRAMAT-CRP2A, Universite Bordeaux Montaigne (France), Guillaume Guerin, IRAMAT-CRP2A, Universite Bordeaux Montaigne (France),
+Sebastian Kreutzer, IRAMAT-CRP2A, Universite Bordeaux Montaigne (France)
 }
