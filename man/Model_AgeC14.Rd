@@ -6,6 +6,7 @@
 \description{
 A list of JAGS models use to a Bayesian analysis of C14 calibration age of various sample.
 Stratigraphic relations can be taken in count to calibrate C14 ages.
+This ages take into account that some data can be an outlier.
 }
 \usage{data("Model_AgeC14")}
 \format{

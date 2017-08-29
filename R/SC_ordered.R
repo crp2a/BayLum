@@ -11,10 +11,12 @@
 #'
 #' @seealso \code{AgeS_Computation}, \code{SC_Matrix}
 #'
-#' @author Claire Christophe, Guillaume Guerin
+#' @author Claire Christophe, Anne Philippe, Guillaume Guerin
 #'
 #' @examples
-#' SC=SC_Ordered(Nb_sample=3)
+#' # compute the stratigraphic matrix for 3 samples such that the first sample is younger
+#' # than the second, and the second is younger than the third
+#' (SC=SC_Ordered(Nb_sample=3))
 #'
 #' @export
 
@@ -24,5 +26,6 @@ SC_Ordered<-function(Nb_sample){
   for(i in 1:Nb_sample){
     SC[i+1,]=c(rep(0,i),rep(1,(Nb_sample-i)))
   }
+  return(SC)
 }
 

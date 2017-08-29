@@ -4,19 +4,19 @@
 \alias{Generate_DataFile_MG}
 \title{Generates, from one (or several) BIN file(s) of Multi-grain OSL measurements, a list of luminescence data and information before statistical analysis}
 \usage{
-Generate_DataFile_MG(Path, Names, Nb_sample, Nb_binfile = length(Names),
-  BinPerSample = rep(1, Nb_sample), sepD = c(","), sepDE = c(","),
-  sepDS = c(","), sepR = c("="))
+Generate_DataFile_MG(Path, FolderNames, Nb_sample,
+  Nb_binfile = length(FolderNames), BinPerSample = rep(1, Nb_sample),
+  sepD = c(","), sepDE = c(","), sepDS = c(","), sepR = c("="))
 }
 \arguments{
 \item{Path}{character: the path to the project folder, containing one or more subfolders in which the BIN files
-are located.}
+are located. If it is not equal to "", it must be terminated by "/".}
 
-\item{Names}{character vector: list of names of the sub-folders containing the BIN files
-- each subfolder must contain a BIN file and associated .csv files.
-See details for more informations on associated .csv files required in the subfolders.
+\item{FolderNames}{character vector: list of names of the sub-folders containing the BIN files
+- each subfolder must contain a BIN file and associated csv files.
+See details for more informations on associated csv files required in the subfolders.
 If there is more than one BIN file per sample, see the details section for instructions regarding how to correctly fill the
-\code{Names} vector.}
+\code{FolderNames} vector.}
 
 \item{Nb_sample}{integer: number of samples.}
 
@@ -63,22 +63,22 @@ It is possible to process data for various samples simultaneously and to conside
 than one BIN file per sample.
 }
 \details{
-With \code{Path} and \code{Names}, this function goes to the subfolders containing the BIN files and associated information to compute
-the luminescence data.
+With \code{Path} and \code{FolderNames}, this function goes to the subfolders containing the BIN files and associated information to compute
+the luminescence data.\cr
 
-\bold{** What are the required files in each subfolder? **}
+\bold{** What are the required files in each subfolder? **}\cr
 
 Each subfolder can be named, for example, as the sample name followed by a number; it must contain:
 \itemize{
   \item \bold{bin.BIN}, the bin file renamed as bin.BIN (note: the name of all files matters);
-  \item \bold{Disc.csv}, a one columns .csv file containing the list of disc number of the previously selected grains
+  \item \bold{Disc.csv}, a one columns csv file containing the list of disc number of the previously selected grains
   (typically this list will include the position of grains based on their sensitivity, recycling or other properties);
   \item \bold{DoseEnv.csv}, a two columns file containing the observation of the natural (or environmental),
-  dose rate, and its non-shared variance (i.e. after removing all shared errors). Note: the user shall provide the squared value of the error associated
+  dose rate, and its non-shared variance (i.e. after removing all shared errors), both in Gy. Note: the user shall provide the squared value of the error associated
   with the dose rate experienced by the sample grains in nature;
   \item \bold{DoseSourve.csv}, a two columns file containing the observation of the laboratory dose rate,
-  and its variance (squared error);
-  \item \bold{rule.csv}, a .csv file containing information on
+  and its variance (squared error), both in Gy;
+  \item \bold{rule.csv}, a csv file containing information on
   \itemize{
     \item beginSignal=  the first channel for summing the natural or regenerative OSL signal (typically 1 or 6);
     \item endSignal= the last channel for summing the natural or regenerative OSL signal (typically 5 or 10);
@@ -90,31 +90,33 @@ Each subfolder can be named, for example, as the sample name followed by a numbe
     \item endTestBackground= same values as above, for the test dose response (typically the same values should be used);
     \item inflatePercent= uncertainty arising from the instrument reproducibility (typically 0.02, i.e. 2\%);
     \item nbOfLastCycleToRemove= number of cycles at the end of the SAR protocol which should not be included in the dose response curve fitting
-    (typically 1 if only a recycling test is performed, or 2 if both recycling and IR depletion are tested).
+    (typically 1 if only a recycling test is performed, or 2 if both recycling and IR depletion are tested).\cr
   }
 }
 
-\bold{** How to fill the} \code{Names} \bold{vector? **}
+\bold{** How to fill the} \code{FolderNames} \bold{vector? **}\cr
 
-\code{Names} is a vector of length \code{Nb_binfile}. \code{Names}[i] is the name (e.g., Sample1-File1, or successive names separated by "/" signs,
+\code{FolderNames} is a vector of length \code{Nb_binfile}. \code{FolderNames}[i] is the name (e.g., Sample1-File1, or successive names separated by "/" signs,
 if BIN files are in subfolders, e.g. Sample1/File1) of the subfolder containing all informations on the BIN file of ID number \code{i}.
-The names in \code{Names} are ordered following two rules:
+The names in \code{FolderNames} are ordered following two rules:
 \itemize{
-  \item The names in the \code{Names} vector must be ordered following the sample order
-  (the names of subfolders containing BIN files for the same sample should follow each other in the \code{Names} vector, e.g. Sample1, Sample2-File1, Sample2-File2, etc.). \cr
+  \item The names in the \code{FolderNames} vector must be ordered following the sample order
+  (the names of subfolders containing BIN files for the same sample should follow each other in the \code{FolderNames} vector, e.g.
+  Sample1, Sample2-File1, Sample2-File2, etc.).
   \item If stratigraphic constraints apply to samples, and so a \bold{Bayesian model with stratigraphic constraints} is implemented,
-  then the names in the \code{Names} vector must be ordered by order of increasing ages. \cr
-  For example, \code{Names=c(noun1,noun2)}, in which case \code{noun1} (respectively, \code{noun2}) corresponds to the subfolder name containing the BIN file of sample 1 (respectively of sample 2).
-  In addition, if we know that sample 1 is younger than sample 2, then \code{Names} vector is correctly filled. \cr
-  If conversely, \code{Names=c(noun2,noun1)}, the analysis performed by \code{\link{AgeS_Computation}} would not be consistent.
+  then the names in the \code{FolderNames} vector must be ordered by order of increasing ages. \cr
+  For example, \code{FolderNames=c(noun1,noun2)}, in which case \code{noun1} (respectively, \code{noun2}) corresponds to the subfolder
+  name containing the BIN file of sample 1 (respectively of sample 2).
+  In addition, if we know that sample 1 is younger than sample 2, then \code{FolderNames} vector is correctly filled. \cr
+  If conversely, \code{FolderNames=c(noun2,noun1)}, the analysis performed by \code{\link{AgeS_Computation}} would not be consistent.\cr
 }
 
-\bold{** How to fill} the \code{BinPerSample} \bold{vector? **}
+\bold{** How to fill the} \code{BinPerSample} \bold{vector? **}\cr
 
 \code{BinPerSample}[i] correponds to the number of BIN files for the sample whose number ID is equal to \code{i}.\cr
 For example, let us consider a case with two samples (Sample1 and Sample2), with 2 BIN files for Sample1 and 1 for Sample2.
 In this case, \code{Nb_binfile}=3 and \code{Nb_sample}=2.
-The user may then set \code{Names=c("Sample1-File1", "Sample1-File2", "Sample2-File1")}, in which case \code{"Sample1-1"} is the name of the subfolder containing the first BIN file
+The user may then set \code{FolderNames=c("Sample1-File1", "Sample1-File2", "Sample2-File1")}, in which case \code{"Sample1-1"} is the name of the subfolder containing the first BIN file
 for Sample1, \code{"Sample1-File2"} the name of the  subfolder for the second BIN file of Sample1; eventually, \code{"Sample2-1"} is the name of the subfolder containing the BIN file
 for the second sample. In this case, \code{BinPerSample=c(2,1)}.
 
@@ -124,21 +126,17 @@ For the general BIN-file structure, the reader is referred to the following webs
 The function \code{\link{read_BIN2R}} developped in \code{\link{Luminescence}} package is used to read the BIN files.
 }
 \examples{
-## 1) Example for one sample with one Bin File
-## Put path in quotes to go to the folder containing bin.BIN file and associated .csv files
-## Path must be determinated by "/"
-# Path=""
-## Enter between the "" the name of the folder containsing bin.BIN file
-# Names=""
-## give the number of sample
-# Nb_sample=1
-# DATA=Generate_DataFile_MG(Path,Names,Nb_sample)
-# str(DATA)
+path<- system.file("extdata/FER1", "", package="BayLum")
+folder=""
+# give the number of sample
+nbsample=1
+DATA=Generate_DataFile_MG(Path=path,FolderNames=folder,Nb_sample=nbsample)
+str(DATA)
 
-## to save information in .RData object
-# save(DATA,file=c(paste(Path,'DATA.RData',sep="")))
-## to load information containing DATA.RData object
-# load(file=c(paste(Path,"DATA.RData",sep="")))
+# to save information in RData object in folder containing bin file
+#save(DATA,file=c(paste(path,folder,'DATA.RData',sep="")))
+# to load information containing DATA.RData object
+#load(file=c(paste(path,folder,"DATA.RData",sep="")))
 
 }
 \seealso{
@@ -146,5 +144,5 @@ The function \code{\link{read_BIN2R}} developped in \code{\link{Luminescence}} p
 \code{\link{Age_Computation}}, \code{\link{AgeS_Computation}}, \code{\link{Palaeodose_Computation}}
 }
 \author{
-Claire Christophe, Guillaume Guerin
+Claire Christophe, Anne Philippe, Guillaume Guerin
 }

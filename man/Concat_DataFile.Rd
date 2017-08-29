@@ -4,19 +4,19 @@
 \alias{Concat_DataFile}
 \title{Concatenates two outputs of \code{\link{Generate_DataFile}} or \code{\link{Generate_DataFile_MG}}}
 \usage{
-Concat_DataFile(u1, u2)
+Concat_DataFile(L1, L2)
 }
 \arguments{
-\item{u1}{list of objects: LT, sLT, ITimes, dLab, ddot_env, regDose, J, K, Nb_measurement.}
+\item{L1}{list of objects: LT, sLT, ITimes, dLab, ddot_env, regDose, J, K, Nb_measurement.}
 
-\item{u2}{list of objects: LT, sLT, ITimes, dLab, ddot_env, regDose, J, K, Nb_measurement.}
+\item{L2}{list of objects: LT, sLT, ITimes, dLab, ddot_env, regDose, J, K, Nb_measurement.}
 }
 \value{
 A List of objects: LT, sLT, ITimes, dLab, ddot_env, regDose, J, K, Nb_measurement.
 }
 \description{
-This function allows concatenating two lists provided as output of the \code{\link{Generate_DataFile}}
-or \code{\link{Generate_DataFile_MG}} function.\cr
+This function allows concatenating two lists provided by \code{\link{Generate_DataFile}}
+or \code{\link{Generate_DataFile_MG}} functions.\cr
 Only concatenation of 2 files is possible.
 }
 \details{
@@ -25,7 +25,7 @@ For more information on the stucture of the input list, we refer to \bold{Value}
 
 This function is especially usefull in two cases:
 \itemize{
- \item information concerning samples are yet saved in .RData file (that allow to not run again
+ \item if informations concerning samples are yet saved in RData file (that allow to not run again
  \code{\link{Generate_DataFile}} or \code{\link{Generate_DataFile_MG}} that can take time);
  \item the user want to analyse simultaneously Single-grain and Multi-grain OSL measurements,
  because sample are in under stratigraphic constraints or they share systematic errors.
@@ -36,12 +36,12 @@ This function is especially usefull in two cases:
 data(DATA1,envir = environment())
 data(DATA2,envir = environment())
 # concatenate two data files
-DATA3=Concat_DataFile(DATA1,DATA2)
+DATA3=Concat_DataFile(L1=DATA1,L2=DATA2)
 str(DATA3)
 }
 \seealso{
 \code{\link{Generate_DataFile}}, \code{\link{Generate_DataFile_MG}}
 }
 \author{
-Claire Christophe, Guillaume Guerin
+Claire Christophe, Anne Philippe, Guillaume Guerin
 }

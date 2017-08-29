@@ -4,12 +4,12 @@
 \alias{SCMatrix}
 \title{Definition of the stratigraphic constraint matrix}
 \usage{
-SCMatrix(Nb_sample, Names)
+SCMatrix(Nb_sample, SampleNames)
 }
 \arguments{
 \item{Nb_sample}{interger: the sample number.}
 
-\item{Names}{charcater vector: sample names.}
+\item{SampleNames}{charcater vector: sample names.}
 }
 \value{
 A Matrix that summarise the ordered relation between samples.
@@ -25,13 +25,17 @@ Ask if sample \code{i} is younger than sample \code{j} to construc the stratigra
 }
 \examples{
 ## Assume that "sample1" is younger than "sample2"
-# SCMatrix(2,c("sample1","sample2"))
-# 1
+## That means the expected value is 1.
+## It is an interactive function.
+\dontrun{
+SCMatrix(Nb_sample=2,SampleNames=c("sample1","sample2"))
+## Enter the value 1
+}
 
 }
 \seealso{
 \code{AgeS_Computation}
 }
 \author{
-Claire Christophe, Guillaume Guerin
+Claire Christophe, Anne Philippe, Guillaume Guerin
 }
