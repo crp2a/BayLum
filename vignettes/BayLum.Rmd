@@ -1,5 +1,5 @@
 ---
-title: "BayLum - An Introduction"
+title: "BayLum: An Introduction"
 author: "Claire Christophe, Anne Philippe, Sebastian Kreutzer, Guillaume Guerin"
 date: '`r Sys.Date()`'
 output:
@@ -7,7 +7,7 @@ output:
     self-contained: yes
     standalone: yes
     toc: yes
-vignette: "%\\VignetteIndexEntry{BayLum} \n%\\VignetteEngine{rsp::asis} \n%\\VignetteEncoding{UTF-8}\n"
+vignette: "%\\VignetteIndexEntry{BayLum: An Introduction} \n%\\VignetteEngine{rsp::asis} \n%\\VignetteEncoding{UTF-8}\n"
 ---
 
 ```{r, echo = FALSE, message = FALSE}
