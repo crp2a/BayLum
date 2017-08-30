@@ -7,7 +7,7 @@ output:
     self-contained: yes
     standalone: yes
     toc: yes
-vignette: "%\\VignetteIndexEntry{BayLum - An Introduction} \n%\\VignetteEngine{rsp::asis} \n%\\VignetteEncoding{UTF-8}\n"
+vignette: "%\\VignetteIndexEntry{BayLum} \n%\\VignetteEngine{rsp::asis} \n%\\VignetteEncoding{UTF-8}\n"
 ---
 
 ```{r, echo = FALSE, message = FALSE}

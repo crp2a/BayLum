@@ -113,13 +113,12 @@
 #'
 #' @examples
 #' ## Example for one sample with one Bin File
-#' \dontrun{
-#' path<- system.file("extdata/GDB3", "", package="BayLum")
+#' path<- system.file("extdata/samp1", "", package="BayLum")
 #' folder=""
 #' nbsample=1  # give the number of sample
 #' Data=Generate_DataFile(Path=path,FolderNames=folder,Nb_sample=nbsample)
 #' str(Data)
-#' }
+#'
 #' ## to save information in RData object in folder containing bin file
 #' # save(Data,file=c(paste(path,folder,'Data.RData',sep="")))
 #' ## to load information containing Data.RData object
