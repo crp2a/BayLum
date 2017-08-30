@@ -35,7 +35,6 @@ vignettes/*.pdf
 
 # File from the personal build scripts
 BayLum.Rcheck/
-BayLum.BuildResults/*.tar.gz
 BayLum.BuildResults/*.zip
 BayLum.BuildResults/*.tgz
 BayLum.BuildResults/rdepends_*
