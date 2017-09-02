@@ -40,6 +40,8 @@ notifications:
   email:
     recipients:
       - sk@r-luminescence.de
+      - gguerin@u-bordeaux-montaigne.fr
+      - anne.philippe@univ-nantes.fr
     on_success: change
     on_failure: change
 
