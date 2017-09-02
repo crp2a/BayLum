@@ -12,6 +12,7 @@ r_packages:
   - hexbin
   - rjags
   - ArchaeoPhases
+  - R.rsp
 
 ## test different platforms
 matrix:
