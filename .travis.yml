@@ -12,7 +12,7 @@ r_binary_packages:
 ## test different platforms
 matrix:
   include:
-   - os: linux
+  - os: linux
     r: release
     before_install:
       ##as suggested by https://www.r-bloggers.com/evading-the-quothadley-taxquot-faster-travis-tests-for-r/
