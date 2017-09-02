@@ -19,7 +19,7 @@ matrix:
       - chmod 755 ./travis-tool.sh
       - ./travis-tool.sh bootstrap
       - sudo apt-get install jags
-      - r_binary_packages jags
+      - ./travis-tool.sh r_binary_packages jags
 
     env: CACHE_NAME=JOB1
 
