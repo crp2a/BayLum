@@ -2,6 +2,9 @@
 
 An R package for chronological **Bay**esian models integrated for Optically Stimulated (OSL) **Lum**inescence Dating
 
+## Documentation
+[![Rdoc](http://www.rdocumentation.org/badges/version/BayLum)](http://www.rdocumentation.org/packages/BayLum)
+
 ## Package metrics 
 ### CRAN statistics
 [![CRAN](http://www.r-pkg.org/badges/version/BayLum)](http://cran.rstudio.com/package=BayLum)

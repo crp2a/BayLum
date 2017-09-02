@@ -58,3 +58,14 @@ artifacts:
 
   - path: '\*_*.zip'
     name: Bits
+
+notifications:
+- provider: Email
+  to:
+  - anne.philippe@univ-nantes.fr
+  - gguerin@u-bordeaux-montaigne.fr
+  - sk@r-luminescence.de
+  subject: '[BayLum] AppVeyor Status Change'
+  on_build_success: false
+  on_build_failure: true
+  on_build_status_changed: true
