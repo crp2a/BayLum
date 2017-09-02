@@ -14,6 +14,7 @@ Depends: R(>= 3.4.0), utils, coda
 Imports: stats, graphics, grDevices, methods, hexbin, rjags (>= 4-6),
         Luminescence (>= 0.7.4), ArchaeoPhases
 License: GPL-3
+BugReports: https://github.com/R-Lum/BayLum/issues
 LazyData: true
 Suggests: R.rsp
 VignetteBuilder: R.rsp
