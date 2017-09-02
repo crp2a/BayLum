@@ -20,6 +20,12 @@ matrix:
   - os: linux
     r: release
     env: CACHE_NAME=JOB1
+  - os: linux
+    r: devel
+    env: CACHE_NAME=JOB2
+  - os: osx
+    r: release
+    env: CACHE_NAME=JOB3
 
 ##create notifications
 notifications:
