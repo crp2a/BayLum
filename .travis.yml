@@ -3,24 +3,21 @@ cache: packages
 warnings_are_errors: true
 sudo: required
 
+apt_packages:
+  - jags
+
 r_packages:
   - covr
-
+  - Luminescence
+  - hexbin
+  - rjags
+  - ArchaeoPhases
 
 ## test different platforms
 matrix:
   include:
   - os: linux
     r: release
-    before_install:
-      ##as suggested by https://www.r-bloggers.com/evading-the-quothadley-taxquot-faster-travis-tests-for-r/
-      - sudo add-apt-repository -y ppa:edd/misc
-      - curl -OL http://raw.github.com/craigcitro/r-travis/master/scripts/travis-tool.sh
-      - chmod 755 ./travis-tool.sh
-      - ./travis-tool.sh bootstrap
-      - sudo apt-get install jags
-      - ./travis-tool.sh r_binary_packages jags
-
     env: CACHE_NAME=JOB1
 
 ##create notifications
