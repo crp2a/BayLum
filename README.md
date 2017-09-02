@@ -14,6 +14,9 @@ An R package for chronological **Bay**esian models integrated for Optically Stim
 [![Research software impact](http://depsy.org/api/package/cran/BayLum/badge.svg)](http://depsy.org/package/r/BayLum)
 [![Github Stars](https://img.shields.io/github/stars/R-Lum/BayLum.svg?style=social&label=Github)](https://github.com/R-Lum/BayLum)
 
+### Platform tests status 
+[![Build Status](https://travis-ci.org/R-Lum/BayLum.svg?branch=master)](https://travis-ci.org/R-Lum/BayLum)
+
 ## Installation
 
 To install the latest development builds directly from GitHub, run
