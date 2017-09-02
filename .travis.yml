@@ -23,7 +23,7 @@ matrix:
       - sudo apt-get install jags
     install:
       - Rscript -e 'install.packages("devtools", type = "source", dependencies = TRUE)'
-      - Rscript -e 'install.packages(c("Luminescence", "ArchaeoPhases", "hexbin", "R.rsp"))'
+      - Rscript -e 'install.packages(c("Luminescence", "ArchaeoPhases", "hexbin", "R.rsp", "rjags"))'
     env: CACHE_NAME=JOB1
   - os: linux
     r: devel
@@ -36,7 +36,7 @@ matrix:
       - sudo apt-get install jags
     install:
       - Rscript -e 'install.packages("devtools", type = "source", dependencies = TRUE)'
-      - Rscript -e 'install.packages(c("Luminescence", "ArchaeoPhases", "hexbin", "R.rsp"))'
+      - Rscript -e 'install.packages(c("Luminescence", "ArchaeoPhases", "hexbin", "R.rsp", "rjags"))'
     env: CACHE_NAME=JOB2
   - os: osx
     r: release
@@ -57,8 +57,6 @@ notifications:
   email:
     recipients:
       - sk@r-luminescence.de
-      - anne.philippe@univ-nantes.fr
-      - gguerin@u-bordeaux-montaigne.fr
     on_success: change
     on_failure: change
 
