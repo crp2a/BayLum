@@ -10,7 +10,7 @@ Date: 2017-08-22
 Version: 0.1.1
 Author: Claire Christophe [aut, cre], Anne Philippe [aut], Sebastian Kreutzer [aut], Guillaume Guerin [aut]
 Maintainer: Anne Philippe <anne.philippe@univ-nantes.fr>
-Depends: R(>= 3.4.0), utils, coda
+Depends: R(>= 3.3.2), utils, coda
 Imports: stats, graphics, grDevices, methods, hexbin, rjags (>= 4-6),
         Luminescence (>= 0.7.4), ArchaeoPhases
 License: GPL-3
