@@ -6,14 +6,15 @@ Description: Bayesian analysis of luminescence data and 14C age estimate.
     Bayesian models are based on the following publications: 
     Combes, B. & Philippe, A. (2017) <doi: 10.1016/j.quageo.2017.02.003> and Combes et al (2015) <doi: 10.1016/j.quageo.2015.04.001>. 
     This includes, amongst others, data import, export, application of age models and palaeodose model.
-Date: 2017-08-22
-Version: 0.1.1
+Date: 2017-09-08
+Version: 0.1.2
 Author: Claire Christophe [aut, cre], Anne Philippe [aut], Sebastian Kreutzer [aut], Guillaume Guerin [aut]
 Maintainer: Anne Philippe <anne.philippe@univ-nantes.fr>
 Depends: R(>= 3.3.2), utils, coda
 Imports: stats, graphics, grDevices, methods, hexbin, rjags (>= 4-6),
         Luminescence (>= 0.7.4), ArchaeoPhases
 License: GPL-3
+Encoding: UTF-8
 BugReports: https://github.com/R-Lum/BayLum/issues
 LazyData: true
 Suggests: R.rsp
