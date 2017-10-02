@@ -168,7 +168,7 @@ Generate_DataFile<-function(Path,FolderNames,
       rule=read.csv(file=paste(Path,FolderNames[bf],"/rule.csv",sep=""),sep=sepR)
 
       # BIN file analysis
-      object <- Luminescence::read_BIN2R(paste0(Path,FolderNames[bf],"/"), duplicated.rm = TRUE)[[1]]
+      object <- Luminescence::read_BIN2R(paste0(Path,FolderNames[bf]), duplicated.rm = TRUE)[[1]]
 
       # csv file indicating position and disc selection and preparation to be red
       XLS_file[[3]]<-XLS_file[[2]]
