@@ -281,8 +281,8 @@ AgeC14_Computation<-function(Data_C14Cal,Data_SigmaC14Cal,SampleNames,Nb_sample,
      cat("\t\t\t\t\t\t lower bound \t upper bound\n")
      HPD_95=ArchaeoPhases::CredibleInterval(Sample[,i],0.95)
      HPD_68=ArchaeoPhases::CredibleInterval(Sample[,i],0.68)
-     cat("\t\t\t\t at level 95% \t",round(c(HPD_95[2])),"\t\t",round(c(HPD_95[3])),"\n")
-     cat("\t\t\t\t at level 68% \t",round(c(HPD_68[2])),"\t\t",round(c(HPD_68[3])),"\n")
+     cat("\t\t\t\t at level 95% \t",round(c(HPD_95[2]),2),"\t\t",round(c(HPD_95[3]), 2),"\n")
+     cat("\t\t\t\t at level 68% \t",round(c(HPD_68[2]),2),"\t\t",round(c(HPD_68[3]), 2),"\n")
      AgePlot95[i,]=HPD_95
      AgePlot68[i,]=HPD_68
      AgePlotMoy[i]=round(mean(Sample[,i]))
