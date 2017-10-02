@@ -176,7 +176,7 @@ Generate_DataFile<-function(Path,FolderNames,
         stop("[Generate_DataFile()] No BIN/BINX file found.", call. = FALSE)
 
       object <-
-        Luminescence::read_BIN2R(paste0(Path, FolderNames[bf], list.files(paste0(Path, FolderNames[bf]))[temp_BINfile]), duplicated.rm = TRUE)
+        Luminescence::read_BIN2R(paste0(Path, FolderNames[bf],"/",list.files(paste0(Path, FolderNames[bf]))[temp_BINfile]), duplicated.rm = TRUE)
 
       # csv file indicating position and disc selection and preparation to be red
       XLS_file[[3]]<-XLS_file[[2]]
