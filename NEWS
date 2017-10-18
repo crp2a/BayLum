@@ -10,7 +10,7 @@ BayLum 0.1.2 (Release date: 2017-XX-XX)
 BayLum 0.1.1 (Release date: 2017-09-01)
 ==============
 
-* Set required R version down to 3.3.2
+* Reduce required R version to 3.3.2
 
 
 BayLum 0.1.0 (Release date: 2017-08-22)
