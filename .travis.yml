@@ -5,6 +5,8 @@ sudo: required
 
 apt_packages:
   - jags
+  - libgdal1-dev
+  - libproj-dev
 
 r_packages:
   - covr
@@ -31,6 +33,8 @@ matrix:
       - brew update
       - brew install jags
       - brew install libssh2
+      - brew install gdal
+      - brew install proj
       - curl -O http://r.research.att.com/libs/gfortran-4.8.2-darwin13.tar.bz2
       - sudo tar fvxz gfortran-4.8.2-darwin13.tar.bz2 -C /
     env: CACHE_NAME=JOB3
