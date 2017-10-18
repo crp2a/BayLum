@@ -279,6 +279,7 @@ Age_OSLC14<-function(DATA,Data_C14Cal,Data_SigmaC14Cal,
     }
   }
 
+
   #--- Calibration curve
   TableauCalib=c()
   if(CalibrationCurve=="AtmosphericNorth"){
@@ -450,6 +451,7 @@ Age_OSLC14<-function(DATA,Data_C14Cal,Data_SigmaC14Cal,
   }
   r=Nb_sample%%6
   q=Nb_sample%/%6
+
   if(q>0){
   for (l in 1:q){
     MCMC_plot(Sample[,(6*(l-1)+1):(6*l)],
@@ -478,14 +480,37 @@ Age_OSLC14<-function(DATA,Data_C14Cal,Data_SigmaC14Cal,
 
   ##- Gelman and rudin test of convergency of the MCMC
   CV=gelman.diag(echantillon,multivariate=FALSE)
-  cat(paste("\n\n>> Convergencies of MCMC of Age parameter <<\n"))
+  cat(paste("\n\n>> Convergence of MCMC for the age parameters <<\n"))
   cat("----------------------------------------------\n")
   cat(paste("Sample name ", " Bayes estimate ", " Uppers credible interval\n"))
+
   for(i in 1:Nb_sample){
     #cat(paste(" Sample name: ", SampleNames[i],"\n"))
     #cat("---------------------\n")
     cat(paste(paste("A_",SampleNames[i],sep=""),"\t",round(CV$psrf[i,1],2),"\t\t",round(CV$psrf[i,2],2),"\n"))
+
   }
+
+
+  ##CSV output
+  if(SaveEstimates){
+    df_output <-
+      data.frame(
+        SampleNames = SampleNames,
+        Bayes_estimate = CV$psrf[1:length(SampleNames), 1],
+        Upper_Credibility_Interval = CV$psrf[1:length(SampleNames), 2],
+        stringsAsFactors = FALSE
+      )
+
+    write.table(x = df_output,
+      file = paste0(OutputTablePath, OutputTableName, ".csv"),
+      sep = ";",
+      row.names = FALSE,
+      append = FALSE
+    )
+
+  }
+
 
   cat("\n\n________________________________________________________________________________\n")
   cat(" *** WARNING: following informations are only valid if MCMC chains converged  ***\n")

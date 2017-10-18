@@ -3,6 +3,8 @@ BayLum 0.1.2 (Release date: 2017-XX-XX)
 
 * Allow different BIN/BINX-file names. The functions `Generate_DataFile()` and `Generate_DataFile_MG()` do no longer expecting the name sheme bin.BIN.
 * The functions `AgeC14_Compution()` and `Age_OSL14()` now returns age results with two digits.
+* The function `AgeS_Computation()` now returns the MCMC information from all samples of the PDF output is set to `TRUE`
+* The function `Age_OSLC14()` never returned numerical data; fixed.
 
 
 BayLum 0.1.1 (Release date: 2017-09-01)
