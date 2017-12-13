@@ -22,7 +22,7 @@ provided by the function \code{\link{Generate_DataFile}} or \code{\link{Generate
 If there is stratigraphic relations between samples, informations in DATA must be ordered by order of incresing ages.
 See the details section to for more informations.}
 
-\item{Data_C14Cal}{numeric vector: corresponding to 14C age estimate.
+\item{Data_C14Cal}{numeric vector: corresponding to 14C age estimate (in years, conversion in ka is automatically donne in the function).
 If there is stratigraphic relations between samples, \code{Data_C14Cal} must be ordered by order of incresing ages.}
 
 \item{Data_SigmaC14Cal}{numeric vector: correponding to the error of 14C age estimates.}
@@ -115,7 +115,7 @@ If \bold{"naive"} this error is not taken account in the age estimate.}
 \enumerate{
 \item \bold{A list containing the following objects:}
  \itemize{
-  \item \bold{Sampling}: that corresponds to a sample of the posterior distributions of the age parameters;
+  \item \bold{Sampling}: that corresponds to a sample of the posterior distributions of the age parameters (in ka for both C14 samples and OSL samples);
   \item \bold{PriorAge}: stating the priors used for the age parameter;
   \item \bold{StratiConstraints}: stating the stratigraphic relations between samples considered in the model;
   \item \bold{Model_OSL_GrowthCurve}: stating which dose response fitting option was chosen;
