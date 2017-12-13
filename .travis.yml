@@ -9,6 +9,7 @@ apt_packages:
   - libproj-dev
 
 r_packages:
+  - devtools
   - covr
   - Luminescence
   - hexbin
