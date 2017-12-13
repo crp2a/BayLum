@@ -205,7 +205,16 @@ Palaeodose_Computation<-function(DATA,SampleNames,Nb_sample,
             value=c(0,Nb_sample),
             param=c("D","sD"))
   if(SavePdf==TRUE){
-    dev.print(pdf,file=paste(OutputFilePath,OutputFileName[1],'.pdf',sep=""),width=8,height=10)
+    pdf(file=paste(OutputFilePath,OutputFileName[1],'.pdf',sep=""))
+    MCMC_plot(sample,
+              size=length(echantillon[[1]][,1]),
+              SampleNames=SampleNames,
+              Nb_sample=Nb_sample,
+              Nb_chaines=Nb_chaines,
+              value=c(0,Nb_sample),
+              param=c("D","sD"))
+    dev.off()
+    #dev.print(pdf,file=paste(OutputFilePath,OutputFileName[1],'.pdf',sep=""),width=8,height=10)
   }
 
 

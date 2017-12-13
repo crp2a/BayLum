@@ -304,21 +304,23 @@ AgeS_Computation<-function(DATA,SampleNames,Nb_sample,
     sample=rbind(sample,echantillon[[i]])
   }
 
-  if(SavePdf)
-    pdf(file = paste0(OutputFilePath,OutputFileName[1],'.pdf'), width = 8, height = 10)
-
   MCMC_plot(sample,
             length(echantillon[[1]][,1]),
             SampleNames=SampleNames,
             Nb_sample=Nb_sample,
             Nb_chaines=Nb_chaines,
             value=c(0,Nb_sample,2*Nb_sample))
-
-
-  if(SavePdf)
+  if(SavePdf==TRUE){
+    pdf(file=paste(OutputFilePath,OutputFileName[1],'.pdf',sep=""))
+    MCMC_plot(sample,
+              length(echantillon[[1]][,1]),
+              SampleNames=SampleNames,
+              Nb_sample=Nb_sample,
+              Nb_chaines=Nb_chaines,
+              value=c(0,Nb_sample,2*Nb_sample))
     dev.off()
-
-
+    #dev.print(pdf,file=paste(OutputFilePath,OutputFileName[1],'.pdf',sep=""),width=8,height=10)
+  }
 
   ##--- Graphical interpretation, and print result
 

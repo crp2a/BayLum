@@ -236,7 +236,31 @@ AgeC14_Computation<-function(Data_C14Cal,Data_SigmaC14Cal,SampleNames,Nb_sample,
              param=nom[(6*q+1):Nb_sample])
    }
    if(SavePdf==TRUE){
-     dev.print(pdf,file=paste(OutputFilePath,OutputFileName[1],'.pdf',sep=""),width=8,height=10)
+     pdf(file=paste(OutputFilePath,OutputFileName[1],'.pdf',sep=""))
+     r=Nb_sample%%6
+     q=Nb_sample%/%6
+     if(q>0){
+       for (l in 1:q){
+         MCMC_plot(Sample[,(6*(l-1)+1):(6*l)],
+                   length(echantillon[[1]][,1]),
+                   SampleNames=c(""),
+                   Nb_sample=1,
+                   Nb_chaines=Nb_chaines,
+                   value=seq(0,5,1),
+                   param=nom[(6*(l-1)+1):(6*l)])
+       }
+     }
+     if(r>0){
+       MCMC_plot(as.matrix(Sample[,(6*q+1):Nb_sample]),
+                 length(echantillon[[1]][,1]),
+                 SampleNames=c(""),
+                 Nb_sample=1,
+                 Nb_chaines=Nb_chaines,
+                 value=seq(0,(r-1),1),
+                 param=nom[(6*q+1):Nb_sample])
+     }
+     dev.off()
+     #dev.print(pdf,file=paste(OutputFilePath,OutputFileName[1],'.pdf',sep=""),width=8,height=10)
    }
 
    Outlier=SampleNames[which(U$statistics[(Nb_sample+1):(2*Nb_sample),1]<1.5)]
@@ -281,8 +305,8 @@ AgeC14_Computation<-function(Data_C14Cal,Data_SigmaC14Cal,SampleNames,Nb_sample,
      cat("\t\t\t\t\t\t lower bound \t upper bound\n")
      HPD_95=ArchaeoPhases::CredibleInterval(Sample[,i],0.95)
      HPD_68=ArchaeoPhases::CredibleInterval(Sample[,i],0.68)
-     cat("\t\t\t\t at level 95% \t",round(c(HPD_95[2]),2),"\t\t",round(c(HPD_95[3]), 2),"\n")
-     cat("\t\t\t\t at level 68% \t",round(c(HPD_68[2]),2),"\t\t",round(c(HPD_68[3]), 2),"\n")
+     cat("\t\t\t\t at level 95% \t",round(c(HPD_95[2])),"\t\t",round(c(HPD_95[3])),"\n")
+     cat("\t\t\t\t at level 68% \t",round(c(HPD_68[2])),"\t\t",round(c(HPD_68[3])),"\n")
      AgePlot95[i,]=HPD_95
      AgePlot68[i,]=HPD_68
      AgePlotMoy[i]=round(mean(Sample[,i]))
