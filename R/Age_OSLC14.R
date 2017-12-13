@@ -13,7 +13,7 @@
 #' \code{DATA} contains information for more than one sample.
 #' If there is stratigraphic relations between samples, informations in DATA must be ordered by order of incresing ages.
 #' See the details section to for more informations.
-#' @param Data_C14Cal numeric vector: corresponding to 14C age estimate.
+#' @param Data_C14Cal numeric vector: corresponding to 14C age estimate (in years, conversion in ka is automatically donne in the function).
 #' If there is stratigraphic relations between samples, \code{Data_C14Cal} must be ordered by order of incresing ages.
 #' @param Data_SigmaC14Cal numeric vector: correponding to the error of 14C age estimates.
 #' @param Nb_sample integer: number of samples (OSL data and 14C age),
@@ -187,7 +187,7 @@
 #' \enumerate{
 #' \item \bold{A list containing the following objects:}
 #'  \itemize{
-#'   \item \bold{Sampling}: that corresponds to a sample of the posterior distributions of the age parameters;
+#'   \item \bold{Sampling}: that corresponds to a sample of the posterior distributions of the age parameters (in ka for both C14 samples and OSL samples);
 #'   \item \bold{PriorAge}: stating the priors used for the age parameter;
 #'   \item \bold{StratiConstraints}: stating the stratigraphic relations between samples considered in the model;
 #'   \item \bold{Model_OSL_GrowthCurve}: stating which dose response fitting option was chosen;
@@ -279,7 +279,6 @@ Age_OSLC14<-function(DATA,Data_C14Cal,Data_SigmaC14Cal,
     }
   }
 
-
   #--- Calibration curve
   TableauCalib=c()
   if(CalibrationCurve=="AtmosphericNorth"){
@@ -297,9 +296,9 @@ Age_OSLC14<-function(DATA,Data_C14Cal,Data_SigmaC14Cal,
   }else{
     TableauCalib=read.csv(file=CalibrationCurve,sep=",",dec=".")
   }}}
-  AgeBP=rev(TableauCalib[,1])
-  CalC14=rev(TableauCalib[,2])
-  SigmaCalC14=rev(TableauCalib[,3])
+  AgeBP=rev(TableauCalib[,1])/1000
+  CalC14=rev(TableauCalib[,2])/1000
+  SigmaCalC14=rev(TableauCalib[,3])/1000
 
   # #--- C14 prepration: Calibration curve
   # TableauCalib=read.csv(file=paste("inst/extdata/",CalibrationCurve,"_CalC14.csv",sep=""),sep=",",dec=".")
@@ -408,7 +407,7 @@ Age_OSLC14<-function(DATA,Data_C14Cal,Data_SigmaC14Cal,
 
   if(Model_C14=="full"){
     dataList = list('q'=q,"ind_change"=ind_change,"ind_OSL"=ind_OSL,"ind_C14"=ind_C14,"CS_OSL"=CS_OSL,"CS_C14"=CS_C14,
-                    'X'=Data_C14Cal,"sigma"=Data_SigmaC14Cal,
+                    'X'=Data_C14Cal/1000,"sigma"=Data_SigmaC14Cal/1000,
                     "xTableauCalib"=AgeBP,"yTableauCalib"=CalC14,"zTableauCalib"=SigmaCalC14,
                     'N'= LT,'sN'=sLT,"IT"=IrrT,
                     "sDlab"=DATA$dLab[1,],
@@ -422,7 +421,7 @@ Age_OSLC14<-function(DATA,Data_C14Cal,Data_SigmaC14Cal,
                     "xbound"=PriorAge,"StratiConstraints"=StratiConstraints)
   }else{
     dataList = list('q'=q,"ind_change"=ind_change,"ind_OSL"=ind_OSL,"ind_C14"=ind_C14,"CS_OSL"=CS_OSL,"CS_C14"=CS_C14,
-                    'X'=Data_C14Cal,"sigma"=Data_SigmaC14Cal,
+                    'X'=Data_C14Cal/1000,"sigma"=Data_SigmaC14Cal/1000,
                     "xTableauCalib"=AgeBP,"yTableauCalib"=CalC14,
                     'N'= LT,'sN'=sLT,"IT"=IrrT,
                     "sDlab"=DATA$dLab[1,],
@@ -451,17 +450,16 @@ Age_OSLC14<-function(DATA,Data_C14Cal,Data_SigmaC14Cal,
   }
   r=Nb_sample%%6
   q=Nb_sample%/%6
-
   if(q>0){
-  for (l in 1:q){
-    MCMC_plot(Sample[,(6*(l-1)+1):(6*l)],
-              length(echantillon[[1]][,1]),
-              SampleNames=c(""),
-              Nb_sample=1,
-              Nb_chaines=Nb_chaines,
-              value=seq(0,5,1),
-              param=nom[(6*(l-1)+1):(6*l)])
-  }
+    for (l in 1:q){
+      MCMC_plot(Sample[,(6*(l-1)+1):(6*l)],
+                length(echantillon[[1]][,1]),
+                SampleNames=c(""),
+                Nb_sample=1,
+                Nb_chaines=Nb_chaines,
+                value=seq(0,5,1),
+                param=nom[(6*(l-1)+1):(6*l)])
+    }
   }
   if(r>0){
     MCMC_plot(as.matrix(Sample[,(6*q+1):Nb_sample]),
@@ -473,7 +471,29 @@ Age_OSLC14<-function(DATA,Data_C14Cal,Data_SigmaC14Cal,
               param=nom[(6*q+1):Nb_sample])
   }
   if(SavePdf==TRUE){
-    dev.print(pdf,file=paste(OutputFilePath,OutputFileName[1],'.pdf',sep=""),width=8,height=10)
+    pdf(file=paste(OutputFilePath,OutputFileName[1],'.pdf',sep=""))
+    if(q>0){
+      for (l in 1:q){
+        MCMC_plot(Sample[,(6*(l-1)+1):(6*l)],
+                  length(echantillon[[1]][,1]),
+                  SampleNames=c(""),
+                  Nb_sample=1,
+                  Nb_chaines=Nb_chaines,
+                  value=seq(0,5,1),
+                  param=nom[(6*(l-1)+1):(6*l)])
+      }
+    }
+    if(r>0){
+      MCMC_plot(as.matrix(Sample[,(6*q+1):Nb_sample]),
+                length(echantillon[[1]][,1]),
+                SampleNames=c(""),
+                Nb_sample=1,
+                Nb_chaines=Nb_chaines,
+                value=seq(0,(r-1),1),
+                param=nom[(6*q+1):Nb_sample])
+    }
+    dev.off()
+    #dev.print(pdf,file=paste(OutputFilePath,OutputFileName[1],'.pdf',sep=""),width=8,height=10)
   }
 
   Outlier=SampleNames[ind_C14[which(U$statistics[(Nb_sample+1):(Nb_sample+sum(SampleNature[2,])),1]<1.5)]]
@@ -483,12 +503,10 @@ Age_OSLC14<-function(DATA,Data_C14Cal,Data_SigmaC14Cal,
   cat(paste("\n\n>> Convergence of MCMC for the age parameters <<\n"))
   cat("----------------------------------------------\n")
   cat(paste("Sample name ", " Bayes estimate ", " Uppers credible interval\n"))
-
   for(i in 1:Nb_sample){
     #cat(paste(" Sample name: ", SampleNames[i],"\n"))
     #cat("---------------------\n")
     cat(paste(paste("A_",SampleNames[i],sep=""),"\t",round(CV$psrf[i,1],2),"\t\t",round(CV$psrf[i,2],2),"\n"))
-
   }
 
 
@@ -564,10 +582,10 @@ Age_OSLC14<-function(DATA,Data_C14Cal,Data_SigmaC14Cal,
     couleur=rainbow(Nb_sample)
     par(mfrow=c(1,1),las = 0,mar=c(5,5,2,2))
     xl=c(min(PriorAge[seq(1,(2*Nb_sample-1),2)]),max(PriorAge[seq(2,(2*Nb_sample),2)]))
-    plot(xl,xl,col="white",xlab=c("Age"),ylab=c("cal C14"),xaxt="n",yaxt="n",cex.lab=1.8)
+    plot(xl,xl,col="white",xlab=c("Age (in ka)"),ylab=c("cal C14"),xaxt="n",yaxt="n",cex.lab=1.8)
     axis(2,cex.axis=2)
     axis(1,cex.axis=2)
-    polygon(c(AgeBP,rev(AgeBP)),c(CalC14+2*SigmaCalC14,rev(CalC14-2*SigmaCalC14))/1000,col="gray",border="black")
+    polygon(c(AgeBP,rev(AgeBP)),c(CalC14+2*SigmaCalC14,rev(CalC14-2*SigmaCalC14)),col="gray",border="black")
     for(i in ind_C14){
       lines(c(AgePlot95[i,2:3]),rep(Data_C14Cal[CS_C14[i]]/1000,2),col=couleur[i],lwd=4)
       lines(AgePlotMoy[i],Data_C14Cal[CS_C14[i]]/1000,col="black",lwd=2,type='p')
