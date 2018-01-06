@@ -31,8 +31,8 @@ environment:
 
 
 build_script:
-  - travis-tool.sh install_github data.table
   - travis-tool.sh install_deps
+  - travis-tool.sh install_r data.table type='source'
 
 test_script:
   - travis-tool.sh run_tests
