@@ -1,7 +1,6 @@
 # DO NOT CHANGE the "init" and "install" sections below
 
 # Download script file from GitHub
-version: 0.1.{build}
 init:
   ps: |
         $ErrorActionPreference = "Stop"
@@ -20,10 +19,12 @@ environment:
   matrix:
   - R_VERSION: devel
     R_ARCH: i386
+    GCC_PATH: mingw_32
     PKGTYPE: source
 
   - R_VERSION: devel
     R_ARCH: x64
+    GCC_PATH: mingw_64
     PKGTYPE: source
 
   - R_VERSION: release
@@ -64,8 +65,6 @@ artifacts:
 notifications:
 - provider: Email
   to:
-  - anne.philippe@univ-nantes.fr
-  - gguerin@u-bordeaux-montaigne.fr
   - sk@r-luminescence.de
   subject: '[BayLum] AppVeyor Status Change'
   on_build_success: false
