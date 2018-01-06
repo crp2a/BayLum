@@ -20,11 +20,9 @@ environment:
   matrix:
   - R_VERSION: devel
     R_ARCH: i386
-    PKGTYPE: source
 
   - R_VERSION: devel
     R_ARCH: x64
-    PKGTYPE: source
 
   - R_VERSION: release
     R_ARCH: x64
