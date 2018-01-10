@@ -1,24 +1,35 @@
-#' Plots Lx/Tx as a function of regenerative dose
+#' Plots Lx/Tx as a function of the regenerative dose
 #'
-#' This function plots Lx/Tx values as a function of Regenerative Dose, for every selected aliquot and for each sample.
+#' This function plots Lx/Tx values as a function of regenerative dose, for every selected aliquot and for each sample.
 #'
-#' @param DATA list of objects: LT, sLT, ITimes, dLab, ddot_env, regDose, J, K, Nb_measurement,
+#' @param DATA [list] (**required**): list of objects LT, sLT, ITimes, dLab, ddot_env, regDose, J, K, Nb_measurement,
 #' provided by \code{\link{Generate_DataFile}} or \code{\link{Generate_DataFile_MG}} or \code{\link{Concat_DataFile}}.
 #' \code{DATA} can contain information from more than one sample.
-#' @param Path character: path to the project folder
+#'
+#' @param Path [character] (**required**): path to the project folder
 #' (the same as the one used in \code{\link{Generate_DataFile}}  or \code{\link{Generate_DataFile_MG}} to provide \code{DATA})
-#' @param FolderNames character vector:  list of names of the sub-folders containing the BIN files,
+#'
+#' @param FolderNames [character] (**required**):  vector of names of the sub-folders containing the BIN files,
 #' which were used by \code{\link{Generate_DataFile}} or \code{\link{Generate_DataFile_MG}} to generate the \code{DATA} object.
-#' @param Nb_sample integer: ID number (in [1,\code{Nb_sample}]) of the sample selected for plotting L/T as a function of regenerative doses.
+#'
+#' @param Nb_sample [integer] (**required**): ID number (in `[1,Nb_sample]`) of the sample selected for plotting L/T as a function of regenerative doses.
 #' Required if the \code{DATA} object contains information for more than one sample.
-#' @param BinPerSample (with default): integer vector (with default): vector with the number of BIN files per sample,
+#'
+#' @param BinPerSample [integer] (with default): integer vector (with default): vector with the number of BIN files per sample,
 #' which was used in \code{\link{Generate_DataFile}} or \code{\link{Generate_DataFile_MG}} to generate the \code{DATA} object.
-#' @param SampleNames character vector (with default): Names of samples. To use if there is more than one bin file per sample.
-#' @param SG boolean vector (with default): vector to set the type of measurement for each sample (\code{length(SG)=Nb_sample}).
-#' If the sample of number ID equal to \code{i}, \code{SG[i]}=TRUE if it is a Single-grain OSL measurements,
+#'
+#' @param SampleNames [character] (with default): Names of samples. To use if there is more than one bin file per sample.
+#'
+#' @param SG [logical] (with default): vector to set the type of measurement for each sample (\code{length(SG)=Nb_sample}).
+#' If the sample of number ID equal to \code{i}, `SG[i]=TRUE` if it is a Single-grain OSL measurements,
 #' \code{SG[i]}=FALSE if it is a Multi-grain OSL measurements.
-#' @param sepDP character (with default): column separator in the DiscPose.csv file or in Disc.csv file.
+#'
+#' @param sepDP [character] (with default): column separator in the DiscPose.csv file or in Disc.csv file.
 #' It must be the same separator for all samples, for Single-grain OSL measurements or Multi-grain OSL measurements.
+#'
+#' @param nrow [integer] (with default): controls the arangment of the plots, here the number of rows. Can be set to `NULL`.
+#'
+#' @param ncol [integer] (with default): controls the arangment of the plots, here the number of columns. Can be set to `NULL`.
 #'
 #' @details
 #' To fill \code{FolderNames} and \code{BinPerSample}, we refer to the \bold{Detail} section from the
@@ -28,7 +39,7 @@
 #' @return Lx/Tx plots; there are as many plots as selected aliquots in the DiscPos.csv file. There are 9 plots per page.
 #' There is not interpolation.
 #'
-#' @author Claire Christophe, Anne Philippe, Guillaume Guerin
+#' @author Claire Christophe, Sebastian Kreutzer, Anne Philippe, Guillaume Guérin
 #'
 #' @seealso \code{\link{Generate_DataFile}}, \code{\link{Generate_DataFile_MG}}
 #'
@@ -39,35 +50,66 @@
 #' folder=""
 #' samplename="FER1"
 #' LT_RegenDose(DATA=DATA3,Path=path,FolderNames=folder,SampleNames=samplename,Nb_sample=1,SG=FALSE)
+#' @md
 #' @export
+LT_RegenDose<-function(
+  DATA,
+  Path,
+  FolderNames,
+  SampleNames = FolderNames,
+  Nb_sample,
+  BinPerSample = rep(1,Nb_sample),
+  SG = rep(TRUE, Nb_sample),sepDP=c(","),
+  nrow = 3L,
+  ncol = nrow
+){
 
-LT_RegenDose<-function(DATA,Path,FolderNames,SampleNames=FolderNames,
-                       Nb_sample,BinPerSample=rep(1,Nb_sample),
-                       SG=rep(TRUE,Nb_sample),sepDP=c(",")){
+  ##get number of samples
+  CSBinPerSample <- cumsum(BinPerSample)
 
-  CSBinPerSample=cumsum(BinPerSample)
+  ##loop to generate the plots
   for(I in 1:Nb_sample){
-    par(mfrow=c(1,1),mar=c(2,2,5,2),oma=c(5,5,5,5))
-    plot(x=0,y=0,col='white',main=paste('sample:',SampleNames[I],sep=" "),cex.main=2,yaxt="n",xaxt="n",bty="n",ylab = "",xlab="")
-    par(mfrow=c(3,3),mar=c(2,2,3,2),oma=c(1,1,1,1))
+    ##plot setting per sample ... if wanted and make sure that we clean up the mess afterwards
+    if(!is.null(nrow) & !is.null(ncol)){
+      par_default <- par()$mfrow
+      on.exit(par(mfrow = par_default))
+      par(mfrow = c(nrow, ncol))
+
+    }
+
     if(BinPerSample[I]==1){
-      index=0
+      index <- 0
+
     }else{
-      index=rep(0,BinPerSample[I])
-      index[2:BinPerSample[I]]=cumsum(DATA$J[(CSBinPerSample[I]-BinPerSample[I]+1):(CSBinPerSample[I]-1)])
+      index <- rep(0,BinPerSample[I])
+      index[2:BinPerSample[I]] <- cumsum(DATA$J[(CSBinPerSample[I]-BinPerSample[I]+1):(CSBinPerSample[I]-1)])
     }
     for(bf in 1:BinPerSample[I]){
       for(j in 1:DATA$J[bf+CSBinPerSample[I]-BinPerSample[I]]){
-        if(SG[I]==TRUE){
-          DP=read.csv(file=paste(Path,FolderNames[(CSBinPerSample[I]-BinPerSample[I]+bf)],"/DiscPos.csv",sep=""),sep=sepDP)
-          plot(DATA$regDose[[I]][(index[bf]+j),(1:(DATA$K[(CSBinPerSample[I]-BinPerSample[I]+bf)]))],DATA$LT[[I]][(index[bf]+j),2:(DATA$K[(CSBinPerSample[I]-BinPerSample[I]+bf)]+1)],
-               main=c(paste("disc=",DP[j,1],', Pos=',DP[j,2])),xlab="Regen Dose (Gy)", ylab="L/T")
-        }else{
-          DP=read.csv(file=paste(Path,FolderNames[(CSBinPerSample[I]-BinPerSample[I]+bf)],"/Disc.csv",sep=""),sep=sepDP)
-          plot(DATA$regDose[[I]][(index[bf]+j),(1:(DATA$K[(CSBinPerSample[I]-BinPerSample[I]+bf)]))],DATA$LT[[I]][(index[bf]+j),2:(DATA$K[(CSBinPerSample[I]-BinPerSample[I]+bf)]+1)],
-               main=c(paste("disc=",DP[j,1])),xlab="Regen Dose (Gy)", ylab="L/T")
-        }
+        if(SG[I]){
+          DP <- read.csv(file=paste(Path,FolderNames[(CSBinPerSample[I]-BinPerSample[I]+bf)],"/DiscPos.csv",sep=""),sep=sepDP)
+          plot(
+            x = DATA$regDose[[I]][(index[bf]+j),(1:(DATA$K[(CSBinPerSample[I]-BinPerSample[I]+bf)]))],
+            y = DATA$LT[[I]][(index[bf]+j),2:(DATA$K[(CSBinPerSample[I]-BinPerSample[I]+bf)]+1)],
+            main = paste('sample:',SampleNames[I]),
+            xlab = "Dose (Gy)",
+            ylab = expression(L[x]/T[x]))
 
+          ##add information on position and disc
+          mtext(side = 3, c(paste("Disc = ",DP[j,1],', Pos =',DP[j,2])))
+
+        }else{
+          DP <- read.csv(file=paste(Path,FolderNames[(CSBinPerSample[I]-BinPerSample[I]+bf)],"/Disc.csv",sep=""),sep=sepDP)
+          plot(
+            x = DATA$regDose[[I]][(index[bf]+j),(1:(DATA$K[(CSBinPerSample[I]-BinPerSample[I]+bf)]))],
+            y = DATA$LT[[I]][(index[bf]+j),2:(DATA$K[(CSBinPerSample[I]-BinPerSample[I]+bf)]+1)],
+            main = paste('sample:',SampleNames[I]),
+            xlab = "Dose (Gy)",
+            ylab = expression(L[x]/T[x]))
+
+          ##add information on the disc
+          mtext(side = 3, c(paste("Disc = ",DP[j,1])))
+        }
       }
     }
   }

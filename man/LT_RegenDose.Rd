@@ -2,44 +2,48 @@
 % Please edit documentation in R/LT_RegenDose.R
 \name{LT_RegenDose}
 \alias{LT_RegenDose}
-\title{Plots Lx/Tx as a function of regenerative dose}
+\title{Plots Lx/Tx as a function of the regenerative dose}
 \usage{
 LT_RegenDose(DATA, Path, FolderNames, SampleNames = FolderNames, Nb_sample,
   BinPerSample = rep(1, Nb_sample), SG = rep(TRUE, Nb_sample),
-  sepDP = c(","))
+  sepDP = c(","), nrow = 3L, ncol = nrow)
 }
 \arguments{
-\item{DATA}{list of objects: LT, sLT, ITimes, dLab, ddot_env, regDose, J, K, Nb_measurement,
+\item{DATA}{\link{list} (\strong{required}): list of objects LT, sLT, ITimes, dLab, ddot_env, regDose, J, K, Nb_measurement,
 provided by \code{\link{Generate_DataFile}} or \code{\link{Generate_DataFile_MG}} or \code{\link{Concat_DataFile}}.
 \code{DATA} can contain information from more than one sample.}
 
-\item{Path}{character: path to the project folder
+\item{Path}{\link{character} (\strong{required}): path to the project folder
 (the same as the one used in \code{\link{Generate_DataFile}}  or \code{\link{Generate_DataFile_MG}} to provide \code{DATA})}
 
-\item{FolderNames}{character vector:  list of names of the sub-folders containing the BIN files,
+\item{FolderNames}{\link{character} (\strong{required}):  vector of names of the sub-folders containing the BIN files,
 which were used by \code{\link{Generate_DataFile}} or \code{\link{Generate_DataFile_MG}} to generate the \code{DATA} object.}
 
-\item{SampleNames}{character vector (with default): Names of samples. To use if there is more than one bin file per sample.}
+\item{SampleNames}{\link{character} (with default): Names of samples. To use if there is more than one bin file per sample.}
 
-\item{Nb_sample}{integer: ID number (in [1,\code{Nb_sample}]) of the sample selected for plotting L/T as a function of regenerative doses.
+\item{Nb_sample}{\link{integer} (\strong{required}): ID number (in \code{[1,Nb_sample]}) of the sample selected for plotting L/T as a function of regenerative doses.
 Required if the \code{DATA} object contains information for more than one sample.}
 
-\item{BinPerSample}{(with default): integer vector (with default): vector with the number of BIN files per sample,
+\item{BinPerSample}{\link{integer} (with default): integer vector (with default): vector with the number of BIN files per sample,
 which was used in \code{\link{Generate_DataFile}} or \code{\link{Generate_DataFile_MG}} to generate the \code{DATA} object.}
 
-\item{SG}{boolean vector (with default): vector to set the type of measurement for each sample (\code{length(SG)=Nb_sample}).
-If the sample of number ID equal to \code{i}, \code{SG[i]}=TRUE if it is a Single-grain OSL measurements,
+\item{SG}{\link{logical} (with default): vector to set the type of measurement for each sample (\code{length(SG)=Nb_sample}).
+If the sample of number ID equal to \code{i}, \code{SG[i]=TRUE} if it is a Single-grain OSL measurements,
 \code{SG[i]}=FALSE if it is a Multi-grain OSL measurements.}
 
-\item{sepDP}{character (with default): column separator in the DiscPose.csv file or in Disc.csv file.
+\item{sepDP}{\link{character} (with default): column separator in the DiscPose.csv file or in Disc.csv file.
 It must be the same separator for all samples, for Single-grain OSL measurements or Multi-grain OSL measurements.}
+
+\item{nrow}{\link{integer} (with default): controls the arangment of the plots, here the number of rows. Can be set to \code{NULL}.}
+
+\item{ncol}{\link{integer} (with default): controls the arangment of the plots, here the number of columns. Can be set to \code{NULL}.}
 }
 \value{
 Lx/Tx plots; there are as many plots as selected aliquots in the DiscPos.csv file. There are 9 plots per page.
 There is not interpolation.
 }
 \description{
-This function plots Lx/Tx values as a function of Regenerative Dose, for every selected aliquot and for each sample.
+This function plots Lx/Tx values as a function of regenerative dose, for every selected aliquot and for each sample.
 }
 \details{
 To fill \code{FolderNames} and \code{BinPerSample}, we refer to the \bold{Detail} section from the
@@ -58,5 +62,5 @@ LT_RegenDose(DATA=DATA3,Path=path,FolderNames=folder,SampleNames=samplename,Nb_s
 \code{\link{Generate_DataFile}}, \code{\link{Generate_DataFile_MG}}
 }
 \author{
-Claire Christophe, Anne Philippe, Guillaume Guerin
+Claire Christophe, Sebastian Kreutzer, Anne Philippe, Guillaume Guérin
 }
