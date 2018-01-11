@@ -6,7 +6,8 @@ BayLum 0.1.2 (Release date: 2017-XX-XX)
 * The function `AgeS_Computation()` now returns the MCMC information from all samples of the PDF output is set to `TRUE`
 * The function `Age_OSLC14()` never returned numerical data; fixed.
 * Fix `Age_OSLC14()` age format, now in ka for C-14 instead of years.
-* Set pacht level to 0 (for 3.3.0) to account for CRAN note
+* Set pach level to 0 (for 3.3.0) to account for CRAN note
+* The function `LT_RegenDose()` gained two new arguments `nrow` and `ncol` became a little bit more user friendly
 
 
 BayLum 0.1.1 (Release date: 2017-09-01)
