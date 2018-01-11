@@ -125,17 +125,16 @@
 #' # load(file=c(paste(path,folder,"Data.RData",sep="")))
 #'
 #' @export
-
-Generate_DataFile<-function(Path,FolderNames,
-                            Nb_sample,
-                            Nb_binfile=length(FolderNames),
-                            BinPerSample=rep(1,Nb_sample),
-                            sepDP=c(","),
-                            sepDE=c(","),
-                            sepDS=c(","),
-                            sepR=c("=")){
-
-  #library(Luminescence)
+Generate_DataFile <- function(
+  Path,
+  FolderNames,
+  Nb_sample,
+  Nb_binfile = length(FolderNames),
+  BinPerSample = rep(1, Nb_sample),
+  sepDP = c(","),
+  sepDE = c(","),
+  sepDS = c(","),
+  sepR = c("=")) {
 
   #--- create object needed
   #---------------------------------------
