@@ -1,0 +1,18 @@
+navbar:
+  title: "BayLum"
+  type: inverse
+  left:
+    - text: "Home"
+      href: index.html
+    - text: "dplyr"
+      href: articles/dplyr.html
+    - text: "ML"
+      href: articles/ML.html
+    - text: "Extensions"
+      href: articles/extensions.html
+    - text: "Deployment"
+      href: articles/deployment.html
+    - text: "Reference"
+      href: "reference/"
+  right:
+    - icon: fa-github
