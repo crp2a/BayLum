@@ -10,3 +10,4 @@ BayLum.CHECK_AND_BUILD_MacOSX.sh
 appveyor.yml
 ^docs$
 _pkgdown.yml
+^_pkgdown\.yml$

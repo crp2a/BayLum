@@ -16,7 +16,7 @@
 </head>
 <body>
     <div class="container template-vignette">
-      <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
+      <header><div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
@@ -41,7 +41,14 @@
   <a href="../reference/index.html">Reference</a>
 </li>
       </ul>
-<ul class="nav navbar-nav navbar-right"></ul>
+<ul class="nav navbar-nav navbar-right">
+<li>
+  <a>
+    <span class="fa fa-github"></span>
+     
+  </a>
+</li>
+      </ul>
 </div>
 <!--/.nav-collapse -->
   </div>
@@ -252,9 +259,9 @@ samp1
 &gt;&gt; Result of Gelman and Rudin critere of convergency&lt;&lt;
 ----------------------------------------------
      Point estimate Uppers confidence interval
-A    1.09        1.24 
-D    1.09        1.24 
-sD   1.03        1.07 
+A    1.09        1.21 
+D    1.09        1.22 
+sD   1.24        1.62 
 
 
 ________________________________________________________________________________
@@ -263,20 +270,20 @@ ________________________________________________________________________________
 
 parameter    Bayes estimate       Credible interval 
 ----------------------------------------------
-A        24.885 
+A        22.835 
                          lower bound     upper bound
-                 at level 95%    10          84.3 
-                 at level 68%    10          31.34 
+                 at level 95%    10          43.58 
+                 at level 68%    10.01       20.61 
 ----------------------------------------------
-D        61.924 
+D        56.706 
                          lower bound     upper bound
-                 at level 95%    19.58       207.51 
-                 at level 68%    22.3        81.75 
+                 at level 95%    19.81       110.35 
+                 at level 68%    22.45       52.94 
 ----------------------------------------------
-sD       35.102 
+sD       36.774 
                          lower bound     upper bound
-                 at level 95%    0.24        162.42 
-                 at level 68%    0.41        34.63 </code></pre>
+                 at level 95%    0.13        92.87 
+                 at level 68%    0.55        25.78 </code></pre>
 <p>This works also if <code>DATA1</code> is output of <code><a href="../reference/Generate_DataFile_MG.html">Generate_DataFile_MG()</a></code>.</p>
 <div id="remark-1-mcmc-trajectories" class="section level5">
 <h5 class="hasAnchor">
@@ -448,9 +455,9 @@ samp1 samp2
 &gt;&gt; Result of Gelman and Rudin critere of convergency&lt;&lt;
 ----------------------------------------------
      Point estimate Uppers confidence interval
-A    1       1.01 
-D    1       1.01 
-sD   1       1 
+A    1.02        1.02 
+D    1.02        1.02 
+sD   1.05        1.08 
 
 
 ________________________________________________________________________________
@@ -459,20 +466,20 @@ ________________________________________________________________________________
 
 parameter    Bayes estimate       Credible interval 
 ----------------------------------------------
-A        2.307 
+A        2.296 
                          lower bound     upper bound
-                 at level 95%    1.26        3.52 
-                 at level 68%    1.66        2.72 
+                 at level 95%    1.21        3.37 
+                 at level 68%    1.76        2.78 
 ----------------------------------------------
-D        5.751 
+D        5.715 
                          lower bound     upper bound
-                 at level 95%    3.45        8.66 
-                 at level 68%    4.48        6.86 
+                 at level 95%    3.32        8.46 
+                 at level 68%    4.46        6.74 
 ----------------------------------------------
-sD       0.769 
+sD       0.782 
                          lower bound     upper bound
-                 at level 95%    0       2.27 
-                 at level 68%    0       0.77 </code></pre>
+                 at level 95%    0       2.43 
+                 at level 68%    0       0.71 </code></pre>
 </div>
 </div>
 <div id="age-analysis-of-various-samples" class="section level1">
