@@ -8,3 +8,4 @@ BayLum.CHECK_AND_BUILD_MacOSX.sh
 .gitignore
 .travis.yml
 appveyor.yml
+^docs$
