@@ -37,3 +37,6 @@ BayLum.Rcheck/
 BayLum.BuildResults/*.zip
 BayLum.BuildResults/*.tgz
 BayLum.BuildResults/rdepends_*
+
+# Internals
+NEWS.html

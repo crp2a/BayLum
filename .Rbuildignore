@@ -2,6 +2,7 @@
 ^\.Rproj\.user$
 LICENSE
 README.md
+NEWS.html
 BayLum.BuildResults
 BayLum.BuildScripts
 BayLum.CHECK_AND_BUILD_MacOSX.sh
