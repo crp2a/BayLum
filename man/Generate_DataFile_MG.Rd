@@ -132,6 +132,9 @@ For the general BIN-file structure, the reader is referred to the following webs
 
 The function \code{\link{read_BIN2R}} developped in \code{\link{Luminescence}} package is used to read the BIN files.
 }
+\note{
+The function imports only BIN-file records which have been previously selected.
+}
 \examples{
 path<- system.file("extdata/FER1", "", package="BayLum")
 folder=""

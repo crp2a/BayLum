@@ -113,6 +113,8 @@
 #'
 #' @author Claire Christophe, Sebastian Kreutzer, Anne Philippe, Guillaume Guerin
 #'
+#' @note The function imports only BIN-file records which have been previously selected.
+#'
 #' @seealso \code{\link{read_BIN2R}}, \code{\link{Concat_DataFile}}, \code{\link{LT_RegenDose}}
 #' \code{\link{Age_Computation}}, \code{\link{AgeS_Computation}}, \code{\link{Palaeodose_Computation}}
 #'
@@ -208,8 +210,7 @@ Generate_DataFile_MG <- function(
       # csv file indicating position and disc selection and preparation to be red
       XLS_file[[2]]<-XLS_file[[1]]
       XLS_file[[1]] <- object@METADATA$FNAME[1:length(XLS_file[[1]])]
-      names(XLS_file)=c("BIN_FILE","DISC")
-      head(XLS_file)
+      names(XLS_file) <- c("BIN_FILE","DISC")
 
       # aliquot number
       J[bf]=length(XLS_file[,1])
