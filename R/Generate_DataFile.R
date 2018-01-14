@@ -219,8 +219,7 @@ Generate_DataFile <- function(
       XLS_file[[3]]<-XLS_file[[2]]
       XLS_file[[2]]<-XLS_file[[1]]
       XLS_file[[1]] <- object@METADATA$FNAME[1:length(XLS_file[[1]])]
-      names(XLS_file)=c("BIN_FILE","DISC","GRAIN")
-      head(XLS_file)
+      names(XLS_file) <- c("BIN_FILE","DISC","GRAIN")
 
       # aliquot number
       J[bf]=length(XLS_file[,1])
