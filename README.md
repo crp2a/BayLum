@@ -1,25 +1,13 @@
 # BayLum
 
-An R package for chronological **Bay**esian models integrated for Optically Stimulated (OSL) **Lum**inescence Dating
-
-## Documentation
+[![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)
 [![Rdoc](http://www.rdocumentation.org/badges/version/BayLum)](http://www.rdocumentation.org/packages/BayLum)
-
-## Package metrics 
-### CRAN statistics
 [![CRAN](http://www.r-pkg.org/badges/version/BayLum)](http://cran.rstudio.com/package=BayLum)
 [![Downloads](http://cranlogs.r-pkg.org/badges/grand-total/BayLum)](http://www.r-pkg.org/pkg/BayLum)
-[![Downloads](http://cranlogs.r-pkg.org/badges/BayLum)](http://www.r-pkg.org/pkg/BayLum)
-[![Downloads](http://cranlogs.r-pkg.org/badges/last-week/BayLum)](http://www.r-pkg.org/pkg/BayLum)
-[![Downloads](http://cranlogs.r-pkg.org/badges/last-day/BayLum)](http://www.r-pkg.org/pkg/BayLum)
-
-### Impact metrics
-[![Research software impact](http://depsy.org/api/package/cran/BayLum/badge.svg)](http://depsy.org/package/r/BayLum)
-[![Github Stars](https://img.shields.io/github/stars/R-Lum/BayLum.svg?style=social&label=Github)](https://github.com/R-Lum/BayLum)
-
-### Platform tests status 
 [![Build status](https://ci.appveyor.com/api/projects/status/vfpauhn2s6chkgrp/branch/master?svg=true)](https://ci.appveyor.com/project/RLumSK/baylum/branch/master)
 [![Build Status](https://travis-ci.org/R-Lum/BayLum.svg?branch=master)](https://travis-ci.org/R-Lum/BayLum)
+
+An R package for chronological **Bay**esian models integrated for Optically Stimulated (OSL) **Lum**inescence Dating
 
 ## Installation
 

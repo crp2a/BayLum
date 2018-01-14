@@ -33,7 +33,6 @@
 #' DATA3=Concat_DataFile(L1=DATA1,L2=DATA2)
 #' str(DATA3)
 #' @export
-
 Concat_DataFile<-function(L1,L2){
   Data=list("LT"=c(L1$LT,L2$LT),
             "sLT"=c(L1$sLT,L2$sLT),

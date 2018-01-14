@@ -11,8 +11,8 @@
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
+<link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/flatly/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
 
-<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
 <!-- Font Awesome icons -->
@@ -39,7 +39,7 @@
   <body>
     <div class="container template-reference-topic">
       <header>
-      <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
@@ -53,23 +53,36 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fa fa-home fa-lg"></span>
+    <span class="fa fa-home"></span>
      
+    Home
   </a>
 </li>
 <li>
-  <a href="../articles/BayLum.html">Get Started</a>
+  <a href="../articles/BayLum.html">
+    <span class=" play"></span>
+     
+    Get Started
+  </a>
 </li>
 <li>
-  <a href="../reference/index.html">Reference</a>
+  <a href="../reference/index.html">References</a>
 </li>
       </ul>
       
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a>
+  <a href="../news/index.html">
+    <span class="fa fa-newspaper-o"></span>
+     
+    News
+  </a>
+</li>
+<li>
+  <a href="https://github.com/R-Lum/BayLum">
     <span class="fa fa-github"></span>
      
+    GitHub
   </a>
 </li>
       </ul>
@@ -170,7 +183,7 @@ As well for a precise description of input <code>DATA</code>.</p>
 <span class='no'>path</span><span class='kw'>&lt;-</span> <span class='fu'>system.file</span>(<span class='st'>"extdata/FER1"</span>, <span class='st'>""</span>, <span class='kw'>package</span><span class='kw'>=</span><span class='st'>"BayLum"</span>)
 <span class='no'>folder</span><span class='kw'>=</span><span class='st'>""</span>
 <span class='no'>samplename</span><span class='kw'>=</span><span class='st'>"FER1"</span>
-<span class='fu'>LT_RegenDose</span>(<span class='kw'>DATA</span><span class='kw'>=</span><span class='no'>DATA3</span>,<span class='kw'>Path</span><span class='kw'>=</span><span class='no'>path</span>,<span class='kw'>FolderNames</span><span class='kw'>=</span><span class='no'>folder</span>,<span class='kw'>SampleNames</span><span class='kw'>=</span><span class='no'>samplename</span>,<span class='kw'>Nb_sample</span><span class='kw'>=</span><span class='fl'>1</span>,<span class='kw'>SG</span><span class='kw'>=</span><span class='fl'>FALSE</span>)</div><div class='output co'>#&gt; <span class='error'>Error in plot.new(): figure margins too large</span></div></pre>
+<span class='fu'>LT_RegenDose</span>(<span class='kw'>DATA</span><span class='kw'>=</span><span class='no'>DATA3</span>,<span class='kw'>Path</span><span class='kw'>=</span><span class='no'>path</span>,<span class='kw'>FolderNames</span><span class='kw'>=</span><span class='no'>folder</span>,<span class='kw'>SampleNames</span><span class='kw'>=</span><span class='no'>samplename</span>,<span class='kw'>Nb_sample</span><span class='kw'>=</span><span class='fl'>1</span>,<span class='kw'>SG</span><span class='kw'>=</span><span class='fl'>FALSE</span>)</div><div class='img'><img src='LT_RegenDose-1.png' alt='' width='700' height='432.632880098887' /></div><div class='img'><img src='LT_RegenDose-2.png' alt='' width='700' height='432.632880098887' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

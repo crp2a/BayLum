@@ -11,8 +11,8 @@
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
+<link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/flatly/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
 
-<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
 <!-- Font Awesome icons -->
@@ -39,7 +39,7 @@
   <body>
     <div class="container template-reference-topic">
       <header>
-      <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
@@ -53,23 +53,36 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fa fa-home fa-lg"></span>
+    <span class="fa fa-home"></span>
      
+    Home
   </a>
 </li>
 <li>
-  <a href="../articles/BayLum.html">Get Started</a>
+  <a href="../articles/BayLum.html">
+    <span class=" play"></span>
+     
+    Get Started
+  </a>
 </li>
 <li>
-  <a href="../reference/index.html">Reference</a>
+  <a href="../reference/index.html">References</a>
 </li>
       </ul>
       
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a>
+  <a href="../news/index.html">
+    <span class="fa fa-newspaper-o"></span>
+     
+    News
+  </a>
+</li>
+<li>
+  <a href="https://github.com/R-Lum/BayLum">
     <span class="fa fa-github"></span>
      
+    GitHub
   </a>
 </li>
       </ul>
@@ -404,14 +417,14 @@ IntCal13 ans Marine13 radiocarbon age calibration curves 0-50000 years cal BP. R
 #&gt; Initializing model
 #&gt; </div><div class='output co'>#&gt; <span class='warning'>Warning: Adaptation incomplete</span></div><div class='output co'>#&gt; NOTE: Stopping adaptation
 #&gt; 
-#&gt; </div><div class='img'><img src='Age_OSLC14-5.png' alt='' width='700' height='432.632880098887' /></div><div class='output co'>#&gt; 
+#&gt; </div><div class='img'><img src='Age_OSLC14-1.png' alt='' width='700' height='432.632880098887' /></div><div class='output co'>#&gt; 
 #&gt; 
 #&gt; &gt;&gt; Convergence of MCMC for the age parameters &lt;&lt;
 #&gt; ----------------------------------------------
 #&gt; Sample name   Bayes estimate   Uppers credible interval
-#&gt; A_GDB5 	 1.01 		 1.18 
-#&gt; A_S-EVA-26510 	 1.14 		 1.58 
-#&gt; A_GDB3 	 1.63 		 3.64 
+#&gt; A_GDB5 	 1.05 		 1.16 
+#&gt; A_S-EVA-26510 	 1.01 		 1.16 
+#&gt; A_GDB3 	 0.98 		 1.04 
 #&gt; 
 #&gt; 
 #&gt; ________________________________________________________________________________
@@ -422,24 +435,24 @@ IntCal13 ans Marine13 radiocarbon age calibration curves 0-50000 years cal BP. R
 #&gt; &gt;&gt; Bayes estimates of Age for each sample and credible interval &lt;&lt;
 #&gt; ------------------------------------------------------
 #&gt; Sample name 	 Bayes estimate  Credible interval: 
-#&gt; A_GDB5 	 7.244 
+#&gt; A_GDB5 	 7.194 
 #&gt; 						 lower bound 	 upper bound
-#&gt; 				 at level 95% 	 5.99 		 8.86 
-#&gt; 				 at level 68% 	 6.41 		 7.68 
+#&gt; 				 at level 95% 	 6.21 		 8.26 
+#&gt; 				 at level 68% 	 6.75 		 7.62 
 #&gt; ------------------------------------------------------
 #&gt; Sample name 	 Bayes estimate  Credible interval: 
-#&gt; A_S-EVA-26510 	 41.898 
+#&gt; A_S-EVA-26510 	 41.873 
 #&gt; 						 lower bound 	 upper bound
-#&gt; 				 at level 95% 	 41.37 		 42.32 
-#&gt; 				 at level 68% 	 41.82 		 42.23 
+#&gt; 				 at level 95% 	 41.43 		 42.3 
+#&gt; 				 at level 68% 	 41.79 		 42.14 
 #&gt; ------------------------------------------------------
 #&gt; Sample name 	 Bayes estimate  Credible interval: 
-#&gt; A_GDB3 	 49.148 
+#&gt; A_GDB3 	 47.03 
 #&gt; 						 lower bound 	 upper bound
-#&gt; 				 at level 95% 	 42.86 		 59.23 
-#&gt; 				 at level 68% 	 42.19 		 50.87 
+#&gt; 				 at level 95% 	 42.93 		 53.84 
+#&gt; 				 at level 68% 	 43.59 		 46.91 
 #&gt; 
-#&gt; ------------------------------------------------------</div><div class='img'><img src='Age_OSLC14-6.png' alt='' width='700' height='432.632880098887' /></div></pre>
+#&gt; ------------------------------------------------------</div><div class='img'><img src='Age_OSLC14-2.png' alt='' width='700' height='432.632880098887' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

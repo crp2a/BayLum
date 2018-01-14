@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>BayLum: An Introduction • BayLum</title>
-<!-- jquery --><script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<!-- jquery --><script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/flatly/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script><!-- Font Awesome icons --><link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
 <!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
 <script src="../jquery.sticky-kit.min.js"></script><script src="../pkgdown.js"></script><!-- mathjax --><script src="https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!--[if lt IE 9]>
@@ -16,7 +16,7 @@
 </head>
 <body>
     <div class="container template-vignette">
-      <header><div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
@@ -30,22 +30,35 @@
       <ul class="nav navbar-nav">
 <li>
   <a href="../index.html">
-    <span class="fa fa-home fa-lg"></span>
+    <span class="fa fa-home"></span>
      
+    Home
   </a>
 </li>
 <li>
-  <a href="../articles/BayLum.html">Get Started</a>
+  <a href="../articles/BayLum.html">
+    <span class=" play"></span>
+     
+    Get Started
+  </a>
 </li>
 <li>
-  <a href="../reference/index.html">Reference</a>
+  <a href="../reference/index.html">References</a>
 </li>
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a>
+  <a href="../news/index.html">
+    <span class="fa fa-newspaper-o"></span>
+     
+    News
+  </a>
+</li>
+<li>
+  <a href="https://github.com/R-Lum/BayLum">
     <span class="fa fa-github"></span>
      
+    GitHub
   </a>
 </li>
       </ul>
@@ -61,9 +74,9 @@
   <div class="col-md-9">
     <div class="page-header toc-ignore">
       <h1>BayLum: An Introduction</h1>
-                        <h4 class="author">Claire Christophe, Anne Philippe, Sebastian Kreutzer, Guillaume Guerin</h4>
+                        <h4 class="author">Claire Christophe, Anne Philippe, Sebastian Kreutzer, Guillaume Guérin</h4>
             
-            <h4 class="date">Updated for BayLum package version 0.1.2 (2018-01-12)</h4>
+            <h4 class="date">Updated for BayLum package version 0.1.2 (2018-01-14)</h4>
           </div>
 
     
@@ -87,10 +100,10 @@
 </div>
 <div id="age-analysis-of-one-sample" class="section level1">
 <h1 class="hasAnchor">
-<a href="#age-analysis-of-one-sample" class="anchor"></a>1. Age analysis of one sample</h1>
+<a href="#age-analysis-of-one-sample" class="anchor"></a>Age analysis of one sample</h1>
 <div id="generate-data-file-from-bin-file-for-single-grain-osl-measurements" class="section level2">
 <h2 class="hasAnchor">
-<a href="#generate-data-file-from-bin-file-for-single-grain-osl-measurements" class="anchor"></a>1.1. Generate data file from BIN-file for single-grain OSL measurements</h2>
+<a href="#generate-data-file-from-bin-file-for-single-grain-osl-measurements" class="anchor"></a>Generate data file from BIN-file for single-grain OSL measurements</h2>
 <div id="import-information-from-a-bin-file-" class="section level3">
 <h3 class="hasAnchor">
 <a href="#import-information-from-a-bin-file-" class="anchor"></a>Import information from a BIN-file.</h3>
@@ -161,16 +174,17 @@
 <td align="left">samp2/rule.csv</td>
 </tr>
 </tbody></table>
-<p>See <em>“What are the required files in each subfolder?”</em> in the manual of <strong>Generate_DataFile</strong> function for the meaning of these files.</p>
+<p>See <em>“What are the required files in each subfolder?”</em> in the manual of <code>Generate_DataFile</code> function for the meaning of these files.</p>
 </div>
 <div id="run-the-function-generate_datafile" class="section level3">
 <h3 class="hasAnchor">
-<a href="#run-the-function-generate_datafile" class="anchor"></a>Run the function <strong>Generate_DataFile()</strong>
+<a href="#run-the-function-generate_datafile" class="anchor"></a>Run the function <code><a href="../reference/Generate_DataFile.html">Generate_DataFile()</a></code>
 </h3>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">DATA1 &lt;-
 <span class="st">  </span><span class="kw"><a href="../reference/Generate_DataFile.html">Generate_DataFile</a></span>(<span class="dt">Path =</span> path,
   <span class="dt">FolderNames =</span> <span class="st">"samp1"</span>,
-  <span class="dt">Nb_sample =</span> <span class="dv">1</span>)</code></pre></div>
+  <span class="dt">Nb_sample =</span> <span class="dv">1</span>, 
+  <span class="dt">verbose =</span> <span class="ot">FALSE</span>)</code></pre></div>
 <div id="remark-1-save-and-load-information" class="section level4">
 <h4 class="hasAnchor">
 <a href="#remark-1-save-and-load-information" class="anchor"></a>Remark 1: save and load information</h4>
@@ -198,7 +212,7 @@
  $ J             : num 1
  $ K             : num 6
  $ Nb_measurement: num 16</code></pre>
-<p>In <em>DATA1</em>, there is information for the sample named <em>GDB3</em>. It is expected (for more information we refer to “Value” section in help of <strong>Generate_DataFile</strong> function):</p>
+<p>In <em>DATA1</em>, there is information for the sample named <em>GDB3</em>. It is expected (for more information we refer to “Value” section in help of <code>Generate_DataFile</code> function):</p>
 <ul>
 <li>1 list (1 list per sample), for <code>DATA$LT</code>, <code>DATA$sLT</code>, <code>DATA1$ITimes</code> and <code>DATA1$regDose</code>
 </li>
@@ -259,9 +273,9 @@ samp1
 &gt;&gt; Result of Gelman and Rudin critere of convergency&lt;&lt;
 ----------------------------------------------
      Point estimate Uppers confidence interval
-A    1.09        1.21 
-D    1.09        1.22 
-sD   1.24        1.62 
+A    1       1.01 
+D    1       1.01 
+sD   1       1.01 
 
 
 ________________________________________________________________________________
@@ -270,20 +284,20 @@ ________________________________________________________________________________
 
 parameter    Bayes estimate       Credible interval 
 ----------------------------------------------
-A        22.835 
+A        24.71 
                          lower bound     upper bound
-                 at level 95%    10          43.58 
-                 at level 68%    10.01       20.61 
+                 at level 95%    10          72.28 
+                 at level 68%    10          21.62 
 ----------------------------------------------
-D        56.706 
+D        61.392 
                          lower bound     upper bound
-                 at level 95%    19.81       110.35 
-                 at level 68%    22.45       52.94 
+                 at level 95%    19.89       180.87 
+                 at level 68%    22.36       55.36 
 ----------------------------------------------
-sD       36.774 
+sD       36.928 
                          lower bound     upper bound
-                 at level 95%    0.13        92.87 
-                 at level 68%    0.55        25.78 </code></pre>
+                 at level 95%    0.55        126.19 
+                 at level 68%    1.04        30.27 </code></pre>
 <p>This works also if <code>DATA1</code> is output of <code><a href="../reference/Generate_DataFile_MG.html">Generate_DataFile_MG()</a></code>.</p>
 <div id="remark-1-mcmc-trajectories" class="section level5">
 <h5 class="hasAnchor">
@@ -348,89 +362,11 @@ DATA_BF &lt;-<span class="st"> </span><span class="kw"><a href="../reference/Gen
   <span class="dt">FolderNames =</span> Names,
   <span class="dt">Nb_sample =</span> nbsample,
   <span class="dt">Nb_binfile =</span> nbbinfile,
-  <span class="dt">BinPerSample =</span> Binpersample
+  <span class="dt">BinPerSample =</span> Binpersample, 
+  <span class="dt">verbose =</span> <span class="ot">FALSE</span>
   )</code></pre></div>
 <pre><code>[1] "File being read: samp1"
-
-[read_BIN2R()]
-     &gt;&gt; /Users/kreutzer/Library/R/3.5/library/BayLum/extdata//samp1/bin.BIN
-
-  |                                                                                                                    
-  |                                                                                                              |   0%
-  |                                                                                                                    
-  |=======                                                                                                       |   6%
-  |                                                                                                                    
-  |==============                                                                                                |  12%
-  |                                                                                                                    
-  |=====================                                                                                         |  19%
-  |                                                                                                                    
-  |============================                                                                                  |  25%
-  |                                                                                                                    
-  |==================================                                                                            |  31%
-  |                                                                                                                    
-  |=========================================                                                                     |  38%
-  |                                                                                                                    
-  |================================================                                                              |  44%
-  |                                                                                                                    
-  |=======================================================                                                       |  50%
-  |                                                                                                                    
-  |==============================================================                                                |  56%
-  |                                                                                                                    
-  |=====================================================================                                         |  62%
-  |                                                                                                                    
-  |============================================================================                                  |  69%
-  |                                                                                                                    
-  |==================================================================================                            |  75%
-  |                                                                                                                    
-  |=========================================================================================                     |  81%
-  |                                                                                                                    
-  |================================================================================================              |  88%
-  |                                                                                                                    
-  |=======================================================================================================       |  94%
-  |                                                                                                                    
-  |==============================================================================================================| 100%
-     &gt;&gt; 16 records have been read successfully!
-
-[1] "File being read: samp2"
-
-[read_BIN2R()]
-     &gt;&gt; /Users/kreutzer/Library/R/3.5/library/BayLum/extdata//samp2/bin.BIN
-
-  |                                                                                                                    
-  |                                                                                                              |   0%
-  |                                                                                                                    
-  |=======                                                                                                       |   6%
-  |                                                                                                                    
-  |==============                                                                                                |  12%
-  |                                                                                                                    
-  |=====================                                                                                         |  19%
-  |                                                                                                                    
-  |============================                                                                                  |  25%
-  |                                                                                                                    
-  |==================================                                                                            |  31%
-  |                                                                                                                    
-  |=========================================                                                                     |  38%
-  |                                                                                                                    
-  |================================================                                                              |  44%
-  |                                                                                                                    
-  |=======================================================                                                       |  50%
-  |                                                                                                                    
-  |==============================================================                                                |  56%
-  |                                                                                                                    
-  |=====================================================================                                         |  62%
-  |                                                                                                                    
-  |============================================================================                                  |  69%
-  |                                                                                                                    
-  |==================================================================================                            |  75%
-  |                                                                                                                    
-  |=========================================================================================                     |  81%
-  |                                                                                                                    
-  |================================================================================================              |  88%
-  |                                                                                                                    
-  |=======================================================================================================       |  94%
-  |                                                                                                                    
-  |==============================================================================================================| 100%
-     &gt;&gt; 16 records have been read successfully!</code></pre>
+[1] "File being read: samp2"</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">##calculate the age
 Age &lt;-<span class="st"> </span><span class="kw"><a href="../reference/Age_Computation.html">Age_Computation</a></span>(
   <span class="dt">DATA =</span> DATA_BF,
@@ -445,7 +381,7 @@ Graph information:
    Total graph size: 221
 
 Initializing model</code></pre>
-<p><img src="BayLum_files/figure-html/unnamed-chunk-15-1.png" width="672"></p>
+<p><img src="BayLum_files/figure-html/unnamed-chunk-15-1.png" width="480"></p>
 <pre><code>
 
 &gt;&gt; Sample name &lt;&lt;
@@ -455,9 +391,9 @@ samp1 samp2
 &gt;&gt; Result of Gelman and Rudin critere of convergency&lt;&lt;
 ----------------------------------------------
      Point estimate Uppers confidence interval
-A    1.02        1.02 
-D    1.02        1.02 
-sD   1.05        1.08 
+A    1       1 
+D    1.01        1.01 
+sD   1.03        1.05 
 
 
 ________________________________________________________________________________
@@ -466,46 +402,50 @@ ________________________________________________________________________________
 
 parameter    Bayes estimate       Credible interval 
 ----------------------------------------------
-A        2.296 
+A        2.271 
                          lower bound     upper bound
-                 at level 95%    1.21        3.37 
-                 at level 68%    1.76        2.78 
+                 at level 95%    1.14        3.45 
+                 at level 68%    1.74        2.75 
 ----------------------------------------------
-D        5.715 
+D        5.654 
                          lower bound     upper bound
-                 at level 95%    3.32        8.46 
-                 at level 68%    4.46        6.74 
+                 at level 95%    3.05        8.41 
+                 at level 68%    4.5         6.73 
 ----------------------------------------------
-sD       0.782 
+sD       0.76 
                          lower bound     upper bound
-                 at level 95%    0       2.43 
-                 at level 68%    0       0.71 </code></pre>
+                 at level 95%    0       2.36 
+                 at level 68%    0       0.72 </code></pre>
 </div>
 </div>
 <div id="age-analysis-of-various-samples" class="section level1">
 <h1 class="hasAnchor">
-<a href="#age-analysis-of-various-samples" class="anchor"></a>2. Age analysis of various samples</h1>
+<a href="#age-analysis-of-various-samples" class="anchor"></a>Age analysis of various samples</h1>
 <div id="generate-data-file-from-bin-files" class="section level2">
 <h2 class="hasAnchor">
-<a href="#generate-data-file-from-bin-files" class="anchor"></a>2.1. Generate data file from BIN files</h2>
-<p>More precisely, the function <strong>Generate_DataFile</strong> (or <strong>Generate_DataFile_MF</strong>) can consider various samples simultaneously, and can consider more than one BIN file per sample.</p>
+<a href="#generate-data-file-from-bin-files" class="anchor"></a>Generate data file from BIN-files</h2>
+<p>More precisely, the function <code><a href="../reference/Generate_DataFile.html">Generate_DataFile()</a></code> (or <code>Generate_DataFile_MF()</code>) can process multiple files imultaneously including multiple BIN-files per sample.</p>
 <p>Assume that we are interested in two samples named: <em>sample1</em> and <em>sample2</em>. In addition, we have two BIN files for the first sample named: <em>sample1-1</em> and <em>sample1-2</em>, and one Bin file for the sample2, named <em>sample2-1</em>. Then we must have 3 subfolders named <em>sample1-1</em>, <em>sample1-2</em> and <em>sample2-1</em>; which each subfolder contains one BIN file named <strong>bin.BIN</strong>, and its associated files <strong>DiscPos.csv</strong>, <strong>DoseEnv.csv</strong>, <strong>DoseSourve.csv</strong> and <strong>rule.csv</strong>. These 3 subfolders are located in <em>path</em>.</p>
-<p>To fill corectly <span class="math inline">\(BinPerSample\)</span>: <span class="math display">\[binpersample=c(\underbrace{2}_{\text{sample 1: 2 bin files}},\underbrace{1}_{\text{sample 2: 1 bin file}})\]</span></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Names=<span class="kw">c</span>(<span class="st">"sample1-1"</span>,<span class="st">"sample1-2"</span>,<span class="st">"sample2-1"</span>) <span class="co"># give the name of the folder datat</span>
-nbsample=<span class="dv">2</span>    <span class="co"># give the number of samples</span>
-nbbinfile=<span class="dv">3</span>   <span class="co"># give the number of bin files</span>
-DATA=<span class="kw"><a href="../reference/Generate_DataFile.html">Generate_DataFile</a></span>(<span class="dt">Path=</span>path,<span class="dt">FolderNames=</span>Names,
-                       <span class="dt">Nb_sample=</span>nbsample,
-                       <span class="dt">Nb_binfile=</span>nbbinfile,
-                       <span class="dt">BinPerSample=</span>binpersample)</code></pre></div>
-<div id="concat_datafile-function" class="section level4">
-<h4 class="hasAnchor">
-<a href="#concat_datafile-function" class="anchor"></a><strong>Concat_DataFile</strong> function</h4>
-<p>If the user has already saved informations obtained with <strong>Generate_DataFile</strong> function (or <strong>Generate_DataFile_MG</strong> function) about samples in RData file. The user can concatenate data with the <strong>Concat_DataFile</strong>.</p>
-<p>For example if <em>DATA1</em> is output of sample named “GDB3”, and <em>DATA2</em> is output of “GDB5”,</p>
+<p>To fill the argument corectly <code>BinPerSample</code>: <span class="math inline">\(binpersample=c(\underbrace{2}_{\text{sample 1: 2 bin files}},\underbrace{1}_{\text{sample 2: 1 bin file}})\)</span></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Names &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">"sample1-1"</span>,<span class="st">"sample1-2"</span>,<span class="st">"sample2-1"</span>) <span class="co"># give the name of the folder datat</span>
+nbsample &lt;-<span class="st"> </span><span class="dv">2</span>    <span class="co"># give the number of samples</span>
+nbbinfile &lt;-<span class="st"> </span><span class="dv">3</span>   <span class="co"># give the number of bin files</span>
+DATA &lt;-<span class="st"> </span><span class="kw"><a href="../reference/Generate_DataFile.html">Generate_DataFile</a></span>(
+  <span class="dt">Path =</span> path,
+  <span class="dt">FolderNames =</span> Names,
+  <span class="dt">Nb_sample =</span> nbsample,
+  <span class="dt">Nb_binfile =</span> nbbinfile,
+  <span class="dt">BinPerSample =</span> binpersample
+  )</code></pre></div>
+<div id="function-concat_datafile" class="section level3">
+<h3 class="hasAnchor">
+<a href="#function-concat_datafile" class="anchor"></a>Function <code><a href="../reference/Concat_DataFile.html">Concat_DataFile()</a></code>
+</h3>
+<p>If the user has already saved informations imported with <code><a href="../reference/Generate_DataFile.html">Generate_DataFile()</a></code> function (or <code><a href="../reference/Generate_DataFile_MG.html">Generate_DataFile_MG()</a></code> function) these data can be concatenate with the function <code><a href="../reference/Concat_DataFile.html">Concat_DataFile()</a></code>.</p>
+<p>For example, if <code>DATA1</code> is the output of sample named “GDB3”, and <code>DATA2</code> is the output of sample “GDB5”, both data can be merged with the following call:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(<span class="st">"DATA1"</span>,<span class="dt">envir =</span> <span class="kw">environment</span>())
 <span class="kw">data</span>(<span class="st">"DATA2"</span>,<span class="dt">envir =</span> <span class="kw">environment</span>())
-DATA3=<span class="kw"><a href="../reference/Concat_DataFile.html">Concat_DataFile</a></span>(<span class="dt">L1=</span>DATA2,<span class="dt">L2=</span>DATA1)
+DATA3 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/Concat_DataFile.html">Concat_DataFile</a></span>(<span class="dt">L1 =</span> DATA2, <span class="dt">L2 =</span> DATA1)
 <span class="kw">str</span>(DATA3)</code></pre></div>
 <pre><code>List of 9
  $ LT            :List of 2
@@ -525,111 +465,283 @@ DATA3=<span class="kw"><a href="../reference/Concat_DataFile.html">Concat_DataFi
  $ J             : num [1:2] 188 101
  $ K             : num [1:2] 5 5
  $ Nb_measurement: num [1:2] 14 14</code></pre>
-<p>In DATA, there is information for samples named <em>GDB3</em> and <em>GDB5</em>, then it is expected</p>
+<p>The data structure should become as follows</p>
 <ul>
-<li>2 lists (1 list per sample) for DATA$LT, DATA$sLT, DATA1$ITimes and DATA1$regDose</li>
-<li>a matrix with 2 columns (1 line per sample) for DATA1$dLab, DATA1$ddot_env</li>
-<li>2 integers (1 integer per BIN files here we have 1 BIN file per sample) for DATA1$J, DATA1$K, DATA1$Nb_measurement.</li>
+<li>2 <code>list</code>s (1 <code>list</code> per sample) for <code>DATA$LT</code>, <code>DATA$sLT</code>, <code>DATA1$ITimes</code> and <code>DATA1$regDose</code>
+</li>
+<li>A <code>matrix</code> with 2 columns (1 line per sample) for <code>DATA1$dLab</code>, <code>DATA1$ddot_env</code>
+</li>
+<li>2 <code>integer</code>s (1 <code>integer</code> per BIN files here we have 1 BIN-file per sample) for <code>DATA1$J</code>, <code>DATA1$K</code>, <code>DATA1$Nb_measurement</code>.</li>
 </ul>
-<p>It is possible to concat data from Single-grain OSL measurement and from Multi-grain OSL measurement.</p>
-<p>You can also see the L/T in function of the regenerative doses for each sample as follows:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/LT_RegenDose.html">LT_RegenDose</a></span>(<span class="dt">DATA=</span>DATA3,<span class="dt">Path=</span>path,<span class="dt">FolderNames=</span>Names,
-             <span class="dt">Nb_sample=</span>nbsample,<span class="dt">SG=</span><span class="kw">rep</span>(<span class="ot">TRUE</span>,nbsample))</code></pre></div>
-<p>As in <em>DATA3</em> there are informations concerning sample <em>GDB3</em> and <em>GDB5</em> which are Single-grain OSL measurements, <span class="math inline">\(SG[1]=SG[2]=TRUE\)</span>. If one sample (whose number ID is equal to <span class="math inline">\(i\)</span>) is Multi-grain OSL measurements, the user changes <span class="math inline">\(SG\)</span> option by <span class="math inline">\(SG[i]=\)</span><em>FALSE</em>.</p>
+<p>Single-grain and multiple-grain OSL measurements can be merged in the same way. To plot the <span class="math inline">\(L/T\)</span> as a function of the regenerative dose the function <code><a href="../reference/LT_RegenDose.html">LT_RegenDose()</a></code> can be used again:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/LT_RegenDose.html">LT_RegenDose</a></span>(
+  <span class="dt">DATA =</span> DATA3,
+  <span class="dt">Path =</span> path,
+  <span class="dt">FolderNames =</span> Names,
+  <span class="dt">Nb_sample =</span> nbsample,
+  <span class="dt">SG =</span> <span class="kw">rep</span>(<span class="ot">TRUE</span>, nbsample)
+  )</code></pre></div>
+<p><em>Note: In the example <code>DATA3</code> contains information from the samples ‘GDB3’ and ‘GDB5’, which are single-grain OSL measurements. For a correct treatment the argument <code>SG</code> has to be manually set be the user. Please see the function manual for further details.</em></p>
 </div>
 </div>
-<div id="age-analysis-without-constraint" class="section level2">
+<div id="age-analysis-without-stratigraphic-constraints" class="section level2">
 <h2 class="hasAnchor">
-<a href="#age-analysis-without-constraint" class="anchor"></a>2.2. Age analysis without constraint</h2>
-<p>If there is no stratigraphic constraint, you can compute the following code to analyse simultaneously the age of the sample <em>GDB5</em> and <em>GDB3</em>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">priorage=<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">10</span>,<span class="dv">10</span>,<span class="dv">100</span>) <span class="co"># see remark to have more information on this parameter</span>
-Age=<span class="kw"><a href="../reference/AgeS_Computation.html">AgeS_Computation</a></span>(<span class="dt">DATA=</span>DATA3,<span class="dt">Nb_sample=</span><span class="dv">2</span>,<span class="dt">SampleNames=</span><span class="kw">c</span>(<span class="st">"GDB5"</span>,<span class="st">"GDB3"</span>),
-              <span class="dt">PriorAge=</span>priorage,
-              <span class="dt">distribution=</span><span class="st">"cauchy"</span>, <span class="co"># Option on equivalent dose distribution</span>
-              <span class="dt">LIN_fit=</span><span class="ot">TRUE</span>,<span class="dt">Origin_fit=</span><span class="ot">FALSE</span>, <span class="co"># Option on growth curves</span>
-              <span class="dt">Iter=</span><span class="dv">10000</span>)</code></pre></div>
-<div id="remark-mcmc-trajectories-and-convergencies" class="section level5">
-<h5 class="hasAnchor">
-<a href="#remark-mcmc-trajectories-and-convergencies" class="anchor"></a>Remark: MCMC trajectories and convergencies</h5>
-<p>If MCMC trajectories did not converge, we refer to remark 0 in Section 1.3.</p>
-</div>
-<div id="remark" class="section level5">
-<h5 class="hasAnchor">
-<a href="#remark" class="anchor"></a>Remark</h5>
-<p>Options detailled in remark 1, 2, 3, of the section1.3, are still available for this function.</p>
-<p>As for the function <strong>Age_computation</strong>, age for each sample is by default between 0.01 Ka and 100 ka. If you have more informations on your samples it is possible to change <span class="math inline">\(PriorAge\)</span> parameters. <span class="math inline">\(PriorAge\)</span> is a vector of size = 2*<span class="math inline">\(Nb\_sample\)</span>, the two first values of <span class="math inline">\(PriorAge\)</span> concern the first sample and so on.</p>
+<a href="#age-analysis-without-stratigraphic-constraints" class="anchor"></a>Age analysis without stratigraphic constraints</h2>
+<p>If there no stratigraphic constraints were set, the following code to analyse simultaneously the age of the sample <em>GDB5</em> and <em>GDB3</em>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">priorage =<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">10</span>, <span class="dv">10</span>, <span class="dv">100</span>) 
+Age &lt;-<span class="st"> </span><span class="kw"><a href="../reference/AgeS_Computation.html">AgeS_Computation</a></span>(
+  <span class="dt">DATA =</span> DATA3,
+  <span class="dt">Nb_sample =</span> <span class="dv">2</span>,
+  <span class="dt">SampleNames =</span> <span class="kw">c</span>(<span class="st">"GDB5"</span>, <span class="st">"GDB3"</span>),
+  <span class="dt">PriorAge =</span> priorage,
+  <span class="dt">distribution =</span> <span class="st">"cauchy"</span>,
+  <span class="dt">LIN_fit =</span> <span class="ot">TRUE</span>,
+  <span class="dt">Origin_fit =</span> <span class="ot">FALSE</span>,
+  <span class="dt">Iter =</span> <span class="dv">1000</span>
+)</code></pre></div>
+<pre><code>Compiling model graph
+   Resolving undeclared variables
+   Allocating nodes
+Graph information:
+   Observed stochastic nodes: 1445
+   Unobserved stochastic nodes: 1739
+   Total graph size: 20624
+
+Initializing model</code></pre>
+<p><img src="BayLum_files/figure-html/unnamed-chunk-19-1.png" width="480"><img src="BayLum_files/figure-html/unnamed-chunk-19-2.png" width="480"></p>
+<pre><code>
+
+&gt;&gt; Result of Gelman and Rudin critere of convergency &lt;&lt;
+----------------------------------------------
+ Sample name:  GDB5 
+---------------------
+         Point estimate Uppers confidence interval
+A_GDB5   1       1 
+D_GDB5   1.03        1.11 
+sD_GDB5      1       1.02 
+----------------------------------------------
+ Sample name:  GDB3 
+---------------------
+         Point estimate Uppers confidence interval
+A_GDB3   1.02        1.07 
+D_GDB3   1.18        1.53 
+sD_GDB3      1.03        1.1 
+
+
+________________________________________________________________________________
+ *** WARNING: following informations are only valid if MCMC chains converged  ***
+________________________________________________________________________________
+
+
+&gt;&gt; Bayes estimates of Age, Palaeodose and its dispersion for each sample and credible interval &lt;&lt;
+----------------------------------------------
+ Sample name:  GDB5 
+---------------------
+Parameter    Bayes estimate       Credible interval 
+ A_GDB5      7.079 
+                         lower bound     upper bound
+                 at level 95%    5.64        8.36 
+                 at level 68%    6.25        7.57 
+
+Parameter    Bayes estimate       Credible interval 
+ D_GDB5      17.665 
+                         lower bound     upper bound
+                 at level 95%    16.7        18.96 
+                 at level 68%    16.99       18.13 
+
+Parameter    Bayes estimate       Credible interval 
+sD_GDB5      4.394 
+                         lower bound     upper bound
+                 at level 95%    3.51        5.37 
+                 at level 68%    3.79        4.69 
+----------------------------------------------
+ Sample name:  GDB3 
+---------------------
+Parameter    Bayes estimate       Credible interval 
+ A_GDB3      46.854 
+                         lower bound     upper bound
+                 at level 95%    35.49       57.21 
+                 at level 68%    40.96       52.1 
+
+Parameter    Bayes estimate       Credible interval 
+ D_GDB3      104.773 
+                         lower bound     upper bound
+                 at level 95%    97.04       111.34 
+                 at level 68%    101.14          108.38 
+
+Parameter    Bayes estimate       Credible interval 
+sD_GDB3      15.911 
+                         lower bound     upper bound
+                 at level 95%    10.02       21.72 
+                 at level 68%    11.71       17.76 
+
+----------------------------------------------</code></pre>
+<p><img src="BayLum_files/figure-html/unnamed-chunk-19-3.png" width="480"></p>
+<div id="remarks" class="section level3">
+<h3 class="hasAnchor">
+<a href="#remarks" class="anchor"></a>Remarks</h3>
+<p>If MCMC trajectories did not converge, please see comments above.</p>
+<p>As for the function <code>Age_computation()</code>, tje age for each sample is set by default between 0.01 ka and 100 ka. If you have more informations on your samples it is possible to change <code>PriorAge</code> parameters. <code>PriorAge</code> is a vector of <code>size = 2*$Nb_sample</code>, the two first values of <code>PriorAge</code> concern the first sample and so on.</p>
 <p>For example, if you know that sample named <em>GDB5</em> is a young sample whose its age is between 0.01 ka and 10 ka, and <em>GDB3</em> is an old sample whose age is between 10 ka and 100 ka, <span class="math display">\[PriorAge=c(\underbrace{0.01,10}_{GDB5\ prior\ age},\underbrace{10,100}_{GDB3\ prior\ age})\]</span></p>
 </div>
 </div>
-<div id="stratigraphic-constraints" class="section level2">
+<div id="age-analysis-with-stratigraphic-constraints" class="section level2">
 <h2 class="hasAnchor">
-<a href="#stratigraphic-constraints" class="anchor"></a>2.3. Stratigraphic constraints</h2>
-<p>With the function <strong>AgeS_Computation</strong> it is possible to take into account stratigraphic relations between samples.</p>
+<a href="#age-analysis-with-stratigraphic-constraints" class="anchor"></a>Age analysis with stratigraphic constraints</h2>
+<p>With the function <code><a href="../reference/AgeS_Computation.html">AgeS_Computation()</a></code> it is possible to take the stratigraphic relations between samples into account.</p>
 <p>For example, we know that <em>GDB5</em> age is supposed lower than <em>GDB3</em> age.</p>
-<div id="a-ordering-samples" class="section level4">
-<h4 class="hasAnchor">
-<a href="#a-ordering-samples" class="anchor"></a>a) Ordering samples</h4>
-<p>To take into acount stratigraphic constraints, informations on samples must be ordered.</p>
-<p>Either you inter sample Name (corresponding to subforlder names) in <span class="math inline">\(Names\)</span> parameter of the function <strong>Generate_DataFile</strong>, ordered by order of increasing ages; or you enter saved .RData informations of each sample in <strong>Concat_DataFile</strong>, ordered by order of increasing ages.</p>
+<div id="ordering-samples" class="section level3">
+<h3 class="hasAnchor">
+<a href="#ordering-samples" class="anchor"></a>Ordering samples</h3>
+<p>To take into acount stratigraphic constraints, information on samples need to be ordered. Either you enter a sample name (corresponding to subfolder names) in <code>Names</code> parameter of the function <code><a href="../reference/Generate_DataFile.html">Generate_DataFile()</a></code>, ordered by order of increasing ages or you enter saved .RData informations of each sample in <code><a href="../reference/Concat_DataFile.html">Concat_DataFile()</a></code>, ordered by increasing ages.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># using Generate_DataFile function</span>
-Names=<span class="kw">c</span>(<span class="st">"GDB5"</span>,<span class="st">"GDB3"</span>)
-nbsample=<span class="dv">2</span>
-<span class="kw"><a href="../reference/Generate_DataFile.html">Generate_DataFile</a></span>(<span class="dt">Path=</span>path,<span class="dt">FolderNames=</span>Names,<span class="dt">Nb_sample=</span>nbsample)
-
-<span class="co"># using Concat_DataFile function</span>
+Names &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">"samp1"</span>,<span class="st">"samp2"</span>)
+nbsample &lt;-<span class="st"> </span><span class="dv">2</span>
+DATA3 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/Generate_DataFile.html">Generate_DataFile</a></span>(
+  <span class="dt">Path =</span> path,
+  <span class="dt">FolderNames =</span> Names,
+  <span class="dt">Nb_sample =</span> nbsample,
+  <span class="dt">verbose =</span> <span class="ot">FALSE</span>
+  )</code></pre></div>
+<pre><code>[1] "File being read: samp1"
+[1] "File being read: samp2"</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># using the function Concat_DataFile()</span>
 <span class="kw">data</span>(DATA1,<span class="dt">envir =</span> <span class="kw">environment</span>()) <span class="co"># .RData on sample GDB3</span>
 <span class="kw">data</span>(DATA2,<span class="dt">envir =</span> <span class="kw">environment</span>()) <span class="co"># .RData on sample GDB5</span>
-DATA3=<span class="kw"><a href="../reference/Concat_DataFile.html">Concat_DataFile</a></span>(<span class="dt">L1=</span>DATA1,<span class="dt">L2=</span>DATA2)</code></pre></div>
+DATA3 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/Concat_DataFile.html">Concat_DataFile</a></span>(<span class="dt">L1=</span>DATA1,<span class="dt">L2=</span>DATA2)</code></pre></div>
 </div>
-<div id="b-construct-stratigraphic-constraint-matrix" class="section level4">
-<h4 class="hasAnchor">
-<a href="#b-construct-stratigraphic-constraint-matrix" class="anchor"></a>b) Construct stratigraphic constraint matrix</h4>
-<p>Let <em>SC</em> be the matrix containing all informations on stratigraphic relations for this two samples. This matrix is defined as follows:</p>
+<div id="construct-stratigraphy-constrain-matrix" class="section level3">
+<h3 class="hasAnchor">
+<a href="#construct-stratigraphy-constrain-matrix" class="anchor"></a>Construct stratigraphy constrain matrix</h3>
+<p>Let <code>SC</code> be the matrix containing all information on stratigraphic relations for this two samples. This matrix is defined as follows:</p>
 <ul>
-<li><p>the size of the matrix: row number of <span class="math inline">\(StratiConstraints\)</span> matrix is equal to <span class="math inline">\(Nb\_sample+1\)</span>, and column number is equal to <span class="math inline">\(Nb\_sample\)</span>.</p></li>
-<li><p>the first line of the matrix: for all i in {1,…,<span class="math inline">\(Nb\_Sample\)</span>}, <span class="math inline">\(StratiConstraints[1,i]=1\)</span>, that means the lower bound of the sample age given in <span class="math inline">\(PriorAge[2i-1]\)</span> for the sample whose number ID is equal to <span class="math inline">\(i\)</span>, is taken into account.</p></li>
-<li><p>the sample relations: for all j in {2,…,<span class="math inline">\(Nb\_Sample\)</span>+1} and all i in {j,…,<span class="math inline">\(Nb\_Sample\)</span>}, <span class="math inline">\(StratiConstraints[j,i]=1\)</span> if sample age whose number ID is equal to j-1 is lower than sample age whose number ID is equal to i. Otherwise, <span class="math inline">\(StratiConstraints[j,i]=0\)</span>.</p></li>
+<li><p>the size of the matrix: row number of <code>StratiConstraints</code> matrix is equal to <code>Nb_sample+1</code>, and column number is equal to <span class="math inline">\(Nb\_sample\)</span>.</p></li>
+<li><p>the first line of the matrix: for all <span class="math inline">\(i\)</span> in <span class="math inline">\(\{1,...,Nb\_Sample\}\)</span>, <code>StratiConstraints[1,i]=1</code>, that means the lower bound of the sample age given in <code>PriorAge[2i-1]</code> for the sample whose number ID is equal to <span class="math inline">\(i\)</span> is taken into account</p></li>
+<li><p>the sample relations: for all j in ${2,…,Nb_Sample+1}$ and all <span class="math inline">\(i\)</span> in <span class="math inline">\(\{j,...,Nb\_Sample\}\)</span>, <code>StratiConstraints[j,i]=1</code> if sample age whose number ID is equal to <span class="math inline">\(j-1\)</span> is lower than sample age whose number ID is equal to i. Otherwise, <code>StratiConstraints[j,i]=0</code>.</p></li>
 </ul>
 <p>The user can use the function <em>SCMatrix</em> to define this matrix:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">SC=<span class="kw"><a href="../reference/SCMatrix.html">SCMatrix</a></span>(<span class="dt">Nb_sample=</span><span class="dv">2</span>,<span class="dt">SampleNames=</span><span class="kw">c</span>(<span class="st">"GDB5"</span>,<span class="st">"GDB3"</span>))</code></pre></div>
-<pre><code>GDB5 is younger than sample GDB3? 1 for TRUE or 0 for FALSE --&gt; </code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="dv">1</span></code></pre></div>
-<pre><code>[1] 1</code></pre>
-<p>In our case: 2 samples, <em>SC</em> is a matrix with 3 lines and 2 columns. The first line containts <span class="math inline">\(c(1,1)\)</span> (because we take into acount prior ages), the second line containts <span class="math inline">\(c(0,1)\)</span> (because the sample 2, named <em>GDB3</em> is supposed older than the sample 1, named <em>GDB5</em>) and the third line contains <span class="math inline">\(c(0,0)\)</span> (because the sample 2, named <em>GDB3</em> is not younger than the sample 1, named <em>GDB5</em>). Then, we can also fill the matrix of stratigraphic relations as follow:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(<span class="dt">SC=</span><span class="kw">matrix</span>(<span class="dt">data=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>),<span class="dt">ncol=</span><span class="dv">2</span>,<span class="dt">nrow =</span> (<span class="dv">2</span><span class="op">+</span><span class="dv">1</span>),<span class="dt">byrow =</span> T))</code></pre></div>
-<pre><code>     [,1] [,2]
-[1,]    1    1
-[2,]    0    1
-[3,]    0    0</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">SC &lt;-<span class="st"> </span><span class="kw"><a href="../reference/SCMatrix.html">SCMatrix</a></span>(
+  <span class="dt">Nb_sample =</span> <span class="dv">2</span>,
+    <span class="dt">SampleNames =</span> <span class="kw">c</span>(<span class="st">"samp1"</span>, <span class="st">"samp2"</span>))</code></pre></div>
+<p>In our case: 2 samples, <code>SC</code> is a matrix with 3 lines and 2 columns. The first line containts <code>c(1,1)</code> (because we take into acount prior ages), the second line containts <code>c(0,1)</code> (because the sample 2, named <em>samp2</em> is supposed older than the sample 1, named <em>samp1</em>) and the third line contains <code>c(0,0)</code> (because the sample 2, named <em>samp2</em> is not younger than the sample 1, named <em>samp1</em>). Then, we can also fill the matrix of stratigraphic relations as follow:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">SC &lt;-<span class="st"> </span><span class="kw">matrix</span>(
+  <span class="dt">data =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>),
+  <span class="dt">ncol =</span> <span class="dv">2</span>,
+  <span class="dt">nrow =</span> (<span class="dv">2</span> <span class="op">+</span><span class="st"> </span><span class="dv">1</span>),
+  <span class="dt">byrow =</span> T
+  )</code></pre></div>
 </div>
-<div id="c-age-computation" class="section level4">
-<h4 class="hasAnchor">
-<a href="#c-age-computation" class="anchor"></a>c) Age computation</h4>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Age=<span class="kw"><a href="../reference/AgeS_Computation.html">AgeS_Computation</a></span>(<span class="dt">DATA=</span>DATA3,<span class="dt">Nb_sample=</span><span class="dv">2</span>,<span class="dt">SampleNames=</span><span class="kw">c</span>(<span class="st">"GDB5"</span>,<span class="st">"GDB3"</span>),
-                   <span class="dt">PriorAge=</span>priorage,
-                   <span class="dt">distribution=</span><span class="st">"cauchy"</span>, <span class="co"># Option on equivalent dose distribution</span>
-                   <span class="dt">LIN_fit=</span><span class="ot">TRUE</span>,<span class="dt">Origin_fit=</span><span class="ot">FALSE</span>, <span class="co"># Option on growth curves</span>
-                   <span class="dt">StratiConstraints=</span>SC,  <span class="co"># Stratigraphic relations </span>
-                   <span class="dt">Taille=</span><span class="dv">10000</span>)</code></pre></div>
+<div id="age-computation" class="section level3">
+<h3 class="hasAnchor">
+<a href="#age-computation" class="anchor"></a>Age computation</h3>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Age &lt;-
+<span class="st">  </span><span class="kw"><a href="../reference/AgeS_Computation.html">AgeS_Computation</a></span>(
+  <span class="dt">DATA =</span> DATA3,
+  <span class="dt">Nb_sample =</span> <span class="dv">2</span>,
+  <span class="dt">SampleNames =</span> <span class="kw">c</span>(<span class="st">"samp1"</span>, <span class="st">"samp2"</span>),
+  <span class="dt">PriorAge =</span> priorage,
+  <span class="dt">distribution =</span> <span class="st">"cauchy"</span>,
+  <span class="dt">LIN_fit =</span> <span class="ot">TRUE</span>,
+  <span class="dt">Origin_fit =</span> <span class="ot">FALSE</span>,
+  <span class="dt">StratiConstraints =</span> SC,
+  <span class="dt">Iter =</span> <span class="dv">100</span>
+  )</code></pre></div>
+<pre><code>Compiling model graph
+   Resolving undeclared variables
+   Allocating nodes
+Graph information:
+   Observed stochastic nodes: 1445
+   Unobserved stochastic nodes: 1739
+   Total graph size: 20624
+
+Initializing model</code></pre>
+<pre><code>Warning in rjags::jags.model(textConnection(Model_AgeS[[Model_GrowthCurve]][[distribution]]), : Adaptation incomplete</code></pre>
+<pre><code>NOTE: Stopping adaptation</code></pre>
+<p><img src="BayLum_files/figure-html/unnamed-chunk-24-1.png" width="480"><img src="BayLum_files/figure-html/unnamed-chunk-24-2.png" width="480"></p>
+<pre><code>
+
+&gt;&gt; Result of Gelman and Rudin critere of convergency &lt;&lt;
+----------------------------------------------
+ Sample name:  samp1 
+---------------------
+         Point estimate Uppers confidence interval
+A_samp1      1.08        1.26 
+D_samp1      1.12        1.4 
+sD_samp1     1.12        1.39 
+----------------------------------------------
+ Sample name:  samp2 
+---------------------
+         Point estimate Uppers confidence interval
+A_samp2      1.04        1.13 
+D_samp2      1.09        1.34 
+sD_samp2     1.04        1.17 
+
+
+________________________________________________________________________________
+ *** WARNING: following informations are only valid if MCMC chains converged  ***
+________________________________________________________________________________
+
+
+&gt;&gt; Bayes estimates of Age, Palaeodose and its dispersion for each sample and credible interval &lt;&lt;
+----------------------------------------------
+ Sample name:  samp1 
+---------------------
+Parameter    Bayes estimate       Credible interval 
+ A_samp1     9.717 
+                         lower bound     upper bound
+                 at level 95%    9.27        10 
+                 at level 68%    9.66        9.99 
+
+Parameter    Bayes estimate       Credible interval 
+ D_samp1     28.194 
+                         lower bound     upper bound
+                 at level 95%    24.85       33.72 
+                 at level 68%    25.71       29.41 
+
+Parameter    Bayes estimate       Credible interval 
+sD_samp1     69.003 
+                         lower bound     upper bound
+                 at level 95%    56.2        76.66 
+                 at level 68%    61.93       71.88 
+----------------------------------------------
+ Sample name:  samp2 
+---------------------
+Parameter    Bayes estimate       Credible interval 
+ A_samp2     10.455 
+                         lower bound     upper bound
+                 at level 95%    10.01       11.24 
+                 at level 68%    10.02       10.55 
+
+Parameter    Bayes estimate       Credible interval 
+ D_samp2     18.853 
+                         lower bound     upper bound
+                 at level 95%    17.44       19.67 
+                 at level 68%    18.53       19.54 
+
+Parameter    Bayes estimate       Credible interval 
+sD_samp2     4.872 
+                         lower bound     upper bound
+                 at level 95%    4.14        5.67 
+                 at level 68%    4.29        5.32 
+
+----------------------------------------------</code></pre>
+<p><img src="BayLum_files/figure-html/unnamed-chunk-24-3.png" width="480"></p>
 </div>
 </div>
 </div>
 <div id="references" class="section level1">
 <h1 class="hasAnchor">
 <a href="#references" class="anchor"></a>References</h1>
-<p>Models used in this package are detailled in the following publication:</p>
-<ul>
-<li>Combes, B., Philippe, A., Lanos, P., Mercier, N., Tribolo, C., Guerin, G., Guibert, P., Lahaye, C., (2015). A Bayesian central equivalent dose model for optically stimulated luminescence dating. Quaternary Geochronology 28, 62-70.</li>
-<li>Combes, B. and Philippe, A. (2017). Bayesian analysis of multiplicative Gaussian error for multiple ages estimation in optically stimulated luminescence dating. Quaternary Geochronology (in press)</li>
-</ul>
-<p>For more details on the diagnostic of Markov chain :</p>
-<ul>
-<li>Robert and Casella (2009). Introducing Monte Carlo Methods with R. Springer Science &amp; Business Media.</li>
-</ul>
-<p>For more detail on data used in examples, we refer to the following publication:</p>
-<ul>
-<li>Tribolo, C., Asrat, A., Bahain, J. J., Chapon, C., Douville, E., Fragnol, C., Hernandez, M., Hovers, E., Leplongeon, A., Martin, L, Pleurdeau, D, Pearson, O , Puaud, S, Assefa, Z. (2017). Across the Gap: Geochronological and Sedimentological Analyses from the Late Pleistocene-Holocene Sequence of Goda Buticha, Southeastern Ethiopia. PloS one, 12(1), e0169418.</li>
-</ul>
+<p>Combes, B., Philippe, A., Lanos, P., Mercier, N., Tribolo, C., Guerin, G., Guibert, P., Lahaye, C., (2015). A Bayesian central equivalent dose model for optically stimulated luminescence dating. Quaternary Geochronology 28, 62-70.</p>
+<p>Combès, B., Philippe, A., 2017. Bayesian analysis of individual and systematic multiplicative errors for estimating ages with stratigraphic constraints in optically stimulated luminescence dating. Quaternary Geochronology 39, 24–34. <a href="doi:10.1016/j.quageo.2017.02.003" class="uri">doi:10.1016/j.quageo.2017.02.003</a></p>
+<div id="further-reading" class="section level2">
+<h2 class="hasAnchor">
+<a href="#further-reading" class="anchor"></a>Further reading</h2>
+<p>For more details on the diagnostic of Markov chain:</p>
+<p>Robert and Casella (2009). Introducing Monte Carlo Methods with R. Springer Science &amp; Business Media.</p>
+<p>For more detais on the used datasets, we refer to the following publication:</p>
+<p>Tribolo, C., Asrat, A., Bahain, J. J., Chapon, C., Douville, E., Fragnol, C., Hernandez, M., Hovers, E., Leplongeon, A., Martin, L, Pleurdeau, D, Pearson, O , Puaud, S, Assefa, Z. (2017). Across the Gap: Geochronological and Sedimentological Analyses from the Late Pleistocene-Holocene Sequence of Goda Buticha, Southeastern Ethiopia. PloS one, 12(1), e0169418.</p>
+</div>
 </div>
 </div>
   </div>
@@ -641,21 +753,25 @@ DATA3=<span class="kw"><a href="../reference/Concat_DataFile.html">Concat_DataFi
       <ul class="nav nav-pills nav-stacked">
 <li><a href="#introduction">Introduction</a></li>
       <li>
-<a href="#age-analysis-of-one-sample">1. Age analysis of one sample</a><ul class="nav nav-pills nav-stacked">
-<li><a href="#generate-data-file-from-bin-file-for-single-grain-osl-measurements">1.1. Generate data file from BIN-file for single-grain OSL measurements</a></li>
+<a href="#age-analysis-of-one-sample">Age analysis of one sample</a><ul class="nav nav-pills nav-stacked">
+<li><a href="#generate-data-file-from-bin-file-for-single-grain-osl-measurements">Generate data file from BIN-file for single-grain OSL measurements</a></li>
       <li><a href="#generate-data-file-from-bin-files-of-multi-grain-osl-measurements">Generate data file from BIN-files of multi-grain OSL measurements</a></li>
       <li><a href="#age-analysis">Age analysis</a></li>
       <li><a href="#various-bin-files-for-one-sample">1.4. Various BIN-files for one sample</a></li>
       </ul>
 </li>
       <li>
-<a href="#age-analysis-of-various-samples">2. Age analysis of various samples</a><ul class="nav nav-pills nav-stacked">
-<li><a href="#generate-data-file-from-bin-files">2.1. Generate data file from BIN files</a></li>
-      <li><a href="#age-analysis-without-constraint">2.2. Age analysis without constraint</a></li>
-      <li><a href="#stratigraphic-constraints">2.3. Stratigraphic constraints</a></li>
+<a href="#age-analysis-of-various-samples">Age analysis of various samples</a><ul class="nav nav-pills nav-stacked">
+<li><a href="#generate-data-file-from-bin-files">Generate data file from BIN-files</a></li>
+      <li><a href="#age-analysis-without-stratigraphic-constraints">Age analysis without stratigraphic constraints</a></li>
+      <li><a href="#age-analysis-with-stratigraphic-constraints">Age analysis with stratigraphic constraints</a></li>
       </ul>
 </li>
-      <li><a href="#references">References</a></li>
+      <li>
+<a href="#references">References</a><ul class="nav nav-pills nav-stacked">
+<li><a href="#further-reading">Further reading</a></li>
+      </ul>
+</li>
       </ul>
 </div>
       </div>

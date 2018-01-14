@@ -27,9 +27,7 @@
 #' }
 #'
 #' @export
-
 SCMatrix<-function(Nb_sample,SampleNames){
-
   StratiConstraints=matrix(data=0,ncol=Nb_sample,nrow = (Nb_sample+1))
   # for(i in 1:Nb_sample){
   #   R<-readline(paste("Do you want to consider prior age for sample ",SampleNames[i],"? 1 for TRUE or 0 for FALSE --> ",sep=''))

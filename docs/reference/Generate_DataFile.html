@@ -6,13 +6,14 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Generates, from one (or several) BIN file(s) of Single-grain OSL measurements, a list of luminescence data and information before statistical analysis — Generate_DataFile • BayLum</title>
+<title>Generates, from one (or several) BIN-file(s) of Single-grain OSL measurements,
+a list of luminescence data and information before statistical analysis — Generate_DataFile • BayLum</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
+<link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/flatly/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
 
-<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
 <!-- Font Awesome icons -->
@@ -39,7 +40,7 @@
   <body>
     <div class="container template-reference-topic">
       <header>
-      <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
@@ -53,23 +54,36 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fa fa-home fa-lg"></span>
+    <span class="fa fa-home"></span>
      
+    Home
   </a>
 </li>
 <li>
-  <a href="../articles/BayLum.html">Get Started</a>
+  <a href="../articles/BayLum.html">
+    <span class=" play"></span>
+     
+    Get Started
+  </a>
 </li>
 <li>
-  <a href="../reference/index.html">Reference</a>
+  <a href="../reference/index.html">References</a>
 </li>
       </ul>
       
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a>
+  <a href="../news/index.html">
+    <span class="fa fa-newspaper-o"></span>
+     
+    News
+  </a>
+</li>
+<li>
+  <a href="https://github.com/R-Lum/BayLum">
     <span class="fa fa-github"></span>
      
+    GitHub
   </a>
 </li>
       </ul>
@@ -83,7 +97,8 @@
       <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Generates, from one (or several) BIN file(s) of Single-grain OSL measurements, a list of luminescence data and information before statistical analysis</h1>
+    <h1>Generates, from one (or several) BIN-file(s) of Single-grain OSL measurements,
+a list of luminescence data and information before statistical analysis</h1>
     </div>
 
     
@@ -96,27 +111,28 @@ It is possible to process data for various samples simultaneously and to conside
 
     <pre class="usage"><span class='fu'>Generate_DataFile</span>(<span class='no'>Path</span>, <span class='no'>FolderNames</span>, <span class='no'>Nb_sample</span>,
   <span class='kw'>Nb_binfile</span> <span class='kw'>=</span> <span class='fu'>length</span>(<span class='no'>FolderNames</span>), <span class='kw'>BinPerSample</span> <span class='kw'>=</span> <span class='fu'>rep</span>(<span class='fl'>1</span>, <span class='no'>Nb_sample</span>),
-  <span class='kw'>sepDP</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>","</span>), <span class='kw'>sepDE</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>","</span>), <span class='kw'>sepDS</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>","</span>), <span class='kw'>sepR</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"="</span>))</pre>
+  <span class='kw'>sepDP</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>","</span>), <span class='kw'>sepDE</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>","</span>), <span class='kw'>sepDS</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>","</span>), <span class='kw'>sepR</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"="</span>), <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>Path</th>
-      <td><p>character: the path to the project folder, containing one or more subfolders in which the BIN files
+      <td><p>character (<strong>required</strong>): the path to the project folder, containing one or more subfolders in which the BIN files
 are located. If it is not equal to "", it must be terminated by "/".</p></td>
     </tr>
     <tr>
       <th>FolderNames</th>
-      <td><p>character vector: list of names of the sub-folders containing the BIN files
-- each subfolder must contain a BIN file and associated csv files.
+      <td><p>character (<strong>required</strong>): list of names of the sub-folders containing the BIN files</p><ul>
+<li><p>each subfolder must contain a BIN file and associated csv files.
 See details for more informations on associated csv files required in the subfolders.
 If there is more than one BIN file per sample, see the details section for instructions regarding how to correctly fill the
-<code>FolderNames</code> vector.</p></td>
+<code>FolderNames</code> vector.</p></li>
+</ul></td>
     </tr>
     <tr>
       <th>Nb_sample</th>
-      <td><p>integer: number of samples.</p></td>
+      <td><p>integer (<strong>required</strong>): number of samples.</p></td>
     </tr>
     <tr>
       <th>Nb_binfile</th>
@@ -126,7 +142,8 @@ If there is more than one BIN file per sample, see the details section for instr
       <th>BinPerSample</th>
       <td><p>integer vector (with default): vector with the number of BIN files per sample.
 The length of this vector must be equal to <code>Nb_sample</code> and the sum of entries of this vector must be equal to <code>Nb_binfile</code>.
-If there is more than one BIN file per sample, see the details section for instructions regarding how to correctly fill <code>BinPerSample</code> vector.
+If there is more than one BIN file per sample, see the details section for instructions regarding how to correctly
+fill <code>BinPerSample</code> vector.
 Otherwise, this vector must contain a list of 1 values.</p></td>
     </tr>
     <tr>
@@ -144,6 +161,10 @@ Otherwise, this vector must contain a list of 1 values.</p></td>
     <tr>
       <th>sepR</th>
       <td><p>character (with default): column separator in the Rule.csv files.</p></td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td><p>further arguments that can be passed to <a href='http://www.rdocumentation.org/packages/Luminescence/topics/read_BIN2R'>Luminescence::read_BIN2R</a>.</p></td>
     </tr>
     </table>
     
@@ -171,12 +192,12 @@ the luminescence data.
 <p>Each subfolder can be named, for example, as the sample name followed by a number; it must contain:</p><ul>
 <li><p><b>bin.BIN</b>: the bin file renamed as bin.BIN (note: the name of all files matters);</p></li>
 <li><p><b>DiscPos.csv</b>: a two columns csv file containing the list of disc and grain position number of the previously selected grains
-  (typically this list will include the position of grains based on their sensitivity, recycling or other properties);</p></li>
+(typically this list will include the position of grains based on their sensitivity, recycling or other properties);</p></li>
 <li><p><b>DoseEnv.csv</b>: a two columns file containing the observation of the natural (or environmental),
-  dose rate, and its non-shared variance (i.e. after removing all shared errors), both in Gy. Note: the user shall provide the squared value of the error associated
-  with the dose rate experienced by the sample grains in nature;</p></li>
+dose rate, and its non-shared variance (i.e. after removing all shared errors), both in Gy. Note: the user shall provide the squared value of the error associated
+with the dose rate experienced by the sample grains in nature;</p></li>
 <li><p><b>DoseSourve.csv</b>: a two columns file containing the observation of the laboratory dose rate,
-  and its variance (squared error) both in Gy;</p></li>
+and its variance (squared error) both in Gy;</p></li>
 <li><p><b>rule.csv</b>: a csv file containing information on</p><ul>
 <li><p><code>beginSignal=</code>  the first channel for summing the natural or regenerative OSL signal (typically 1 or 6);</p></li>
 <li><p><code>endSignal=</code> the last channel for summing the natural or regenerative OSL signal (typically 5 or 10);</p></li>
@@ -188,29 +209,29 @@ the luminescence data.
 <li><p><code>endTestBackground=</code> same values as above, for the test dose response (typically the same values should be used);</p></li>
 <li><p><code>inflatePercent=</code> uncertainty arising from the instrument reproducibility (typically 0.02, i.e. 2%);</p></li>
 <li><p><code>nbOfLastCycleToRemove=</code> number of cycles at the end of the SAR protocol which should not be included in the dose response curve fitting
-    (typically 1 if only a recycling test is performed, or 2 if both recycling and IR depletion are tested).</p></li>
+(typically 1 if only a recycling test is performed, or 2 if both recycling and IR depletion are tested).</p></li>
 </ul></li>
 </ul><p><b>** How to fill the</b> <code>FolderNames</code> <b>vector? **</b>
-    <code>FolderNames</code> is a vector of length <code>Nb_binfile</code>. <code>FolderNames</code>[i] is the name (e.g., Sample1-File1, or successive names separated by "/" signs,
+    <code>FolderNames</code> is a vector of length <code>Nb_binfile</code>. <code>FolderNames[i]</code> is the name (e.g., Sample1-File1, or successive names separated by "/" signs,
 if BIN files are in subfolders, e.g. Sample1/File1) of the subfolder containing all informations on the BIN file of ID number <code>i</code>.
 The names in <code>FolderNames</code> are ordered following two rules:</p><ul>
 <li><p>The names in the <code>FolderNames</code> vector must be ordered following the sample order
-  (the names of subfolders containing BIN files for the same sample should follow each other in the <code>FolderNames</code> vector, e.g.
-  Sample1, Sample2-File1, Sample2-File2, etc.).</p></li>
+(the names of subfolders containing BIN files for the same sample should follow each other in the <code>FolderNames</code> vector, e.g.
+Sample1, Sample2-File1, Sample2-File2, etc.).</p></li>
 <li><p>If stratigraphic constraints apply to samples, and so a <b>Bayesian model with stratigraphic constraints</b> is implemented,
-  then the names in the <code>FolderNames</code> vector must be ordered by order of increasing ages. 
-  For example, <code>FolderNames=c(noun1,noun2)</code>, in which case <code>noun1</code> (respectively, <code>noun2</code>) corresponds to the subfolder
-  name containing the BIN file of sample 1 (respectively of sample 2).
-  In addition, if we know that sample 1 is younger than sample 2, then <code>FolderNames</code> vector is correctly filled. 
-  If conversely, <code>FolderNames=c(noun2,noun1)</code>, the analysis performed by <code><a href='AgeS_Computation.html'>AgeS_Computation</a></code> would not be consistent.</p></li>
+then the names in the <code>FolderNames</code> vector must be ordered by order of increasing ages. 
+For example, <code>FolderNames=c(noun1,noun2)</code>, in which case <code>noun1</code> (respectively, <code>noun2</code>) corresponds to the subfolder
+name containing the BIN file of sample 1 (respectively of sample 2).
+In addition, if we know that sample 1 is younger than sample 2, then <code>FolderNames</code> vector is correctly filled. 
+If conversely, <code>FolderNames=c(noun2,noun1)</code>, the analysis performed by <code><a href='AgeS_Computation.html'>AgeS_Computation</a></code> would not be consistent.</p></li>
 </ul><p><b>** How to fill the</b> <code>BinPerSample</code> <b>vector? **</b>
-    <code>BinPerSample</code>[i] correponds to the number of BIN files for the sample whose number ID is equal to <code>i</code>.
+    <code>BinPerSample[i]</code> correponds to the number of BIN files for the sample whose number ID is equal to <code>i</code>.
 For example, let us consider a case with two samples (Sample1 and Sample2), with 2 BIN files for Sample1 and 1 for Sample2.
 In this case, <code>Nb_binfile</code>=3 and <code>Nb_sample</code>=2.
 The user may then set <code>FolderNames=c("Sample1-File1", "Sample1-File2", "Sample2-File1")</code>, in which case <code>"Sample1-File1"</code> is the name of the subfolder
 containing the first BIN file for Sample1, <code>"Sample1-File2"</code> the name of the  subfolder for the second BIN file of Sample1; eventually,
 <code>"Sample2-File1"</code> is the name of the subfolder containing the BIN file for the second sample. In this case, <code>BinPerSample=c(2,1)</code>.</p>
-    <p>For the general BIN-file structure, the reader is referred to the following website:
+<p>For the general BIN-file structure, the reader is referred to the following website:
 <code>http://www.nutech.dtu.dk/</code></p>
 <p>The function <code>read_BIN2R</code> developped in <code>Luminescence</code> package is used to read the BIN files.</p>
     
@@ -268,7 +289,7 @@ containing the first BIN file for Sample1, <code>"Sample1-File2"</code> the name
 
     <h2>Author</h2>
     
-Claire Christophe, Anne Philippe, Guillaume Guerin
+Claire Christophe, Sebastian Kreutzer, Anne Philippe, Guillaume Guerin
 
   </div>
 </div>

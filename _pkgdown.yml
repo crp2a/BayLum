@@ -1,5 +1,22 @@
 navbar:
   title: "BayLum"
-  type: inverse
+  left:
+    - icon: fa-home
+      text: "Home"
+      href: index.html
+    - icon: play
+      text: "Get Started"
+      href: articles/BayLum.html
+    - text: "References"
+      href: reference/index.html
   right:
+    - icon: fa-newspaper-o
+      text: "News"
+      href: news/index.html
     - icon: fa-github
+      text: "GitHub"
+      href: https://github.com/R-Lum/BayLum
+
+template:
+  params:
+    bootswatch: flatly
