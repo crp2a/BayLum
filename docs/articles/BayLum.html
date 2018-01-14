@@ -273,9 +273,9 @@ samp1
 &gt;&gt; Result of Gelman and Rudin critere of convergency&lt;&lt;
 ----------------------------------------------
      Point estimate Uppers confidence interval
-A    1       1.01 
-D    1       1.01 
-sD   1       1.01 
+A    1.02        1.04 
+D    1.02        1.04 
+sD   1.23        1.45 
 
 
 ________________________________________________________________________________
@@ -284,20 +284,20 @@ ________________________________________________________________________________
 
 parameter    Bayes estimate       Credible interval 
 ----------------------------------------------
-A        24.71 
+A        23.442 
                          lower bound     upper bound
-                 at level 95%    10          72.28 
-                 at level 68%    10          21.62 
+                 at level 95%    10          54.68 
+                 at level 68%    10          21.83 
 ----------------------------------------------
-D        61.392 
+D        58.301 
                          lower bound     upper bound
-                 at level 95%    19.89       180.87 
-                 at level 68%    22.36       55.36 
+                 at level 95%    20.28       138.09 
+                 at level 68%    22.83       56.97 
 ----------------------------------------------
-sD       36.928 
+sD       42.107 
                          lower bound     upper bound
-                 at level 95%    0.55        126.19 
-                 at level 68%    1.04        30.27 </code></pre>
+                 at level 95%    0.23        107.59 
+                 at level 68%    0.89        28.45 </code></pre>
 <p>This works also if <code>DATA1</code> is output of <code><a href="../reference/Generate_DataFile_MG.html">Generate_DataFile_MG()</a></code>.</p>
 <div id="remark-1-mcmc-trajectories" class="section level5">
 <h5 class="hasAnchor">
@@ -344,9 +344,9 @@ sD       36.928
 <p>Please note that the setting of <code>PriorAge</code> is not trivial. Too much constraint boundaries are likely biasing your results.</p>
 </div>
 </div>
-<div id="various-bin-files-for-one-sample" class="section level2">
+<div id="multiple-bin-files-for-one-sample" class="section level2">
 <h2 class="hasAnchor">
-<a href="#various-bin-files-for-one-sample" class="anchor"></a>1.4. Various BIN-files for one sample</h2>
+<a href="#multiple-bin-files-for-one-sample" class="anchor"></a>Multiple BIN-files for one sample</h2>
 <p>In the previous example we considered only the simplest case: one sample, and one BIN-file. However, ‘BayLum’ allows the treatment of multiple BIN-files for one sample. To work with multiple BIN-files, the names of the subfolders need to be set in <code>Names</code>. Both are located unter the same <code>Path</code>.</p>
 <p>For the case</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Names &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">"samp1"</span>, <span class="st">"samp2"</span>)</code></pre></div>
@@ -391,9 +391,9 @@ samp1 samp2
 &gt;&gt; Result of Gelman and Rudin critere of convergency&lt;&lt;
 ----------------------------------------------
      Point estimate Uppers confidence interval
-A    1       1 
+A    1.01        1.01 
 D    1.01        1.01 
-sD   1.03        1.05 
+sD   1.01        1.01 
 
 
 ________________________________________________________________________________
@@ -402,20 +402,20 @@ ________________________________________________________________________________
 
 parameter    Bayes estimate       Credible interval 
 ----------------------------------------------
-A        2.271 
+A        2.285 
                          lower bound     upper bound
-                 at level 95%    1.14        3.45 
-                 at level 68%    1.74        2.75 
+                 at level 95%    1.09        3.46 
+                 at level 68%    1.66        2.7 
 ----------------------------------------------
-D        5.654 
+D        5.685 
                          lower bound     upper bound
-                 at level 95%    3.05        8.41 
-                 at level 68%    4.5         6.73 
+                 at level 95%    2.6         8.04 
+                 at level 68%    4.54        6.86 
 ----------------------------------------------
-sD       0.76 
+sD       0.785 
                          lower bound     upper bound
-                 at level 95%    0       2.36 
-                 at level 68%    0       0.72 </code></pre>
+                 at level 95%    0       2.65 
+                 at level 68%    0       0.78 </code></pre>
 </div>
 </div>
 <div id="age-analysis-of-various-samples" class="section level1">
@@ -516,16 +516,16 @@ Initializing model</code></pre>
  Sample name:  GDB5 
 ---------------------
          Point estimate Uppers confidence interval
-A_GDB5   1       1 
-D_GDB5   1.03        1.11 
-sD_GDB5      1       1.02 
+A_GDB5   1.01        1.02 
+D_GDB5   1.05        1.15 
+sD_GDB5      1       1.01 
 ----------------------------------------------
  Sample name:  GDB3 
 ---------------------
          Point estimate Uppers confidence interval
-A_GDB3   1.02        1.07 
-D_GDB3   1.18        1.53 
-sD_GDB3      1.03        1.1 
+A_GDB3   1.01        1.05 
+D_GDB3   1.07        1.24 
+sD_GDB3      1.01        1.03 
 
 
 ________________________________________________________________________________
@@ -538,42 +538,42 @@ ________________________________________________________________________________
  Sample name:  GDB5 
 ---------------------
 Parameter    Bayes estimate       Credible interval 
- A_GDB5      7.079 
+ A_GDB5      7.184 
                          lower bound     upper bound
-                 at level 95%    5.64        8.36 
-                 at level 68%    6.25        7.57 
+                 at level 95%    5.65        8.68 
+                 at level 68%    6.33        7.8 
 
 Parameter    Bayes estimate       Credible interval 
- D_GDB5      17.665 
+ D_GDB5      17.696 
                          lower bound     upper bound
-                 at level 95%    16.7        18.96 
-                 at level 68%    16.99       18.13 
+                 at level 95%    16.25       18.77 
+                 at level 68%    17.2        18.43 
 
 Parameter    Bayes estimate       Credible interval 
-sD_GDB5      4.394 
+sD_GDB5      4.427 
                          lower bound     upper bound
-                 at level 95%    3.51        5.37 
-                 at level 68%    3.79        4.69 
+                 at level 95%    3.38        5.41 
+                 at level 68%    3.98        5.03 
 ----------------------------------------------
  Sample name:  GDB3 
 ---------------------
 Parameter    Bayes estimate       Credible interval 
- A_GDB3      46.854 
+ A_GDB3      47.104 
                          lower bound     upper bound
-                 at level 95%    35.49       57.21 
-                 at level 68%    40.96       52.1 
+                 at level 95%    36.45       57.97 
+                 at level 68%    41.38       51.58 
 
 Parameter    Bayes estimate       Credible interval 
- D_GDB3      104.773 
+ D_GDB3      105.175 
                          lower bound     upper bound
-                 at level 95%    97.04       111.34 
-                 at level 68%    101.14          108.38 
+                 at level 95%    98.46       114.78 
+                 at level 68%    101.85          109.42 
 
 Parameter    Bayes estimate       Credible interval 
-sD_GDB3      15.911 
+sD_GDB3      15.711 
                          lower bound     upper bound
-                 at level 95%    10.02       21.72 
-                 at level 68%    11.71       17.76 
+                 at level 95%    10.14       21.18 
+                 at level 68%    12.14       17.6 
 
 ----------------------------------------------</code></pre>
 <p><img src="BayLum_files/figure-html/unnamed-chunk-19-3.png" width="480"></p>
@@ -665,16 +665,16 @@ Initializing model</code></pre>
  Sample name:  samp1 
 ---------------------
          Point estimate Uppers confidence interval
-A_samp1      1.08        1.26 
-D_samp1      1.12        1.4 
-sD_samp1     1.12        1.39 
+A_samp1      0.99        1 
+D_samp1      1.03        1.16 
+sD_samp1     1.05        1.18 
 ----------------------------------------------
  Sample name:  samp2 
 ---------------------
          Point estimate Uppers confidence interval
-A_samp2      1.04        1.13 
-D_samp2      1.09        1.34 
-sD_samp2     1.04        1.17 
+A_samp2      0.99        1.01 
+D_samp2      1.08        1.28 
+sD_samp2     1.16        1.5 
 
 
 ________________________________________________________________________________
@@ -687,42 +687,42 @@ ________________________________________________________________________________
  Sample name:  samp1 
 ---------------------
 Parameter    Bayes estimate       Credible interval 
- A_samp1     9.717 
+ A_samp1     9.734 
                          lower bound     upper bound
-                 at level 95%    9.27        10 
-                 at level 68%    9.66        9.99 
+                 at level 95%    9.13        10 
+                 at level 68%    9.72        9.99 
 
 Parameter    Bayes estimate       Credible interval 
- D_samp1     28.194 
+ D_samp1     29.236 
                          lower bound     upper bound
-                 at level 95%    24.85       33.72 
-                 at level 68%    25.71       29.41 
+                 at level 95%    26.05       32.28 
+                 at level 68%    28.45       32.23 
 
 Parameter    Bayes estimate       Credible interval 
-sD_samp1     69.003 
+sD_samp1     68.095 
                          lower bound     upper bound
-                 at level 95%    56.2        76.66 
-                 at level 68%    61.93       71.88 
+                 at level 95%    51.62       82.37 
+                 at level 68%    53.75       71.52 
 ----------------------------------------------
  Sample name:  samp2 
 ---------------------
 Parameter    Bayes estimate       Credible interval 
- A_samp2     10.455 
+ A_samp2     10.433 
                          lower bound     upper bound
-                 at level 95%    10.01       11.24 
-                 at level 68%    10.02       10.55 
+                 at level 95%    10          11.49 
+                 at level 68%    10          10.44 
 
 Parameter    Bayes estimate       Credible interval 
- D_samp2     18.853 
+ D_samp2     18.692 
                          lower bound     upper bound
-                 at level 95%    17.44       19.67 
-                 at level 68%    18.53       19.54 
+                 at level 95%    17.9        19.76 
+                 at level 68%    18.05       19.11 
 
 Parameter    Bayes estimate       Credible interval 
-sD_samp2     4.872 
+sD_samp2     4.828 
                          lower bound     upper bound
-                 at level 95%    4.14        5.67 
-                 at level 68%    4.29        5.32 
+                 at level 95%    4.38        5.39 
+                 at level 68%    4.38        4.82 
 
 ----------------------------------------------</code></pre>
 <p><img src="BayLum_files/figure-html/unnamed-chunk-24-3.png" width="480"></p>
@@ -757,7 +757,7 @@ sD_samp2     4.872
 <li><a href="#generate-data-file-from-bin-file-for-single-grain-osl-measurements">Generate data file from BIN-file for single-grain OSL measurements</a></li>
       <li><a href="#generate-data-file-from-bin-files-of-multi-grain-osl-measurements">Generate data file from BIN-files of multi-grain OSL measurements</a></li>
       <li><a href="#age-analysis">Age analysis</a></li>
-      <li><a href="#various-bin-files-for-one-sample">1.4. Various BIN-files for one sample</a></li>
+      <li><a href="#multiple-bin-files-for-one-sample">Multiple BIN-files for one sample</a></li>
       </ul>
 </li>
       <li>

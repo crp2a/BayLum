@@ -7,6 +7,8 @@ output:
     self-contained: yes
     standalone: yes
     toc: yes
+    toc_depth: 4
+    number_sections: yes
 vignette: >
   %\VignetteEncoding{UTF-8}
 ---
@@ -217,7 +219,7 @@ you may want to set `PriorAge=c(0.001,10)`. Ages of $<=0$ are not possible. The 
 Please note that the setting of `PriorAge` is not trivial. Too much constraint boundaries are likely biasing 
 your results. 
 
-## 1.4. Various BIN-files for one sample
+## Multiple BIN-files for one sample
 
 In the previous example we considered only the simplest case: one sample, and one BIN-file.
 However, 'BayLum' allows the treatment of multiple BIN-files for one sample. 
