@@ -345,16 +345,21 @@ Quaternary Geochronology 28, 62-70. doi:10.1016/j.quageo.2015.04.001</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'>## Load data</span>
+    <pre class="examples"><div class='input'><span class='co'>## load data</span>
 <span class='fu'>data</span>(<span class='no'>DATA1</span>,<span class='kw'>envir</span> <span class='kw'>=</span> <span class='fu'>environment</span>())
 <span class='fu'>data</span>(<span class='no'>DATA2</span>,<span class='kw'>envir</span> <span class='kw'>=</span> <span class='fu'>environment</span>())
-<span class='no'>Data</span><span class='kw'>=</span><span class='fu'><a href='Concat_DataFile.html'>Concat_DataFile</a></span>(<span class='no'>DATA2</span>,<span class='no'>DATA1</span>)
+<span class='no'>Data</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='Concat_DataFile.html'>Concat_DataFile</a></span>(<span class='no'>DATA2</span>,<span class='no'>DATA1</span>)
 
 <span class='co'>## Age computation of samples GDB5 and GDB3,</span>
 <span class='no'>priorage</span><span class='kw'>=</span><span class='fu'>c</span>(<span class='fl'>1</span>,<span class='fl'>10</span>,<span class='fl'>20</span>,<span class='fl'>60</span>) <span class='co'># these samples are not young</span>
 <span class='co'>## without common error and without stratigraphic constraints</span>
-<span class='no'>Age</span><span class='kw'>=</span><span class='fu'>AgeS_Computation</span>(<span class='kw'>DATA</span><span class='kw'>=</span><span class='no'>Data</span>,<span class='kw'>Nb_sample</span><span class='kw'>=</span><span class='fl'>2</span>,<span class='kw'>SampleNames</span><span class='kw'>=</span><span class='fu'>c</span>(<span class='st'>"GDB5"</span>,<span class='st'>"GDB3"</span>),
-      <span class='kw'>PriorAge</span><span class='kw'>=</span><span class='no'>priorage</span>,<span class='kw'>Iter</span><span class='kw'>=</span><span class='fl'>50</span>,<span class='kw'>Nb_chaines</span><span class='kw'>=</span><span class='fl'>2</span>)</div><div class='output co'>#&gt; Compiling model graph
+<span class='no'>Age</span> <span class='kw'>&lt;-</span> <span class='fu'>AgeS_Computation</span>(
+  <span class='kw'>DATA</span> <span class='kw'>=</span> <span class='no'>Data</span>,
+  <span class='kw'>Nb_sample</span> <span class='kw'>=</span> <span class='fl'>2</span>,
+  <span class='kw'>SampleNames</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"GDB5"</span>,<span class='st'>"GDB3"</span>),
+  <span class='kw'>PriorAge</span> <span class='kw'>=</span> <span class='no'>priorage</span>,
+  <span class='kw'>Iter</span> <span class='kw'>=</span> <span class='fl'>50</span>,
+  <span class='kw'>Nb_chaines</span> <span class='kw'>=</span> <span class='fl'>2</span>)</div><div class='output co'>#&gt; Compiling model graph
 #&gt;    Resolving undeclared variables
 #&gt;    Allocating nodes
 #&gt; Graph information:
@@ -365,23 +370,23 @@ Quaternary Geochronology 28, 62-70. doi:10.1016/j.quageo.2015.04.001</p>
 #&gt; Initializing model
 #&gt; </div><div class='output co'>#&gt; <span class='warning'>Warning: Adaptation incomplete</span></div><div class='output co'>#&gt; NOTE: Stopping adaptation
 #&gt; 
-#&gt; </div><div class='img'><img src='AgeS_Computation-7.png' alt='' width='700' height='432.632880098887' /></div><div class='img'><img src='AgeS_Computation-8.png' alt='' width='700' height='432.632880098887' /></div><div class='output co'>#&gt; 
+#&gt; </div><div class='img'><img src='AgeS_Computation-1.png' alt='' width='700' height='432.632880098887' /></div><div class='img'><img src='AgeS_Computation-2.png' alt='' width='700' height='432.632880098887' /></div><div class='output co'>#&gt; 
 #&gt; 
 #&gt; &gt;&gt; Result of Gelman and Rudin critere of convergency &lt;&lt;
 #&gt; ----------------------------------------------
 #&gt;  Sample name:  GDB5 
 #&gt; ---------------------
 #&gt; 		 Point estimate Uppers confidence interval
-#&gt; A_GDB5 	 1.17 		 1.77 
-#&gt; D_GDB5 	 0.98 		 1.1 
-#&gt; sD_GDB5 	 0.99 		 1.06 
+#&gt; A_GDB5 	 1 		 1.15 
+#&gt; D_GDB5 	 1.15 		 1.63 
+#&gt; sD_GDB5 	 0.97 		 1.04 
 #&gt; ----------------------------------------------
 #&gt;  Sample name:  GDB3 
 #&gt; ---------------------
 #&gt; 		 Point estimate Uppers confidence interval
-#&gt; A_GDB3 	 1.27 		 2.27 
-#&gt; D_GDB3 	 1.15 		 1.71 
-#&gt; sD_GDB3 	 1.29 		 2 
+#&gt; A_GDB3 	 1.16 		 1.68 
+#&gt; D_GDB3 	 1.03 		 1.24 
+#&gt; sD_GDB3 	 1.11 		 1.5 
 #&gt; 
 #&gt; 
 #&gt; ________________________________________________________________________________
@@ -394,50 +399,60 @@ Quaternary Geochronology 28, 62-70. doi:10.1016/j.quageo.2015.04.001</p>
 #&gt;  Sample name:  GDB5 
 #&gt; ---------------------
 #&gt; Parameter 	 Bayes estimate 	  Credible interval 
-#&gt;  A_GDB5 	 7.186 
+#&gt;  A_GDB5 	 7.301 
 #&gt; 						 lower bound 	 upper bound
-#&gt; 				 at level 95% 	 6.11 		 8.37 
-#&gt; 				 at level 68% 	 6.76 		 7.57 
+#&gt; 				 at level 95% 	 6.53 		 8.47 
+#&gt; 				 at level 68% 	 6.53 		 7.4 
 #&gt; 
 #&gt; Parameter 	 Bayes estimate 	  Credible interval 
-#&gt;  D_GDB5 	 18.066 
+#&gt;  D_GDB5 	 18.416 
 #&gt; 						 lower bound 	 upper bound
-#&gt; 				 at level 95% 	 17.37 		 18.64 
-#&gt; 				 at level 68% 	 18.01 		 18.51 
+#&gt; 				 at level 95% 	 17.23 		 20.2 
+#&gt; 				 at level 68% 	 17.59 		 18.68 
 #&gt; 
 #&gt; Parameter 	 Bayes estimate 	  Credible interval 
-#&gt; sD_GDB5 	 4.755 
+#&gt; sD_GDB5 	 4.835 
 #&gt; 						 lower bound 	 upper bound
-#&gt; 				 at level 95% 	 3.85 		 5.24 
-#&gt; 				 at level 68% 	 4.22 		 5.24 
+#&gt; 				 at level 95% 	 4.28 		 5.56 
+#&gt; 				 at level 68% 	 4.36 		 4.59 
 #&gt; ----------------------------------------------
 #&gt;  Sample name:  GDB3 
 #&gt; ---------------------
 #&gt; Parameter 	 Bayes estimate 	  Credible interval 
-#&gt;  A_GDB3 	 44.292 
+#&gt;  A_GDB3 	 41.852 
 #&gt; 						 lower bound 	 upper bound
-#&gt; 				 at level 95% 	 37.35 		 52.4 
-#&gt; 				 at level 68% 	 39.48 		 45.58 
+#&gt; 				 at level 95% 	 35.7 		 48.38 
+#&gt; 				 at level 68% 	 37.91 		 42.11 
 #&gt; 
 #&gt; Parameter 	 Bayes estimate 	  Credible interval 
-#&gt;  D_GDB3 	 103.521 
+#&gt;  D_GDB3 	 98.51 
 #&gt; 						 lower bound 	 upper bound
-#&gt; 				 at level 95% 	 101.59 		 106.87 
-#&gt; 				 at level 68% 	 101.88 		 104.38 
+#&gt; 				 at level 95% 	 95.1 		 102.11 
+#&gt; 				 at level 68% 	 96.76 		 100.79 
 #&gt; 
 #&gt; Parameter 	 Bayes estimate 	  Credible interval 
-#&gt; sD_GDB3 	 15.7 
+#&gt; sD_GDB3 	 15.412 
 #&gt; 						 lower bound 	 upper bound
-#&gt; 				 at level 95% 	 13.9 		 18.66 
-#&gt; 				 at level 68% 	 14.86 		 16.78 
+#&gt; 				 at level 95% 	 9.47 		 19.39 
+#&gt; 				 at level 68% 	 11.05 		 14.28 
 #&gt; 
-#&gt; ----------------------------------------------</div><div class='img'><img src='AgeS_Computation-9.png' alt='' width='700' height='432.632880098887' /></div><div class='input'>
+#&gt; ----------------------------------------------</div><div class='img'><img src='AgeS_Computation-3.png' alt='' width='700' height='432.632880098887' /></div><div class='input'>
 ## Age computation of samples GDB5 and GDB3,
 ## without common error, assuming GDB5 age younder than GDB3 age
 </div><span class='co'># NOT RUN {</span>
-(<span class='no'>SC</span><span class='kw'>=</span><span class='fu'>matrix</span>(<span class='kw'>data</span><span class='kw'>=</span><span class='fu'>c</span>(<span class='fl'>1</span>,<span class='fl'>1</span>,<span class='fl'>0</span>,<span class='fl'>1</span>,<span class='fl'>0</span>,<span class='fl'>0</span>),<span class='kw'>ncol</span><span class='kw'>=</span><span class='no'>Nb_sample</span>,<span class='kw'>nrow</span> <span class='kw'>=</span> (<span class='no'>Nb_sample</span>+<span class='fl'>1</span>),<span class='kw'>byrow</span> <span class='kw'>=</span> <span class='no'>T</span>))
-<span class='no'>Age</span><span class='kw'>=</span><span class='fu'>AgeS_Computation</span>(<span class='kw'>DATA</span><span class='kw'>=</span><span class='no'>Data</span>,<span class='kw'>Nb_sample</span><span class='kw'>=</span><span class='fl'>2</span>,<span class='kw'>SampleNames</span><span class='kw'>=</span><span class='fu'>c</span>(<span class='st'>"GDB5"</span>,<span class='st'>"GDB3"</span>),
-  <span class='kw'>PriorAge</span><span class='kw'>=</span><span class='no'>priorage</span>,<span class='kw'>StratiConstraints</span><span class='kw'>=</span><span class='no'>SC</span>,<span class='kw'>Iter</span><span class='kw'>=</span><span class='fl'>10000</span>)
+<span class='no'>Nb_sample</span> <span class='kw'>&lt;-</span> <span class='fl'>2</span>
+<span class='no'>SC</span> <span class='kw'>&lt;-</span> <span class='fu'>matrix</span>(
+  <span class='kw'>data</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>1</span>,<span class='fl'>1</span>,<span class='fl'>0</span>,<span class='fl'>1</span>,<span class='fl'>0</span>,<span class='fl'>0</span>),
+  <span class='kw'>ncol</span> <span class='kw'>=</span> <span class='fl'>2</span>,
+  <span class='kw'>nrow</span> <span class='kw'>=</span> (<span class='no'>Nb_sample</span>+<span class='fl'>1</span>),<span class='kw'>byrow</span> <span class='kw'>=</span> <span class='no'>T</span>)
+
+<span class='no'>Age</span> <span class='kw'>&lt;-</span> <span class='fu'>AgeS_Computation</span>(
+ <span class='kw'>DATA</span> <span class='kw'>=</span> <span class='no'>Data</span>,
+ <span class='kw'>Nb_sample</span> <span class='kw'>=</span> <span class='no'>Nb_sample</span>,
+ <span class='kw'>SampleNames</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"GDB5"</span>,<span class='st'>"GDB3"</span>),
+ <span class='kw'>PriorAge</span> <span class='kw'>=</span> <span class='no'>priorage</span>,
+ <span class='kw'>StratiConstraints</span> <span class='kw'>=</span> <span class='no'>SC</span>,
+ <span class='kw'>Iter</span> <span class='kw'>=</span> <span class='fl'>10000</span>)
 <span class='co'># }</span><div class='input'>
 </div></pre>
   </div>

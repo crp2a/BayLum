@@ -101,9 +101,9 @@
     </div>
 
     <div class="contents">
-    <div id="baylum-0-1-2-release-date-2018-xx-xx" class="section level1">
-<h1 class="hasAnchor">
-<a href="#baylum-0-1-2-release-date-2018-xx-xx" class="anchor"></a>BayLum 0.1.2 (Release date: 2018-XX-XX)</h1>
+    <div id="baylum-0-1-2-release-date-2018-xx-xx" class="section level2">
+<h2 class="hasAnchor">
+<a href="#baylum-0-1-2-release-date-2018-xx-xx" class="anchor"></a>BayLum 0.1.2 (Release date: 2018-XX-XX)</h2>
 <div id="bugfixes" class="section level3">
 <h3 class="hasAnchor">
 <a href="#bugfixes" class="anchor"></a>Bugfixes</h3>
@@ -113,6 +113,7 @@
 </li>
 <li>The function <code><a href="../reference/Age_OSLC14.html">Age_OSLC14()</a></code> never returned numerical data; fixed</li>
 <li>Fix <code><a href="../reference/Age_OSLC14.html">Age_OSLC14()</a></code> age format, now in ka for C-14 instead of years</li>
+<li>The last example in <code><a href="../reference/AgeS_Computation.html">AgeS_Computation()</a></code> could not be run; fixed.</li>
 </ul>
 </div>
 <div id="enhancements" class="section level3">
@@ -122,6 +123,9 @@
 <li>Allow different BIN/BINX-file names as input. The functions <code><a href="../reference/Generate_DataFile.html">Generate_DataFile()</a></code> and <code><a href="../reference/Generate_DataFile_MG.html">Generate_DataFile_MG()</a></code> do no longer expecting the name sheme bin.BIN</li>
 <li>The functions <code><a href="../reference/Generate_DataFile.html">Generate_DataFile()</a></code> and <code><a href="../reference/Generate_DataFile_MG.html">Generate_DataFile_MG()</a></code> now supports the <code>...</code> argument to pass further arguments to the function <code>Luminescene::read_BIN2R()</code>
 </li>
+<li>The functions <code><a href="../reference/Generate_DataFile.html">Generate_DataFile()</a></code> and <code><a href="../reference/Generate_DataFile_MG.html">Generate_DataFile_MG()</a></code> gained a new argument <code>verbose</code> to control the terminal output</li>
+<li>The function <code><a href="../reference/Age_Computation.html">Age_Computation()</a></code>, <code><a href="../reference/AgeC14_Computation.html">AgeC14_Computation()</a></code> now support the argument <code>quiet</code> and pipes it to <code>rjags</code> to suppress verbose terminal output</li>
+<li>The function <code><a href="../reference/AgeC14_Computation.html">AgeC14_Computation()</a></code> now returns a warning if outliers are detected.</li>
 <li>The function <code><a href="../reference/LT_RegenDose.html">LT_RegenDose()</a></code> gained two new arguments <code>nrow</code> and <code>ncol</code> became a little bit more user friendly</li>
 </ul>
 </div>
@@ -133,16 +137,16 @@
 </ul>
 </div>
 </div>
-    <div id="baylum-0-1-1-release-date-2017-09-01" class="section level1">
-<h1 class="hasAnchor">
-<a href="#baylum-0-1-1-release-date-2017-09-01" class="anchor"></a>BayLum 0.1.1 (Release date: 2017-09-01)</h1>
+    <div id="baylum-0-1-1-release-date-2017-09-01" class="section level2">
+<h2 class="hasAnchor">
+<a href="#baylum-0-1-1-release-date-2017-09-01" class="anchor"></a>BayLum 0.1.1 (Release date: 2017-09-01)</h2>
 <ul>
 <li>Reduce required R version to 3.3.2</li>
 </ul>
 </div>
-    <div id="baylum-0-1-0-release-date-2017-08-22" class="section level1">
-<h1 class="hasAnchor">
-<a href="#baylum-0-1-0-release-date-2017-08-22" class="anchor"></a>BayLum 0.1.0 (Release date: 2017-08-22)</h1>
+    <div id="baylum-0-1-0-release-date-2017-08-22" class="section level2">
+<h2 class="hasAnchor">
+<a href="#baylum-0-1-0-release-date-2017-08-22" class="anchor"></a>BayLum 0.1.0 (Release date: 2017-08-22)</h2>
 <ul>
 <li>Initial version on CRAN</li>
 </ul>

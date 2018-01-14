@@ -273,9 +273,9 @@ samp1
 &gt;&gt; Result of Gelman and Rudin critere of convergency&lt;&lt;
 ----------------------------------------------
      Point estimate Uppers confidence interval
-A    1.02        1.04 
-D    1.02        1.04 
-sD   1.23        1.45 
+A    1.05        1.11 
+D    1.05        1.11 
+sD   1.08        1.13 
 
 
 ________________________________________________________________________________
@@ -284,20 +284,20 @@ ________________________________________________________________________________
 
 parameter    Bayes estimate       Credible interval 
 ----------------------------------------------
-A        23.442 
+A        22.6 
                          lower bound     upper bound
-                 at level 95%    10          54.68 
-                 at level 68%    10          21.83 
+                 at level 95%    10          72.7 
+                 at level 68%    10          23.63 
 ----------------------------------------------
-D        58.301 
+D        56.249 
                          lower bound     upper bound
-                 at level 95%    20.28       138.09 
-                 at level 68%    22.83       56.97 
+                 at level 95%    20.15       181.94 
+                 at level 68%    21.66       60.65 
 ----------------------------------------------
-sD       42.107 
+sD       37.096 
                          lower bound     upper bound
-                 at level 95%    0.23        107.59 
-                 at level 68%    0.89        28.45 </code></pre>
+                 at level 95%    0.19        194.13 
+                 at level 68%    0.57        31.41 </code></pre>
 <p>This works also if <code>DATA1</code> is output of <code><a href="../reference/Generate_DataFile_MG.html">Generate_DataFile_MG()</a></code>.</p>
 <div id="remark-1-mcmc-trajectories" class="section level5">
 <h5 class="hasAnchor">
@@ -364,10 +364,9 @@ DATA_BF &lt;-<span class="st"> </span><span class="kw"><a href="../reference/Gen
   <span class="dt">Nb_binfile =</span> nbbinfile,
   <span class="dt">BinPerSample =</span> Binpersample, 
   <span class="dt">verbose =</span> <span class="ot">FALSE</span>
-  )</code></pre></div>
-<pre><code>[1] "File being read: samp1"
-[1] "File being read: samp2"</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">##calculate the age
+  )
+
+##calculate the age
 Age &lt;-<span class="st"> </span><span class="kw"><a href="../reference/Age_Computation.html">Age_Computation</a></span>(
   <span class="dt">DATA =</span> DATA_BF,
   <span class="dt">SampleName =</span> Names,
@@ -391,9 +390,9 @@ samp1 samp2
 &gt;&gt; Result of Gelman and Rudin critere of convergency&lt;&lt;
 ----------------------------------------------
      Point estimate Uppers confidence interval
-A    1.01        1.01 
-D    1.01        1.01 
-sD   1.01        1.01 
+A    1.01        1.02 
+D    1.01        1.02 
+sD   1.01        1.02 
 
 
 ________________________________________________________________________________
@@ -402,20 +401,20 @@ ________________________________________________________________________________
 
 parameter    Bayes estimate       Credible interval 
 ----------------------------------------------
-A        2.285 
+A        2.308 
                          lower bound     upper bound
-                 at level 95%    1.09        3.46 
-                 at level 68%    1.66        2.7 
+                 at level 95%    1.35        3.53 
+                 at level 68%    1.72        2.7 
 ----------------------------------------------
-D        5.685 
+D        5.744 
                          lower bound     upper bound
-                 at level 95%    2.6         8.04 
-                 at level 68%    4.54        6.86 
+                 at level 95%    3.28        8.26 
+                 at level 68%    4.54        6.74 
 ----------------------------------------------
-sD       0.785 
+sD       0.75 
                          lower bound     upper bound
-                 at level 95%    0       2.65 
-                 at level 68%    0       0.78 </code></pre>
+                 at level 95%    0       2.37 
+                 at level 68%    0       0.74 </code></pre>
 </div>
 </div>
 <div id="age-analysis-of-various-samples" class="section level1">
@@ -516,16 +515,16 @@ Initializing model</code></pre>
  Sample name:  GDB5 
 ---------------------
          Point estimate Uppers confidence interval
-A_GDB5   1.01        1.02 
-D_GDB5   1.05        1.15 
-sD_GDB5      1       1.01 
+A_GDB5   1       1 
+D_GDB5   1.01        1.02 
+sD_GDB5      1       1 
 ----------------------------------------------
  Sample name:  GDB3 
 ---------------------
          Point estimate Uppers confidence interval
-A_GDB3   1.01        1.05 
-D_GDB3   1.07        1.24 
-sD_GDB3      1.01        1.03 
+A_GDB3   1.01        1.01 
+D_GDB3   1.03        1.07 
+sD_GDB3      1.03        1.1 
 
 
 ________________________________________________________________________________
@@ -538,42 +537,42 @@ ________________________________________________________________________________
  Sample name:  GDB5 
 ---------------------
 Parameter    Bayes estimate       Credible interval 
- A_GDB5      7.184 
+ A_GDB5      7.177 
                          lower bound     upper bound
-                 at level 95%    5.65        8.68 
-                 at level 68%    6.33        7.8 
+                 at level 95%    5.86        8.46 
+                 at level 68%    6.32        7.72 
 
 Parameter    Bayes estimate       Credible interval 
- D_GDB5      17.696 
+ D_GDB5      17.775 
                          lower bound     upper bound
-                 at level 95%    16.25       18.77 
-                 at level 68%    17.2        18.43 
+                 at level 95%    16.46       18.92 
+                 at level 68%    17.18       18.26 
 
 Parameter    Bayes estimate       Credible interval 
-sD_GDB5      4.427 
+sD_GDB5      4.514 
                          lower bound     upper bound
-                 at level 95%    3.38        5.41 
-                 at level 68%    3.98        5.03 
+                 at level 95%    3.6         5.53 
+                 at level 68%    4.06        5.07 
 ----------------------------------------------
  Sample name:  GDB3 
 ---------------------
 Parameter    Bayes estimate       Credible interval 
- A_GDB3      47.104 
+ A_GDB3      46.975 
                          lower bound     upper bound
-                 at level 95%    36.45       57.97 
-                 at level 68%    41.38       51.58 
+                 at level 95%    35.97       57.43 
+                 at level 68%    40.18       49.74 
 
 Parameter    Bayes estimate       Credible interval 
- D_GDB3      105.175 
+ D_GDB3      104.747 
                          lower bound     upper bound
-                 at level 95%    98.46       114.78 
-                 at level 68%    101.85          109.42 
+                 at level 95%    97.89       113.05 
+                 at level 68%    100.86          108.18 
 
 Parameter    Bayes estimate       Credible interval 
-sD_GDB3      15.711 
+sD_GDB3      16.075 
                          lower bound     upper bound
-                 at level 95%    10.14       21.18 
-                 at level 68%    12.14       17.6 
+                 at level 95%    10.33       22.53 
+                 at level 68%    12.18       18.05 
 
 ----------------------------------------------</code></pre>
 <p><img src="BayLum_files/figure-html/unnamed-chunk-19-3.png" width="480"></p>
@@ -603,12 +602,10 @@ DATA3 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/Gener
   <span class="dt">Nb_sample =</span> nbsample,
   <span class="dt">verbose =</span> <span class="ot">FALSE</span>
   )</code></pre></div>
-<pre><code>[1] "File being read: samp1"
-[1] "File being read: samp2"</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># using the function Concat_DataFile()</span>
 <span class="kw">data</span>(DATA1,<span class="dt">envir =</span> <span class="kw">environment</span>()) <span class="co"># .RData on sample GDB3</span>
 <span class="kw">data</span>(DATA2,<span class="dt">envir =</span> <span class="kw">environment</span>()) <span class="co"># .RData on sample GDB5</span>
-DATA3 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/Concat_DataFile.html">Concat_DataFile</a></span>(<span class="dt">L1=</span>DATA1,<span class="dt">L2=</span>DATA2)</code></pre></div>
+DATA3 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/Concat_DataFile.html">Concat_DataFile</a></span>(<span class="dt">L1 =</span> DATA1, <span class="dt">L2 =</span> DATA2)</code></pre></div>
 </div>
 <div id="construct-stratigraphy-constrain-matrix" class="section level3">
 <h3 class="hasAnchor">
@@ -665,16 +662,16 @@ Initializing model</code></pre>
  Sample name:  samp1 
 ---------------------
          Point estimate Uppers confidence interval
-A_samp1      0.99        1 
-D_samp1      1.03        1.16 
-sD_samp1     1.05        1.18 
+A_samp1      1.05        1.11 
+D_samp1      1.05        1.1 
+sD_samp1     0.99        1.01 
 ----------------------------------------------
  Sample name:  samp2 
 ---------------------
          Point estimate Uppers confidence interval
-A_samp2      0.99        1.01 
-D_samp2      1.08        1.28 
-sD_samp2     1.16        1.5 
+A_samp2      1.09        1.32 
+D_samp2      1.14        1.46 
+sD_samp2     1.03        1.07 
 
 
 ________________________________________________________________________________
@@ -687,42 +684,42 @@ ________________________________________________________________________________
  Sample name:  samp1 
 ---------------------
 Parameter    Bayes estimate       Credible interval 
- A_samp1     9.734 
+ A_samp1     9.685 
                          lower bound     upper bound
-                 at level 95%    9.13        10 
-                 at level 68%    9.72        9.99 
+                 at level 95%    9.07        10 
+                 at level 68%    9.65        10 
 
 Parameter    Bayes estimate       Credible interval 
- D_samp1     29.236 
+ D_samp1     29.671 
                          lower bound     upper bound
-                 at level 95%    26.05       32.28 
-                 at level 68%    28.45       32.23 
+                 at level 95%    25.79       35.17 
+                 at level 68%    27.21       30.77 
 
 Parameter    Bayes estimate       Credible interval 
-sD_samp1     68.095 
+sD_samp1     67.659 
                          lower bound     upper bound
-                 at level 95%    51.62       82.37 
-                 at level 68%    53.75       71.52 
+                 at level 95%    62.52       88.87 
+                 at level 68%    64.04       69.88 
 ----------------------------------------------
  Sample name:  samp2 
 ---------------------
 Parameter    Bayes estimate       Credible interval 
- A_samp2     10.433 
+ A_samp2     10.391 
                          lower bound     upper bound
-                 at level 95%    10          11.49 
-                 at level 68%    10          10.44 
+                 at level 95%    10.01       11.1 
+                 at level 68%    10.01       10.46 
 
 Parameter    Bayes estimate       Credible interval 
- D_samp2     18.692 
+ D_samp2     18.601 
                          lower bound     upper bound
-                 at level 95%    17.9        19.76 
-                 at level 68%    18.05       19.11 
+                 at level 95%    17.64       19.85 
+                 at level 68%    18.23       19.3 
 
 Parameter    Bayes estimate       Credible interval 
-sD_samp2     4.828 
+sD_samp2     4.87 
                          lower bound     upper bound
-                 at level 95%    4.38        5.39 
-                 at level 68%    4.38        4.82 
+                 at level 95%    3.89        5.77 
+                 at level 68%    4.2         5.4 
 
 ----------------------------------------------</code></pre>
 <p><img src="BayLum_files/figure-html/unnamed-chunk-24-3.png" width="480"></p>
@@ -732,15 +729,15 @@ sD_samp2     4.828
 <div id="references" class="section level1">
 <h1 class="hasAnchor">
 <a href="#references" class="anchor"></a>References</h1>
-<p>Combes, B., Philippe, A., Lanos, P., Mercier, N., Tribolo, C., Guerin, G., Guibert, P., Lahaye, C., (2015). A Bayesian central equivalent dose model for optically stimulated luminescence dating. Quaternary Geochronology 28, 62-70.</p>
-<p>Combès, B., Philippe, A., 2017. Bayesian analysis of individual and systematic multiplicative errors for estimating ages with stratigraphic constraints in optically stimulated luminescence dating. Quaternary Geochronology 39, 24–34. <a href="doi:10.1016/j.quageo.2017.02.003" class="uri">doi:10.1016/j.quageo.2017.02.003</a></p>
+<p>Combes, B., Philippe, A., Lanos, P., Mercier, N., Tribolo, C., Guerin, G., Guibert, P., Lahaye, C., 2015. A Bayesian central equivalent dose model for optically stimulated luminescence dating. Quaternary Geochronology 28, 62-70.</p>
+<p>Combès, B., Philippe, A., 2017. Bayesian analysis of individual and systematic multiplicative errors for estimating ages with stratigraphic constraints in optically stimulated luminescence dating. Quaternary Geochronology 39, 24–34.</p>
 <div id="further-reading" class="section level2">
 <h2 class="hasAnchor">
 <a href="#further-reading" class="anchor"></a>Further reading</h2>
 <p>For more details on the diagnostic of Markov chain:</p>
-<p>Robert and Casella (2009). Introducing Monte Carlo Methods with R. Springer Science &amp; Business Media.</p>
+<p>Robert and Casella, 2009. Introducing Monte Carlo Methods with R. Springer Science &amp; Business Media.</p>
 <p>For more detais on the used datasets, we refer to the following publication:</p>
-<p>Tribolo, C., Asrat, A., Bahain, J. J., Chapon, C., Douville, E., Fragnol, C., Hernandez, M., Hovers, E., Leplongeon, A., Martin, L, Pleurdeau, D, Pearson, O , Puaud, S, Assefa, Z. (2017). Across the Gap: Geochronological and Sedimentological Analyses from the Late Pleistocene-Holocene Sequence of Goda Buticha, Southeastern Ethiopia. PloS one, 12(1), e0169418.</p>
+<p>Tribolo, C., Asrat, A., Bahain, J. J., Chapon, C., Douville, E., Fragnol, C., Hernandez, M., Hovers, E., Leplongeon, A., Martin, L,Pleurdeau, D, Pearson, O, Puaud, S, Assefa, Z., 2017. Across the Gap: Geochronological and Sedimentological Analyses from the Late Pleistocene-Holocene Sequence of Goda Buticha, Southeastern Ethiopia. PloS one, 12(1), e0169418.</p>
 </div>
 </div>
 </div>

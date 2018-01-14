@@ -112,7 +112,8 @@ than one BIN file per sample.</p>
 
     <pre class="usage"><span class='fu'>Generate_DataFile_MG</span>(<span class='no'>Path</span>, <span class='no'>FolderNames</span>, <span class='no'>Nb_sample</span>,
   <span class='kw'>Nb_binfile</span> <span class='kw'>=</span> <span class='fu'>length</span>(<span class='no'>FolderNames</span>), <span class='kw'>BinPerSample</span> <span class='kw'>=</span> <span class='fu'>rep</span>(<span class='fl'>1</span>, <span class='no'>Nb_sample</span>),
-  <span class='kw'>sepD</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>","</span>), <span class='kw'>sepDE</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>","</span>), <span class='kw'>sepDS</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>","</span>), <span class='kw'>sepR</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"="</span>), <span class='no'>...</span>)</pre>
+  <span class='kw'>sepD</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>","</span>), <span class='kw'>sepDE</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>","</span>), <span class='kw'>sepDS</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>","</span>), <span class='kw'>sepR</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"="</span>),
+  <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <table class="ref-arguments">
@@ -161,6 +162,10 @@ Otherwise, this vector must contain a list of 1 values.</p></td>
     <tr>
       <th>sepR</th>
       <td><p>character (with default): column separator in the Rule.csv files.</p></td>
+    </tr>
+    <tr>
+      <th>verbose</th>
+      <td><p>logical (with default): enable/disable verbose mode</p></td>
     </tr>
     <tr>
       <th>...</th>
@@ -234,6 +239,10 @@ for the second sample. In this case, <code>BinPerSample=c(2,1)</code>.</p>
 <p>For the general BIN-file structure, the reader is referred to the following website:  <code>http://www.nutech.dtu.dk/</code></p>
 <p>The function <code>read_BIN2R</code> developped in <code>Luminescence</code> package is used to read the BIN files.</p>
     
+    <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
+
+    <p>The function imports only BIN-file records which have been previously selected.</p>
+    
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <p><code>read_BIN2R</code>, <code><a href='Concat_DataFile.html'>Concat_DataFile</a></code>, <code><a href='LT_RegenDose.html'>LT_RegenDose</a></code>
@@ -280,6 +289,8 @@ for the second sample. In this case, <code>BinPerSample=c(2,1)</code>.</p>
       <li><a href="#value">Value</a></li>
 
       <li><a href="#details">Details</a></li>
+
+      <li><a href="#note">Note</a></li>
 
       <li><a href="#see-also">See also</a></li>
       
