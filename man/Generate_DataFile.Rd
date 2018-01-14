@@ -2,51 +2,57 @@
 % Please edit documentation in R/Generate_DataFile.R
 \name{Generate_DataFile}
 \alias{Generate_DataFile}
-\title{Generates, from one (or several) BIN file(s) of Single-grain OSL measurements, a list of luminescence data and information before statistical analysis}
+\title{Generates, from one (or several) BIN-file(s) of Single-grain OSL measurements,
+a list of luminescence data and information before statistical analysis}
 \usage{
 Generate_DataFile(Path, FolderNames, Nb_sample,
   Nb_binfile = length(FolderNames), BinPerSample = rep(1, Nb_sample),
-  sepDP = c(","), sepDE = c(","), sepDS = c(","), sepR = c("="))
+  sepDP = c(","), sepDE = c(","), sepDS = c(","), sepR = c("="), ...)
 }
 \arguments{
-\item{Path}{character: the path to the project folder, containing one or more subfolders in which the BIN files
+\item{Path}{\link{character} (\strong{required}): the path to the project folder, containing one or more subfolders in which the BIN files
 are located. If it is not equal to "", it must be terminated by "/".}
 
-\item{FolderNames}{character vector: list of names of the sub-folders containing the BIN files
-- each subfolder must contain a BIN file and associated csv files.
+\item{FolderNames}{\link{character} (\strong{required}): list of names of the sub-folders containing the BIN files
+\itemize{
+\item each subfolder must contain a BIN file and associated csv files.
 See details for more informations on associated csv files required in the subfolders.
 If there is more than one BIN file per sample, see the details section for instructions regarding how to correctly fill the
-\code{FolderNames} vector.}
+\code{FolderNames} vector.
+}}
 
-\item{Nb_sample}{integer: number of samples.}
+\item{Nb_sample}{\link{integer} (\strong{required}): number of samples.}
 
-\item{Nb_binfile}{integer (with default): number of BIN files. It must be equal to, or greater than \code{Nb_sample}.}
+\item{Nb_binfile}{\link{integer} (with default): number of BIN files. It must be equal to, or greater than \code{Nb_sample}.}
 
-\item{BinPerSample}{integer vector (with default): vector with the number of BIN files per sample.
+\item{BinPerSample}{\link{integer} vector (with default): vector with the number of BIN files per sample.
 The length of this vector must be equal to \code{Nb_sample} and the sum of entries of this vector must be equal to \code{Nb_binfile}.
-If there is more than one BIN file per sample, see the details section for instructions regarding how to correctly fill \code{BinPerSample} vector.
+If there is more than one BIN file per sample, see the details section for instructions regarding how to correctly
+fill \code{BinPerSample} vector.
 Otherwise, this vector must contain a list of 1 values.}
 
-\item{sepDP}{character (with default): column separator in the DiscPose.csv files.}
+\item{sepDP}{\link{character} (with default): column separator in the DiscPose.csv files.}
 
-\item{sepDE}{character (with default): column separator in the DoseEnv.csv files.}
+\item{sepDE}{\link{character} (with default): column separator in the DoseEnv.csv files.}
 
-\item{sepDS}{character (with default): column separator in the DoseLab.csv files.}
+\item{sepDS}{\link{character} (with default): column separator in the DoseLab.csv files.}
 
-\item{sepR}{character (with default): column separator in the Rule.csv files.}
+\item{sepR}{\link{character} (with default): column separator in the Rule.csv files.}
+
+\item{...}{further arguments that can be passed to \link[Luminescence:read_BIN2R]{Luminescence::read_BIN2R}.}
 }
 \value{
 A list containing the following objects:
 \itemize{
-  \item \bold{LT} (one list per sample); each list contains all L/T values for the corresponding sample;
-  \item \bold{sLT} (one list per sample); each list contains all uncertainties on L/T values for the corresponding sample;
-  \item \bold{ITimes} (one list per sample); each list contains irradiation time values for the corresponding sample;
-  \item \bold{dLab}, a matrix containing in line \code{i}, the laboratory dose rate and its variance for sample \code{i};
-  \item \bold{ddot_env}, a matrix containing in line \code{i}, the environmental dose rate and its variance (excluding the common error terms) for sample \code{i};
-  \item \bold{regDose} (one list per sample); each list contains all regenerated doses;
-  \item \bold{J}, a vector giving, for each BIN file, the number of aliquots selected for the analysis;
-  \item \bold{K}, a vector giving, for each BIN file, the number of regenerative doses in the SAR protocol;
-  \item \bold{Nb_measurement}, a vector giving, for each BIN file, the number of measurements.\cr
+\item \bold{LT} (one list per sample); each list contains all L/T values for the corresponding sample;
+\item \bold{sLT} (one list per sample); each list contains all uncertainties on L/T values for the corresponding sample;
+\item \bold{ITimes} (one list per sample); each list contains irradiation time values for the corresponding sample;
+\item \bold{dLab}, a matrix containing in line \code{i}, the laboratory dose rate and its variance for sample \code{i};
+\item \bold{ddot_env}, a matrix containing in line \code{i}, the environmental dose rate and its variance (excluding the common error terms) for sample \code{i};
+\item \bold{regDose} (one list per sample); each list contains all regenerated doses;
+\item \bold{J}, a vector giving, for each BIN file, the number of aliquots selected for the analysis;
+\item \bold{K}, a vector giving, for each BIN file, the number of regenerative doses in the SAR protocol;
+\item \bold{Nb_measurement}, a vector giving, for each BIN file, the number of measurements.\cr
 }
 
 \bold{** How to save this list **}\cr
@@ -69,56 +75,55 @@ the luminescence data.\cr
 
 Each subfolder can be named, for example, as the sample name followed by a number; it must contain:
 \itemize{
-  \item \bold{bin.BIN}: the bin file renamed as bin.BIN (note: the name of all files matters);
-  \item \bold{DiscPos.csv}: a two columns csv file containing the list of disc and grain position number of the previously selected grains
-  (typically this list will include the position of grains based on their sensitivity, recycling or other properties);
-  \item \bold{DoseEnv.csv}: a two columns file containing the observation of the natural (or environmental),
-  dose rate, and its non-shared variance (i.e. after removing all shared errors), both in Gy. Note: the user shall provide the squared value of the error associated
-  with the dose rate experienced by the sample grains in nature;
-  \item \bold{DoseSourve.csv}: a two columns file containing the observation of the laboratory dose rate,
-  and its variance (squared error) both in Gy;
-  \item \bold{rule.csv}: a csv file containing information on
-  \itemize{
-    \item \code{beginSignal=}  the first channel for summing the natural or regenerative OSL signal (typically 1 or 6);
-    \item \code{endSignal=} the last channel for summing the natural or regenerative OSL signal (typically 5 or 10);
-    \item \code{beginBackground=} the first channel for background estimation of the natural or regenerative OSL signal (typically 76 or 81);
-    \item \code{endBackground=} the last channel for background estimation of the natural or regenerative OSL signal (typically 95 or 100);
-    \item \code{beginTest=},
-    \item \code{endTest=},
-    \item \code{beginTestBackground=},
-    \item \code{endTestBackground=} same values as above, for the test dose response (typically the same values should be used);
-    \item \code{inflatePercent=} uncertainty arising from the instrument reproducibility (typically 0.02, i.e. 2\%);
-    \item \code{nbOfLastCycleToRemove=} number of cycles at the end of the SAR protocol which should not be included in the dose response curve fitting
-    (typically 1 if only a recycling test is performed, or 2 if both recycling and IR depletion are tested).\cr
-  }
+\item \bold{bin.BIN}: the bin file renamed as bin.BIN (note: the name of all files matters);
+\item \bold{DiscPos.csv}: a two columns csv file containing the list of disc and grain position number of the previously selected grains
+(typically this list will include the position of grains based on their sensitivity, recycling or other properties);
+\item \bold{DoseEnv.csv}: a two columns file containing the observation of the natural (or environmental),
+dose rate, and its non-shared variance (i.e. after removing all shared errors), both in Gy. Note: the user shall provide the squared value of the error associated
+with the dose rate experienced by the sample grains in nature;
+\item \bold{DoseSourve.csv}: a two columns file containing the observation of the laboratory dose rate,
+and its variance (squared error) both in Gy;
+\item \bold{rule.csv}: a csv file containing information on
+\itemize{
+\item \code{beginSignal=}  the first channel for summing the natural or regenerative OSL signal (typically 1 or 6);
+\item \code{endSignal=} the last channel for summing the natural or regenerative OSL signal (typically 5 or 10);
+\item \code{beginBackground=} the first channel for background estimation of the natural or regenerative OSL signal (typically 76 or 81);
+\item \code{endBackground=} the last channel for background estimation of the natural or regenerative OSL signal (typically 95 or 100);
+\item \code{beginTest=},
+\item \code{endTest=},
+\item \code{beginTestBackground=},
+\item \code{endTestBackground=} same values as above, for the test dose response (typically the same values should be used);
+\item \code{inflatePercent=} uncertainty arising from the instrument reproducibility (typically 0.02, i.e. 2\%);
+\item \code{nbOfLastCycleToRemove=} number of cycles at the end of the SAR protocol which should not be included in the dose response curve fitting
+(typically 1 if only a recycling test is performed, or 2 if both recycling and IR depletion are tested).\cr
+}
 }
 
 \bold{** How to fill the} \code{FolderNames} \bold{vector? **}\cr
 
-\code{FolderNames} is a vector of length \code{Nb_binfile}. \code{FolderNames}[i] is the name (e.g., Sample1-File1, or successive names separated by "/" signs,
+\code{FolderNames} is a vector of length \code{Nb_binfile}. \code{FolderNames[i]} is the name (e.g., Sample1-File1, or successive names separated by "/" signs,
 if BIN files are in subfolders, e.g. Sample1/File1) of the subfolder containing all informations on the BIN file of ID number \code{i}.
 The names in \code{FolderNames} are ordered following two rules:
 \itemize{
-  \item The names in the \code{FolderNames} vector must be ordered following the sample order
-  (the names of subfolders containing BIN files for the same sample should follow each other in the \code{FolderNames} vector, e.g.
-  Sample1, Sample2-File1, Sample2-File2, etc.).
-  \item If stratigraphic constraints apply to samples, and so a \bold{Bayesian model with stratigraphic constraints} is implemented,
-  then the names in the \code{FolderNames} vector must be ordered by order of increasing ages. \cr
-  For example, \code{FolderNames=c(noun1,noun2)}, in which case \code{noun1} (respectively, \code{noun2}) corresponds to the subfolder
-  name containing the BIN file of sample 1 (respectively of sample 2).
-  In addition, if we know that sample 1 is younger than sample 2, then \code{FolderNames} vector is correctly filled. \cr
-  If conversely, \code{FolderNames=c(noun2,noun1)}, the analysis performed by \code{\link{AgeS_Computation}} would not be consistent.\cr
+\item The names in the \code{FolderNames} vector must be ordered following the sample order
+(the names of subfolders containing BIN files for the same sample should follow each other in the \code{FolderNames} vector, e.g.
+Sample1, Sample2-File1, Sample2-File2, etc.).
+\item If stratigraphic constraints apply to samples, and so a \bold{Bayesian model with stratigraphic constraints} is implemented,
+then the names in the \code{FolderNames} vector must be ordered by order of increasing ages. \cr
+For example, \code{FolderNames=c(noun1,noun2)}, in which case \code{noun1} (respectively, \code{noun2}) corresponds to the subfolder
+name containing the BIN file of sample 1 (respectively of sample 2).
+In addition, if we know that sample 1 is younger than sample 2, then \code{FolderNames} vector is correctly filled. \cr
+If conversely, \code{FolderNames=c(noun2,noun1)}, the analysis performed by \code{\link{AgeS_Computation}} would not be consistent.\cr
 }
 
 \bold{** How to fill the} \code{BinPerSample} \bold{vector? **}\cr
 
-\code{BinPerSample}[i] correponds to the number of BIN files for the sample whose number ID is equal to \code{i}.\cr
+\code{BinPerSample[i]} correponds to the number of BIN files for the sample whose number ID is equal to \code{i}.\cr
 For example, let us consider a case with two samples (Sample1 and Sample2), with 2 BIN files for Sample1 and 1 for Sample2.
 In this case, \code{Nb_binfile}=3 and \code{Nb_sample}=2.
 The user may then set \code{FolderNames=c("Sample1-File1", "Sample1-File2", "Sample2-File1")}, in which case \code{"Sample1-File1"} is the name of the subfolder
 containing the first BIN file for Sample1, \code{"Sample1-File2"} the name of the  subfolder for the second BIN file of Sample1; eventually,
 \code{"Sample2-File1"} is the name of the subfolder containing the BIN file for the second sample. In this case, \code{BinPerSample=c(2,1)}.
-
 
 For the general BIN-file structure, the reader is referred to the following website:
 \code{http://www.nutech.dtu.dk/}
@@ -144,5 +149,5 @@ str(Data)
 \code{\link{Age_Computation}}, \code{\link{AgeS_Computation}}, \code{\link{Palaeodose_Computation}}
 }
 \author{
-Claire Christophe, Anne Philippe, Guillaume Guerin
+Claire Christophe, Sebastian Kreutzer, Anne Philippe, Guillaume Guerin
 }
