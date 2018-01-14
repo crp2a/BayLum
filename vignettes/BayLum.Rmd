@@ -385,7 +385,7 @@ DATA3 <- Generate_DataFile(
 # using the function Concat_DataFile()
 data(DATA1,envir = environment()) # .RData on sample GDB3
 data(DATA2,envir = environment()) # .RData on sample GDB5
-DATA3 <- Concat_DataFile(L1=DATA1,L2=DATA2)
+DATA3 <- Concat_DataFile(L1 = DATA1, L2 = DATA2)
 ```
 
 ### Construct stratigraphy constrain matrix 
@@ -445,17 +445,17 @@ Age <-
 
 # References
 
-Combes, B., Philippe, A., Lanos, P., Mercier, N., Tribolo, C., Guerin, G., Guibert, P., Lahaye, C., (2015). 
+Combes, B., Philippe, A., Lanos, P., Mercier, N., Tribolo, C., Guerin, G., Guibert, P., Lahaye, C., 2015. 
 A Bayesian central equivalent dose model for optically stimulated luminescence dating. Quaternary Geochronology 28, 62-70.
 
-Combès, B., Philippe, A., 2017. Bayesian analysis of individual and systematic multiplicative errors for estimating ages with stratigraphic constraints in optically stimulated luminescence dating. Quaternary Geochronology 39, 24–34. doi:10.1016/j.quageo.2017.02.003
+Combès, B., Philippe, A., 2017. Bayesian analysis of individual and systematic multiplicative errors for estimating ages with stratigraphic constraints in optically stimulated luminescence dating. Quaternary Geochronology 39, 24–34.
 
 ## Further reading 
 
 For more details on the diagnostic of Markov chain:
 
-Robert and Casella (2009). Introducing Monte Carlo Methods with R. Springer Science & Business Media.
+Robert and Casella, 2009. Introducing Monte Carlo Methods with R. Springer Science & Business Media.
 
 For more detais on the used datasets, we refer to the following publication:
 
-Tribolo, C., Asrat, A., Bahain, J. J., Chapon, C., Douville, E., Fragnol, C., Hernandez, M., Hovers, E., Leplongeon, A.,  Martin, L,  Pleurdeau, D,  Pearson, O ,  Puaud, S,  Assefa, Z. (2017). Across the Gap: Geochronological and Sedimentological Analyses from the Late Pleistocene-Holocene Sequence of Goda Buticha, Southeastern Ethiopia. PloS one, 12(1), e0169418.
+Tribolo, C., Asrat, A., Bahain, J. J., Chapon, C., Douville, E., Fragnol, C., Hernandez, M., Hovers, E., Leplongeon, A.,  Martin, L,Pleurdeau, D,  Pearson, O,  Puaud, S,  Assefa, Z., 2017. Across the Gap: Geochronological and Sedimentological Analyses from the Late Pleistocene-Holocene Sequence of Goda Buticha, Southeastern Ethiopia. PloS one, 12(1), e0169418.
