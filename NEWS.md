@@ -11,6 +11,7 @@
 * The functions `Generate_DataFile()` and `Generate_DataFile_MG()` now supports the `...` argument to pass further
 arguments to the function `Luminescene::read_BIN2R()`
 * The functions `Generate_DataFile()` and `Generate_DataFile_MG()` gained a new argument `verbose` to control the terminal output
+* The function `Age_Computation()` now supports the argument `quiet` and pipes it to `rjags` to suppress verbose terminal output
 * The function `LT_RegenDose()` gained two new arguments `nrow` and `ncol` became a little bit more user friendly
 
 ### Internals
