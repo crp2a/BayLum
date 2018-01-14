@@ -11,7 +11,7 @@ AgeC14_Computation(Data_C14Cal, Data_SigmaC14Cal, SampleNames, Nb_sample,
   OutputTableName = c("DATA"), OutputTablePath = c(""),
   StratiConstraints = c(), sepSC = c(","), Model = c("full"),
   CalibrationCurve = c("AtmosphericNorth"), Iter = 50000, t = 5,
-  Nb_chaines = 3)
+  Nb_chaines = 3, quiet = FALSE)
 }
 \arguments{
 \item{Data_C14Cal}{numeric vector: corresponding to 14C age estimate.}
@@ -68,6 +68,8 @@ If \bold{"naive"} this error is not taken account in the age estimate.}
 (for more information see \code{\link{jags.model}}).}
 
 \item{Nb_chaines}{integer (with default): number of independent chains for the model (for more information see \code{\link{jags.model}}).}
+
+\item{quiet}{\code{\link{logical}} (with default): enables/disables \link{rjags} messages}
 }
 \value{
 \bold{NUMERICAL OUTPUT}
@@ -149,10 +151,16 @@ C14Cal=DATA_C14$C14[,1]
 SigmaC14Cal=DATA_C14$C14[,2]
 Names=DATA_C14$Names
 nb_sample=length(Names)
-## Age computation of samples without stratigraphic relations
 
-Age=AgeC14_Computation(Data_C14Cal=C14Cal,Data_SigmaC14Cal=SigmaC14Cal,
-   SampleNames=Names,Nb_sample=nb_sample,PriorAge=rep(c(20000,60000),nb_sample),Iter=500)
+## Age computation of samples without stratigraphic relations
+Age <- AgeC14_Computation(
+Data_C14Cal = C14Cal,
+Data_SigmaC14Cal = SigmaC14Cal,
+SampleNames = Names,
+Nb_sample = nb_sample,
+PriorAge = rep(c(20000,60000),nb_sample),
+Iter = 500,
+quiet = TRUE)
 
 }
 \references{

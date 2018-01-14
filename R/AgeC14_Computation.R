@@ -41,6 +41,7 @@
 #' @param t integer (with default): 1 every \code{t} iterations of the MCMC is considered for sampling the posterior distribution
 #' (for more information see \code{\link{jags.model}}).
 #' @param Nb_chaines integer (with default): number of independent chains for the model (for more information see \code{\link{jags.model}}).
+#' @param quiet \code{\link{logical}} (with default): enables/disables \link{rjags} messages
 #'
 #' @details
 #' \bold{** How to fill} \code{StratiConstraints} \bold{? **}\cr
@@ -134,20 +135,39 @@
 #' SigmaC14Cal=DATA_C14$C14[,2]
 #' Names=DATA_C14$Names
 #' nb_sample=length(Names)
-#' ## Age computation of samples without stratigraphic relations
 #'
-#' Age=AgeC14_Computation(Data_C14Cal=C14Cal,Data_SigmaC14Cal=SigmaC14Cal,
-#'    SampleNames=Names,Nb_sample=nb_sample,PriorAge=rep(c(20000,60000),nb_sample),Iter=500)
+#' ## Age computation of samples without stratigraphic relations
+#' Age <- AgeC14_Computation(
+#' Data_C14Cal = C14Cal,
+#' Data_SigmaC14Cal = SigmaC14Cal,
+#' SampleNames = Names,
+#' Nb_sample = nb_sample,
+#' PriorAge = rep(c(20000,60000),nb_sample),
+#' Iter = 500,
+#' quiet = TRUE)
 #'
 #' @export
-AgeC14_Computation<-function(Data_C14Cal,Data_SigmaC14Cal,SampleNames,Nb_sample,
-                             PriorAge=rep(c(10000,50000),Nb_sample),
-                             SavePdf=FALSE,
-                             OutputFileName=c('MCMCplot',"HPD_Cal14CCurve","summary"),OutputFilePath=c(""),
-                             SaveEstimates=FALSE,OutputTableName=c("DATA"),OutputTablePath=c(''),
-                             StratiConstraints=c(),sepSC=c(','),
-                             Model=c("full"),CalibrationCurve=c("AtmosphericNorth"),
-                             Iter=50000,t=5,Nb_chaines=3){
+AgeC14_Computation <- function(Data_C14Cal,
+ Data_SigmaC14Cal,
+ SampleNames,
+ Nb_sample,
+ PriorAge = rep(c(10000, 50000), Nb_sample),
+ SavePdf = FALSE,
+ OutputFileName = c('MCMCplot', "HPD_Cal14CCurve", "summary"),
+ OutputFilePath = c(""),
+ SaveEstimates = FALSE,
+ OutputTableName = c("DATA"),
+ OutputTablePath = c(''),
+ StratiConstraints = c(),
+ sepSC = c(','),
+ Model = c("full"),
+ CalibrationCurve = c("AtmosphericNorth"),
+ Iter = 50000,
+ t = 5,
+ Nb_chaines = 3,
+ quiet = FALSE
+){
+
 
    #--- BUG file selection
    Model_AgeC14<-0
@@ -199,9 +219,20 @@ AgeC14_Computation<-function(Data_C14Cal,Data_SigmaC14Cal,SampleNames,Nb_sample,
                      "xTableauCalib"=AgeBP,"yTableauCalib"=CalC14,
                      "xbound"=PriorAge,"StratiConstraints"=StratiConstraints)
    }
-   jags <- rjags::jags.model(textConnection(Model_AgeC14[[Model]]),data = dataList,n.chains = Nb_chaines,n.adapt= Iter)
-   update(jags,Iter)
-   echantillon = rjags::coda.samples(jags,c('Age','Z'),min(Iter,10000),thin=t)
+   jags <-
+     rjags::jags.model(
+       textConnection(Model_AgeC14[[Model]]),
+       data = dataList,
+       n.chains = Nb_chaines,
+       n.adapt = Iter,
+       quiet = quiet
+     )
+
+   ##set progress.bar
+   if(quiet) progress.bar <- 'none' else progress.bar <- 'text'
+
+   update(jags,Iter, progress.bar = progress.bar)
+   echantillon = rjags::coda.samples(jags,c('Age','Z'),min(Iter,10000),thin=t, progress.bar = progress.bar)
    U=summary(echantillon)
 
    Sample=echantillon[[1]]
@@ -263,7 +294,14 @@ AgeC14_Computation<-function(Data_C14Cal,Data_SigmaC14Cal,SampleNames,Nb_sample,
      #dev.print(pdf,file=paste(OutputFilePath,OutputFileName[1],'.pdf',sep=""),width=8,height=10)
    }
 
-   Outlier=SampleNames[which(U$statistics[(Nb_sample+1):(2*Nb_sample),1]<1.5)]
+   Outlier <- SampleNames[which(U$statistics[(Nb_sample+1):(2*Nb_sample),1]<1.5)]
+
+   ##if Outliers are detect, return warning
+    if(length(Outlier) > 0){
+      warning(paste("[Age14_Computation()] Outliers detected in sample:", paste(Outlier, collapse = ", ")), call. = FALSE)
+
+    }
+
 
    ##- Gelman and rudin test of convergency of the MCMC
    CV=gelman.diag(echantillon,multivariate=FALSE)
@@ -372,7 +410,3 @@ AgeC14_Computation<-function(Data_C14Cal,Data_SigmaC14Cal,SampleNames,Nb_sample,
            "StratiConstraints"=StratiConstraints)
   return(Info)
 }
-
-
-
-
