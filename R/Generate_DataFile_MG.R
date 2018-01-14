@@ -26,6 +26,8 @@
 #' @param sepDS [character] (with default): column separator in the DoseLab.csv files.
 #' @param sepR [character] (with default): column separator in the Rule.csv files.
 #'
+#' @param verbose [logical] (with default): enable/disable verbose mode
+#'
 #' @param ... further arguments that can be passed to [Luminescence::read_BIN2R].
 #'
 #' @details
@@ -139,6 +141,7 @@ Generate_DataFile_MG <- function(
   sepDE = c(","),
   sepDS = c(","),
   sepR = c("="),
+  verbose = TRUE,
   ...
 ){
 
@@ -164,7 +167,8 @@ Generate_DataFile_MG <- function(
 
   ##the internal preset
   read_BIN2R.settings <- list(
-    duplicated.rm = TRUE
+    duplicated.rm = TRUE,
+    verbose = verbose
   )
 
   ##overwrite the preset if needed

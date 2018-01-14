@@ -33,6 +33,8 @@
 #'
 #' @param sepR [character] (with default): column separator in the Rule.csv files.
 #'
+#' @param verbose [logical] (with default): enable/disable verbose mode
+#'
 #' @param ... further arguments that can be passed to [Luminescence::read_BIN2R].
 #'
 #' @details
@@ -127,7 +129,11 @@
 #' path<- system.file("extdata/samp1", "", package="BayLum")
 #' folder=""
 #' nbsample=1  # give the number of sample
-#' Data=Generate_DataFile(Path=path,FolderNames=folder,Nb_sample=nbsample)
+#' Data <- Generate_DataFile(
+#'  Path = path,
+#'  FolderNames = folder,
+#'  Nb_sample = nbsample,
+#'  verbose = FALSE)
 #' str(Data)
 #'
 #' ## to save information in RData object in folder containing bin file
@@ -147,6 +153,7 @@ Generate_DataFile <- function(
   sepDE = c(","),
   sepDS = c(","),
   sepR = c("="),
+  verbose = TRUE,
   ...
 ){
 
@@ -170,7 +177,8 @@ Generate_DataFile <- function(
 
   ##the internal preset
   read_BIN2R.settings <- list(
-    duplicated.rm = TRUE
+    duplicated.rm = TRUE,
+    verbose = verbose
   )
 
   ##overwrite the preset if needed
@@ -186,13 +194,13 @@ Generate_DataFile <- function(
   for(i in 1:Nb_sample){
     for(nb in 1:BinPerSample[i]){
       bf=bf+1
-      print(paste("File being read:",FolderNames[bf]))
+      if(verbose) print(paste("File being read:",FolderNames[bf]))
 
       # read files....
       XLS_file <- read.csv(file=paste(Path,FolderNames[bf],"/DiscPos.csv",sep=""),sep=sepDP)
-      DL=read.csv(file=paste(Path,FolderNames[bf],"/DoseSource.csv",sep=""),sep=sepDS)
-      dd=read.csv(file=paste(Path,FolderNames[bf],"/DoseEnv.csv",sep=""),sep=sepDE)
-      rule=read.csv(file=paste(Path,FolderNames[bf],"/rule.csv",sep=""),sep=sepR)
+      DL <- read.csv(file=paste(Path,FolderNames[bf],"/DoseSource.csv",sep=""),sep=sepDS)
+      dd <- read.csv(file=paste(Path,FolderNames[bf],"/DoseEnv.csv",sep=""),sep=sepDE)
+      rule <- read.csv(file=paste(Path,FolderNames[bf],"/rule.csv",sep=""),sep=sepR)
 
       # BIN file analysis
       ##TODO ... once Luminescenc version 0.8.0 is published this line can be used

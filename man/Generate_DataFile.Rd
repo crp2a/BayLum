@@ -7,7 +7,8 @@ a list of luminescence data and information before statistical analysis}
 \usage{
 Generate_DataFile(Path, FolderNames, Nb_sample,
   Nb_binfile = length(FolderNames), BinPerSample = rep(1, Nb_sample),
-  sepDP = c(","), sepDE = c(","), sepDS = c(","), sepR = c("="), ...)
+  sepDP = c(","), sepDE = c(","), sepDS = c(","), sepR = c("="),
+  verbose = TRUE, ...)
 }
 \arguments{
 \item{Path}{\link{character} (\strong{required}): the path to the project folder, containing one or more subfolders in which the BIN files
@@ -38,6 +39,8 @@ Otherwise, this vector must contain a list of 1 values.}
 \item{sepDS}{\link{character} (with default): column separator in the DoseLab.csv files.}
 
 \item{sepR}{\link{character} (with default): column separator in the Rule.csv files.}
+
+\item{verbose}{\link{logical} (with default): enable/disable verbose mode}
 
 \item{...}{further arguments that can be passed to \link[Luminescence:read_BIN2R]{Luminescence::read_BIN2R}.}
 }
@@ -135,7 +138,11 @@ The function \code{\link{read_BIN2R}} developped in \code{\link{Luminescence}} p
 path<- system.file("extdata/samp1", "", package="BayLum")
 folder=""
 nbsample=1  # give the number of sample
-Data=Generate_DataFile(Path=path,FolderNames=folder,Nb_sample=nbsample)
+Data <- Generate_DataFile(
+ Path = path,
+ FolderNames = folder,
+ Nb_sample = nbsample,
+ verbose = FALSE)
 str(Data)
 
 ## to save information in RData object in folder containing bin file
