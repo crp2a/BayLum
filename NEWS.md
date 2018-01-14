@@ -5,6 +5,7 @@
 * The function `AgeS_Computation()` now returns the MCMC information from all samples of the PDF output is set to `TRUE`
 * The function `Age_OSLC14()` never returned numerical data; fixed
 * Fix `Age_OSLC14()` age format, now in ka for C-14 instead of years
+* The last example in `AgeS_Computation()` could not be run; fixed. 
 
 ### Enhancements
 * Allow different BIN/BINX-file names as input. The functions `Generate_DataFile()` and `Generate_DataFile_MG()` do no longer expecting the name sheme bin.BIN

@@ -199,23 +199,38 @@
 #' Quaternary Geochronology 28, 62-70. doi:10.1016/j.quageo.2015.04.001
 #'
 #' @examples
-#' ## Load data
+#' ## load data
 #' data(DATA1,envir = environment())
 #' data(DATA2,envir = environment())
-#' Data=Concat_DataFile(DATA2,DATA1)
+#' Data <- Concat_DataFile(DATA2,DATA1)
 #'
 #' ## Age computation of samples GDB5 and GDB3,
 #' priorage=c(1,10,20,60) # these samples are not young
 #' ## without common error and without stratigraphic constraints
-#' Age=AgeS_Computation(DATA=Data,Nb_sample=2,SampleNames=c("GDB5","GDB3"),
-#'       PriorAge=priorage,Iter=50,Nb_chaines=2)
+#' Age <- AgeS_Computation(
+#'   DATA = Data,
+#'   Nb_sample = 2,
+#'   SampleNames = c("GDB5","GDB3"),
+#'   PriorAge = priorage,
+#'   Iter = 50,
+#'   Nb_chaines = 2)
 #'
 #' ## Age computation of samples GDB5 and GDB3,
 #' ## without common error, assuming GDB5 age younder than GDB3 age
 #' \dontrun{
-#' (SC=matrix(data=c(1,1,0,1,0,0),ncol=Nb_sample,nrow = (Nb_sample+1),byrow = T))
-#' Age=AgeS_Computation(DATA=Data,Nb_sample=2,SampleNames=c("GDB5","GDB3"),
-#'   PriorAge=priorage,StratiConstraints=SC,Iter=10000)
+#' Nb_sample <- 2
+#' SC <- matrix(
+#'   data = c(1,1,0,1,0,0),
+#'   ncol = 2,
+#'   nrow = (Nb_sample+1),byrow = T)
+#'
+#' Age <- AgeS_Computation(
+#'  DATA = Data,
+#'  Nb_sample = Nb_sample,
+#'  SampleNames = c("GDB5","GDB3"),
+#'  PriorAge = priorage,
+#'  StratiConstraints = SC,
+#'  Iter = 10000)
 #' }
 #'
 #' @export
