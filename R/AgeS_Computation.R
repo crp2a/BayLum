@@ -310,7 +310,8 @@ AgeS_Computation<-function(DATA,SampleNames,Nb_sample,
                   "index"=index2,
                   "BinPerSample"=BinPerSample,
                   "CSBinPerSample"=CSBinPerSample)
-  jags <-  rjags::jags.model(textConnection(Model_AgeS[[Model_GrowthCurve]][[distribution]]), data = dataList, n.chains = Nb_chaines, n.adapt=Iter)
+  jags <-  rjags::jags.model(textConnection(Model_AgeS[[Model_GrowthCurve]][[distribution]]),
+                             data = dataList, n.chains = Nb_chaines, n.adapt=Iter)
   update(jags,Iter)
   echantillon =  rjags::coda.samples(jags,c("A","D","sD"),min(Iter,10000),thin=t)
 
@@ -319,29 +320,23 @@ AgeS_Computation<-function(DATA,SampleNames,Nb_sample,
     sample=rbind(sample,echantillon[[i]])
   }
 
-  MCMC_plot(sample,
-            length(echantillon[[1]][,1]),
-            SampleNames=SampleNames,
-            Nb_sample=Nb_sample,
-            Nb_chaines=Nb_chaines,
-            value=c(0,Nb_sample,2*Nb_sample))
-  if(SavePdf==TRUE){
+  ##plot MCMC
+  if(SavePdf){
     pdf(file=paste(OutputFilePath,OutputFileName[1],'.pdf',sep=""))
-    MCMC_plot(sample,
-              length(echantillon[[1]][,1]),
-              SampleNames=SampleNames,
-              Nb_sample=Nb_sample,
-              Nb_chaines=Nb_chaines,
-              value=c(0,Nb_sample,2*Nb_sample))
-    dev.off()
-    #dev.print(pdf,file=paste(OutputFilePath,OutputFileName[1],'.pdf',sep=""),width=8,height=10)
   }
+
+  plot_MCMC(echantillon, sample_names = SampleNames)
+
+  if(SavePdf){
+    dev.off()
+  }
+
 
   ##--- Graphical interpretation, and print result
 
   ##- Gelman and Rubin test of convergency of the MCMC
   CV=gelman.diag(echantillon,multivariate=FALSE)
-  cat(paste("\n\n>> Result of Gelman and Rubin critere of convergency <<\n"))
+  cat(paste("\n\n>> Results of the Gelman and Rubin criterion of convergence <<\n"))
   for(i in 1:Nb_sample){
     cat("----------------------------------------------\n")
     cat(paste(" Sample name: ", SampleNames[i],"\n"))
@@ -352,9 +347,9 @@ AgeS_Computation<-function(DATA,SampleNames,Nb_sample,
     cat(paste(paste("sD_",SampleNames[i],sep=""),"\t",round(CV$psrf[(2*Nb_sample+i),1],2),"\t\t",round(CV$psrf[(2*Nb_sample+i),2],2),"\n"))
   }
 
-  cat("\n\n________________________________________________________________________________\n")
-  cat(" *** WARNING: following informations are only valid if MCMC chains converged  ***\n")
-  cat("________________________________________________________________________________\n")
+  cat("\n\n---------------------------------------------------------------------------------------------------\n")
+  cat(" *** WARNING: The following information are only valid if the MCMC chains have converged  ***\n")
+  cat("---------------------------------------------------------------------------------------------------\n\n")
 
   # Matrix of results
   rnames=rep(NA,3*Nb_sample)

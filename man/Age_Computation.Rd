@@ -172,7 +172,7 @@ Quaternary Geochronology 28, 62-70. doi:10.1016/j.quageo.2015.04.001
 }
 \seealso{
 \code{\link{Generate_DataFile}}, \code{\link{Generate_DataFile_MG}},
-\code{\link{rjags}}, \code{\link{MCMC_plot}}
+\code{\link{rjags}}, \code{\link{plot_MCMC}}
 \code{\link{AgeS_Computation}}, \code{\link{Palaeodose_Computation}}
 }
 \author{
