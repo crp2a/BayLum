@@ -114,7 +114,7 @@
 #' @author Claire Christophe, Anne Philippe, Guillaume Guerin
 #'
 #' @seealso
-#' \code{\link{rjags}}, \code{\link{MCMC_plot}}, \code{\link{SCMatrix}}
+#' \code{\link{rjags}}, \code{\link{plot_MCMC}}, \code{\link{SCMatrix}}
 #'
 #' @references
 #' Christen, JA (1994). Summarizing a set of radiocarbon determinations: a robust approach. Applied Statistics, 489-503.
@@ -244,54 +244,16 @@ AgeC14_Computation <- function(Data_C14Cal,
    for(i in 1:Nb_sample){
      nom=c(nom,paste("A_",SampleNames[i],sep=""))
    }
-   r=Nb_sample%%6
-   q=Nb_sample%/%6
-   if(q>0){
-     for (l in 1:q){
-       MCMC_plot(Sample[,(6*(l-1)+1):(6*l)],
-                 length(echantillon[[1]][,1]),
-                 SampleNames=c(""),
-                 Nb_sample=1,
-                 Nb_chaines=Nb_chaines,
-                 value=seq(0,5,1),
-                 param=nom[(6*(l-1)+1):(6*l)])
-     }
-   }
-   if(r>0){
-   MCMC_plot(as.matrix(Sample[,(6*q+1):Nb_sample]),
-             length(echantillon[[1]][,1]),
-             SampleNames=c(""),
-             Nb_sample=1,
-             Nb_chaines=Nb_chaines,
-             value=seq(0,(r-1),1),
-             param=nom[(6*q+1):Nb_sample])
-   }
-   if(SavePdf==TRUE){
+
+   ##plot MCMC
+   if(SavePdf){
      pdf(file=paste(OutputFilePath,OutputFileName[1],'.pdf',sep=""))
-     r=Nb_sample%%6
-     q=Nb_sample%/%6
-     if(q>0){
-       for (l in 1:q){
-         MCMC_plot(Sample[,(6*(l-1)+1):(6*l)],
-                   length(echantillon[[1]][,1]),
-                   SampleNames=c(""),
-                   Nb_sample=1,
-                   Nb_chaines=Nb_chaines,
-                   value=seq(0,5,1),
-                   param=nom[(6*(l-1)+1):(6*l)])
-       }
-     }
-     if(r>0){
-       MCMC_plot(as.matrix(Sample[,(6*q+1):Nb_sample]),
-                 length(echantillon[[1]][,1]),
-                 SampleNames=c(""),
-                 Nb_sample=1,
-                 Nb_chaines=Nb_chaines,
-                 value=seq(0,(r-1),1),
-                 param=nom[(6*q+1):Nb_sample])
-     }
-     dev.off()
-     #dev.print(pdf,file=paste(OutputFilePath,OutputFileName[1],'.pdf',sep=""),width=8,height=10)
+   }
+
+   plot_MCMC(echantillon, sample_names = SampleNames, variables = "Age")
+
+   if(SavePdf){
+    dev.off()
    }
 
    Outlier <- SampleNames[which(U$statistics[(Nb_sample+1):(2*Nb_sample),1]<1.5)]
@@ -305,7 +267,7 @@ AgeC14_Computation <- function(Data_C14Cal,
 
    ##- Gelman and Rubin test of convergency of the MCMC
    CV=gelman.diag(echantillon,multivariate=FALSE)
-   cat(paste("\n\n>> Convergencies of MCMC of Age parameter <<\n"))
+   cat(paste("\n\n>> MCMC Convergence of Age parameters <<\n"))
    cat("----------------------------------------------\n")
    cat(paste("Sample name ", " Bayes estimate ", " Uppers credible interval\n"))
    for(i in 1:Nb_sample){
@@ -314,9 +276,9 @@ AgeC14_Computation <- function(Data_C14Cal,
      cat(paste(paste("A_",SampleNames[i],sep=""),"\t",round(CV$psrf[i,1],2),"\t\t",round(CV$psrf[i,2],2),"\n"))
    }
 
-   cat("\n\n________________________________________________________________________________\n")
-   cat(" *** WARNING: following informations are only valid if MCMC chains converged  ***\n")
-   cat("________________________________________________________________________________\n")
+   cat("\n\n---------------------------------------------------------------------------------------------------\n")
+   cat(" *** WARNING: The following information are only valid if the MCMC chains have converged  ***\n")
+   cat("---------------------------------------------------------------------------------------------------\n\n")
 
    # Matrix of results
    rnames=c()

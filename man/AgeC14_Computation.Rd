@@ -175,7 +175,7 @@ Hogg AG, Hua Q, Blackwell PG, Niu M, Buck CE, Guilderson TP, Heaton TJ, Palmer J
 2013. SHCal13 Southern Hemisphere calibration, 0-50000 years cal BP. Radiocarbon 55(4):1889-1903
 }
 \seealso{
-\code{\link{rjags}}, \code{\link{MCMC_plot}}, \code{\link{SCMatrix}}
+\code{\link{rjags}}, \code{\link{plot_MCMC}}, \code{\link{SCMatrix}}
 }
 \author{
 Claire Christophe, Anne Philippe, Guillaume Guerin
