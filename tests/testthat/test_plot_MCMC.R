@@ -17,6 +17,11 @@ test_that("Full function test", {
     ##plot.single
     expect_silent(plot_MCMC(object, plot_single = TRUE))
 
+    ##sample_names
+    expect_silent(plot_MCMC(object, sample_names = "Test"))
+    expect_silent(plot_MCMC(object, mtext = "Test"))
+    expect_silent(plot_MCMC(object, sample_names = c("Test", "Test2")))
+
     ##n.chains
     expect_silent(plot_MCMC(object, n.chains = 1))
 
