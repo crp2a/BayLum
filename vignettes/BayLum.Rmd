@@ -13,7 +13,7 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-  ```{r, echo = FALSE, message = FALSE}
+```{r, echo = FALSE, message = FALSE}
 rm(list = ls())
 knitr::opts_chunk$set(comment = "")
 options(width = 120, max.print = 100)
