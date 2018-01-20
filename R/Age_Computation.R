@@ -123,7 +123,7 @@
 #' @author Claire Christophe, Sebastian Kreutzer, Anne Philippe, Guillaume Guerin
 #'
 #' @seealso \code{\link{Generate_DataFile}}, \code{\link{Generate_DataFile_MG}},
-#' \code{\link{rjags}}, \code{\link{MCMC_plot}}
+#' \code{\link{rjags}}, \code{\link{plot_MCMC}}
 #' \code{\link{AgeS_Computation}}, \code{\link{Palaeodose_Computation}}
 #'
 #' @references
