@@ -15,6 +15,8 @@
 #' @param sample_names [character] (optional): Names of the used samples. This argument overrides the optional
 #' argument `mtext`.
 #'
+#' @param variables [character] (with default): Variables in your [coda::mcmc] object to be plotted.
+#'
 #' @param axes_labels [character] (with default): Axes labels used for the trace and density plots. The labels should
 #' be provided as names [character] [vector] with the parameter names as the names used to asign the axes labelling.
 #' The labelling for the xaxis (trace plots) and yaxis (density plot) cannot be modified.
@@ -59,6 +61,7 @@
 plot_MCMC <- function(
   object,
   sample_names = NULL,
+  variables = c("A", "D", "sD"),
   axes_labels = c("A" = "Age (ka)", "D" = "D (Gy)", "sD" = "sD (Gy)"),
   n.chains = NULL,
   n.iter = 1000,
@@ -76,6 +79,24 @@ plot_MCMC <- function(
       stop("[plot_MCMC()] 'sample' has to be of class 'mcmc.list' or 'mcmc'!", call. = FALSE)
 
     }
+
+  }
+
+  # Extract wanted parameters -------------------------------------------------------------------
+  if(!all(gsub(coda::varnames(object), pattern = "\\[.\\]" ,replacement = "") %in% variables)){
+    sel <- which(gsub(coda::varnames(object), pattern = "\\[.\\]" ,replacement = "") %in% variables)
+
+    if(length(sel) == 0){
+      allowed <- unique(gsub(coda::varnames(object), pattern = "\\[.\\]" ,replacement = ""))
+      stop(paste0("[plot_MCMC()] Invalid 'variables', they did not match your dataset. Variable names of your dataset: ",
+                  paste(allowed, collapse = ", "), "."), call. = FALSE)
+    }
+
+    ##create new object
+    object <- as.mcmc.list(lapply(object, function(x){
+      x[,sel]
+
+    }))
 
   }
 
@@ -189,7 +210,7 @@ plot_MCMC <- function(
   par.default <- par()$mfrow
   on.exit(par(mfrow = par.default))
 
-  ##set mfrow if not single plot is wanted
+  ##set mfrow if no single plot is wanted
   if(!plot_single)
     par(mfrow = c(length(unique(gsub(coda::varnames(object), pattern = "\\[.\\]" ,replacement = ""))), 2))
 
@@ -238,3 +259,5 @@ plot_MCMC <- function(
   }
 
 }
+
+
