@@ -222,7 +222,7 @@ Palaeodose_Computation<-function(DATA,SampleNames,Nb_sample,
 
   ##- Gelman and Rubin test of convergency of the MCMC
   CV=gelman.diag(echantillon,multivariate=FALSE)
-  cat(paste("\n\n>> Result of Gelman and Rubin critere of convergency <<\n"))
+  cat(paste("\n\n>> Results of the Gelman and Rubin criterion of convergence <<\n"))
   for(i in 1:Nb_sample){
     cat("----------------------------------------------\n")
     cat(paste(" Sample name: ", SampleNames[i],"\n"))
@@ -232,10 +232,9 @@ Palaeodose_Computation<-function(DATA,SampleNames,Nb_sample,
     cat(paste(paste("sD_",SampleNames[i],sep=""),"\t",round(CV$psrf[(Nb_sample+i),1],2),"\t\t",round(CV$psrf[(Nb_sample+i),2],2),"\n"))
   }
 
-  cat("\n\n________________________________________________________________________________\n")
-  cat(" *** WARNING: following informations are only valid if MCMC chains converged  ***\n")
-  cat("________________________________________________________________________________\n")
-
+  cat("\n\n---------------------------------------------------------------------------------------------------\n")
+  cat(" *** WARNING: The following information are only valid if the MCMC chains have converged  ***\n")
+  cat("---------------------------------------------------------------------------------------------------\n\n")
   # Matrix of results
   rnames=rep(NA,2*Nb_sample)
   for(i in 1:Nb_sample){
