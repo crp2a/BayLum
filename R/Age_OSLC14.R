@@ -222,7 +222,7 @@
 #' @author Claire Christophe, Anne Philippe, Guillaume Guerin
 #'
 #' @seealso
-#' \code{\link{rjags}}, \code{\link{MCMC_plot}}, \code{\link{SCMatrix}}
+#' \code{\link{rjags}}, \code{\link{plot_MCMC}}, \code{\link{SCMatrix}}
 #'
 #' @references
 #' Reimer PJ, Bard E, Bayliss A, Beck JW, Blackwell PC, Bronl Ramsey C, Buck CE, Cheng H, Edwards RL, Friedrich M,
@@ -449,55 +449,19 @@ Age_OSLC14<-function(DATA,Data_C14Cal,Data_SigmaC14Cal,
   for(i in 1:Nb_sample){
     nom=c(nom,paste("A_",SampleNames[i],sep=""))
   }
-  r=Nb_sample%%6
-  q=Nb_sample%/%6
-  if(q>0){
-    for (l in 1:q){
-      MCMC_plot(Sample[,(6*(l-1)+1):(6*l)],
-                length(echantillon[[1]][,1]),
-                SampleNames=c(""),
-                Nb_sample=1,
-                Nb_chaines=Nb_chaines,
-                value=seq(0,5,1),
-                param=nom[(6*(l-1)+1):(6*l)])
-    }
-  }
-  if(r>0){
-    MCMC_plot(as.matrix(Sample[,(6*q+1):Nb_sample]),
-              length(echantillon[[1]][,1]),
-              SampleNames=c(""),
-              Nb_sample=1,
-              Nb_chaines=Nb_chaines,
-              value=seq(0,(r-1),1),
-              param=nom[(6*q+1):Nb_sample])
-  }
-  if(SavePdf==TRUE){
+
+  ##plot MCMC
+  if(SavePdf){
     pdf(file=paste(OutputFilePath,OutputFileName[1],'.pdf',sep=""))
-    if(q>0){
-      for (l in 1:q){
-        MCMC_plot(Sample[,(6*(l-1)+1):(6*l)],
-                  length(echantillon[[1]][,1]),
-                  SampleNames=c(""),
-                  Nb_sample=1,
-                  Nb_chaines=Nb_chaines,
-                  value=seq(0,5,1),
-                  param=nom[(6*(l-1)+1):(6*l)])
-      }
-    }
-    if(r>0){
-      MCMC_plot(as.matrix(Sample[,(6*q+1):Nb_sample]),
-                length(echantillon[[1]][,1]),
-                SampleNames=c(""),
-                Nb_sample=1,
-                Nb_chaines=Nb_chaines,
-                value=seq(0,(r-1),1),
-                param=nom[(6*q+1):Nb_sample])
-    }
-    dev.off()
-    #dev.print(pdf,file=paste(OutputFilePath,OutputFileName[1],'.pdf',sep=""),width=8,height=10)
   }
 
-  Outlier=SampleNames[ind_C14[which(U$statistics[(Nb_sample+1):(Nb_sample+sum(SampleNature[2,])),1]<1.5)]]
+  plot_MCMC(echantillon, sample_names = SampleNames)
+
+  if(SavePdf){
+    dev.off()
+  }
+
+  Outlier <- SampleNames[ind_C14[which(U$statistics[(Nb_sample+1):(Nb_sample+sum(SampleNature[2,])),1]<1.5)]]
 
   ##- Gelman and Rubin test of convergency of the MCMC
   CV=gelman.diag(echantillon,multivariate=FALSE)
