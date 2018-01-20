@@ -1,11 +1,16 @@
 ## BayLum 0.1.2 (Release date: 2018-XX-XX)
 
+### New functions
+* The function `MCMC_plot()` is replaced by the newly written function `plot_MCMC()`
+
 ### Bugfixes
 * The functions `AgeC14_Compution()` and `Age_OSL14()` now returns age results with two digits
 * The function `AgeS_Computation()` now returns the MCMC information from all samples of the PDF output is set to `TRUE`
 * The function `Age_OSLC14()` never returned numerical data; fixed
 * Fix `Age_OSLC14()` age format, now in ka for C-14 instead of years
-* The last example in `AgeS_Computation()` could not be run; fixed. 
+* The last example in `AgeS_Computation()` could not be run; fixed
+* C-14 calibration datasets now show data in 'ka' and not 'a'
+* Various typo corrections.
 
 ### Enhancements
 * Allow different BIN/BINX-file names as input. The functions `Generate_DataFile()` and `Generate_DataFile_MG()` do no longer expecting the name sheme bin.BIN
