@@ -176,5 +176,5 @@ Quaternary Geochronology 28, 62-70. doi:10.1016/j.quageo.2015.04.001
 \code{\link{AgeS_Computation}}, \code{\link{Palaeodose_Computation}}
 }
 \author{
-Claire Christophe, Anne Philippe, Guillaume Guerin
+Claire Christophe, Sebastian Kreutzer, Anne Philippe, Guillaume Guerin
 }

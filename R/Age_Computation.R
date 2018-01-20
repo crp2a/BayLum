@@ -120,7 +120,7 @@
 #'
 #' To give the results in a publication, we recommend to give the Bayes estimate of the parameter as well as the credible interval at 95\% or 68\%.
 #'
-#' @author Claire Christophe, Anne Philippe, Guillaume Guerin
+#' @author Claire Christophe, Sebastian Kreutzer, Anne Philippe, Guillaume Guerin
 #'
 #' @seealso \code{\link{Generate_DataFile}}, \code{\link{Generate_DataFile_MG}},
 #' \code{\link{rjags}}, \code{\link{MCMC_plot}}
@@ -218,21 +218,17 @@ Age_Computation <- function(
                         thin = t,
                         progress.bar = progress.bar)
 
-  CV=gelman.diag(echantillon)
+  CV <- gelman.diag(echantillon)
 
-  sample=echantillon[[1]]
+  sample <- echantillon[[1]]
   for(i in 2:Nb_chaines){
     sample=rbind(sample,echantillon[[i]])
   }
-  MCMC_plot(sample,
-            length(echantillon[[1]][,1]),
-            SampleNames=SampleName,
-            Nb_sample=1,
-            Nb_chaines=Nb_chaines,
-            value=c(0,1,2),
-            param=c("A","D","sD"))
 
-  if(SavePdf==TRUE){
+  ##MCMC plot output
+  plot_MCMC(echantillon, mtext = SampleName)
+
+  if(SavePdf){
     dev.print(pdf,file=paste(OutputFilePath,OutputFileName,'.pdf',sep=""),width=8,height=10)
   }
 
@@ -241,16 +237,16 @@ Age_Computation <- function(
   cat("----------------------------------------------\n")
   cat(paste(SampleName))
 
-  cat(paste("\n\n>> Result of Gelman and Rubin critere of convergency<<\n"))
+  cat(paste("\n\n>> Results of the Gelman and Rubin criterion of convergence <<\n"))
   cat("----------------------------------------------\n")
   cat(paste("\t", "Point estimate", "Uppers confidence interval\n"))
   cat(paste("A\t",round(CV$psrf[1,1],2),"\t\t",round(CV$psrf[1,2],2),"\n"))
   cat(paste("D\t",round(CV$psrf[2,1],2),"\t\t",round(CV$psrf[2,2],2),"\n"))
   cat(paste("sD\t",round(CV$psrf[3,1],2),"\t\t",round(CV$psrf[3,2],2),"\n"))
 
-  cat("\n\n________________________________________________________________________________\n")
-  cat(" *** WARNING: following informations are only valid if MCMC chains converged  ***\n")
-  cat("________________________________________________________________________________\n\n")
+  cat("\n\n---------------------------------------------------------------------------------------------------\n")
+  cat(" *** WARNING: The following information are only valid if the MCMC chains have converged  ***\n")
+  cat("---------------------------------------------------------------------------------------------------\n\n")
 
   # Matrix of results
   R=matrix(data=NA,ncol=8,nrow=3,dimnames=list(c("A","D","sD"),
