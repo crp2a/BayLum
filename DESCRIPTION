@@ -25,11 +25,13 @@ Imports:
   rjags (>= 4-6),
   Luminescence (>= 0.7.4), 
   ArchaeoPhases
+Suggests: 
+  testthat (>= 1.0.2),
+  R.rsp
 License: GPL-3
 Encoding: UTF-8
 BugReports: https://github.com/R-Lum/BayLum/issues
 LazyData: true
-Suggests: R.rsp
 VignetteBuilder: R.rsp
 RoxygenNote: 6.0.1
 NeedsCompilation: no
