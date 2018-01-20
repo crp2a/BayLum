@@ -116,11 +116,11 @@
 #' }
 #' To give result in a publication, we recommend to give the Bayes estimate of the parameters as well as the credible interval at 95\% or 68\%.
 #'
-#' @author Claire Christophe, Anne Philippe, Guillaume Guerin
+#' @author Claire Christophe, Sebastian Kreutzer, Anne Philippe, Guillaume Guerin
 #'
 #' @seealso
 #' \code{\link{Generate_DataFile}}, \code{\link{Generate_DataFile_MG}}, \code{\link{Concat_DataFile}},
-#' \code{\link{rjags}}, \code{\link{MCMC_plot}},
+#' \code{\link{rjags}}, \code{\link{plot_MCMC}},
 #' \code{\link{Age_Computation}}, \code{\link{AgeS_Computation}}
 #'
 #' @examples
@@ -135,14 +135,24 @@
 #' Quaternary Geochronology 28, 62-70. doi:10.1016/j.quageo.2015.04.001
 #'
 #' @export
-
-Palaeodose_Computation<-function(DATA,SampleNames,Nb_sample,
-                                 BinPerSample=rep(1,Nb_sample),
-                                 SavePdf=FALSE,OutputFileName=c('MCMCplot'),OutputFilePath=c(''),
-                                 SaveEstimates=FALSE,OutputTableName=c("DATA"),OutputTablePath=c(''),
-                                 LIN_fit = TRUE,Origin_fit = FALSE,
-                                 distribution=c("cauchy"),
-                                 Iter=50000,t=5,Nb_chaines=3){
+Palaeodose_Computation<-function(
+  DATA,
+  SampleNames,
+  Nb_sample,
+  BinPerSample = rep(1, Nb_sample),
+  SavePdf = FALSE,
+  OutputFileName = c('MCMCplot'),
+  OutputFilePath = c(''),
+  SaveEstimates = FALSE,
+  OutputTableName = c("DATA"),
+  OutputTablePath = c(''),
+  LIN_fit = TRUE,
+  Origin_fit = FALSE,
+  distribution = c("cauchy"),
+  Iter = 50000,
+  t = 5,
+  Nb_chaines = 3
+){
 
   PriorPalaeodose=c(0,400)
 
@@ -197,26 +207,18 @@ Palaeodose_Computation<-function(DATA,SampleNames,Nb_sample,
     sample=rbind(sample,echantillon[[i]])
   }
 
-  MCMC_plot(sample,
-            size=length(echantillon[[1]][,1]),
-            SampleNames=SampleNames,
-            Nb_sample=Nb_sample,
-            Nb_chaines=Nb_chaines,
-            value=c(0,Nb_sample),
-            param=c("D","sD"))
-  if(SavePdf==TRUE){
+  ##MCMC plot
+  if(SavePdf){
     pdf(file=paste(OutputFilePath,OutputFileName[1],'.pdf',sep=""))
-    MCMC_plot(sample,
-              size=length(echantillon[[1]][,1]),
-              SampleNames=SampleNames,
-              Nb_sample=Nb_sample,
-              Nb_chaines=Nb_chaines,
-              value=c(0,Nb_sample),
-              param=c("D","sD"))
-    dev.off()
-    #dev.print(pdf,file=paste(OutputFilePath,OutputFileName[1],'.pdf',sep=""),width=8,height=10)
   }
 
+  plot_MCMC(
+    echantillon,
+    sample_names = SampleNames)
+
+  if(SavePdf){
+  dev.off()
+  }
 
   ##--- Graphical interpretation, and print result
 
