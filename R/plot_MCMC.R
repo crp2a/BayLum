@@ -202,7 +202,7 @@ plot_MCMC <- function(
   if(!is.null(sample_names)){
   sample_names <- rep(
       sample_names,
-      length.out = length(unique(gsub(coda::varnames(object), pattern = "\\[.\\]" ,replacement = ""))) * 2)
+      length.out = length(sample_info) * 2)
 
   }
 
@@ -259,5 +259,3 @@ plot_MCMC <- function(
   }
 
 }
-
-
