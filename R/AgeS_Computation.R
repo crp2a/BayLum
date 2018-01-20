@@ -186,7 +186,7 @@
 #'
 #' @seealso
 #' \code{\link{Generate_DataFile}}, \code{\link{Generate_DataFile_MG}},
-#' \code{\link{rjags}}, \code{\link{MCMC_plot}}, \code{\link{SCMatrix}}
+#' \code{\link{rjags}}, \code{\link{plot_MCMC}}, \code{\link{SCMatrix}}
 #' \code{\link{Age_Computation}}, \code{\link{Palaeodose_Computation}}
 #'
 #' @references
