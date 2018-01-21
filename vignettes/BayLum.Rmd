@@ -5,10 +5,10 @@ date: 'Updated for BayLum package version `r packageVersion("BayLum")` (`r Sys.D
 output:
   rmarkdown::html_vignette:
   self-contained: yes
+  toc: yes
+  toc_depth: 4
+  number_sections: yes
 standalone: yes
-toc: yes
-toc_depth: 4
-number_sections: yes
 vignette: >
   %\VignetteEncoding{UTF-8}
 ---
@@ -22,7 +22,7 @@ library(BayLum)
 
 # Introduction
 
-`BayLum' provides a collection of various R functions for Bayesian analysis of luminescence data.
+'BayLum' provides a collection of various R functions for Bayesian analysis of luminescence data.
 Amongst others, this includes data import, export, application of age models and palaeodose model.
 
 Data can be simultaneously processed for various samples, including the input of multiple BIN-files per sample.
@@ -36,7 +36,7 @@ For those who already know how to use R, `BayLum' won't be difficult to use.
 To install `BayLum', first [R](https://www.r-project.org) and  [Rstudio](http://www.rstudio.com), which provides
 a nice desktop environment for using R needed to be installed. In addition, you need to install [JAGS](http://mcmc-jags.sourceforge.net) for the Bayesian analysis of the models. Once in R (or in RStudio) you can type:
 
-  ```{r,eval=FALSE}
+```{r,eval=FALSE}
 install.packages('BayLum')
 ```
 
@@ -66,13 +66,13 @@ path <- paste0(system.file("extdata/", package="BayLum"),"/")
 Please note that for your own dataset (i.e. not included in the package)
 you have to replace this call by something like:
 
-  ```{r, eval = FALSE}
+```{r, eval = FALSE}
 path <- "Users/Master_of_luminescence/Documents/MyFamousOSLData"
 ```
 
 In our example the folder contains the following folder and files:
 
-  ```{r, echo=FALSE}
+```{r, echo=FALSE}
 knitr::kable(
   list.files(path, recursive = TRUE),
   col.names = "", row.names = TRUE)
@@ -103,11 +103,14 @@ DATA1 <-
 #### Remark 1: save and load information
 
 The user can use the function **save** to save output $DATA1$ as follows:
-  ```{r,eval=FALSE}
+
+```{r,eval=FALSE}
 save(DATA1,file=c(paste(path,"DATA1.RData",sep="")))
 ```
+
 The user can acces this file with the function **load**:
-  ```{r,eval=FALSE}
+
+```{r,eval=FALSE}
 load(file=c(paste(path,"DATA1.RData",sep="")))
 ```
 
@@ -116,7 +119,7 @@ load(file=c(paste(path,"DATA1.RData",sep="")))
 To show the overall structure of the data generated from the BIN-file and the associated CSV-files,
 the following call can be used:
 
-  ```{r}
+```{r}
 str(DATA1)
 ```
 
@@ -124,14 +127,14 @@ In *DATA1*, there is information for the sample named *GDB3*.
 It is expected (for more information we refer to "Value" section in help of  `Generate_DataFile` function):
 
   - 1 list (1 list per sample), for `DATA$LT`, `DATA$sLT`, `DATA1$ITimes` and `DATA1$regDose`
-- 1 vector of size 2 (a 2 column matrix, with 1 line per sample), for `DATA1$dLab`, `DATA1$ddot_env`
-- 1 integer (1 integer per BIN files), for `DATA1$J`, `DATA1$K`, `DATA1$Nb_measurement`.
+  - 1 vector of size 2 (a 2 column matrix, with 1 line per sample), for `DATA1$dLab`, `DATA1$ddot_env`
+  - 1 integer (1 integer per BIN files), for `DATA1$J`, `DATA1$K`, `DATA1$Nb_measurement`.
 
 #### Remark 3: Lx/Ts value as a function of Regenerative Dose
 
 You can also see the $L_{x}/T_{x}$ values as a function of regenerative dose using the function **LT\_RegenDose**:
 
-  ```{r}
+```{r, fig.align='center'}
 LT_RegenDose(
   DATA = DATA1,
   Path = path,
@@ -154,7 +157,7 @@ Please check type `?Generate_DataFile_MG` for further information.
 
 To compute age of the sample *samp1*, you can run the following code:
 
-  ```{r, fig.width=5, fig.height=5}
+```{r, fig.width=5, fig.height=5, fig.align='center'}
 Age <- Age_Computation(
   DATA = DATA1,
   SampleName = "samp1",
@@ -233,7 +236,7 @@ Names <- c("samp1", "samp2")
 
 the call `Generate_DataFile() (or `Generate_DataFile_MG()`) becomes as follows:
 
-  ```{r, fig.width=5, fig.height=5}
+```{r, fig.width=5, fig.height=5, fig.align='center'}
 ##argument setting
 nbsample <- 1
 nbbinfile <- length(Names)
@@ -274,7 +277,7 @@ These 3 subfolders are located in *path*.
 To fill the argument corectly `BinPerSample`:
   $binpersample=c(\underbrace{2}_{\text{sample 1: 2 bin files}},\underbrace{1}_{\text{sample 2: 1 bin file}})$
 
-  ```{r,eval=FALSE}
+```{r,eval=FALSE}
 Names <- c("sample1-1","sample1-2","sample2-1") # give the name of the folder datat
 nbsample <- 2    # give the number of samples
 nbbinfile <- 3   # give the number of bin files
@@ -295,7 +298,7 @@ If the user has already saved informations imported with `Generate_DataFile()` f
 For example, if `DATA1` is the output of sample named "GDB3", and `DATA2` is the output of sample "GDB5",
 both data can be merged with the following call:
 
-  ```{r}
+```{r}
 data("DATA1",envir = environment())
 data("DATA2",envir = environment())
 DATA3 <- Concat_DataFile(L1 = DATA2, L2 = DATA1)
@@ -312,7 +315,7 @@ Single-grain and multiple-grain OSL measurements can be merged in the same way.
 To plot the $L/T$ as a function of the regenerative dose the function `LT_RegenDose()` can be
 used again:
 
-  ```{r, eval=FALSE}
+```{r, eval=FALSE}
 LT_RegenDose(
   DATA = DATA3,
   Path = path,
@@ -324,11 +327,11 @@ LT_RegenDose(
 
 *Note: In the example `DATA3` contains information from the samples 'GDB3' and 'GDB5', which are single-grain OSL measurements. For a correct treatment the argument `SG` has to be manually set be the user. Please see the function manual for further details.*
 
-  ## Age analysis without stratigraphic constraints
+## Age analysis without stratigraphic constraints
 
-  If there no stratigraphic constraints were set, the following code to analyse simultaneously the age of the sample *GDB5* and *GDB3*.
+If there no stratigraphic constraints were set, the following code to analyse simultaneously the age of the sample *GDB5* and *GDB3*.
 
-```{r, fig.width=5, fig.height=5}
+```{r, fig.width=5, fig.height=5, fig.align='center'}
 priorage = c(1, 10, 10, 100)
 Age <- AgeS_Computation(
   DATA = DATA3,
@@ -356,9 +359,9 @@ and *GDB3* is an old sample whose age is between 10 ka and 100 ka,
 $$PriorAge=c(\underbrace{0.01,10}_{GDB5\ prior\ age},\underbrace{10,100}_{GDB3\ prior\ age})$$
 
 
-  ## Age analysis with stratigraphic constraints
+## Age analysis with stratigraphic constraints
 
-  With the function `AgeS_Computation()` it is possible to take the stratigraphic
+With the function `AgeS_Computation()` it is possible to take the stratigraphic
 relations between samples into account.
 
 For example, we know that *GDB5* age is supposed lower than *GDB3* age.
@@ -407,7 +410,7 @@ Otherwise, `StratiConstraints[j,i]=0`.
 
 The user can use the function *SCMatrix* to define this matrix:
 
-  ```{r, eval = FALSE}
+```{r, eval = FALSE}
 SC <- SCMatrix(
   Nb_sample = 2,
   SampleNames = c("samp1", "samp2"))
@@ -416,7 +419,7 @@ SC <- SCMatrix(
 In our case: 2 samples, `SC` is a matrix with 3 lines and 2 columns. The first line containts `c(1,1)` (because we take into acount prior ages), the second line containts `c(0,1)` (because the sample 2, named *samp2* is supposed older than the sample 1, named *samp1*) and the third line contains `c(0,0)` (because the sample 2, named *samp2* is not younger than the sample 1, named *samp1*).
 Then, we can also fill the matrix of stratigraphic relations as follow:
 
-  ```{r}
+```{r}
 SC <- matrix(
   data = c(1, 1, 0, 1, 0, 0),
   ncol = 2,
@@ -427,7 +430,7 @@ SC <- matrix(
 
 ### Age computation
 
-```{r, fig.width=5, fig.height=5}
+```{r, fig.width=5, fig.height=5, fig.align='center'}
 Age <-
   AgeS_Computation(
     DATA = DATA3,
