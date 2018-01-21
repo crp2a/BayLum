@@ -9,6 +9,7 @@ BayLum.CHECK_AND_BUILD_MacOSX.sh
 .gitignore
 .travis.yml
 appveyor.yml
+codecov.yml
 ^docs$
 _pkgdown.yml
 ^_pkgdown\.yml$
