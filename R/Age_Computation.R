@@ -226,7 +226,7 @@ Age_Computation <- function(
   }
 
   ##MCMC plot output
-  plot_MCMC(echantillon, mtext = SampleName)
+  plot_MCMC(echantillon, sample_names = SampleName)
 
   if(SavePdf){
     dev.print(pdf,file=paste(OutputFilePath,OutputFileName,'.pdf',sep=""),width=8,height=10)
