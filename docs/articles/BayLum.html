@@ -76,7 +76,7 @@
       <h1>BayLum: An Introduction</h1>
                         <h4 class="author">Claire Christophe, Anne Philippe, Sebastian Kreutzer, Guillaume Guérin</h4>
             
-            <h4 class="date">Updated for BayLum package version 0.1.2 (2018-01-14)</h4>
+            <h4 class="date">Updated for BayLum package version 0.1.2 (2018-01-21)</h4>
           </div>
 
     
@@ -85,7 +85,7 @@
 <div id="introduction" class="section level1">
 <h1 class="hasAnchor">
 <a href="#introduction" class="anchor"></a>Introduction</h1>
-<p>`BayLum’ provides a collection of various R functions for Bayesian analysis of luminescence data. Amongst others, this includes data import, export, application of age models and palaeodose model.</p>
+<p>‘BayLum’ provides a collection of various R functions for Bayesian analysis of luminescence data. Amongst others, this includes data import, export, application of age models and palaeodose model.</p>
 <p>Data can be simultaneously processed for various samples, including the input of multiple BIN-files per sample. Single-grain and Multi-grain OSL measurement can be analysed. Stratigraphic constraints and systematic errors can be added in the analyse.</p>
 <p>For those who already know how to use R, `BayLum’ won’t be difficult to use.</p>
 <div id="installing-baylum-package" class="section level3">
@@ -108,7 +108,7 @@
 <h3 class="hasAnchor">
 <a href="#import-information-from-a-bin-file-" class="anchor"></a>Import information from a BIN-file.</h3>
 <p>Let us consider the sample is named <em>samp1</em>, which is the example coming with the package. All information related to this sample are stored in a subfolder named also <em>samp1</em>. To test the package example, first we add the path of the example dataset to object <code>path</code></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">path &lt;-<span class="st"> </span><span class="kw">system.file</span>(<span class="st">"extdata/"</span>, <span class="st">""</span>, <span class="dt">package=</span><span class="st">"BayLum"</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">path &lt;-<span class="st"> </span><span class="kw">paste0</span>(<span class="kw">system.file</span>(<span class="st">"extdata/"</span>, <span class="dt">package=</span><span class="st">"BayLum"</span>),<span class="st">"/"</span>)</code></pre></div>
 <p>Please note that for your own dataset (i.e. not included in the package) you have to replace this call by something like:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">path &lt;-<span class="st"> "Users/Master_of_luminescence/Documents/MyFamousOSLData"</span></code></pre></div>
 <p>In our example the folder contains the following folder and files:</p>
@@ -182,9 +182,9 @@
 </h3>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">DATA1 &lt;-
 <span class="st">  </span><span class="kw"><a href="../reference/Generate_DataFile.html">Generate_DataFile</a></span>(<span class="dt">Path =</span> path,
-  <span class="dt">FolderNames =</span> <span class="st">"samp1"</span>,
-  <span class="dt">Nb_sample =</span> <span class="dv">1</span>, 
-  <span class="dt">verbose =</span> <span class="ot">FALSE</span>)</code></pre></div>
+                    <span class="dt">FolderNames =</span> <span class="st">"samp1"</span>,
+                    <span class="dt">Nb_sample =</span> <span class="dv">1</span>,
+                    <span class="dt">verbose =</span> <span class="ot">FALSE</span>)</code></pre></div>
 <div id="remark-1-save-and-load-information" class="section level4">
 <h4 class="hasAnchor">
 <a href="#remark-1-save-and-load-information" class="anchor"></a>Remark 1: save and load information</h4>
@@ -230,9 +230,9 @@
   <span class="dt">Path =</span> path,
   <span class="dt">FolderNames =</span> <span class="st">"samp1"</span>,
   <span class="dt">SampleNames =</span> <span class="st">"samp1"</span>,
-  <span class="dt">Nb_sample =</span> <span class="dv">1</span>, 
+  <span class="dt">Nb_sample =</span> <span class="dv">1</span>,
   <span class="dt">nrow =</span> <span class="ot">NULL</span>)</code></pre></div>
-<p><img src="BayLum_files/figure-html/unnamed-chunk-12-1.png" width="672"></p>
+<p><img src="BayLum_files/figure-html/unnamed-chunk-12-1.png" width="672" style="display: block; margin: auto;"></p>
 <p>Note that, here we consider only one sample, and the name of the folder is the name of the sample. That is why we have set <code>FolderNames = samp1</code> and <code>SampleNames = samp1</code>.</p>
 </div>
 </div>
@@ -263,41 +263,41 @@ Graph information:
    Total graph size: 139
 
 Initializing model</code></pre>
-<p><img src="BayLum_files/figure-html/unnamed-chunk-13-1.png" width="480"></p>
+<p><img src="BayLum_files/figure-html/unnamed-chunk-13-1.png" width="480" style="display: block; margin: auto;"></p>
 <pre><code>
 
 &gt;&gt; Sample name &lt;&lt;
 ----------------------------------------------
 samp1
 
-&gt;&gt; Result of Gelman and Rudin critere of convergency&lt;&lt;
+&gt;&gt; Results of the Gelman and Rubin criterion of convergence &lt;&lt;
 ----------------------------------------------
      Point estimate Uppers confidence interval
-A    1.05        1.11 
-D    1.05        1.11 
-sD   1.08        1.13 
+A    1.04        1.12 
+D    1.05        1.12 
+sD   1.06        1.09 
 
 
-________________________________________________________________________________
- *** WARNING: following informations are only valid if MCMC chains converged  ***
-________________________________________________________________________________
+---------------------------------------------------------------------------------------------------
+ *** WARNING: The following information are only valid if the MCMC chains have converged  ***
+---------------------------------------------------------------------------------------------------
 
 parameter    Bayes estimate       Credible interval 
 ----------------------------------------------
-A        22.6 
+A        24.522 
                          lower bound     upper bound
-                 at level 95%    10          72.7 
-                 at level 68%    10          23.63 
+                 at level 95%    10.01       74.09 
+                 at level 68%    10.01       29.99 
 ----------------------------------------------
-D        56.249 
+D        60.745 
                          lower bound     upper bound
-                 at level 95%    20.15       181.94 
-                 at level 68%    21.66       60.65 
+                 at level 95%    19.46       186.81 
+                 at level 68%    21.91       74.9 
 ----------------------------------------------
-sD       37.096 
+sD       36.413 
                          lower bound     upper bound
-                 at level 95%    0.19        194.13 
-                 at level 68%    0.57        31.41 </code></pre>
+                 at level 95%    0.23        160.94 
+                 at level 68%    0.84        34.3 </code></pre>
 <p>This works also if <code>DATA1</code> is output of <code><a href="../reference/Generate_DataFile_MG.html">Generate_DataFile_MG()</a></code>.</p>
 <div id="remark-1-mcmc-trajectories" class="section level5">
 <h5 class="hasAnchor">
@@ -362,9 +362,9 @@ DATA_BF &lt;-<span class="st"> </span><span class="kw"><a href="../reference/Gen
   <span class="dt">FolderNames =</span> Names,
   <span class="dt">Nb_sample =</span> nbsample,
   <span class="dt">Nb_binfile =</span> nbbinfile,
-  <span class="dt">BinPerSample =</span> Binpersample, 
+  <span class="dt">BinPerSample =</span> Binpersample,
   <span class="dt">verbose =</span> <span class="ot">FALSE</span>
-  )
+)
 
 ##calculate the age
 Age &lt;-<span class="st"> </span><span class="kw"><a href="../reference/Age_Computation.html">Age_Computation</a></span>(
@@ -380,41 +380,41 @@ Graph information:
    Total graph size: 221
 
 Initializing model</code></pre>
-<p><img src="BayLum_files/figure-html/unnamed-chunk-15-1.png" width="480"></p>
+<p><img src="BayLum_files/figure-html/unnamed-chunk-15-1.png" width="480" style="display: block; margin: auto;"></p>
 <pre><code>
 
 &gt;&gt; Sample name &lt;&lt;
 ----------------------------------------------
 samp1 samp2
 
-&gt;&gt; Result of Gelman and Rudin critere of convergency&lt;&lt;
+&gt;&gt; Results of the Gelman and Rubin criterion of convergence &lt;&lt;
 ----------------------------------------------
      Point estimate Uppers confidence interval
-A    1.01        1.02 
-D    1.01        1.02 
-sD   1.01        1.02 
+A    1       1 
+D    1       1 
+sD   1.02        1.02 
 
 
-________________________________________________________________________________
- *** WARNING: following informations are only valid if MCMC chains converged  ***
-________________________________________________________________________________
+---------------------------------------------------------------------------------------------------
+ *** WARNING: The following information are only valid if the MCMC chains have converged  ***
+---------------------------------------------------------------------------------------------------
 
 parameter    Bayes estimate       Credible interval 
 ----------------------------------------------
-A        2.308 
+A        2.344 
                          lower bound     upper bound
-                 at level 95%    1.35        3.53 
-                 at level 68%    1.72        2.7 
+                 at level 95%    1.31        3.54 
+                 at level 68%    1.72        2.79 
 ----------------------------------------------
-D        5.744 
+D        5.828 
                          lower bound     upper bound
-                 at level 95%    3.28        8.26 
-                 at level 68%    4.54        6.74 
+                 at level 95%    3.25        8.19 
+                 at level 68%    4.51        6.85 
 ----------------------------------------------
-sD       0.75 
+sD       0.781 
                          lower bound     upper bound
-                 at level 95%    0       2.37 
-                 at level 68%    0       0.74 </code></pre>
+                 at level 95%    0       2.64 
+                 at level 68%    0       0.81 </code></pre>
 </div>
 </div>
 <div id="age-analysis-of-various-samples" class="section level1">
@@ -435,7 +435,7 @@ DATA &lt;-<span class="st"> </span><span class="kw"><a href="../reference/Genera
   <span class="dt">Nb_sample =</span> nbsample,
   <span class="dt">Nb_binfile =</span> nbbinfile,
   <span class="dt">BinPerSample =</span> binpersample
-  )</code></pre></div>
+)</code></pre></div>
 <div id="function-concat_datafile" class="section level3">
 <h3 class="hasAnchor">
 <a href="#function-concat_datafile" class="anchor"></a>Function <code><a href="../reference/Concat_DataFile.html">Concat_DataFile()</a></code>
@@ -479,7 +479,7 @@ DATA3 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/Conca
   <span class="dt">FolderNames =</span> Names,
   <span class="dt">Nb_sample =</span> nbsample,
   <span class="dt">SG =</span> <span class="kw">rep</span>(<span class="ot">TRUE</span>, nbsample)
-  )</code></pre></div>
+)</code></pre></div>
 <p><em>Note: In the example <code>DATA3</code> contains information from the samples ‘GDB3’ and ‘GDB5’, which are single-grain OSL measurements. For a correct treatment the argument <code>SG</code> has to be manually set be the user. Please see the function manual for further details.</em></p>
 </div>
 </div>
@@ -487,7 +487,7 @@ DATA3 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/Conca
 <h2 class="hasAnchor">
 <a href="#age-analysis-without-stratigraphic-constraints" class="anchor"></a>Age analysis without stratigraphic constraints</h2>
 <p>If there no stratigraphic constraints were set, the following code to analyse simultaneously the age of the sample <em>GDB5</em> and <em>GDB3</em>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">priorage =<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">10</span>, <span class="dv">10</span>, <span class="dv">100</span>) 
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">priorage =<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">10</span>, <span class="dv">10</span>, <span class="dv">100</span>)
 Age &lt;-<span class="st"> </span><span class="kw"><a href="../reference/AgeS_Computation.html">AgeS_Computation</a></span>(
   <span class="dt">DATA =</span> DATA3,
   <span class="dt">Nb_sample =</span> <span class="dv">2</span>,
@@ -507,29 +507,31 @@ Graph information:
    Total graph size: 20624
 
 Initializing model</code></pre>
-<p><img src="BayLum_files/figure-html/unnamed-chunk-19-1.png" width="480"><img src="BayLum_files/figure-html/unnamed-chunk-19-2.png" width="480"></p>
+<pre><code>Warning: [plot_MCMC()] 'n.iter' out of range, reset to default!</code></pre>
+<p><img src="BayLum_files/figure-html/unnamed-chunk-19-1.png" width="480" style="display: block; margin: auto;"><img src="BayLum_files/figure-html/unnamed-chunk-19-2.png" width="480" style="display: block; margin: auto;"></p>
 <pre><code>
 
-&gt;&gt; Result of Gelman and Rudin critere of convergency &lt;&lt;
+&gt;&gt; Results of the Gelman and Rubin criterion of convergence &lt;&lt;
 ----------------------------------------------
  Sample name:  GDB5 
 ---------------------
          Point estimate Uppers confidence interval
-A_GDB5   1       1 
-D_GDB5   1.01        1.02 
-sD_GDB5      1       1 
+A_GDB5   1       1.01 
+D_GDB5   1.03        1.1 
+sD_GDB5      1.02        1.04 
 ----------------------------------------------
  Sample name:  GDB3 
 ---------------------
          Point estimate Uppers confidence interval
-A_GDB3   1.01        1.01 
-D_GDB3   1.03        1.07 
-sD_GDB3      1.03        1.1 
+A_GDB3   1.01        1.04 
+D_GDB3   1.03        1.09 
+sD_GDB3      1.01        1.05 
 
 
-________________________________________________________________________________
- *** WARNING: following informations are only valid if MCMC chains converged  ***
-________________________________________________________________________________
+---------------------------------------------------------------------------------------------------
+ *** WARNING: The following information are only valid if the MCMC chains have converged  ***
+---------------------------------------------------------------------------------------------------
+
 
 
 &gt;&gt; Bayes estimates of Age, Palaeodose and its dispersion for each sample and credible interval &lt;&lt;
@@ -537,45 +539,45 @@ ________________________________________________________________________________
  Sample name:  GDB5 
 ---------------------
 Parameter    Bayes estimate       Credible interval 
- A_GDB5      7.177 
+ A_GDB5      7.116 
                          lower bound     upper bound
-                 at level 95%    5.86        8.46 
-                 at level 68%    6.32        7.72 
+                 at level 95%    6       8.64 
+                 at level 68%    6.3         7.6 
 
 Parameter    Bayes estimate       Credible interval 
- D_GDB5      17.775 
+ D_GDB5      17.697 
                          lower bound     upper bound
-                 at level 95%    16.46       18.92 
-                 at level 68%    17.18       18.26 
+                 at level 95%    16.53       18.68 
+                 at level 68%    17.16       18.16 
 
 Parameter    Bayes estimate       Credible interval 
-sD_GDB5      4.514 
+sD_GDB5      4.405 
                          lower bound     upper bound
-                 at level 95%    3.6         5.53 
-                 at level 68%    4.06        5.07 
+                 at level 95%    3.52        5.34 
+                 at level 68%    3.95        4.81 
 ----------------------------------------------
  Sample name:  GDB3 
 ---------------------
 Parameter    Bayes estimate       Credible interval 
- A_GDB3      46.975 
+ A_GDB3      47.433 
                          lower bound     upper bound
-                 at level 95%    35.97       57.43 
-                 at level 68%    40.18       49.74 
+                 at level 95%    37.14       59.48 
+                 at level 68%    39.68       50.61 
 
 Parameter    Bayes estimate       Credible interval 
- D_GDB3      104.747 
+ D_GDB3      105.577 
                          lower bound     upper bound
-                 at level 95%    97.89       113.05 
-                 at level 68%    100.86          108.18 
+                 at level 95%    98.06       112.88 
+                 at level 68%    103.13          110.29 
 
 Parameter    Bayes estimate       Credible interval 
-sD_GDB3      16.075 
+sD_GDB3      15.624 
                          lower bound     upper bound
-                 at level 95%    10.33       22.53 
-                 at level 68%    12.18       18.05 
+                 at level 95%    9.93        20.09 
+                 at level 68%    11.46       16.81 
 
 ----------------------------------------------</code></pre>
-<p><img src="BayLum_files/figure-html/unnamed-chunk-19-3.png" width="480"></p>
+<p><img src="BayLum_files/figure-html/unnamed-chunk-19-3.png" width="480" style="display: block; margin: auto;"></p>
 <div id="remarks" class="section level3">
 <h3 class="hasAnchor">
 <a href="#remarks" class="anchor"></a>Remarks</h3>
@@ -601,7 +603,7 @@ DATA3 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/Gener
   <span class="dt">FolderNames =</span> Names,
   <span class="dt">Nb_sample =</span> nbsample,
   <span class="dt">verbose =</span> <span class="ot">FALSE</span>
-  )</code></pre></div>
+)</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># using the function Concat_DataFile()</span>
 <span class="kw">data</span>(DATA1,<span class="dt">envir =</span> <span class="kw">environment</span>()) <span class="co"># .RData on sample GDB3</span>
 <span class="kw">data</span>(DATA2,<span class="dt">envir =</span> <span class="kw">environment</span>()) <span class="co"># .RData on sample GDB5</span>
@@ -619,29 +621,29 @@ DATA3 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/Conca
 <p>The user can use the function <em>SCMatrix</em> to define this matrix:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">SC &lt;-<span class="st"> </span><span class="kw"><a href="../reference/SCMatrix.html">SCMatrix</a></span>(
   <span class="dt">Nb_sample =</span> <span class="dv">2</span>,
-    <span class="dt">SampleNames =</span> <span class="kw">c</span>(<span class="st">"samp1"</span>, <span class="st">"samp2"</span>))</code></pre></div>
+  <span class="dt">SampleNames =</span> <span class="kw">c</span>(<span class="st">"samp1"</span>, <span class="st">"samp2"</span>))</code></pre></div>
 <p>In our case: 2 samples, <code>SC</code> is a matrix with 3 lines and 2 columns. The first line containts <code>c(1,1)</code> (because we take into acount prior ages), the second line containts <code>c(0,1)</code> (because the sample 2, named <em>samp2</em> is supposed older than the sample 1, named <em>samp1</em>) and the third line contains <code>c(0,0)</code> (because the sample 2, named <em>samp2</em> is not younger than the sample 1, named <em>samp1</em>). Then, we can also fill the matrix of stratigraphic relations as follow:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">SC &lt;-<span class="st"> </span><span class="kw">matrix</span>(
   <span class="dt">data =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>),
   <span class="dt">ncol =</span> <span class="dv">2</span>,
   <span class="dt">nrow =</span> (<span class="dv">2</span> <span class="op">+</span><span class="st"> </span><span class="dv">1</span>),
   <span class="dt">byrow =</span> T
-  )</code></pre></div>
+)</code></pre></div>
 </div>
 <div id="age-computation" class="section level3">
 <h3 class="hasAnchor">
 <a href="#age-computation" class="anchor"></a>Age computation</h3>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Age &lt;-
 <span class="st">  </span><span class="kw"><a href="../reference/AgeS_Computation.html">AgeS_Computation</a></span>(
-  <span class="dt">DATA =</span> DATA3,
-  <span class="dt">Nb_sample =</span> <span class="dv">2</span>,
-  <span class="dt">SampleNames =</span> <span class="kw">c</span>(<span class="st">"samp1"</span>, <span class="st">"samp2"</span>),
-  <span class="dt">PriorAge =</span> priorage,
-  <span class="dt">distribution =</span> <span class="st">"cauchy"</span>,
-  <span class="dt">LIN_fit =</span> <span class="ot">TRUE</span>,
-  <span class="dt">Origin_fit =</span> <span class="ot">FALSE</span>,
-  <span class="dt">StratiConstraints =</span> SC,
-  <span class="dt">Iter =</span> <span class="dv">100</span>
+    <span class="dt">DATA =</span> DATA3,
+    <span class="dt">Nb_sample =</span> <span class="dv">2</span>,
+    <span class="dt">SampleNames =</span> <span class="kw">c</span>(<span class="st">"samp1"</span>, <span class="st">"samp2"</span>),
+    <span class="dt">PriorAge =</span> priorage,
+    <span class="dt">distribution =</span> <span class="st">"cauchy"</span>,
+    <span class="dt">LIN_fit =</span> <span class="ot">TRUE</span>,
+    <span class="dt">Origin_fit =</span> <span class="ot">FALSE</span>,
+    <span class="dt">StratiConstraints =</span> SC,
+    <span class="dt">Iter =</span> <span class="dv">100</span>
   )</code></pre></div>
 <pre><code>Compiling model graph
    Resolving undeclared variables
@@ -654,29 +656,31 @@ Graph information:
 Initializing model</code></pre>
 <pre><code>Warning in rjags::jags.model(textConnection(Model_AgeS[[Model_GrowthCurve]][[distribution]]), : Adaptation incomplete</code></pre>
 <pre><code>NOTE: Stopping adaptation</code></pre>
-<p><img src="BayLum_files/figure-html/unnamed-chunk-24-1.png" width="480"><img src="BayLum_files/figure-html/unnamed-chunk-24-2.png" width="480"></p>
+<pre><code>Warning: [plot_MCMC()] 'n.iter' out of range, reset to default!</code></pre>
+<p><img src="BayLum_files/figure-html/unnamed-chunk-24-1.png" width="480" style="display: block; margin: auto;"><img src="BayLum_files/figure-html/unnamed-chunk-24-2.png" width="480" style="display: block; margin: auto;"></p>
 <pre><code>
 
-&gt;&gt; Result of Gelman and Rudin critere of convergency &lt;&lt;
+&gt;&gt; Results of the Gelman and Rubin criterion of convergence &lt;&lt;
 ----------------------------------------------
  Sample name:  samp1 
 ---------------------
          Point estimate Uppers confidence interval
-A_samp1      1.05        1.11 
-D_samp1      1.05        1.1 
-sD_samp1     0.99        1.01 
+A_samp1      1.19        1.63 
+D_samp1      1.44        2.27 
+sD_samp1     1.13        1.44 
 ----------------------------------------------
  Sample name:  samp2 
 ---------------------
          Point estimate Uppers confidence interval
-A_samp2      1.09        1.32 
-D_samp2      1.14        1.46 
-sD_samp2     1.03        1.07 
+A_samp2      1.17        1.59 
+D_samp2      1.01        1.06 
+sD_samp2     1.01        1.05 
 
 
-________________________________________________________________________________
- *** WARNING: following informations are only valid if MCMC chains converged  ***
-________________________________________________________________________________
+---------------------------------------------------------------------------------------------------
+ *** WARNING: The following information are only valid if the MCMC chains have converged  ***
+---------------------------------------------------------------------------------------------------
+
 
 
 &gt;&gt; Bayes estimates of Age, Palaeodose and its dispersion for each sample and credible interval &lt;&lt;
@@ -684,45 +688,45 @@ ________________________________________________________________________________
  Sample name:  samp1 
 ---------------------
 Parameter    Bayes estimate       Credible interval 
- A_samp1     9.685 
+ A_samp1     9.729 
                          lower bound     upper bound
-                 at level 95%    9.07        10 
-                 at level 68%    9.65        10 
+                 at level 95%    9.08        10 
+                 at level 68%    9.66        10 
 
 Parameter    Bayes estimate       Credible interval 
- D_samp1     29.671 
+ D_samp1     29.025 
                          lower bound     upper bound
-                 at level 95%    25.79       35.17 
-                 at level 68%    27.21       30.77 
+                 at level 95%    24.97       32.8 
+                 at level 68%    27.49       32.02 
 
 Parameter    Bayes estimate       Credible interval 
-sD_samp1     67.659 
+sD_samp1     66.876 
                          lower bound     upper bound
-                 at level 95%    62.52       88.87 
-                 at level 68%    64.04       69.88 
+                 at level 95%    63.72       84.53 
+                 at level 68%    64.32       72.43 
 ----------------------------------------------
  Sample name:  samp2 
 ---------------------
 Parameter    Bayes estimate       Credible interval 
- A_samp2     10.391 
+ A_samp2     10.321 
                          lower bound     upper bound
-                 at level 95%    10.01       11.1 
-                 at level 68%    10.01       10.46 
+                 at level 95%    10          10.95 
+                 at level 68%    10          10.38 
 
 Parameter    Bayes estimate       Credible interval 
- D_samp2     18.601 
+ D_samp2     18.672 
                          lower bound     upper bound
-                 at level 95%    17.64       19.85 
-                 at level 68%    18.23       19.3 
+                 at level 95%    17.72       19.54 
+                 at level 68%    18.21       19.2 
 
 Parameter    Bayes estimate       Credible interval 
-sD_samp2     4.87 
+sD_samp2     4.903 
                          lower bound     upper bound
-                 at level 95%    3.89        5.77 
-                 at level 68%    4.2         5.4 
+                 at level 95%    4.11        6.73 
+                 at level 68%    4.5         5.2 
 
 ----------------------------------------------</code></pre>
-<p><img src="BayLum_files/figure-html/unnamed-chunk-24-3.png" width="480"></p>
+<p><img src="BayLum_files/figure-html/unnamed-chunk-24-3.png" width="480" style="display: block; margin: auto;"></p>
 </div>
 </div>
 </div>
