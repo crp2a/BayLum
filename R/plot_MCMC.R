@@ -94,7 +94,7 @@ plot_MCMC <- function(
 
     ##create new object
     object <- as.mcmc.list(lapply(object, function(x){
-      x[,sel]
+      x[,sel, drop = FALSE]
 
     }))
 
