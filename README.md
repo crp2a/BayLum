@@ -6,6 +6,7 @@
 [![Downloads](http://cranlogs.r-pkg.org/badges/grand-total/BayLum)](http://www.r-pkg.org/pkg/BayLum)
 [![Build status](https://ci.appveyor.com/api/projects/status/vfpauhn2s6chkgrp/branch/master?svg=true)](https://ci.appveyor.com/project/RLumSK/baylum/branch/master)
 [![Build Status](https://travis-ci.org/R-Lum/BayLum.svg?branch=master)](https://travis-ci.org/R-Lum/BayLum)
+[![codecov](https://codecov.io/gh/R-Lum/BayLum/branch/master/graph/badge.svg)](https://codecov.io/gh/R-Lum/BayLum)
 
 An R package for chronological **Bay**esian models integrated for Optically Stimulated (OSL) **Lum**inescence Dating
 
