@@ -267,7 +267,8 @@ Age_OSLC14<-function(DATA,Data_C14Cal,Data_SigmaC14Cal,
                      THETA=c(),sepTHETA=c(','),
                      LIN_fit = TRUE,Origin_fit = FALSE,
                      distribution=c("cauchy"),
-                     Model_C14=c("full"),CalibrationCurve=c("AtmosphericNorth"),
+                     Model_C14=c("full"),
+                     CalibrationCurve=c("AtmosphericNorth"),
                      Iter=50000,t=5,Nb_chaines=3){
 
   #--- StratiConstraints matrix
@@ -297,9 +298,9 @@ Age_OSLC14<-function(DATA,Data_C14Cal,Data_SigmaC14Cal,
   }else{
     TableauCalib=read.csv(file=CalibrationCurve,sep=",",dec=".")
   }}}
-  AgeBP=rev(TableauCalib[,1])/1000
-  CalC14=rev(TableauCalib[,2])/1000
-  SigmaCalC14=rev(TableauCalib[,3])/1000
+  AgeBP=rev(TableauCalib[,1])
+  CalC14=rev(TableauCalib[,2])
+  SigmaCalC14=rev(TableauCalib[,3])
 
   # #--- C14 prepration: Calibration curve
   # TableauCalib=read.csv(file=paste("inst/extdata/",CalibrationCurve,"_CalC14.csv",sep=""),sep=",",dec=".")
@@ -408,7 +409,7 @@ Age_OSLC14<-function(DATA,Data_C14Cal,Data_SigmaC14Cal,
 
   if(Model_C14=="full"){
     dataList = list('q'=q,"ind_change"=ind_change,"ind_OSL"=ind_OSL,"ind_C14"=ind_C14,"CS_OSL"=CS_OSL,"CS_C14"=CS_C14,
-                    'X'=Data_C14Cal/1000,"sigma"=Data_SigmaC14Cal/1000,
+                    'X'=Data_C14Cal,"sigma"=Data_SigmaC14Cal,
                     "xTableauCalib"=AgeBP,"yTableauCalib"=CalC14,"zTableauCalib"=SigmaCalC14,
                     'N'= LT,'sN'=sLT,"IT"=IrrT,
                     "sDlab"=DATA$dLab[1,],
@@ -422,7 +423,7 @@ Age_OSLC14<-function(DATA,Data_C14Cal,Data_SigmaC14Cal,
                     "xbound"=PriorAge,"StratiConstraints"=StratiConstraints)
   }else{
     dataList = list('q'=q,"ind_change"=ind_change,"ind_OSL"=ind_OSL,"ind_C14"=ind_C14,"CS_OSL"=CS_OSL,"CS_C14"=CS_C14,
-                    'X'=Data_C14Cal/1000,"sigma"=Data_SigmaC14Cal/1000,
+                    'X'=Data_C14Cal,"sigma"=Data_SigmaC14Cal,
                     "xTableauCalib"=AgeBP,"yTableauCalib"=CalC14,
                     'N'= LT,'sN'=sLT,"IT"=IrrT,
                     "sDlab"=DATA$dLab[1,],
@@ -552,8 +553,8 @@ Age_OSLC14<-function(DATA,Data_C14Cal,Data_SigmaC14Cal,
     axis(1,cex.axis=2)
     polygon(c(AgeBP,rev(AgeBP)),c(CalC14+2*SigmaCalC14,rev(CalC14-2*SigmaCalC14)),col="gray",border="black")
     for(i in ind_C14){
-      lines(c(AgePlot95[i,2:3]),rep(Data_C14Cal[CS_C14[i]]/1000,2),col=couleur[i],lwd=4)
-      lines(AgePlotMoy[i],Data_C14Cal[CS_C14[i]]/1000,col="black",lwd=2,type='p')
+      lines(c(AgePlot95[i,2:3]),rep(Data_C14Cal[CS_C14[i]],2),col=couleur[i],lwd=4)
+      lines(AgePlotMoy[i],Data_C14Cal[CS_C14[i]],col="black",lwd=2,type='p')
     }
     legend("topleft",SampleNames[ind_C14],lty=rep(1,Nb_sample),lwd=rep(2,Nb_sample),cex=1,col=couleur[ind_C14])
     if(SavePdf==TRUE){
