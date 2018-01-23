@@ -29,9 +29,11 @@
 #'
 #' @param n.iter [integer] (with default): Set the number of iterations to be visualised in the trace plots, regardless
 #' of the size of the input dataset as long as the real number of iterations is > `n.iter`.
-#' Please note that large numbers affect the plot performance.
+#' Please note that large numbers impact the plot performance.
 #'
 #' @param smooth [logical] (with default): Enable/disables smooth of trace plots using [stats::smooth]
+#'
+#' @param rug [logical] (with default): Enable/disables [rug] under density plots
 #'
 #' @param ... further arguments that can be passed to modifiy the plot output. Supported arguments are
 #' `lwd`, `lty`, `col`, `type`, `cex`,`mtext`, cf. [mtext] for `mtext` and [plot.default] for the other
@@ -68,6 +70,7 @@ plot_MCMC <- function(
   n.chains = NULL,
   n.iter = 1000L,
   smooth = FALSE,
+  rug = TRUE,
   plot_single = FALSE,
   ...
 ){
@@ -180,6 +183,7 @@ plot_MCMC <- function(
     ##the trace plot ylab becomes the density xlab
     xlab_density <- ylab_traces
 
+
   # Plotting ------------------------------------------------------------------------------------
 
   ##extract real variable names
@@ -236,7 +240,7 @@ plot_MCMC <- function(
       xlab = "Iterations",
       ylab = ylab_traces[v],
       main = coda::varnames(object)[v],
-      sub = paste0("(orig. thin. = ",mcpar_list[[1]][3] ," | shown = ",length(n.iter),")"),
+      sub = paste0("(orig. thin. = ",mcpar_list[[1]][3] ," | iter. shown = ",length(n.iter),")"),
       cex = plot_settings$cex
     )
 
@@ -261,6 +265,11 @@ plot_MCMC <- function(
       main = coda::varnames(object)[v],
       cex = plot_settings$cex
     )
+
+    ##add rug
+    if(rug)
+      rug(as.numeric(traces_list[[v]]), col = rgb(0,0,0,0.3), quiet = TRUE)
+
     if(is.null(sample_names)){
       mtext(side = 3, plot_settings$mtext, cex = plot_settings$cex * 0.8)
     }else{
@@ -270,5 +279,5 @@ plot_MCMC <- function(
 
   }
 
-}
 
+}
