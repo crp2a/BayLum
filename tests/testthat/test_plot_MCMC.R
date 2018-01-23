@@ -48,8 +48,8 @@ test_that("Full function test", {
 
     ##n.iter
     expect_silent(plot_MCMC(object, n.iter = 10))
-    expect_silent(plot_MCMC(object, n.iter = 10:20))
-    expect_warning(plot_MCMC(object, n.iter = c(10,20000)))
+    expect_warning(plot_MCMC(object, n.iter = 10:20))
+    expect_warning(plot_MCMC(object, n.iter = c(20000)))
     expect_warning(plot_MCMC(object, n.iter = -1))
     expect_warning(plot_MCMC(object, n.iter = c(1:20000)))
 

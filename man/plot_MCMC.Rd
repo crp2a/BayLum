@@ -6,7 +6,7 @@
 \usage{
 plot_MCMC(object, sample_names = NULL, variables = c("A", "D", "sD"),
   axes_labels = c(A = "Age (ka)", D = "D (Gy)", sD = "sD (Gy)"),
-  n.chains = NULL, n.iter = 1000, smooth = FALSE, plot_single = FALSE,
+  n.chains = NULL, n.iter = 1000L, smooth = FALSE, plot_single = FALSE,
   ...)
 }
 \arguments{
@@ -25,7 +25,9 @@ The labelling for the xaxis (trace plots) and yaxis (density plot) cannot be mod
 \item{n.chains}{\link{numeric} (optional): Set the number of chains to visualise, if nothing is provided the
 number of chains is determined from the input object}
 
-\item{n.iter}{\link{numeric} (with default): Set the number of iterations to be visualised in the trace plots.}
+\item{n.iter}{\link{integer} (with default): Set the number of iterations to be visualised in the trace plots, regardless
+of the size of the input dataset as long as the real number of iterations is > \code{n.iter}.
+Please note that large numbers affect the plot performance.}
 
 \item{smooth}{\link{logical} (with default): Enable/disables smooth of trace plots using \link[stats:smooth]{stats::smooth}}
 

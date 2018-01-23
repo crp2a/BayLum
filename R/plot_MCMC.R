@@ -27,7 +27,9 @@
 #' @param n.chains [numeric] (optional): Set the number of chains to visualise, if nothing is provided the
 #' number of chains is determined from the input object
 #'
-#' @param n.iter [numeric] (with default): Set the number of iterations to be visualised in the trace plots.
+#' @param n.iter [integer] (with default): Set the number of iterations to be visualised in the trace plots, regardless
+#' of the size of the input dataset as long as the real number of iterations is > `n.iter`.
+#' Please note that large numbers affect the plot performance.
 #'
 #' @param smooth [logical] (with default): Enable/disables smooth of trace plots using [stats::smooth]
 #'
@@ -64,7 +66,7 @@ plot_MCMC <- function(
   variables = c("A", "D", "sD"),
   axes_labels = c("A" = "Age (ka)", "D" = "D (Gy)", "sD" = "sD (Gy)"),
   n.chains = NULL,
-  n.iter = 1000,
+  n.iter = 1000L,
   smooth = FALSE,
   plot_single = FALSE,
   ...
@@ -107,17 +109,16 @@ plot_MCMC <- function(
     n.chains <- coda::nchain(object)
 
   ##treat the argument n.iter, which is rather fragile and easly misused
-  if(length(n.iter) == 1 && n.iter < coda::niter(object))
-    n.iter <- floor(seq(1,coda::niter(object), length.out = abs(n.iter)))
+  if(length(n.iter) > 1)
+    warning("[plot_MCMC()] length 'n.iter' > 1, using only the first value", call. = FALSE, immediate. = TRUE)
 
-  if(length(n.iter) > coda::niter(object) || max(n.iter) > coda::niter(object) || min(n.iter) < 1 || length(n.iter) < 2){
-    warning("[plot_MCMC()] 'n.iter' out of range, reset to default!", call. = FALSE, immediate. = TRUE)
-    n.iter <- floor(seq(1,coda::niter(object), length.out = 1000))
+  if(n.iter[1] > coda::niter(object) || n.iter[1] < 2){
+    warning("[plot_MCMC()] 'n.iter' out of range, reset to number of observations", call. = FALSE, immediate. = TRUE)
+    n.iter <- coda::niter(object)
+  }
 
-      if(length(n.iter) > coda::niter(object))
-        n.iter <- 1:coda::niter(object)
-
-    }
+  #now set n.iter object
+  n.iter <- floor(seq(1,coda::niter(object), length.out = abs(n.iter)))
 
   ##set plot defaults
   plot_settings <- list(
@@ -148,6 +149,13 @@ plot_MCMC <- function(
         }
 
       }, numeric(length(n.iter)))
+
+    })
+
+    ##(1.1) grep information in mcpar, they should be the same. However, if not we can check here
+    ##later
+    mcpar_list <- lapply(object, function(x){
+      attributes(x)$mcpar
 
     })
 
@@ -216,8 +224,10 @@ plot_MCMC <- function(
 
   ##plot everything in a loop
   for(v in o){
+
     ##traces
     matplot(
+      x = seq(mcpar_list[[1]][1], mcpar_list[[1]][2], length.out = length(n.iter)),
       y = traces_list[[v]],
       type = plot_settings$type,
       lty = plot_settings$lty,
@@ -226,8 +236,10 @@ plot_MCMC <- function(
       xlab = "Iterations",
       ylab = ylab_traces[v],
       main = coda::varnames(object)[v],
+      sub = paste0("(orig. thin. = ",mcpar_list[[1]][3] ," | shown = ",length(n.iter),")"),
       cex = plot_settings$cex
     )
+
     if(is.null(sample_names)){
       mtext(side = 3, plot_settings$mtext, cex = plot_settings$cex * 0.8)
     }else{
@@ -259,3 +271,4 @@ plot_MCMC <- function(
   }
 
 }
+
