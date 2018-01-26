@@ -29,9 +29,9 @@ Data can be processed simultaneously for various samples, including the input of
 sample for single grain (SG) or multigrain (MG) OSL measurements. 
 Stratigraphic constraints and systematic errors can be added to constrain the analysis further.
 
-For those who already know how to use **R**, `BayLum' won't be difficult to use, 
+For those who already know how to use **R**, 'BayLum' won't be difficult to use, 
 for all others, this brief introduction may be of help to make the first steps with **R** and 
-the package `BayLum'.
+the package 'BayLum'.
 
 ## Installing `BayLum' package
 
@@ -40,8 +40,8 @@ If you read this document before having installed **R** itself, you should first
 which provides an excellent desktop environment. 
 
 However, what is needed is the external software *JAGS* (Just Another Gibs Sampler). 
-Please visit the [JAGS](http://mcmc-jags.sourceforge.net) webpage and follow the install instructions. Now you are nearly ready to work with `BayLum'. 
-Please run the following two **R** code lines to install `BayLum' on your computer if necessary and load it 
+Please visit the [JAGS](http://mcmc-jags.sourceforge.net) webpage and follow the install instructions. Now you are nearly ready to work with 'BayLum'. 
+Please run the following two **R** code lines to install 'BayLum' on your computer if necessary and load it 
 if it is already installed.
 
 ```{r,eval=TRUE, message=FALSE}
