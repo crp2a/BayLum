@@ -109,8 +109,8 @@ the context of the 'BayLum' package.</p>
 
     <pre class="usage"><span class='fu'>plot_MCMC</span>(<span class='no'>object</span>, <span class='kw'>sample_names</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>variables</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"A"</span>, <span class='st'>"D"</span>, <span class='st'>"sD"</span>),
   <span class='kw'>axes_labels</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='kw'>A</span> <span class='kw'>=</span> <span class='st'>"Age (ka)"</span>, <span class='kw'>D</span> <span class='kw'>=</span> <span class='st'>"D (Gy)"</span>, <span class='kw'>sD</span> <span class='kw'>=</span> <span class='st'>"sD (Gy)"</span>),
-  <span class='kw'>n.chains</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>n.iter</span> <span class='kw'>=</span> <span class='fl'>1000</span>, <span class='kw'>smooth</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>plot_single</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='no'>...</span>)</pre>
+  <span class='kw'>n.chains</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>n.iter</span> <span class='kw'>=</span> <span class='fl'>1000L</span>, <span class='kw'>smooth</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>rug</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>plot_single</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <table class="ref-arguments">
@@ -142,11 +142,17 @@ number of chains is determined from the input object</p></td>
     </tr>
     <tr>
       <th>n.iter</th>
-      <td><p>numeric (with default): Set the number of iterations to be visualised in the trace plots.</p></td>
+      <td><p>integer (with default): Set the number of iterations to be visualised in the trace plots, regardless
+of the size of the input dataset as long as the real number of iterations is &gt; <code>n.iter</code>.
+Please note that large numbers impact the plot performance.</p></td>
     </tr>
     <tr>
       <th>smooth</th>
       <td><p>logical (with default): Enable/disables smooth of trace plots using <a href='http://www.rdocumentation.org/packages/stats/topics/smooth'>stats::smooth</a></p></td>
+    </tr>
+    <tr>
+      <th>rug</th>
+      <td><p>logical (with default): Enable/disables rug under density plots</p></td>
     </tr>
     <tr>
       <th>plot_single</th>
@@ -184,7 +190,7 @@ and <a href='Palaeodose_Computation.html'>Palaeodose_Computation</a>, but can be
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'>data</span>(<span class='no'>MCMCsample</span>,<span class='kw'>envir</span> <span class='kw'>=</span> <span class='fu'>environment</span>())
 <span class='no'>object</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>coda</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/coda/topics/mcmc'>as.mcmc</a></span>(<span class='no'>MCMCsample</span>)
-<span class='fu'>plot_MCMC</span>(<span class='no'>object</span>)</div><div class='output co'>#&gt; <span class='error'>Error in plot.new(): figure margins too large</span></div><div class='input'>
+<span class='fu'>plot_MCMC</span>(<span class='no'>object</span>)</div><div class='img'><img src='plot_MCMC-2.png' alt='' width='700' height='432.632880098887' /></div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

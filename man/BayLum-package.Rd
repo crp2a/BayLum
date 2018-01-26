@@ -4,27 +4,27 @@
 \name{BayLum-package}
 \alias{BayLum-package}
 \alias{BayLum}
-\title{Chronological Bayesian Models Integrating Optically Stimulated Luminescence and 14C Age Dating}
+\title{Chronological Bayesian Models Integrating Optically Stimulated Luminescence and 14C Dating}
 \description{
-A collection of various R functions for Bayesian analysis of luminescence data and 14C Cal age estimate.
-This includes, amongst others, data import, export, application of age models and palaeodose model.
+A collection of various R functions for Bayesian analysis of luminescence data and 14C age estimates.
+This includes, amongst others, data import, export, application of age and palaeodose models.
 }
 \details{
-This package is based on the functions: \code{\link{Generate_DataFile}} and \code{\link{Generate_DataFile_MG}}
+This package is based on the functions: \link{Generate_DataFile} and \link{Generate_DataFile_MG}
 to import luminisecence data. These functions create a list containing all informations to compute age
 of Single-grain OSL measurements for the first function and Multi-grain OSL measurements for the second.
 
-The functions:\code{\link{Age_Computation}} and \code{\link{AgeS_Computation}} use Bayesian analysis for OSL age
+The functions: \link{Age_Computation} and \link{AgeS_Computation} use Bayesian analysis for OSL age
 estimation for one or various samples according to differents models
-(e.g. different growth curves and different equivalent dose distributions around the palaeodose).
+(e.g. different dose-response curves and different equivalent dose distributions around the palaeodose).
 
-It is possible to consider various Bin files per sample, to compute ages of samples in stratigraphic constraints
+It is possible to consider various BIN-files per sample, to compute ages of samples in stratigraphic constraints
 and to integrate systematic errors.
 
-It is possible to calibrate 14C age with the function \code{\link{AgeC14_Computation}}.
-We can also estimate chronology containing 14C age and OSL samples with the function \code{\link{Age_OSLC14}}.
+It is possible to calibrate 14C age with the function \link{AgeC14_Computation}.
+We can also estimate chronology containing 14C age and OSL samples with the function \link{Age_OSLC14}.
 }
 \author{
-Claire Christophe, Anne Philippe, Sebastian Kreutzer, Guillaume Guerin
+Claire Christophe, Anne Philippe, Sebastian Kreutzer, Guillaume Guérin
 }
 \keyword{package}

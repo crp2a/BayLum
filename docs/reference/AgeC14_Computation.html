@@ -298,15 +298,15 @@ IntCal13 ans Marine13 radiocarbon age calibration curves 0-50000 years cal BP. R
 <span class='kw'>Nb_sample</span> <span class='kw'>=</span> <span class='no'>nb_sample</span>,
 <span class='kw'>PriorAge</span> <span class='kw'>=</span> <span class='fu'>rep</span>(<span class='fu'>c</span>(<span class='fl'>20000</span>,<span class='fl'>60000</span>),<span class='no'>nb_sample</span>),
 <span class='kw'>Iter</span> <span class='kw'>=</span> <span class='fl'>500</span>,
-<span class='kw'>quiet</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: [plot_MCMC()] 'n.iter' out of range, reset to default!</span></div><div class='img'><img src='AgeC14_Computation-1.png' alt='' width='700' height='432.632880098887' /></div><div class='img'><img src='AgeC14_Computation-2.png' alt='' width='700' height='432.632880098887' /></div><div class='img'><img src='AgeC14_Computation-3.png' alt='' width='700' height='432.632880098887' /></div><div class='output co'>#&gt; <span class='warning'>Warning: [Age14_Computation()] Outliers detected in sample: S-EVA-26510, S-EVA-26506, S-EVA-26507, S-EVA-26508</span></div><div class='img'><img src='AgeC14_Computation-4.png' alt='' width='700' height='432.632880098887' /></div><div class='output co'>#&gt; 
+<span class='kw'>quiet</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: [plot_MCMC()] 'n.iter' out of range, reset to number of observations</span></div><div class='img'><img src='AgeC14_Computation-7.png' alt='' width='700' height='432.632880098887' /></div><div class='img'><img src='AgeC14_Computation-8.png' alt='' width='700' height='432.632880098887' /></div><div class='img'><img src='AgeC14_Computation-9.png' alt='' width='700' height='432.632880098887' /></div><div class='output co'>#&gt; <span class='warning'>Warning: [Age14_Computation()] Outliers detected in sample: S-EVA-26510, S-EVA-26506, S-EVA-26507, S-EVA-26508</span></div><div class='img'><img src='AgeC14_Computation-10.png' alt='' width='700' height='432.632880098887' /></div><div class='output co'>#&gt; 
 #&gt; 
 #&gt; &gt;&gt; MCMC Convergence of Age parameters &lt;&lt;
 #&gt; ----------------------------------------------
 #&gt; Sample name   Bayes estimate   Uppers credible interval
-#&gt; A_S-EVA-26510 	 1 		 1.02 
+#&gt; A_S-EVA-26510 	 1 		 1.01 
 #&gt; A_S-EVA-26506 	 1 		 1.01 
-#&gt; A_S-EVA-26507 	 1.01 		 1.03 
-#&gt; A_S-EVA-26508 	 1.01 		 1.03 
+#&gt; A_S-EVA-26507 	 1 		 1.01 
+#&gt; A_S-EVA-26508 	 1 		 1 
 #&gt; 
 #&gt; 
 #&gt; ---------------------------------------------------------------------------------------------------
@@ -318,30 +318,30 @@ IntCal13 ans Marine13 radiocarbon age calibration curves 0-50000 years cal BP. R
 #&gt; &gt;&gt; Bayes estimates of Age for each sample and credible interval &lt;&lt;
 #&gt; ------------------------------------------------------
 #&gt; Sample name 	 Bayes estimate  Credible interval: 
-#&gt; A_S-EVA-26510 	 39756 
+#&gt; A_S-EVA-26510 	 39760 
 #&gt; 						 lower bound 	 upper bound
-#&gt; 				 at level 95% 	 21871 		 59118 
-#&gt; 				 at level 68% 	 25099 		 51512 
+#&gt; 				 at level 95% 	 21710 		 58687 
+#&gt; 				 at level 68% 	 30894 		 56210 
 #&gt; ------------------------------------------------------
 #&gt; Sample name 	 Bayes estimate  Credible interval: 
-#&gt; A_S-EVA-26506 	 39476 
+#&gt; A_S-EVA-26506 	 40422 
 #&gt; 						 lower bound 	 upper bound
-#&gt; 				 at level 95% 	 20886 		 58719 
-#&gt; 				 at level 68% 	 20064 		 45012 
+#&gt; 				 at level 95% 	 21880 		 59656 
+#&gt; 				 at level 68% 	 33111 		 59061 
 #&gt; ------------------------------------------------------
 #&gt; Sample name 	 Bayes estimate  Credible interval: 
-#&gt; A_S-EVA-26507 	 39513 
+#&gt; A_S-EVA-26507 	 39601 
 #&gt; 						 lower bound 	 upper bound
-#&gt; 				 at level 95% 	 21757 		 58591 
-#&gt; 				 at level 68% 	 22778 		 47265 
+#&gt; 				 at level 95% 	 20030 		 58659 
+#&gt; 				 at level 68% 	 20147 		 46981 
 #&gt; ------------------------------------------------------
 #&gt; Sample name 	 Bayes estimate  Credible interval: 
-#&gt; A_S-EVA-26508 	 39886 
+#&gt; A_S-EVA-26508 	 40784 
 #&gt; 						 lower bound 	 upper bound
-#&gt; 				 at level 95% 	 21997 		 58518 
-#&gt; 				 at level 68% 	 24755 		 48644 
+#&gt; 				 at level 95% 	 21761 		 59958 
+#&gt; 				 at level 68% 	 31212 		 57687 
 #&gt; 
-#&gt; ------------------------------------------------------</div><div class='img'><img src='AgeC14_Computation-5.png' alt='' width='700' height='432.632880098887' /></div><div class='img'><img src='AgeC14_Computation-6.png' alt='' width='700' height='432.632880098887' /></div><div class='input'>
+#&gt; ------------------------------------------------------</div><div class='img'><img src='AgeC14_Computation-11.png' alt='' width='700' height='432.632880098887' /></div><div class='img'><img src='AgeC14_Computation-12.png' alt='' width='700' height='432.632880098887' /></div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

@@ -76,7 +76,7 @@
       <h1>BayLum: An Introduction</h1>
                         <h4 class="author">Claire Christophe, Anne Philippe, Sebastian Kreutzer, Guillaume Guérin</h4>
             
-            <h4 class="date">Updated for BayLum package version 0.1.2 (2018-01-21)</h4>
+            <h4 class="date">Updated for BayLum package version 0.1.2 (2018-01-26)</h4>
           </div>
 
     
@@ -85,33 +85,31 @@
 <div id="introduction" class="section level1">
 <h1 class="hasAnchor">
 <a href="#introduction" class="anchor"></a>Introduction</h1>
-<p>‘BayLum’ provides a collection of various R functions for Bayesian analysis of luminescence data. Amongst others, this includes data import, export, application of age models and palaeodose model.</p>
-<p>Data can be simultaneously processed for various samples, including the input of multiple BIN-files per sample. Single-grain and Multi-grain OSL measurement can be analysed. Stratigraphic constraints and systematic errors can be added in the analyse.</p>
-<p>For those who already know how to use R, `BayLum’ won’t be difficult to use.</p>
-<div id="installing-baylum-package" class="section level3">
-<h3 class="hasAnchor">
-<a href="#installing-baylum-package" class="anchor"></a>Installing <em>BayLum</em> package</h3>
-<p>To install `BayLum’, first <a href="https://www.r-project.org">R</a> and <a href="http://www.rstudio.com">Rstudio</a>, which provides a nice desktop environment for using R needed to be installed. In addition, you need to install <a href="http://mcmc-jags.sourceforge.net">JAGS</a> for the Bayesian analysis of the models. Once in R (or in RStudio) you can type:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">'BayLum'</span>)</code></pre></div>
-<p>after the installation was sucessful, you can type</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(BayLum)</code></pre></div>
-<p>to attach the package to your current R session.</p>
-</div>
-</div>
-<div id="age-analysis-of-one-sample" class="section level1">
-<h1 class="hasAnchor">
-<a href="#age-analysis-of-one-sample" class="anchor"></a>Age analysis of one sample</h1>
-<div id="generate-data-file-from-bin-file-for-single-grain-osl-measurements" class="section level2">
+<p>‘BayLum’ provides a collection of various <strong>R</strong> functions for Bayesian analysis of luminescence data. Amongst others, this includes data import, export, application of age models and palaeodose modelling.</p>
+<p>Data can be processed simultaneously for various samples, including the input of multiple BIN-files per sample for single grain (SG) or multigrain (MG) OSL measurements. Stratigraphic constraints and systematic errors can be added to constrain the analysis further.</p>
+<p>For those who already know how to use <strong>R</strong>, ‘BayLum’ won’t be difficult to use, for all others, this brief introduction may be of help to make the first steps with <strong>R</strong> and the package ‘BayLum’.</p>
+<div id="installing-baylum-package" class="section level2">
 <h2 class="hasAnchor">
-<a href="#generate-data-file-from-bin-file-for-single-grain-osl-measurements" class="anchor"></a>Generate data file from BIN-file for single-grain OSL measurements</h2>
-<div id="import-information-from-a-bin-file-" class="section level3">
-<h3 class="hasAnchor">
-<a href="#import-information-from-a-bin-file-" class="anchor"></a>Import information from a BIN-file.</h3>
-<p>Let us consider the sample is named <em>samp1</em>, which is the example coming with the package. All information related to this sample are stored in a subfolder named also <em>samp1</em>. To test the package example, first we add the path of the example dataset to object <code>path</code></p>
+<a href="#installing-baylum-package" class="anchor"></a>Installing `BayLum’ package</h2>
+<p>If you read this document before having installed <strong>R</strong> itself, you should first visit the <a href="https://www.r-project.org">R project</a> webpage and download and install <strong>R</strong>. You may also consider installing <a href="http://www.rstudio.com">Rstudio</a>, which provides an excellent desktop environment.</p>
+<p>However, what is needed is the external software <em>JAGS</em> (Just Another Gibs Sampler). Please visit the <a href="http://mcmc-jags.sourceforge.net">JAGS</a> webpage and follow the install instructions. Now you are nearly ready to work with ‘BayLum’. Please run the following two <strong>R</strong> code lines to install ‘BayLum’ on your computer if necessary and load it if it is already installed.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="cf">if</span>(<span class="op">!</span><span class="kw">require</span>(<span class="st">"BayLum"</span>))
+  <span class="kw">install.packages</span>(<span class="st">"BayLum"</span>, <span class="dt">dependencies =</span> <span class="ot">TRUE</span>)</code></pre></div>
+<p>Alternatively, you can load an already installed <strong>R</strong> package (here `BayLum’) into your session by using the following call.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(BayLum)</code></pre></div>
+</div>
+</div>
+<div id="first-steps-age-analysis-of-one-sample" class="section level1">
+<h1 class="hasAnchor">
+<a href="#first-steps-age-analysis-of-one-sample" class="anchor"></a>First steps: Age analysis of one sample</h1>
+<div id="import-information-from-a-bin-file-" class="section level2">
+<h2 class="hasAnchor">
+<a href="#import-information-from-a-bin-file-" class="anchor"></a>Import information from a BIN-file.</h2>
+<p>Let us consider the sample is named <em>samp1</em>, which is the example dataset coming with the package. All information related to this sample is stored in a subfolder called also <em>samp1</em>. To test the package example, first, we add the path of the example dataset to the object <code>path</code>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">path &lt;-<span class="st"> </span><span class="kw">paste0</span>(<span class="kw">system.file</span>(<span class="st">"extdata/"</span>, <span class="dt">package=</span><span class="st">"BayLum"</span>),<span class="st">"/"</span>)</code></pre></div>
 <p>Please note that for your own dataset (i.e. not included in the package) you have to replace this call by something like:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">path &lt;-<span class="st"> "Users/Master_of_luminescence/Documents/MyFamousOSLData"</span></code></pre></div>
-<p>In our example the folder contains the following folder and files:</p>
+<p>In our example the folder contains the following subfolders and files:</p>
 <table class="table"><tbody>
 <tr class="odd">
 <td align="left">1</td>
@@ -175,27 +173,29 @@
 </tr>
 </tbody></table>
 <p>See <em>“What are the required files in each subfolder?”</em> in the manual of <code>Generate_DataFile</code> function for the meaning of these files.</p>
-</div>
-<div id="run-the-function-generate_datafile" class="section level3">
-<h3 class="hasAnchor">
-<a href="#run-the-function-generate_datafile" class="anchor"></a>Run the function <code><a href="../reference/Generate_DataFile.html">Generate_DataFile()</a></code>
-</h3>
+<p>To import your data, simply use the function <code><a href="../reference/Generate_DataFile.html">Generate_DataFile()</a></code>:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">DATA1 &lt;-
-<span class="st">  </span><span class="kw"><a href="../reference/Generate_DataFile.html">Generate_DataFile</a></span>(<span class="dt">Path =</span> path,
-                    <span class="dt">FolderNames =</span> <span class="st">"samp1"</span>,
-                    <span class="dt">Nb_sample =</span> <span class="dv">1</span>,
-                    <span class="dt">verbose =</span> <span class="ot">FALSE</span>)</code></pre></div>
-<div id="remark-1-save-and-load-information" class="section level4">
+<span class="st">  </span><span class="kw"><a href="../reference/Generate_DataFile.html">Generate_DataFile</a></span>(
+  <span class="dt">Path =</span> path,
+  <span class="dt">FolderNames =</span> <span class="st">"samp1"</span>,
+  <span class="dt">Nb_sample =</span> <span class="dv">1</span>,
+  <span class="dt">verbose =</span> <span class="ot">FALSE</span>
+  )</code></pre></div>
+<div id="remarks" class="section level3">
+<h3 class="hasAnchor">
+<a href="#remarks" class="anchor"></a>Remarks</h3>
+<div id="importexport" class="section level4">
 <h4 class="hasAnchor">
-<a href="#remark-1-save-and-load-information" class="anchor"></a>Remark 1: save and load information</h4>
-<p>The user can use the function <strong>save</strong> to save output <span class="math inline">\(DATA1\)</span> as follows:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">save</span>(DATA1,<span class="dt">file=</span><span class="kw">c</span>(<span class="kw">paste</span>(path,<span class="st">"DATA1.RData"</span>,<span class="dt">sep=</span><span class="st">""</span>)))</code></pre></div>
-<p>The user can acces this file with the function <strong>load</strong>:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">load</span>(<span class="dt">file=</span><span class="kw">c</span>(<span class="kw">paste</span>(path,<span class="st">"DATA1.RData"</span>,<span class="dt">sep=</span><span class="st">""</span>)))</code></pre></div>
+<a href="#importexport" class="anchor"></a>Import/export</h4>
+<p>The import may take a while and can become annoying if you want to play with the data. In such situations, it makes sense to save your imported data somewhere else before continuing.</p>
+<p>To save the obove imported data on your hardrive use</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">save</span>(DATA1,<span class="dt">file=</span><span class="st">"YourPath/DATA1.RData"</span>)</code></pre></div>
+<p>To load the data use</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">load</span>(DATA1,<span class="dt">file=</span><span class="st">"YourPath/DATA1.RData"</span>)</code></pre></div>
 </div>
-<div id="remark-2-general-structure-of-the-data" class="section level4">
+<div id="data-structure" class="section level4">
 <h4 class="hasAnchor">
-<a href="#remark-2-general-structure-of-the-data" class="anchor"></a>Remark 2: general structure of the data</h4>
+<a href="#data-structure" class="anchor"></a>Data structure</h4>
 <p>To show the overall structure of the data generated from the BIN-file and the associated CSV-files, the following call can be used:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">str</span>(DATA1)</code></pre></div>
 <pre><code>List of 9
@@ -212,19 +212,56 @@
  $ J             : num 1
  $ K             : num 6
  $ Nb_measurement: num 16</code></pre>
-<p>In <em>DATA1</em>, there is information for the sample named <em>GDB3</em>. It is expected (for more information we refer to “Value” section in help of <code>Generate_DataFile</code> function):</p>
-<ul>
-<li>1 list (1 list per sample), for <code>DATA$LT</code>, <code>DATA$sLT</code>, <code>DATA1$ITimes</code> and <code>DATA1$regDose</code>
-</li>
-<li>1 vector of size 2 (a 2 column matrix, with 1 line per sample), for <code>DATA1$dLab</code>, <code>DATA1$ddot_env</code>
-</li>
-<li>1 integer (1 integer per BIN files), for <code>DATA1$J</code>, <code>DATA1$K</code>, <code>DATA1$Nb_measurement</code>.</li>
-</ul>
+<p>It reveals that <code>DATA1</code> is basically a list with 9 elements:</p>
+<table class="table">
+<thead><tr class="header">
+<th>Element</th>
+<th>Content</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td><code>DATA1$LT</code></td>
+<td>Lx/Tx values from each sample</td>
+</tr>
+<tr class="even">
+<td><code>DATA1$sLT</code></td>
+<td>Lx/Tx error values from each sample</td>
+</tr>
+<tr class="odd">
+<td><code>DATA1$ITimes</code></td>
+<td>Irradiation times</td>
+</tr>
+<tr class="even">
+<td><code>DATA1$dLab</code></td>
+<td>The lab dose rate</td>
+</tr>
+<tr class="odd">
+<td><code>DATA1$ddot_env</code></td>
+<td>The environmental dose rate and its variance</td>
+</tr>
+<tr class="even">
+<td><code>DATA1$regDose</code></td>
+<td>The regenarated dose points</td>
+</tr>
+<tr class="odd">
+<td><code>DATA1$J</code></td>
+<td>The number of aliquots selected for each BIN-file</td>
+</tr>
+<tr class="even">
+<td><code>DATA1$K</code></td>
+<td>The number of regenarted dose points</td>
+</tr>
+<tr class="odd">
+<td><code>DATA1$Nb_measurement</code></td>
+<td>The number of measurements per BIN-file</td>
+</tr>
+</tbody>
+</table>
 </div>
-<div id="remark-3-lxts-value-as-a-function-of-regenerative-dose" class="section level4">
+<div id="visualise-lxtx-values-and-dose-points" class="section level4">
 <h4 class="hasAnchor">
-<a href="#remark-3-lxts-value-as-a-function-of-regenerative-dose" class="anchor"></a>Remark 3: Lx/Ts value as a function of Regenerative Dose</h4>
-<p>You can also see the <span class="math inline">\(L_{x}/T_{x}\)</span> values as a function of regenerative dose using the function <strong>LT_RegenDose</strong>:</p>
+<a href="#visualise-lxtx-values-and-dose-points" class="anchor"></a>Visualise Lx/Tx values and dose points</h4>
+<p>To get an impression on how your data look like, you can visualise them by using the function <code><a href="../reference/LT_RegenDose.html">LT_RegenDose()</a></code>:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/LT_RegenDose.html">LT_RegenDose</a></span>(
   <span class="dt">DATA =</span> DATA1,
   <span class="dt">Path =</span> path,
@@ -232,8 +269,8 @@
   <span class="dt">SampleNames =</span> <span class="st">"samp1"</span>,
   <span class="dt">Nb_sample =</span> <span class="dv">1</span>,
   <span class="dt">nrow =</span> <span class="ot">NULL</span>)</code></pre></div>
-<p><img src="BayLum_files/figure-html/unnamed-chunk-12-1.png" width="672" style="display: block; margin: auto;"></p>
-<p>Note that, here we consider only one sample, and the name of the folder is the name of the sample. That is why we have set <code>FolderNames = samp1</code> and <code>SampleNames = samp1</code>.</p>
+<p><img src="BayLum_files/figure-html/unnamed-chunk-11-1.png" width="672" style="display: block; margin: auto;"></p>
+<p>Note that here we consider only one sample, and the name of the folder is the name of the sample. For that reason the argumetns were set to <code>FolderNames = samp1</code> and <code>SampleNames = samp1</code>.</p>
 </div>
 </div>
 </div>
@@ -263,7 +300,7 @@ Graph information:
    Total graph size: 139
 
 Initializing model</code></pre>
-<p><img src="BayLum_files/figure-html/unnamed-chunk-13-1.png" width="480" style="display: block; margin: auto;"></p>
+<p><img src="BayLum_files/figure-html/unnamed-chunk-12-1.png" width="480" style="display: block; margin: auto;"></p>
 <pre><code>
 
 &gt;&gt; Sample name &lt;&lt;
@@ -273,9 +310,9 @@ samp1
 &gt;&gt; Results of the Gelman and Rubin criterion of convergence &lt;&lt;
 ----------------------------------------------
      Point estimate Uppers confidence interval
-A    1.01        1.02 
-D    1.01        1.02 
-sD   1.01        1.01 
+A    1       1 
+D    1       1 
+sD   1.03        1.04 
 
 
 ---------------------------------------------------------------------------------------------------
@@ -284,20 +321,20 @@ sD   1.01        1.01
 
 parameter    Bayes estimate       Credible interval 
 ----------------------------------------------
-A        23.17 
+A        24.558 
                          lower bound     upper bound
-                 at level 95%    10          61.03 
-                 at level 68%    10          25.52 
+                 at level 95%    10.01       68.47 
+                 at level 68%    10.01       25.37 
 ----------------------------------------------
-D        57.504 
+D        61.01 
                          lower bound     upper bound
-                 at level 95%    21.15       154.71 
-                 at level 68%    22.71       65.3 
+                 at level 95%    20.37       166.57 
+                 at level 68%    22.78       65.29 
 ----------------------------------------------
-sD       34.994 
+sD       36.888 
                          lower bound     upper bound
-                 at level 95%    0.75        125.41 
-                 at level 68%    0.77        32.95 </code></pre>
+                 at level 95%    0.3         153.04 
+                 at level 68%    0.57        32.98 </code></pre>
 <p>This works also if <code>DATA1</code> is output of <code><a href="../reference/Generate_DataFile_MG.html">Generate_DataFile_MG()</a></code>.</p>
 <div id="remark-1-mcmc-trajectories" class="section level5">
 <h5 class="hasAnchor">
@@ -380,7 +417,7 @@ Graph information:
    Total graph size: 221
 
 Initializing model</code></pre>
-<p><img src="BayLum_files/figure-html/unnamed-chunk-15-1.png" width="480" style="display: block; margin: auto;"></p>
+<p><img src="BayLum_files/figure-html/unnamed-chunk-14-1.png" width="480" style="display: block; margin: auto;"></p>
 <pre><code>
 
 &gt;&gt; Sample name &lt;&lt;
@@ -390,9 +427,9 @@ samp1 samp2
 &gt;&gt; Results of the Gelman and Rubin criterion of convergence &lt;&lt;
 ----------------------------------------------
      Point estimate Uppers confidence interval
-A    1.01        1.01 
-D    1.02        1.02 
-sD   1.02        1.02 
+A    1.03        1.04 
+D    1.03        1.05 
+sD   1.09        1.13 
 
 
 ---------------------------------------------------------------------------------------------------
@@ -401,20 +438,20 @@ sD   1.02        1.02
 
 parameter    Bayes estimate       Credible interval 
 ----------------------------------------------
-A        2.303 
+A        2.314 
                          lower bound     upper bound
-                 at level 95%    1.17        3.37 
-                 at level 68%    1.72        2.75 
+                 at level 95%    0.74        3.51 
+                 at level 68%    1.62        2.68 
 ----------------------------------------------
-D        5.737 
+D        5.769 
                          lower bound     upper bound
-                 at level 95%    3.1         8.27 
-                 at level 68%    4.43        6.76 
+                 at level 95%    2.01        8.97 
+                 at level 68%    4.24        6.68 
 ----------------------------------------------
-sD       0.771 
+sD       0.868 
                          lower bound     upper bound
-                 at level 95%    0       2.3 
-                 at level 68%    0       0.74 </code></pre>
+                 at level 95%    0       3.76 
+                 at level 68%    0       0.82 </code></pre>
 </div>
 </div>
 <div id="age-analysis-of-various-samples" class="section level1">
@@ -507,8 +544,8 @@ Graph information:
    Total graph size: 20624
 
 Initializing model</code></pre>
-<pre><code>Warning: [plot_MCMC()] 'n.iter' out of range, reset to default!</code></pre>
-<p><img src="BayLum_files/figure-html/unnamed-chunk-19-1.png" width="480" style="display: block; margin: auto;"><img src="BayLum_files/figure-html/unnamed-chunk-19-2.png" width="480" style="display: block; margin: auto;"></p>
+<pre><code>Warning: [plot_MCMC()] 'n.iter' out of range, reset to number of observations</code></pre>
+<p><img src="BayLum_files/figure-html/unnamed-chunk-18-1.png" width="480" style="display: block; margin: auto;"><img src="BayLum_files/figure-html/unnamed-chunk-18-2.png" width="480" style="display: block; margin: auto;"></p>
 <pre><code>
 
 &gt;&gt; Results of the Gelman and Rubin criterion of convergence &lt;&lt;
@@ -516,16 +553,16 @@ Initializing model</code></pre>
  Sample name:  GDB5 
 ---------------------
          Point estimate Uppers confidence interval
-A_GDB5   1       1.01 
-D_GDB5   1.07        1.22 
+A_GDB5   1.01        1.04 
+D_GDB5   1.07        1.23 
 sD_GDB5      1.02        1.08 
 ----------------------------------------------
  Sample name:  GDB3 
 ---------------------
          Point estimate Uppers confidence interval
-A_GDB3   1.01        1.03 
-D_GDB3   1.09        1.27 
-sD_GDB3      1       1.01 
+A_GDB3   1       1.02 
+D_GDB3   1.02        1.05 
+sD_GDB3      1.01        1.04 
 
 
 ---------------------------------------------------------------------------------------------------
@@ -539,48 +576,48 @@ sD_GDB3      1       1.01
  Sample name:  GDB5 
 ---------------------
 Parameter    Bayes estimate       Credible interval 
- A_GDB5      7.162 
+ A_GDB5      7.136 
                          lower bound     upper bound
-                 at level 95%    5.81        8.54 
-                 at level 68%    6.41        7.78 
+                 at level 95%    5.86        8.68 
+                 at level 68%    6.37        7.76 
 
 Parameter    Bayes estimate       Credible interval 
- D_GDB5      17.724 
+ D_GDB5      17.717 
                          lower bound     upper bound
-                 at level 95%    16.65       18.81 
-                 at level 68%    17.11       18.26 
+                 at level 95%    16.79       18.83 
+                 at level 68%    17.1        18.19 
 
 Parameter    Bayes estimate       Credible interval 
-sD_GDB5      4.382 
+sD_GDB5      4.376 
                          lower bound     upper bound
-                 at level 95%    3.73        5.54 
-                 at level 68%    4.11        5 
+                 at level 95%    3.38        5.65 
+                 at level 68%    3.7         4.83 
 ----------------------------------------------
  Sample name:  GDB3 
 ---------------------
 Parameter    Bayes estimate       Credible interval 
- A_GDB3      46.963 
+ A_GDB3      47.228 
                          lower bound     upper bound
-                 at level 95%    36.78       57.42 
-                 at level 68%    40.14       50.44 
+                 at level 95%    37.43       57.45 
+                 at level 68%    41.32       51.82 
 
 Parameter    Bayes estimate       Credible interval 
- D_GDB3      104.794 
+ D_GDB3      105.143 
                          lower bound     upper bound
-                 at level 95%    97.7        113.19 
-                 at level 68%    101.7       108.66 
+                 at level 95%    96.53       112.78 
+                 at level 68%    101.34          109.61 
 
 Parameter    Bayes estimate       Credible interval 
-sD_GDB3      16.227 
+sD_GDB3      16.185 
                          lower bound     upper bound
-                 at level 95%    10.25       22.94 
-                 at level 68%    13.3        19.3 
+                 at level 95%    9.36        21.56 
+                 at level 68%    12.3        18.71 
 
 ----------------------------------------------</code></pre>
-<p><img src="BayLum_files/figure-html/unnamed-chunk-19-3.png" width="480" style="display: block; margin: auto;"></p>
-<div id="remarks" class="section level3">
+<p><img src="BayLum_files/figure-html/unnamed-chunk-18-3.png" width="480" style="display: block; margin: auto;"></p>
+<div id="remarks-1" class="section level3">
 <h3 class="hasAnchor">
-<a href="#remarks" class="anchor"></a>Remarks</h3>
+<a href="#remarks-1" class="anchor"></a>Remarks</h3>
 <p>If MCMC trajectories did not converge, please see comments above.</p>
 <p>As for the function <code>Age_computation()</code>, tje age for each sample is set by default between 0.01 ka and 100 ka. If you have more informations on your samples it is possible to change <code>PriorAge</code> parameters. <code>PriorAge</code> is a vector of <code>size = 2*$Nb_sample</code>, the two first values of <code>PriorAge</code> concern the first sample and so on.</p>
 <p>For example, if you know that sample named <em>GDB5</em> is a young sample whose its age is between 0.01 ka and 10 ka, and <em>GDB3</em> is an old sample whose age is between 10 ka and 100 ka, <span class="math display">\[PriorAge=c(\underbrace{0.01,10}_{GDB5\ prior\ age},\underbrace{10,100}_{GDB3\ prior\ age})\]</span></p>
@@ -656,8 +693,8 @@ Graph information:
 Initializing model</code></pre>
 <pre><code>Warning in rjags::jags.model(textConnection(Model_AgeS[[Model_GrowthCurve]][[distribution]]), : Adaptation incomplete</code></pre>
 <pre><code>NOTE: Stopping adaptation</code></pre>
-<pre><code>Warning: [plot_MCMC()] 'n.iter' out of range, reset to default!</code></pre>
-<p><img src="BayLum_files/figure-html/unnamed-chunk-24-1.png" width="480" style="display: block; margin: auto;"><img src="BayLum_files/figure-html/unnamed-chunk-24-2.png" width="480" style="display: block; margin: auto;"></p>
+<pre><code>Warning: [plot_MCMC()] 'n.iter' out of range, reset to number of observations</code></pre>
+<p><img src="BayLum_files/figure-html/unnamed-chunk-23-1.png" width="480" style="display: block; margin: auto;"><img src="BayLum_files/figure-html/unnamed-chunk-23-2.png" width="480" style="display: block; margin: auto;"></p>
 <pre><code>
 
 &gt;&gt; Results of the Gelman and Rubin criterion of convergence &lt;&lt;
@@ -665,16 +702,16 @@ Initializing model</code></pre>
  Sample name:  samp1 
 ---------------------
          Point estimate Uppers confidence interval
-A_samp1      1.02        1.08 
-D_samp1      1.04        1.18 
-sD_samp1     1.01        1.03 
+A_samp1      1.02        1.11 
+D_samp1      1.29        2.05 
+sD_samp1     1.03        1.04 
 ----------------------------------------------
  Sample name:  samp2 
 ---------------------
          Point estimate Uppers confidence interval
-A_samp2      1.06        1.22 
-D_samp2      1.14        1.45 
-sD_samp2     1.03        1.15 
+A_samp2      1.02        1.09 
+D_samp2      1.07        1.12 
+sD_samp2     1.22        1.68 
 
 
 ---------------------------------------------------------------------------------------------------
@@ -688,45 +725,45 @@ sD_samp2     1.03        1.15
  Sample name:  samp1 
 ---------------------
 Parameter    Bayes estimate       Credible interval 
- A_samp1     9.78 
+ A_samp1     9.619 
                          lower bound     upper bound
-                 at level 95%    9.44        9.99 
-                 at level 68%    9.71        9.96 
+                 at level 95%    8.93        10 
+                 at level 68%    9.54        10 
 
 Parameter    Bayes estimate       Credible interval 
- D_samp1     30.394 
+ D_samp1     27.709 
                          lower bound     upper bound
-                 at level 95%    26.39       34.05 
-                 at level 68%    28.05       31.86 
+                 at level 95%    23.48       30.95 
+                 at level 68%    25.88       29.92 
 
 Parameter    Bayes estimate       Credible interval 
-sD_samp1     65.478 
+sD_samp1     67.691 
                          lower bound     upper bound
-                 at level 95%    49.38       83.39 
-                 at level 68%    57.22       67.45 
+                 at level 95%    51.35       83.82 
+                 at level 68%    63.83       75.08 
 ----------------------------------------------
  Sample name:  samp2 
 ---------------------
 Parameter    Bayes estimate       Credible interval 
- A_samp2     10.41 
+ A_samp2     10.381 
                          lower bound     upper bound
-                 at level 95%    10.01       11.11 
-                 at level 68%    10.08       10.55 
+                 at level 95%    10          11.11 
+                 at level 68%    10          10.47 
 
 Parameter    Bayes estimate       Credible interval 
- D_samp2     18.945 
+ D_samp2     18.525 
                          lower bound     upper bound
-                 at level 95%    17.91       20.43 
-                 at level 68%    18.3        19.46 
+                 at level 95%    17.69       19.58 
+                 at level 68%    17.86       18.83 
 
 Parameter    Bayes estimate       Credible interval 
-sD_samp2     4.921 
+sD_samp2     4.798 
                          lower bound     upper bound
-                 at level 95%    4.04        5.92 
-                 at level 68%    4.9         5.85 
+                 at level 95%    4.04        5.9 
+                 at level 68%    4.42        5.2 
 
 ----------------------------------------------</code></pre>
-<p><img src="BayLum_files/figure-html/unnamed-chunk-24-3.png" width="480" style="display: block; margin: auto;"></p>
+<p><img src="BayLum_files/figure-html/unnamed-chunk-23-3.png" width="480" style="display: block; margin: auto;"></p>
 </div>
 </div>
 </div>
@@ -752,10 +789,14 @@ sD_samp2     4.921
       <h2 class="hasAnchor">
 <a href="#tocnav" class="anchor"></a>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
-<li><a href="#introduction">Introduction</a></li>
+<li>
+<a href="#introduction">Introduction</a><ul class="nav nav-pills nav-stacked">
+<li><a href="#installing-baylum-package">Installing `BayLum’ package</a></li>
+      </ul>
+</li>
       <li>
-<a href="#age-analysis-of-one-sample">Age analysis of one sample</a><ul class="nav nav-pills nav-stacked">
-<li><a href="#generate-data-file-from-bin-file-for-single-grain-osl-measurements">Generate data file from BIN-file for single-grain OSL measurements</a></li>
+<a href="#first-steps-age-analysis-of-one-sample">First steps: Age analysis of one sample</a><ul class="nav nav-pills nav-stacked">
+<li><a href="#import-information-from-a-bin-file-">Import information from a BIN-file.</a></li>
       <li><a href="#generate-data-file-from-bin-files-of-multi-grain-osl-measurements">Generate data file from BIN-files of multi-grain OSL measurements</a></li>
       <li><a href="#age-analysis">Age analysis</a></li>
       <li><a href="#multiple-bin-files-for-one-sample">Multiple BIN-files for one sample</a></li>
