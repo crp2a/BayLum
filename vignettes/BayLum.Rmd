@@ -22,42 +22,49 @@ library(BayLum)
 
 # Introduction
 
-'BayLum' provides a collection of various R functions for Bayesian analysis of luminescence data.
-Amongst others, this includes data import, export, application of age models and palaeodose model.
+'BayLum' provides a collection of various **R** functions for Bayesian analysis of luminescence data. 
+Amongst others, this includes data import, export, application of age models and palaeodose modelling.
 
-Data can be simultaneously processed for various samples, including the input of multiple BIN-files per sample.
-Single-grain and Multi-grain OSL measurement can be analysed.
-Stratigraphic constraints and systematic errors can be added in the analyse.
+Data can be processed simultaneously for various samples, including the input of multiple BIN-files per
+sample for single grain (SG) or multigrain (MG) OSL measurements. 
+Stratigraphic constraints and systematic errors can be added to constrain the analysis further.
 
-For those who already know how to use R, `BayLum' won't be difficult to use.
+For those who already know how to use **R**, `BayLum' won't be difficult to use, 
+for all others, this brief introduction may be of help to make the first steps with **R** and 
+the package `BayLum'.
 
-### Installing *BayLum* package
+## Installing `BayLum' package
 
-To install `BayLum', first [R](https://www.r-project.org) and  [Rstudio](http://www.rstudio.com), which provides
-a nice desktop environment for using R needed to be installed. In addition, you need to install [JAGS](http://mcmc-jags.sourceforge.net) for the Bayesian analysis of the models. Once in R (or in RStudio) you can type:
+If you read this document before having installed **R** itself, you should first visit the 
+[R project](https://www.r-project.org) webpage and download and install **R**. You may also consider installing [Rstudio](http://www.rstudio.com), 
+which provides an excellent desktop environment. 
 
-```{r,eval=FALSE}
-install.packages('BayLum')
+However, what is needed is the external software *JAGS* (Just Another Gibs Sampler). 
+Please visit the [JAGS](http://mcmc-jags.sourceforge.net) webpage and follow the install instructions. Now you are nearly ready to work with `BayLum'. 
+Please run the following two **R** code lines to install `BayLum' on your computer if necessary and load it 
+if it is already installed.
+
+```{r,eval=TRUE, message=FALSE}
+if(!require("BayLum"))
+  install.packages("BayLum", dependencies = TRUE)
 ```
 
-after the installation was sucessful, you can type
+Alternatively, you can load an already installed **R** package (here `BayLum') into your session by using 
+the following call.
 
 ```{r, message=FALSE}
 library(BayLum)
 ```
 
-to attach the package to your current R session.
 
-# Age analysis of one sample
+# First steps: Age analysis of one sample
 
-## Generate data file from BIN-file for single-grain OSL measurements
+## Import information from a BIN-file.
 
-### Import information from a BIN-file.
-
-Let us consider the sample is named *samp1*, which is the example coming with the package.
-All information related to this sample are stored in a subfolder named also *samp1*.
-To test the package example, first we add the path of the example
-dataset to object `path`
+Let us consider the sample is named *samp1*, which is the example dataset coming with the package. 
+All information related to this sample is stored in a subfolder called also *samp1*.
+To test the package example, first, we add the path of the example
+dataset to the object `path`.
 
 ```{r}
 path <- paste0(system.file("extdata/", package="BayLum"),"/")
@@ -70,7 +77,7 @@ you have to replace this call by something like:
 path <- "Users/Master_of_luminescence/Documents/MyFamousOSLData"
 ```
 
-In our example the folder contains the following folder and files:
+In our example the folder contains the following subfolders and files:
 
 ```{r, echo=FALSE}
 knitr::kable(
@@ -81,40 +88,39 @@ knitr::kable(
 See *"What are the required files in each subfolder?"* in the manual of  `Generate_DataFile` function
 for the meaning of these files.
 
-### Run the function `Generate_DataFile()`
+To import your data, simply use the function `Generate_DataFile()`:
 
-```{r, eval = FALSE}
+```{r, message=FALSE}
 DATA1 <-
-  Generate_DataFile(Path = path,
-                    FolderNames = "samp1",
-                    Nb_sample = 1,
-                    verbose = FALSE)
+  Generate_DataFile(
+  Path = path,
+  FolderNames = "samp1",
+  Nb_sample = 1,
+  verbose = FALSE
+  )
 ```
 
-```{r, eval = TRUE, echo=FALSE, results='hide', message=FALSE}
-##this is only of the vignette
-DATA1 <-
-  Generate_DataFile(Path = path,
-                    FolderNames = "samp1",
-                    Nb_sample = 1,
-                    verbose = FALSE)
-```
+### Remarks
 
-#### Remark 1: save and load information
 
-The user can use the function **save** to save output $DATA1$ as follows:
+#### Import/export
+
+The import may take a while and can become annoying if you want to play with the data. 
+In such situations, it makes sense to save your imported data somewhere else before continuing. 
+
+To save the obove imported data on your hardrive use
 
 ```{r,eval=FALSE}
-save(DATA1,file=c(paste(path,"DATA1.RData",sep="")))
+save(DATA1,file="YourPath/DATA1.RData")
 ```
 
-The user can acces this file with the function **load**:
+To load the data use
 
 ```{r,eval=FALSE}
-load(file=c(paste(path,"DATA1.RData",sep="")))
+load(DATA1,file="YourPath/DATA1.RData")
 ```
 
-#### Remark 2: general structure of the data
+#### Data structure
 
 To show the overall structure of the data generated from the BIN-file and the associated CSV-files,
 the following call can be used:
@@ -123,16 +129,24 @@ the following call can be used:
 str(DATA1)
 ```
 
-In *DATA1*, there is information for the sample named *GDB3*.
-It is expected (for more information we refer to "Value" section in help of  `Generate_DataFile` function):
+It reveals that `DATA1` is basically a list with `r length(DATA1)` elements:
 
-  - 1 list (1 list per sample), for `DATA$LT`, `DATA$sLT`, `DATA1$ITimes` and `DATA1$regDose`
-  - 1 vector of size 2 (a 2 column matrix, with 1 line per sample), for `DATA1$dLab`, `DATA1$ddot_env`
-  - 1 integer (1 integer per BIN files), for `DATA1$J`, `DATA1$K`, `DATA1$Nb_measurement`.
+Element                | Content |
+---------------------- |---------------
+`DATA1$LT`             | Lx/Tx values from each sample |
+`DATA1$sLT`            | Lx/Tx error values from each sample |
+`DATA1$ITimes`         | Irradiation times |
+`DATA1$dLab`           | The lab dose rate |
+`DATA1$ddot_env`       | The environmental dose rate and its variance |
+`DATA1$regDose`        | The regenarated dose points |
+`DATA1$J`              | The number of aliquots selected for each BIN-file |
+`DATA1$K`              | The number of regenarted dose points |
+`DATA1$Nb_measurement` | The number of measurements per BIN-file |
 
-#### Remark 3: Lx/Ts value as a function of Regenerative Dose
+#### Visualise Lx/Tx values and dose points
 
-You can also see the $L_{x}/T_{x}$ values as a function of regenerative dose using the function **LT\_RegenDose**:
+To get an impression on how your data look like, you can visualise them by 
+using the function `LT_RegenDose()`:
 
 ```{r, fig.align='center'}
 LT_RegenDose(
@@ -144,8 +158,8 @@ LT_RegenDose(
   nrow = NULL)
 ```
 
-Note that, here we consider only one sample, and the name of the folder is the name of the sample.
-That is why we have set `FolderNames = samp1` and `SampleNames = samp1`.
+Note that here we consider only one sample, and the name of the folder is the name of the sample.
+For that reason the argumetns were set to `FolderNames = samp1` and `SampleNames = samp1`.
 
 ## Generate data file from BIN-files of multi-grain OSL measurements
 
