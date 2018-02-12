@@ -27,20 +27,29 @@
 #' ScatterSamples(Sampling=AgeS$Sampling,SampleNames=c("GDB5","GDB3"),SelectedSamples=c(1,1))
 #'
 #' @export
-#'
 ScatterSamples<-function(Sampling,SampleNames,SelectedSamples,sc=3,Nb_chaines=3){
   ind_sample=which(SelectedSamples==1)
-  N=length(ind_sample)
+  N <- length(ind_sample)
   if(N>9){
-    warning("Too many samples have been selected. Please choose less than 8 samples.",call. = FALSE)
+    stop("[ScatterSamples()] Too many samples have been selected. Please select less than 8 samples!",call. = FALSE)
   }
   sample=Sampling[[1]]
   for(i in 2:Nb_chaines){
     sample=rbind(sample,Sampling[[i]])
   }
-  Names=paste("A",ind_sample,sep="")
-  hexbin::hexplom(sample[,ind_sample], upper.panel = NULL,xlab="",pscales = sc,
-          colramp = function(n) terrain.colors(n),varnames=Names,cex.axis=0.2)
+  Names <- paste("A",ind_sample,sep="")
+
+  ##plot
+  hexbin::hexplom(
+    sample[, ind_sample],
+    upper.panel = NULL,
+    xlab = "Age (ka)",
+    pscales = sc,
+    colramp = function(n)
+      terrain.colors(n),
+    varnames = Names,
+    cex.axis = 0.2
+  )
 
 }
 
