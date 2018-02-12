@@ -55,6 +55,8 @@
 #' (for more information see \code{\link{jags.model}}).
 #' @param Nb_chaines integer (with default): number of independent chains for the model (for more information see \code{\link{jags.model}}).
 #'
+#' @param quiet \code{\link{logical}} (with default): enables/disables \link{rjags} messages
+#'
 #' @details
 #' \bold{** How to fill} \code{StratiConstraints} \bold{? **}\cr
 #'
@@ -213,7 +215,9 @@
 #'   SampleNames = c("GDB5","GDB3"),
 #'   PriorAge = priorage,
 #'   Iter = 50,
-#'   Nb_chaines = 2)
+#'   Nb_chaines = 2,
+#'   quiet = TRUE
+#'   )
 #'
 #' ## Age computation of samples GDB5 and GDB3,
 #' ## without common error, assuming GDB5 age younder than GDB3 age
@@ -230,20 +234,36 @@
 #'  SampleNames = c("GDB5","GDB3"),
 #'  PriorAge = priorage,
 #'  StratiConstraints = SC,
-#'  Iter = 10000)
+#'  Iter = 10000,
+#'  quiet = FALSE)
 #' }
 #'
 #' @export
-AgeS_Computation<-function(DATA,SampleNames,Nb_sample,
-                           PriorAge=rep(c(0.01,100),Nb_sample),
-                           BinPerSample=rep(1,Nb_sample),
-                           SavePdf=FALSE,OutputFileName=c('MCMCplot',"summary"),OutputFilePath=c(""),
-                           SaveEstimates=FALSE,OutputTableName=c("DATA"),OutputTablePath=c(''),
-                           THETA=c(),sepTHETA=c(','),
-                           StratiConstraints=c(),sepSC=c(','),
-                           LIN_fit = TRUE,Origin_fit = FALSE,
-                           distribution=c("cauchy"),
-                           Iter=50000,t=5,Nb_chaines=3){
+AgeS_Computation <- function(
+  DATA,
+  SampleNames,
+  Nb_sample,
+  PriorAge = rep(c(0.01, 100), Nb_sample),
+  BinPerSample = rep(1, Nb_sample),
+  SavePdf = FALSE,
+  OutputFileName = c('MCMCplot', "summary"),
+  OutputFilePath = c(""),
+  SaveEstimates = FALSE,
+  OutputTableName = c("DATA"),
+  OutputTablePath = c(''),
+  THETA = c(),
+  sepTHETA = c(','),
+  StratiConstraints = c(),
+  sepSC = c(','),
+  LIN_fit = TRUE,
+  Origin_fit = FALSE,
+  distribution = c("cauchy"),
+  Iter = 50000,
+  t = 5,
+  Nb_chaines = 3,
+  quiet = FALSE
+){
+
 
   #--Index preparation
   CSBinPerSample=cumsum(BinPerSample)
@@ -310,10 +330,25 @@ AgeS_Computation<-function(DATA,SampleNames,Nb_sample,
                   "index"=index2,
                   "BinPerSample"=BinPerSample,
                   "CSBinPerSample"=CSBinPerSample)
-  jags <-  rjags::jags.model(textConnection(Model_AgeS[[Model_GrowthCurve]][[distribution]]),
-                             data = dataList, n.chains = Nb_chaines, n.adapt=Iter)
+  jags <-
+    rjags::jags.model(
+      textConnection(Model_AgeS[[Model_GrowthCurve]][[distribution]]),
+      data = dataList,
+      n.chains = Nb_chaines,
+      n.adapt = Iter,
+      quiet = quiet
+    )
+
+  ##set progress.bar
+  if(quiet) progress.bar <- 'none' else progress.bar <- 'text'
+
   update(jags,Iter)
-  echantillon =  rjags::coda.samples(jags,c("A","D","sD"),min(Iter,10000),thin=t)
+  echantillon <-
+    rjags::coda.samples(
+      jags, c("A", "D", "sD"), min(Iter, 10000),
+      thin = t,
+      progress.bar = progress.bar
+      )
 
   sample=echantillon[[1]]
   for(i in 2:Nb_chaines){

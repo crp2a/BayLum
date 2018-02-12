@@ -11,7 +11,7 @@ AgeS_Computation(DATA, SampleNames, Nb_sample, PriorAge = rep(c(0.01, 100),
   OutputTablePath = c(""), THETA = c(), sepTHETA = c(","),
   StratiConstraints = c(), sepSC = c(","), LIN_fit = TRUE,
   Origin_fit = FALSE, distribution = c("cauchy"), Iter = 50000, t = 5,
-  Nb_chaines = 3)
+  Nb_chaines = 3, quiet = FALSE)
 }
 \arguments{
 \item{DATA}{list of objects: LT, sLT, ITimes, dLab, ddot_env, regDose, J, K, Nb_measurement,
@@ -82,6 +82,8 @@ Allowed inputs are \bold{"cauchy"}, \bold{"gaussian"}, \bold{"lognormal_A"} and 
 (for more information see \code{\link{jags.model}}).}
 
 \item{Nb_chaines}{integer (with default): number of independent chains for the model (for more information see \code{\link{jags.model}}).}
+
+\item{quiet}{\code{\link{logical}} (with default): enables/disables \link{rjags} messages}
 }
 \value{
 \bold{NUMERICAL OUTPUT}
@@ -232,7 +234,9 @@ Age <- AgeS_Computation(
   SampleNames = c("GDB5","GDB3"),
   PriorAge = priorage,
   Iter = 50,
-  Nb_chaines = 2)
+  Nb_chaines = 2,
+  quiet = TRUE
+  )
 
 ## Age computation of samples GDB5 and GDB3,
 ## without common error, assuming GDB5 age younder than GDB3 age
@@ -249,7 +253,8 @@ Age <- AgeS_Computation(
  SampleNames = c("GDB5","GDB3"),
  PriorAge = priorage,
  StratiConstraints = SC,
- Iter = 10000)
+ Iter = 10000,
+ quiet = FALSE)
 }
 
 }
