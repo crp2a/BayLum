@@ -44,7 +44,7 @@
 #' Two plots: Traces of the MCMC chains and the corresponding density plots. This plots
 #' are similar to [coda::traceplot] and [coda::densplot].
 #'
-#' @section Function version: 0.1.0
+#' @section Function version: 0.1.1
 #'
 #' @keywords dplot
 #'
@@ -171,13 +171,11 @@ plot_MCMC <- function(
 
     ##(2) density plots
     density_list <- lapply(traces_list, function(v){
-      temp <- matrix(unlist(lapply(1:ncol(v), function(x){
-        density(v[,x])$y
+      temp <- lapply(1:ncol(v), function(x){
+        density(v[,x])
 
-      })), ncol = n.chains)
+      })
 
-      ##add first column, we gonna need it later
-      cbind(density(v[,1])$x, temp)
     })
 
     ##the trace plot ylab becomes the density xlab
@@ -252,10 +250,23 @@ plot_MCMC <- function(
     }
 
 
-    ##density
+    ##density plot
+
+    ##set matrix row number
+    m_nrow <- length(density_list[[v]][[1]]$x)
+
+    ##extract needed matrices
+    mx <- vapply(density_list[[v]], function(mx) {
+      mx$x
+    }, FUN.VALUE = numeric(m_nrow))
+
+    my <- vapply(density_list[[v]], function(my) {
+      my$y
+    }, FUN.VALUE = numeric(m_nrow))
+
     matplot(
-      x = density_list[[v]][, 1],
-      y = density_list[[v]][, 2:(n.chains + 1)],
+      x = mx,
+      y = my,
       type = plot_settings$type,
       lty = plot_settings$lty,
       lwd = plot_settings$lwd,

@@ -56,7 +56,7 @@ The function is used in the function \link{Age_Computation}, \link{AgeS_Computat
 and \link{Palaeodose_Computation}, but can be used also as standalone plot function.
 }
 \section{Function version}{
- 0.1.0
+ 0.1.1
 }
 
 \examples{
