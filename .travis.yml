@@ -35,7 +35,6 @@ matrix:
       - brew install gcc
       - brew install jags
       - brew install libssh2
-      - brew install proj
     env: CACHE_NAME=JOB3
 
 ##create notifications
