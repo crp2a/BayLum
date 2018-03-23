@@ -76,6 +76,8 @@
 #' (for more information see \code{\link{jags.model}}).
 #' @param Nb_chaines integer (with default): number of independent chains for the model (for more information see \code{\link{jags.model}}).
 #'
+#' @param quiet \code{\link{logical}} (with default): enables/disables \link{rjags} messages
+#'
 #' @details
 #'
 #' Note that there is tree type of arguments in the previous list.
@@ -257,19 +259,34 @@
 #'    SampleNames=c("GDB5",Names,"GDB3"),Nb_sample=3,SampleNature=samplenature,
 #'    PriorAge=prior,StratiConstraints=SC,Iter=50,Nb_chaines=2)
 #' @export
-Age_OSLC14<-function(DATA,Data_C14Cal,Data_SigmaC14Cal,
-                     Nb_sample,SampleNames,SampleNature,
-                     PriorAge=rep(c(10,60),Nb_sample),
-                     SavePdf=FALSE,OutputFileName=c('MCMCplot','HPD_Cal14CCurve',"summary"),OutputFilePath=c(""),
-                     SaveEstimates=FALSE,OutputTableName=c("DATA"),OutputTablePath=c(''),
-                     StratiConstraints=c(),sepSC=c(','),
-                     BinPerSample=rep(1,sum(SampleNature[1,])),
-                     THETA=c(),sepTHETA=c(','),
-                     LIN_fit = TRUE,Origin_fit = FALSE,
-                     distribution=c("cauchy"),
-                     Model_C14=c("full"),
-                     CalibrationCurve=c("AtmosphericNorth"),
-                     Iter=50000,t=5,Nb_chaines=3){
+Age_OSLC14 <- function(DATA,
+                       Data_C14Cal,
+                       Data_SigmaC14Cal,
+                       Nb_sample,
+                       SampleNames,
+                       SampleNature,
+                       PriorAge = rep(c(10, 60), Nb_sample),
+                       SavePdf = FALSE,
+                       OutputFileName = c('MCMCplot', 'HPD_Cal14CCurve', "summary"),
+                       OutputFilePath = c(""),
+                       SaveEstimates = FALSE,
+                       OutputTableName = c("DATA"),
+                       OutputTablePath = c(''),
+                       StratiConstraints = c(),
+                       sepSC = c(','),
+                       BinPerSample = rep(1, sum(SampleNature[1, ])),
+                       THETA = c(),
+                       sepTHETA = c(','),
+                       LIN_fit = TRUE,
+                       Origin_fit = FALSE,
+                       distribution = c("cauchy"),
+                       Model_C14 = c("full"),
+                       CalibrationCurve = c("AtmosphericNorth"),
+                       Iter = 50000,
+                       t = 5,
+                       Nb_chaines = 3,
+                       quiet = FALSE
+                       ) {
 
   #--- StratiConstraints matrix
   if(length(StratiConstraints)==0){
@@ -436,10 +453,26 @@ Age_OSLC14<-function(DATA,Data_C14Cal,Data_SigmaC14Cal,
                     "CSBinPerSample"=CSBinPerSample,
                     "xbound"=PriorAge,"StratiConstraints"=StratiConstraints)
   }
-  jags <-  rjags::jags.model(textConnection(BUGModel), data = dataList, n.chains = Nb_chaines, n.adapt=Iter)
+  jags <-
+    rjags::jags.model(
+      textConnection(BUGModel),
+      data = dataList,
+      n.chains = Nb_chaines,
+      n.adapt = Iter,
+      quiet = quiet
+    )
+
+  ##set progress.bar
+  if(quiet) progress.bar <- 'none' else progress.bar <- 'text'
+
   update(jags,Iter)
-  echantillon =  rjags::coda.samples(jags,c("A",'Z'),min(Iter,10000),thin=t)
-  U=summary(echantillon)
+  echantillon <-
+    rjags::coda.samples(jags,
+                        c("A", 'Z'),
+                        min(Iter, 10000),
+                        thin = t,
+                        progress.bar = progress.bar)
+  U <- summary(echantillon)
 
   Sample=echantillon[[1]]
   for(i in 2:Nb_chaines){

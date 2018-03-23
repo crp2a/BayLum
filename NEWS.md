@@ -1,4 +1,4 @@
-## BayLum 0.1.2 (Release date: 2018-XX-XX)
+## BayLum 0.1.2 (Release date: 2018-03-23)
 
 ### New functions
 * The function `MCMC_plot()` is replaced by the newly written function `plot_MCMC()`
@@ -17,7 +17,7 @@
 * The functions `Generate_DataFile()` and `Generate_DataFile_MG()` now supports the `...` argument to pass further
 arguments to the function `Luminescene::read_BIN2R()`
 * The functions `Generate_DataFile()` and `Generate_DataFile_MG()` gained a new argument `verbose` to control the terminal output
-* The function `Age_Computation()`,`AgeS_Computation()`,`AgeC14_Computation()` now support the argument 
+* The function `Age_Computation()`,`AgeS_Computation()`,`AgeC14_Computation()`, `Age_OSLC14()` now support the argument 
 `quiet` and pipe it to `rjags` to suppress the terminal output
 * The function `AgeC14_Computation()` now returns a warning if outliers are detected. 
 * The function `LT_RegenDose()` gained two new arguments `nrow` and `ncol` became a little bit more user friendly

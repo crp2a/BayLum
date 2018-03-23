@@ -13,7 +13,7 @@ Age_OSLC14(DATA, Data_C14Cal, Data_SigmaC14Cal, Nb_sample, SampleNames,
   sum(SampleNature[1, ])), THETA = c(), sepTHETA = c(","), LIN_fit = TRUE,
   Origin_fit = FALSE, distribution = c("cauchy"), Model_C14 = c("full"),
   CalibrationCurve = c("AtmosphericNorth"), Iter = 50000, t = 5,
-  Nb_chaines = 3)
+  Nb_chaines = 3, quiet = FALSE)
 }
 \arguments{
 \item{DATA}{list of objects: LT, sLT, ITimes, dLab, ddot_env, regDose, J, K, Nb_measurement,
@@ -108,6 +108,8 @@ If \bold{"naive"} this error is not taken account in the age estimate.}
 (for more information see \code{\link{jags.model}}).}
 
 \item{Nb_chaines}{integer (with default): number of independent chains for the model (for more information see \code{\link{jags.model}}).}
+
+\item{quiet}{\code{\link{logical}} (with default): enables/disables \link{rjags} messages}
 }
 \value{
 \bold{NUMERICAL OUTPUT}\cr
