@@ -5,7 +5,7 @@
 \title{Bayesian analysis for age estimation of 14C age of various samples}
 \usage{
 AgeC14_Computation(Data_C14Cal, Data_SigmaC14Cal, SampleNames, Nb_sample,
-  PriorAge = rep(c(10000, 50000), Nb_sample), SavePdf = FALSE,
+  PriorAge = rep(c(10, 50), Nb_sample), SavePdf = FALSE,
   OutputFileName = c("MCMCplot", "HPD_Cal14CCurve", "summary"),
   OutputFilePath = c(""), SaveEstimates = FALSE,
   OutputTableName = c("DATA"), OutputTablePath = c(""),

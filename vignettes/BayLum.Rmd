@@ -36,13 +36,15 @@ the package 'BayLum'.
 ## Installing `BayLum' package
 
 If you read this document before having installed **R** itself, you should first visit the 
-[R project](https://www.r-project.org) webpage and download and install **R**. You may also consider installing [Rstudio](http://www.rstudio.com), 
-which provides an excellent desktop environment. 
+[R project](https://www.r-project.org) webpage and download and install **R**. 
+You may also consider installing [Rstudio](http://www.rstudio.com), 
+which provides an excellent desktop working environment for **R**.
 
-However, what is needed is the external software *JAGS* (Just Another Gibs Sampler). 
-Please visit the [JAGS](http://mcmc-jags.sourceforge.net) webpage and follow the install instructions. Now you are nearly ready to work with 'BayLum'. 
-Please run the following two **R** code lines to install 'BayLum' on your computer if necessary and load it 
-if it is already installed.
+Despite, you will need the external software *JAGS* (Just Another Gibs Sampler). 
+Please visit the [JAGS](http://mcmc-jags.sourceforge.net) webpage and follow the install instructions. 
+Now you are nearly ready to work with 'BayLum'. 
+
+If you have not yet installed `BayLum', please run the following two **R** code lines to install 'BayLum' on your computer.
 
 ```{r,eval=TRUE, message=FALSE}
 if(!require("BayLum"))
@@ -50,7 +52,7 @@ if(!require("BayLum"))
 ```
 
 Alternatively, you can load an already installed **R** package (here `BayLum') into your session by using 
-the following call.
+the following **R** call.
 
 ```{r, message=FALSE}
 library(BayLum)
@@ -101,7 +103,6 @@ DATA1 <-
 ```
 
 ### Remarks
-
 
 #### Import/export
 
@@ -210,7 +211,7 @@ word `cauchy` by `gaussian`, `lognormal_A` or `lognormal_M` for the argument `di
 The difference between the models: *lognormal_A* and *lognormal_M* is that the equivalent dose dispersion
 are distributed according to:
 
-  - a lognormal distribution with mean or average equal to the palaeodose for the first model
+- a lognormal distribution with mean or average equal to the palaeodose for the first model
 - a lognormal distribution with nedian equal to the palaeodose for the second model.
 
 TODO: If you are in this cases: ..... , you can consider .....
@@ -313,8 +314,8 @@ For example, if `DATA1` is the output of sample named "GDB3", and `DATA2` is the
 both data can be merged with the following call:
 
 ```{r}
-data("DATA1",envir = environment())
-data("DATA2",envir = environment())
+data("DATA1", envir = environment())
+data("DATA2", envir = environment())
 DATA3 <- Concat_DataFile(L1 = DATA2, L2 = DATA1)
 str(DATA3)
 ```
@@ -388,20 +389,20 @@ ordered by increasing ages.
 
 ```{r}
 # using Generate_DataFile function
-Names <- c("samp1","samp2")
+Names <- c("samp1", "samp2")
 nbsample <- 2
 DATA3 <- Generate_DataFile(
-  Path = path,
-  FolderNames = Names,
-  Nb_sample = nbsample,
-  verbose = FALSE
+Path = path,
+FolderNames = Names,
+Nb_sample = nbsample,
+verbose = FALSE
 )
 ```
 
 ```{r}
 # using the function Concat_DataFile()
-data(DATA1,envir = environment()) # .RData on sample GDB3
-data(DATA2,envir = environment()) # .RData on sample GDB5
+data(DATA1, envir = environment()) # .RData on sample GDB3
+data(DATA2, envir = environment()) # .RData on sample GDB5
 DATA3 <- Concat_DataFile(L1 = DATA1, L2 = DATA2)
 ```
 
@@ -425,9 +426,8 @@ Otherwise, `StratiConstraints[j,i]=0`.
 The user can use the function *SCMatrix* to define this matrix:
 
 ```{r, eval = FALSE}
-SC <- SCMatrix(
-  Nb_sample = 2,
-  SampleNames = c("samp1", "samp2"))
+SC <- SCMatrix(Nb_sample = 2,
+               SampleNames = c("samp1", "samp2"))
 ```
 
 In our case: 2 samples, `SC` is a matrix with 3 lines and 2 columns. The first line containts `c(1,1)` (because we take into acount prior ages), the second line containts `c(0,1)` (because the sample 2, named *samp2* is supposed older than the sample 1, named *samp1*) and the third line contains `c(0,0)` (because the sample 2, named *samp2* is not younger than the sample 1, named *samp1*).
@@ -439,7 +439,7 @@ SC <- matrix(
   ncol = 2,
   nrow = (2 + 1),
   byrow = T
-)
+  )
 ```
 
 ### Age computation
@@ -447,15 +447,15 @@ SC <- matrix(
 ```{r, fig.width=5, fig.height=5, fig.align='center'}
 Age <-
   AgeS_Computation(
-    DATA = DATA3,
-    Nb_sample = 2,
-    SampleNames = c("samp1", "samp2"),
-    PriorAge = priorage,
-    distribution = "cauchy",
-    LIN_fit = TRUE,
-    Origin_fit = FALSE,
-    StratiConstraints = SC,
-    Iter = 100
+  DATA = DATA3,
+  Nb_sample = 2,
+  SampleNames = c("samp1", "samp2"),
+  PriorAge = priorage,
+  distribution = "cauchy",
+  LIN_fit = TRUE,
+  Origin_fit = FALSE,
+  StratiConstraints = SC,
+  Iter = 100
   )
 ```
 
@@ -469,10 +469,10 @@ Combès, B., Philippe, A., 2017. Bayesian analysis of individual and systematic 
 
 ## Further reading
 
-For more details on the diagnostic of Markov chain:
+### For more details on the diagnostic of Markov chains:
 
-  Robert and Casella, 2009. Introducing Monte Carlo Methods with R. Springer Science & Business Media.
+Robert and Casella, 2009. Introducing Monte Carlo Methods with R. Springer Science & Business Media.
 
-For more detais on the used datasets, we refer to the following publication:
+### For details on the here used dataset
 
-  Tribolo, C., Asrat, A., Bahain, J. J., Chapon, C., Douville, E., Fragnol, C., Hernandez, M., Hovers, E., Leplongeon, A.,  Martin, L,Pleurdeau, D,  Pearson, O,  Puaud, S,  Assefa, Z., 2017. Across the Gap: Geochronological and Sedimentological Analyses from the Late Pleistocene-Holocene Sequence of Goda Buticha, Southeastern Ethiopia. PloS one, 12(1), e0169418.
+Tribolo, C., Asrat, A., Bahain, J. J., Chapon, C., Douville, E., Fragnol, C., Hernandez, M., Hovers, E., Leplongeon, A.,  Martin, L,Pleurdeau, D,  Pearson, O,  Puaud, S,  Assefa, Z., 2017. Across the Gap: Geochronological and Sedimentological Analyses from the Late Pleistocene-Holocene Sequence of Goda Buticha, Southeastern Ethiopia. PloS one, 12(1), e0169418.
