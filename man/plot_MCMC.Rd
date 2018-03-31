@@ -19,8 +19,8 @@ argument \code{mtext}.}
 \item{variables}{\link{character} (with default): Variables in your \link[coda:mcmc]{coda::mcmc} object to be plotted.}
 
 \item{axes_labels}{\link{character} (with default): Axes labels used for the trace and density plots. The labels should
-be provided as names \link{character} \link{vector} with the parameter names as the names used to asign the axes labelling.
-The labelling for the xaxis (trace plots) and yaxis (density plot) cannot be modified.}
+be provided as named \link{character} \link{vector} with the parameter names as the names used to asign the axes labelling.
+The labelling for the x-axis (trace plots) and y-axis (density plot) cannot be modified.}
 
 \item{n.chains}{\link{numeric} (optional): Set the number of chains to visualise, if nothing is provided the
 number of chains is determined from the input object}
