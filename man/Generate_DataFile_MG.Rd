@@ -154,5 +154,5 @@ str(DATA)
 \code{\link{Age_Computation}}, \code{\link{AgeS_Computation}}, \code{\link{Palaeodose_Computation}}
 }
 \author{
-Claire Christophe, Sebastian Kreutzer, Anne Philippe, Guillaume Guerin
+Claire Christophe, Sebastian Kreutzer, Anne Philippe, Guillaume Guérin
 }

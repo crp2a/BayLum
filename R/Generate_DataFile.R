@@ -203,17 +203,7 @@ Generate_DataFile <- function(
       rule <- read.csv(file=paste(Path,FolderNames[bf],"/rule.csv",sep=""),sep=sepR)
 
       # BIN file analysis
-      ##TODO ... once Luminescenc version 0.8.0 is published this line can be used
-      ##object <- Luminescence::read_BIN2R(paste0(Path,FolderNames[bf]), duplicated.rm = TRUE)[[1]]
-      ## Ugly workaround for the moment
-      temp_BINfile <- grep(toupper(list.files(paste0(Path, FolderNames[bf]))), pattern = ".BIN")
-      if(length(temp_BINfile) == 0)
-        stop("[Generate_DataFile()] No BIN/BINX file found.", call. = FALSE)
-
-      object <- do.call(
-        what = Luminescence::read_BIN2R,
-        args = c(file = paste0(Path, FolderNames[bf],"/",list.files(paste0(Path, FolderNames[bf]))[temp_BINfile]),
-            read_BIN2R.settings))
+      object <- Luminescence::read_BIN2R(paste0(Path,FolderNames[bf]), duplicated.rm = TRUE)[[1]]
 
       # csv file indicating position and disc selection and preparation to be red
       XLS_file[[3]]<-XLS_file[[2]]
