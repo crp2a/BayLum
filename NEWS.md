@@ -1,7 +1,7 @@
-## BayLum 0.1.2 (Release date: 2018-03-23)
+## BayLum 0.1.2 (Release date: 2018-06-22)
 
 ### New functions
-* The function `MCMC_plot()` is replaced by the newly written function `plot_MCMC()`
+* The function `MCMC_plot()` was replaced by the newly written function `plot_MCMC()`
 
 ### Bugfixes
 * The functions `AgeC14_Compution()` and `Age_OSL14()` now returns age results with two digits
@@ -24,12 +24,12 @@ arguments to the function `Luminescene::read_BIN2R()`
 
 ### Internals
 * Set patch level to 0 (for 3.3.0) to account for CRAN note
+* Vignette was updated and corrected
 
 
 ## BayLum 0.1.1 (Release date: 2017-09-01)
 
 * Reduce required R version to 3.3.2
-
 
 ## BayLum 0.1.0 (Release date: 2017-08-22)
 
