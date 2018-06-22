@@ -19,13 +19,30 @@ a list of luminescence data and information before statistical analysis — Gene
 <!-- Font Awesome icons -->
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
 
+<!-- clipboard.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script>
+
+<!-- sticky kit -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
-<script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
-  
-  
+
+
+
+<meta property="og:title" content="Generates, from one (or several) BIN-file(s) of Single-grain OSL measurements,
+a list of luminescence data and information before statistical analysis — Generate_DataFile" />
+
+<meta property="og:description" content="This function is used to generate, from the BIN file(s), a list of values of:
+Single-grain OSL intensities and associated uncertainties, regenerative doses, etc., which will be the input of the Bayesian models.
+To be easy-to-use, this function requires a rigorous organisation - all needed files should be arranged in one folder -
+of informations concerning each BIN file. 
+It is possible to process data for various samples simultaneously and to consider more than one BIN file per sample." />
+<meta name="twitter:card" content="summary" />
+
+
+
 <!-- mathjax -->
 <script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
@@ -48,8 +65,12 @@ a list of luminescence data and information before statistical analysis — Gene
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="../index.html">BayLum</a>
+      <span class="navbar-brand">
+        <a class="navbar-link" href="../index.html">BayLum</a>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.1.2</span>
+      </span>
     </div>
+
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
@@ -87,6 +108,7 @@ a list of luminescence data and information before statistical analysis — Gene
   </a>
 </li>
       </ul>
+      
     </div><!--/.nav-collapse -->
   </div><!--/.container -->
 </div><!--/.navbar -->
@@ -94,27 +116,31 @@ a list of luminescence data and information before statistical analysis — Gene
       
       </header>
 
-      <div class="row">
+<div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Generates, from one (or several) BIN-file(s) of Single-grain OSL measurements,
 a list of luminescence data and information before statistical analysis</h1>
+    
+    <div class="hidden name"><code>Generate_DataFile.Rd</code></div>
     </div>
 
+    <div class="ref-description">
     
     <p>This function is used to generate, from the BIN file(s), a list of values of:
 <b>Single-grain</b> OSL intensities and associated uncertainties, regenerative doses, etc., which will be the input of the Bayesian models.
 To be easy-to-use, this function requires a rigorous organisation - all needed files should be arranged in one folder -
-of informations concerning each BIN file. 
+of informations concerning each BIN file. <br />
 It is possible to process data for various samples simultaneously and to consider more than one BIN file per sample.</p>
     
+    </div>
 
     <pre class="usage"><span class='fu'>Generate_DataFile</span>(<span class='no'>Path</span>, <span class='no'>FolderNames</span>, <span class='no'>Nb_sample</span>,
   <span class='kw'>Nb_binfile</span> <span class='kw'>=</span> <span class='fu'>length</span>(<span class='no'>FolderNames</span>), <span class='kw'>BinPerSample</span> <span class='kw'>=</span> <span class='fu'>rep</span>(<span class='fl'>1</span>, <span class='no'>Nb_sample</span>),
   <span class='kw'>sepDP</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>","</span>), <span class='kw'>sepDE</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>","</span>), <span class='kw'>sepDS</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>","</span>), <span class='kw'>sepR</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"="</span>),
   <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)</pre>
     
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
@@ -184,16 +210,18 @@ Otherwise, this vector must contain a list of 1 values.</p></td>
 <li><p><b>regDose</b> (one list per sample); each list contains all regenerated doses;</p></li>
 <li><p><b>J</b>, a vector giving, for each BIN file, the number of aliquots selected for the analysis;</p></li>
 <li><p><b>K</b>, a vector giving, for each BIN file, the number of regenerative doses in the SAR protocol;</p></li>
-<li><p><b>Nb_measurement</b>, a vector giving, for each BIN file, the number of measurements.</p></li>
-</ul><p><b>** How to save this list **</b></p>
+<li><p><b>Nb_measurement</b>, a vector giving, for each BIN file, the number of measurements.<br /></p></li>
+</ul>
+
+<p><b>** How to save this list **</b><br /></p>
 <p>You can save this list in a .RData object. To do this, you can use the fonction <code>save</code>.
 Then, to load this list you can use the function <code>load</code> (see example section fore more details).</p>
     
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>With <code>Path</code> and <code>FolderNames</code>, this function goes to the subfolders containing the BIN files and associated information to compute
-the luminescence data.
-    <b>** What are the required files in each subfolder? **</b></p>
+the luminescence data.<br /></p>
+<p><b>** What are the required files in each subfolder? **</b><br /></p>
 <p>Each subfolder can be named, for example, as the sample name followed by a number; it must contain:</p><ul>
 <li><p><b>bin.BIN</b>: the bin file renamed as bin.BIN (note: the name of all files matters);</p></li>
 <li><p><b>DiscPos.csv</b>: a two columns csv file containing the list of disc and grain position number of the previously selected grains
@@ -214,23 +242,25 @@ and its variance (squared error) both in Gy;</p></li>
 <li><p><code>endTestBackground=</code> same values as above, for the test dose response (typically the same values should be used);</p></li>
 <li><p><code>inflatePercent=</code> uncertainty arising from the instrument reproducibility (typically 0.02, i.e. 2%);</p></li>
 <li><p><code>nbOfLastCycleToRemove=</code> number of cycles at the end of the SAR protocol which should not be included in the dose response curve fitting
-(typically 1 if only a recycling test is performed, or 2 if both recycling and IR depletion are tested).</p></li>
+(typically 1 if only a recycling test is performed, or 2 if both recycling and IR depletion are tested).<br /></p></li>
 </ul></li>
-</ul><p><b>** How to fill the</b> <code>FolderNames</code> <b>vector? **</b>
-    <code>FolderNames</code> is a vector of length <code>Nb_binfile</code>. <code>FolderNames[i]</code> is the name (e.g., Sample1-File1, or successive names separated by "/" signs,
+</ul>
+    <p><b>** How to fill the</b> <code>FolderNames</code> <b>vector? **</b><br /></p>
+<p><code>FolderNames</code> is a vector of length <code>Nb_binfile</code>. <code>FolderNames[i]</code> is the name (e.g., Sample1-File1, or successive names separated by "/" signs,
 if BIN files are in subfolders, e.g. Sample1/File1) of the subfolder containing all informations on the BIN file of ID number <code>i</code>.
 The names in <code>FolderNames</code> are ordered following two rules:</p><ul>
 <li><p>The names in the <code>FolderNames</code> vector must be ordered following the sample order
 (the names of subfolders containing BIN files for the same sample should follow each other in the <code>FolderNames</code> vector, e.g.
 Sample1, Sample2-File1, Sample2-File2, etc.).</p></li>
 <li><p>If stratigraphic constraints apply to samples, and so a <b>Bayesian model with stratigraphic constraints</b> is implemented,
-then the names in the <code>FolderNames</code> vector must be ordered by order of increasing ages. 
+then the names in the <code>FolderNames</code> vector must be ordered by order of increasing ages. <br />
 For example, <code>FolderNames=c(noun1,noun2)</code>, in which case <code>noun1</code> (respectively, <code>noun2</code>) corresponds to the subfolder
 name containing the BIN file of sample 1 (respectively of sample 2).
-In addition, if we know that sample 1 is younger than sample 2, then <code>FolderNames</code> vector is correctly filled. 
-If conversely, <code>FolderNames=c(noun2,noun1)</code>, the analysis performed by <code><a href='AgeS_Computation.html'>AgeS_Computation</a></code> would not be consistent.</p></li>
-</ul><p><b>** How to fill the</b> <code>BinPerSample</code> <b>vector? **</b>
-    <code>BinPerSample[i]</code> correponds to the number of BIN files for the sample whose number ID is equal to <code>i</code>.
+In addition, if we know that sample 1 is younger than sample 2, then <code>FolderNames</code> vector is correctly filled. <br />
+If conversely, <code>FolderNames=c(noun2,noun1)</code>, the analysis performed by <code><a href='AgeS_Computation.html'>AgeS_Computation</a></code> would not be consistent.<br /></p></li>
+</ul>
+    <p><b>** How to fill the</b> <code>BinPerSample</code> <b>vector? **</b><br /></p>
+<p><code>BinPerSample[i]</code> correponds to the number of BIN files for the sample whose number ID is equal to <code>i</code>.<br />
 For example, let us consider a case with two samples (Sample1 and Sample2), with 2 BIN files for Sample1 and 1 for Sample2.
 In this case, <code>Nb_binfile</code>=3 and <code>Nb_sample</code>=2.
 The user may then set <code>FolderNames=c("Sample1-File1", "Sample1-File2", "Sample2-File1")</code>, in which case <code>"Sample1-File1"</code> is the name of the subfolder
@@ -242,8 +272,8 @@ containing the first BIN file for Sample1, <code>"Sample1-File2"</code> the name
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <p><code>read_BIN2R</code>, <code><a href='Concat_DataFile.html'>Concat_DataFile</a></code>, <code><a href='Generate_DataFile_MG.html'>Generate_DataFile_MG</a></code>, <code><a href='LT_RegenDose.html'>LT_RegenDose</a></code>
-<code><a href='Age_Computation.html'>Age_Computation</a></code>, <code><a href='AgeS_Computation.html'>AgeS_Computation</a></code>, <code><a href='Palaeodose_Computation.html'>Palaeodose_Computation</a></code></p>
+    <div class='dont-index'><p><code>read_BIN2R</code>, <code><a href='Concat_DataFile.html'>Concat_DataFile</a></code>, <code><a href='Generate_DataFile_MG.html'>Generate_DataFile_MG</a></code>, <code><a href='LT_RegenDose.html'>LT_RegenDose</a></code>
+<code><a href='Age_Computation.html'>Age_Computation</a></code>, <code><a href='AgeS_Computation.html'>AgeS_Computation</a></code>, <code><a href='Palaeodose_Computation.html'>Palaeodose_Computation</a></code></p></div>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
@@ -310,5 +340,8 @@ Claire Christophe, Sebastian Kreutzer, Anne Philippe, Guillaume Guerin
       </footer>
    </div>
 
+  
+
   </body>
 </html>
+

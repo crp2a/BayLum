@@ -18,13 +18,27 @@
 <!-- Font Awesome icons -->
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
 
+<!-- clipboard.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script>
+
+<!-- sticky kit -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
-<script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
-  
-  
+
+
+
+<meta property="og:title" content="Bayesian analysis for age estimation of 14C age of various samples — AgeC14_Computation" />
+
+<meta property="og:description" content="This function calibrate 14C age of samples to get an age (years).
+The user can choose one of the following radiocarbon calibration curve:
+Northern or Sourthen Hemisphere or marine atmospheric. It must be the same curve for all samples." />
+<meta name="twitter:card" content="summary" />
+
+
+
 <!-- mathjax -->
 <script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
@@ -47,8 +61,12 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="../index.html">BayLum</a>
+      <span class="navbar-brand">
+        <a class="navbar-link" href="../index.html">BayLum</a>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.1.2</span>
+      </span>
     </div>
+
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
@@ -86,6 +104,7 @@
   </a>
 </li>
       </ul>
+      
     </div><!--/.nav-collapse -->
   </div><!--/.container -->
 </div><!--/.navbar -->
@@ -93,20 +112,24 @@
       
       </header>
 
-      <div class="row">
+<div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Bayesian analysis for age estimation of 14C age of various samples</h1>
+    
+    <div class="hidden name"><code>AgeC14_Computation.Rd</code></div>
     </div>
 
+    <div class="ref-description">
     
     <p>This function calibrate 14C age of samples to get an age (years).
 The user can choose one of the following radiocarbon calibration curve:
 Northern or Sourthen Hemisphere or marine atmospheric. It must be the same curve for all samples.</p>
     
+    </div>
 
     <pre class="usage"><span class='fu'>AgeC14_Computation</span>(<span class='no'>Data_C14Cal</span>, <span class='no'>Data_SigmaC14Cal</span>, <span class='no'>SampleNames</span>, <span class='no'>Nb_sample</span>,
-  <span class='kw'>PriorAge</span> <span class='kw'>=</span> <span class='fu'>rep</span>(<span class='fu'>c</span>(<span class='fl'>10000</span>, <span class='fl'>50000</span>), <span class='no'>Nb_sample</span>), <span class='kw'>SavePdf</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>PriorAge</span> <span class='kw'>=</span> <span class='fu'>rep</span>(<span class='fu'>c</span>(<span class='fl'>10</span>, <span class='fl'>50</span>), <span class='no'>Nb_sample</span>), <span class='kw'>SavePdf</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>OutputFileName</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"MCMCplot"</span>, <span class='st'>"HPD_Cal14CCurve"</span>, <span class='st'>"summary"</span>),
   <span class='kw'>OutputFilePath</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>""</span>), <span class='kw'>SaveEstimates</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>OutputTableName</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"DATA"</span>), <span class='kw'>OutputTablePath</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>""</span>),
@@ -114,7 +137,7 @@ Northern or Sourthen Hemisphere or marine atmospheric. It must be the same curve
   <span class='kw'>CalibrationCurve</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"AtmosphericNorth"</span>), <span class='kw'>Iter</span> <span class='kw'>=</span> <span class='fl'>50000</span>, <span class='kw'>t</span> <span class='kw'>=</span> <span class='fl'>5</span>,
   <span class='kw'>Nb_chaines</span> <span class='kw'>=</span> <span class='fl'>3</span>, <span class='kw'>quiet</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
     
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
@@ -215,7 +238,8 @@ If <b>"naive"</b> this error is not taken account in the age estimate.</p></td>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p><b>NUMERICAL OUTPUT</b></p><ol>
+    <p><b>NUMERICAL OUTPUT</b></p>
+<ol>
 <li><p><b>A list containing the following objects:</b></p><ul>
 <li><p><b>Sampling</b>: that corresponds to a sample of the posterior distributions of the age parameters;</p></li>
 <li><p><b>Outlier</b>: stating the names of samples that are considered as outliers;</p></li>
@@ -225,17 +249,20 @@ If <b>"naive"</b> this error is not taken account in the age estimate.</p></td>
 <li><p><b>StratiConstraints</b>: stating the stratigraphic relations between samples considered in the model.</p></li>
 </ul></li>
 <li><p><b>The Gelman and Rubin test of convergency</b>: print the result of the Gelman and Rubin test of convergency for the age estimate for each sample.
-A result close to one is expected.
+A result close to one is expected.<br />
 In addition, the user must visually assess the convergency of the trajectories by looking at the graph
-generated by the function (see <b>PLOT OUTPUT</b> for more informations).
+generated by the function (see <b>PLOT OUTPUT</b> for more informations).<br />
 If both convergencies (Gelman and Rubin test and plot checking) are satisfactory,
 the user can consider the estimates as valid.
 Otherwise, the user may try increasing the number of MCMC interations (<code>Iter</code>)
 or being more precise if it is possible on the <code>PriorAge</code> parameter to reach convergency.</p></li>
 <li><p><b>Credible intervals and Bayes estimates</b>: prints the Bayes estimates, the credible intervals at 95% and 68% for
 the age parameters for each sample.</p></li>
-</ol><p><b>PLOT OUTPUT</b></p><ol>
-<li><p><b>MCMC trajectories</b>: A graph with the MCMC trajectories and posterior distributions of the age parameter is displayed. 
+</ol>
+
+<p><b>PLOT OUTPUT</b></p>
+<ol>
+<li><p><b>MCMC trajectories</b>: A graph with the MCMC trajectories and posterior distributions of the age parameter is displayed. <br />
 On each line, the plot on the left represents the MCMC trajectories, and the one on the right the posterior distribution of the parameter.</p></li>
 <li><p><b>Summary of sample age estimates</b>: plot credible intervals and Bayes estimate of each sample age on one graph.</p></li>
 </ol>
@@ -244,7 +271,7 @@ On each line, the plot on the left represents the MCMC trajectories, and the one
     
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p><b>** How to fill</b> <code>StratiConstraints</code> <b>? **</b></p>
+    <p><b>** How to fill</b> <code>StratiConstraints</code> <b>? **</b><br /></p>
 <p>If there is stratigraphic relations between samples, <b>14C age in Data_C14Cal must be ordered by order of increasing ages</b>.</p>
 <p>The user can fill the <code>StratiConstraints</code> matrix as follow.</p><ol>
 <li><p><b>Size of the matrix</b>: row number of <code>StratiConstraints</code> matrix is equal to <code>Nb_sample+1</code>,
@@ -259,13 +286,19 @@ Otherwise, <code>StratiConstraints[j,i]=0</code>.</p></li>
 <p>The user can also use <code><a href='SCMatrix.html'>SCMatrix</a></code> or <code><a href='SC_Ordered.html'>SC_Ordered</a></code> (if all samples are ordered) functions
 to construct the <code>StratiConstraints</code> matrix.</p>
 <p>The user can also refer to a .csv file that containts the relation between samples as defined above.
-The user must take care about the separator used in the csv file using the argument <code>sepSC</code>.
-    <b>** More precision on <code>Model</code> **</b></p>
+The user must take care about the separator used in the csv file using the argument <code>sepSC</code>.<br /></p>
+<p><b>** More precision on <code>Model</code> **</b><br /></p>
 <p>We propose two models "full" or "naive". If <code>Model='full'</code> that means measurement error and error on calibration curve are taken account in
 the Bayesian model; if <code>Model="naive"</code> that means only error on measurement are taken account in the mode.</p>
 <p>More precisely, the model considered here, as the one developped by Christen, JA (1994), assume multiplicative effect of errors to address the
 problem of outliers. In addition, to not penalyse variables that are not outliers and damage theirs estimation,
 we introduce a structure of mixture, that means only variable that are considered as outlier have in addition a multiplicative error.</p>
+    
+    <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
+
+    <p>Please note that the initial values for all MCMC are currently all the same for all chains since we rely on the automatic
+initial value generation of JAGS. This is not optimal and will be changed in future. However, it does not affect the quality
+of the age estimates if the chains have converged.</p>
     
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
@@ -279,7 +312,7 @@ IntCal13 ans Marine13 radiocarbon age calibration curves 0-50000 years cal BP. R
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <p><code>rjags</code>, <code><a href='plot_MCMC.html'>plot_MCMC</a></code>, <code><a href='SCMatrix.html'>SCMatrix</a></code></p>
+    <div class='dont-index'><p><code>rjags</code>, <code><a href='plot_MCMC.html'>plot_MCMC</a></code>, <code><a href='SCMatrix.html'>SCMatrix</a></code></p></div>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
@@ -298,15 +331,15 @@ IntCal13 ans Marine13 radiocarbon age calibration curves 0-50000 years cal BP. R
 <span class='kw'>Nb_sample</span> <span class='kw'>=</span> <span class='no'>nb_sample</span>,
 <span class='kw'>PriorAge</span> <span class='kw'>=</span> <span class='fu'>rep</span>(<span class='fu'>c</span>(<span class='fl'>20000</span>,<span class='fl'>60000</span>),<span class='no'>nb_sample</span>),
 <span class='kw'>Iter</span> <span class='kw'>=</span> <span class='fl'>500</span>,
-<span class='kw'>quiet</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: [plot_MCMC()] 'n.iter' out of range, reset to number of observations</span></div><div class='img'><img src='AgeC14_Computation-7.png' alt='' width='700' height='432.632880098887' /></div><div class='img'><img src='AgeC14_Computation-8.png' alt='' width='700' height='432.632880098887' /></div><div class='img'><img src='AgeC14_Computation-9.png' alt='' width='700' height='432.632880098887' /></div><div class='output co'>#&gt; <span class='warning'>Warning: [Age14_Computation()] Outliers detected in sample: S-EVA-26510, S-EVA-26506, S-EVA-26507, S-EVA-26508</span></div><div class='img'><img src='AgeC14_Computation-10.png' alt='' width='700' height='432.632880098887' /></div><div class='output co'>#&gt; 
+<span class='kw'>quiet</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: [plot_MCMC()] 'n.iter' out of range, reset to number of observations</span></div><div class='img'><img src='AgeC14_Computation-1.png' alt='' width='700' height='433' /></div><div class='img'><img src='AgeC14_Computation-2.png' alt='' width='700' height='433' /></div><div class='img'><img src='AgeC14_Computation-3.png' alt='' width='700' height='433' /></div><div class='output co'>#&gt; <span class='warning'>Warning: [Age14_Computation()] Outliers detected in sample: S-EVA-26510, S-EVA-26506, S-EVA-26507, S-EVA-26508</span></div><div class='img'><img src='AgeC14_Computation-4.png' alt='' width='700' height='433' /></div><div class='output co'>#&gt; 
 #&gt; 
 #&gt; &gt;&gt; MCMC Convergence of Age parameters &lt;&lt;
 #&gt; ----------------------------------------------
 #&gt; Sample name   Bayes estimate   Uppers credible interval
 #&gt; A_S-EVA-26510 	 1 		 1.01 
-#&gt; A_S-EVA-26506 	 1 		 1.01 
-#&gt; A_S-EVA-26507 	 1 		 1.01 
-#&gt; A_S-EVA-26508 	 1 		 1 
+#&gt; A_S-EVA-26506 	 1.01 		 1.04 
+#&gt; A_S-EVA-26507 	 1 		 1.02 
+#&gt; A_S-EVA-26508 	 1.02 		 1.07 
 #&gt; 
 #&gt; 
 #&gt; ---------------------------------------------------------------------------------------------------
@@ -318,30 +351,30 @@ IntCal13 ans Marine13 radiocarbon age calibration curves 0-50000 years cal BP. R
 #&gt; &gt;&gt; Bayes estimates of Age for each sample and credible interval &lt;&lt;
 #&gt; ------------------------------------------------------
 #&gt; Sample name 	 Bayes estimate  Credible interval: 
-#&gt; A_S-EVA-26510 	 39760 
+#&gt; A_S-EVA-26510 	 39808 
 #&gt; 						 lower bound 	 upper bound
-#&gt; 				 at level 95% 	 21710 		 58687 
-#&gt; 				 at level 68% 	 30894 		 56210 
+#&gt; 				 at level 95% 	 21802 		 59092 
+#&gt; 				 at level 68% 	 21802 		 48052 
 #&gt; ------------------------------------------------------
 #&gt; Sample name 	 Bayes estimate  Credible interval: 
-#&gt; A_S-EVA-26506 	 40422 
+#&gt; A_S-EVA-26506 	 39210 
 #&gt; 						 lower bound 	 upper bound
-#&gt; 				 at level 95% 	 21880 		 59656 
-#&gt; 				 at level 68% 	 33111 		 59061 
+#&gt; 				 at level 95% 	 21395 		 58779 
+#&gt; 				 at level 68% 	 20175 		 46716 
 #&gt; ------------------------------------------------------
 #&gt; Sample name 	 Bayes estimate  Credible interval: 
-#&gt; A_S-EVA-26507 	 39601 
+#&gt; A_S-EVA-26507 	 40346 
 #&gt; 						 lower bound 	 upper bound
-#&gt; 				 at level 95% 	 20030 		 58659 
-#&gt; 				 at level 68% 	 20147 		 46981 
+#&gt; 				 at level 95% 	 22390 		 59802 
+#&gt; 				 at level 68% 	 29406 		 56200 
 #&gt; ------------------------------------------------------
 #&gt; Sample name 	 Bayes estimate  Credible interval: 
-#&gt; A_S-EVA-26508 	 40784 
+#&gt; A_S-EVA-26508 	 40296 
 #&gt; 						 lower bound 	 upper bound
-#&gt; 				 at level 95% 	 21761 		 59958 
-#&gt; 				 at level 68% 	 31212 		 57687 
+#&gt; 				 at level 95% 	 21789 		 59156 
+#&gt; 				 at level 68% 	 27395 		 53604 
 #&gt; 
-#&gt; ------------------------------------------------------</div><div class='img'><img src='AgeC14_Computation-11.png' alt='' width='700' height='432.632880098887' /></div><div class='img'><img src='AgeC14_Computation-12.png' alt='' width='700' height='432.632880098887' /></div><div class='input'>
+#&gt; ------------------------------------------------------</div><div class='img'><img src='AgeC14_Computation-5.png' alt='' width='700' height='433' /></div><div class='img'><img src='AgeC14_Computation-6.png' alt='' width='700' height='433' /></div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
@@ -353,6 +386,8 @@ IntCal13 ans Marine13 radiocarbon age calibration curves 0-50000 years cal BP. R
 
       <li><a href="#details">Details</a></li>
 
+      <li><a href="#note">Note</a></li>
+
       <li><a href="#references">References</a></li>
 
       <li><a href="#see-also">See also</a></li>
@@ -362,7 +397,7 @@ IntCal13 ans Marine13 radiocarbon age calibration curves 0-50000 years cal BP. R
 
     <h2>Author</h2>
     
-Claire Christophe, Anne Philippe, Guillaume Guerin
+Claire Christophe, Anne Philippe, Guillaume Guérin
 
   </div>
 </div>
@@ -379,5 +414,8 @@ Claire Christophe, Anne Philippe, Guillaume Guerin
       </footer>
    </div>
 
+  
+
   </body>
 </html>
+

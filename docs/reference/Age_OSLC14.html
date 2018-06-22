@@ -18,13 +18,31 @@
 <!-- Font Awesome icons -->
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
 
+<!-- clipboard.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script>
+
+<!-- sticky kit -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
-<script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
-  
-  
+
+
+
+<meta property="og:title" content="Bayesian analysis for age estimation of OSL measerments and 14C ages of various samples — Age_OSLC14" />
+
+<meta property="og:description" content="This function compute an age of OSL data of at least two samples and calibrate 14C ages of samples to get an age (in ka).
+Age of OSL data are computed according to the model given in Combes and Philippe (2017).
+Single-grain or Multi-grain OSL measurements can be analysed simultaneouly (with output of Generate_DataFile
+or Generate_DataFile_MG or both of them using Concat_DataFile).
+Samples, for which data is avalilable in several BIN files, can be analysed.
+For C14 data, the user can choose one of the following radiocarbon calibration curve:
+Northern or Sourthen Hemisphere or marine atmospheric." />
+<meta name="twitter:card" content="summary" />
+
+
+
 <!-- mathjax -->
 <script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
@@ -47,8 +65,12 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="../index.html">BayLum</a>
+      <span class="navbar-brand">
+        <a class="navbar-link" href="../index.html">BayLum</a>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.1.2</span>
+      </span>
     </div>
+
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
@@ -86,6 +108,7 @@
   </a>
 </li>
       </ul>
+      
     </div><!--/.nav-collapse -->
   </div><!--/.container -->
 </div><!--/.navbar -->
@@ -93,21 +116,25 @@
       
       </header>
 
-      <div class="row">
+<div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Bayesian analysis for age estimation of OSL measerments and 14C ages of various samples</h1>
+    
+    <div class="hidden name"><code>Age_OSLC14.Rd</code></div>
     </div>
 
+    <div class="ref-description">
     
-    <p>This function compute an age of OSL data of at least two samples and calibrate 14C ages of samples to get an age (in ka).
+    <p>This function compute an age of OSL data of at least two samples and calibrate 14C ages of samples to get an age (in ka).<br />
 Age of OSL data are computed according to the model given in Combes and Philippe (2017).
 Single-grain or Multi-grain OSL measurements can be analysed simultaneouly (with output of <code><a href='Generate_DataFile.html'>Generate_DataFile</a></code>
 or <code><a href='Generate_DataFile_MG.html'>Generate_DataFile_MG</a></code> or both of them using <code><a href='Concat_DataFile.html'>Concat_DataFile</a></code>).
-Samples, for which data is avalilable in several BIN files, can be analysed.
+Samples, for which data is avalilable in several BIN files, can be analysed.<br />
 For C14 data, the user can choose one of the following radiocarbon calibration curve:
 Northern or Sourthen Hemisphere or marine atmospheric.</p>
     
+    </div>
 
     <pre class="usage"><span class='fu'>Age_OSLC14</span>(<span class='no'>DATA</span>, <span class='no'>Data_C14Cal</span>, <span class='no'>Data_SigmaC14Cal</span>, <span class='no'>Nb_sample</span>, <span class='no'>SampleNames</span>,
   <span class='no'>SampleNature</span>, <span class='kw'>PriorAge</span> <span class='kw'>=</span> <span class='fu'>rep</span>(<span class='fu'>c</span>(<span class='fl'>10</span>, <span class='fl'>60</span>), <span class='no'>Nb_sample</span>), <span class='kw'>SavePdf</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
@@ -118,9 +145,9 @@ Northern or Sourthen Hemisphere or marine atmospheric.</p>
   <span class='fu'>sum</span>(<span class='no'>SampleNature</span>[<span class='fl'>1</span>, ])), <span class='kw'>THETA</span> <span class='kw'>=</span> <span class='fu'>c</span>(), <span class='kw'>sepTHETA</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>","</span>), <span class='kw'>LIN_fit</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>Origin_fit</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>distribution</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"cauchy"</span>), <span class='kw'>Model_C14</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"full"</span>),
   <span class='kw'>CalibrationCurve</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"AtmosphericNorth"</span>), <span class='kw'>Iter</span> <span class='kw'>=</span> <span class='fl'>50000</span>, <span class='kw'>t</span> <span class='kw'>=</span> <span class='fl'>5</span>,
-  <span class='kw'>Nb_chaines</span> <span class='kw'>=</span> <span class='fl'>3</span>)</pre>
+  <span class='kw'>Nb_chaines</span> <span class='kw'>=</span> <span class='fl'>3</span>, <span class='kw'>quiet</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
     
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
@@ -267,11 +294,16 @@ If <b>"naive"</b> this error is not taken account in the age estimate.</p></td>
       <th>Nb_chaines</th>
       <td><p>integer (with default): number of independent chains for the model (for more information see <code>jags.model</code>).</p></td>
     </tr>
+    <tr>
+      <th>quiet</th>
+      <td><p><code>logical</code> (with default): enables/disables rjags messages</p></td>
+    </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p><b>NUMERICAL OUTPUT</b></p><ol>
+    <p><b>NUMERICAL OUTPUT</b><br /></p>
+<ol>
 <li><p><b>A list containing the following objects:</b></p><ul>
 <li><p><b>Sampling</b>: that corresponds to a sample of the posterior distributions of the age parameters (in ka for both C14 samples and OSL samples);</p></li>
 <li><p><b>PriorAge</b>: stating the priors used for the age parameter;</p></li>
@@ -284,17 +316,20 @@ If <b>"naive"</b> this error is not taken account in the age estimate.</p></td>
 <li><p><b>Outlier</b>: stating the names of samples that must be outliers.</p></li>
 </ul></li>
 <li><p><b>The Gelman and Rubin test of convergency</b>: prints the result of the Gelman and Rubin test of convergency for the age estimate for each sample.
-A result close to one is expected.
+A result close to one is expected.<br />
 In addition, the user must visually assess the convergency of the trajectories by looking at the graph
-generated by the function (see <b>PLOT OUTPUT</b> for more informations).
+generated by the function (see <b>PLOT OUTPUT</b> for more informations).<br />
 If both convergencies (Gelman and Rubin test and plot checking) are satisfactory,
 the user can consider the estimates as valid.
 Otherwise, the user may try increasing the number of MCMC interations (<code>Iter</code>)
 or be more precise on the <code>PriorAge</code> parameter to reach convergency.</p></li>
 <li><p><b>Credible intervals and Bayes estimates</b>: prints the Bayes esitmates, the credible intervals at 95% and 68% for
 the age parameters for each sample.</p></li>
-</ol><p><b>PLOT OUTPUT</b></p><ol>
-<li><p><b>MCMC trajectories</b>: A graph with the MCMC trajectories and posterior distributions of the age parameter is displayed. 
+</ol>
+
+<p><b>PLOT OUTPUT</b></p>
+<ol>
+<li><p><b>MCMC trajectories</b>: A graph with the MCMC trajectories and posterior distributions of the age parameter is displayed. <br />
 On each line, the plot on the left represents the MCMC trajectories, and the one on the right the posterior distribution of the parameter.</p></li>
 <li><p><b>Age estimate and HPD at 95% of 14C samples on calibration curve</b>: plot age estimate and HPD on calibration plot.</p></li>
 <li><p><b>Summary of sample age estimates</b>: plot credible intervals and Bayes estimate of each sample age on a same graph.</p></li>
@@ -310,8 +345,8 @@ There are arguments for informtations concerning only OSL samples: <code>DATA</c
 <code>Model_C14</code>, <code>CalibrationCurve</code>.</p>
 <p>There are arguments for informtations concerning all the samples: <code>Nb_sample</code>, <code>SampleNames</code>, <code>SampleNature</code>,
 <code>PriorAge</code>, <code>SavePdf</code>, <code>OutputFileName</code>, <code>OutputFilePath</code>, <code>SaveEstimates</code>, <code>OutputTableName</code>,
-<code>OutputTablePath</code>, <code>StratiConstraints</code>, <code>sepSC</code>.
-    <b>** How to fill</b> <code>StratiConstraints</code> <b>? **</b></p>
+<code>OutputTablePath</code>, <code>StratiConstraints</code>, <code>sepSC</code>.<br /></p>
+<p><b>** How to fill</b> <code>StratiConstraints</code> <b>? **</b><br /></p>
 <p>If there is stratigraphic relations between samples, <b>14C estimate age in <code>Data_C14Cal</code> must be ordered by order of increasing ages,
 as informations in <code>DATA</code></b>. Names in <code>SampleNames</code> must be ordered and correponds to the order in <code>Data_C14Cal</code> and in <code>DATA</code>,
 also if it is needed to mix names of OSL samples and 14C samples.</p>
@@ -328,8 +363,8 @@ Otherwise, <code>StratiConstraints[j,i]=0</code>.</p></li>
 <p>The user can also use <code><a href='SCMatrix.html'>SCMatrix</a></code>  or <code><a href='SC_Ordered.html'>SC_Ordered</a></code> (if all samples are ordered) function to construc
 the <code>StratiConstraints</code> matrix.</p>
 <p>The user can also refer to a csv file that containts the relation between samples as defined above.
-The user must take care about the separator used in the csv file using the argument <code>sepSC</code>.</p>
-<p><b>** How to fill</b> <code>THETA</code> <b>covariance matrix concerning common and individual error? **</b></p>
+The user must take care about the separator used in the csv file using the argument <code>sepSC</code>.<br /></p>
+<p><b>** How to fill</b> <code>THETA</code> <b>covariance matrix concerning common and individual error? **</b><br /></p>
 <p>If systematic errors are considered, the user can fill the <code>THETA</code> matrix as follow.</p><ul>
 <li><p>row number of <code>THETA</code> is equal the column number, equal to <code>Nb_sample</code>.</p></li>
 <li><p>For all <code>i in {1,...,Nb_sample}</code>, <code>THETA[i,i]</code> containts individual error
@@ -337,8 +372,8 @@ The user must take care about the separator used in the csv file using the argum
 <li><p>For all <code>i,j in {1,...,Nb_sample}</code> and <code>i</code> different from <code>j</code> ,
 <code>THETA[i,j]</code> containts common error between samples whose number ID are equal to <code>i</code> and <code>j</code>.</p></li>
 </ul><p>Note that <code>THETA[i,j]</code> is a symetric matrix.</p>
-<p>The user can also refer to a .csv file that containts the errors as defined above.
-    <b>** Option on growth curves **</b></p>
+<p>The user can also refer to a .csv file that containts the errors as defined above.<br /></p>
+<p><b>** Option on growth curves **</b><br /></p>
 <p>As for <code><a href='Age_Computation.html'>Age_Computation</a></code> and <code><a href='Palaeodose_Computation.html'>Palaeodose_Computation</a></code>, the user can choose from 4 dose response curves:</p><ul>
 <li><p><b>Saturating exponential plus linear growth</b> (<code>AgesMultiCS2_EXPLIN</code>):</p>
 <p>for all <code>x</code> in IR+, <code>f(x)=a(1-exp(-x/b))+cx+d</code>; select</p><ul>
@@ -360,18 +395,26 @@ The user must take care about the separator used in the csv file using the argum
 <li><p><code>LIN_fit=FALSE</code></p></li>
 <li><p><code>Origin_fit=TRUE</code></p></li>
 </ul></li>
-</ul><p><b>** Option on equivalent dose distribution around the palaeodose **</b></p>
+</ul>
+    <p><b>** Option on equivalent dose distribution around the palaeodose **</b><br /></p>
 <p>The use can choose between :</p><ul>
 <li><p><code>cauchy</code>: a Cauchy distribution with location parameter equal to the palaeodose of the sample</p></li>
 <li><p><code>gaussian</code>: a Gaussian distribution with mean equal to the palaeodose of the sample</p></li>
 <li><p><code>lognormal_A</code>: a log-normal distribution with mean or <b>A</b>verage equal to the palaeodose of the sample</p></li>
 <li><p><code>lognormal_M</code>: a log-normal distribution with <b>M</b>edian equal to the palaeodose of the sample</p></li>
-</ul><p><b>** More precision on <code>Model</code> **</b></p>
+</ul>
+    <p><b>** More precision on <code>Model</code> **</b><br /></p>
 <p>We propose two models "full" or "naive". If <code>Model='full'</code> that means measurement error and error on calibration curve are taken account in
 the Bayesian model; if <code>Model="naive"</code> that means only error on measurement are taken account in the mode.</p>
 <p>More precisely, the model considered here, as the one developped by Christen, JA (1994), assume multiplicative effect of errors to address the
 problem of outliers. In addition, to not penalyse variables that are not outliers and damage theirs estimation,
 we introduce a structure of mixture, that means only variable that are considered as outlier have in addition a multiplicative error.</p>
+    
+    <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
+
+    <p>Please note that the initial values for all MCMC are currently all the same for all chains since we rely on the automatic
+initial value generation of JAGS. This is not optimal and will be changed in future. However, it does not affect the quality
+of the age estimates if the chains have converged.</p>
     
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
@@ -384,7 +427,7 @@ IntCal13 ans Marine13 radiocarbon age calibration curves 0-50000 years cal BP. R
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <p><code>rjags</code>, <code><a href='plot_MCMC.html'>plot_MCMC</a></code>, <code><a href='SCMatrix.html'>SCMatrix</a></code></p>
+    <div class='dont-index'><p><code>rjags</code>, <code><a href='plot_MCMC.html'>plot_MCMC</a></code>, <code><a href='SCMatrix.html'>SCMatrix</a></code></p></div>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
@@ -418,14 +461,14 @@ IntCal13 ans Marine13 radiocarbon age calibration curves 0-50000 years cal BP. R
 #&gt; Initializing model
 #&gt; </div><div class='output co'>#&gt; <span class='warning'>Warning: Adaptation incomplete</span></div><div class='output co'>#&gt; NOTE: Stopping adaptation
 #&gt; 
-#&gt; </div><div class='output co'>#&gt; <span class='warning'>Warning: [plot_MCMC()] 'n.iter' out of range, reset to number of observations</span></div><div class='img'><img src='Age_OSLC14-5.png' alt='' width='700' height='432.632880098887' /></div><div class='img'><img src='Age_OSLC14-6.png' alt='' width='700' height='432.632880098887' /></div><div class='img'><img src='Age_OSLC14-7.png' alt='' width='700' height='432.632880098887' /></div><div class='output co'>#&gt; 
+#&gt; </div><div class='output co'>#&gt; <span class='warning'>Warning: [plot_MCMC()] 'n.iter' out of range, reset to number of observations</span></div><div class='img'><img src='Age_OSLC14-1.png' alt='' width='700' height='433' /></div><div class='img'><img src='Age_OSLC14-2.png' alt='' width='700' height='433' /></div><div class='img'><img src='Age_OSLC14-3.png' alt='' width='700' height='433' /></div><div class='output co'>#&gt; 
 #&gt; 
 #&gt; &gt;&gt; Convergence of MCMC for the age parameters &lt;&lt;
 #&gt; ----------------------------------------------
 #&gt; Sample name   Bayes estimate   Uppers credible interval
-#&gt; A_GDB5 	 0.96 		 0.96 
-#&gt; A_S-EVA-26510 	 1.08 		 1.1 
-#&gt; A_GDB3 	 1.21 		 1.97 
+#&gt; A_GDB5 	 1.59 		 4.03 
+#&gt; A_S-EVA-26510 	 0.98 		 1.1 
+#&gt; A_GDB3 	 1.07 		 1.3 
 #&gt; 
 #&gt; 
 #&gt; ________________________________________________________________________________
@@ -436,24 +479,24 @@ IntCal13 ans Marine13 radiocarbon age calibration curves 0-50000 years cal BP. R
 #&gt; &gt;&gt; Bayes estimates of Age for each sample and credible interval &lt;&lt;
 #&gt; ------------------------------------------------------
 #&gt; Sample name 	 Bayes estimate  Credible interval: 
-#&gt; A_GDB5 	 7.322 
+#&gt; A_GDB5 	 7.312 
 #&gt; 						 lower bound 	 upper bound
-#&gt; 				 at level 95% 	 5.89 		 8.36 
-#&gt; 				 at level 68% 	 6.83 		 8.36 
+#&gt; 				 at level 95% 	 5.94 		 8.6 
+#&gt; 				 at level 68% 	 6.56 		 7.25 
 #&gt; ------------------------------------------------------
 #&gt; Sample name 	 Bayes estimate  Credible interval: 
-#&gt; A_S-EVA-26510 	 41.903 
+#&gt; A_S-EVA-26510 	 41.789 
 #&gt; 						 lower bound 	 upper bound
-#&gt; 				 at level 95% 	 41.47 		 42.55 
-#&gt; 				 at level 68% 	 41.76 		 42.14 
+#&gt; 				 at level 95% 	 41.19 		 42.4 
+#&gt; 				 at level 68% 	 41.48 		 42.05 
 #&gt; ------------------------------------------------------
 #&gt; Sample name 	 Bayes estimate  Credible interval: 
-#&gt; A_GDB3 	 50.108 
+#&gt; A_GDB3 	 47.193 
 #&gt; 						 lower bound 	 upper bound
-#&gt; 				 at level 95% 	 43.75 		 54.85 
-#&gt; 				 at level 68% 	 46.8 		 52.78 
+#&gt; 				 at level 95% 	 41.87 		 53.13 
+#&gt; 				 at level 68% 	 42.82 		 48.81 
 #&gt; 
-#&gt; ------------------------------------------------------</div><div class='img'><img src='Age_OSLC14-8.png' alt='' width='700' height='432.632880098887' /></div></pre>
+#&gt; ------------------------------------------------------</div><div class='img'><img src='Age_OSLC14-4.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -463,6 +506,8 @@ IntCal13 ans Marine13 radiocarbon age calibration curves 0-50000 years cal BP. R
       <li><a href="#value">Value</a></li>
 
       <li><a href="#details">Details</a></li>
+
+      <li><a href="#note">Note</a></li>
 
       <li><a href="#references">References</a></li>
 
@@ -490,5 +535,8 @@ Claire Christophe, Anne Philippe, Guillaume Guerin
       </footer>
    </div>
 
+  
+
   </body>
 </html>
+

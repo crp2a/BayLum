@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>All news • BayLum</title>
+<title>Changelog • BayLum</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -18,13 +18,22 @@
 <!-- Font Awesome icons -->
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
 
+<!-- clipboard.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script>
+
+<!-- sticky kit -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
-<script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
-  
-  
+
+
+
+<meta property="og:title" content="Changelog" />
+
+
+
 <!-- mathjax -->
 <script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
@@ -47,8 +56,12 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="../index.html">BayLum</a>
+      <span class="navbar-brand">
+        <a class="navbar-link" href="../index.html">BayLum</a>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.1.2</span>
+      </span>
     </div>
+
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
@@ -86,6 +99,7 @@
   </a>
 </li>
       </ul>
+      
     </div><!--/.nav-collapse -->
   </div><!--/.container -->
 </div><!--/.navbar -->
@@ -93,22 +107,21 @@
       
       </header>
 
-      <div class="row">
-
-  <div class="col-md-9">
+<div class="row">
+  <div class="col-md-9 contents">
     <div class="page-header">
-      <h1>Change log <small>All releases</small></h1>
+      <h1>Changelog <small></small></h1>
+      
     </div>
 
-    <div class="contents">
-    <div id="baylum-0-1-2-release-date-2018-xx-xx" class="section level2">
+    <div id="baylum-0-1-2-release-date-2018-06-22" class="section level2">
 <h2 class="hasAnchor">
-<a href="#baylum-0-1-2-release-date-2018-xx-xx" class="anchor"></a>BayLum 0.1.2 (Release date: 2018-XX-XX)</h2>
+<a href="#baylum-0-1-2-release-date-2018-06-22" class="anchor"></a>BayLum 0.1.2 (Release date: 2018-06-22)</h2>
 <div id="new-functions" class="section level3">
 <h3 class="hasAnchor">
 <a href="#new-functions" class="anchor"></a>New functions</h3>
 <ul>
-<li>The function <code>MCMC_plot()</code> is replaced by the newly written function <code><a href="../reference/plot_MCMC.html">plot_MCMC()</a></code>
+<li>The function <code>MCMC_plot()</code> was replaced by the newly written function <code><a href="../reference/plot_MCMC.html">plot_MCMC()</a></code>
 </li>
 </ul>
 </div>
@@ -134,7 +147,7 @@
 <li>The functions <code><a href="../reference/Generate_DataFile.html">Generate_DataFile()</a></code> and <code><a href="../reference/Generate_DataFile_MG.html">Generate_DataFile_MG()</a></code> now supports the <code>...</code> argument to pass further arguments to the function <code>Luminescene::read_BIN2R()</code>
 </li>
 <li>The functions <code><a href="../reference/Generate_DataFile.html">Generate_DataFile()</a></code> and <code><a href="../reference/Generate_DataFile_MG.html">Generate_DataFile_MG()</a></code> gained a new argument <code>verbose</code> to control the terminal output</li>
-<li>The function <code><a href="../reference/Age_Computation.html">Age_Computation()</a></code>, <code><a href="../reference/AgeC14_Computation.html">AgeC14_Computation()</a></code> now support the argument <code>quiet</code> and pipes it to <code>rjags</code> to suppress verbose terminal output</li>
+<li>The function <code><a href="../reference/Age_Computation.html">Age_Computation()</a></code>,<code><a href="../reference/AgeS_Computation.html">AgeS_Computation()</a></code>,<code><a href="../reference/AgeC14_Computation.html">AgeC14_Computation()</a></code>, <code><a href="../reference/Age_OSLC14.html">Age_OSLC14()</a></code> now support the argument <code>quiet</code> and pipe it to <code>rjags</code> to suppress the terminal output</li>
 <li>The function <code><a href="../reference/AgeC14_Computation.html">AgeC14_Computation()</a></code> now returns a warning if outliers are detected.</li>
 <li>The function <code><a href="../reference/LT_RegenDose.html">LT_RegenDose()</a></code> gained two new arguments <code>nrow</code> and <code>ncol</code> became a little bit more user friendly</li>
 </ul>
@@ -144,6 +157,7 @@
 <a href="#internals" class="anchor"></a>Internals</h3>
 <ul>
 <li>Set patch level to 0 (for 3.3.0) to account for CRAN note</li>
+<li>Vignette was updated and corrected</li>
 </ul>
 </div>
 </div>
@@ -161,14 +175,13 @@
 <li>Initial version on CRAN</li>
 </ul>
 </div>
-    </div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <div id="tocnav">
       <h2>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
-        <li><a href="#baylum-0-1-2-release-date-2018-xx-xx">0.1.2</a></li>
+        <li><a href="#baylum-0-1-2-release-date-2018-06-22">0.1.2</a></li>
         <li><a href="#baylum-0-1-1-release-date-2017-09-01">0.1.1</a></li>
         <li><a href="#baylum-0-1-0-release-date-2017-08-22">0.1.0</a></li>
       </ul>
@@ -189,5 +202,8 @@
       </footer>
    </div>
 
+  
+
   </body>
 </html>
+

@@ -18,13 +18,29 @@
 <!-- Font Awesome icons -->
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
 
+<!-- clipboard.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script>
+
+<!-- sticky kit -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
-<script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
-  
-  
+
+
+
+<meta property="og:title" content="Bayesian analysis for the OSL age estimation of various samples — AgeS_Computation" />
+
+<meta property="og:description" content="This function computes the age (in ka) of at least two samples according to the model developed in Combes and Philippe (2017),
+based on outputs of Generate_DataFile or Generate_DataFile_MG
+or both of them using Concat_DataFile.
+Samples, for which data is avalilable in several BIN files, can be analysed.
+Single-grain or Multi-grain OSL measurements can be analysed simultaneouly." />
+<meta name="twitter:card" content="summary" />
+
+
+
 <!-- mathjax -->
 <script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
@@ -47,8 +63,12 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="../index.html">BayLum</a>
+      <span class="navbar-brand">
+        <a class="navbar-link" href="../index.html">BayLum</a>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.1.2</span>
+      </span>
     </div>
+
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
@@ -86,6 +106,7 @@
   </a>
 </li>
       </ul>
+      
     </div><!--/.nav-collapse -->
   </div><!--/.container -->
 </div><!--/.navbar -->
@@ -93,19 +114,23 @@
       
       </header>
 
-      <div class="row">
+<div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Bayesian analysis for the OSL age estimation of various samples</h1>
+    
+    <div class="hidden name"><code>AgeS_Computation.Rd</code></div>
     </div>
 
+    <div class="ref-description">
     
     <p>This function computes the age (in ka) of at least two samples according to the model developed in Combes and Philippe (2017),
 based on outputs of <code><a href='Generate_DataFile.html'>Generate_DataFile</a></code> or <code><a href='Generate_DataFile_MG.html'>Generate_DataFile_MG</a></code>
-or both of them using <code><a href='Concat_DataFile.html'>Concat_DataFile</a></code>.
-Samples, for which data is avalilable in several BIN files, can be analysed.
+or both of them using <code><a href='Concat_DataFile.html'>Concat_DataFile</a></code>.<br />
+Samples, for which data is avalilable in several BIN files, can be analysed.<br />
 Single-grain or Multi-grain OSL measurements can be analysed simultaneouly.</p>
     
+    </div>
 
     <pre class="usage"><span class='fu'>AgeS_Computation</span>(<span class='no'>DATA</span>, <span class='no'>SampleNames</span>, <span class='no'>Nb_sample</span>, <span class='kw'>PriorAge</span> <span class='kw'>=</span> <span class='fu'>rep</span>(<span class='fu'>c</span>(<span class='fl'>0.01</span>, <span class='fl'>100</span>),
   <span class='no'>Nb_sample</span>), <span class='kw'>BinPerSample</span> <span class='kw'>=</span> <span class='fu'>rep</span>(<span class='fl'>1</span>, <span class='no'>Nb_sample</span>), <span class='kw'>SavePdf</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
@@ -114,9 +139,9 @@ Single-grain or Multi-grain OSL measurements can be analysed simultaneouly.</p>
   <span class='kw'>OutputTablePath</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>""</span>), <span class='kw'>THETA</span> <span class='kw'>=</span> <span class='fu'>c</span>(), <span class='kw'>sepTHETA</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>","</span>),
   <span class='kw'>StratiConstraints</span> <span class='kw'>=</span> <span class='fu'>c</span>(), <span class='kw'>sepSC</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>","</span>), <span class='kw'>LIN_fit</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>Origin_fit</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>distribution</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"cauchy"</span>), <span class='kw'>Iter</span> <span class='kw'>=</span> <span class='fl'>50000</span>, <span class='kw'>t</span> <span class='kw'>=</span> <span class='fl'>5</span>,
-  <span class='kw'>Nb_chaines</span> <span class='kw'>=</span> <span class='fl'>3</span>)</pre>
+  <span class='kw'>Nb_chaines</span> <span class='kw'>=</span> <span class='fl'>3</span>, <span class='kw'>quiet</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
     
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
@@ -230,11 +255,16 @@ Allowed inputs are <b>"cauchy"</b>, <b>"gaussian"</b>, <b>"lognormal_A"</b> and 
       <th>Nb_chaines</th>
       <td><p>integer (with default): number of independent chains for the model (for more information see <code>jags.model</code>).</p></td>
     </tr>
+    <tr>
+      <th>quiet</th>
+      <td><p><code>logical</code> (with default): enables/disables rjags messages</p></td>
+    </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p><b>NUMERICAL OUTPUT</b></p><ol>
+    <p><b>NUMERICAL OUTPUT</b></p>
+<ol>
 <li><p><b>A list containing the following objects:</b></p><ul>
 <li><p><b>Sampling</b>: that corresponds to a sample of the posterior distributions
  of the age (in ka), palaeodose (in Gy) and equivalent dose dispersion (in Gy) parameters for each sample;</p></li>
@@ -247,9 +277,9 @@ Allowed inputs are <b>"cauchy"</b>, <b>"gaussian"</b>, <b>"lognormal_A"</b> and 
 </ul></li>
 <li><p><b>The Gelman and Rubin test of convergency</b>: prints the result of the Gelman and Rubin test of convergency for
 the age, palaeodose and equivalent dose dispersion parameters for each sample.
-A result close to one is expected.
+A result close to one is expected.<br />
 In addition, the user must visually assess the convergency of the trajectories by looking at the graph
-generated by the function (see <b>PLOT OUTPUT</b> for more informations).
+generated by the function (see <b>PLOT OUTPUT</b> for more informations).<br />
 If both convergencies (Gelman and Rubin test and plot checking) are satisfactory,
 the user can consider the estimates as valid.
 Otherwise, the user may try increasing the number of MCMC interations (<code>Iter</code>)
@@ -257,9 +287,12 @@ or being more precise on the <code>PriorAge</code> parameter (for example specif
 or changing the parameter <code>distribution</code> or the growth curve, to reach convergency.</p></li>
 <li><p><b>Credible intervals and Bayes estimates</b>: prints the Bayes esitmates, the credible intervals at 95% and 68% for
 the age, palaeodose and equivalent dose dispersion parameters for each sample.</p></li>
-</ol><p><b>PLOT OUTPUT</b></p><ol>
+</ol>
+
+<p><b>PLOT OUTPUT</b></p>
+<ol>
 <li><p><b>MCMC trajectories</b>: A graph with the MCMC trajectories and posterior distributions of the age, palaeodose and equivalent dose dispersion parameters
-is displayed, there is one page per sample. 
+is displayed, there is one page per sample. <br />
 The first line of the figure correponds to the age parameter, the second to the palaeodose parameter
 and the third to the equivalent dose dispersion parameter.
 On each line, the plot on the left represents the MCMC trajectories, and the one on the right the posterior distribution of the parameter.</p></li>
@@ -270,7 +303,7 @@ On each line, the plot on the left represents the MCMC trajectories, and the one
     
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p><b>** How to fill</b> <code>StratiConstraints</code> <b>? **</b></p>
+    <p><b>** How to fill</b> <code>StratiConstraints</code> <b>? **</b><br /></p>
 <p>If there is stratigraphic relations between samples, <b>informations in DATA must be ordered by order of increasing ages</b>.
 To do this the user can either fill right <code>Names</code> in <code><a href='Generate_DataFile.html'>Generate_DataFile</a></code> or in <code><a href='Generate_DataFile_MG.html'>Generate_DataFile_MG</a></code>
 (as it is indicated in Details section of these function), or ordered by order of increasing ages
@@ -288,8 +321,8 @@ Otherwise, <code>StratiConstraints[j,i]=0</code>.</p></li>
 <p>The user can also use <code><a href='SCMatrix.html'>SCMatrix</a></code> or <code><a href='SC_Ordered.html'>SC_Ordered</a></code> (if all samples are ordered) functions
 to construct the <code>StratiConstraints</code> matrix.</p>
 <p>The user can also refer to a csv file that containts the relation between samples as defined above.
-The user must take care about the separator used in the csv file using the argument <code>sepSC</code>.
-    <b>** How to fill</b> <code>THETA</code> <b>covariance matrix concerning common and individual error? **</b></p>
+The user must take care about the separator used in the csv file using the argument <code>sepSC</code>.<br /></p>
+<p><b>** How to fill</b> <code>THETA</code> <b>covariance matrix concerning common and individual error? **</b><br /></p>
 <p>If systematic errors are considered, the user can fill the <code>THETA</code> matrix as follow.</p><ul>
 <li><p>row number of <code>THETA</code> is equal the column number, equal to <code>Nb_sample</code>.</p></li>
 <li><p>For all <code>i in {1,...,Nb_sample}</code>, <code>THETA[i,i]</code> containts individual error
@@ -297,8 +330,8 @@ The user must take care about the separator used in the csv file using the argum
 <li><p>For all <code>i,j in {1,...,Nb_sample}</code> and <code>i</code> different from <code>j</code> ,
 <code>THETA[i,j]</code> containts common error between samples whose number ID are equal to <code>i</code> and <code>j</code>.</p></li>
 </ul><p>Note that <code>THETA[i,j]</code> is a symetric matrix.</p>
-<p>The user can also refer to a .csv file that containts the errors as defined above.
-    <b>** Option on growth curves **</b></p>
+<p>The user can also refer to a .csv file that containts the errors as defined above.<br /></p>
+<p><b>** Option on growth curves **</b><br /></p>
 <p>As for <code><a href='Age_Computation.html'>Age_Computation</a></code> and <code><a href='Palaeodose_Computation.html'>Palaeodose_Computation</a></code>, the user can choose from 4 dose response curves:</p><ul>
 <li><p><b>Saturating exponential plus linear growth</b> (<code>AgesMultiCS2_EXPLIN</code>):</p>
 <p>for all <code>x</code> in IR+, <code>f(x)=a(1-exp(-x/b))+cx+d</code>; select</p><ul>
@@ -320,13 +353,20 @@ The user must take care about the separator used in the csv file using the argum
 <li><p><code>LIN_fit=FALSE</code></p></li>
 <li><p><code>Origin_fit=TRUE</code></p></li>
 </ul></li>
-</ul><p><b>** Option on equivalent dose distribution around the palaeodose **</b></p>
+</ul>
+    <p><b>** Option on equivalent dose distribution around the palaeodose **</b><br /></p>
 <p>The use can choose between :</p><ul>
 <li><p><code>cauchy</code>: a Cauchy distribution with location parameter equal to the palaeodose of the sample;</p></li>
 <li><p><code>gaussian</code>: a Gaussian distribution with mean equal to the palaeodose of the sample;</p></li>
 <li><p><code>lognormal_A</code>: a log-normal distribution with mean or <b>A</b>verage equal to the palaeodose of the sample:</p></li>
 <li><p><code>lognormal_M</code>: a log-normal distribution with <b>M</b>edian equal to the palaeodose of the sample.</p></li>
 </ul>
+    
+    <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
+
+    <p>Please note that the initial values for all MCMC are currently all the same for all chains since we rely on the automatic
+initial value generation of JAGS. This is not optimal and will be changed in future. However, it does not affect the quality
+of the age estimates if the chains have converged.</p>
     
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
@@ -339,9 +379,9 @@ Quaternary Geochronology 28, 62-70. doi:10.1016/j.quageo.2015.04.001</p>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <p><code><a href='Generate_DataFile.html'>Generate_DataFile</a></code>, <code><a href='Generate_DataFile_MG.html'>Generate_DataFile_MG</a></code>,
+    <div class='dont-index'><p><code><a href='Generate_DataFile.html'>Generate_DataFile</a></code>, <code><a href='Generate_DataFile_MG.html'>Generate_DataFile_MG</a></code>,
 <code>rjags</code>, <code><a href='plot_MCMC.html'>plot_MCMC</a></code>, <code><a href='SCMatrix.html'>SCMatrix</a></code>
-<code><a href='Age_Computation.html'>Age_Computation</a></code>, <code><a href='Palaeodose_Computation.html'>Palaeodose_Computation</a></code></p>
+<code><a href='Age_Computation.html'>Age_Computation</a></code>, <code><a href='Palaeodose_Computation.html'>Palaeodose_Computation</a></code></p></div>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
@@ -359,34 +399,27 @@ Quaternary Geochronology 28, 62-70. doi:10.1016/j.quageo.2015.04.001</p>
   <span class='kw'>SampleNames</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"GDB5"</span>,<span class='st'>"GDB3"</span>),
   <span class='kw'>PriorAge</span> <span class='kw'>=</span> <span class='no'>priorage</span>,
   <span class='kw'>Iter</span> <span class='kw'>=</span> <span class='fl'>50</span>,
-  <span class='kw'>Nb_chaines</span> <span class='kw'>=</span> <span class='fl'>2</span>)</div><div class='output co'>#&gt; Compiling model graph
-#&gt;    Resolving undeclared variables
-#&gt;    Allocating nodes
-#&gt; Graph information:
-#&gt;    Observed stochastic nodes: 1445
-#&gt;    Unobserved stochastic nodes: 1739
-#&gt;    Total graph size: 20624
+  <span class='kw'>Nb_chaines</span> <span class='kw'>=</span> <span class='fl'>2</span>,
+  <span class='kw'>quiet</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
+  )</div><div class='output co'>#&gt; <span class='warning'>Warning: Adaptation incomplete</span></div><div class='output co'>#&gt; NOTE: Stopping adaptation
 #&gt; 
-#&gt; Initializing model
-#&gt; </div><div class='output co'>#&gt; <span class='warning'>Warning: Adaptation incomplete</span></div><div class='output co'>#&gt; NOTE: Stopping adaptation
-#&gt; 
-#&gt; </div><div class='output co'>#&gt; <span class='warning'>Warning: [plot_MCMC()] 'n.iter' out of range, reset to number of observations</span></div><div class='img'><img src='AgeS_Computation-4.png' alt='' width='700' height='432.632880098887' /></div><div class='img'><img src='AgeS_Computation-5.png' alt='' width='700' height='432.632880098887' /></div><div class='output co'>#&gt; 
+#&gt; </div><div class='output co'>#&gt; <span class='warning'>Warning: [plot_MCMC()] 'n.iter' out of range, reset to number of observations</span></div><div class='img'><img src='AgeS_Computation-1.png' alt='' width='700' height='433' /></div><div class='img'><img src='AgeS_Computation-2.png' alt='' width='700' height='433' /></div><div class='output co'>#&gt; 
 #&gt; 
 #&gt; &gt;&gt; Results of the Gelman and Rubin criterion of convergence &lt;&lt;
 #&gt; ----------------------------------------------
 #&gt;  Sample name:  GDB5 
 #&gt; ---------------------
 #&gt; 		 Point estimate Uppers confidence interval
-#&gt; A_GDB5 	 1.04 		 1.24 
-#&gt; D_GDB5 	 1.17 		 1.81 
-#&gt; sD_GDB5 	 1.04 		 1.05 
+#&gt; A_GDB5 	 0.96 		 1.01 
+#&gt; D_GDB5 	 2.5 		 5.5 
+#&gt; sD_GDB5 	 1.06 		 1.29 
 #&gt; ----------------------------------------------
 #&gt;  Sample name:  GDB3 
 #&gt; ---------------------
 #&gt; 		 Point estimate Uppers confidence interval
-#&gt; A_GDB3 	 1.24 		 1.96 
-#&gt; D_GDB3 	 1.07 		 1.09 
-#&gt; sD_GDB3 	 0.98 		 1.08 
+#&gt; A_GDB3 	 1.09 		 1.45 
+#&gt; D_GDB3 	 1.55 		 2.87 
+#&gt; sD_GDB3 	 1.99 		 5.14 
 #&gt; 
 #&gt; 
 #&gt; ---------------------------------------------------------------------------------------------------
@@ -400,44 +433,44 @@ Quaternary Geochronology 28, 62-70. doi:10.1016/j.quageo.2015.04.001</p>
 #&gt;  Sample name:  GDB5 
 #&gt; ---------------------
 #&gt; Parameter 	 Bayes estimate 	  Credible interval 
-#&gt;  A_GDB5 	 7.397 
+#&gt;  A_GDB5 	 7.738 
 #&gt; 						 lower bound 	 upper bound
-#&gt; 				 at level 95% 	 6.74 		 8.38 
-#&gt; 				 at level 68% 	 6.74 		 7.73 
+#&gt; 				 at level 95% 	 6.27 		 9.27 
+#&gt; 				 at level 68% 	 7.31 		 8.67 
 #&gt; 
 #&gt; Parameter 	 Bayes estimate 	  Credible interval 
-#&gt;  D_GDB5 	 18.715 
+#&gt;  D_GDB5 	 18.355 
 #&gt; 						 lower bound 	 upper bound
-#&gt; 				 at level 95% 	 18.14 		 19.75 
-#&gt; 				 at level 68% 	 18.14 		 18.75 
+#&gt; 				 at level 95% 	 17.85 		 18.89 
+#&gt; 				 at level 68% 	 17.94 		 18.49 
 #&gt; 
 #&gt; Parameter 	 Bayes estimate 	  Credible interval 
-#&gt; sD_GDB5 	 4.642 
+#&gt; sD_GDB5 	 4.654 
 #&gt; 						 lower bound 	 upper bound
-#&gt; 				 at level 95% 	 3.54 		 5.67 
-#&gt; 				 at level 68% 	 4.24 		 5.13 
+#&gt; 				 at level 95% 	 4.02 		 5.13 
+#&gt; 				 at level 68% 	 4.59 		 4.84 
 #&gt; ----------------------------------------------
 #&gt;  Sample name:  GDB3 
 #&gt; ---------------------
 #&gt; Parameter 	 Bayes estimate 	  Credible interval 
-#&gt;  A_GDB3 	 42.466 
+#&gt;  A_GDB3 	 43.962 
 #&gt; 						 lower bound 	 upper bound
-#&gt; 				 at level 95% 	 37.06 		 49.64 
-#&gt; 				 at level 68% 	 37.41 		 43.34 
+#&gt; 				 at level 95% 	 38.58 		 49.15 
+#&gt; 				 at level 68% 	 41.87 		 48.9 
 #&gt; 
 #&gt; Parameter 	 Bayes estimate 	  Credible interval 
-#&gt;  D_GDB3 	 94.918 
+#&gt;  D_GDB3 	 99.801 
 #&gt; 						 lower bound 	 upper bound
-#&gt; 				 at level 95% 	 93.64 		 96.16 
-#&gt; 				 at level 68% 	 94.58 		 95.77 
+#&gt; 				 at level 95% 	 95.01 		 107.53 
+#&gt; 				 at level 68% 	 97.02 		 103.13 
 #&gt; 
 #&gt; Parameter 	 Bayes estimate 	  Credible interval 
-#&gt; sD_GDB3 	 14.259 
+#&gt; sD_GDB3 	 16.367 
 #&gt; 						 lower bound 	 upper bound
-#&gt; 				 at level 95% 	 11.44 		 15.72 
-#&gt; 				 at level 68% 	 13.58 		 14.75 
+#&gt; 				 at level 95% 	 11.46 		 16.96 
+#&gt; 				 at level 68% 	 13.3 		 14.21 
 #&gt; 
-#&gt; ----------------------------------------------</div><div class='img'><img src='AgeS_Computation-6.png' alt='' width='700' height='432.632880098887' /></div><div class='input'>
+#&gt; ----------------------------------------------</div><div class='img'><img src='AgeS_Computation-3.png' alt='' width='700' height='433' /></div><div class='input'>
 ## Age computation of samples GDB5 and GDB3,
 ## without common error, assuming GDB5 age younder than GDB3 age
 </div><span class='co'># NOT RUN {</span>
@@ -453,7 +486,8 @@ Quaternary Geochronology 28, 62-70. doi:10.1016/j.quageo.2015.04.001</p>
  <span class='kw'>SampleNames</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"GDB5"</span>,<span class='st'>"GDB3"</span>),
  <span class='kw'>PriorAge</span> <span class='kw'>=</span> <span class='no'>priorage</span>,
  <span class='kw'>StratiConstraints</span> <span class='kw'>=</span> <span class='no'>SC</span>,
- <span class='kw'>Iter</span> <span class='kw'>=</span> <span class='fl'>10000</span>)
+ <span class='kw'>Iter</span> <span class='kw'>=</span> <span class='fl'>10000</span>,
+ <span class='kw'>quiet</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
 <span class='co'># }</span><div class='input'>
 </div></pre>
   </div>
@@ -466,6 +500,8 @@ Quaternary Geochronology 28, 62-70. doi:10.1016/j.quageo.2015.04.001</p>
 
       <li><a href="#details">Details</a></li>
 
+      <li><a href="#note">Note</a></li>
+
       <li><a href="#references">References</a></li>
 
       <li><a href="#see-also">See also</a></li>
@@ -475,7 +511,7 @@ Quaternary Geochronology 28, 62-70. doi:10.1016/j.quageo.2015.04.001</p>
 
     <h2>Author</h2>
     
-Claire Christophe, Anne Philippe, Guillaume Guerin
+Claire Christophe, Anne Philippe, Guillaume Guérin
 
   </div>
 </div>
@@ -492,5 +528,8 @@ Claire Christophe, Anne Philippe, Guillaume Guerin
       </footer>
    </div>
 
+  
+
   </body>
 </html>
+

@@ -18,13 +18,29 @@
 <!-- Font Awesome icons -->
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
 
+<!-- clipboard.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script>
+
+<!-- sticky kit -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
-<script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
-  
-  
+
+
+
+<meta property="og:title" content="Plot MCMC trajectories and posterior distributions — plot_MCMC" />
+
+<meta property="og:description" content="This function uses the output of rjags::jags.model to visualise the traces of the MCMC and the
+corresponding densities. In particular it displays the posterior distributions of the age, if it is calculated,
+palaeodose and the equivalent dose dispersion parameters of the sample. The function output is very
+similar to plot output produced with the 'coda' package, but tailored to meet the needs in
+the context of the 'BayLum' package." />
+<meta name="twitter:card" content="summary" />
+
+
+
 <!-- mathjax -->
 <script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
@@ -47,8 +63,12 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="../index.html">BayLum</a>
+      <span class="navbar-brand">
+        <a class="navbar-link" href="../index.html">BayLum</a>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.1.2</span>
+      </span>
     </div>
+
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
@@ -86,6 +106,7 @@
   </a>
 </li>
       </ul>
+      
     </div><!--/.nav-collapse -->
   </div><!--/.container -->
 </div><!--/.navbar -->
@@ -93,12 +114,15 @@
       
       </header>
 
-      <div class="row">
+<div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Plot MCMC trajectories and posterior distributions</h1>
+    
+    <div class="hidden name"><code>plot_MCMC.Rd</code></div>
     </div>
 
+    <div class="ref-description">
     
     <p>This function uses the output of <a href='http://www.rdocumentation.org/packages/rjags/topics/jags.model'>rjags::jags.model</a> to visualise the traces of the MCMC and the
 corresponding densities. In particular it displays the posterior distributions of the age, if it is calculated,
@@ -106,13 +130,14 @@ palaeodose and the equivalent dose dispersion parameters of the sample. The func
 similar to plot output produced with the 'coda' package, but tailored to meet the needs in
 the context of the 'BayLum' package.</p>
     
+    </div>
 
     <pre class="usage"><span class='fu'>plot_MCMC</span>(<span class='no'>object</span>, <span class='kw'>sample_names</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>variables</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"A"</span>, <span class='st'>"D"</span>, <span class='st'>"sD"</span>),
   <span class='kw'>axes_labels</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='kw'>A</span> <span class='kw'>=</span> <span class='st'>"Age (ka)"</span>, <span class='kw'>D</span> <span class='kw'>=</span> <span class='st'>"D (Gy)"</span>, <span class='kw'>sD</span> <span class='kw'>=</span> <span class='st'>"sD (Gy)"</span>),
   <span class='kw'>n.chains</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>n.iter</span> <span class='kw'>=</span> <span class='fl'>1000L</span>, <span class='kw'>smooth</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>rug</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>plot_single</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='no'>...</span>)</pre>
     
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
@@ -132,8 +157,8 @@ argument <code>mtext</code>.</p></td>
     <tr>
       <th>axes_labels</th>
       <td><p>character (with default): Axes labels used for the trace and density plots. The labels should
-be provided as names character vector with the parameter names as the names used to asign the axes labelling.
-The labelling for the xaxis (trace plots) and yaxis (density plot) cannot be modified.</p></td>
+be provided as named character vector with the parameter names as the names used to asign the axes labelling.
+The labelling for the x-axis (trace plots) and y-axis (density plot) cannot be modified.</p></td>
     </tr>
     <tr>
       <th>n.chains</th>
@@ -179,18 +204,18 @@ and <a href='Palaeodose_Computation.html'>Palaeodose_Computation</a>, but can be
     
     <h2 class="hasAnchor" id="function-version"><a class="anchor" href="#function-version"></a>Function version</h2>
 
-    <p>0.1.0</p>
+    <p>0.1.1</p>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <p><a href='Age_Computation.html'>Age_Computation</a>, <a href='AgeS_Computation.html'>AgeS_Computation</a>, <a href='Palaeodose_Computation.html'>Palaeodose_Computation</a>,
-<a href='http://www.rdocumentation.org/packages/rjags/topics/coda.samples'>rjags::coda.samples</a> and rjags packages.</p>
+    <div class='dont-index'><p><a href='Age_Computation.html'>Age_Computation</a>, <a href='AgeS_Computation.html'>AgeS_Computation</a>, <a href='Palaeodose_Computation.html'>Palaeodose_Computation</a>,
+<a href='http://www.rdocumentation.org/packages/rjags/topics/coda.samples'>rjags::coda.samples</a> and rjags packages.</p></div>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'>data</span>(<span class='no'>MCMCsample</span>,<span class='kw'>envir</span> <span class='kw'>=</span> <span class='fu'>environment</span>())
 <span class='no'>object</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>coda</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/coda/topics/mcmc'>as.mcmc</a></span>(<span class='no'>MCMCsample</span>)
-<span class='fu'>plot_MCMC</span>(<span class='no'>object</span>)</div><div class='img'><img src='plot_MCMC-2.png' alt='' width='700' height='432.632880098887' /></div><div class='input'>
+<span class='fu'>plot_MCMC</span>(<span class='no'>object</span>)</div><div class='img'><img src='plot_MCMC-1.png' alt='' width='700' height='433' /></div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
@@ -229,5 +254,8 @@ is a re-written version of the function <code>MCMC_plot()</code> by Claire Chris
       </footer>
    </div>
 
+  
+
   </body>
 </html>
+
