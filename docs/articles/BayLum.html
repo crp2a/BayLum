@@ -323,9 +323,9 @@ samp1
 &gt;&gt; Results of the Gelman and Rubin criterion of convergence &lt;&lt;
 ----------------------------------------------
      Point estimate Uppers confidence interval
-A    1.03        1.09 
-D    1.03        1.09 
-sD   1.28        2.05 
+A    1.16        1.45 
+D    1.16        1.46 
+sD   1.29        2.04 
 
 
 ---------------------------------------------------------------------------------------------------
@@ -334,20 +334,20 @@ sD   1.28        2.05
 
 parameter    Bayes estimate       Credible interval 
 ----------------------------------------------
-A        25 
+A        26.421 
                          lower bound     upper bound
-                 at level 95%    10.02       78.92 
-                 at level 68%    10.02       27.8 
+                 at level 95%    10          48.61 
+                 at level 68%    10          23.02 
 ----------------------------------------------
-D        62.296 
+D        65.7 
                          lower bound     upper bound
-                 at level 95%    18.7        197.57 
-                 at level 68%    21.72       71.8 
+                 at level 95%    20.87       121.05 
+                 at level 68%    22.8        58.87 
 ----------------------------------------------
-sD       64.804 
+sD       53.135 
                          lower bound     upper bound
-                 at level 95%    0.04        90.33 
-                 at level 68%    0.12        24.23 </code></pre>
+                 at level 95%    0.23        116.19 
+                 at level 68%    1.09        28.79 </code></pre>
 <p>This also works if <code>DATA1</code> is the output of <code><a href="../reference/Generate_DataFile_MG.html">Generate_DataFile_MG()</a></code>.</p>
 <div id="remark-1-mcmc-trajectories" class="section level5">
 <h5 class="hasAnchor">
@@ -439,9 +439,9 @@ samp1 samp2
 &gt;&gt; Results of the Gelman and Rubin criterion of convergence &lt;&lt;
 ----------------------------------------------
      Point estimate Uppers confidence interval
-A    1.02        1.05 
-D    1.02        1.06 
-sD   1.01        1.02 
+A    1.01        1.02 
+D    1.01        1.02 
+sD   1.02        1.02 
 
 
 ---------------------------------------------------------------------------------------------------
@@ -450,20 +450,20 @@ sD   1.01        1.02
 
 parameter    Bayes estimate       Credible interval 
 ----------------------------------------------
-A        2.317 
+A        2.306 
                          lower bound     upper bound
-                 at level 95%    1.26        3.8 
-                 at level 68%    1.72        2.81 
+                 at level 95%    1.28        3.5 
+                 at level 68%    1.78        2.81 
 ----------------------------------------------
-D        5.765 
+D        5.747 
                          lower bound     upper bound
-                 at level 95%    3.03        9.07 
-                 at level 68%    4.23        6.77 
+                 at level 95%    3.46        8.51 
+                 at level 68%    4.8         7.14 
 ----------------------------------------------
-sD       0.844 
+sD       0.796 
                          lower bound     upper bound
-                 at level 95%    0       2.99 
-                 at level 68%    0       0.84 </code></pre>
+                 at level 95%    0       2.28 
+                 at level 68%    0       0.74 </code></pre>
 </div>
 </div>
 <div id="age-analysis-of-various-samples" class="section level1">
@@ -486,15 +486,15 @@ sD       0.844
 <a class="sourceLine" id="cb18-9" data-line-number="9">  <span class="dt">Nb_binfile =</span> nbbinfile,</a>
 <a class="sourceLine" id="cb18-10" data-line-number="10">  <span class="dt">BinPerSample =</span> binpersample</a>
 <a class="sourceLine" id="cb18-11" data-line-number="11">  )</a></code></pre></div>
-<div id="combine-files-using-the-function-concat_datafile" class="section level3">
+<div id="combine-files-using-the-function-combine_datafiles" class="section level3">
 <h3 class="hasAnchor">
-<a href="#combine-files-using-the-function-concat_datafile" class="anchor"></a>Combine files using the function <code><a href="../reference/Concat_DataFile.html">Concat_DataFile()</a></code>
+<a href="#combine-files-using-the-function-combine_datafiles" class="anchor"></a>Combine files using the function <code><a href="../reference/combine_DataFiles.html">combine_DataFiles()</a></code>
 </h3>
-<p>If the user has already saved informations imported with <code><a href="../reference/Generate_DataFile.html">Generate_DataFile()</a></code> function (or <code><a href="../reference/Generate_DataFile_MG.html">Generate_DataFile_MG()</a></code> function) these data can be concatenate with the function <code><a href="../reference/Concat_DataFile.html">Concat_DataFile()</a></code>.</p>
+<p>If the user has already saved informations imported with <code><a href="../reference/Generate_DataFile.html">Generate_DataFile()</a></code> function (or <code><a href="../reference/Generate_DataFile_MG.html">Generate_DataFile_MG()</a></code> function) these data can be concatenate with the function <code><a href="../reference/combine_DataFiles.html">combine_DataFiles()</a></code>.</p>
 <p>For example, if <code>DATA1</code> is the output of sample named “GDB3”, and <code>DATA2</code> is the output of sample “GDB5”, both data can be merged with the following call:</p>
 <div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" data-line-number="1"><span class="kw">data</span>(<span class="st">"DATA1"</span>, <span class="dt">envir =</span> <span class="kw">environment</span>())</a>
 <a class="sourceLine" id="cb19-2" data-line-number="2"><span class="kw">data</span>(<span class="st">"DATA2"</span>, <span class="dt">envir =</span> <span class="kw">environment</span>())</a>
-<a class="sourceLine" id="cb19-3" data-line-number="3">DATA3 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/Concat_DataFile.html">Concat_DataFile</a></span>(<span class="dt">L1 =</span> DATA2, <span class="dt">L2 =</span> DATA1)</a>
+<a class="sourceLine" id="cb19-3" data-line-number="3">DATA3 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/combine_DataFiles.html">combine_DataFiles</a></span>(<span class="dt">L1 =</span> DATA2, <span class="dt">L2 =</span> DATA1)</a>
 <a class="sourceLine" id="cb19-4" data-line-number="4"><span class="kw">str</span>(DATA3)</a></code></pre></div>
 <pre><code>List of 9
  $ LT            :List of 2
@@ -546,7 +546,7 @@ sD       0.844
 <a class="sourceLine" id="cb22-7" data-line-number="7">  <span class="dt">distribution =</span> <span class="st">"cauchy"</span>,</a>
 <a class="sourceLine" id="cb22-8" data-line-number="8">  <span class="dt">LIN_fit =</span> <span class="ot">TRUE</span>,</a>
 <a class="sourceLine" id="cb22-9" data-line-number="9">  <span class="dt">Origin_fit =</span> <span class="ot">FALSE</span>,</a>
-<a class="sourceLine" id="cb22-10" data-line-number="10">  <span class="dt">Iter =</span> <span class="dv">10000</span></a>
+<a class="sourceLine" id="cb22-10" data-line-number="10">  <span class="dt">Iter =</span> <span class="dv">1000</span></a>
 <a class="sourceLine" id="cb22-11" data-line-number="11">)</a></code></pre></div>
 <pre><code>Compiling model graph
    Resolving undeclared variables
@@ -557,6 +557,7 @@ Graph information:
    Total graph size: 20624
 
 Initializing model</code></pre>
+<pre><code>Warning: [plot_MCMC()] 'n.iter' out of range, reset to number of observations</code></pre>
 <p><img src="BayLum_files/figure-html/unnamed-chunk-18-1.png" width="480" style="display: block; margin: auto;"><img src="BayLum_files/figure-html/unnamed-chunk-18-2.png" width="480" style="display: block; margin: auto;"></p>
 <pre><code>
 
@@ -565,16 +566,16 @@ Initializing model</code></pre>
  Sample name:  GDB5 
 ---------------------
          Point estimate Uppers confidence interval
-A_GDB5   1       1 
-D_GDB5   1       1.02 
-sD_GDB5      1       1 
+A_GDB5   1.03        1.11 
+D_GDB5   1.09        1.29 
+sD_GDB5      1.02        1.07 
 ----------------------------------------------
  Sample name:  GDB3 
 ---------------------
          Point estimate Uppers confidence interval
 A_GDB3   1       1 
-D_GDB3   1       1 
-sD_GDB3      1.01        1.04 
+D_GDB3   1.01        1.02 
+sD_GDB3      1.01        1.03 
 
 
 ---------------------------------------------------------------------------------------------------
@@ -588,42 +589,42 @@ sD_GDB3      1.01        1.04
  Sample name:  GDB5 
 ---------------------
 Parameter    Bayes estimate       Credible interval 
- A_GDB5      7.164 
+ A_GDB5      7.086 
                          lower bound     upper bound
-                 at level 95%    5.82        8.64 
-                 at level 68%    6.36        7.77 
+                 at level 95%    5.73        8.53 
+                 at level 68%    6.34        7.67 
 
 Parameter    Bayes estimate       Credible interval 
- D_GDB5      17.848 
+ D_GDB5      17.646 
                          lower bound     upper bound
-                 at level 95%    16.59       18.99 
-                 at level 68%    17.2        18.42 
+                 at level 95%    16.61       19.01 
+                 at level 68%    16.93       18.05 
 
 Parameter    Bayes estimate       Credible interval 
-sD_GDB5      4.516 
+sD_GDB5      4.391 
                          lower bound     upper bound
-                 at level 95%    3.5         5.59 
-                 at level 68%    3.94        5.02 
+                 at level 95%    3.27        5.47 
+                 at level 68%    3.85        4.92 
 ----------------------------------------------
  Sample name:  GDB3 
 ---------------------
 Parameter    Bayes estimate       Credible interval 
- A_GDB3      47.226 
+ A_GDB3      47.275 
                          lower bound     upper bound
-                 at level 95%    37.01       58.84 
-                 at level 68%    40.67       51.56 
+                 at level 95%    37.85       58.54 
+                 at level 68%    40.9        51.59 
 
 Parameter    Bayes estimate       Credible interval 
- D_GDB3      105.332 
+ D_GDB3      104.945 
                          lower bound     upper bound
-                 at level 95%    97.86       113.24 
-                 at level 68%    101.5       109.13 
+                 at level 95%    99.03       113.7 
+                 at level 68%    100.27          107.44 
 
 Parameter    Bayes estimate       Credible interval 
-sD_GDB3      15.958 
+sD_GDB3      15.886 
                          lower bound     upper bound
-                 at level 95%    9.67        22.41 
-                 at level 68%    12.44       18.48 
+                 at level 95%    9.71        21.64 
+                 at level 68%    12.87       18.88 
 
 ----------------------------------------------</code></pre>
 <p><img src="BayLum_files/figure-html/unnamed-chunk-18-3.png" width="480" style="display: block; margin: auto;"></p>
@@ -643,20 +644,20 @@ sD_GDB3      15.958
 <div id="ordering-samples" class="section level3">
 <h3 class="hasAnchor">
 <a href="#ordering-samples" class="anchor"></a>Ordering samples</h3>
-<p>To take into account stratigraphic constraints, the information on the samples need to be ordered. Either you enter a sample name (corresponding to subfolder names) in <code>Names</code> parameter of the function <code><a href="../reference/Generate_DataFile.html">Generate_DataFile()</a></code>, ordered by order of increasing ages or you enter saved .RData informations of each sample in <code><a href="../reference/Concat_DataFile.html">Concat_DataFile()</a></code>, ordered by increasing ages.</p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" data-line-number="1"><span class="co"># using Generate_DataFile function</span></a>
-<a class="sourceLine" id="cb25-2" data-line-number="2">Names &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">"samp1"</span>, <span class="st">"samp2"</span>)</a>
-<a class="sourceLine" id="cb25-3" data-line-number="3">nbsample &lt;-<span class="st"> </span><span class="dv">2</span></a>
-<a class="sourceLine" id="cb25-4" data-line-number="4">DATA3 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/Generate_DataFile.html">Generate_DataFile</a></span>(</a>
-<a class="sourceLine" id="cb25-5" data-line-number="5">  <span class="dt">Path =</span> path,</a>
-<a class="sourceLine" id="cb25-6" data-line-number="6">  <span class="dt">FolderNames =</span> Names,</a>
-<a class="sourceLine" id="cb25-7" data-line-number="7">  <span class="dt">Nb_sample =</span> nbsample,</a>
-<a class="sourceLine" id="cb25-8" data-line-number="8">  <span class="dt">verbose =</span> <span class="ot">FALSE</span></a>
-<a class="sourceLine" id="cb25-9" data-line-number="9">)</a></code></pre></div>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" data-line-number="1"><span class="co"># using the function Concat_DataFile()</span></a>
-<a class="sourceLine" id="cb26-2" data-line-number="2"><span class="kw">data</span>(DATA1, <span class="dt">envir =</span> <span class="kw">environment</span>()) <span class="co"># .RData on sample GDB3</span></a>
-<a class="sourceLine" id="cb26-3" data-line-number="3"><span class="kw">data</span>(DATA2, <span class="dt">envir =</span> <span class="kw">environment</span>()) <span class="co"># .RData on sample GDB5</span></a>
-<a class="sourceLine" id="cb26-4" data-line-number="4">DATA3 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/Concat_DataFile.html">Concat_DataFile</a></span>(<span class="dt">L1 =</span> DATA1, <span class="dt">L2 =</span> DATA2)</a></code></pre></div>
+<p>To take into account stratigraphic constraints, the information on the samples need to be ordered. Either you enter a sample name (corresponding to subfolder names) in <code>Names</code> parameter of the function <code><a href="../reference/Generate_DataFile.html">Generate_DataFile()</a></code>, ordered by order of increasing ages or you enter saved .RData informations of each sample in <code><a href="../reference/combine_DataFiles.html">combine_DataFiles()</a></code>, ordered by increasing ages.</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" data-line-number="1"><span class="co"># using Generate_DataFile function</span></a>
+<a class="sourceLine" id="cb26-2" data-line-number="2">Names &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">"samp1"</span>, <span class="st">"samp2"</span>)</a>
+<a class="sourceLine" id="cb26-3" data-line-number="3">nbsample &lt;-<span class="st"> </span><span class="dv">2</span></a>
+<a class="sourceLine" id="cb26-4" data-line-number="4">DATA3 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/Generate_DataFile.html">Generate_DataFile</a></span>(</a>
+<a class="sourceLine" id="cb26-5" data-line-number="5">  <span class="dt">Path =</span> path,</a>
+<a class="sourceLine" id="cb26-6" data-line-number="6">  <span class="dt">FolderNames =</span> Names,</a>
+<a class="sourceLine" id="cb26-7" data-line-number="7">  <span class="dt">Nb_sample =</span> nbsample,</a>
+<a class="sourceLine" id="cb26-8" data-line-number="8">  <span class="dt">verbose =</span> <span class="ot">FALSE</span></a>
+<a class="sourceLine" id="cb26-9" data-line-number="9">)</a></code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" data-line-number="1"><span class="co"># using the function combine_DataFiles()</span></a>
+<a class="sourceLine" id="cb27-2" data-line-number="2"><span class="kw">data</span>(DATA1, <span class="dt">envir =</span> <span class="kw">environment</span>()) <span class="co"># .RData on sample GDB3</span></a>
+<a class="sourceLine" id="cb27-3" data-line-number="3"><span class="kw">data</span>(DATA2, <span class="dt">envir =</span> <span class="kw">environment</span>()) <span class="co"># .RData on sample GDB5</span></a>
+<a class="sourceLine" id="cb27-4" data-line-number="4">DATA3 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/combine_DataFiles.html">combine_DataFiles</a></span>(<span class="dt">L1 =</span> DATA1, <span class="dt">L2 =</span> DATA2)</a></code></pre></div>
 </div>
 <div id="define-matrix-to-set-stratigraphic-constraints" class="section level3">
 <h3 class="hasAnchor">
@@ -668,31 +669,31 @@ sD_GDB3      15.958
 <li><p>sample relations: for all <span class="math inline">\(j\)</span> in ${2,…,Nb_Sample+1}$ and all <span class="math inline">\(i\)</span> in <span class="math inline">\(\{j,...,Nb\_Sample\}\)</span>, <code>StratiConstraints[j,i] &lt;- 1</code> if the sample age whose ID is equal to <span class="math inline">\(j-1\)</span> is lower than the sample age whose ID is equal to <span class="math inline">\(i\)</span>. Otherwise, <code>StratiConstraints[j,i] &lt;- 0</code>.</p></li>
 </ul>
 <p>To the define such matrix the function <em>SCMatrix()</em> can be used:</p>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" data-line-number="1">SC &lt;-<span class="st"> </span><span class="kw"><a href="../reference/SCMatrix.html">SCMatrix</a></span>(<span class="dt">Nb_sample =</span> <span class="dv">2</span>,</a>
-<a class="sourceLine" id="cb27-2" data-line-number="2">               <span class="dt">SampleNames =</span> <span class="kw">c</span>(<span class="st">"samp1"</span>, <span class="st">"samp2"</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb28-1" data-line-number="1">SC &lt;-<span class="st"> </span><span class="kw"><a href="../reference/SCMatrix.html">SCMatrix</a></span>(<span class="dt">Nb_sample =</span> <span class="dv">2</span>,</a>
+<a class="sourceLine" id="cb28-2" data-line-number="2">               <span class="dt">SampleNames =</span> <span class="kw">c</span>(<span class="st">"samp1"</span>, <span class="st">"samp2"</span>))</a></code></pre></div>
 <p>In our case: 2 samples, <code>SC</code> is a matrix with 3 rows and 2 columns. The first row contains <code>c(1,1)</code> (because we take into account the prior ages), the second line contains <code>c(0,1)</code> (sample 2, named <em>samp2</em> is supposed to be older than sample 1, named <em>samp1</em>) and the third line contains <code>c(0,0)</code> (sample 2, named <em>samp2</em> is not younger than the sample 1, here named <em>samp1</em>). We can also fill the matrix with the stratigraphic relations as follow:</p>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb28-1" data-line-number="1">SC &lt;-<span class="st"> </span><span class="kw">matrix</span>(</a>
-<a class="sourceLine" id="cb28-2" data-line-number="2">  <span class="dt">data =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>),</a>
-<a class="sourceLine" id="cb28-3" data-line-number="3">  <span class="dt">ncol =</span> <span class="dv">2</span>,</a>
-<a class="sourceLine" id="cb28-4" data-line-number="4">  <span class="dt">nrow =</span> (<span class="dv">2</span> <span class="op">+</span><span class="st"> </span><span class="dv">1</span>),</a>
-<a class="sourceLine" id="cb28-5" data-line-number="5">  <span class="dt">byrow =</span> T</a>
-<a class="sourceLine" id="cb28-6" data-line-number="6">  )</a></code></pre></div>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb29-1" data-line-number="1">SC &lt;-<span class="st"> </span><span class="kw">matrix</span>(</a>
+<a class="sourceLine" id="cb29-2" data-line-number="2">  <span class="dt">data =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>),</a>
+<a class="sourceLine" id="cb29-3" data-line-number="3">  <span class="dt">ncol =</span> <span class="dv">2</span>,</a>
+<a class="sourceLine" id="cb29-4" data-line-number="4">  <span class="dt">nrow =</span> (<span class="dv">2</span> <span class="op">+</span><span class="st"> </span><span class="dv">1</span>),</a>
+<a class="sourceLine" id="cb29-5" data-line-number="5">  <span class="dt">byrow =</span> T</a>
+<a class="sourceLine" id="cb29-6" data-line-number="6">  )</a></code></pre></div>
 </div>
 <div id="age-computation-1" class="section level3">
 <h3 class="hasAnchor">
 <a href="#age-computation-1" class="anchor"></a>Age computation</h3>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb29-1" data-line-number="1">Age &lt;-</a>
-<a class="sourceLine" id="cb29-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="../reference/AgeS_Computation.html">AgeS_Computation</a></span>(</a>
-<a class="sourceLine" id="cb29-3" data-line-number="3">  <span class="dt">DATA =</span> DATA3,</a>
-<a class="sourceLine" id="cb29-4" data-line-number="4">  <span class="dt">Nb_sample =</span> <span class="dv">2</span>,</a>
-<a class="sourceLine" id="cb29-5" data-line-number="5">  <span class="dt">SampleNames =</span> <span class="kw">c</span>(<span class="st">"samp1"</span>, <span class="st">"samp2"</span>),</a>
-<a class="sourceLine" id="cb29-6" data-line-number="6">  <span class="dt">PriorAge =</span> priorage,</a>
-<a class="sourceLine" id="cb29-7" data-line-number="7">  <span class="dt">distribution =</span> <span class="st">"cauchy"</span>,</a>
-<a class="sourceLine" id="cb29-8" data-line-number="8">  <span class="dt">LIN_fit =</span> <span class="ot">TRUE</span>,</a>
-<a class="sourceLine" id="cb29-9" data-line-number="9">  <span class="dt">Origin_fit =</span> <span class="ot">FALSE</span>,</a>
-<a class="sourceLine" id="cb29-10" data-line-number="10">  <span class="dt">StratiConstraints =</span> SC,</a>
-<a class="sourceLine" id="cb29-11" data-line-number="11">  <span class="dt">Iter =</span> <span class="dv">10000</span></a>
-<a class="sourceLine" id="cb29-12" data-line-number="12">  )</a></code></pre></div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb30-1" data-line-number="1">Age &lt;-</a>
+<a class="sourceLine" id="cb30-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="../reference/AgeS_Computation.html">AgeS_Computation</a></span>(</a>
+<a class="sourceLine" id="cb30-3" data-line-number="3">  <span class="dt">DATA =</span> DATA3,</a>
+<a class="sourceLine" id="cb30-4" data-line-number="4">  <span class="dt">Nb_sample =</span> <span class="dv">2</span>,</a>
+<a class="sourceLine" id="cb30-5" data-line-number="5">  <span class="dt">SampleNames =</span> <span class="kw">c</span>(<span class="st">"samp1"</span>, <span class="st">"samp2"</span>),</a>
+<a class="sourceLine" id="cb30-6" data-line-number="6">  <span class="dt">PriorAge =</span> priorage,</a>
+<a class="sourceLine" id="cb30-7" data-line-number="7">  <span class="dt">distribution =</span> <span class="st">"cauchy"</span>,</a>
+<a class="sourceLine" id="cb30-8" data-line-number="8">  <span class="dt">LIN_fit =</span> <span class="ot">TRUE</span>,</a>
+<a class="sourceLine" id="cb30-9" data-line-number="9">  <span class="dt">Origin_fit =</span> <span class="ot">FALSE</span>,</a>
+<a class="sourceLine" id="cb30-10" data-line-number="10">  <span class="dt">StratiConstraints =</span> SC,</a>
+<a class="sourceLine" id="cb30-11" data-line-number="11">  <span class="dt">Iter =</span> <span class="dv">1000</span></a>
+<a class="sourceLine" id="cb30-12" data-line-number="12">  )</a></code></pre></div>
 <pre><code>Compiling model graph
    Resolving undeclared variables
    Allocating nodes
@@ -702,6 +703,7 @@ Graph information:
    Total graph size: 20624
 
 Initializing model</code></pre>
+<pre><code>Warning: [plot_MCMC()] 'n.iter' out of range, reset to number of observations</code></pre>
 <p><img src="BayLum_files/figure-html/unnamed-chunk-23-1.png" width="480" style="display: block; margin: auto;"><img src="BayLum_files/figure-html/unnamed-chunk-23-2.png" width="480" style="display: block; margin: auto;"></p>
 <pre><code>
 
@@ -710,16 +712,16 @@ Initializing model</code></pre>
  Sample name:  samp1 
 ---------------------
          Point estimate Uppers confidence interval
-A_samp1      1       1 
-D_samp1      1       1.01 
-sD_samp1     1       1.01 
+A_samp1      1.02        1.04 
+D_samp1      1.01        1.05 
+sD_samp1     1.01        1.03 
 ----------------------------------------------
  Sample name:  samp2 
 ---------------------
          Point estimate Uppers confidence interval
-A_samp2      1       1 
-D_samp2      1.01        1.03 
-sD_samp2     1       1.01 
+A_samp2      1.01        1.02 
+D_samp2      1.04        1.13 
+sD_samp2     1.04        1.13 
 
 
 ---------------------------------------------------------------------------------------------------
@@ -733,42 +735,42 @@ sD_samp2     1       1.01
  Sample name:  samp1 
 ---------------------
 Parameter    Bayes estimate       Credible interval 
- A_samp1     9.713 
+ A_samp1     9.725 
                          lower bound     upper bound
-                 at level 95%    9.13        10 
-                 at level 68%    9.68        10 
+                 at level 95%    9.21        10 
+                 at level 68%    9.69        10 
 
 Parameter    Bayes estimate       Credible interval 
- D_samp1     29.197 
+ D_samp1     29.164 
                          lower bound     upper bound
-                 at level 95%    23.99       34.55 
-                 at level 68%    26.6        31.84 
+                 at level 95%    24.14       34.3 
+                 at level 68%    26.67       31.69 
 
 Parameter    Bayes estimate       Credible interval 
-sD_samp1     68.171 
+sD_samp1     69.011 
                          lower bound     upper bound
-                 at level 95%    50.41       85.03 
-                 at level 68%    57.38       74.51 
+                 at level 95%    53.2        89.26 
+                 at level 68%    60.7        78.66 
 ----------------------------------------------
  Sample name:  samp2 
 ---------------------
 Parameter    Bayes estimate       Credible interval 
- A_samp2     10.42 
+ A_samp2     10.424 
                          lower bound     upper bound
-                 at level 95%    10          11.26 
-                 at level 68%    10          10.47 
+                 at level 95%    10          11.18 
+                 at level 68%    10          10.48 
 
 Parameter    Bayes estimate       Credible interval 
- D_samp2     18.383 
+ D_samp2     18.197 
                          lower bound     upper bound
-                 at level 95%    17.24       19.6 
-                 at level 68%    17.71       18.93 
+                 at level 95%    17.18       19.21 
+                 at level 68%    17.56       18.56 
 
 Parameter    Bayes estimate       Credible interval 
-sD_samp2     4.592 
+sD_samp2     4.509 
                          lower bound     upper bound
-                 at level 95%    3.49        5.68 
-                 at level 68%    4.01        5.09 
+                 at level 95%    3.67        5.82 
+                 at level 68%    3.96        5.05 
 
 ----------------------------------------------</code></pre>
 <p><img src="BayLum_files/figure-html/unnamed-chunk-23-3.png" width="480" style="display: block; margin: auto;"></p>
@@ -778,9 +780,9 @@ sD_samp2     4.592
 <div id="references" class="section level1 unnumbered">
 <h1 class="hasAnchor">
 <a href="#references" class="anchor"></a>References</h1>
-<p>Combes, B., Philippe, A., Lanos, P., Mercier, N., Tribolo, C., Guerin, G., Guibert, P., Lahaye, C., 2015. A Bayesian central equivalent dose model for optically stimulated luminescence dating. Quaternary Geochronology 28, 62-70. doi: <a href="https://doi.org/10.1016/j.quageo.2015.04.001">10.1016/j.quageo.2015.04.001</a></p>
+<p>Combès, B., Philippe, A., Lanos, P., Mercier, N., Tribolo, C., Guerin, G., Guibert, P., Lahaye, C., 2015. A Bayesian central equivalent dose model for optically stimulated luminescence dating. Quaternary Geochronology 28, 62-70. doi: <a href="https://doi.org/10.1016/j.quageo.2015.04.001">10.1016/j.quageo.2015.04.001</a></p>
 <p>Combès, B., Philippe, A., 2017. Bayesian analysis of individual and systematic multiplicative errors for estimating ages with stratigraphic constraints in optically stimulated luminescence dating. Quaternary Geochronology 39, 24–34. doi: <a href="https://doi.org/10.1016/j.quageo.2017.02.003">10.1016/j.quageo.2017.02.003</a></p>
-<p>Philippe, A., Guérin, G., Kreutzer, Sebastian Kreutzer, in press. BayLum - An R package for Bayesian analysis of OSL ages: An introduction. Quaternary Geochronology. doi: <a href="https://doi.org/10.1016/j.quageo.2018.05.009">10.1016/j.quageo.2018.05.009</a></p>
+<p>Philippe, A., Guérin, G., Kreutzer, S., in press. BayLum - An R package for Bayesian analysis of OSL ages: An introduction. Quaternary Geochronology. doi: <a href="https://doi.org/10.1016/j.quageo.2018.05.009">10.1016/j.quageo.2018.05.009</a></p>
 <div id="further-reading" class="section level2">
 <h2 class="hasAnchor">
 <a href="#further-reading" class="anchor"></a>Further reading</h2>
@@ -792,7 +794,7 @@ sD_samp2     4.592
 <div id="for-details-on-the-here-used-dataset" class="section level3">
 <h3 class="hasAnchor">
 <a href="#for-details-on-the-here-used-dataset" class="anchor"></a>For details on the here used dataset</h3>
-<p>Tribolo, C., Asrat, A., Bahain, J. J., Chapon, C., Douville, E., Fragnol, C., Hernandez, M., Hovers, E., Leplongeon, A., Martin, L,Pleurdeau, D, Pearson, O, Puaud, S, Assefa, Z., 2017. Across the Gap: Geochronological and Sedimentological Analyses from the Late Pleistocene-Holocene Sequence of Goda Buticha, Southeastern Ethiopia. PloS one, 12(1), e0169418. doi: <a href="https://doi.org/10.1371/journal.pone.0169418">10.1371/journal.pone.0169418</a></p>
+<p>Tribolo, C., Asrat, A., Bahain, J. J., Chapon, C., Douville, E., Fragnol, C., Hernandez, M., Hovers, E., Leplongeon, A., Martin, L., Pleurdeau, D., Pearson, O., Puaud, S., Assefa, Z., 2017. Across the Gap: Geochronological and Sedimentological Analyses from the Late Pleistocene-Holocene Sequence of Goda Buticha, Southeastern Ethiopia. PloS one, 12(1), e0169418. doi: <a href="https://doi.org/10.1371/journal.pone.0169418">10.1371/journal.pone.0169418</a></p>
 </div>
 </div>
 </div>
