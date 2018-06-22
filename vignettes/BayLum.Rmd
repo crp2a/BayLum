@@ -25,43 +25,44 @@ library(BayLum)
 'BayLum' provides a collection of various **R** functions for Bayesian analysis of luminescence data. 
 Amongst others, this includes data import, export, application of age models and palaeodose modelling.
 
-Data can be processed simultaneously for various samples, including the input of multiple BIN-files per
-sample for single grain (SG) or multigrain (MG) OSL measurements. 
-Stratigraphic constraints and systematic errors can be added to constrain the analysis further.
+Data can be processed simultaneously for various samples, including the input of multiple BIN/BINX-files per
+sample for single grain (SG) or multigrain (MG) OSL measurements. Stratigraphic constraints and 
+systematic errors can be added to constrain the analysis further.
 
 For those who already know how to use **R**, 'BayLum' won't be difficult to use, 
 for all others, this brief introduction may be of help to make the first steps with **R** and 
-the package 'BayLum'.
+the package 'BayLum' as convenient as possible. 
 
 ## Installing `BayLum' package
 
 If you read this document before having installed **R** itself, you should first visit the 
 [R project](https://www.r-project.org) webpage and download and install **R**. 
 You may also consider installing [Rstudio](http://www.rstudio.com), 
-which provides an excellent desktop working environment for **R**.
+which provides an excellent desktop working environment for **R**; however it is not 
+a prerequisite.
 
 Despite, you will need the external software *JAGS* (Just Another Gibs Sampler). 
-Please visit the [JAGS](http://mcmc-jags.sourceforge.net) webpage and follow the install instructions. 
+Please visit the [JAGS](http://mcmc-jags.sourceforge.net) webpage and follow the installation instructions. 
 Now you are nearly ready to work with 'BayLum'. 
 
-If you have not yet installed `BayLum', please run the following two **R** code lines to install 'BayLum' on your computer.
+If you have not yet installed `BayLum', please run the following two **R** code lines to 
+install 'BayLum' on your computer.
 
 ```{r,eval=TRUE, message=FALSE}
 if(!require("BayLum"))
   install.packages("BayLum", dependencies = TRUE)
 ```
 
-Alternatively, you can load an already installed **R** package (here `BayLum') into your session by using 
+Alternatively, you can load an already installed **R** package (here 'BayLum') into your session by using 
 the following **R** call.
 
 ```{r, message=FALSE}
 library(BayLum)
 ```
 
+# First steps: age analysis of one sample
 
-# First steps: Age analysis of one sample
-
-## Import information from a BIN-file.
+## Import information from a BIN/BINX-file.
 
 Let us consider the sample is named *samp1*, which is the example dataset coming with the package. 
 All information related to this sample is stored in a subfolder called also *samp1*.
@@ -69,7 +70,7 @@ To test the package example, first, we add the path of the example
 dataset to the object `path`.
 
 ```{r}
-path <- paste0(system.file("extdata/", package="BayLum"),"/")
+path <- paste0(system.file("extdata/", package = "BayLum"), "/")
 ```
 
 Please note that for your own dataset (i.e. not included in the package)
@@ -82,15 +83,15 @@ path <- "Users/Master_of_luminescence/Documents/MyFamousOSLData"
 In our example the folder contains the following subfolders and files:
 
 ```{r, echo=FALSE}
-knitr::kable(
-  list.files(path, recursive = TRUE),
-  col.names = "", row.names = TRUE)
+knitr::kable(list.files(path, recursive = TRUE),
+             col.names = "",
+             row.names = TRUE)
 ```
 
-See *"What are the required files in each subfolder?"* in the manual of  `Generate_DataFile` function
+See *"What are the required files in each subfolder?"* in the manual of  `Generate_DataFile()` function
 for the meaning of these files.
 
-To import your data, simply use the function `Generate_DataFile()`:
+To import your data, simply call the function `Generate_DataFile()`:
 
 ```{r, message=FALSE}
 DATA1 <-
@@ -104,26 +105,26 @@ DATA1 <-
 
 ### Remarks
 
-#### Import/export
+#### Data import/export
 
-The import may take a while and can become annoying if you want to play with the data. 
+The import may take a while, in particular for large BIN/BINX-files. This can become annoying if you want to play with the data. 
 In such situations, it makes sense to save your imported data somewhere else before continuing. 
 
 To save the obove imported data on your hardrive use
 
 ```{r,eval=FALSE}
-save(DATA1,file="YourPath/DATA1.RData")
+save(DATA1, file = "YourPath/DATA1.RData")
 ```
 
 To load the data use
 
 ```{r,eval=FALSE}
-load(DATA1,file="YourPath/DATA1.RData")
+load(DATA1, file = "YourPath/DATA1.RData")
 ```
 
 #### Data structure
 
-To show the overall structure of the data generated from the BIN-file and the associated CSV-files,
+To see the overall structure of the data generated from the BIN/BINX-file and the associated CSV-files,
 the following call can be used:
 
 ```{r}
@@ -156,71 +157,70 @@ LT_RegenDose(
   FolderNames = "samp1",
   SampleNames = "samp1",
   Nb_sample = 1,
-  nrow = NULL)
+  nrow = NULL
+  )
 ```
 
 Note that here we consider only one sample, and the name of the folder is the name of the sample.
 For that reason the argumetns were set to `FolderNames = samp1` and `SampleNames = samp1`.
 
-## Generate data file from BIN-files of multi-grain OSL measurements
+## Generate data file from BIN/BINX-files of multi-grain OSL measurements
 
 For a multi-grain OSL measurements, instead of `Generate_DataFile()`, the function `Generate_DataFile_MG()` should
-be used whith similar parameters. The functions differ by their expectations: *Disc.csv* instead of *DiscPos.csv* file for Single-grain OSL Measurements.
+be used with similar parameters. The functions differ by their expectations: *Disc.csv* instead of *DiscPos.csv* file for Single-grain OSL Measurements.
 Please check type `?Generate_DataFile_MG` for further information.
 
-## Age analysis
+## Age computation 
 
-To compute age of the sample *samp1*, you can run the following code:
+To compute the age of the sample *samp1*, you can run the following code:
 
 ```{r, fig.width=5, fig.height=5, fig.align='center'}
 Age <- Age_Computation(
   DATA = DATA1,
   SampleName = "samp1",
-  PriorAge = c(10,100),
+  PriorAge = c(10, 100),
   distribution = "cauchy",
   LIN_fit = TRUE,
   Origin_fit = FALSE,
-  Iter = 10000)
+  Iter = 10000
+  )
 ```
 
-This works also if `DATA1` is output of `Generate_DataFile_MG()`.
+This also works if `DATA1` is the output of `Generate_DataFile_MG()`.
 
 ##### Remark 1: MCMC trajectories
 
-- If MCMC trajectories did not converge, you can add more iteration at the parameter `Iter` in the function `Age_Computation()`,
-for example `Iter = 20000` or `Iter = 50000`.
+- If MCMC trajectories did not converge, you can add more iteration with the parameter `Iter` in the function `Age_Computation()`,
+for example `Iter = 20000` or `Iter = 50000`. 
 
-- To increase the precision of prior distribution, if not specified before. For example: `PriorAge= c(0.01,10)` for a young sample
-and `PriorAge = c(10,100)` for an old sample.
+- To increase the precision of prior distribution, if not specified before you can use the argument `PriorAge`. 
+For example: `PriorAge= c(0.01,10)` for a young sample and `PriorAge = c(10,100)` for an old sample.
 
-- If trajectories are still not convergering, you can check if the choice of the `distribution` and growth cruves are meaningful
+- If the trajectories are still not convergering, you should whether the choice you made with the argument `distribution` and 
+dose-response curves are meaningful.
 
-##### Remark 2: `LIN_fit` and `Origin_fit`, dose response curves option
+##### Remark 2: `LIN_fit` and `Origin_fit`, dose-response curves option
 
 - By default, a saturating exponential plus linear dose response curve is expected. However, you choose other formula by changing arguments
 `LIN_fit` and `Origin_fit` in the function.
 
-TODO: What we can recommend is to use ... if you have...
-
-
 ##### Remark 3: `distribution`, equivalent dose dispersion option
 
-By default, a *cauchy* distribution is assumed, but the user can choose other distribution by replacing the
+By default, a *cauchy* distribution is assumed, but you can choose another distribution by replacing the
 word `cauchy` by `gaussian`, `lognormal_A` or `lognormal_M` for the argument `distribution`.
 
 The difference between the models: *lognormal_A* and *lognormal_M* is that the equivalent dose dispersion
 are distributed according to:
 
 - a lognormal distribution with mean or average equal to the palaeodose for the first model
-- a lognormal distribution with nedian equal to the palaeodose for the second model.
+- a lognormal distribution with median equal to the palaeodose for the second model.
 
-TODO: If you are in this cases: ..... , you can consider .....
 
 ##### Remark 4: `SavePdf` and `SaveEstimates` option
 
-These two options allow to save the results to files.
+These two arguments allow to save the results to files.
 
-- `SavePdf = TRUE` saves a PDF-file with MCMC trajectories of parameters `A` (age), `D` (palaeodose), `sD` (equivalent doses dispersion).
+- `SavePdf = TRUE` create a PDF-file with MCMC trajectories of parameters `A` (age), `D` (palaeodose), `sD` (equivalent doses dispersion).
 You have to specify `OutputFileName` and `OutputFilePath` to define name and path of the PDF-file.
 
 - `SaveEstimates = TRUE` saves a CSV-file containing the Bayes estimates, the credible interval at 68\% and 95\%  and the Gelman and Rudin test of
@@ -234,14 +234,15 @@ If the user has more informations on the sample, `PriorAge` should be modified a
 For example, if you know that the sample is an older, you can set `PriorAge=c(10,120)`. In contrast, if you know that the sample is younger,
 you may want to set `PriorAge=c(0.001,10)`. Ages of $<=0$ are not possible. The minimum bound is 0.001.
 
-Please note that the setting of `PriorAge` is not trivial. Too much constraint boundaries are likely biasing
-your results.
+**Please note that the setting of `PriorAge` is not trivial, wrongly set boundaries are likely biasing
+your results.**
 
-## Multiple BIN-files for one sample
+## Multiple BIN/BINX-files for one sample
 
-In the previous example we considered only the simplest case: one sample, and one BIN-file.
-However, 'BayLum' allows the treatment of multiple BIN-files for one sample.
-To work with multiple BIN-files, the names of the subfolders need to be set in `Names`. Both are located unter the same `Path`.
+In the previous example we considered only the simplest case: one sample, and one BIN/BINX-file.
+However, 'BayLum' allows to process multiple BIN/BINX-files for one sample.
+To work with multiple BIN/BINX-files, the names of the subfolders need to beset in argument `Names` and
+both files need to be located unter the same `Path`.
 
 For the case
 
@@ -249,7 +250,7 @@ For the case
 Names <- c("samp1", "samp2")
 ```
 
-the call `Generate_DataFile() (or `Generate_DataFile_MG()`) becomes as follows:
+the call `Generate_DataFile()` (or `Generate_DataFile_MG()`) becomes as follows:
 
 ```{r, fig.width=5, fig.height=5, fig.align='center'}
 ##argument setting
@@ -265,50 +266,49 @@ DATA_BF <- Generate_DataFile(
   Nb_binfile = nbbinfile,
   BinPerSample = Binpersample,
   verbose = FALSE
-)
+  )
 
 ##calculate the age
 Age <- Age_Computation(
   DATA = DATA_BF,
   SampleName = Names,
-  BinPerSample = Binpersample)
+  BinPerSample = Binpersample
+  )
 ```
 
 # Age analysis of various samples
 
-## Generate data file from BIN-files
+## Generate data file from BIN/BINX-files
 
-More precisely, the function `Generate_DataFile()`  (or `Generate_DataFile_MF()`) can process multiple files
-imultaneously including multiple BIN-files per sample.
+The function `Generate_DataFile()`  (or `Generate_DataFile_MF()`) can process multiple files
+simultaneously including multiple BIN/BINX-files per sample. 
 
-Assume that we are interested in two samples named: *sample1* and *sample2*.
-In addition, we have two BIN files for the first sample named: *sample1-1* and *sample1-2*,
-and one Bin file for the sample2, named *sample2-1*.
-Then we must have 3 subfolders named *sample1-1*, *sample1-2* and *sample2-1*;
-which each subfolder contains one BIN file named **bin.BIN**,
-and its associated files **DiscPos.csv**, **DoseEnv.csv**, **DoseSourve.csv** and **rule.csv**.
-These 3 subfolders are located in *path*.
+We assume that we are interested in two samples named: *sample1* and *sample2*. In addition, we have 
+two BIN/BINX-files for the first sample named: *sample1-1* and *sample1-2*, and one BIN-file for the 2nd sample named *sample2-1*.
+In such case, we need three subfolders named *sample1-1*, *sample1-2* and *sample2-1*;
+which each subfolder containing only one BIN-file named **bin.BIN**, and its associated files **DiscPos.csv**, **DoseEnv.csv**, **DoseSourve.csv** and **rule.csv**.
+All of these 3 subfolders must be located in *path*.
 
-To fill the argument corectly `BinPerSample`:
-  $binpersample=c(\underbrace{2}_{\text{sample 1: 2 bin files}},\underbrace{1}_{\text{sample 2: 1 bin file}})$
+To fill the argument corectly `BinPerSample`: $binpersample=c(\underbrace{2}_{\text{sample 1: 2 bin files}},\underbrace{1}_{\text{sample 2: 1 bin file}})$
 
 ```{r,eval=FALSE}
-Names <- c("sample1-1","sample1-2","sample2-1") # give the name of the folder datat
-nbsample <- 2    # give the number of samples
-nbbinfile <- 3   # give the number of bin files
-DATA <- Generate_DataFile(
+Names <-
+  c("sample1-1", "sample1-2", "sample2-1") # give the name of the folder datat
+  nbsample <- 2    # give the number of samples
+  nbbinfile <- 3   # give the number of bin files
+  DATA <- Generate_DataFile(
   Path = path,
   FolderNames = Names,
   Nb_sample = nbsample,
   Nb_binfile = nbbinfile,
   BinPerSample = binpersample
-)
+  )
 ```
 
-### Function `Concat_DataFile()`
+### Combine files using the function `Concat_DataFile()`
 
-If the user has already saved informations imported with `Generate_DataFile()` function  (or `Generate_DataFile_MG()` function)
-  these data can be concatenate with the function `Concat_DataFile()`.
+If the user has already saved informations imported with `Generate_DataFile()` function  (or `Generate_DataFile_MG()` function) 
+these data can be concatenate with the function `Concat_DataFile()`.
 
 For example, if `DATA1` is the output of sample named "GDB3", and `DATA2` is the output of sample "GDB5",
 both data can be merged with the following call:
@@ -356,46 +356,45 @@ Age <- AgeS_Computation(
   distribution = "cauchy",
   LIN_fit = TRUE,
   Origin_fit = FALSE,
-  Iter = 1000
+  Iter = 10000
 )
 ```
 
 ### Remarks
 
-If MCMC trajectories did not converge, please see comments above.
+If the MCMC trajectories did not converge, we refer to the comments above.
 
-As for the function `Age_computation()`, tje age for each sample is set by default between 0.01 ka and 100 ka.
+As for the function `Age_computation()`, the age for each sample is set by default between 0.01 ka and 100 ka.
 If you have more informations on your samples it is possible to change `PriorAge` parameters.
 `PriorAge` is a vector of `size = 2*$Nb_sample`, the two first values of `PriorAge`
-concern the first sample and so on.
+concern the 1st sample, the next two values the 2nd sample  and so on.
 
 For example, if you know that sample named *GDB5* is a young sample whose its age is between 0.01 ka and 10 ka,
 and *GDB3* is an old sample whose age is between 10 ka and 100 ka,
 $$PriorAge=c(\underbrace{0.01,10}_{GDB5\ prior\ age},\underbrace{10,100}_{GDB3\ prior\ age})$$
 
-
 ## Age analysis with stratigraphic constraints
 
 With the function `AgeS_Computation()` it is possible to take the stratigraphic
-relations between samples into account.
+relations between samples into account and define constraints.
 
-For example, we know that *GDB5* age is supposed lower than *GDB3* age.
+For example, we know that *GDB5* is in a higher stratigraphical position, hence it likely has 
+a younger age than sample *GDB3*.
 
 ### Ordering samples
 
-To take into acount stratigraphic constraints, information on samples need to be ordered.
-Either you enter a sample name (corresponding to subfolder names) in `Names` parameter of the function `Generate_DataFile()`, ordered by order of increasing ages or you enter saved .RData informations of each sample in `Concat_DataFile()`,
-ordered by increasing ages.
+To take into account stratigraphic constraints, the information on the samples need to be ordered.
+Either you enter a sample name (corresponding to subfolder names) in `Names` parameter of the function `Generate_DataFile()`, ordered by order of increasing ages or you enter saved .RData informations of each sample in `Concat_DataFile()`, ordered by increasing ages.
 
 ```{r}
 # using Generate_DataFile function
 Names <- c("samp1", "samp2")
 nbsample <- 2
 DATA3 <- Generate_DataFile(
-Path = path,
-FolderNames = Names,
-Nb_sample = nbsample,
-verbose = FALSE
+  Path = path,
+  FolderNames = Names,
+  Nb_sample = nbsample,
+  verbose = FALSE
 )
 ```
 
@@ -406,32 +405,30 @@ data(DATA2, envir = environment()) # .RData on sample GDB5
 DATA3 <- Concat_DataFile(L1 = DATA1, L2 = DATA2)
 ```
 
-### Construct stratigraphy constrain matrix
+### Define matrix to set stratigraphic constraints
 
 Let `SC` be the matrix containing all information on stratigraphic relations for this two samples.
 This matrix is defined as follows:
 
-  - the size of the matrix: row number of `StratiConstraints` matrix is equal to `Nb_sample+1`,
+- matrix dimensions: the row number of `StratiConstraints` matrix is equal to `Nb_sample+1`,
 and column number is equal to $Nb\_sample$.
 
-- the first line of the matrix: for all $i$ in $\{1,...,Nb\_Sample\}$, `StratiConstraints[1,i]=1`,
-that means the lower bound of the sample age given in `PriorAge[2i-1]` for the sample whose number ID
+- first matrix row: for all $i$ in $\{1,...,Nb\_Sample\}$, `StratiConstraints[1,i] <- 1`,
+means that the lower bound of the sample age given in `PriorAge[2i-1]` for the sample whose number ID
 is equal to $i$ is taken into account
 
-- the sample relations: for all j in $\{2,...,Nb\_Sample+1}\$ and all $i$ in $\{j,...,Nb\_Sample\}$,
-`StratiConstraints[j,i]=1`
-if sample age whose number ID is equal to $j-1$ is lower than sample age whose number ID is equal to i.
-Otherwise, `StratiConstraints[j,i]=0`.
+- sample relations: for all $j$ in $\{2,...,Nb\_Sample+1}\$ and all $i$ in $\{j,...,Nb\_Sample\}$,
+`StratiConstraints[j,i] <- 1` if the sample age whose ID is equal to $j-1$ is lower than the sample age whose ID is equal to $i$.
+Otherwise, `StratiConstraints[j,i] <- 0`.
 
-The user can use the function *SCMatrix* to define this matrix:
+To the define such matrix the function *SCMatrix()* can be used:
 
 ```{r, eval = FALSE}
 SC <- SCMatrix(Nb_sample = 2,
                SampleNames = c("samp1", "samp2"))
 ```
 
-In our case: 2 samples, `SC` is a matrix with 3 lines and 2 columns. The first line containts `c(1,1)` (because we take into acount prior ages), the second line containts `c(0,1)` (because the sample 2, named *samp2* is supposed older than the sample 1, named *samp1*) and the third line contains `c(0,0)` (because the sample 2, named *samp2* is not younger than the sample 1, named *samp1*).
-Then, we can also fill the matrix of stratigraphic relations as follow:
+In our case: 2 samples, `SC` is a matrix with 3 rows and 2 columns. The first row contains `c(1,1)` (because we take into account the prior ages), the second line contains `c(0,1)` (sample 2, named *samp2* is supposed to be older than sample 1, named *samp1*) and the third line contains `c(0,0)` (sample 2, named *samp2* is not younger than the sample 1, here named *samp1*). We can also fill the matrix with the stratigraphic relations as follow:
 
 ```{r}
 SC <- matrix(
@@ -455,17 +452,21 @@ Age <-
   LIN_fit = TRUE,
   Origin_fit = FALSE,
   StratiConstraints = SC,
-  Iter = 100
+  Iter = 10000
   )
 ```
 
 
-# References
+# References {-}
 
 Combes, B., Philippe, A., Lanos, P., Mercier, N., Tribolo, C., Guerin, G., Guibert, P., Lahaye, C., 2015.
-A Bayesian central equivalent dose model for optically stimulated luminescence dating. Quaternary Geochronology 28, 62-70.
+A Bayesian central equivalent dose model for optically stimulated luminescence dating. 
+Quaternary Geochronology 28, 62-70. doi: [10.1016/j.quageo.2015.04.001](https://doi.org/10.1016/j.quageo.2015.04.001)
 
-Combès, B., Philippe, A., 2017. Bayesian analysis of individual and systematic multiplicative errors for estimating ages with stratigraphic constraints in optically stimulated luminescence dating. Quaternary Geochronology 39, 24–34.
+Combès, B., Philippe, A., 2017. Bayesian analysis of individual and systematic multiplicative errors for estimating ages with stratigraphic constraints in optically stimulated luminescence dating. Quaternary Geochronology 39, 24–34. doi: [10.1016/j.quageo.2017.02.003](https://doi.org/10.1016/j.quageo.2017.02.003)
+
+Philippe, A., Guérin, G., Kreutzer, Sebastian Kreutzer, in press. BayLum - An R package for Bayesian analysis of OSL ages: An introduction.
+Quaternary Geochronology. doi: [10.1016/j.quageo.2018.05.009](https://doi.org/10.1016/j.quageo.2018.05.009)
 
 ## Further reading
 
@@ -476,3 +477,4 @@ Robert and Casella, 2009. Introducing Monte Carlo Methods with R. Springer Scien
 ### For details on the here used dataset
 
 Tribolo, C., Asrat, A., Bahain, J. J., Chapon, C., Douville, E., Fragnol, C., Hernandez, M., Hovers, E., Leplongeon, A.,  Martin, L,Pleurdeau, D,  Pearson, O,  Puaud, S,  Assefa, Z., 2017. Across the Gap: Geochronological and Sedimentological Analyses from the Late Pleistocene-Holocene Sequence of Goda Buticha, Southeastern Ethiopia. PloS one, 12(1), e0169418.
+doi: [10.1371/journal.pone.0169418](https://doi.org/10.1371/journal.pone.0169418)
