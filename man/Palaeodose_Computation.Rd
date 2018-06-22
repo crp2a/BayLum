@@ -94,7 +94,7 @@ To give result in a publication, we recommend to give the Bayes estimate of the 
 \description{
 This function computes the palaeodose (in Gy) of one or various samples according to the model developed in Combes et al (2015),
 based on an output of \code{\link{Generate_DataFile}} or \code{\link{Generate_DataFile_MG}}
-or both of them using \code{\link{Concat_DataFile}}.\cr
+or both of them using \code{\link{combine_DataFiles}}.\cr
 Samples, for which data is avalilable in several BIN files, can be analysed.\cr
 Single-grain or Multi-grain OSL measurements can be analysed simultaneouly.
 }
@@ -161,7 +161,7 @@ A Bayesian central equivalent dose model for optically stimulated luminescence d
 Quaternary Geochronology 28, 62-70. doi:10.1016/j.quageo.2015.04.001
 }
 \seealso{
-\code{\link{Generate_DataFile}}, \code{\link{Generate_DataFile_MG}}, \code{\link{Concat_DataFile}},
+\code{\link{Generate_DataFile}}, \code{\link{Generate_DataFile_MG}}, \code{\link{combine_DataFiles}},
 \code{\link{rjags}}, \code{\link{plot_MCMC}},
 \code{\link{Age_Computation}}, \code{\link{AgeS_Computation}}
 }

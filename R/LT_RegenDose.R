@@ -3,7 +3,7 @@
 #' This function plots Lx/Tx values as a function of regenerative dose, for every selected aliquot and for each sample.
 #'
 #' @param DATA [list] (**required**): list of objects LT, sLT, ITimes, dLab, ddot_env, regDose, J, K, Nb_measurement,
-#' provided by \code{\link{Generate_DataFile}} or \code{\link{Generate_DataFile_MG}} or \code{\link{Concat_DataFile}}.
+#' provided by \code{\link{Generate_DataFile}} or \code{\link{Generate_DataFile_MG}} or \code{\link{combine_DataFiles}}.
 #' \code{DATA} can contain information from more than one sample.
 #'
 #' @param Path [character] (**required**): path to the project folder

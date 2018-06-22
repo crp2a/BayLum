@@ -2,6 +2,7 @@
 
 ### New functions
 * The function `MCMC_plot()` was replaced by the newly written function `plot_MCMC()`
+* The function `Concat_DataFile()` is deprecated and is basically replaced by the function `combine_DataFiles()`
 
 ### Bugfixes
 * The functions `AgeC14_Compution()` and `Age_OSL14()` now returns age results with two digits

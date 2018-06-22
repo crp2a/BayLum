@@ -152,7 +152,7 @@ str(Data)
 
 }
 \seealso{
-\code{\link{read_BIN2R}}, \code{\link{Concat_DataFile}}, \code{\link{Generate_DataFile_MG}}, \code{\link{LT_RegenDose}}
+\code{\link{read_BIN2R}}, \code{\link{combine_DataFiles}}, \code{\link{Generate_DataFile_MG}}, \code{\link{LT_RegenDose}}
 \code{\link{Age_Computation}}, \code{\link{AgeS_Computation}}, \code{\link{Palaeodose_Computation}}
 }
 \author{

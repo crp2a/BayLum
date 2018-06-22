@@ -12,7 +12,7 @@ test_that("Full function test", {
   ## load data
   data(DATA1,envir = environment())
   data(DATA2,envir = environment())
-  Data <- Concat_DataFile(DATA2,DATA1)
+  Data <- combine_DataFiles(DATA2,DATA1)
 
   ## Age computation of samples GDB5 and GDB3,
   priorage=c(1,10,20,60) # these samples are not young
@@ -55,8 +55,6 @@ test_that("Full function test", {
 
     #smooth
     expect_silent(plot_MCMC(object, smooth = TRUE))
-
-
 
 
 })

@@ -305,10 +305,10 @@ Names <-
   )
 ```
 
-### Combine files using the function `Concat_DataFile()`
+### Combine files using the function `combine_DataFiles()`
 
 If the user has already saved informations imported with `Generate_DataFile()` function  (or `Generate_DataFile_MG()` function) 
-these data can be concatenate with the function `Concat_DataFile()`.
+these data can be concatenate with the function `combine_DataFiles()`.
 
 For example, if `DATA1` is the output of sample named "GDB3", and `DATA2` is the output of sample "GDB5",
 both data can be merged with the following call:
@@ -316,7 +316,7 @@ both data can be merged with the following call:
 ```{r}
 data("DATA1", envir = environment())
 data("DATA2", envir = environment())
-DATA3 <- Concat_DataFile(L1 = DATA2, L2 = DATA1)
+DATA3 <- combine_DataFiles(L1 = DATA2, L2 = DATA1)
 str(DATA3)
 ```
 
@@ -384,7 +384,7 @@ a younger age than sample *GDB3*.
 ### Ordering samples
 
 To take into account stratigraphic constraints, the information on the samples need to be ordered.
-Either you enter a sample name (corresponding to subfolder names) in `Names` parameter of the function `Generate_DataFile()`, ordered by order of increasing ages or you enter saved .RData informations of each sample in `Concat_DataFile()`, ordered by increasing ages.
+Either you enter a sample name (corresponding to subfolder names) in `Names` parameter of the function `Generate_DataFile()`, ordered by order of increasing ages or you enter saved .RData informations of each sample in `combine_DataFiles()`, ordered by increasing ages.
 
 ```{r}
 # using Generate_DataFile function
@@ -399,10 +399,10 @@ DATA3 <- Generate_DataFile(
 ```
 
 ```{r}
-# using the function Concat_DataFile()
+# using the function combine_DataFiles()
 data(DATA1, envir = environment()) # .RData on sample GDB3
 data(DATA2, envir = environment()) # .RData on sample GDB5
-DATA3 <- Concat_DataFile(L1 = DATA1, L2 = DATA2)
+DATA3 <- combine_DataFiles(L1 = DATA1, L2 = DATA2)
 ```
 
 ### Define matrix to set stratigraphic constraints

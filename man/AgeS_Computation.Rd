@@ -15,7 +15,7 @@ AgeS_Computation(DATA, SampleNames, Nb_sample, PriorAge = rep(c(0.01, 100),
 }
 \arguments{
 \item{DATA}{list of objects: LT, sLT, ITimes, dLab, ddot_env, regDose, J, K, Nb_measurement,
-provided by the function \code{\link{Generate_DataFile}} or \code{\link{Generate_DataFile_MG}} or \code{\link{Concat_DataFile}}.
+provided by the function \code{\link{Generate_DataFile}} or \code{\link{Generate_DataFile_MG}} or \code{\link{combine_DataFiles}}.
 \code{DATA} contains informations for more than one sample.
 If there is stratigraphic relations between samples, informations in DATA must be ordered by order of incresing ages.
 See the details section to for more informations.}
@@ -130,7 +130,7 @@ To give the results in a publication, we recommend to give the Bayes estimate of
 \description{
 This function computes the age (in ka) of at least two samples according to the model developed in Combes and Philippe (2017),
 based on outputs of \code{\link{Generate_DataFile}} or \code{\link{Generate_DataFile_MG}}
-or both of them using \code{\link{Concat_DataFile}}.\cr
+or both of them using \code{\link{combine_DataFiles}}.\cr
 Samples, for which data is avalilable in several BIN files, can be analysed.\cr
 Single-grain or Multi-grain OSL measurements can be analysed simultaneouly.
 }
@@ -140,7 +140,7 @@ Single-grain or Multi-grain OSL measurements can be analysed simultaneouly.
 If there is stratigraphic relations between samples, \bold{informations in DATA must be ordered by order of increasing ages}.
 To do this the user can either fill right \code{Names} in \code{\link{Generate_DataFile}} or in \code{\link{Generate_DataFile_MG}}
 (as it is indicated in Details section of these function), or ordered by order of increasing ages
-outputs of \code{\link{Generate_DataFile}} or \code{\link{Generate_DataFile_MG}} in \code{\link{Concat_DataFile}}.
+outputs of \code{\link{Generate_DataFile}} or \code{\link{Generate_DataFile_MG}} in \code{\link{combine_DataFiles}}.
 
 The user can fill the \code{StratiConstraints} matrix as follow.
 \enumerate{
@@ -228,7 +228,7 @@ of the age estimates if the chains have converged.
 ## load data
 data(DATA1,envir = environment())
 data(DATA2,envir = environment())
-Data <- Concat_DataFile(DATA2,DATA1)
+Data <- combine_DataFiles(DATA2,DATA1)
 
 ## Age computation of samples GDB5 and GDB3,
 priorage=c(1,10,20,60) # these samples are not young

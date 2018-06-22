@@ -10,7 +10,7 @@ LT_RegenDose(DATA, Path, FolderNames, SampleNames = FolderNames, Nb_sample,
 }
 \arguments{
 \item{DATA}{\link{list} (\strong{required}): list of objects LT, sLT, ITimes, dLab, ddot_env, regDose, J, K, Nb_measurement,
-provided by \code{\link{Generate_DataFile}} or \code{\link{Generate_DataFile_MG}} or \code{\link{Concat_DataFile}}.
+provided by \code{\link{Generate_DataFile}} or \code{\link{Generate_DataFile_MG}} or \code{\link{combine_DataFiles}}.
 \code{DATA} can contain information from more than one sample.}
 
 \item{Path}{\link{character} (\strong{required}): path to the project folder

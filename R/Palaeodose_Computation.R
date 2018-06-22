@@ -2,7 +2,7 @@
 #'
 #' This function computes the palaeodose (in Gy) of one or various samples according to the model developed in Combes et al (2015),
 #' based on an output of \code{\link{Generate_DataFile}} or \code{\link{Generate_DataFile_MG}}
-#' or both of them using \code{\link{Concat_DataFile}}.\cr
+#' or both of them using \code{\link{combine_DataFiles}}.\cr
 #' Samples, for which data is avalilable in several BIN files, can be analysed.\cr
 #' Single-grain or Multi-grain OSL measurements can be analysed simultaneouly.
 #'
@@ -123,7 +123,7 @@
 #' of the age estimates if the chains have converged.
 #'
 #' @seealso
-#' \code{\link{Generate_DataFile}}, \code{\link{Generate_DataFile_MG}}, \code{\link{Concat_DataFile}},
+#' \code{\link{Generate_DataFile}}, \code{\link{Generate_DataFile_MG}}, \code{\link{combine_DataFiles}},
 #' \code{\link{rjags}}, \code{\link{plot_MCMC}},
 #' \code{\link{Age_Computation}}, \code{\link{AgeS_Computation}}
 #'

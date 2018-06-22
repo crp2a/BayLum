@@ -17,7 +17,7 @@ Age_OSLC14(DATA, Data_C14Cal, Data_SigmaC14Cal, Nb_sample, SampleNames,
 }
 \arguments{
 \item{DATA}{list of objects: LT, sLT, ITimes, dLab, ddot_env, regDose, J, K, Nb_measurement,
-provided by the function \code{\link{Generate_DataFile}} or \code{\link{Generate_DataFile_MG}} or \code{\link{Concat_DataFile}}.
+provided by the function \code{\link{Generate_DataFile}} or \code{\link{Generate_DataFile_MG}} or \code{\link{combine_DataFiles}}.
 \code{DATA} contains information for more than one sample.
 If there is stratigraphic relations between samples, informations in DATA must be ordered by order of incresing ages.
 See the details section to for more informations.}
@@ -153,7 +153,7 @@ On each line, the plot on the left represents the MCMC trajectories, and the one
 This function compute an age of OSL data of at least two samples and calibrate 14C ages of samples to get an age (in ka).\cr
 Age of OSL data are computed according to the model given in Combes and Philippe (2017).
 Single-grain or Multi-grain OSL measurements can be analysed simultaneouly (with output of \code{\link{Generate_DataFile}}
-or \code{\link{Generate_DataFile_MG}} or both of them using \code{\link{Concat_DataFile}}).
+or \code{\link{Generate_DataFile_MG}} or both of them using \code{\link{combine_DataFiles}}).
 Samples, for which data is avalilable in several BIN files, can be analysed.\cr
 For C14 data, the user can choose one of the following radiocarbon calibration curve:
 Northern or Sourthen Hemisphere or marine atmospheric.
@@ -272,7 +272,7 @@ of the age estimates if the chains have converged.
 # OSL data
 data(DATA1,envir = environment())
 data(DATA2,envir = environment())
-Data <- Concat_DataFile(DATA2,DATA1)
+Data <- combine_DataFiles(DATA2,DATA1)
 
 # 14C data
 C14Cal <- DATA_C14$C14[1,1]
