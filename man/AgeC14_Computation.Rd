@@ -144,6 +144,11 @@ More precisely, the model considered here, as the one developped by Christen, JA
 problem of outliers. In addition, to not penalyse variables that are not outliers and damage theirs estimation,
 we introduce a structure of mixture, that means only variable that are considered as outlier have in addition a multiplicative error.
 }
+\note{
+Please note that the initial values for all MCMC are currently all the same for all chains since we rely on the automatic
+initial value generation of JAGS. This is not optimal and will be changed in future. However, it does not affect the quality
+of the age estimates if the chains have converged.
+}
 \examples{
 ## Load data
 data(DATA_C14,envir = environment())
@@ -178,5 +183,5 @@ Hogg AG, Hua Q, Blackwell PG, Niu M, Buck CE, Guilderson TP, Heaton TJ, Palmer J
 \code{\link{rjags}}, \code{\link{plot_MCMC}}, \code{\link{SCMatrix}}
 }
 \author{
-Claire Christophe, Anne Philippe, Guillaume Guerin
+Claire Christophe, Anne Philippe, Guillaume Guérin
 }

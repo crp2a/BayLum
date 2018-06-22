@@ -143,6 +143,11 @@ The use can choose between :
   \item \code{lognormal_M}: a log-normal distribution with \bold{M}edian equal to the palaeodose of the sample
 }
 }
+\note{
+Please note that the initial values for all MCMC are currently all the same for all chains since we rely on the automatic
+initial value generation of JAGS. This is not optimal and will be changed in future. However, it does not affect the quality
+of the age estimates if the chains have converged.
+}
 \examples{
 ## Load data
 data(DATA1,envir = environment())
@@ -161,5 +166,5 @@ Quaternary Geochronology 28, 62-70. doi:10.1016/j.quageo.2015.04.001
 \code{\link{Age_Computation}}, \code{\link{AgeS_Computation}}
 }
 \author{
-Claire Christophe, Sebastian Kreutzer, Anne Philippe, Guillaume Guerin
+Claire Christophe, Sebastian Kreutzer, Anne Philippe, Guillaume Guérin
 }

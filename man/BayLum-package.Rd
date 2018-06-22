@@ -4,9 +4,9 @@
 \name{BayLum-package}
 \alias{BayLum-package}
 \alias{BayLum}
-\title{Chronological Bayesian Models Integrating Optically Stimulated Luminescence and 14C Dating}
+\title{Chronological Bayesian Models Integrating Optically Stimulated Luminescence and C-14 Dating}
 \description{
-A collection of various R functions for Bayesian analysis of luminescence data and 14C age estimates.
+A collection of various R functions for Bayesian analysis of luminescence data and C-14 age estimates.
 This includes, amongst others, data import, export, application of age and palaeodose models.
 }
 \details{
@@ -18,10 +18,10 @@ The functions: \link{Age_Computation} and \link{AgeS_Computation} use Bayesian a
 estimation for one or various samples according to differents models
 (e.g. different dose-response curves and different equivalent dose distributions around the palaeodose).
 
-It is possible to consider various BIN-files per sample, to compute ages of samples in stratigraphic constraints
+It is possible to consider various BIN/BINX-files per sample, to compute ages of samples in stratigraphic constraints
 and to integrate systematic errors.
 
-It is possible to calibrate 14C age with the function \link{AgeC14_Computation}.
+It is possible to calibrate C-14 age with the function \link{AgeC14_Computation}.
 We can also estimate chronology containing 14C age and OSL samples with the function \link{Age_OSLC14}.
 }
 \author{

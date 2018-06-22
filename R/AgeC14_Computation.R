@@ -111,7 +111,11 @@
 #'
 #' To give the results in a publication, we recommend to give the Bayes estimate of the parameters as well as the credible interval at 95\% or 68\%.
 #'
-#' @author Claire Christophe, Anne Philippe, Guillaume Guerin
+#' @author Claire Christophe, Anne Philippe, Guillaume Guérin
+#'
+#' @note Please note that the initial values for all MCMC are currently all the same for all chains since we rely on the automatic
+#' initial value generation of JAGS. This is not optimal and will be changed in future. However, it does not affect the quality
+#' of the age estimates if the chains have converged.
 #'
 #' @seealso
 #' \code{\link{rjags}}, \code{\link{plot_MCMC}}, \code{\link{SCMatrix}}

@@ -160,17 +160,17 @@ Generate_DataFile <- function(
   #--- create object needed
   #---------------------------------------
   # BaSAR observations for samples
-  LT=list()     # corresponding to observation of natural and regenerated luminescence signal : N_{k,j}^(i) per sample
-  sLT=list()    # correspondind to error of observation of L : sigma_{N_{K,j}^(i)} per sample
-  ITimes=list() # corresponding to obsevation : t_{k,j}^(i) per sample
+  LT = list()     # corresponding to observation of natural and regenerated luminescence signal : N_{k,j}^(i) per sample
+  sLT = list()    # correspondind to error of observation of L : sigma_{N_{K,j}^(i)} per sample
+  ITimes = list() # corresponding to obsevation : t_{k,j}^(i) per sample
 
   # information on bin file
-  dLab=matrix(1,ncol=Nb_binfile,nrow=2)  # corresponding to dose source rate of the lab : d_{lab} per sample
-  regDose=list()          # computed regenerated dose multiplying the 2 aboves lines per sample
-  J=rep(0,Nb_binfile)     # aliquot number per sample
-  Nb_measurement=rep(0,Nb_binfile) # measurement number per aliquot
-  K=rep(0,Nb_binfile)     # point number considered for the growth curve
-  ddot=matrix(1,ncol=Nb_binfile,nrow=2)   # the dose rate recieved by the sample during the time,
+  dLab = matrix(1, ncol = Nb_binfile, nrow = 2)  # corresponding to dose source rate of the lab : d_{lab} per sample
+  regDose = list()          # computed regenerated dose multiplying the 2 aboves lines per sample
+  J = rep(0, Nb_binfile)     # aliquot number per sample
+  Nb_measurement = rep(0, Nb_binfile) # measurement number per aliquot
+  K = rep(0, Nb_binfile)     # point number considered for the growth curve
+  ddot = matrix(1, ncol = Nb_binfile, nrow = 2)   # the dose rate recieved by the sample during the time,
   #   if there is various bin file for one sample, they must have the same ddot
 
   # Fetch additional arguments for read_BIN2R()----------------------------------------------------
