@@ -1,3 +1,5 @@
+## BayLum 0.1.3 (Release date: 2018-06-23)
+
 ## BayLum 0.1.2 (Release date: 2018-06-22)
 
 ### New functions
