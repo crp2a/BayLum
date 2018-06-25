@@ -36,7 +36,7 @@ Combining such data is rather useful in two scenarious:
 }
 }
 \section{Function version}{
- 0.1.0
+ 0.1.1
 }
 
 \examples{

@@ -21,7 +21,7 @@
 #'
 #' @return A nested list combining the input objects.
 #'
-#' @section Function version: 0.1.0
+#' @section Function version: 0.1.1
 #'
 #' @author Sebastian Kreutzer, IRAMAT-CRP2A, UMR 5060, CNRS - Université Bordeaux Montaigne (France), adapting
 #' the idea from the function 'Concat_DataFile()' by Claire Christophe.
@@ -40,6 +40,13 @@
 #' @export
 combine_DataFiles <- function(...) {
 
+  ## fix problem with R version 3.4.0 and lower
+  if(as.numeric(R.version$major) == 3 && as.numeric(R.version$minor) < 5){
+     ...length <- function(x = list(...)) length(x)
+     ...elt <- function(n) switch(n, ...)
+
+   }
+
   # Integrity checks ----------------------------------------------------------------------------
   ##check for zero input
   if(...length() == 0)
@@ -55,7 +62,6 @@ combine_DataFiles <- function(...) {
   ##test elements
   if(!all(vapply(1:...length(),function(x){all(names %in% names(...elt(x)))}, logical(1))))
     stop(paste0("[combine_DataFiles()] The input objects are not compatible and cannot be combined!"), call. = FALSE)
-
 
   # Helper function -----------------------------------------------------------------------------
   ##define helper function

@@ -1,4 +1,7 @@
-## BayLum 0.1.3 (Release date: 2018-06-23)
+## BayLum 0.1.3 (Release date: 2018-06-25)
+
+* The newly introduced function combine_DataFiles() did not work on R < 3.5.0, which caused an 
+error on CRAN; fixed.
 
 ## BayLum 0.1.2 (Release date: 2018-06-22)
 
