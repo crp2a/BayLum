@@ -21,11 +21,14 @@ r_packages:
 matrix:
   include:
   - os: linux
-    r: release
+    r: oldrel
     env: CACHE_NAME=JOB1
   - os: linux
-    r: devel
+    r: release
     env: CACHE_NAME=JOB2
+  - os: linux
+    r: devel
+    env: CACHE_NAME=JOB3
   - os: osx
     r: release
     before_install:
