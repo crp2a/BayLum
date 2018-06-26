@@ -100,7 +100,7 @@ plot_Scatterplots <- function(
   }else{
     if(n.chains > coda::nchain(object) || n.chains < coda::nchain(object)){
       n.chains <- coda::nchain(object)
-      warning(paste0("[plot_Scatterplots()] 'n.chains' setting wrong. You have ", n.chains, " chains, reset to default"), call. = FALSE)
+      warning(paste0("[plot_Scatterplots()] 'n.chains' setting wrong. You have ", n.chains, " chains, reset to default."), call. = FALSE)
 
     }
 
@@ -159,7 +159,7 @@ plot_Scatterplots <- function(
 #'@rdname plot_Scatterplots
 #'@md
 #'@export
-ScatterSamples <- function(){
+ScatterSamples <- function(...){
   .Defunct(
     new = "plot_Scatterplots()",
     package = "BayLum"
