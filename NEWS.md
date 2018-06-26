@@ -2,6 +2,7 @@
 
 * The newly introduced function combine_DataFiles() did not work on R < 3.5.0, which caused an 
 error on CRAN; fixed.
+* Replace function `ScatterSamples()` by `plot_Scatterplots()`
 
 ## BayLum 0.1.2 (Release date: 2018-06-22)
 
