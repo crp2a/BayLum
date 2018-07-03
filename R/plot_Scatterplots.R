@@ -60,11 +60,10 @@ plot_Scatterplots <- function(
     stop("[plot_Scatterplots()] You can only select one variable at the time!", call. = FALSE)
 
 
-  if(!all(gsub(coda::varnames(object), pattern = "\\[.\\]" ,replacement = "") %in% variables)){
-    sel <- which(gsub(coda::varnames(object), pattern = "\\[.\\]" ,replacement = "") %in% variables)
-
+  if(!all(gsub(coda::varnames(object), pattern = "\\[.+\\]" ,replacement = "") %in% variables)){
+    sel <- which(gsub(coda::varnames(object), pattern = "\\[.+\\]" ,replacement = "") %in% variables)
     if(length(sel) == 0){
-      allowed <- unique(gsub(coda::varnames(object), pattern = "\\[.\\]" ,replacement = ""))
+      allowed <- unique(gsub(coda::varnames(object), pattern = "\\[.+\\]" ,replacement = ""))
       stop(paste0("[plot_Scatterplots()] Invalid 'variables', they did not match your dataset. Variable names of your dataset: ",
                   paste(allowed, collapse = ", "), "."), call. = FALSE)
     }
