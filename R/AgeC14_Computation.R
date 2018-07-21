@@ -173,6 +173,10 @@ AgeC14_Computation <- function(Data_C14Cal,
 ){
 
 
+   # Define exit conditiokns ---------------------------------------------------------------------
+   on.exit(closeAllConnections())
+
+
    #--- BUG file selection
    Model_AgeC14<-0
    data(Model_AgeC14,envir = environment())
@@ -223,6 +227,7 @@ AgeC14_Computation <- function(Data_C14Cal,
                      "xTableauCalib"=AgeBP,"yTableauCalib"=CalC14,
                      "xbound"=PriorAge,"StratiConstraints"=StratiConstraints)
    }
+
    jags <-
      rjags::jags.model(
        textConnection(Model_AgeC14[[Model]]),
@@ -236,8 +241,8 @@ AgeC14_Computation <- function(Data_C14Cal,
    if(quiet) progress.bar <- 'none' else progress.bar <- 'text'
 
    update(jags,Iter, progress.bar = progress.bar)
-   echantillon = rjags::coda.samples(jags,c('Age','Z'),min(Iter,10000),thin=t, progress.bar = progress.bar)
-   U=summary(echantillon)
+   echantillon <- rjags::coda.samples(jags,c('Age','Z'),min(Iter,10000),thin=t, progress.bar = progress.bar)
+   U <- summary(echantillon)
 
    Sample=echantillon[[1]]
    for(i in 2:Nb_chaines){

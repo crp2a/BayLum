@@ -173,7 +173,8 @@ Age_Computation <- function(
   quiet = FALSE
 ){
 
-
+  # Define exit conditiokns ---------------------------------------------------------------------
+  on.exit(closeAllConnections())
 
   Model_Age<-0
   data(Model_Age,envir = environment())

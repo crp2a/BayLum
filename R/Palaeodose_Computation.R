@@ -158,6 +158,9 @@ Palaeodose_Computation<-function(
   Nb_chaines = 3
 ){
 
+  # Define exit conditiokns ---------------------------------------------------------------------
+  on.exit(closeAllConnections())
+
   PriorPalaeodose=c(0,400)
 
   #--Index preparation

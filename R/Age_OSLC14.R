@@ -292,6 +292,10 @@ Age_OSLC14 <- function(DATA,
                        quiet = FALSE
                        ) {
 
+
+  # Define exit conditiokns ---------------------------------------------------------------------
+  on.exit(closeAllConnections())
+
   #--- StratiConstraints matrix
   if(length(StratiConstraints)==0){
     StratiConstraints=matrix(data=c(rep(1,Nb_sample),rep(0,Nb_sample*Nb_sample)),ncol=Nb_sample,nrow = (Nb_sample+1),byrow = T)

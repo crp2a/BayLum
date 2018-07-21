@@ -268,6 +268,8 @@ AgeS_Computation <- function(
   quiet = FALSE
 ){
 
+  # Define exit conditiokns ---------------------------------------------------------------------
+  on.exit(closeAllConnections())
 
   #--Index preparation
   CSBinPerSample=cumsum(BinPerSample)
