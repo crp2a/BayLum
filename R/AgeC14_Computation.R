@@ -146,7 +146,7 @@
 #' Data_SigmaC14Cal = SigmaC14Cal,
 #' SampleNames = Names,
 #' Nb_sample = nb_sample,
-#' PriorAge = rep(c(20000,60000),nb_sample),
+#' PriorAge = rep(c(20,60),nb_sample),
 #' Iter = 500,
 #' quiet = TRUE)
 #'
