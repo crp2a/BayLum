@@ -13,7 +13,7 @@ install:
   - cmd: C:\projects\JAGS-4.3.0.exe /S
 
 cache:
-  - C:\projects\JAGS-4.3.0.ex
+  - C:\projects\JAGS-4.3.0.exe
 
 # Adapt as necessary starting from here
 environment:
