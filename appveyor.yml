@@ -67,8 +67,8 @@ artifacts:
 notifications:
 - provider: Email
   to:
-  #- anne.philippe@univ-nantes.fr
-  #- gguerin@u-bordeaux-montaigne.fr
+  - anne.philippe@univ-nantes.fr
+  - gguerin@u-bordeaux-montaigne.fr
   - sk@r-luminescence.de
   subject: '[BayLum] AppVeyor Status Change'
   on_build_success: false
