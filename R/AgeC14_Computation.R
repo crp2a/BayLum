@@ -415,7 +415,7 @@ AgeC14_Computation <- function(Data_C14Cal,
    )
 
    ##set attributes, to make things easer
-   attr(Info, "class") <- "BayLum"
+   attr(Info, "class") <- "BayLum.list"
    attr(Info, "originator") <- "AgeC14_Computation"
 
   return(Info)
