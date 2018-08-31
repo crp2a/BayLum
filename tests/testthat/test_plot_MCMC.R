@@ -23,7 +23,7 @@ test_that("Full function test", {
     SampleNames = c("GDB5","GDB3"),
     PriorAge = priorage,
     Iter = 50,
-    Nb_chaines = 2)$Sampling
+    n.chains = 2)$Sampling
 
   ##test function itself
   expect_silent(plot_MCMC(object))
