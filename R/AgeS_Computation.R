@@ -73,7 +73,7 @@
 #' @param t integer (with default): 1 every \code{t} iterations of the MCMC is considered for sampling the posterior distribution
 #' (for more information see \code{\link{jags.model}}).
 #'
-#' @param Nb_chaines integer (with default): number of independent chains for the model (for more information see \code{\link{jags.model}}).
+#' @param n.chains integer (with default): number of independent chains for the model (for more information see \code{\link{jags.model}}).
 #'
 #' @param quiet \code{\link{logical}} (with default): enables/disables \link{rjags} messages
 #'
@@ -236,7 +236,7 @@
 #'   SampleNames = c("GDB5","GDB3"),
 #'   PriorAge = priorage,
 #'   Iter = 50,
-#'   Nb_chaines = 2,
+#'   n.chains = 2,
 #'   quiet = TRUE
 #'   )
 #'
@@ -282,7 +282,7 @@ AgeS_Computation <- function(
   distribution = c("cauchy"),
   Iter = 50000,
   t = 5,
-  Nb_chaines = 3,
+  n.chains = 3,
   quiet = FALSE
 ){
 
@@ -358,7 +358,7 @@ AgeS_Computation <- function(
     rjags::jags.model(
       textConnection(Model_AgeS[[Model_GrowthCurve]][[distribution]]),
       data = dataList,
-      n.chains = Nb_chaines,
+      n.chains = n.chains,
       n.adapt = Iter,
       quiet = quiet
     )
@@ -375,7 +375,7 @@ AgeS_Computation <- function(
       )
 
   sample=echantillon[[1]]
-  for(i in 2:Nb_chaines){
+  for(i in 2:n.chains){
     sample=rbind(sample,echantillon[[i]])
   }
 

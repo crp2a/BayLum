@@ -57,7 +57,7 @@
 #' @param t integer (with default): 1 every \code{t} iterations of the MCMC is considered for sampling the posterior distribution
 #' (for more information see \code{\link{jags.model}}).
 #'
-#' @param Nb_chaines [integer] (with default): number of independent chains for the model (for more information see \code{\link{jags.model}}).
+#' @param n.chains [integer] (with default): number of independent chains for the model (for more information see \code{\link{jags.model}}).
 #'
 #' @param quiet \code{\link{logical}} (with default): enables/disables \link{rjags} messages
 #'
@@ -187,7 +187,7 @@ AgeC14_Computation <- function(Data_C14Cal,
  CalibrationCurve = c("AtmosphericNorth"),
  Iter = 50000,
  t = 5,
- Nb_chaines = 3,
+ n.chains = 3,
  quiet = FALSE
 ){
 
@@ -251,7 +251,7 @@ AgeC14_Computation <- function(Data_C14Cal,
      rjags::jags.model(
        textConnection(Model_AgeC14[[Model]]),
        data = dataList,
-       n.chains = Nb_chaines,
+       n.chains = n.chains,
        n.adapt = Iter,
        quiet = quiet
      )
@@ -264,7 +264,7 @@ AgeC14_Computation <- function(Data_C14Cal,
    U <- summary(echantillon)
 
    Sample=echantillon[[1]]
-   for(i in 2:Nb_chaines){
+   for(i in 2:n.chains){
      Sample=rbind(Sample,echantillon[[i]])
    }
 

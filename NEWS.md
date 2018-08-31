@@ -9,10 +9,11 @@
 ### Bugfixes
 * The newly introduced function combine_DataFiles() did not work on R < 3.5.0, which caused an 
 error on CRAN; fixed.
-* Replace function `ScatterSamples()` by `plot_Scatterplots()`
+* The function `ScatterSamples()` is replaced by the function `plot_Scatterplots()`
 * All computation functions left text connections open after they have been exited; fixed. 
 * The output of `AgeC14_Compution()` and `AgeS_Computation()` gain a new class `BayLum.list`
-* Remove redundant code in `AgeC14_Compution()` and `AgeS_Computation()` 
+* Redundant code in `AgeC14_Compution()` and `AgeS_Computation()` has been removed 
+* The argument `Nb_chaines` was replaced by `n.chains` wherever it occured in the package (functions and documentation)
 
 
 ## BayLum 0.1.2 (Release date: 2018-06-22)

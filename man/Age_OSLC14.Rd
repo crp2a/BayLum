@@ -13,7 +13,7 @@ Age_OSLC14(DATA, Data_C14Cal, Data_SigmaC14Cal, Nb_sample, SampleNames,
   sum(SampleNature[1, ])), THETA = c(), sepTHETA = c(","),
   LIN_fit = TRUE, Origin_fit = FALSE, distribution = c("cauchy"),
   Model_C14 = c("full"), CalibrationCurve = c("AtmosphericNorth"),
-  Iter = 50000, t = 5, Nb_chaines = 3, quiet = FALSE)
+  Iter = 50000, t = 5, n.chains = 3, quiet = FALSE)
 }
 \arguments{
 \item{DATA}{list of objects: LT, sLT, ITimes, dLab, ddot_env, regDose, J, K, Nb_measurement,
@@ -107,7 +107,7 @@ If \bold{"naive"} this error is not taken account in the age estimate.}
 \item{t}{integer (with default): 1 every \code{t} iterations of the MCMC is considered for sampling the posterior distribution
 (for more information see \code{\link{jags.model}}).}
 
-\item{Nb_chaines}{integer (with default): number of independent chains for the model (for more information see \code{\link{jags.model}}).}
+\item{n.chains}{integer (with default): number of independent chains for the model (for more information see \code{\link{jags.model}}).}
 
 \item{quiet}{\code{\link{logical}} (with default): enables/disables \link{rjags} messages}
 }
@@ -287,7 +287,7 @@ SC <- matrix(data=c(1,1,1,0,1,1,0,0,1,0,0,0),ncol=3,nrow=4,byrow=TRUE)
 ## Age computation of samples
 Age <- Age_OSLC14(DATA=Data,Data_C14Cal=C14Cal,Data_SigmaC14Cal=SigmaC14Cal,
    SampleNames=c("GDB5",Names,"GDB3"),Nb_sample=3,SampleNature=samplenature,
-   PriorAge=prior,StratiConstraints=SC,Iter=50,Nb_chaines=2)
+   PriorAge=prior,StratiConstraints=SC,Iter=50,n.chains=2)
 }
 \references{
 Reimer PJ, Bard E, Bayliss A, Beck JW, Blackwell PC, Bronl Ramsey C, Buck CE, Cheng H, Edwards RL, Friedrich M,

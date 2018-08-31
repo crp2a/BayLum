@@ -74,7 +74,7 @@
 #' @param Iter integer (with default): number of iterations for the MCMC computation (for more information see \code{\link{jags.model}}).
 #' @param t integer (with default): 1 every \code{t} iterations of the MCMC is considered for sampling the posterior distribution
 #' (for more information see \code{\link{jags.model}}).
-#' @param Nb_chaines integer (with default): number of independent chains for the model (for more information see \code{\link{jags.model}}).
+#' @param n.chains integer (with default): number of independent chains for the model (for more information see \code{\link{jags.model}}).
 #'
 #' @param quiet \code{\link{logical}} (with default): enables/disables \link{rjags} messages
 #'
@@ -261,7 +261,7 @@
 #' ## Age computation of samples
 #' Age <- Age_OSLC14(DATA=Data,Data_C14Cal=C14Cal,Data_SigmaC14Cal=SigmaC14Cal,
 #'    SampleNames=c("GDB5",Names,"GDB3"),Nb_sample=3,SampleNature=samplenature,
-#'    PriorAge=prior,StratiConstraints=SC,Iter=50,Nb_chaines=2)
+#'    PriorAge=prior,StratiConstraints=SC,Iter=50,n.chains=2)
 #' @export
 Age_OSLC14 <- function(DATA,
                        Data_C14Cal,
@@ -288,7 +288,7 @@ Age_OSLC14 <- function(DATA,
                        CalibrationCurve = c("AtmosphericNorth"),
                        Iter = 50000,
                        t = 5,
-                       Nb_chaines = 3,
+                       n.chains = 3,
                        quiet = FALSE
                        ) {
 
@@ -465,7 +465,7 @@ Age_OSLC14 <- function(DATA,
     rjags::jags.model(
       textConnection(BUGModel),
       data = dataList,
-      n.chains = Nb_chaines,
+      n.chains = n.chains,
       n.adapt = Iter,
       quiet = quiet
     )
@@ -483,7 +483,7 @@ Age_OSLC14 <- function(DATA,
   U <- summary(echantillon)
 
   Sample=echantillon[[1]]
-  for(i in 2:Nb_chaines){
+  for(i in 2:n.chains){
     Sample=rbind(Sample,echantillon[[i]])
   }
 

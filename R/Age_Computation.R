@@ -37,7 +37,7 @@
 #' @param Iter integer (with default): number of iterations for the MCMC computation (for more information see \code{\link{jags.model}}).
 #' @param t integer (with default): 1 every \code{t} iterations of the MCMC is considered for sampling the posterior distribution
 #' (for more information see \code{\link{jags.model}}).
-#' @param Nb_chaines integer (with default): number of independent chains for the model (for more information see \code{\link{jags.model}}).
+#' @param n.chains integer (with default): number of independent chains for the model (for more information see \code{\link{jags.model}}).
 #'
 #' @param quiet \code{\link{logical}} (with default): enables/disables \link{rjags} messages
 #'
@@ -169,7 +169,7 @@ Age_Computation <- function(
   I = 1,
   Iter = 50000,
   t = 5,
-  Nb_chaines = 3,
+  n.chains = 3,
   quiet = FALSE
 ){
 
@@ -207,7 +207,7 @@ Age_Computation <- function(
   jags <- rjags::jags.model(
     file = textConnection(Model_Age[[Model_GrowthCurve]][[distribution]]),
     data = dataList,
-    n.chains = Nb_chaines,
+    n.chains = n.chains,
     n.adapt = Iter,
     quiet = quiet
   )
@@ -226,7 +226,7 @@ Age_Computation <- function(
   CV <- gelman.diag(echantillon)
 
   sample <- echantillon[[1]]
-  for(i in 2:Nb_chaines){
+  for(i in 2:n.chains){
     sample=rbind(sample,echantillon[[i]])
   }
 

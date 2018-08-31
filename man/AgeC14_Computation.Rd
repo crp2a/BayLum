@@ -11,7 +11,7 @@ AgeC14_Computation(Data_C14Cal, Data_SigmaC14Cal, SampleNames, Nb_sample,
   OutputTableName = c("DATA"), OutputTablePath = c(""),
   StratiConstraints = c(), sepSC = c(","), Model = c("full"),
   CalibrationCurve = c("AtmosphericNorth"), Iter = 50000, t = 5,
-  Nb_chaines = 3, quiet = FALSE)
+  n.chains = 3, quiet = FALSE)
 }
 \arguments{
 \item{Data_C14Cal}{\link{numeric} (\strong{required}): corresponding to C-14 age estimate.}
@@ -67,7 +67,7 @@ The decimal of this file must be a dot, and the separator must be a comma. }
 \item{t}{integer (with default): 1 every \code{t} iterations of the MCMC is considered for sampling the posterior distribution
 (for more information see \code{\link{jags.model}}).}
 
-\item{Nb_chaines}{\link{integer} (with default): number of independent chains for the model (for more information see \code{\link{jags.model}}).}
+\item{n.chains}{\link{integer} (with default): number of independent chains for the model (for more information see \code{\link{jags.model}}).}
 
 \item{quiet}{\code{\link{logical}} (with default): enables/disables \link{rjags} messages}
 }

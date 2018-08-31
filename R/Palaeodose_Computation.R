@@ -33,7 +33,7 @@
 #' @param Iter integer (with default): number of iterations for the MCMC computation (for more information see \code{\link{jags.model}}).
 #' @param t integer (with default): 1 every \code{t} iterations of the MCMC is considered for sampling the posterior distribution
 #' (for more information see \code{\link{jags.model}}).
-#' @param Nb_chaines integer (with default): number of independent chains for the model (for more information see \code{\link{jags.model}}).
+#' @param n.chains integer (with default): number of independent chains for the model (for more information see \code{\link{jags.model}}).
 #'
 #' @details
 #'
@@ -155,7 +155,7 @@ Palaeodose_Computation<-function(
   distribution = c("cauchy"),
   Iter = 50000,
   t = 5,
-  Nb_chaines = 3
+  n.chains = 3
 ){
 
   # Define exit conditiokns ---------------------------------------------------------------------
@@ -205,12 +205,12 @@ Palaeodose_Computation<-function(
                   "xbound"=PriorPalaeodose,
                   "BinPerSample"=BinPerSample,
                   "CSBinPerSample"=CSBinPerSample)
-  jags <-  rjags::jags.model(textConnection(Model_Palaeodose[[Model_GrowthCurve]][[distribution]]), data = dataList, n.chains = Nb_chaines, n.adapt=Iter)
+  jags <-  rjags::jags.model(textConnection(Model_Palaeodose[[Model_GrowthCurve]][[distribution]]), data = dataList, n.chains = n.chains, n.adapt=Iter)
   update(jags,Iter)
   echantillon =  rjags::coda.samples(jags,c("D","sD"),min(Iter,10000),thin=t)
 
   sample=echantillon[[1]]
-  for(i in 2:Nb_chaines){
+  for(i in 2:n.chains){
     sample=rbind(sample,echantillon[[i]])
   }
 

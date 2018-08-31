@@ -10,7 +10,7 @@ Age_Computation(DATA, SampleName, PriorAge = c(0.01, 100),
   SaveEstimates = FALSE, OutputTableName = c("DATA"),
   OutputTablePath = c(""), LIN_fit = TRUE, Origin_fit = FALSE,
   distribution = c("cauchy"), I = 1, Iter = 50000, t = 5,
-  Nb_chaines = 3, quiet = FALSE)
+  n.chains = 3, quiet = FALSE)
 }
 \arguments{
 \item{DATA}{list of objects: LT, sLT, ITimes, dLab, ddot_env, regDose, J, K, Nb_measurement,
@@ -62,7 +62,7 @@ I indicates the ID number of the sample to be analysed.}
 \item{t}{integer (with default): 1 every \code{t} iterations of the MCMC is considered for sampling the posterior distribution
 (for more information see \code{\link{jags.model}}).}
 
-\item{Nb_chaines}{integer (with default): number of independent chains for the model (for more information see \code{\link{jags.model}}).}
+\item{n.chains}{integer (with default): number of independent chains for the model (for more information see \code{\link{jags.model}}).}
 
 \item{quiet}{\code{\link{logical}} (with default): enables/disables \link{rjags} messages}
 }
