@@ -1,9 +1,19 @@
-## BayLum 0.1.3 (Release date: 2018-07-21)
+## BayLum 0.1.3 (Release date: 2018-08-31)
 
+### New functions
+* `plot_Ages()` this function replaces code used internally by the functions `AgeC14_Compution()` and `AgeS_Computation()`
+ to create an age overview plot. Before the user had no control over the appearance of age plot output. This is still the 
+ case if the functions `AgeC14_Compution()` and `AgeS_Computation()` are used (although internally only the function `plot_Ages()` is called), 
+ however, both functions now return a new list of class `BayLum.list` which is recognised by the function `plot_Ages()` and can be used to plot the typical age plot while providing several arguments for adjusting the plot output. 
+
+### Bugfixes
 * The newly introduced function combine_DataFiles() did not work on R < 3.5.0, which caused an 
 error on CRAN; fixed.
 * Replace function `ScatterSamples()` by `plot_Scatterplots()`
 * All computation functions left text connections open after they have been exited; fixed. 
+* The output of `AgeC14_Compution()` and `AgeS_Computation()` gain a new class `BayLum.list`
+* Remove redundant code in `AgeC14_Compution()` and `AgeS_Computation()` 
+
 
 ## BayLum 0.1.2 (Release date: 2018-06-22)
 

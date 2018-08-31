@@ -10,10 +10,10 @@ Age_OSLC14(DATA, Data_C14Cal, Data_SigmaC14Cal, Nb_sample, SampleNames,
   OutputFilePath = c(""), SaveEstimates = FALSE,
   OutputTableName = c("DATA"), OutputTablePath = c(""),
   StratiConstraints = c(), sepSC = c(","), BinPerSample = rep(1,
-  sum(SampleNature[1, ])), THETA = c(), sepTHETA = c(","), LIN_fit = TRUE,
-  Origin_fit = FALSE, distribution = c("cauchy"), Model_C14 = c("full"),
-  CalibrationCurve = c("AtmosphericNorth"), Iter = 50000, t = 5,
-  Nb_chaines = 3, quiet = FALSE)
+  sum(SampleNature[1, ])), THETA = c(), sepTHETA = c(","),
+  LIN_fit = TRUE, Origin_fit = FALSE, distribution = c("cauchy"),
+  Model_C14 = c("full"), CalibrationCurve = c("AtmosphericNorth"),
+  Iter = 50000, t = 5, Nb_chaines = 3, quiet = FALSE)
 }
 \arguments{
 \item{DATA}{list of objects: LT, sLT, ITimes, dLab, ddot_env, regDose, J, K, Nb_measurement,

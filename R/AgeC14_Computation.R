@@ -136,7 +136,7 @@
 #' of the age estimates if the chains have converged.
 #'
 #' @seealso
-#' \code{\link{rjags}}, \code{\link{plot_MCMC}}, \code{\link{SCMatrix}}
+#' [rjags], [plot_MCMC], [SCMatrix], [plot_Ages]
 #'
 #' @references
 #' Christen, JA (1994). Summarizing a set of radiocarbon determinations: a robust approach. Applied Statistics, 489-503.

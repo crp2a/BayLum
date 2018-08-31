@@ -4,12 +4,12 @@
 \alias{Palaeodose_Computation}
 \title{Bayesian analysis for the palaeodose estimation of various samples}
 \usage{
-Palaeodose_Computation(DATA, SampleNames, Nb_sample, BinPerSample = rep(1,
-  Nb_sample), SavePdf = FALSE, OutputFileName = c("MCMCplot"),
-  OutputFilePath = c(""), SaveEstimates = FALSE,
-  OutputTableName = c("DATA"), OutputTablePath = c(""), LIN_fit = TRUE,
-  Origin_fit = FALSE, distribution = c("cauchy"), Iter = 50000, t = 5,
-  Nb_chaines = 3)
+Palaeodose_Computation(DATA, SampleNames, Nb_sample,
+  BinPerSample = rep(1, Nb_sample), SavePdf = FALSE,
+  OutputFileName = c("MCMCplot"), OutputFilePath = c(""),
+  SaveEstimates = FALSE, OutputTableName = c("DATA"),
+  OutputTablePath = c(""), LIN_fit = TRUE, Origin_fit = FALSE,
+  distribution = c("cauchy"), Iter = 50000, t = 5, Nb_chaines = 3)
 }
 \arguments{
 \item{DATA}{list of objects: LT, sLT, ITimes, dLab, ddot_env, regDose, J, K, Nb_measurement,

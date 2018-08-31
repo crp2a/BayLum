@@ -4,9 +4,9 @@
 \alias{LT_RegenDose}
 \title{Plots Lx/Tx as a function of the regenerative dose}
 \usage{
-LT_RegenDose(DATA, Path, FolderNames, SampleNames = FolderNames, Nb_sample,
-  BinPerSample = rep(1, Nb_sample), SG = rep(TRUE, Nb_sample),
-  sepDP = c(","), nrow = 3L, ncol = nrow)
+LT_RegenDose(DATA, Path, FolderNames, SampleNames = FolderNames,
+  Nb_sample, BinPerSample = rep(1, Nb_sample), SG = rep(TRUE,
+  Nb_sample), sepDP = c(","), nrow = 3L, ncol = nrow)
 }
 \arguments{
 \item{DATA}{\link{list} (\strong{required}): list of objects LT, sLT, ITimes, dLab, ddot_env, regDose, J, K, Nb_measurement,

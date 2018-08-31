@@ -5,11 +5,12 @@
 \title{Bayesian analysis for the OSL age estimation of one sample}
 \usage{
 Age_Computation(DATA, SampleName, PriorAge = c(0.01, 100),
-  BinPerSample = c(1), SavePdf = FALSE, OutputFileName = c("MCMCplot"),
-  OutputFilePath = c(""), SaveEstimates = FALSE,
-  OutputTableName = c("DATA"), OutputTablePath = c(""), LIN_fit = TRUE,
-  Origin_fit = FALSE, distribution = c("cauchy"), I = 1, Iter = 50000,
-  t = 5, Nb_chaines = 3, quiet = FALSE)
+  BinPerSample = c(1), SavePdf = FALSE,
+  OutputFileName = c("MCMCplot"), OutputFilePath = c(""),
+  SaveEstimates = FALSE, OutputTableName = c("DATA"),
+  OutputTablePath = c(""), LIN_fit = TRUE, Origin_fit = FALSE,
+  distribution = c("cauchy"), I = 1, Iter = 50000, t = 5,
+  Nb_chaines = 3, quiet = FALSE)
 }
 \arguments{
 \item{DATA}{list of objects: LT, sLT, ITimes, dLab, ddot_env, regDose, J, K, Nb_measurement,

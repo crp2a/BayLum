@@ -4,25 +4,54 @@
 \alias{plot_Ages}
 \title{Create age plot}
 \usage{
-plot_Ages(object, ...)
+plot_Ages(object, sample_names = NULL, ...)
 }
 \arguments{
 \item{object}{\link{list} (\strong{required}): Output as created by functions like \link{AgeC14_Computation}.}
 
-\item{...}{further arguments to control the plot output}
+\item{sample_names}{\link{character} (optional): alternative samples names used for the plotting, this can
+also be used to resort the samples in a specific order. If the length of the provided \link{character} vector
+is shorter than the real number of samples, the names are recycled.}
+
+\item{...}{further arguments to control the plot output, standard arguments are: \code{cex}, \code{xlim}, \code{main}, \code{xlab}, \code{col} further (non-standard) arguments
+are: \code{grid} (\code{TRUE}/\code{FALSE}), \code{legend} (\code{TRUE}/\code{FALSE}), \code{legend.text} (\link{character} input needed), \code{legend.pos} \link[graphics:legend]{graphics::legend}}
 }
 \value{
-A plot
+The function returns a plot and the \link{data.frame} used to display the data
 }
 \description{
-This function creates an age plot showing the mean ages and along with the credible intervals.
+This function creates an age plot showing the mean ages along with the credible intervals. The function
+provides various arguments to modify the plot output, however, for an ultimate control the function returns
+the \link{data.frame} extracted from the input object for own plots.
 }
+\section{Function version}{
+ 0.1.0
+}
+
 \examples{
-##TODO
+## load data
+data(DATA_C14,envir = environment())
+C14Cal <- DATA_C14$C14[,1]
+SigmaC14Cal <- DATA_C14$C14[,2]
+Names <- DATA_C14$Names
+nb_sample <- length(Names)
+
+## Age computation
+Age <- AgeC14_Computation(
+   Data_C14Cal = C14Cal,
+   Data_SigmaC14Cal = SigmaC14Cal,
+   SampleNames = Names,
+   Nb_sample = nb_sample,
+   PriorAge = rep(c(20,60),nb_sample),
+   Iter = 500,
+   quiet = TRUE)
+
+## plot output
+plot_Ages(Age)
 
 }
 \seealso{
-\link{AgeC14_Computation}
+\link{AgeC14_Computation}, \link{AgeS_Computation}
 }
 \author{
 Sebastian Kreutzer, IRAMAT-CRP2A, UMR 5060, CNRS - Université Bordeaux Montaigne (France), based on code

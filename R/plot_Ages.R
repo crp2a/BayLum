@@ -1,8 +1,8 @@
 #' Create age plot
 #'
-#' This function creates an age plot showing the mean ages and along with the credible intervals. The function
+#' This function creates an age plot showing the mean ages along with the credible intervals. The function
 #' provides various arguments to modify the plot output, however, for an ultimate control the function returns
-#' the table extracted from the input object for own plots.
+#' the [data.frame] extracted from the input object for own plots.
 #'
 #' @param object [list] (**required**): Output as created by functions like [AgeC14_Computation].
 #'
@@ -21,7 +21,7 @@
 #' @author Sebastian Kreutzer, IRAMAT-CRP2A, UMR 5060, CNRS - Université Bordeaux Montaigne (France), based on code
 #' written by Claire Christophe
 #'
-#' @seealso [AgeC14_Computation]
+#' @seealso [AgeC14_Computation], [AgeS_Computation]
 #'
 #' @examples
 #' ## load data

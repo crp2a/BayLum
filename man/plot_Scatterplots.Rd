@@ -33,8 +33,6 @@ A scatter plot based on \link[hexbin:hexplom]{hexbin::hexplom}
 }
 \description{
 Create a hexbin plot matrix (\link[hexbin:hexplom]{hexbin::hexplom}) of age results returned by the bayesian age calculation.
-
-Old function ScatterPlots()
 }
 \examples{
 data(AgeS,envir = environment())
