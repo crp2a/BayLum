@@ -95,7 +95,7 @@ plot_Ages <- function(
       col = c("firebrick", "darkslategray3", "midnightblue"),
       legend = TRUE,
       legend.text = c("Bayes estimator", "68% credible interval", "95% credible interval"),
-      legend.pos = c("bottom")
+      legend.pos = c("topright")
 
     )
 
