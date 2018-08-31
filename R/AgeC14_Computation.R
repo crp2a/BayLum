@@ -369,41 +369,15 @@ AgeC14_Computation <- function(Data_C14Cal,
    }
 
 
-   #       HPD sur un meme graphe
-   par(mfrow=c(1,1),las = 1,oma=c(2,5,0.5,0.5))
-   plot(c(AgePlot95[1,2:3]),c(Nb_sample,Nb_sample),
-       ylim=c(0.5,Nb_sample+1),xlim=c((min(AgePlot95[,2])-1),(max(AgePlot95[,3])+1)),
-       type="l",lwd=5,yaxt="n",xlab="Age (ka)",ylab="",cex.lab=1.5,col="midnightblue",
-       main="",cex.main=2)
-   grid(ny=NA, lwd = 3)
-   lines(c(AgePlot68[1,2:3]),c(Nb_sample,Nb_sample),col="darkslategray3",lwd=5)
-   lines(AgePlotMoy[1],Nb_sample,col="firebrick",lwd=5,type='o')
-   uu=seq(Nb_sample,1,-1)
-   axis(2,uu,labels=SampleNames,cex.axis=1.5)
-   legend("topright",c("Bayes estimator","68% credible interval","95% credible interval"),
-         pch=c(1,NA,NA),lty=c(NA,1,1),lwd=c(5,5,5),col=c("firebrick","darkslategray3","midnightblue"),bty="o")
-   if(Nb_sample>1){
-     for(i in 2:Nb_sample){
-       lines(c(AgePlot95[i,2:3]),c(Nb_sample-(i-1),Nb_sample-(i-1)),lwd=5,col="midnightblue")
-       lines(c(AgePlot68[i,2:3]),c(Nb_sample-(i-1),Nb_sample-(i-1)),lwd=5,col='darkslategray3')
-       lines(AgePlotMoy[i],(Nb_sample-(i-1)),col="firebrick",lwd=5,type="o")
-     }
-   }
-   if(SavePdf==TRUE){
-     dev.print(pdf,file=paste(OutputFilePath,OutputFileName[3],'.pdf',sep=""),width=8,height=10)
-   }
-
-
-
-   # Return --------------------------------------------------------------------------------
-   Info <- list(
+   # Create return objecty -------------------------------------------------------------------------
+   output <- list(
       "Ages" = data.frame(
          SAMPLE = SampleNames,
          AGE = AgePlotMoy,
          HPD68.MIN = AgePlot68[,2],
-         HPD68.MAX = AgePlot68[,2],
+         HPD68.MAX = AgePlot68[,3],
          HPD95.MIN = AgePlot95[,2],
-         HPD95.MAX = AgePlot95[,2],
+         HPD95.MAX = AgePlot95[,3],
          stringsAsFactors = FALSE
       ),
       "Sampling" = echantillon,
@@ -415,8 +389,18 @@ AgeC14_Computation <- function(Data_C14Cal,
    )
 
    ##set attributes, to make things easer
-   attr(Info, "class") <- "BayLum.list"
-   attr(Info, "originator") <- "AgeC14_Computation"
+   attr(output, "class") <- "BayLum.list"
+   attr(output, "originator") <- "AgeC14_Computation"
 
-  return(Info)
+
+   # Plot ages -----------------------------------------------------------------------------------
+   plot_Ages(object = output, legend.pos = "bottomleft")
+
+   ##TODO: get rid of this
+   if(SavePdf)
+      dev.print(pdf,file=paste(OutputFilePath,OutputFileName[3],'.pdf',sep=""),width=8,height=10)
+
+
+ # Return output -------------------------------------------------------------------------------
+ return(output)
 }
