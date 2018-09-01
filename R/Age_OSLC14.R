@@ -1,4 +1,4 @@
-#' Bayesian analysis for age estimation of OSL measerments and 14C ages of various samples
+#' Bayesian analysis for age estimation of OSL measerments and C-14 ages of various samples
 #'
 #' This function compute an age of OSL data of at least two samples and calibrate 14C ages of samples to get an age (in ka).\cr
 #' Age of OSL data are computed according to the model given in Combes and Philippe (2017).
@@ -45,7 +45,7 @@
 #' indicate column separator in \code{StratiConstraints} csv file.
 #' @param BinPerSample integer vector (with default): vector with the number of BIN files per OSL sample.
 #' The length of this vector is equal to the number of OSL samples.
-#' \code{BinPerSample}[i] correponds to the number of BIN files for the sample whose number ID is equal to \code{i}.
+#' `BinPerSample[i]` correponds to the number of BIN files for the sample whose number ID is equal to \code{i}.
 #' For more information to fill this vector, we refer to detatils in \code{\link{Generate_DataFile}} or in \code{\link{Generate_DataFile_MG}}.
 #' @param THETA numeric matrix or character (with default): input object for systematic and individual error for OSL samples.
 #' If systematic errors are considered, see the details section for instructions regarding how to correctly fill \code{THETA};
@@ -221,14 +221,14 @@
 #'  \item \bold{Summary of sample age estimates}: plot credible intervals and Bayes estimate of each sample age on a same graph.
 #' }
 #'
-#' @author Claire Christophe, Anne Philippe, Guillaume Guerin
+#' @author Claire Christophe, Anne Philippe, Guillaume Guerin, Sebastian Kreutzer
 #'
 #' @note Please note that the initial values for all MCMC are currently all the same for all chains since we rely on the automatic
 #' initial value generation of JAGS. This is not optimal and will be changed in future. However, it does not affect the quality
 #' of the age estimates if the chains have converged.
 #'
 #' @seealso
-#' \code{\link{rjags}}, \code{\link{plot_MCMC}}, \code{\link{SCMatrix}}
+#' [rjags], [plot_MCMC], [SCMatrix], [plot_Ages]
 #'
 #' @references
 #' Reimer PJ, Bard E, Bayliss A, Beck JW, Blackwell PC, Bronl Ramsey C, Buck CE, Cheng H, Edwards RL, Friedrich M,
@@ -262,39 +262,37 @@
 #' Age <- Age_OSLC14(DATA=Data,Data_C14Cal=C14Cal,Data_SigmaC14Cal=SigmaC14Cal,
 #'    SampleNames=c("GDB5",Names,"GDB3"),Nb_sample=3,SampleNature=samplenature,
 #'    PriorAge=prior,StratiConstraints=SC,Iter=50,n.chains=2)
+#' @md
 #' @export
-Age_OSLC14 <- function(DATA,
-                       Data_C14Cal,
-                       Data_SigmaC14Cal,
-                       Nb_sample,
-                       SampleNames,
-                       SampleNature,
-                       PriorAge = rep(c(10, 60), Nb_sample),
-                       SavePdf = FALSE,
-                       OutputFileName = c('MCMCplot', 'HPD_Cal14CCurve', "summary"),
-                       OutputFilePath = c(""),
-                       SaveEstimates = FALSE,
-                       OutputTableName = c("DATA"),
-                       OutputTablePath = c(''),
-                       StratiConstraints = c(),
-                       sepSC = c(','),
-                       BinPerSample = rep(1, sum(SampleNature[1, ])),
-                       THETA = c(),
-                       sepTHETA = c(','),
-                       LIN_fit = TRUE,
-                       Origin_fit = FALSE,
-                       distribution = c("cauchy"),
-                       Model_C14 = c("full"),
-                       CalibrationCurve = c("AtmosphericNorth"),
-                       Iter = 50000,
-                       t = 5,
-                       n.chains = 3,
-                       quiet = FALSE
-                       ) {
+Age_OSLC14 <- function(
+  DATA,
+  Data_C14Cal,
+  Data_SigmaC14Cal,
+  Nb_sample,
+  SampleNames,
+  SampleNature,
+  PriorAge = rep(c(10, 60), Nb_sample),
+  SavePdf = FALSE,
+  OutputFileName = c('MCMCplot', 'HPD_Cal14CCurve', "summary"),
+  OutputFilePath = c(""),
+  SaveEstimates = FALSE,
+  OutputTableName = c("DATA"),
+  OutputTablePath = c(''),
+  StratiConstraints = c(),
+  sepSC = c(','),
+  BinPerSample = rep(1, sum(SampleNature[1, ])),
+  THETA = c(),
+  sepTHETA = c(','),
+  LIN_fit = TRUE,
+  Origin_fit = FALSE,
+  distribution = c("cauchy"),
+  Model_C14 = c("full"),
+  CalibrationCurve = c("AtmosphericNorth"),
+  Iter = 50000,
+  t = 5,
+  n.chains = 3,
+  quiet = FALSE) {
 
-
-  # Define exit conditiokns ---------------------------------------------------------------------
-  on.exit(closeAllConnections())
 
   #--- StratiConstraints matrix
   if(length(StratiConstraints)==0){
@@ -461,14 +459,21 @@ Age_OSLC14 <- function(DATA,
                     "CSBinPerSample"=CSBinPerSample,
                     "xbound"=PriorAge,"StratiConstraints"=StratiConstraints)
   }
+
+  ##open text connection
+  con <-  textConnection(BUGModel)
+
   jags <-
     rjags::jags.model(
-      textConnection(BUGModel),
+      file = con,
       data = dataList,
       n.chains = n.chains,
       n.adapt = Iter,
       quiet = quiet
     )
+
+  ##close connection
+  close(con)
 
   ##set progress.bar
   if(quiet) progress.bar <- 'none' else progress.bar <- 'text'
@@ -603,34 +608,48 @@ Age_OSLC14 <- function(DATA,
     }
   }
 
-  #       HPD sur un meme graphe
-  par(mfrow=c(1,1),las = 1,oma=c(2,5,0.5,0.5))
-  plot(c(AgePlot95[1,2:3]),c(Nb_sample,Nb_sample),
-       ylim=c(0.5,Nb_sample+1),xlim=c((min(AgePlot95[,2])-1),(max(AgePlot95[,3])+1)),
-       type="l",lwd=5,yaxt="n",xlab="Age (ka)",ylab="",cex.lab=1.5,col="midnightblue",
-       main="",cex.main=2)
-  grid(ny=NA, lwd = 3)
-  lines(c(AgePlot68[1,2:3]),c(Nb_sample,Nb_sample),col="darkslategray3",lwd=5)
-  lines(AgePlotMoy[1],Nb_sample,col="firebrick",lwd=5,type='o')
-  uu=seq(Nb_sample,1,-1)
-  axis(2,uu,labels=SampleNames,cex.axis=1.5)
-  legend("topright",c("Bayes estimator","68% credible interval","95% credible interval"),
-         pch=c(1,NA,NA),lty=c(NA,1,1),lwd=c(5,5,5),col=c("firebrick","darkslategray3","midnightblue"),bty="o")
-  for(i in 2:Nb_sample){
-    lines(c(AgePlot95[i,2:3]),c(Nb_sample-(i-1),Nb_sample-(i-1)),lwd=5,col="midnightblue")
-    lines(c(AgePlot68[i,2:3]),c(Nb_sample-(i-1),Nb_sample-(i-1)),lwd=5,col='darkslategray3')
-    lines(AgePlotMoy[i],(Nb_sample-(i-1)),col="firebrick",lwd=5,type="o")
-  }
-  if(SavePdf==TRUE){
-    dev.print(pdf,file=paste(OutputFilePath,OutputFileName[3],'.pdf',sep=""),width=8,height=10)
+  # Create return objecty -------------------------------------------------------------------------
+  output <- list(
+    "Ages" = data.frame(
+      SAMPLE = SampleNames,
+      AGE = AgePlotMoy,
+      HPD68.MIN = AgePlot68[, 2],
+      HPD68.MAX = AgePlot68[, 3],
+      HPD95.MIN = AgePlot95[, 2],
+      HPD95.MAX = AgePlot95[, 3],
+      stringsAsFactors = FALSE
+    ),
+    "Sampling" = echantillon,
+    "PriorAge" = PriorAge,
+    "StratiConstraints" = StratiConstraints,
+    "Model_OSL_GrowthCurve" = Model_GrowthCurve,
+    "Model_OSL_Distribution" = distribution,
+    "CovarianceMatrix" = THETA,
+    "Model_C14" = Model_C14,
+    "CalibrationCurve" = CalibrationCurve,
+    "Outlier" = Outlier
+  )
+
+
+  ##set attributes, to make things easer
+  attr(output, "class") <- "BayLum.list"
+  attr(output, "originator") <- "AgeS_Computation"
+
+  # Plot ages -----------------------------------------------------------------------------------
+  plot_Ages(object = output, legend.pos = "bottomleft")
+
+  ##TODO: get rid of this
+  if(SavePdf){
+    dev.print(
+      pdf,
+      file = paste(OutputFilePath, OutputFileName[3], '.pdf', sep = ""),
+      width = 8,
+      height = 10
+    )
   }
 
-  Info=list("Sampling"=echantillon,
-            "PriorAge"=PriorAge,
-            "StratiConstraints"=StratiConstraints,
-            "Model_OSL_GrowthCurve"=Model_GrowthCurve, "Model_OSL_Distribution"=distribution,
-            "CovarianceMatrix"=THETA,
-            "Model_C14"=Model_C14, "CalibrationCurve"=CalibrationCurve, "Outlier"=Outlier)
-  return(Info)
+
+  # Return output -------------------------------------------------------------------------------
+  return(output)
 
 }

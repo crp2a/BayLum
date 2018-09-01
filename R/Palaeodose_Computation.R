@@ -158,9 +158,6 @@ Palaeodose_Computation<-function(
   n.chains = 3
 ){
 
-  # Define exit conditiokns ---------------------------------------------------------------------
-  on.exit(closeAllConnections())
-
   PriorPalaeodose=c(0,400)
 
   #--Index preparation
@@ -205,7 +202,21 @@ Palaeodose_Computation<-function(
                   "xbound"=PriorPalaeodose,
                   "BinPerSample"=BinPerSample,
                   "CSBinPerSample"=CSBinPerSample)
-  jags <-  rjags::jags.model(textConnection(Model_Palaeodose[[Model_GrowthCurve]][[distribution]]), data = dataList, n.chains = n.chains, n.adapt=Iter)
+
+  ##set connection
+  con <- textConnection(Model_Palaeodose[[Model_GrowthCurve]][[distribution]])
+
+  jags <-
+    rjags::jags.model(
+      file =con,
+      data = dataList,
+      n.chains = n.chains,
+      n.adapt = Iter
+    )
+
+  ##close text connection
+  close(con)
+
   update(jags,Iter)
   echantillon =  rjags::coda.samples(jags,c("D","sD"),min(Iter,10000),thin=t)
 

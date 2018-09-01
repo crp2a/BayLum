@@ -286,9 +286,6 @@ AgeS_Computation <- function(
   quiet = FALSE
 ){
 
-  # Define exit conditiokns ---------------------------------------------------------------------
-  on.exit(closeAllConnections())
-
   #--Index preparation
   CSBinPerSample=cumsum(BinPerSample)
   LengthSample=c()
@@ -354,14 +351,21 @@ AgeS_Computation <- function(
                   "index"=index2,
                   "BinPerSample"=BinPerSample,
                   "CSBinPerSample"=CSBinPerSample)
+
+  ##open connection
+  con <- textConnection(Model_AgeS[[Model_GrowthCurve]][[distribution]])
+
   jags <-
     rjags::jags.model(
-      textConnection(Model_AgeS[[Model_GrowthCurve]][[distribution]]),
+      file = con,
       data = dataList,
       n.chains = n.chains,
       n.adapt = Iter,
       quiet = quiet
     )
+
+  ##close connection
+  close(con)
 
   ##set progress.bar
   if(quiet) progress.bar <- 'none' else progress.bar <- 'text'

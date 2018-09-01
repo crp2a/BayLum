@@ -62,7 +62,7 @@
 #' @param quiet [logical] (with default): enables/disables [rjags] messages
 #'
 #' @details
-#' ** How to fill `StratiConstraints`?**\cr
+#' ** How to fill StratiConstraints?**\cr
 #'
 #' If there is stratigraphic relations between samples, \bold{C-14 age in Data_C14Cal must be ordered by order of increasing ages}.
 #'
@@ -192,10 +192,6 @@ AgeC14_Computation <- function(Data_C14Cal,
 ){
 
 
-   # Define exit conditiokns ---------------------------------------------------------------------
-   on.exit(closeAllConnections())
-
-
    #--- BUG file selection
    Model_AgeC14<-0
    data(Model_AgeC14,envir = environment())
@@ -247,14 +243,20 @@ AgeC14_Computation <- function(Data_C14Cal,
                      "xbound"=PriorAge,"StratiConstraints"=StratiConstraints)
    }
 
+   ##set connection to model
+   con <- textConnection(Model_AgeC14[[Model]])
+
    jags <-
      rjags::jags.model(
-       textConnection(Model_AgeC14[[Model]]),
+       con,
        data = dataList,
        n.chains = n.chains,
        n.adapt = Iter,
        quiet = quiet
      )
+
+   ##close connection
+   close(con)
 
    ##set progress.bar
    if(quiet) progress.bar <- 'none' else progress.bar <- 'text'
@@ -355,7 +357,7 @@ AgeC14_Computation <- function(Data_C14Cal,
    couleur=rainbow(Nb_sample)
    par(mfrow=c(1,1),las = 0,mar=c(5,5,2,2))
    xl=c(min(PriorAge[seq(1,(2*Nb_sample-1),2)]),max(PriorAge[seq(2,(2*Nb_sample),2)]))
-   plot(xl,xl,col="white",xlab=c("Age"),ylab=c("cal C14"),xaxt="n",yaxt="n",cex.lab=1.8)
+   plot(xl,xl,col="white",xlab=c("Age"),ylab=c("cal. C-14"),xaxt="n",yaxt="n",cex.lab=1.8)
    axis(2,cex.axis=2)
    axis(1,cex.axis=2)
    polygon(c(TableauCalib[,1],rev(TableauCalib[,1])),c(TableauCalib[,2]+2*TableauCalib[,3],rev(TableauCalib[,2]-2*TableauCalib[,3])),col="gray",border="black")
@@ -364,7 +366,8 @@ AgeC14_Computation <- function(Data_C14Cal,
      lines(AgePlotMoy[i],Data_C14Cal[i],col="black",lwd=2,type='p')
    }
    legend("topleft",SampleNames,lty=rep(1,Nb_sample),lwd=rep(2,Nb_sample),cex=1,col=couleur)
-   if(SavePdf==TRUE){
+
+   if(SavePdf){
      dev.print(pdf,file=paste(OutputFilePath,OutputFileName[2],'.pdf',sep=""),width=8,height=10)
    }
 
