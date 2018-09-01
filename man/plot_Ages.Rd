@@ -13,13 +13,17 @@ plot_Ages(object, sample_names = NULL, ...)
 also be used to resort the samples in a specific order. If the length of the provided \link{character} vector
 is shorter than the real number of samples, the names are recycled.}
 
-\item{...}{further arguments to control the plot output, standard arguments are: \code{cex}, \code{xlim}, \code{main}, \code{xlab}, \code{col} further (non-standard) arguments
+\item{...}{further arguments to control the plot output,
+standard arguments are: \code{cex}, \code{xlim}, \code{main}, \code{xlab}, \code{col} further (non-standard) arguments
 are: \code{grid} (\code{TRUE}/\code{FALSE}), \code{legend} (\code{TRUE}/\code{FALSE}), \code{legend.text} (\link{character} input needed), \code{legend.pos} \link[graphics:legend]{graphics::legend}}
 }
 \value{
 The function returns a plot and the \link{data.frame} used to display the data
 }
 \description{
+Create age plot
+}
+\details{
 This function creates an age plot showing the mean ages along with the credible intervals. The function
 provides various arguments to modify the plot output, however, for an ultimate control the function returns
 the \link{data.frame} extracted from the input object for own plots.

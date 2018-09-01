@@ -123,26 +123,27 @@ A sample, for which data is avalilable in several BIN files, can be analysed." /
     <div class="ref-description">
     
     <p>This function computes the age (in ka) of a sample according to the model developed in Combes and Philippe (2017),
-based on an output of <code><a href='Generate_DataFile.html'>Generate_DataFile</a></code> or <code><a href='Generate_DataFile_MG.html'>Generate_DataFile_MG</a></code>.<br />
+based on an output of <a href='Generate_DataFile.html'>Generate_DataFile</a> or <a href='Generate_DataFile_MG.html'>Generate_DataFile_MG</a>.<br />
 A sample, for which data is avalilable in several BIN files, can be analysed.</p>
     
     </div>
 
     <pre class="usage"><span class='fu'>Age_Computation</span>(<span class='no'>DATA</span>, <span class='no'>SampleName</span>, <span class='kw'>PriorAge</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>0.01</span>, <span class='fl'>100</span>),
-  <span class='kw'>BinPerSample</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>1</span>), <span class='kw'>SavePdf</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>OutputFileName</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"MCMCplot"</span>),
-  <span class='kw'>OutputFilePath</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>""</span>), <span class='kw'>SaveEstimates</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>OutputTableName</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"DATA"</span>), <span class='kw'>OutputTablePath</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>""</span>), <span class='kw'>LIN_fit</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>Origin_fit</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>distribution</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"cauchy"</span>), <span class='kw'>I</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>Iter</span> <span class='kw'>=</span> <span class='fl'>50000</span>,
-  <span class='kw'>t</span> <span class='kw'>=</span> <span class='fl'>5</span>, <span class='kw'>Nb_chaines</span> <span class='kw'>=</span> <span class='fl'>3</span>, <span class='kw'>quiet</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
+  <span class='kw'>BinPerSample</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>1</span>), <span class='kw'>SavePdf</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>OutputFileName</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"MCMCplot"</span>), <span class='kw'>OutputFilePath</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>""</span>),
+  <span class='kw'>SaveEstimates</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>OutputTableName</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"DATA"</span>),
+  <span class='kw'>OutputTablePath</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>""</span>), <span class='kw'>LIN_fit</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>Origin_fit</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>distribution</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"cauchy"</span>), <span class='kw'>I</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>Iter</span> <span class='kw'>=</span> <span class='fl'>50000</span>, <span class='kw'>t</span> <span class='kw'>=</span> <span class='fl'>5</span>,
+  <span class='kw'>n.chains</span> <span class='kw'>=</span> <span class='fl'>3</span>, <span class='kw'>quiet</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>DATA</th>
-      <td><p>list of objects: LT, sLT, ITimes, dLab, ddot_env, regDose, J, K, Nb_measurement,
-provided by the function <code><a href='Generate_DataFile.html'>Generate_DataFile</a></code> or <code><a href='Generate_DataFile_MG.html'>Generate_DataFile_MG</a></code>.
-<code>DATA</code> can contain informations for more than one sample.</p></td>
+      <td><p>list of objects: <code>LT</code>, <code>sLT</code>, <code>ITimes</code>, <code>dLab</code>, <code>ddot_env</code>, <code>regDose</code>, <code>J</code>, <code>K</code>, <code>Nb_measurement</code>,
+provided by the function <a href='Generate_DataFile.html'>Generate_DataFile</a> or <a href='Generate_DataFile_MG.html'>Generate_DataFile_MG</a>.</p>
+<p><code>DATA</code> can contain information for more than one sample.</p></td>
     </tr>
     <tr>
       <th>SampleName</th>
@@ -150,60 +151,60 @@ provided by the function <code><a href='Generate_DataFile.html'>Generate_DataFil
     </tr>
     <tr>
       <th>PriorAge</th>
-      <td><p>numeric vector (with default): lower and upper bounds for the sample age parameter (in ka).
+      <td><p>numeric (with default): lower and upper bounds for the sample age parameter (in ka).
 Note that, <code>length(PriorAge)=2</code>.</p></td>
     </tr>
     <tr>
       <th>BinPerSample</th>
-      <td><p>integer vector (with default): vector with the number of BIN files per sample.
+      <td><p>integer (with default): vector with the number of BIN files per sample.
 If in <code>DATA</code> there is more than one sample,
 the <code>BinPerSample</code> vector must be the same as that used to run the function
-<code><a href='Generate_DataFile.html'>Generate_DataFile</a></code> or in <code><a href='Generate_DataFile_MG.html'>Generate_DataFile_MG</a></code> for generating the <code>DATA</code> object.</p></td>
+<a href='Generate_DataFile.html'>Generate_DataFile</a> or in <a href='Generate_DataFile_MG.html'>Generate_DataFile_MG</a> for generating the <code>DATA</code> object.</p></td>
     </tr>
     <tr>
       <th>SavePdf</th>
-      <td><p>boolean (with default): if TRUE save graph in pdf file named <code>OutputFileName</code> in folder <code>OutputFilePath</code>.</p></td>
+      <td><p>logical (with default): if TRUE save graph in pdf file named <code>OutputFileName</code> in folder <code>OutputFilePath</code>.</p></td>
     </tr>
     <tr>
       <th>OutputFileName</th>
-      <td><p>character (with default): name of the pdf file that will be generated by the function if <code>SavePdf</code>=TRUE;
-<code>length(OutputFileName)=2</code>, see <b>PLOT OUTPUT</b> in <b>Value</b> section for more informations.</p></td>
+      <td><p>character (with default): name of the pdf file that will be generated by the function if <code>SavePdf = TRUE</code>;
+<code>length(OutputFileName = 2</code>, see <strong>PLOT OUTPUT</strong> in <strong>Value</strong> section for more informations.</p></td>
     </tr>
     <tr>
       <th>OutputFilePath</th>
-      <td><p>character (with default): path to the pdf file that will be generated by the function if <code>SavePdf</code>=TRUE.
+      <td><p>character (with default): path to the pdf file that will be generated by the function if <code>SavePdf = TRUE</code>.
 If it is not equal to "", it must be terminated by "/".</p></td>
     </tr>
     <tr>
       <th>SaveEstimates</th>
-      <td><p>boolean (with default): if TRUE save Bayes estimates and credible interval at level 68% and 95%  and
+      <td><p>logical (with default): if TRUE save Bayes estimates and credible interval at level 68% and 95%  and
 the result of the gelman en Rubin test of convergency, in a csv table named <code>OutputFileName</code> in folder <code>OutputFilePath</code>.</p></td>
     </tr>
     <tr>
       <th>OutputTableName</th>
-      <td><p>character (with default): name of the table that will be generated by the function if <code>SaveEstimates</code>=TRUE.</p></td>
+      <td><p>character (with default): name of the table that will be generated by the function if <code>SaveEstimates = TRUE</code>.</p></td>
     </tr>
     <tr>
       <th>OutputTablePath</th>
-      <td><p>character (with default): path to the table that will be generated by the function if <code>SaveEstimates</code>=TRUE.
+      <td><p>character (with default): path to the table that will be generated by the function if  <code>SaveEstimates = TRUE</code>.
 If it is not equal to "", it must be terminated by "/".</p></td>
     </tr>
     <tr>
       <th>LIN_fit</th>
-      <td><p>logical (with default): if TRUE (default) allows a linear component,
+      <td><p>logical (with default): if <code>TRUE</code> (default) allows a linear component,
 on top of the (default) saturating exponential curve, for the fitting of dose response curves.
 See details section for more informations on the proposed dose response curves.</p></td>
     </tr>
     <tr>
       <th>Origin_fit</th>
-      <td><p>logical (with default): if TRUE, forces the dose response curves to pass through the origin.
+      <td><p>logical (with default): if <code>TRUE</code>, forces the dose response curves to pass through the origin.
 See details section for more informations on the proposed growth curves.</p></td>
     </tr>
     <tr>
       <th>distribution</th>
       <td><p>character (with default): type of distribution that defines
 how individual equivalent dose values are distributed around the palaeodose.
-Allowed inputs are <b>"cauchy"</b>, <b>"gaussian"</b>, <b>"lognormal_A"</b> and <b>"lognormal_M"</b>, see details section for more informations.</p></td>
+Allowed inputs are <code>"cauchy"</code>, <code>"gaussian"</code>, <code>"lognormal_A"</code> and <code>"lognormal_M"</code>, see details section for more informations.</p></td>
     </tr>
     <tr>
       <th>I</th>
@@ -212,48 +213,48 @@ I indicates the ID number of the sample to be analysed.</p></td>
     </tr>
     <tr>
       <th>Iter</th>
-      <td><p>integer (with default): number of iterations for the MCMC computation (for more information see <code>jags.model</code>).</p></td>
+      <td><p>integer (with default): number of iterations for the MCMC computation (for more information see jags.model).</p></td>
     </tr>
     <tr>
       <th>t</th>
       <td><p>integer (with default): 1 every <code>t</code> iterations of the MCMC is considered for sampling the posterior distribution
-(for more information see <code>jags.model</code>).</p></td>
+(for more information see jags.model).</p></td>
     </tr>
     <tr>
-      <th>Nb_chaines</th>
-      <td><p>integer (with default): number of independent chains for the model (for more information see <code>jags.model</code>).</p></td>
+      <th>n.chains</th>
+      <td><p>integer (with default): number of independent chains for the model (for more information see jags.model).</p></td>
     </tr>
     <tr>
       <th>quiet</th>
-      <td><p><code>logical</code> (with default): enables/disables rjags messages</p></td>
+      <td><p>logical (with default): enables/disables rjags messages</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p><b>NUMERICAL OUTPUT</b></p>
+    <p><strong>NUMERICAL OUTPUT</strong></p>
 <ol>
-<li><p><b>A list containing the following objects</b>:</p><ul>
-<li><p><b>Sampling</b> that corresponds to a sample of the posterior distributions
- of the age (in ka), palaeodose (in Gy) and equivalent dose dispersion (in Gy) parameters.</p></li>
-<li><p><b>Model_GrowthCurve</b>, stating which dose response fitting option was chosen;</p></li>
-<li><p><b>Distribution</b>, stating which distribution was chosen to model the dispersion of
- individual equivalent dose values around the palaeodose of the sample;</p></li>
-<li><p><b>PriorAge</b>, stating the priors used for the age parameter (in ka).</p></li>
+<li><p><strong>A list containing the following objects</strong>:</p><ul>
+<li><p><strong>Sampling</strong> that corresponds to a sample of the posterior distributions
+of the age (in ka), palaeodose (in Gy) and equivalent dose dispersion (in Gy) parameters.</p></li>
+<li><p><strong>Model_GrowthCurve</strong>, stating which dose response fitting option was chosen;</p></li>
+<li><p><strong>Distribution</strong>, stating which distribution was chosen to model the dispersion of
+individual equivalent dose values around the palaeodose of the sample;</p></li>
+<li><p><strong>PriorAge</strong>, stating the priors used for the age parameter (in ka).</p></li>
 </ul></li>
-<li><p><b>The Gelman and Rubin test of convergency</b>: prints the result of the Gelman and Rubin test of convergency for the age, palaeodose and equivalent dose dispersion parameters.
+<li><p><strong>The Gelman and Rubin test of convergency</strong>: prints the result of the Gelman and Rubin test of convergency for the age, palaeodose and equivalent dose dispersion parameters.
 A result close to one is expected.<br />
 In addition, the user must visually assess the convergency of the trajectories by looking at the graph
-generated by the function (see <b>PLOT OUTPUT</b> for more informations).<br />
+generated by the function (see <strong>PLOT OUTPUT</strong> for more informations).<br />
 If both convergencies (Gelman and Rubin test and plot checking) are satisfactory,
 the user can consider the printed estimates as valid. Otherwise, the user may try increasing the number of MCMC interations
 (<code>Iter</code>), or being more precise on the <code>PriorAge</code> parameter (for example specify if it is a young sample <code>c(0.01,10)</code> an old sample <code>c(10,100)</code>),
 or changing the parameter <code>distribution</code> or the growth curve, to reach convergency.to reach convergency.</p></li>
-<li><p><b>Credible intervals and Bayes estimates</b>: prints the Bayes esitmates, the credible intervals at 95% and 68% for
+<li><p><strong>Credible intervals and Bayes estimates</strong>: prints the Bayes esitmates, the credible intervals at 95% and 68% for
 the age, palaeodose and equivalent dose dispersion parameters of the sample.</p></li>
 </ol>
 
-<p><b>PLOT OUTPUT</b></p>
+<p><strong>PLOT OUTPUT</strong></p>
 <p>A graph with the MCMC trajectories and posterior distributions of the age, palaeodose and equivalent dose dispersion parameters is displayed.<br />
 The first line of the figure correponds to the age parameter, the second to the palaeodose parameter and the third to the equivalent dose dispersion parameter.
 On each line, the plot on the left represents the MCMC trajectories, and the one on the right the posterior distribution of the parameter.</p>
@@ -261,35 +262,35 @@ On each line, the plot on the left represents the MCMC trajectories, and the one
     
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p><b>** Option on growth curves **</b><br /></p>
-<p>As for <code><a href='AgeS_Computation.html'>AgeS_Computation</a></code> and <code><a href='Palaeodose_Computation.html'>Palaeodose_Computation</a></code>, the user can choose from 4 dose response curves:</p><ul>
-<li><p><b>Saturating exponential plus linear growth</b> (<code>AgeMultiBF_EXPLIN</code>):</p>
-<p>for all <code>x</code> in IR+, <code>f(x)=a(1-exp(-x/b))+cx+d</code>; select</p><ul>
+    <p><strong>Option on growth curves</strong><br /></p>
+<p>As for <a href='AgeS_Computation.html'>AgeS_Computation</a> and <a href='Palaeodose_Computation.html'>Palaeodose_Computation</a>, the user can choose from 4 dose response curves:</p><ul>
+<li><p><strong>Saturating exponential plus linear growth</strong> (<code>AgeMultiBF_EXPLIN</code>):</p>
+<p>for all <code>x</code> in IR+, \(f(x)=a(1-exp(-x/b))+cx+d\); select</p><ul>
 <li><p><code>LIN_fit=TRUE</code></p></li>
 <li><p><code>Origin_fit=FALSE</code></p></li>
 </ul></li>
-<li><p><b>Saturating exponential growth</b> (<code>AgeMultiBF_EXP</code>):</p>
-<p>for all <code>x</code> in IR+, <code>f(x)=a(1-exp(-x/b))+d</code>; select</p><ul>
-<li><p><code>LIN_fit=FALSE</code></p></li>
-<li><p><code>Origin_fit=FALSE</code></p></li>
+<li><p><strong>Saturating exponential growth</strong> (<code>AgeMultiBF_EXP</code>):</p>
+<p>for all <code>x</code> in IR+, \(f(x)=a(1-exp(-x/b))+d\); select</p><ul>
+<li><p><code>LIN_fit = FALSE</code></p></li>
+<li><p><code>Origin_fit = FALSE</code></p></li>
 </ul></li>
-<li><p><b>Saturating exponential plus linear growth and fitting through the origin</b> (<code>AgeMultiBF_EXPLINZO</code>):</p>
-<p>for all <code>x</code> in IR+, <code>f(x)=a(1-exp(-x/b))+cx</code>; select</p><ul>
+<li><p><strong>Saturating exponential plus linear growth and fitting through the origin</strong> (<code>AgeMultiBF_EXPLINZO</code>):</p>
+<p>for all <code>x</code> in IR+, \(f(x)=a(1-exp(-x/b))+cx\); select</p><ul>
 <li><p><code>LIN_fit=TRUE</code></p></li>
 <li><p><code>Origin_fit=TRUE</code></p></li>
 </ul></li>
-<li><p><b>Saturating exponential growth and fitting through the origin</b> (<code>AgeMultiBF_EXPZO</code>):</p>
-<p>for all <code>x</code> in IR+, <code>f(x)=a(1-exp(-x/b))</code>; select</p><ul>
+<li><p><strong>Saturating exponential growth and fitting through the origin</strong> (<code>AgeMultiBF_EXPZO</code>):</p>
+<p>for all <code>x</code> in IR+, \(f(x)=a(1-exp(-x/b))\); select</p><ul>
 <li><p><code>LIN_fit=FALSE</code></p></li>
 <li><p><code>Origin_fit=TRUE</code></p></li>
 </ul></li>
 </ul>
-    <p><b>** Option on equivalent dose distribution around the palaeodose **</b><br /></p>
+    <p><strong>Option on equivalent dose distribution around the palaeodose</strong><br /></p>
 <p>The use can choose between :</p><ul>
 <li><p><code>cauchy</code>: a Cauchy distribution with location parameter equal to the palaeodose of the sample</p></li>
 <li><p><code>gaussian</code>: a Gaussian distribution with mean equal to the palaeodose of the sample</p></li>
-<li><p><code>lognormal_A</code>: a log-normal distribution with mean or <b>A</b>verage equal to the palaeodose of the sample</p></li>
-<li><p><code>lognormal_M</code>: a log-normal distribution with <b>M</b>edian equal to the palaeodose of the sample</p></li>
+<li><p><code>lognormal_A</code>: a log-normal distribution with mean or <strong>A</strong>verage equal to the palaeodose of the sample</p></li>
+<li><p><code>lognormal_M</code>: a log-normal distribution with <strong>M</strong>edian equal to the palaeodose of the sample</p></li>
 </ul>
     
     <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
@@ -310,9 +311,7 @@ Quaternary Geochronology 28, 62-70. doi:10.1016/j.quageo.2015.04.001</p>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='Generate_DataFile.html'>Generate_DataFile</a></code>, <code><a href='Generate_DataFile_MG.html'>Generate_DataFile_MG</a></code>,
-<code>rjags</code>, <code><a href='plot_MCMC.html'>plot_MCMC</a></code>
-<code><a href='AgeS_Computation.html'>AgeS_Computation</a></code>, <code><a href='Palaeodose_Computation.html'>Palaeodose_Computation</a></code></p></div>
+    <div class='dont-index'><p><a href='Generate_DataFile.html'>Generate_DataFile</a>, <a href='Generate_DataFile_MG.html'>Generate_DataFile_MG</a>, rjags, <a href='plot_MCMC.html'>plot_MCMC</a>, <a href='AgeS_Computation.html'>AgeS_Computation</a>, <a href='Palaeodose_Computation.html'>Palaeodose_Computation</a></p></div>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
@@ -334,8 +333,8 @@ Quaternary Geochronology 28, 62-70. doi:10.1016/j.quageo.2015.04.001</p>
 #&gt; ----------------------------------------------
 #&gt; 	 Point estimate Uppers confidence interval
 #&gt; A	 1.02 		 1.1 
-#&gt; D	 1.02 		 1.1 
-#&gt; sD	 1.06 		 1.23 
+#&gt; D	 1.2 		 1.62 
+#&gt; sD	 1.1 		 1.33 
 #&gt; 
 #&gt; 
 #&gt; ---------------------------------------------------------------------------------------------------
@@ -344,20 +343,20 @@ Quaternary Geochronology 28, 62-70. doi:10.1016/j.quageo.2015.04.001</p>
 #&gt; 
 #&gt; parameter 	 Bayes estimate 	  Credible interval 
 #&gt; ----------------------------------------------
-#&gt; A 		 46.063 
+#&gt; A 		 46.41 
 #&gt; 						 lower bound 	 upper bound
-#&gt; 				 at level 95%	 36.61 		 56.15 
-#&gt; 				 at level 68%	 36.61 		 45.25 
+#&gt; 				 at level 95%	 40.45 		 51.14 
+#&gt; 				 at level 68%	 40.45 		 47.37 
 #&gt; ----------------------------------------------
-#&gt; D 		 102.165 
+#&gt; D 		 104.56 
 #&gt; 						 lower bound 	 upper bound
-#&gt; 				 at level 95%	 97.26 		 107.34 
-#&gt; 				 at level 68%	 100.84 		 104.89 
+#&gt; 				 at level 95%	 98.8 		 105.79 
+#&gt; 				 at level 68%	 101.81 		 105.79 
 #&gt; ----------------------------------------------
-#&gt; sD 		 16.907 
+#&gt; sD 		 14.943 
 #&gt; 						 lower bound 	 upper bound
-#&gt; 				 at level 95%	 11.8 		 23.03 
-#&gt; 				 at level 68%	 12.95 		 17.98 </div><div class='input'>
+#&gt; 				 at level 95%	 9.63 		 16.57 
+#&gt; 				 at level 68%	 12.78 		 15.63 </div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

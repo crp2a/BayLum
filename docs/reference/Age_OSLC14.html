@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Bayesian analysis for age estimation of OSL measerments and 14C ages of various samples — Age_OSLC14 • BayLum</title>
+<title>Bayesian analysis for age estimation of OSL measerments and C-14 ages of various samples — Age_OSLC14 • BayLum</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -30,7 +30,7 @@
 
 
 
-<meta property="og:title" content="Bayesian analysis for age estimation of OSL measerments and 14C ages of various samples — Age_OSLC14" />
+<meta property="og:title" content="Bayesian analysis for age estimation of OSL measerments and C-14 ages of various samples — Age_OSLC14" />
 
 <meta property="og:description" content="This function compute an age of OSL data of at least two samples and calibrate 14C ages of samples to get an age (in ka).
 Age of OSL data are computed according to the model given in Combes and Philippe (2017).
@@ -119,7 +119,7 @@ Northern or Sourthen Hemisphere or marine atmospheric." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Bayesian analysis for age estimation of OSL measerments and 14C ages of various samples</h1>
+    <h1>Bayesian analysis for age estimation of OSL measerments and C-14 ages of various samples</h1>
     
     <div class="hidden name"><code>Age_OSLC14.Rd</code></div>
     </div>
@@ -142,10 +142,10 @@ Northern or Sourthen Hemisphere or marine atmospheric.</p>
   <span class='kw'>OutputFilePath</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>""</span>), <span class='kw'>SaveEstimates</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>OutputTableName</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"DATA"</span>), <span class='kw'>OutputTablePath</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>""</span>),
   <span class='kw'>StratiConstraints</span> <span class='kw'>=</span> <span class='fu'>c</span>(), <span class='kw'>sepSC</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>","</span>), <span class='kw'>BinPerSample</span> <span class='kw'>=</span> <span class='fu'>rep</span>(<span class='fl'>1</span>,
-  <span class='fu'>sum</span>(<span class='no'>SampleNature</span>[<span class='fl'>1</span>, ])), <span class='kw'>THETA</span> <span class='kw'>=</span> <span class='fu'>c</span>(), <span class='kw'>sepTHETA</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>","</span>), <span class='kw'>LIN_fit</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>Origin_fit</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>distribution</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"cauchy"</span>), <span class='kw'>Model_C14</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"full"</span>),
-  <span class='kw'>CalibrationCurve</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"AtmosphericNorth"</span>), <span class='kw'>Iter</span> <span class='kw'>=</span> <span class='fl'>50000</span>, <span class='kw'>t</span> <span class='kw'>=</span> <span class='fl'>5</span>,
-  <span class='kw'>Nb_chaines</span> <span class='kw'>=</span> <span class='fl'>3</span>, <span class='kw'>quiet</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
+  <span class='fu'>sum</span>(<span class='no'>SampleNature</span>[<span class='fl'>1</span>, ])), <span class='kw'>THETA</span> <span class='kw'>=</span> <span class='fu'>c</span>(), <span class='kw'>sepTHETA</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>","</span>),
+  <span class='kw'>LIN_fit</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>Origin_fit</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>distribution</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"cauchy"</span>),
+  <span class='kw'>Model_C14</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"full"</span>), <span class='kw'>CalibrationCurve</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"AtmosphericNorth"</span>),
+  <span class='kw'>Iter</span> <span class='kw'>=</span> <span class='fl'>50000</span>, <span class='kw'>t</span> <span class='kw'>=</span> <span class='fl'>5</span>, <span class='kw'>n.chains</span> <span class='kw'>=</span> <span class='fl'>3</span>, <span class='kw'>quiet</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -234,7 +234,7 @@ indicate column separator in <code>StratiConstraints</code> csv file.</p></td>
       <th>BinPerSample</th>
       <td><p>integer vector (with default): vector with the number of BIN files per OSL sample.
 The length of this vector is equal to the number of OSL samples.
-<code>BinPerSample</code>[i] correponds to the number of BIN files for the sample whose number ID is equal to <code>i</code>.
+<code>BinPerSample[i]</code> correponds to the number of BIN files for the sample whose number ID is equal to <code>i</code>.
 For more information to fill this vector, we refer to detatils in <code><a href='Generate_DataFile.html'>Generate_DataFile</a></code> or in <code><a href='Generate_DataFile_MG.html'>Generate_DataFile_MG</a></code>.</p></td>
     </tr>
     <tr>
@@ -278,7 +278,7 @@ If <b>"naive"</b> this error is not taken account in the age estimate.</p></td>
 <li><p><b>"Marine"</b> for Marine radiocarbon calibration curve,</p></li>
 <li><p><b>"AtmosphericSouth"</b> for Southern Hemisphere atmospheric radiocarbon calibration curve,</p></li>
 <li><p><b>a csv file, with tree columns, the first column is dedicated to "Cal.BP", the second to "X14C.age", the third to "Error".
-  The decimal of this file must be a dot, and the separator must be a comma. </b></p></li>
+The decimal of this file must be a dot, and the separator must be a comma. </b></p></li>
 </ul></td>
     </tr>
     <tr>
@@ -291,7 +291,7 @@ If <b>"naive"</b> this error is not taken account in the age estimate.</p></td>
 (for more information see <code>jags.model</code>).</p></td>
     </tr>
     <tr>
-      <th>Nb_chaines</th>
+      <th>n.chains</th>
       <td><p>integer (with default): number of independent chains for the model (for more information see <code>jags.model</code>).</p></td>
     </tr>
     <tr>
@@ -310,7 +310,7 @@ If <b>"naive"</b> this error is not taken account in the age estimate.</p></td>
 <li><p><b>StratiConstraints</b>: stating the stratigraphic relations between samples considered in the model;</p></li>
 <li><p><b>Model_OSL_GrowthCurve</b>: stating which dose response fitting option was chosen;</p></li>
 <li><p><b>Model_OSL_Distribution</b>: stating which distribution was chosen to model the dispersion of
- individual equivalent dose values around the palaeodose of the sample;</p></li>
+individual equivalent dose values around the palaeodose of the sample;</p></li>
 <li><p><b>Model_C14</b>: stating which model was chosen (<code>"full"</code> or <code>"naive"</code>);</p></li>
 <li><p><b>CalibrationCurve</b>: stating which radiocarbon calibration curve was chosen;</p></li>
 <li><p><b>Outlier</b>: stating the names of samples that must be outliers.</p></li>
@@ -368,7 +368,7 @@ The user must take care about the separator used in the csv file using the argum
 <p>If systematic errors are considered, the user can fill the <code>THETA</code> matrix as follow.</p><ul>
 <li><p>row number of <code>THETA</code> is equal the column number, equal to <code>Nb_sample</code>.</p></li>
 <li><p>For all <code>i in {1,...,Nb_sample}</code>, <code>THETA[i,i]</code> containts individual error
- plus systematic error of the sample whose number ID is equal to <code>i</code>.</p></li>
+plus systematic error of the sample whose number ID is equal to <code>i</code>.</p></li>
 <li><p>For all <code>i,j in {1,...,Nb_sample}</code> and <code>i</code> different from <code>j</code> ,
 <code>THETA[i,j]</code> containts common error between samples whose number ID are equal to <code>i</code> and <code>j</code>.</p></li>
 </ul><p>Note that <code>THETA[i,j]</code> is a symetric matrix.</p>
@@ -427,7 +427,7 @@ IntCal13 ans Marine13 radiocarbon age calibration curves 0-50000 years cal BP. R
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code>rjags</code>, <code><a href='plot_MCMC.html'>plot_MCMC</a></code>, <code><a href='SCMatrix.html'>SCMatrix</a></code></p></div>
+    <div class='dont-index'><p>rjags, <a href='plot_MCMC.html'>plot_MCMC</a>, <a href='SCMatrix.html'>SCMatrix</a>, <a href='plot_Ages.html'>plot_Ages</a></p></div>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
@@ -450,7 +450,7 @@ IntCal13 ans Marine13 radiocarbon age calibration curves 0-50000 years cal BP. R
 <span class='co'>## Age computation of samples</span>
 <span class='no'>Age</span> <span class='kw'>&lt;-</span> <span class='fu'>Age_OSLC14</span>(<span class='kw'>DATA</span><span class='kw'>=</span><span class='no'>Data</span>,<span class='kw'>Data_C14Cal</span><span class='kw'>=</span><span class='no'>C14Cal</span>,<span class='kw'>Data_SigmaC14Cal</span><span class='kw'>=</span><span class='no'>SigmaC14Cal</span>,
    <span class='kw'>SampleNames</span><span class='kw'>=</span><span class='fu'>c</span>(<span class='st'>"GDB5"</span>,<span class='no'>Names</span>,<span class='st'>"GDB3"</span>),<span class='kw'>Nb_sample</span><span class='kw'>=</span><span class='fl'>3</span>,<span class='kw'>SampleNature</span><span class='kw'>=</span><span class='no'>samplenature</span>,
-   <span class='kw'>PriorAge</span><span class='kw'>=</span><span class='no'>prior</span>,<span class='kw'>StratiConstraints</span><span class='kw'>=</span><span class='no'>SC</span>,<span class='kw'>Iter</span><span class='kw'>=</span><span class='fl'>50</span>,<span class='kw'>Nb_chaines</span><span class='kw'>=</span><span class='fl'>2</span>)</div><div class='output co'>#&gt; Compiling model graph
+   <span class='kw'>PriorAge</span><span class='kw'>=</span><span class='no'>prior</span>,<span class='kw'>StratiConstraints</span><span class='kw'>=</span><span class='no'>SC</span>,<span class='kw'>Iter</span><span class='kw'>=</span><span class='fl'>50</span>,<span class='kw'>n.chains</span><span class='kw'>=</span><span class='fl'>2</span>)</div><div class='output co'>#&gt; Compiling model graph
 #&gt;    Resolving undeclared variables
 #&gt;    Allocating nodes
 #&gt; Graph information:
@@ -466,9 +466,9 @@ IntCal13 ans Marine13 radiocarbon age calibration curves 0-50000 years cal BP. R
 #&gt; &gt;&gt; Convergence of MCMC for the age parameters &lt;&lt;
 #&gt; ----------------------------------------------
 #&gt; Sample name   Bayes estimate   Uppers credible interval
-#&gt; A_GDB5 	 1.03 		 1.03 
-#&gt; A_S-EVA-26510 	 0.99 		 1 
-#&gt; A_GDB3 	 0.98 		 0.98 
+#&gt; A_GDB5 	 2.69 		 6.13 
+#&gt; A_S-EVA-26510 	 0.98 		 1 
+#&gt; A_GDB3 	 0.99 		 1.1 
 #&gt; 
 #&gt; 
 #&gt; ________________________________________________________________________________
@@ -479,22 +479,22 @@ IntCal13 ans Marine13 radiocarbon age calibration curves 0-50000 years cal BP. R
 #&gt; &gt;&gt; Bayes estimates of Age for each sample and credible interval &lt;&lt;
 #&gt; ------------------------------------------------------
 #&gt; Sample name 	 Bayes estimate  Credible interval: 
-#&gt; A_GDB5 	 7.607 
+#&gt; A_GDB5 	 7.232 
 #&gt; 						 lower bound 	 upper bound
-#&gt; 				 at level 95% 	 6.09 		 8.74 
-#&gt; 				 at level 68% 	 7.03 		 8.32 
+#&gt; 				 at level 95% 	 6.5 		 8.52 
+#&gt; 				 at level 68% 	 6.5 		 7.41 
 #&gt; ------------------------------------------------------
 #&gt; Sample name 	 Bayes estimate  Credible interval: 
-#&gt; A_S-EVA-26510 	 41.734 
+#&gt; A_S-EVA-26510 	 41.814 
 #&gt; 						 lower bound 	 upper bound
-#&gt; 				 at level 95% 	 41.33 		 42.11 
-#&gt; 				 at level 68% 	 41.56 		 41.97 
+#&gt; 				 at level 95% 	 41.26 		 42.24 
+#&gt; 				 at level 68% 	 41.71 		 42.24 
 #&gt; ------------------------------------------------------
 #&gt; Sample name 	 Bayes estimate  Credible interval: 
-#&gt; A_GDB3 	 46.956 
+#&gt; A_GDB3 	 46.502 
 #&gt; 						 lower bound 	 upper bound
-#&gt; 				 at level 95% 	 42 		 53.76 
-#&gt; 				 at level 68% 	 42.8 		 48.6 
+#&gt; 				 at level 95% 	 42.35 		 51.77 
+#&gt; 				 at level 68% 	 42.99 		 47.78 
 #&gt; 
 #&gt; ------------------------------------------------------</div><div class='img'><img src='Age_OSLC14-4.png' alt='' width='700' height='433' /></div></pre>
   </div>
@@ -518,7 +518,7 @@ IntCal13 ans Marine13 radiocarbon age calibration curves 0-50000 years cal BP. R
 
     <h2>Author</h2>
     
-Claire Christophe, Anne Philippe, Guillaume Guerin
+Claire Christophe, Anne Philippe, Guillaume Guerin, Sebastian Kreutzer
 
   </div>
 </div>

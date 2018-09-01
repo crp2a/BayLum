@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Bayesian analysis for age estimation of 14C age of various samples — AgeC14_Computation • BayLum</title>
+<title>Bayesian analysis for C-14 age estimations of various samples — AgeC14_Computation • BayLum</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -30,9 +30,9 @@
 
 
 
-<meta property="og:title" content="Bayesian analysis for age estimation of 14C age of various samples — AgeC14_Computation" />
+<meta property="og:title" content="Bayesian analysis for C-14 age estimations of various samples — AgeC14_Computation" />
 
-<meta property="og:description" content="This function calibrate 14C age of samples to get an age (years).
+<meta property="og:description" content="This function calibrates the C-14 age of samples to get an age (in ka).
 The user can choose one of the following radiocarbon calibration curve:
 Northern or Sourthen Hemisphere or marine atmospheric. It must be the same curve for all samples." />
 <meta name="twitter:card" content="summary" />
@@ -115,14 +115,14 @@ Northern or Sourthen Hemisphere or marine atmospheric. It must be the same curve
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Bayesian analysis for age estimation of 14C age of various samples</h1>
+    <h1>Bayesian analysis for C-14 age estimations of various samples</h1>
     
     <div class="hidden name"><code>AgeC14_Computation.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>This function calibrate 14C age of samples to get an age (years).
+    <p>This function calibrates the C-14 age of samples to get an age (in ka).
 The user can choose one of the following radiocarbon calibration curve:
 Northern or Sourthen Hemisphere or marine atmospheric. It must be the same curve for all samples.</p>
     
@@ -130,27 +130,27 @@ Northern or Sourthen Hemisphere or marine atmospheric. It must be the same curve
 
     <pre class="usage"><span class='fu'>AgeC14_Computation</span>(<span class='no'>Data_C14Cal</span>, <span class='no'>Data_SigmaC14Cal</span>, <span class='no'>SampleNames</span>, <span class='no'>Nb_sample</span>,
   <span class='kw'>PriorAge</span> <span class='kw'>=</span> <span class='fu'>rep</span>(<span class='fu'>c</span>(<span class='fl'>10</span>, <span class='fl'>50</span>), <span class='no'>Nb_sample</span>), <span class='kw'>SavePdf</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>OutputFileName</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"MCMCplot"</span>, <span class='st'>"HPD_Cal14CCurve"</span>, <span class='st'>"summary"</span>),
+  <span class='kw'>OutputFileName</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"MCMCplot"</span>, <span class='st'>"HPD_CalC-14Curve"</span>, <span class='st'>"summary"</span>),
   <span class='kw'>OutputFilePath</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>""</span>), <span class='kw'>SaveEstimates</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>OutputTableName</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"DATA"</span>), <span class='kw'>OutputTablePath</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>""</span>),
   <span class='kw'>StratiConstraints</span> <span class='kw'>=</span> <span class='fu'>c</span>(), <span class='kw'>sepSC</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>","</span>), <span class='kw'>Model</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"full"</span>),
   <span class='kw'>CalibrationCurve</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"AtmosphericNorth"</span>), <span class='kw'>Iter</span> <span class='kw'>=</span> <span class='fl'>50000</span>, <span class='kw'>t</span> <span class='kw'>=</span> <span class='fl'>5</span>,
-  <span class='kw'>Nb_chaines</span> <span class='kw'>=</span> <span class='fl'>3</span>, <span class='kw'>quiet</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
+  <span class='kw'>n.chains</span> <span class='kw'>=</span> <span class='fl'>3</span>, <span class='kw'>quiet</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>Data_C14Cal</th>
-      <td><p>numeric vector: corresponding to 14C age estimate.</p></td>
+      <td><p>numeric (<strong>required</strong>): corresponding to C-14 age estimate.</p></td>
     </tr>
     <tr>
       <th>Data_SigmaC14Cal</th>
-      <td><p>numeric vector: correponding to the error of 14C age estimates.</p></td>
+      <td><p>numeric (<strong>required</strong>): correponding to the error of C-14 age estimates.</p></td>
     </tr>
     <tr>
       <th>SampleNames</th>
-      <td><p>character vector: names of sample. The length of this vector is equal to <code>Nb_sample</code>.</p></td>
+      <td><p>character (<strong>required</strong>): names of sample. The length of this vector is equal to <code>Nb_sample</code>.</p></td>
     </tr>
     <tr>
       <th>Nb_sample</th>
@@ -158,36 +158,36 @@ Northern or Sourthen Hemisphere or marine atmospheric. It must be the same curve
     </tr>
     <tr>
       <th>PriorAge</th>
-      <td><p>numeric vector (with default): lower and upper bounds for age parameter of each sample in years (not in ka).
-Note that, <code>length(PriorAge)=2*Nb_sample</code>
+      <td><p>numeric (with default): lower and upper bounds for age parameter of each sample in years (not in ka).
+Note that, <code>length(PriorAge) == 2 * Nb_sample</code>
 and <code>PriorAge[2i-1,2i]</code> correponds to the lower and upper bounds of sample whose number ID is equal to <code>i</code>.</p></td>
     </tr>
     <tr>
       <th>SavePdf</th>
-      <td><p>boolean (with default): if TRUE save graphs in pdf file named <code>OutputFileName</code> in folder <code>OutputFilePath</code>.</p></td>
+      <td><p>logical (with default): if TRUE save graphs in pdf file named <code>OutputFileName</code> in folder <code>OutputFilePath</code>.</p></td>
     </tr>
     <tr>
       <th>OutputFileName</th>
-      <td><p>character (with default): name of the pdf file that will be generated by the function if <code>SavePdf</code>=TRUE,
-<code>length(OutputFileName)=3</code>, see <b>PLOT OUTPUT</b> in <b>Value</b> section for more informations.</p></td>
+      <td><p>character (with default): name of the pdf file that will be generated by the function if <code>SavePd=TRUE</code>,
+<code>length(OutputFileName)===3</code>, see <b>PLOT OUTPUT</b> in <b>Value</b> section for more informations.</p></td>
     </tr>
     <tr>
       <th>OutputFilePath</th>
-      <td><p>character (with default): path to the pdf file that will be generated by the function if <code>SavePdf</code>=TRUE.
+      <td><p>character (with default): path to the pdf file that will be generated by the function if <code>SavePdf=TRUE</code>.
 If it is not equal to "", it must be terminated by "/".</p></td>
     </tr>
     <tr>
       <th>SaveEstimates</th>
-      <td><p>boolean (with default): if TRUE save Bayes estimates, credible interval at level 68% and 95% and
+      <td><p>logical (with default): if TRUE save Bayes estimates, credible interval at level 68% and 95% and
 the result of the gelman en Rubin test of convergency, in a csv table named <code>OutputFileName</code> in folder <code>OutputFilePath</code>.</p></td>
     </tr>
     <tr>
       <th>OutputTableName</th>
-      <td><p>character (with default): name of the table that will be generated by the function if <code>SaveEstimates</code>=TRUE.</p></td>
+      <td><p>logical (with default): name of the table that will be generated by the function if <code>SaveEstimates=TRUE</code>.</p></td>
     </tr>
     <tr>
       <th>OutputTablePath</th>
-      <td><p>character (with default): path to the table that will be generated by the function if <code>SaveEstimates</code>=TRUE.
+      <td><p>character (with default): path to the table that will be generated by the function if <code>SaveEstimates=TRUE</code>.
 If it is not equal to "", it must be terminated by "/".</p></td>
     </tr>
     <tr>
@@ -213,26 +213,26 @@ If <b>"naive"</b> this error is not taken account in the age estimate.</p></td>
 <li><p><b>"AtmosphericNorth"</b> for Northern Hemisphere atmospheric radiocarbon calibration curve,</p></li>
 <li><p><b>"Marine"</b> for Marine radiocarbon calibration curve,</p></li>
 <li><p><b>"AtmosphericSouth"</b> for Southern Hemisphere atmospheric radiocarbon calibration curve</p></li>
-<li><p><b>a csv file, with tree columns, the first column is dedicated to "Cal.BP", the second to "X14C.age", the third to "Error".
-  The decimal of this file must be a dot, and the separator must be a comma. </b></p></li>
+<li><p><b>a csv file, with tree columns, the first column is dedicated to "Cal.BP", the second to "XC-14.age", the third to "Error".
+The decimal of this file must be a dot, and the separator must be a comma. </b></p></li>
 </ul></td>
     </tr>
     <tr>
       <th>Iter</th>
-      <td><p>integer (with default): number of iterations for the MCMC computation (for more information see <code>jags.model</code>).</p></td>
+      <td><p>integer (with default): number of iterations for the MCMC computation (for more information see <a href='http://www.rdocumentation.org/packages/rjags/topics/jags.model'>rjags::jags.model</a>).</p></td>
     </tr>
     <tr>
       <th>t</th>
       <td><p>integer (with default): 1 every <code>t</code> iterations of the MCMC is considered for sampling the posterior distribution
-(for more information see <code>jags.model</code>).</p></td>
+(for more information see <a href='http://www.rdocumentation.org/packages/rjags/topics/jags.model'>rjags::jags.model</a>.</p></td>
     </tr>
     <tr>
-      <th>Nb_chaines</th>
-      <td><p>integer (with default): number of independent chains for the model (for more information see <code>jags.model</code>).</p></td>
+      <th>n.chains</th>
+      <td><p>integer (with default): number of independent chains for the model (for more information see <a href='http://www.rdocumentation.org/packages/rjags/topics/jags.model'>rjags::jags.model</a>.</p></td>
     </tr>
     <tr>
       <th>quiet</th>
-      <td><p><code>logical</code> (with default): enables/disables rjags messages</p></td>
+      <td><p>logical (with default): enables/disables rjags messages</p></td>
     </tr>
     </table>
     
@@ -269,31 +269,6 @@ On each line, the plot on the left represents the MCMC trajectories, and the one
 
 <p>To give the results in a publication, we recommend to give the Bayes estimate of the parameters as well as the credible interval at 95% or 68%.</p>
     
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
-
-    <p><b>** How to fill</b> <code>StratiConstraints</code> <b>? **</b><br /></p>
-<p>If there is stratigraphic relations between samples, <b>14C age in Data_C14Cal must be ordered by order of increasing ages</b>.</p>
-<p>The user can fill the <code>StratiConstraints</code> matrix as follow.</p><ol>
-<li><p><b>Size of the matrix</b>: row number of <code>StratiConstraints</code> matrix is equal to <code>Nb_sample+1</code>,
-and column number is equal to <code>Nb_sample</code>.</p></li>
-<li><p><b>First line of the matrix</b>:
-for all <code>i in {1,...,Nb_Sample}</code>, <code>StratiConstraints[1,i]=1</code> that means the lower bound of the sample age (given in <code>PriorAge[2i-1]</code>)
-for the sample whose number ID is equal to <code>i</code>, is taken into account.</p></li>
-<li><p><b>Sample relations</b>: for all  <code>j in {2,...,Nb_Sample+1}</code> and all <code>i in {j,...,Nb_Sample}</code>,
-<code>StratiConstraints[j,i]=1</code> if sample age whose number ID is equal to <code>j-1</code> is lower than sample age whose number ID is equal to <code>i</code>.
-Otherwise, <code>StratiConstraints[j,i]=0</code>.</p></li>
-</ol><p>Note that <code>StratiConstraints_{2:Nb_sample+1,1:Nb_sample}</code> is a upper triangular matrix.</p>
-<p>The user can also use <code><a href='SCMatrix.html'>SCMatrix</a></code> or <code><a href='SC_Ordered.html'>SC_Ordered</a></code> (if all samples are ordered) functions
-to construct the <code>StratiConstraints</code> matrix.</p>
-<p>The user can also refer to a .csv file that containts the relation between samples as defined above.
-The user must take care about the separator used in the csv file using the argument <code>sepSC</code>.<br /></p>
-<p><b>** More precision on <code>Model</code> **</b><br /></p>
-<p>We propose two models "full" or "naive". If <code>Model='full'</code> that means measurement error and error on calibration curve are taken account in
-the Bayesian model; if <code>Model="naive"</code> that means only error on measurement are taken account in the mode.</p>
-<p>More precisely, the model considered here, as the one developped by Christen, JA (1994), assume multiplicative effect of errors to address the
-problem of outliers. In addition, to not penalyse variables that are not outliers and damage theirs estimation,
-we introduce a structure of mixture, that means only variable that are considered as outlier have in addition a multiplicative error.</p>
-    
     <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
     <p>Please note that the initial values for all MCMC are currently all the same for all chains since we rely on the automatic
@@ -312,33 +287,33 @@ IntCal13 ans Marine13 radiocarbon age calibration curves 0-50000 years cal BP. R
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code>rjags</code>, <code><a href='plot_MCMC.html'>plot_MCMC</a></code>, <code><a href='SCMatrix.html'>SCMatrix</a></code></p></div>
+    <div class='dont-index'><p>rjags, <a href='plot_MCMC.html'>plot_MCMC</a>, <a href='SCMatrix.html'>SCMatrix</a>, <a href='plot_Ages.html'>plot_Ages</a></p></div>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'>## Load data</span>
 <span class='fu'>data</span>(<span class='no'>DATA_C14</span>,<span class='kw'>envir</span> <span class='kw'>=</span> <span class='fu'>environment</span>())
-<span class='no'>C14Cal</span><span class='kw'>=</span><span class='no'>DATA_C14</span>$<span class='no'>C14</span>[,<span class='fl'>1</span>]
-<span class='no'>SigmaC14Cal</span><span class='kw'>=</span><span class='no'>DATA_C14</span>$<span class='no'>C14</span>[,<span class='fl'>2</span>]
-<span class='no'>Names</span><span class='kw'>=</span><span class='no'>DATA_C14</span>$<span class='no'>Names</span>
-<span class='no'>nb_sample</span><span class='kw'>=</span><span class='fu'>length</span>(<span class='no'>Names</span>)
+<span class='no'>C14Cal</span> <span class='kw'>&lt;-</span> <span class='no'>DATA_C14</span>$<span class='no'>C14</span>[,<span class='fl'>1</span>]
+<span class='no'>SigmaC14Cal</span> <span class='kw'>&lt;-</span> <span class='no'>DATA_C14</span>$<span class='no'>C14</span>[,<span class='fl'>2</span>]
+<span class='no'>Names</span> <span class='kw'>&lt;-</span> <span class='no'>DATA_C14</span>$<span class='no'>Names</span>
+<span class='no'>nb_sample</span> <span class='kw'>&lt;-</span> <span class='fu'>length</span>(<span class='no'>Names</span>)
 
 <span class='co'>## Age computation of samples without stratigraphic relations</span>
 <span class='no'>Age</span> <span class='kw'>&lt;-</span> <span class='fu'>AgeC14_Computation</span>(
-<span class='kw'>Data_C14Cal</span> <span class='kw'>=</span> <span class='no'>C14Cal</span>,
-<span class='kw'>Data_SigmaC14Cal</span> <span class='kw'>=</span> <span class='no'>SigmaC14Cal</span>,
-<span class='kw'>SampleNames</span> <span class='kw'>=</span> <span class='no'>Names</span>,
-<span class='kw'>Nb_sample</span> <span class='kw'>=</span> <span class='no'>nb_sample</span>,
-<span class='kw'>PriorAge</span> <span class='kw'>=</span> <span class='fu'>rep</span>(<span class='fu'>c</span>(<span class='fl'>20000</span>,<span class='fl'>60000</span>),<span class='no'>nb_sample</span>),
-<span class='kw'>Iter</span> <span class='kw'>=</span> <span class='fl'>500</span>,
-<span class='kw'>quiet</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: [plot_MCMC()] 'n.iter' out of range, reset to number of observations</span></div><div class='img'><img src='AgeC14_Computation-1.png' alt='' width='700' height='433' /></div><div class='img'><img src='AgeC14_Computation-2.png' alt='' width='700' height='433' /></div><div class='img'><img src='AgeC14_Computation-3.png' alt='' width='700' height='433' /></div><div class='output co'>#&gt; <span class='warning'>Warning: [Age14_Computation()] Outliers detected in sample: S-EVA-26510, S-EVA-26506, S-EVA-26507, S-EVA-26508</span></div><div class='img'><img src='AgeC14_Computation-4.png' alt='' width='700' height='433' /></div><div class='output co'>#&gt; 
+ <span class='kw'>Data_C14Cal</span> <span class='kw'>=</span> <span class='no'>C14Cal</span>,
+ <span class='kw'>Data_SigmaC14Cal</span> <span class='kw'>=</span> <span class='no'>SigmaC14Cal</span>,
+ <span class='kw'>SampleNames</span> <span class='kw'>=</span> <span class='no'>Names</span>,
+ <span class='kw'>Nb_sample</span> <span class='kw'>=</span> <span class='no'>nb_sample</span>,
+ <span class='kw'>PriorAge</span> <span class='kw'>=</span> <span class='fu'>rep</span>(<span class='fu'>c</span>(<span class='fl'>20</span>,<span class='fl'>60</span>),<span class='no'>nb_sample</span>),
+ <span class='kw'>Iter</span> <span class='kw'>=</span> <span class='fl'>500</span>,
+ <span class='kw'>quiet</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: [plot_MCMC()] 'n.iter' out of range, reset to number of observations</span></div><div class='img'><img src='AgeC14_Computation-1.png' alt='' width='700' height='433' /></div><div class='img'><img src='AgeC14_Computation-2.png' alt='' width='700' height='433' /></div><div class='img'><img src='AgeC14_Computation-3.png' alt='' width='700' height='433' /></div><div class='img'><img src='AgeC14_Computation-4.png' alt='' width='700' height='433' /></div><div class='output co'>#&gt; 
 #&gt; 
 #&gt; &gt;&gt; MCMC Convergence of Age parameters &lt;&lt;
 #&gt; ----------------------------------------------
 #&gt; Sample name   Bayes estimate   Uppers credible interval
-#&gt; A_S-EVA-26510 	 1 		 1 
-#&gt; A_S-EVA-26506 	 1 		 1.01 
-#&gt; A_S-EVA-26507 	 1.02 		 1.08 
+#&gt; A_S-EVA-26510 	 1.01 		 1.02 
+#&gt; A_S-EVA-26506 	 1.02 		 1.07 
+#&gt; A_S-EVA-26507 	 1.02 		 1.03 
 #&gt; A_S-EVA-26508 	 1 		 1 
 #&gt; 
 #&gt; 
@@ -351,28 +326,28 @@ IntCal13 ans Marine13 radiocarbon age calibration curves 0-50000 years cal BP. R
 #&gt; &gt;&gt; Bayes estimates of Age for each sample and credible interval &lt;&lt;
 #&gt; ------------------------------------------------------
 #&gt; Sample name 	 Bayes estimate  Credible interval: 
-#&gt; A_S-EVA-26510 	 40233 
+#&gt; A_S-EVA-26510 	 42 
 #&gt; 						 lower bound 	 upper bound
-#&gt; 				 at level 95% 	 21266 		 58585 
-#&gt; 				 at level 68% 	 32891 		 59712 
+#&gt; 				 at level 95% 	 41 		 42 
+#&gt; 				 at level 68% 	 41 		 42 
 #&gt; ------------------------------------------------------
 #&gt; Sample name 	 Bayes estimate  Credible interval: 
-#&gt; A_S-EVA-26506 	 40946 
+#&gt; A_S-EVA-26506 	 47 
 #&gt; 						 lower bound 	 upper bound
-#&gt; 				 at level 95% 	 22566 		 59041 
-#&gt; 				 at level 68% 	 33794 		 59041 
+#&gt; 				 at level 95% 	 46 		 47 
+#&gt; 				 at level 68% 	 46 		 47 
 #&gt; ------------------------------------------------------
 #&gt; Sample name 	 Bayes estimate  Credible interval: 
-#&gt; A_S-EVA-26507 	 39370 
+#&gt; A_S-EVA-26507 	 46 
 #&gt; 						 lower bound 	 upper bound
-#&gt; 				 at level 95% 	 20628 		 57077 
-#&gt; 				 at level 68% 	 25249 		 51753 
+#&gt; 				 at level 95% 	 44 		 47 
+#&gt; 				 at level 68% 	 45 		 46 
 #&gt; ------------------------------------------------------
 #&gt; Sample name 	 Bayes estimate  Credible interval: 
-#&gt; A_S-EVA-26508 	 40034 
+#&gt; A_S-EVA-26508 	 46 
 #&gt; 						 lower bound 	 upper bound
-#&gt; 				 at level 95% 	 21519 		 57717 
-#&gt; 				 at level 68% 	 26390 		 51033 
+#&gt; 				 at level 95% 	 44 		 47 
+#&gt; 				 at level 68% 	 45 		 46 
 #&gt; 
 #&gt; ------------------------------------------------------</div><div class='img'><img src='AgeC14_Computation-5.png' alt='' width='700' height='433' /></div><div class='img'><img src='AgeC14_Computation-6.png' alt='' width='700' height='433' /></div><div class='input'>
 </div></pre>
@@ -383,8 +358,6 @@ IntCal13 ans Marine13 radiocarbon age calibration curves 0-50000 years cal BP. R
       <li><a href="#arguments">Arguments</a></li>
       
       <li><a href="#value">Value</a></li>
-
-      <li><a href="#details">Details</a></li>
 
       <li><a href="#note">Note</a></li>
 
@@ -397,7 +370,7 @@ IntCal13 ans Marine13 radiocarbon age calibration curves 0-50000 years cal BP. R
 
     <h2>Author</h2>
     
-Claire Christophe, Anne Philippe, Guillaume Guérin
+Claire Christophe, Anne Philippe, Guillaume Guérin, Sebastian Kreutzer
 
   </div>
 </div>

@@ -1,6 +1,6 @@
-#' Create age plot
+#' @title Create age plot
 #'
-#' This function creates an age plot showing the mean ages along with the credible intervals. The function
+#' @details This function creates an age plot showing the mean ages along with the credible intervals. The function
 #' provides various arguments to modify the plot output, however, for an ultimate control the function returns
 #' the [data.frame] extracted from the input object for own plots.
 #'
@@ -10,7 +10,8 @@
 #' also be used to resort the samples in a specific order. If the length of the provided [character] vector
 #' is shorter than the real number of samples, the names are recycled.
 #'
-#' @param ... further arguments to control the plot output, standard arguments are: `cex`, `xlim`, `main`, `xlab`, `col` further (non-standard) arguments
+#' @param ... further arguments to control the plot output,
+#' standard arguments are: `cex`, `xlim`, `main`, `xlab`, `col` further (non-standard) arguments
 #' are: `grid` (`TRUE`/`FALSE`), `legend` (`TRUE`/`FALSE`), `legend.text` ([character] input needed), `legend.pos` [graphics::legend]
 #'
 #' @return
