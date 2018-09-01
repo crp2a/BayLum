@@ -22,7 +22,8 @@ test_that("Full function test", {
     quiet = TRUE)
 
   ##test function input
-  expect_error(plot_Ages(object = "list"), regexp = "Error: [plot_Ages()] Wrong input, only objects of type 'BayLum.list' are allowed. Please check the manual!")
+  expect_error(plot_Ages(object = "list"),
+               regexp = "Wrong input, only objects of type 'BayLum.list' are allowed. Please check the manual!")
 
   ##test reguarl output
   expect_is(plot_Ages(Age), class = "data.frame")
