@@ -3,7 +3,7 @@
 ### New functions
 * `plot_Ages()` this function replaces code used internally by the functions `AgeC14_Compution()` and `AgeS_Computation()`
  to create an age overview plot. Before the user had no control over the appearance of age plot output. This is still the 
- case if the functions `AgeC14_Compution()` and `AgeS_Computation()` are used (although internally only the function `plot_Ages()` is called), 
+ case if the functions `AgeC14_Compution()`, `AgeS_Computation()` and `Age_OSLC14()` are used (although internally only the function `plot_Ages()` is called), 
  however, both functions now return a new list of class `BayLum.list` which is recognised by the function `plot_Ages()` and can be used to plot the typical age plot while providing several arguments for adjusting the plot output. 
 
 ### Bugfixes
