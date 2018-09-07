@@ -17,7 +17,7 @@
 #' @param n.chains [integer] (*with default*): allows to limit the number of chains shown,
 #' by default the results of all chains are plotted.
 #'
-#' @param ... further arguments to control the plot output, supported are `main`, `xlab`, `colramp`, `pscales`
+#' @param ... further arguments to control the plot output, supported are `main`, `xlab`, `ylab`, `colramp`, `pscales`
 #'
 #' @return
 #' A scatter plot based on [hexbin::hexplom]

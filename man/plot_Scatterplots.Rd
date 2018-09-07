@@ -26,7 +26,7 @@ three samples}
 \item{n.chains}{\link{integer} (\emph{with default}): allows to limit the number of chains shown,
 by default the results of all chains are plotted.}
 
-\item{...}{further arguments to control the plot output, supported are \code{main}, \code{xlab}, \code{colramp}, \code{pscales}}
+\item{...}{further arguments to control the plot output, supported are \code{main}, \code{xlab}, \code{ylab}, \code{colramp}, \code{pscales}}
 }
 \value{
 A scatter plot based on \link[hexbin:hexplom]{hexbin::hexplom}
@@ -34,6 +34,10 @@ A scatter plot based on \link[hexbin:hexplom]{hexbin::hexplom}
 \description{
 Create a hexbin plot matrix (\link[hexbin:hexplom]{hexbin::hexplom}) of age results returned by the bayesian age calculation.
 }
+\section{Function version}{
+ 0.1.0
+}
+
 \examples{
 data(AgeS,envir = environment())
 plot_Scatterplots(

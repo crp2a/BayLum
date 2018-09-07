@@ -85,7 +85,8 @@ echo ""
 echo "[CHECK PACKAGE]"
 echo ""
 
-  eval R CMD check --timings --as-cran ${PATHPACKAGE}/BayLum*.tar.gz
+  ##eval R CMD check --timings --as-cran ${PATHPACKAGE}/BayLum*.tar.gz
+  eval R CMD check --timings ${PATHPACKAGE}/BayLum*.tar.gz
 
 #
 # INSTALL PACKAGE
