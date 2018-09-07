@@ -22,6 +22,8 @@
 #' @return
 #' A scatter plot based on [hexbin::hexplom]
 #'
+#' @section Function version: 0.1.0
+#'
 #' @author Sebastian Kreutzer, IRAMAT-CRP2A, UMR 5060, CNRS - Université Bordeaux Montaigne (France), based on the
 #' function `ScatterSamples()` by Claire Christophe, Anne Philippe, Guillaume Guérin
 #'
@@ -132,6 +134,7 @@ plot_Scatterplots <- function(
   # # Plot output ---------------------------------------------------------------------------------
   plot_settings <- list(
     xlab = "Age (ka)",
+    ylab = "Age (ka)",
     colramp = function(n) terrain.colors(n),
     pscales = 3,
     main = "Scatter Plots"
@@ -146,6 +149,7 @@ plot_Scatterplots <- function(
     x = m,
     upper.panel = NULL,
     xlab = plot_settings$xlab,
+    ylab = plot_settings$ylab,
     pscales = plot_settings$pscales,
     colramp = plot_settings$colramp,
     main = plot_settings$main
