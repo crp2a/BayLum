@@ -13,3 +13,5 @@ codecov.yml
 ^docs$
 _pkgdown.yml
 ^_pkgdown\.yml$
+cran-comments.md
+cran-comments.html
