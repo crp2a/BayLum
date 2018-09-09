@@ -14,8 +14,9 @@ test_that("Full function test", {
   expect_error(plot_Scatterplots(object = AgeS$Sampling, variables = c("B")),
                regexp = " Invalid 'variables', they did not match your dataset. Variable names of your dataset: A, D, sD.")
 
-  ##run function usual
+  ##run function usual cases
   expect_silent(plot_Scatterplots(object = AgeS$Sampling))
+  expect_silent(plot_Scatterplots(object = AgeS$Sampling, plot_type = "smoothScatter"))
   expect_warning(plot_Scatterplots(object = AgeS$Sampling, sample_names = "1"),
                  regexp = "length of 'sample_names' shorter than the number of samples; default values used!")
   expect_warning(plot_Scatterplots(object = AgeS$Sampling, sample_selection = 1:100),
