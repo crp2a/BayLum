@@ -25,6 +25,7 @@ Imports:
   grDevices, 
   methods, 
   hexbin, 
+  KernSmooth,
   rjags (>= 4-6),
   Luminescence (>= 0.8.2), 
   ArchaeoPhases

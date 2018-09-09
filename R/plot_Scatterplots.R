@@ -17,12 +17,16 @@
 #' @param n.chains [integer] (*with default*): allows to limit the number of chains shown,
 #' by default the results of all chains are plotted.
 #'
+#' @param plot_type [character] (*with default*): switch between different plot types, `"hexbin"` (the default), based on
+#' the function [hexbin::hexplom] and `smoothScatter` (the alternative) based on a highly customised plot function using the
+#' function [graphics::smoothScatter]
+#'
 #' @param ... further arguments to control the plot output, supported are `main`, `xlab`, `ylab`, `colramp`, `pscales`
 #'
 #' @return
 #' A scatter plot based on [hexbin::hexplom]
 #'
-#' @section Function version: 0.1.0
+#' @section Function version: 0.2.0
 #'
 #' @author Sebastian Kreutzer, IRAMAT-CRP2A, UMR 5060, CNRS - Université Bordeaux Montaigne (France), based on the
 #' function `ScatterSamples()` by Claire Christophe, Anne Philippe, Guillaume Guérin
@@ -46,6 +50,7 @@ plot_Scatterplots <- function(
   sample_names = NULL,
   sample_selection = NULL,
   n.chains = NULL,
+  plot_type = "hexbin",
   ...
 ){
 
@@ -132,6 +137,10 @@ plot_Scatterplots <- function(
 
 
   # # Plot output ---------------------------------------------------------------------------------
+  ##make sure we do not screw up the par settings
+  par.default <- par(no.readonly = TRUE)
+  on.exit(par(par.default))
+
   plot_settings <- list(
     xlab = "Age (ka)",
     ylab = "Age (ka)",
@@ -145,15 +154,222 @@ plot_Scatterplots <- function(
   plot_settings <- modifyList(x = plot_settings, val = list(...))
 
   ##create plot
-  hexbin::hexplom(
-    x = m,
-    upper.panel = NULL,
-    xlab = plot_settings$xlab,
-    ylab = plot_settings$ylab,
-    pscales = plot_settings$pscales,
-    colramp = plot_settings$colramp,
-    main = plot_settings$main
-  )
+  if(plot_type == 'hexbin'){
+    hexbin::hexplom(
+      x = m,
+      upper.panel = NULL,
+      xlab = plot_settings$xlab,
+      ylab = plot_settings$ylab,
+      pscales = plot_settings$pscales,
+      colramp = plot_settings$colramp,
+      main = plot_settings$main
+    )
+
+
+  }else{
+
+    ###++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    ###BayLum scatter plot function
+    ###++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+    ###(0) extract datasets
+    ##get possible combinations of the dataset
+    cmb <- combn(colnames(m), m = 2)
+
+    ##create list of matricies with that combinations
+    data_list <- lapply(1:ncol(cmb), function(x){
+      return(m[,cmb[,x]])
+
+    })
+
+    ###(1) create plot matrix
+    ###CREATE GRID MATRIX
+      n <- ncol(m)
+      name <- rep(sample_names,n)
+
+      ##set prototype grid matrix with index
+      m <- matrix(1:n^2, ncol = n, nrow = n, byrow = TRUE)
+
+      ##reshuffle matrix, otherwise we get always the opposite
+      m_re <- m[1:nrow(m),ncol(m):1]
+
+      ##identify all diagonal members
+      m_diag <- diag(m_re)
+
+      ##identify upper triangle
+      m_upper <- sort(m_re[upper.tri(m_re)])
+
+      ##identify lower triangle
+      m_lower <- sort(m_re[lower.tri(m_re)])
+
+      ##get subdiagonal members, only this will have axis labelling
+      m_diag_sub <- m_diag[2:length(m_diag)] + 1
+
+
+      ###(2) - SET PROTOYPE FUNCTIONS
+      ##PLOT 1 - EMPTY PLOT
+      empty_plot <- function(){
+        plot(NA,NA,xlim = c(0,1), ylim = c(0,1), xlab = "", ylab = "", xaxt = "n", yaxt = "n")
+
+      }
+
+      ##PLOT 2 - NAME PLOT
+      name_plot <- function(data, name, xdens = TRUE, ydens = TRUE){
+        ##define transfer function
+        transfer <- function(x, max_scale){
+          n <- min(x)
+          m <- (max(x) - n) / max_scale
+          return((x - n)/m)
+
+        }
+
+        ##create plot area
+        plot(NA,NA,xlim = c(0,1), ylim = c(0,1), xlab = "", ylab = "", xaxt = "n", yaxt = "n")
+
+        ##calculate density
+        density1 <- density(data[,2])
+        density2 <- density(data[,1])
+
+        ##draw density lines
+        if(xdens){
+          lines(x = transfer(density1$x, max_scale = 1),
+                y = transfer(density1$y, max_scale = 0.2), col = "gray")
+
+        }
+
+        if(ydens){
+          lines(y = transfer(density2$x, max_scale = 1),
+                x = 1 - transfer(density2$y, max_scale = 0.2),
+                col = "gray")
+
+        }
+
+        ##add sample name
+        text(x = 0.5, y = 0.5, labels = name, cex = 1.5)
+
+      }
+
+      ##PLOT 3 - SCATTER PLOT
+      scatter_plot <- function(data, xaxt = TRUE, yaxt = TRUE, xrug = TRUE, yrug = TRUE){
+        smoothScatter(
+          x = data[, 2],
+          y = data[, 1],
+          bandwidth = 0.8,
+          xlab = "",
+          ylab = "",
+          xaxt = "n",
+          yaxt = "n"
+        )
+
+        ##get information from the kernel smoother and than create contour lines
+        con <- KernSmooth::bkde2D(data, bandwidth = 0.8)
+        contour(x = con$x2, y = con$x1, z = con$fhat, add = TRUE)
+
+        ##add rug
+        if(xrug)
+          rug(x = data[,2], side = 3)
+
+        if(yrug)
+          rug(x = data[,1], side = 2)
+
+
+        ##add x-axis above
+        if(xaxt){
+          at <- axTicks(1)
+          at <- at[-c(1,length(at))]
+          axis(side = 3, at = at, labels = NULL)
+
+        }
+
+        ##add y-axis above
+        if(yaxt){
+          at <- axTicks(2)
+          at <- at[-c(1,length(at))]
+          axis(side = 2, at = at, labels = NULL)
+
+        }
+
+      }
+
+      ###PLOT
+      ##set par
+      par(mfrow = c(n,n), mar = c(0,0,0,0), oma = c(4,4,3,3))
+
+      ##now we have to create all the plots and then decide what
+      ##needs to be plotted when
+      ##set plot counter
+      p <- 1
+
+      ##START LOOP
+      for(i in 1:n^2){
+        ##(A) plot empty plots
+        if(i %in% m_upper)
+          empty_plot()
+
+        ##(B) plot diagonale plots
+        if(i %in% m_diag){
+
+          ##do not plot density for the first and the last, otherwise it looks odd
+          if(i %in% m_diag[1]){
+            name_plot(data = data_list[[p]], name = name[i], ydens = FALSE)
+
+          }else if(i %in% m_diag[length(m_diag)]){
+            name_plot(data = data_list[[p]], name = name[i], xdens = FALSE)
+
+          }else{
+            name_plot(data = data_list[[p]], name = name[i])
+
+          }
+
+
+        }
+
+
+        ##(C) plot scatter plot
+        ## (here we have to decide whether the axis is plotted or not)
+        if(i %in% m_lower){
+          if(i %in% m_diag_sub){
+            xaxt = TRUE
+            yaxt = TRUE
+            xrug = TRUE
+            yrug = TRUE
+
+          }else{
+            xaxt = FALSE
+            yaxt = FALSE
+            xrug = FALSE
+            yrug = FALSE
+
+          }
+
+          ##plot
+          scatter_plot(
+            data = data_list[[p]],
+            xaxt = xaxt,
+            yaxt = yaxt,
+            xrug = xrug,
+            yrug = yrug
+          )
+
+          ##update counter
+          p <- p + 1
+
+        }
+
+        ##add axis labelling
+        mtext(plot_settings$xlab, side = 1, outer = TRUE, line = 1,cex = 0.8)
+        mtext(plot_settings$ylab, side = 2, outer = TRUE, line = 1,cex = 0.8)
+
+        ##add main
+        mtext(plot_settings$main, side = 3, outer = TRUE, line = 1)
+
+
+      }
+
+
+
+
+  }
 
 }
 

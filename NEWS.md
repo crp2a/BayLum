@@ -6,7 +6,7 @@
  case if the functions `AgeC14_Compution()`, `AgeS_Computation()` and `Age_OSLC14()` are used (although internally only the function `plot_Ages()` is called), 
  however, both functions now return a new list of class `BayLum.list` which is recognised by the function `plot_Ages()` and can be used to plot the typical age plot while providing several arguments for adjusting the plot output. 
 
-### Bugfixes
+### Bugfixes & changes
 * The newly introduced function combine_DataFiles() did not work on R < 3.5.0, which caused an 
 error on CRAN; fixed.
 * The function `ScatterSamples()` is replaced by the function `plot_Scatterplots()`
@@ -14,7 +14,12 @@ error on CRAN; fixed.
 * The output of `AgeC14_Compution()` and `AgeS_Computation()` gain a new class `BayLum.list`
 * Redundant code in `AgeC14_Compution()` and `AgeS_Computation()` has been removed 
 * The argument `Nb_chaines` was replaced by `n.chains` wherever it occured in the package (functions and documentation)
+* The function `plot_Scatterplots()` got a new argument `plot_type`, allowing to switch between the default hexbin plot and 
+a function developed for 'BayLum` (`plot_type = "smoothScatter"`)
 
+
+### Internals
+* Add new package dependency `KernSmooth` used in `plot_Scatterplots()`
 
 ## BayLum 0.1.2 (Release date: 2018-06-22)
 

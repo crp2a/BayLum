@@ -6,7 +6,8 @@
 \title{Display Scatter Plot Matrix of the Bayesian Age Results}
 \usage{
 plot_Scatterplots(object, variables = c("A"), sample_names = NULL,
-  sample_selection = NULL, n.chains = NULL, ...)
+  sample_selection = NULL, n.chains = NULL, plot_type = "hexbin",
+  ...)
 
 ScatterSamples(...)
 }
@@ -26,6 +27,10 @@ three samples}
 \item{n.chains}{\link{integer} (\emph{with default}): allows to limit the number of chains shown,
 by default the results of all chains are plotted.}
 
+\item{plot_type}{\link{character} (\emph{with default}): switch between different plot types, \code{"hexbin"} (the default), based on
+the function \link[hexbin:hexplom]{hexbin::hexplom} and \code{smoothScatter} (the alternative) based on a highly customised plot function using the
+function \link[graphics:smoothScatter]{graphics::smoothScatter}}
+
 \item{...}{further arguments to control the plot output, supported are \code{main}, \code{xlab}, \code{ylab}, \code{colramp}, \code{pscales}}
 }
 \value{
@@ -35,7 +40,7 @@ A scatter plot based on \link[hexbin:hexplom]{hexbin::hexplom}
 Create a hexbin plot matrix (\link[hexbin:hexplom]{hexbin::hexplom}) of age results returned by the bayesian age calculation.
 }
 \section{Function version}{
- 0.1.0
+ 0.2.0
 }
 
 \examples{
