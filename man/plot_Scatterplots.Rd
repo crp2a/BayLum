@@ -31,13 +31,35 @@ by default the results of all chains are plotted.}
 the function \link[hexbin:hexplom]{hexbin::hexplom} and \code{smoothScatter} (the alternative) based on a highly customised plot function using the
 function \link[graphics:smoothScatter]{graphics::smoothScatter}}
 
-\item{...}{further arguments to control the plot output, supported are \code{main}, \code{xlab}, \code{ylab}, \code{colramp}, \code{pscales}}
+\item{...}{further arguments to control the plot output, standard plot arguments supported are \code{main}, \code{xlab}, \code{ylab}. For additional
+arguments supporting a fine tuning of the plot, see details.}
 }
 \value{
 A scatter plot based on \link[hexbin:hexplom]{hexbin::hexplom}
 }
 \description{
 Create a hexbin plot matrix (\link[hexbin:hexplom]{hexbin::hexplom}) of age results returned by the bayesian age calculation.
+}
+\details{
+\strong{Addtional supported plot arguments}\cr
+
+The following table lists additional arguments supported by the function in order to fine tune the
+graphical output. Such arguments, can just be added in the function call. Example, for disabling
+the \link[graphics:rug]{graphics::rug} in the plot mode \code{smoothScatter} you can type \code{plot_Scatterplots(..., rug = FALSE)}
+Please note that not all arguments are supported by all plot types.
+
+\tabular{lll}{
+\strong{ARGUMENT} \tab \strong{SUPPORTED BY PLOT TYPE} \tab \strong{DESCRIPTION} \cr
+\code{colramp} \tab \code{hexbin} and \code{smoothScatter} \tab Option to define an own colour ramp, by defining an own function, e.g., \code{function(n) heat.colors(n, alpha = 1)}. \cr
+\code{pscales} \tab \code{hexbin} and \code{smoothScatter} \tab Controls the number of ticks shown on the plot axes, please note that the number works proportionally. \cr
+\code{bw_smoothScatter} \tab \code{smoothScatter} \tab Controls the bandwith of the smooth scatter, cf. \link[graphics:smoothScatter]{graphics::smoothScatter} \cr
+\code{rug} \tab \code{smoothScatter} \tab enables/disables rugs \cr
+\code{nlevels} \tab \code{smoothScatter} \tab controls the number of isolines shown (cf. \link[graphics:contour]{graphics::contour}) \cr
+\code{nrpoints} \tab \code{smoothScatter} \tab defines the number of \code{nrpoints} to be plotted \link[graphics:smoothScatter]{graphics::smoothScatter} \cr
+\code{col_contour} \tab \code{smoothScatter} \tab defines the colour of the contour lines \cr
+\code{col_nrpoints} \tab \code{smoothScatter} \tab sets colour of the nrpoints in the scatter plot
+
+}
 }
 \section{Function version}{
  0.2.0
