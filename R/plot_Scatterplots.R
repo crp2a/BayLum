@@ -190,8 +190,8 @@ plot_Scatterplots <- function(
     rug = TRUE,
     cex = 1.0,
     nrpoints = 100,
-    col_nrpoints = "black",
-    col_contour = "white"
+    col_nrpoints = "darkgray",
+    col_contour = "black"
 
   )
 
