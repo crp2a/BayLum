@@ -125,7 +125,8 @@
     </div>
 
     <pre class="usage"><span class='fu'>plot_Scatterplots</span>(<span class='no'>object</span>, <span class='kw'>variables</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"A"</span>), <span class='kw'>sample_names</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>sample_selection</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>n.chains</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>...</span>)
+  <span class='kw'>sample_selection</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>n.chains</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>plot_type</span> <span class='kw'>=</span> <span class='st'>"hexbin"</span>,
+  <span class='no'>...</span>)
 
 <span class='fu'>ScatterSamples</span>(<span class='no'>...</span>)</pre>
     
@@ -158,14 +159,44 @@ three samples</p></td>
 by default the results of all chains are plotted.</p></td>
     </tr>
     <tr>
+      <th>plot_type</th>
+      <td><p>character (<em>with default</em>): switch between different plot types, <code>"hexbin"</code> (the default), based on
+the function <a href='http://www.rdocumentation.org/packages/hexbin/topics/hexplom'>hexbin::hexplom</a> and <code>smoothScatter</code> (the alternative) based on a highly customised plot function using the
+function <a href='http://www.rdocumentation.org/packages/graphics/topics/smoothScatter'>graphics::smoothScatter</a></p></td>
+    </tr>
+    <tr>
       <th>...</th>
-      <td><p>further arguments to control the plot output, supported are <code>main</code>, <code>xlab</code>, <code>colramp</code>, <code>pscales</code></p></td>
+      <td><p>further arguments to control the plot output, standard plot arguments supported are <code>main</code>, <code>xlab</code>, <code>ylab</code>. For additional
+arguments supporting a fine tuning of the plot, see details.</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>A scatter plot based on <a href='http://www.rdocumentation.org/packages/hexbin/topics/hexplom'>hexbin::hexplom</a></p>
+    
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p><strong>Addtional supported plot arguments</strong><br /></p>
+<p>The following table lists additional arguments supported by the function in order to fine tune the
+graphical output. Such arguments, can just be added in the function call. Example, for disabling
+the <a href='http://www.rdocumentation.org/packages/graphics/topics/rug'>graphics::rug</a> in the plot mode <code>smoothScatter</code> you can type <code>plot_Scatterplots(..., rug = FALSE)</code>
+Please note that not all arguments are supported by all plot types.</p>
+<table class='table'>
+<tr><td><strong>ARGUMENT</strong></td><td><strong>SUPPORTED BY PLOT TYPE</strong></td><td><strong>DESCRIPTION</strong></td></tr>
+<tr><td><code>colramp</code></td><td><code>hexbin</code> and <code>smoothScatter</code></td><td>Option to define an own colour ramp, by defining an own function, e.g., <code>function(n) heat.colors(n, alpha = 1)</code>.</td></tr>
+<tr><td><code>pscales</code></td><td><code>hexbin</code> and <code>smoothScatter</code></td><td>Controls the number of ticks shown on the plot axes, please note that the number works proportionally.</td></tr>
+<tr><td><code>bw_smoothScatter</code></td><td><code>smoothScatter</code></td><td>Controls the bandwith of the smooth scatter, cf. <a href='http://www.rdocumentation.org/packages/graphics/topics/smoothScatter'>graphics::smoothScatter</a></td></tr>
+<tr><td><code>rug</code></td><td><code>smoothScatter</code></td><td>enables/disables rugs</td></tr>
+<tr><td><code>nlevels</code></td><td><code>smoothScatter</code></td><td>controls the number of isolines shown (cf. <a href='http://www.rdocumentation.org/packages/graphics/topics/contour'>graphics::contour</a>)</td></tr>
+<tr><td><code>nrpoints</code></td><td><code>smoothScatter</code></td><td>defines the number of <code>nrpoints</code> to be plotted <a href='http://www.rdocumentation.org/packages/graphics/topics/smoothScatter'>graphics::smoothScatter</a></td></tr>
+<tr><td><code>col_contour</code></td><td><code>smoothScatter</code></td><td>defines the colour of the contour lines</td></tr>
+<tr><td><code>col_nrpoints</code></td><td><code>smoothScatter</code></td><td>sets colour of the nrpoints in the scatter plot</td></tr>
+</table>
+    
+    <h2 class="hasAnchor" id="function-version"><a class="anchor" href="#function-version"></a>Function version</h2>
+
+    <p>0.2.0</p>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
@@ -175,11 +206,19 @@ and rjags packages.</p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'>data</span>(<span class='no'>AgeS</span>,<span class='kw'>envir</span> <span class='kw'>=</span> <span class='fu'>environment</span>())
+
+<span class='co'>##hexbin</span>
 <span class='fu'>plot_Scatterplots</span>(
    <span class='kw'>object</span> <span class='kw'>=</span> <span class='no'>AgeS</span>$<span class='no'>Sampling</span>,
    <span class='kw'>sample_names</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"GDB5"</span>, <span class='st'>"GDB3"</span>),
    <span class='kw'>sample_selection</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>1</span>,<span class='fl'>2</span>)
  )</div><div class='img'><img src='plot_Scatterplots-1.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='co'>##scatter smooth</span>
+<span class='fu'>plot_Scatterplots</span>(
+   <span class='kw'>object</span> <span class='kw'>=</span> <span class='no'>AgeS</span>$<span class='no'>Sampling</span>,
+   <span class='kw'>sample_names</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"GDB5"</span>, <span class='st'>"GDB3"</span>),
+   <span class='kw'>sample_selection</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>1</span>,<span class='fl'>2</span>),
+   <span class='kw'>plot_type</span> <span class='kw'>=</span> <span class='st'>"smoothScatter"</span>)</div><div class='img'><img src='plot_Scatterplots-2.png' alt='' width='700' height='433' /></div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
@@ -188,6 +227,10 @@ and rjags packages.</p></div>
       <li><a href="#arguments">Arguments</a></li>
       
       <li><a href="#value">Value</a></li>
+
+      <li><a href="#details">Details</a></li>
+
+      <li><a href="#function-version">Function version</a></li>
 
       <li><a href="#see-also">See also</a></li>
       

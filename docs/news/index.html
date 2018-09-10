@@ -125,9 +125,9 @@
 <code><a href="../reference/plot_Ages.html">plot_Ages()</a></code> this function replaces code used internally by the functions <code>AgeC14_Compution()</code> and <code><a href="../reference/AgeS_Computation.html">AgeS_Computation()</a></code> to create an age overview plot. Before the user had no control over the appearance of age plot output. This is still the case if the functions <code>AgeC14_Compution()</code>, <code><a href="../reference/AgeS_Computation.html">AgeS_Computation()</a></code> and <code><a href="../reference/Age_OSLC14.html">Age_OSLC14()</a></code> are used (although internally only the function <code><a href="../reference/plot_Ages.html">plot_Ages()</a></code> is called), however, both functions now return a new list of class <code>BayLum.list</code> which is recognised by the function <code><a href="../reference/plot_Ages.html">plot_Ages()</a></code> and can be used to plot the typical age plot while providing several arguments for adjusting the plot output.</li>
 </ul>
 </div>
-<div id="bugfixes" class="section level3">
+<div id="bugfixes-changes" class="section level3">
 <h3 class="hasAnchor">
-<a href="#bugfixes" class="anchor"></a>Bugfixes</h3>
+<a href="#bugfixes-changes" class="anchor"></a>Bugfixes &amp; changes</h3>
 <ul>
 <li>The newly introduced function combine_DataFiles() did not work on R &lt; 3.5.0, which caused an error on CRAN; fixed.</li>
 <li>The function <code><a href="../reference/plot_Scatterplots.html">ScatterSamples()</a></code> is replaced by the function <code><a href="../reference/plot_Scatterplots.html">plot_Scatterplots()</a></code>
@@ -137,6 +137,15 @@
 </li>
 <li>Redundant code in <code>AgeC14_Compution()</code> and <code><a href="../reference/AgeS_Computation.html">AgeS_Computation()</a></code> has been removed</li>
 <li>The argument <code>Nb_chaines</code> was replaced by <code>n.chains</code> wherever it occured in the package (functions and documentation)</li>
+<li>The function <code><a href="../reference/plot_Scatterplots.html">plot_Scatterplots()</a></code> got a new argument <code>plot_type</code>, allowing to switch between the default hexbin plot and a function developed for ’BayLum<code>(</code>plot_type = “smoothScatter”`)</li>
+</ul>
+</div>
+<div id="internals" class="section level3">
+<h3 class="hasAnchor">
+<a href="#internals" class="anchor"></a>Internals</h3>
+<ul>
+<li>Add new package dependency <code>KernSmooth</code> used in <code><a href="../reference/plot_Scatterplots.html">plot_Scatterplots()</a></code>
+</li>
 </ul>
 </div>
 </div>
@@ -153,9 +162,9 @@
 </li>
 </ul>
 </div>
-<div id="bugfixes-1" class="section level3">
+<div id="bugfixes" class="section level3">
 <h3 class="hasAnchor">
-<a href="#bugfixes-1" class="anchor"></a>Bugfixes</h3>
+<a href="#bugfixes" class="anchor"></a>Bugfixes</h3>
 <ul>
 <li>The functions <code>AgeC14_Compution()</code> and <code>Age_OSL14()</code> now returns age results with two digits</li>
 <li>The function <code><a href="../reference/AgeS_Computation.html">AgeS_Computation()</a></code> now returns the MCMC information from all samples of the PDF output is set to <code>TRUE</code>
@@ -180,9 +189,9 @@
 <li>The function <code><a href="../reference/LT_RegenDose.html">LT_RegenDose()</a></code> gained two new arguments <code>nrow</code> and <code>ncol</code> became a little bit more user friendly</li>
 </ul>
 </div>
-<div id="internals" class="section level3">
+<div id="internals-1" class="section level3">
 <h3 class="hasAnchor">
-<a href="#internals" class="anchor"></a>Internals</h3>
+<a href="#internals-1" class="anchor"></a>Internals</h3>
 <ul>
 <li>Set patch level to 0 (for 3.3.0) to account for CRAN note</li>
 <li>Vignette was updated and corrected</li>
