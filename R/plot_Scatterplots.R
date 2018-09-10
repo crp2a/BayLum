@@ -60,11 +60,20 @@
 #'
 #' @examples
 #' data(AgeS,envir = environment())
+#'
+#' ##hexbin
 #' plot_Scatterplots(
 #'    object = AgeS$Sampling,
 #'    sample_names = c("GDB5", "GDB3"),
 #'    sample_selection = c(1,2)
 #'  )
+#'
+#' ##scatter smooth
+#' plot_Scatterplots(
+#'    object = AgeS$Sampling,
+#'    sample_names = c("GDB5", "GDB3"),
+#'    sample_selection = c(1,2),
+#'    plot_type = "smoothScatter")
 #'
 #' @md
 #' @export
