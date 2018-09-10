@@ -141,18 +141,24 @@ plot_Scatterplots <- function(
   par.default <- par(no.readonly = TRUE)
   on.exit(par(par.default))
 
+  ##set plot settings
   plot_settings <- list(
     xlab = "Age (ka)",
     ylab = "Age (ka)",
     colramp = function(n) terrain.colors(n),
     pscales = 3,
-    main = "Scatter Plots"
+    main = "Scatter Plots",
+    bw_smoothScatter = 0.8, #bandwidth of for smooth Scatter ##TODO DOKU
+    rug = TRUE ##TODO DOKO
 
   )
 
   ##reset list on demand
   plot_settings <- modifyList(x = plot_settings, val = list(...))
 
+  ###++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+  ###hexbin scatter plot
+  ###++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
   ##create plot
   if(plot_type == 'hexbin'){
     hexbin::hexplom(
@@ -167,7 +173,6 @@ plot_Scatterplots <- function(
 
 
   }else{
-
     ###++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     ###BayLum scatter plot function
     ###++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -182,7 +187,7 @@ plot_Scatterplots <- function(
 
     })
 
-    ###(1) create plot matrix
+    ###(1) create plot matrix+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     ###CREATE GRID MATRIX
       n <- ncol(m)
       name <- rep(sample_names,n)
@@ -206,22 +211,21 @@ plot_Scatterplots <- function(
       m_diag_sub <- m_diag[2:length(m_diag)] + 1
 
 
-      ###(2) - SET PROTOYPE FUNCTIONS
-      ##PLOT 1 - EMPTY PLOT
-      empty_plot <- function(){
+    ###(2) - SET PROTOYPE FUNCTIONS+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    ##PLOT 1 - EMPTY PLOT
+    empty_plot <- function(){
         plot(NA,NA,xlim = c(0,1), ylim = c(0,1), xlab = "", ylab = "", xaxt = "n", yaxt = "n")
 
+    }
+
+    ##PLOT 2 - NAME PLOT +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    name_plot <- function(data, name, xdens = TRUE, ydens = TRUE){
+      ##define transfer function
+      transfer <- function(x, max_scale){
+        n <- min(x)
+        m <- (max(x) - n) / max_scale
+        return((x - n)/m)
       }
-
-      ##PLOT 2 - NAME PLOT
-      name_plot <- function(data, name, xdens = TRUE, ydens = TRUE){
-        ##define transfer function
-        transfer <- function(x, max_scale){
-          n <- min(x)
-          m <- (max(x) - n) / max_scale
-          return((x - n)/m)
-
-        }
 
         ##create plot area
         plot(NA,NA,xlim = c(0,1), ylim = c(0,1), xlab = "", ylab = "", xaxt = "n", yaxt = "n")
@@ -230,17 +234,33 @@ plot_Scatterplots <- function(
         density1 <- density(data[,2])
         density2 <- density(data[,1])
 
-        ##draw density lines
+        ##draw density polygones
+        ##marginal density on the xaxis
         if(xdens){
-          lines(x = transfer(density1$x, max_scale = 1),
-                y = transfer(density1$y, max_scale = 0.2), col = "gray")
+          x <- transfer(density1$x, max_scale = 1)
+          y <- transfer(density1$y, max_scale = 0.25) + par()$usr[1]
+
+          polygon(
+            x = c(x, rev(x)),
+            y = c(y, rep(par()$usr[1], length(x))),
+            col = rgb(0,0,0,0.1),
+            border = "darkgray"
+            )
+
 
         }
 
+        ##marginal density y-axis
         if(ydens){
-          lines(y = transfer(density2$x, max_scale = 1),
-                x = 1 - transfer(density2$y, max_scale = 0.2),
-                col = "gray")
+          x <- 1 - transfer(density2$y, max_scale = 0.25) - par()$usr[1]
+          y <- transfer(density2$x, max_scale = 1)
+
+          polygon(
+            x = c(x, rev(x)),
+            y = c(y, rep(par()$usr[1], length(x))),
+            col = rgb(0,0,0,0.1),
+            border = "darkgray"
+            )
 
         }
 
@@ -254,23 +274,24 @@ plot_Scatterplots <- function(
         smoothScatter(
           x = data[, 2],
           y = data[, 1],
-          bandwidth = 0.8,
+          bandwidth = plot_settings$bw_smoothScatter,
           xlab = "",
           ylab = "",
           xaxt = "n",
-          yaxt = "n"
+          yaxt = "n",
+          colramp = plot_settings$colramp
         )
 
         ##get information from the kernel smoother and than create contour lines
-        con <- KernSmooth::bkde2D(data, bandwidth = 0.8)
+        con <- KernSmooth::bkde2D(data, bandwidth = plot_settings$bw_smoothScatter)
         contour(x = con$x2, y = con$x1, z = con$fhat, add = TRUE)
 
         ##add rug
         if(xrug)
-          rug(x = data[,2], side = 3)
+          rug(x = data[,2], side = 3, col = rgb(0,0,0,0.3))
 
         if(yrug)
-          rug(x = data[,1], side = 2)
+          rug(x = data[,1], side = 2, col = rgb(0,0,0,0.3))
 
 
         ##add x-axis above
@@ -329,10 +350,19 @@ plot_Scatterplots <- function(
         ## (here we have to decide whether the axis is plotted or not)
         if(i %in% m_lower){
           if(i %in% m_diag_sub){
+           if(plot_settings$rug){
             xaxt = TRUE
             yaxt = TRUE
             xrug = TRUE
             yrug = TRUE
+
+           }else{
+             xaxt = FALSE
+             yaxt = FALSE
+             xrug = FALSE
+             yrug = FALSE
+
+           }
 
           }else{
             xaxt = FALSE
@@ -385,3 +415,12 @@ ScatterSamples <- function(...){
   )
 
 }
+
+
+data(AgeS,envir = environment())
+plot_Scatterplots(
+  object = AgeS$Sampling,
+  sample_names = c("GDB5", "GDB3"),
+  sample_selection = c(1,2),
+  plot_type = "scatterSmooth"
+)
