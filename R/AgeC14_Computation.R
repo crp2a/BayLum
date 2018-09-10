@@ -356,17 +356,27 @@ AgeC14_Computation <- function(Data_C14Cal,
    #        des HPD sur la courbe de calibration
    couleur=rainbow(Nb_sample)
    par(mfrow=c(1,1),las = 0,mar=c(5,5,2,2))
-   xl=c(min(PriorAge[seq(1,(2*Nb_sample-1),2)]),max(PriorAge[seq(2,(2*Nb_sample),2)]))
-   plot(xl,xl,col="white",xlab=c("Age"),ylab=c("cal. C-14"),xaxt="n",yaxt="n",cex.lab=1.8)
+   xl <- c(min(PriorAge[seq(1,(2*Nb_sample-1),2)]),max(PriorAge[seq(2,(2*Nb_sample),2)]))
+   plot(
+      xl,
+      xl,
+      col = "white",
+      xlab = c("C-14 Age BP (ka)",
+      ylab = c("C-14 cal. BP (ka)",
+      xaxt = "n",
+      yaxt = "n",
+      cex.lab = 1.8
+   )
    axis(2,cex.axis=2)
    axis(1,cex.axis=2)
-   polygon(c(TableauCalib[, 1], rev(TableauCalib[, 1])), c(TableauCalib[, 
-                                                                       2] + 2 * TableauCalib[, 3], rev(TableauCalib[, 2] - 2 * 
-                                                                                                     TableauCalib[, 3]))/1000, col = "gray", border = "black")
+   polygon(c(TableauCalib[, 1], rev(TableauCalib[, 1])),
+           c(TableauCalib[, 2] + 2 * TableauCalib[, 3],
+             rev(TableauCalib[, 2] - 2 * TableauCalib[, 3]))/1000,
+           col = "gray", border = "black")
   for (i in 1:Nb_sample) {
-    lines(c(AgePlot95[i, 2:3]), rep(Data_C14Cal[i], 2)/1000, col = couleur[i], 
+    lines(c(AgePlot95[i, 2:3]), rep(Data_C14Cal[i], 2)/1000, col = couleur[i],
           lwd = 4)
-    lines(AgePlotMoy[i], Data_C14Cal[i]/1000, col = "black", lwd = 2, 
+    lines(AgePlotMoy[i], Data_C14Cal[i]/1000, col = "black", lwd = 2,
           type = "p")
   }
    legend("topleft",SampleNames,lty=rep(1,Nb_sample),lwd=rep(2,Nb_sample),cex=1,col=couleur)
