@@ -360,11 +360,15 @@ AgeC14_Computation <- function(Data_C14Cal,
    plot(xl,xl,col="white",xlab=c("Age"),ylab=c("cal. C-14"),xaxt="n",yaxt="n",cex.lab=1.8)
    axis(2,cex.axis=2)
    axis(1,cex.axis=2)
-   polygon(c(TableauCalib[,1],rev(TableauCalib[,1])),c(TableauCalib[,2]+2*TableauCalib[,3],rev(TableauCalib[,2]-2*TableauCalib[,3])),col="gray",border="black")
-   for(i in 1:Nb_sample){
-     lines(c(AgePlot95[i,2:3]),rep(Data_C14Cal[i],2),col=couleur[i],lwd=4)
-     lines(AgePlotMoy[i],Data_C14Cal[i],col="black",lwd=2,type='p')
-   }
+   polygon(c(TableauCalib[, 1], rev(TableauCalib[, 1])), c(TableauCalib[, 
+                                                                       2] + 2 * TableauCalib[, 3], rev(TableauCalib[, 2] - 2 * 
+                                                                                                     TableauCalib[, 3]))/1000, col = "gray", border = "black")
+  for (i in 1:Nb_sample) {
+    lines(c(AgePlot95[i, 2:3]), rep(Data_C14Cal[i], 2)/1000, col = couleur[i], 
+          lwd = 4)
+    lines(AgePlotMoy[i], Data_C14Cal[i]/1000, col = "black", lwd = 2, 
+          type = "p")
+  }
    legend("topleft",SampleNames,lty=rep(1,Nb_sample),lwd=rep(2,Nb_sample),cex=1,col=couleur)
 
    if(SavePdf){
