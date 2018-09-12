@@ -1,6 +1,6 @@
-#' Bayesian analysis for C-14 age estimations of various samples
+#' @title Bayesian analysis for C-14 age estimations of various samples
 #'
-#' This function calibrates the C-14 age of samples to get an age (in ka).
+#' @description This function calibrates the C-14 age of samples to get an age (in ka).
 #' The user can choose one of the following radiocarbon calibration curve:
 #' Northern or Sourthen Hemisphere or marine atmospheric. It must be the same curve for all samples.
 #'
@@ -62,9 +62,10 @@
 #' @param quiet [logical] (with default): enables/disables [rjags] messages
 #'
 #' @details
-#' ** How to fill StratiConstraints?**\cr
 #'
-#' If there is stratigraphic relations between samples, \bold{C-14 age in Data_C14Cal must be ordered by order of increasing ages}.
+#' ** How to fill StratiConstraints? **
+#'
+#' If there is stratigraphic relations between samples, *C-14 age in `Data_C14Cal` must be ordered by order of increasing ages*.
 #'
 #' The user can fill the `StratiConstraints` matrix as follow.
 #' \enumerate{

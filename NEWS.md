@@ -1,4 +1,4 @@
-## BayLum 0.1.3 (Release date: 2018-08-31)
+## BayLum 0.1.3 (Release date: 2018-09-12)
 
 ### New functions
 * `plot_Ages()` this function replaces code used internally by the functions `AgeC14_Compution()` and `AgeS_Computation()`
