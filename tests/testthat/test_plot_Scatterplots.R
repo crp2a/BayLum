@@ -8,7 +8,7 @@ test_that("Full function test", {
 
   ##force function stop
   expect_error(plot_Scatterplots("test"),
-               regexp =  "Wrong input, only objects of type 'mcmc.list' are allowed. Please check the manual!")
+               regexp =  "Wrong input, only objects of type 'mcmc.list' or single 'data.frame' are allowed. Please check the manual!")
   expect_error(plot_Scatterplots(object = AgeS$Sampling, variables = c("A", "B")),
                regexp = "You can only select one variable at the time!")
   expect_error(plot_Scatterplots(object = AgeS$Sampling, variables = c("B")),
