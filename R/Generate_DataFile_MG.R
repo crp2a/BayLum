@@ -2,11 +2,12 @@
 #' data and information before statistical analysis
 #'
 #' This function is used to generate, from the BIN file(s), a list of values of:
+#'
 #' \bold{Multi-grain} OSL intensities and associated uncertainties, regenerative doses, etc., which will be the input of the Bayesian models.
 #' To be easy-to-use, this function requires a rigorous organisation - all needed files should be arranged in one folder -
 #' of informations concerning each BIN file.\cr
 #' It is possible to process data for various samples simultaneously and to consider more
-#' than one BIN file per sample.
+#' than one BIN-file per sample.
 #'
 #' @param Path [character] (**required**): the path to the project folder, containing one or more subfolders in which the BIN files
 #' are located. If it is not equal to "", it must be terminated by "/".
@@ -113,7 +114,7 @@
 #'
 #' @author Claire Christophe, Sebastian Kreutzer, Anne Philippe, Guillaume Guérin
 #'
-#' @note The function imports only BIN-file records which have been previously selected.
+#' @note The function imports only BIN/BINX-file records which have been previously selected.
 #'
 #' @seealso \code{\link{read_BIN2R}}, \code{\link{combine_DataFiles}}, \code{\link{LT_RegenDose}}
 #' \code{\link{Age_Computation}}, \code{\link{AgeS_Computation}}, \code{\link{Palaeodose_Computation}}
@@ -222,7 +223,7 @@ Generate_DataFile_MG <- function(
       #---------------------------------------
       ind=c()
       for(j in 1:J[bf]){
-        ind=c(ind,object@METADATA[object@METADATA[,"POSITION"]== XLS_file[j,2] & object@METADATA[,"LTYPE"]== "OSL" & object@METADATA[,"SEL"]==TRUE,1])
+        ind=c(ind,object@METADATA[object@METADATA[,"POSITION"]== XLS_file[j,2] & object@METADATA[,"SEL"]==TRUE,1])
       }
       # what is ind...
       (object@METADATA[ind[1:20],c("POSITION","IRR_TIME")])

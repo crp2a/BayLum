@@ -64,13 +64,14 @@ Then, to load this list you can use the function \code{\link{load}} (see example
 }
 \description{
 This function is used to generate, from the BIN file(s), a list of values of:
+}
+\details{
 \bold{Multi-grain} OSL intensities and associated uncertainties, regenerative doses, etc., which will be the input of the Bayesian models.
 To be easy-to-use, this function requires a rigorous organisation - all needed files should be arranged in one folder -
 of informations concerning each BIN file.\cr
 It is possible to process data for various samples simultaneously and to consider more
-than one BIN file per sample.
-}
-\details{
+than one BIN-file per sample.
+
 With \code{Path} and \code{FolderNames}, this function goes to the subfolders containing the BIN files and associated information to compute
 the luminescence data.\cr
 
@@ -133,7 +134,7 @@ For the general BIN-file structure, the reader is referred to the following webs
 The function \code{\link{read_BIN2R}} developped in \code{\link{Luminescence}} package is used to read the BIN files.
 }
 \note{
-The function imports only BIN-file records which have been previously selected.
+The function imports only BIN/BINX-file records which have been previously selected.
 }
 \examples{
 path<- system.file("extdata/FER1", "", package="BayLum")
