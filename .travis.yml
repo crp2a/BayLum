@@ -33,8 +33,8 @@ matrix:
     r: release
     before_install:
       #- sudo chown -R travis /usr/local
-      - sudo rm '/usr/local/include/c++'
-      - sudo rm '/usr/local/bin/gfortran'
+      #- sudo rm '/usr/local/include/c++'
+      #- sudo rm '/usr/local/bin/gfortran'
       - brew install gcc
       - brew install jags
       - brew install libssh2
