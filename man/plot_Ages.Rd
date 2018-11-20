@@ -9,7 +9,7 @@ plot_Ages(object, sample_names = NULL, ...)
 \arguments{
 \item{object}{\link{list} (\strong{required}): Output as created by functions like \link{AgeC14_Computation}.}
 
-\item{sample_names}{\link{character} (optional): alternative samples names used for the plotting, this can
+\item{sample_names}{\link{character} (optional): alternative sample names used for the plotting, this can
 also be used to resort the samples in a specific order. If the length of the provided \link{character} vector
 is shorter than the real number of samples, the names are recycled.}
 
@@ -29,7 +29,7 @@ provides various arguments to modify the plot output, however, for an ultimate c
 the \link{data.frame} extracted from the input object for own plots.
 }
 \section{Function version}{
- 0.1.0
+ 0.1.1
 }
 
 \examples{
