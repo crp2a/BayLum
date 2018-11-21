@@ -6,9 +6,11 @@
 #'
 #' @param object [list] (**required**): Output as created by functions like [AgeC14_Computation].
 #'
-#' @param sample_names [character] (optional): alternative sample names used for the plotting, this can
-#' also be used to resort the samples in a specific order. If the length of the provided [character] vector
-#' is shorter than the real number of samples, the names are recycled.
+#' @param sample_names [character] (optional): alternative sample names used for the plotting.
+#'  If the length of the provided [character] vector is shorter than the real number of samples, the names are recycled.
+#'
+#' @param sample_order [numeric] (optional): argument to rearrange the sample order, e.g., `sample_order = c(4:1)` plots
+#' the last sample first.
 #'
 #' @param ... further arguments to control the plot output,
 #' standard arguments are: `cex`, `xlim`, `main`, `xlab`, `col` further (non-standard) arguments
@@ -17,7 +19,7 @@
 #' @return
 #' The function returns a plot and the [data.frame] used to display the data
 #'
-#' @section Function version: 0.1.1
+#' @section Function version: 0.1.2
 #'
 #' @author Sebastian Kreutzer, IRAMAT-CRP2A, UMR 5060, CNRS - Université Bordeaux Montaigne (France), based on code
 #' written by Claire Christophe
@@ -50,6 +52,7 @@
 plot_Ages <- function(
   object,
   sample_names = NULL,
+  sample_order = NULL,
   ...
 ){
 
@@ -76,6 +79,9 @@ plot_Ages <- function(
 
   }
 
+  ##set sample order
+  if(!is.null(sample_order))
+    df[["AT"]] <- sample_order
 
 
   # Plotting -----------------------------------------------------------------------------------
@@ -125,10 +131,12 @@ plot_Ages <- function(
     at = df[["AT"]],
     labels = if(!is.null(sample_names)){
      df[["ALT_SAMPLE_NAME"]]
+
     }else{
-     df[["SAMPLE"]]
+     df[["SAMPLE"]][df[["AT"]] == df[["AT"]]]
     }
   )
+
 
   ##add grid
   if(plot_settings$grid)

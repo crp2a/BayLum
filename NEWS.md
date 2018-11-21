@@ -1,7 +1,8 @@
-## BayLum 0.1.4 (Release date: 2018-09-19)
+## BayLum 0.1.4 (Release date: 2018-11-21)
 
 * `Generate_DataFile_MG()` now works only on preselected records; the limitation of OSL only was removed.
-* `plot_Ages()` the sorting of the samples in the graph did not work as expected.
+* `plot_Ages()` the sorting of the samples in the graph did not work as expected; along with this a new 
+argument `sample_order` was added.
 
 ## BayLum 0.1.3 (Release date: 2018-09-14)
 

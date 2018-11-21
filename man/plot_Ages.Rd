@@ -4,14 +4,16 @@
 \alias{plot_Ages}
 \title{Create age plot}
 \usage{
-plot_Ages(object, sample_names = NULL, ...)
+plot_Ages(object, sample_names = NULL, sample_order = NULL, ...)
 }
 \arguments{
 \item{object}{\link{list} (\strong{required}): Output as created by functions like \link{AgeC14_Computation}.}
 
-\item{sample_names}{\link{character} (optional): alternative sample names used for the plotting, this can
-also be used to resort the samples in a specific order. If the length of the provided \link{character} vector
-is shorter than the real number of samples, the names are recycled.}
+\item{sample_names}{\link{character} (optional): alternative sample names used for the plotting.
+If the length of the provided \link{character} vector is shorter than the real number of samples, the names are recycled.}
+
+\item{sample_order}{\link{numeric} (optional): argument to rearrange the sample order, e.g., \code{sample_order = c(4:1)} plots
+the last sample first.}
 
 \item{...}{further arguments to control the plot output,
 standard arguments are: \code{cex}, \code{xlim}, \code{main}, \code{xlab}, \code{col} further (non-standard) arguments
@@ -29,7 +31,7 @@ provides various arguments to modify the plot output, however, for an ultimate c
 the \link{data.frame} extracted from the input object for own plots.
 }
 \section{Function version}{
- 0.1.1
+ 0.1.2
 }
 
 \examples{
