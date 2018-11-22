@@ -19,7 +19,7 @@
 #' @return
 #' The function returns a plot and the [data.frame] used to display the data
 #'
-#' @section Function version: 0.1.2
+#' @section Function version: 0.1.3
 #'
 #' @author Sebastian Kreutzer, IRAMAT-CRP2A, UMR 5060, CNRS - Université Bordeaux Montaigne (France), based on code
 #' written by Claire Christophe
@@ -80,8 +80,14 @@ plot_Ages <- function(
   }
 
   ##set sample order
-  if(!is.null(sample_order))
+  if(!is.null(sample_order)){
     df[["AT"]] <- sample_order
+
+  }else{
+    ##this makes sure what we have the stratigraphic constraints
+    df[["AT"]] <- rev(sort(df[["AT"]]))
+
+  }
 
 
   # Plotting -----------------------------------------------------------------------------------

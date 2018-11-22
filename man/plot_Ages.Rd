@@ -31,7 +31,7 @@ provides various arguments to modify the plot output, however, for an ultimate c
 the \link{data.frame} extracted from the input object for own plots.
 }
 \section{Function version}{
- 0.1.2
+ 0.1.3
 }
 
 \examples{
