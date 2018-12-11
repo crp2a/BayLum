@@ -70,8 +70,15 @@
 #' Quaternary Geochronology 39, 24–34. \doi{10.1016/j.quageo.2017.02.003}
 #'
 #' @examples
-#' ##(1) return template data.frame
+#' ##(1) return template data.frame (no file output)
 #' create_ThetaMatrix()
+#'
+#' \dontrun{
+#' ##(2) return template as data.frame + file
+#' file_path <- tempfile(fileext = ".csv")
+#' create_ThetaMatrix(output_file = file_path )
+#'
+#' }
 #'
 #' @keywords datagen IO
 #'
@@ -132,6 +139,11 @@ create_ThetaMatrix <- function(
 
     #return
     if(!is.null(output_file)){
+      ##more comfort for output_file
+      if(any(!grepl(basename(output_file), pattern = ".csv", fixed = TRUE)))
+        output_file <- paste0(output_file, "_template.csv")
+
+
       message("[create_ThetaMatrix()] 'input' missing, template data.frame returned and exported to ", output_file)
       write.table(x = df, file = output_file, append = FALSE, row.names = FALSE, col.names = TRUE, sep = ",")
 
@@ -147,7 +159,7 @@ create_ThetaMatrix <- function(
      df <- input
 
   }else{
-    if(!file.exists(file))
+    if(!file.exists(input))
       stop(paste0("[create_ThetaMatrix()] File ", file, "does not exist!"), call. = FALSE)
 
     ##extract extra parameters

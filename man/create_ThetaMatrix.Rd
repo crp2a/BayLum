@@ -74,8 +74,15 @@ ARGUMENT \tab DESCRIPTION \tab UNIT \cr
 }
 
 \examples{
-##(1) return template data.frame
+##(1) return template data.frame (no file output)
 create_ThetaMatrix()
+
+\dontrun{
+##(2) return template as data.frame + file
+file_path <- tempfile(fileext = ".csv")
+create_ThetaMatrix(output_file = file_path )
+
+}
 
 }
 \references{
