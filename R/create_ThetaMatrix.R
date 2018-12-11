@@ -143,9 +143,9 @@ create_ThetaMatrix <- function(
       if(any(!grepl(basename(output_file), pattern = ".csv", fixed = TRUE)))
         output_file <- paste0(output_file, "_template.csv")
 
-
-      message("[create_ThetaMatrix()] 'input' missing, template data.frame returned and exported to ", output_file)
+      ##write template table
       write.table(x = df, file = output_file, append = FALSE, row.names = FALSE, col.names = TRUE, sep = ",")
+      message("[create_ThetaMatrix()] 'input' missing, template data.frame returned and exported to ", output_file)
 
     }else{
       message("[create_ThetaMatrix()] 'input' missing, input template returned!")
@@ -158,9 +158,9 @@ create_ThetaMatrix <- function(
   }else if(class(input) == "data.frame"){
      df <- input
 
-  }else{
+  }else if(class(input) == "character"){
     if(!file.exists(input))
-      stop(paste0("[create_ThetaMatrix()] File ", file, "does not exist!"), call. = FALSE)
+      stop(paste0("[create_ThetaMatrix()] File ", input, " does not exist!"), call. = FALSE)
 
     ##extract extra parameters
     import_settings <- modifyList(
@@ -179,6 +179,9 @@ create_ThetaMatrix <- function(
       sep = import_settings$sep,
       skip = import_settings$skip,
       row.names = FALSE)
+
+  }else{
+    stop("[create_ThetaMatrix()] 'input' accepts file paths (character) or data frames only!", call. = FALSE)
 
   }
 
@@ -210,7 +213,7 @@ create_ThetaMatrix <- function(
 
   #if data.frame has only one row, it cannot work either
   if(nrow(df) < 2)
-    stop("[create_ThetaMatrix()] The input data.frame has to contain at least 2 rows!", call. = FALSE)
+    stop("[create_ThetaMatrix()] The input data.frame needs at least 2 rows!", call. = FALSE)
 
 
 
@@ -230,7 +233,7 @@ create_ThetaMatrix <- function(
      warning(
        paste0(
          "[create_ThetaMatrix()] Found values > 0 in column 'DR_GAMMA_TOTAL' in record(s): ",
-         paste(temp_id, collapse = ","), ". here only 'DR_GAMMA_TOTAL' was used for the calculation!"
+         paste(temp_id, collapse = ","), ". Only 'DR_GAMMA_TOTAL' was used for the calculation!"
        ), call. = FALSE)
   }
 
