@@ -4,8 +4,9 @@
 \alias{create_ThetaMatrix}
 \title{Create Theta Matrix}
 \usage{
-create_ThetaMatrix(input, output_file = NULL, sigma_s = c(s_K = 0.01,
-  s_U = 0.007, s_Th = 0.006, s_gammaDR = 0.05, s_CAL = 0.02, s_intDR =
+create_ThetaMatrix(input, output_file = NULL, sigma_s = c(s_betaK =
+  0.01, s_betaU = 0.007, s_betaTh = 0.006, s_gammaK = 0.01, s_gammaU =
+  0.007, s_gammaTh = 0.006, s_gammaDR = 0.05, s_CAL = 0.02, s_intDR =
   0.03), ...)
 }
 \arguments{
@@ -17,8 +18,9 @@ system}
 \item{output_file}{\link{character} (optional): file path for the output CSV-file, the field separator
 is hard set to \code{","}. Please use \link[utils:write.table]{utils::write.table} for more flexibility.}
 
-\item{sigma_s}{\link{numeric} (with default): named character with values for systematic uncertainties, the order
-of the \emph{named} vector is not important, but the naming! \strong{Note}: some of the uncertainties have
+\item{sigma_s}{\link{numeric} (with default): named character with values for systematic uncertainties. Can be set to \code{NULL} to
+remove systematic uncertainties. The order of the \emph{named} vector is not important,
+but the naming! \strong{Note}: some of the uncertainties have
 a unit, please check details.}
 
 \item{...}{further arguments that can be passed to \link[utils:read.table]{utils::read.table} (for the CSV-file import)}
@@ -34,12 +36,20 @@ covariance matrix \eqn{\Sigma} (Combès & Philippe, 2017)
 }
 \details{
 The function intends to ease the creation of the \eqn{Theta} matrix, which cannot be
-created with the base R function \link[stats:cov]{stats::cov}. The relationship between the covariance matrix
-\eqn{Sigma} and \eqn{Theta} is defined as
+created straight forward, e.g., base R functions such as \code{stats::cov}.
+The relationship between the covariance matrix  \eqn{Sigma} and \eqn{Theta} is given with
 
 \deqn{\Sigma_ij = A_i * A_j * \Theta_ij}
 
 For details see Combès & Philippe, 2017 and Guérin et al. (under review).
+
+\strong{Input modes}
+
+The function supports two different operation modes:
+\enumerate{
+\item \code{input} is left empty: the function returns a \link{data.frame} template that can be used as input (the option \code{output_file} works as well)
+\item \code{input} is fed with a \link{data.frame} or a \code{character} (file path), the \eqn{\Theta} matrix is returned
+}
 
 \strong{Systematic uncertainties}
 
@@ -48,9 +58,12 @@ that can be provided via the argument \code{sigma_s}
 
 \tabular{lll}{
 ARGUMENT \tab DESCRIPTION \tab UNIT \cr
-\code{s_K} \tab relative uncertainty K concentration \tab - \cr
-\code{s_U} \tab relative uncertainty U concentration \tab - \cr
-\code{s_Th} \tab relative uncertainty Th concentration \tab - \cr
+\code{s_betaK} \tab relative uncertainty K concentration \tab - \cr
+\code{s_betaU} \tab relative uncertainty U concentration \tab - \cr
+\code{s_betaTh} \tab relative uncertainty Th concentration \tab - \cr
+\code{s_gammaK} \tab relative uncertainty K concentration \tab - \cr
+\code{s_gammaU} \tab relative uncertainty U concentration \tab - \cr
+\code{s_gammaTh} \tab relative uncertainty Th concentration \tab - \cr
 \code{s_gammaDR} \tab relative uncertainty gamma-dose rate  \tab - \cr
 \code{s_CAL} \tab relative uncertainty beta-source calibration \tab - \cr
 \code{s_intDR} \tab absolute uncertainty internal dose rate \tab Gy/ka \cr

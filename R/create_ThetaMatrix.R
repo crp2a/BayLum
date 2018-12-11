@@ -5,12 +5,19 @@
 #' covariance matrix \eqn{\Sigma} (Combès \& Philippe, 2017)
 #'
 #' @details The function intends to ease the creation of the \eqn{Theta} matrix, which cannot be
-#' created with the base R function [stats::cov]. The relationship between the covariance matrix
-#' \eqn{Sigma} and \eqn{Theta} is defined as
+#' created straight forward, e.g., base R functions such as `stats::cov`.
+#' The relationship between the covariance matrix  \eqn{Sigma} and \eqn{Theta} is given with
 #'
 #' \deqn{\Sigma_ij = A_i * A_j * \Theta_ij}
 #'
 #' For details see Combès \& Philippe, 2017 and Guérin et al. (under review).
+#'
+#' **Input modes**
+#'
+#' The function supports two different operation modes:
+#'
+#' 1. `input` is left empty: the function returns a [data.frame] template that can be used as input (the option `output_file` works as well)
+#' 2. `input` is fed with a [data.frame] or a `character` (file path), the \eqn{\Theta} matrix is returned
 #'
 #' **Systematic uncertainties**
 #'
@@ -19,9 +26,12 @@
 #'
 #' \tabular{lll}{
 #' ARGUMENT \tab DESCRIPTION \tab UNIT \cr
-#' `s_K` \tab relative uncertainty K concentration \tab - \cr
-#' `s_U` \tab relative uncertainty U concentration \tab - \cr
-#' `s_Th` \tab relative uncertainty Th concentration \tab - \cr
+#' `s_betaK` \tab relative uncertainty K concentration \tab - \cr
+#' `s_betaU` \tab relative uncertainty U concentration \tab - \cr
+#' `s_betaTh` \tab relative uncertainty Th concentration \tab - \cr
+#' `s_gammaK` \tab relative uncertainty K concentration \tab - \cr
+#' `s_gammaU` \tab relative uncertainty U concentration \tab - \cr
+#' `s_gammaTh` \tab relative uncertainty Th concentration \tab - \cr
 #' `s_gammaDR` \tab relative uncertainty gamma-dose rate  \tab - \cr
 #' `s_CAL` \tab relative uncertainty beta-source calibration \tab - \cr
 #' `s_intDR` \tab absolute uncertainty internal dose rate \tab Gy/ka \cr
@@ -41,8 +51,9 @@
 #' @param output_file [character] (optional): file path for the output CSV-file, the field separator
 #' is hard set to `","`. Please use [utils::write.table] for more flexibility.
 #'
-#' @param sigma_s [numeric] (with default): named character with values for systematic uncertainties, the order
-#' of the *named* vector is not important, but the naming! **Note**: some of the uncertainties have
+#' @param sigma_s [numeric] (with default): named character with values for systematic uncertainties. Can be set to `NULL` to
+#' remove systematic uncertainties. The order of the *named* vector is not important,
+#' but the naming! **Note**: some of the uncertainties have
 #' a unit, please check details.
 #'
 #' @param ... further arguments that can be passed to [utils::read.table] (for the CSV-file import)
@@ -70,27 +81,50 @@ create_ThetaMatrix <- function(
   input,
   output_file = NULL,
   sigma_s =  c(
-    s_K = 0.010,
-    s_U = 0.007,
-    s_Th = 0.006,
+    s_betaK = 0.010,
+    s_betaU = 0.007,
+    s_betaTh = 0.006,
+    s_gammaK = 0.010,
+    s_gammaU = 0.007,
+    s_gammaTh = 0.006,
     s_gammaDR = 0.05,
     s_CAL = 0.020,
     s_intDR = 0.030),
   ...
   ){
 
-  # Verify input --------------------------------------------------------------------------------
-  # basic input
-  if(missing(input)){
 
-    #set names
-    df_colnames <-  c("SAMPLE_ID",
+  # Configuration -------------------------------------------------------------------------------
+  ## set reference for data.frame
+  df_colnames <-  c(
+    "SAMPLE_ID",
     "DR_BETA_K",
     "DR_BETA_U",
     "DR_BETA_TH",
-    "DR_GAMMA",
+    "DR_GAMMA_K",
+    "DR_GAMMA_U",
+    "DR_GAMMA_TH",
+    "DR_GAMMA_TOTAL",
     "DR_TOTAL",
-    "DR_TOTAL_X")
+    "DR_TOTAL_X"
+  )
+
+  ##set reference for sigma_s
+  sigma_s_ref <- c(
+    "s_betaK",
+    "s_betaU",
+    "s_betaTh",
+    "s_gammaK",
+    "s_gammaU",
+    "s_gammaTh",
+    "s_gammaDR",
+    "s_CAL",
+    "s_intDR"
+  )
+
+  # Verify basic input --------------------------------------------------------------------------------
+  # basic input
+  if(missing(input)){
 
     #set data.frame
     df <- as.data.frame(matrix(NA_real_, ncol = length(df_colnames)))
@@ -137,9 +171,6 @@ create_ThetaMatrix <- function(
   }
 
   ##check sigma_s
-  ##set reference
-  sigma_s_ref <- c("s_K", "s_U", "s_Th", "s_gammaDR", "s_CAL", "s_intDR")
-
   if(!is.null(sigma_s) && !all(names(sigma_s) %in% sigma_s_ref))
       stop("[create_ThetaMatrix()] Value names do not match in 'sigma_s', please check the manual!", call. = FALSE)
 
@@ -150,17 +181,48 @@ create_ThetaMatrix <- function(
 
   }
 
-  #verify data.frame, we make a hard stop here
-  df_names_ref <- c("SAMPLE_ID", "DR_BETA_K", "DR_BETA_U", "DR_BETA_TH", "DR_GAMMA", "DR_TOTAL", "DR_TOTAL_X")
 
-  if(!all(colnames(df) %in% df_names_ref))
+# Verify data.frame ---------------------------------------------------------------------------
+
+  #verify data.frame, we hard stop here
+  if(!all(colnames(df) %in% df_colnames))
     stop("[create_ThetaMatrix()] The input data.frame has not the expected columns, please check the manual!",call. = FALSE)
+
+  #set NA values to 0
+  if(any(is.na(df))){
+    df[is.na(df)] <- 0
+    warning("[create_ThetaMatrix()] NA values found and set to 0.", call. = FALSE)
+
+  }
+
 
   #if data.frame has only one row, it cannot work either
   if(nrow(df) < 2)
     stop("[create_ThetaMatrix()] The input data.frame has to contain at least 2 rows!", call. = FALSE)
 
+
+
+
   # Create matrix -------------------------------------------------------------------------------
+  ##to avoid a miscalculation, we remove columns not used due to the gamma dose rate setting
+  if(any(df[["DR_GAMMA_TOTAL"]] != 0)){
+     ##identify affected rows
+     temp_id <- which(df[["DR_GAMMA_TOTAL"]] != 0)
+
+     ##set the other three other columns to 0
+     df[temp_id, c("DR_GAMMA_K", "DR_GAMMA_U", "DR_GAMMA_TH")] <- 0
+
+     ##show warning to inform the user of what was done
+     ##Why a warning: If the user did everything right, the other values should have been set
+     ##to 0 to avoid a double calculation
+     warning(
+       paste0(
+         "[create_ThetaMatrix()] Found values > 0 in column 'DR_GAMMA_TOTAL' in record(s): ",
+         paste(temp_id, collapse = ","), ". here only 'DR_GAMMA_TOTAL' was used for the calculation!"
+       ), call. = FALSE)
+  }
+
+
   ##create and set names
   m <- matrix(data = NA, nrow = nrow(df), ncol = nrow(df))
   rownames(m) <- df[[1]]
@@ -173,7 +235,6 @@ create_ThetaMatrix <- function(
   cmb <- cbind(
     combn(x = 1:nrow(df), m = 2),
     matrix(rep(1:nrow(df),each = 2), nrow = 2))
-
 
   ##fill matrix - if you want to add further uncertainties this calculations needs to be
   ##modified
@@ -204,9 +265,7 @@ create_ThetaMatrix <- function(
 
   }
 
-  ##in either case return matrix
+  ##return the Theta matrix
   return(m)
 
 }
-
-
