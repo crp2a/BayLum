@@ -1,8 +1,14 @@
-## BayLum 0.1.4 (Release date: 2018-11-21)
+## BayLum 0.1.4 (Release date: 2018-12-11)
 
+### Bugfixes & changes
 * `Generate_DataFile_MG()` now works only on preselected records; the limitation of OSL only was removed.
 * `plot_Ages()` the sorting of the samples in the graph did not work as expected; along with this a new 
 argument `sample_order` was added.
+
+### New functions
+
+* `create_ThetaMatrix()` this function is a helper to create the theta matrix that can be provided
+as input for the functions `AgeS_Computation()` and `Age_OSLC14()`
 
 ## BayLum 0.1.3 (Release date: 2018-09-14)
 
