@@ -360,6 +360,11 @@ Age_OSLC14 <- function(
     }
   }
 
+  ##JAGS will crash with a runtime error if the dimension of the theta matrix does not fit to the number
+  ##of samples
+  if(sum(dim(THETA)) %% Nb_sample != 0)
+    stop("[Age_OSLC14()] The number of samples does not match the dimension of the THETA-matrix!", call. = FALSE)
+
   #---  Index preparation
   ind_OSL=which(SampleNature[1,]==1)
   CS_OSL=cumsum(SampleNature[1,])
