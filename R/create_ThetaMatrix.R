@@ -281,5 +281,3 @@ create_ThetaMatrix <- function(
   return(m)
 
 }
-
-create_ThetaMatrix(input = input_file)
