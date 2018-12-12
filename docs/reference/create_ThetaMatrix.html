@@ -130,10 +130,7 @@ covariance matrix \(\Sigma\) (Combès &amp; Philippe, 2017)</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>create_ThetaMatrix</span>(<span class='no'>input</span>, <span class='kw'>output_file</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>sigma_s</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='kw'>s_betaK</span> <span class='kw'>=</span>
-  <span class='fl'>0.01</span>, <span class='kw'>s_betaU</span> <span class='kw'>=</span> <span class='fl'>0.007</span>, <span class='kw'>s_betaTh</span> <span class='kw'>=</span> <span class='fl'>0.006</span>, <span class='kw'>s_gammaK</span> <span class='kw'>=</span> <span class='fl'>0.01</span>, <span class='kw'>s_gammaU</span> <span class='kw'>=</span>
-  <span class='fl'>0.007</span>, <span class='kw'>s_gammaTh</span> <span class='kw'>=</span> <span class='fl'>0.006</span>, <span class='kw'>s_gammaDR</span> <span class='kw'>=</span> <span class='fl'>0.05</span>, <span class='kw'>s_CAL</span> <span class='kw'>=</span> <span class='fl'>0.02</span>, <span class='kw'>s_intDR</span> <span class='kw'>=</span>
-  <span class='fl'>0.03</span>), <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>create_ThetaMatrix</span>(<span class='no'>input</span>, <span class='kw'>output_file</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>sigma_s</span>, <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -152,10 +149,10 @@ is hard set to <code>","</code>. Please use <a href='https://www.rdocumentation.
     </tr>
     <tr>
       <th>sigma_s</th>
-      <td><p><a href='https://www.rdocumentation.org/packages/base/topics/numeric'>numeric</a> (with default): named character with values for systematic uncertainties. Can be set to <code>NULL</code> to
-remove systematic uncertainties. The order of the <em>named</em> vector is not important,
-but the naming! <strong>Note</strong>: some of the uncertainties have
-a unit, please check details.</p></td>
+      <td><p><a href='https://www.rdocumentation.org/packages/base/topics/numeric'>numeric</a> (<strong>required</strong>): named character with values for systematic uncertainties. Those values
+are lab-specific. Can be set to <code>NULL</code> to remove systematic uncertainties. The order of the <em>named</em>
+vector is not important, but the naming!
+<strong>Note</strong>: some of the uncertainties have a unit, please check details.</p></td>
     </tr>
     <tr>
       <th>...</th>
@@ -257,7 +254,22 @@ Quaternary Geochronology 39, 24–34. doi: <a href='http://doi.org/10.1016/j.qua
 <span class='no'>file_path</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/tempfile'>tempfile</a></span>(<span class='kw'>fileext</span> <span class='kw'>=</span> <span class='st'>".csv"</span>)
 <span class='fu'>create_ThetaMatrix</span>(<span class='kw'>output_file</span> <span class='kw'>=</span> <span class='no'>file_path</span> )
 
+<span class='co'>##NOT RUNNING EXAMPLE for sigma_s</span>
+<span class='fu'>calc_ThetaMatrix</span>(<span class='no'>...</span>,
+<span class='kw'>sigma_s</span> <span class='kw'>=</span>  <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(
+ <span class='kw'>s_betaK</span> <span class='kw'>=</span> <span class='fl'>0.010</span>,
+ <span class='kw'>s_betaU</span> <span class='kw'>=</span> <span class='fl'>0.007</span>,
+ <span class='kw'>s_betaTh</span> <span class='kw'>=</span> <span class='fl'>0.006</span>,
+ <span class='kw'>s_gammaK</span> <span class='kw'>=</span> <span class='fl'>0.010</span>,
+ <span class='kw'>s_gammaU</span> <span class='kw'>=</span> <span class='fl'>0.007</span>,
+ <span class='kw'>s_gammaTh</span> <span class='kw'>=</span> <span class='fl'>0.006</span>,
+ <span class='kw'>s_gammaDR</span> <span class='kw'>=</span> <span class='fl'>0.05</span>,
+ <span class='kw'>s_CAL</span> <span class='kw'>=</span> <span class='fl'>0.020</span>,
+ <span class='kw'>s_intDR</span> <span class='kw'>=</span> <span class='fl'>0.030</span>))
+
 <span class='co'># }</span><div class='input'>
+
+
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

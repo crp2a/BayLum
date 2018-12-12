@@ -154,7 +154,15 @@ Technische Universit at Wien, Austria.</p>
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/data'>data</a></span>(<span class='no'>ModelPrior</span>)
 <span class='co'>## ModelPrior[[OSL]]</span>
-<span class='co'>## ModelPrior$OSL</span></div></pre>
+<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/writeLines'>writeLines</a></span>(<span class='no'>ModelPrior</span>$<span class='no'>OSL</span>)</div><div class='output co'>#&gt; 
+#&gt;       # donnee OSL
+#&gt;       kk&lt;-k+1
+#&gt;       for(i in (ind_change[2*q+1]+1):ind_change[2*(q+1)]){
+#&gt;       u[CS_OSL[i]]~dunif(0,1)
+#&gt;       CS[i]&lt;-max(StratiConstraints[(1:i),i]*c(xbound[(2*i-1)],A[1:(i-1)]))
+#&gt;       A[i]&lt;-exp(u[CS_OSL[i]]*log(xbound[2*(i-1)]/CS[i])+log(CS[i]))
+#&gt;       }
+#&gt;       </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

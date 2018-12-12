@@ -160,10 +160,44 @@ Technische Universit at Wien, Austria.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/data'>data</a></span>(<span class='no'>Model_Age</span>)
+<span class='co'>## Terminal print</span>
 <span class='co'>## The JAGS model for a saturating exponential plus linear growth</span>
 <span class='co'>## (a function of the type \code{f(x)=a(1-exp(-x/b))+cx+d})</span>
 <span class='co'>## and a gaussian distribution of equivalent doses around the palaeodose:</span>
-<span class='co'># Model_Age[[AgeMultiBF_EXPLIN]][[gaussian]]</span></div></pre>
+<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/writeLines'>writeLines</a></span>(<span class='no'>Model_Age</span>$<span class='no'>AgeMultiBF_EXPLIN</span>$<span class='no'>cauchy</span>)</div><div class='output co'>#&gt; model {
+#&gt;     D~dnorm(A*ddot,omega)
+#&gt;     sD~dt(0,pow(0.16*D,-2),1)T(0,)#dgamma(0.01,0.01)
+#&gt;     pD&lt;-pow(sD,-2)
+#&gt; 
+#&gt;     # Likelihood:
+#&gt;     for(bf in 1:BinPerSample){
+#&gt;       for(j in 1:J[bf]){
+#&gt;         # prior on growth function
+#&gt;         xa[(index[bf]+j)]~dnorm(6.5,1/(9.2^2))T(0,)
+#&gt;         xb[(index[bf]+j)]~dnorm(50,1/(1000^2))T(0,)
+#&gt;         xc[(index[bf]+j)]~dnorm(0.002,1/(0.01^2))T(0,)
+#&gt;         xd[(index[bf]+j)]~dnorm(0.5,1/(2.5^2))T(-xa[(index[bf]+j)],)
+#&gt;         sigmaf[(index[bf]+j)]~dexp(20)
+#&gt; 
+#&gt;         De[(index[bf]+j),1]~dt(D,pD,1)
+#&gt;         #
+#&gt;         xprecision[(index[bf]+j),1]&lt;-1/(sigmaf[(index[bf]+j)]^2+sN[(index[bf]+j),1]^2) ##&lt;-- ???? sN[j,1]^2 ????
+#&gt;         N[(index[bf]+j),1]~dnorm(xQ[(index[bf]+j),1],xprecision[(index[bf]+j),1])
+#&gt;         xQ[(index[bf]+j),1]&lt;-xa[(index[bf]+j)]*(1-exp(-De[(index[bf]+j),1]/xb[(index[bf]+j)]))+xc[(index[bf]+j)]*De[(index[bf]+j),1]+xd[(index[bf]+j)]
+#&gt; 
+#&gt;         for(k in 2:K[bf]){
+#&gt;           xprecision[(index[bf]+j),k]&lt;-1/(sigmaf[(index[bf]+j)]^2+sN[(index[bf]+j),k]^2)
+#&gt;           N[(index[bf]+j),k]~dnorm(xQ[(index[bf]+j),k],xprecision[(index[bf]+j),k])
+#&gt;           xQ[(index[bf]+j),k]&lt;-xa[(index[bf]+j)]*(1-exp(-De[(index[bf]+j),k]/xb[(index[bf]+j)]))+xc[(index[bf]+j)]*De[(index[bf]+j),k]+xd[(index[bf]+j)]
+#&gt;           De[(index[bf]+j),k]&lt;-IT[(index[bf]+j),(k-1)]*sDlab[bf]
+#&gt;         }
+#&gt; 
+#&gt;       }
+#&gt;     }
+#&gt;     omega&lt;-1/(A^2*Sigma)
+#&gt;     u~dunif(0,1)
+#&gt;     A&lt;-exp(u*log(xbound[2]/xbound[1])+log(xbound[1]))
+#&gt;   }</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
