@@ -4,10 +4,7 @@
 \alias{create_ThetaMatrix}
 \title{Create Theta Matrix}
 \usage{
-create_ThetaMatrix(input, output_file = NULL, sigma_s = c(s_betaK =
-  0.01, s_betaU = 0.007, s_betaTh = 0.006, s_gammaK = 0.01, s_gammaU =
-  0.007, s_gammaTh = 0.006, s_gammaDR = 0.05, s_CAL = 0.02, s_intDR =
-  0.03), ...)
+create_ThetaMatrix(input, output_file = NULL, sigma_s, ...)
 }
 \arguments{
 \item{input}{\link{character} or \link{data.frame} (\emph{optional}): input data frame or file connection
@@ -18,10 +15,10 @@ system}
 \item{output_file}{\link{character} (optional): file path for the output CSV-file, the field separator
 is hard set to \code{","}. Please use \link[utils:write.table]{utils::write.table} for more flexibility.}
 
-\item{sigma_s}{\link{numeric} (with default): named character with values for systematic uncertainties. Can be set to \code{NULL} to
-remove systematic uncertainties. The order of the \emph{named} vector is not important,
-but the naming! \strong{Note}: some of the uncertainties have
-a unit, please check details.}
+\item{sigma_s}{\link{numeric} (\strong{required}): named character with values for systematic uncertainties. Those values
+are lab-specific. Can be set to \code{NULL} to remove systematic uncertainties. The order of the \emph{named}
+vector is not important, but the naming!
+\strong{Note}: some of the uncertainties have a unit, please check details.}
 
 \item{...}{further arguments that can be passed to \link[utils:read.table]{utils::read.table} (for the CSV-file import)}
 }
@@ -107,7 +104,22 @@ create_ThetaMatrix()
 file_path <- tempfile(fileext = ".csv")
 create_ThetaMatrix(output_file = file_path )
 
+##NOT RUNNING EXAMPLE for sigma_s
+calc_ThetaMatrix(...,
+sigma_s =  c(
+ s_betaK = 0.010,
+ s_betaU = 0.007,
+ s_betaTh = 0.006,
+ s_gammaK = 0.010,
+ s_gammaU = 0.007,
+ s_gammaTh = 0.006,
+ s_gammaDR = 0.05,
+ s_CAL = 0.020,
+ s_intDR = 0.030))
+
 }
+
+
 
 }
 \references{
