@@ -180,7 +180,35 @@ The relationship between the covariance matrix  \(Sigma\) and \(Theta\) is given
 <li><p><code>input</code> is left empty: the function returns a <a href='https://www.rdocumentation.org/packages/base/topics/data.frame'>data.frame</a> template that can be used as input (the option <code>output_file</code> works as well)</p></li>
 <li><p><code>input</code> is fed with a <a href='https://www.rdocumentation.org/packages/base/topics/data.frame'>data.frame</a> or a <code>character</code> (file path), the \(\Theta\) matrix is returned</p></li>
 </ol>
-    <p><strong>Systematic uncertainties</strong></p>
+    <p><strong>Input format</strong></p>
+<p>The function expects either a CSV-file or a <a href='https://www.rdocumentation.org/packages/base/topics/data.frame'>data.frame</a> as input. To create template you can
+run the function leaving the argument <code>input</code> empty (see example). Please note the format
+of the input table (<a href='https://www.rdocumentation.org/packages/base/topics/data.frame'>data.frame</a>) needs to kept as specified in the template.</p>
+<p>The following table lists the meaning of the columns:</p>
+<table class='table'>
+<tr><td></td><td>COLUMN</td><td>DESCRIPTION</td></tr>
+<tr><td>UNIT</td><td></td><td><code>SAMPLE_ID</code></td></tr>
+<tr><td></td><td>sample name</td><td>-</td></tr>
+<tr><td></td><td><code>DR_BETA_K</code></td><td></td></tr>
+<tr><td>standard error beta-dose rate K</td><td>Gy/ka</td><td></td></tr>
+<tr><td><code>DR_BETA_U</code></td><td></td><td>standard error beta-dose rate U</td></tr>
+<tr><td>Gy/ka</td><td></td><td><code>DR_BETA_Th</code></td></tr>
+<tr><td></td><td>standard error beta-dose rate Th</td><td>Gy/ka</td></tr>
+<tr><td></td><td><code>DR_GAMMA_K</code></td><td></td></tr>
+<tr><td>standard error gamma-dose rate K</td><td>Gy/ka</td><td></td></tr>
+<tr><td><code>DR_GAMMA_U</code></td><td></td><td>standard error gamma-dose rate U</td></tr>
+<tr><td>Gy/ka</td><td></td><td><code>DR_GAMMA_Th</code></td></tr>
+<tr><td></td><td>standard error gamma-dose rate Th</td><td>Gy/ka</td></tr>
+<tr><td></td><td><code>DR_GAMMA_TOTAL</code></td><td></td></tr>
+<tr><td>standard error total gamma-dose rate</td><td>Gy/ka</td><td></td></tr>
+<tr><td><code>DR_TOTAL</code></td><td></td><td>total dose rate</td></tr>
+<tr><td>Gy/ka</td><td></td><td><code>DR_TOTAL_X</code></td></tr>
+<tr><td></td><td>standard error total dose rate</td><td>Gy/ka</td></tr>
+<tr><td></td><td></td><td>COLUMN</td></tr>
+</table>
+    <p><em>Note: All columns can be set to 0 or NA, no column must be left empty! If a value &gt; 0 is provided
+for <code>DR_GAMMA_TOTAL</code> this value is taken and values in, e.g., <code>DR_GAMMA_K</code> are discarded (set to 0)!</em></p>
+<p><strong>Systematic uncertainties</strong></p>
 <p>The following table provides informaton on the named argument
 that can be provided via the argument <code>sigma_s</code></p>
 <table class='table'>
@@ -219,11 +247,17 @@ Quaternary Geochronology 39, 24–34. doi: <a href='http://doi.org/10.1016/j.qua
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'>##(1) return template data.frame</span>
+    <pre class="examples"><div class='input'><span class='co'>##(1) return template data.frame (no file output)</span>
 <span class='fu'>create_ThetaMatrix</span>()</div><div class='output co'>#&gt; <span class='message'>[create_ThetaMatrix()] 'input' missing, input template returned!</span></div><div class='output co'>#&gt;   SAMPLE_ID DR_BETA_K DR_BETA_U DR_BETA_TH DR_GAMMA_K DR_GAMMA_U DR_GAMMA_TH
 #&gt; 1        NA        NA        NA         NA         NA         NA          NA
 #&gt;   DR_GAMMA_TOTAL DR_TOTAL DR_TOTAL_X
 #&gt; 1             NA       NA         NA</div><div class='input'>
+</div><span class='co'># NOT RUN {</span>
+<span class='co'>##(2) return template as data.frame + file</span>
+<span class='no'>file_path</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/tempfile'>tempfile</a></span>(<span class='kw'>fileext</span> <span class='kw'>=</span> <span class='st'>".csv"</span>)
+<span class='fu'>create_ThetaMatrix</span>(<span class='kw'>output_file</span> <span class='kw'>=</span> <span class='no'>file_path</span> )
+
+<span class='co'># }</span><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
