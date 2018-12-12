@@ -3,10 +3,23 @@ context("Test create_ThetaMatrix()")
 test_that("Full function test", {
   testthat::skip_on_cran()
 
+  ##sigma_s
+  sigma_s <-  c(
+    s_betaK = 0.010,
+    s_betaU = 0.007,
+    s_betaTh = 0.006,
+    s_gammaK = 0.010,
+    s_gammaU = 0.007,
+    s_gammaTh = 0.006,
+    s_gammaDR = 0.05,
+    s_CAL = 0.020,
+    s_intDR = 0.030)
+
   ##try to crash the function
   expect_error(create_ThetaMatrix(input = 2))
   expect_error(create_ThetaMatrix(input = "test"), regexp = "File test does not exist!")
-  expect_error(create_ThetaMatrix(input = data.frame()), regexp = "The input data.frame needs at least 2 rows!")
+  expect_error(create_ThetaMatrix(input = data.frame(), sigma_s = sigma_s), regexp = "The input data.frame needs at least 2 rows!")
+  expect_error(create_ThetaMatrix(input = data.frame()), regexp =  "argument \"sigma_s\" is missing, with no default")
   expect_error(create_ThetaMatrix(input = data.frame(), sigma_s = c(test = 1)),
                regexp = "Value names do not match in 'sigma_s', please check the manual!")
 
@@ -26,13 +39,13 @@ test_that("Full function test", {
 
   ##execute
   ##standard - data.frame to test warning
-  expect_warning(create_ThetaMatrix(input = df))
+  expect_warning(create_ThetaMatrix(input = df, sigma_s = sigma_s))
 
   #standard import from file
-  expect_is(create_ThetaMatrix(input = input_file), class = "matrix")
+  expect_is(create_ThetaMatrix(input = input_file, sigma_s = sigma_s), class = "matrix")
 
   #standard export to file
-  expect_type(create_ThetaMatrix(input = df, output_file = tempfile()), type = "double")
+  expect_type(create_ThetaMatrix(input = df, output_file = tempfile(), sigma_s = sigma_s), type = "double")
 
   ##run with sigma_s NULL
   expect_is(create_ThetaMatrix(input = df, sigma_s = NULL), class = "matrix")
@@ -40,10 +53,10 @@ test_that("Full function test", {
   ##add NA
   df[1,1] <- NA
   df$DR_GAMMA_TOTAL <- 0
-  expect_warning(create_ThetaMatrix(input = df), regexp = "NA values found and set to 0.")
+  expect_warning(create_ThetaMatrix(input = df, sigma_s = sigma_s))
 
   ##crash for non expected columns
   colnames(df) <- ""
-  expect_error(create_ThetaMatrix(input = df))
+  expect_error(create_ThetaMatrix(input = df, sigma_s = sigma_s))
 
 })

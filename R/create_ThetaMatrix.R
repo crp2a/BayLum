@@ -76,10 +76,10 @@
 #' @param output_file [character] (optional): file path for the output CSV-file, the field separator
 #' is hard set to `","`. Please use [utils::write.table] for more flexibility.
 #'
-#' @param sigma_s [numeric] (with default): named character with values for systematic uncertainties. Can be set to `NULL` to
-#' remove systematic uncertainties. The order of the *named* vector is not important,
-#' but the naming! **Note**: some of the uncertainties have
-#' a unit, please check details.
+#' @param sigma_s [numeric] (**required**): named character with values for systematic uncertainties. Those values
+#' are lab-specific. Can be set to `NULL` to remove systematic uncertainties. The order of the *named*
+#' vector is not important, but the naming!
+#' **Note**: some of the uncertainties have a unit, please check details.
 #'
 #' @param ... further arguments that can be passed to [utils::read.table] (for the CSV-file import)
 #'
@@ -103,7 +103,22 @@
 #' file_path <- tempfile(fileext = ".csv")
 #' create_ThetaMatrix(output_file = file_path )
 #'
+#' ##NOT RUNNING EXAMPLE for sigma_s
+#' calc_ThetaMatrix(...,
+#' sigma_s =  c(
+#'  s_betaK = 0.010,
+#'  s_betaU = 0.007,
+#'  s_betaTh = 0.006,
+#'  s_gammaK = 0.010,
+#'  s_gammaU = 0.007,
+#'  s_gammaTh = 0.006,
+#'  s_gammaDR = 0.05,
+#'  s_CAL = 0.020,
+#'  s_intDR = 0.030))
+#'
 #' }
+#'
+#'
 #'
 #' @keywords datagen IO
 #'
@@ -112,16 +127,7 @@
 create_ThetaMatrix <- function(
   input,
   output_file = NULL,
-  sigma_s =  c(
-    s_betaK = 0.010,
-    s_betaU = 0.007,
-    s_betaTh = 0.006,
-    s_gammaK = 0.010,
-    s_gammaU = 0.007,
-    s_gammaTh = 0.006,
-    s_gammaDR = 0.05,
-    s_CAL = 0.020,
-    s_intDR = 0.030),
+  sigma_s,
   ...
   ){
 
@@ -219,7 +225,6 @@ create_ThetaMatrix <- function(
     names(sigma_s) <- sigma_s_ref
 
   }
-
 
 # Verify data.frame ---------------------------------------------------------------------------
 
