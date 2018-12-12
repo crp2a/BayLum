@@ -4,6 +4,9 @@
 * `Generate_DataFile_MG()` now works only on preselected records; the limitation of OSL only was removed.
 * `plot_Ages()` the sorting of the samples in the graph did not work as expected; along with this a new 
 argument `sample_order` was added.
+* `AgeS_Computation()` now stops if a mismatch was encountered between the number of samples and the matrix provided via `THETA` 
+to prevent a 'JAGS' runtime error
+* All models now come with an example showing how they can be inspected (before the examples not working)
 
 ### New functions
 
