@@ -24,5 +24,8 @@ test_that("Full function test", {
 
   expect_warning(plot_Scatterplots(object = AgeS$Sampling, n.chains = 10),
                  regexp = "'n.chains' setting wrong. You have 3 chains, reset to default")
+
+  ##run single mode
+  expect_silent(plot_Scatterplots(object = AgeS$Sampling, plot_mode = "single", plot_type = "smoothScatter"))
 })
 
