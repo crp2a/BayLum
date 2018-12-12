@@ -316,6 +316,12 @@ AgeS_Computation <- function(
     }
   }
 
+  ##JAGS will crash with a runtime error if the dimension of the theta matrix does not fit to the number
+  ##of samples
+  if(sum(dim(THETA)) %% Nb_sample != 0)
+    stop("[AgeS_Computation()] The number of samples does not fit to the dimension of the THETA-matrix!", call. = FALSE)
+
+
   #--- StratiConstraints matrix
   if(length(StratiConstraints)==0){
     StratiConstraints=matrix(data=c(rep(1,Nb_sample),rep(0,Nb_sample*Nb_sample)),ncol=Nb_sample,nrow = (Nb_sample+1),byrow = T)
