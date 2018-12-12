@@ -32,7 +32,6 @@ Hogg AG, Hua Q, Blackwell PG, Niu M, Buck CE, Guilderson TP, Heaton TJ, Palmer J
 }
 \examples{
 data(Model_AgeC14)
-## Model_AgeC14[[full]]
-## Model_AgeC14$full
+writeLines(Model_AgeC14$full)
 }
 \keyword{datasets}

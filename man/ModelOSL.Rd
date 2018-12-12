@@ -42,6 +42,6 @@ data(ModelOSL)
 ## The JAGS model of the likelyhood for a saturating exponential plus linear growth
 ## (a function of the type \code{f(x)=a(1-exp(-x/b))+cx+d})
 ## and a gaussian distribution of equivalent doses around the palaeodose:
-## ModelOSL[[AgesMultiOSL_EXPLIN]][[gaussian]]
+writeLines(ModelOSL$AgesMultiOSL_EXPLIN$gaussian)
 }
 \keyword{datasets}

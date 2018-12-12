@@ -37,6 +37,6 @@ Plummer, M. (2015). JAGS Version 4.0. 0 user manual.
 \examples{
 data(ModelPrior)
 ## ModelPrior[[OSL]]
-## ModelPrior$OSL
+writeLines(ModelPrior$OSL)
 }
 \keyword{datasets}
