@@ -168,17 +168,16 @@ create_ThetaMatrix <- function(
         header = TRUE,
         skip = 0,
         sep = ","
-
         ),
       val = list(...))
 
     ##Import
     df <- read.table(
-      file = file,
+      file = input,
       header = import_settings$header,
       sep = import_settings$sep,
       skip = import_settings$skip,
-      row.names = FALSE)
+      row.names = NULL)
 
   }else{
     stop("[create_ThetaMatrix()] 'input' accepts file paths (character) or data frames only!", call. = FALSE)
@@ -203,18 +202,16 @@ create_ThetaMatrix <- function(
   if(!all(colnames(df) %in% df_colnames))
     stop("[create_ThetaMatrix()] The input data.frame has not the expected columns, please check the manual!",call. = FALSE)
 
+  #if data.frame has only one row, it cannot work either
+  if(nrow(df) < 2)
+    stop("[create_ThetaMatrix()] The input data.frame needs at least 2 rows!", call. = FALSE)
+
   #set NA values to 0
   if(any(is.na(df))){
     df[is.na(df)] <- 0
     warning("[create_ThetaMatrix()] NA values found and set to 0.", call. = FALSE)
 
   }
-
-
-  #if data.frame has only one row, it cannot work either
-  if(nrow(df) < 2)
-    stop("[create_ThetaMatrix()] The input data.frame needs at least 2 rows!", call. = FALSE)
-
 
 
 
@@ -284,3 +281,5 @@ create_ThetaMatrix <- function(
   return(m)
 
 }
+
+create_ThetaMatrix(input = input_file)

@@ -11,20 +11,39 @@ test_that("Full function test", {
                regexp = "Value names do not match in 'sigma_s', please check the manual!")
 
   ##create reference dataset
+  ##without anything
+  expect_type(create_ThetaMatrix(), type = "list")
   file <- tempfile(fileext = ".csv")
+  ##tests adding the *.csv ending
+  expect_type(create_ThetaMatrix(output_file = tempfile()), type = "list")
   expect_type(df <- create_ThetaMatrix(output_file = file), type = "list")
 
-  ##add some lines
+  ##add some lines to create the needed file
   df <- rbind(df,df)
   df[] <- 1
+  input_file <- tempfile(fileext = ".csv")
+  write.table(x = df, file = input_file, sep = ",", col.names = TRUE, row.names = FALSE)
 
   ##execute
+  ##standard - data.frame to test warning
   expect_warning(create_ThetaMatrix(input = df))
-  create_ThetaMatrix(input = df, output_file = tempfile())
+
+  #standard import from file
+  expect_is(create_ThetaMatrix(input = input_file), class = "matrix")
+
+  #standard export to file
+  expect_type(create_ThetaMatrix(input = df, output_file = tempfile()), type = "double")
+
+  ##run with sigma_s NULL
+  expect_is(create_ThetaMatrix(input = df, sigma_s = NULL), class = "matrix")
 
   ##add NA
   df[1,1] <- NA
   df$DR_GAMMA_TOTAL <- 0
   expect_warning(create_ThetaMatrix(input = df), regexp = "NA values found and set to 0.")
+
+  ##crash for non expected columns
+  colnames(df) <- ""
+  expect_error(create_ThetaMatrix(input = df))
 
 })
