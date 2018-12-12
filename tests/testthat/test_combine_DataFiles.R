@@ -25,5 +25,8 @@ test_that("Full function test", {
   ##success
   expect_type(combine_DataFiles(DATA2,DATA1), "list")
 
+  ##TODO - trigger deprecated warning
+  expect_warning(Concat_DataFile())
+
 })
 
