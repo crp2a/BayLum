@@ -51,6 +51,31 @@ The function supports two different operation modes:
 \item \code{input} is fed with a \link{data.frame} or a \code{character} (file path), the \eqn{\Theta} matrix is returned
 }
 
+\strong{Input format}
+
+The function expects either a CSV-file or a \link{data.frame} as input. To create template you can
+run the function leaving the argument \code{input} empty (see example). Please note the format
+of the input table (\link{data.frame}) needs to kept as specified in the template.
+
+The following table lists the meaning of the columns:
+
+\tabular{lll}{
+COLUMN \tab DESCRIPTION \tab UNIT \cr
+\code{SAMPLE_ID} \tab sample name \tab - \cr
+\code{DR_BETA_K} \tab  standard error beta-dose rate K \tab Gy/ka \cr
+\code{DR_BETA_U} \tab  standard error beta-dose rate U \tab Gy/ka \cr
+\code{DR_BETA_Th} \tab  standard error beta-dose rate Th \tab Gy/ka \cr
+\code{DR_GAMMA_K} \tab  standard error gamma-dose rate K \tab Gy/ka \cr
+\code{DR_GAMMA_U} \tab  standard error gamma-dose rate U \tab Gy/ka \cr
+\code{DR_GAMMA_Th} \tab  standard error gamma-dose rate Th \tab Gy/ka \cr
+\code{DR_GAMMA_TOTAL} \tab  standard error total gamma-dose rate \tab Gy/ka \cr
+\code{DR_TOTAL} \tab total dose rate  \tab Gy/ka \cr
+\code{DR_TOTAL_X} \tab standard error total dose rate  \tab Gy/ka \cr
+}
+
+\emph{Note: All columns can be set to 0 or NA, no column must be left empty! If a value > 0 is provided
+for \code{DR_GAMMA_TOTAL} this value is taken and values in, e.g., \code{DR_GAMMA_K} are discarded (set to 0)!}
+
 \strong{Systematic uncertainties}
 
 The following table provides informaton on the named argument
