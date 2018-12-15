@@ -27,5 +27,8 @@ test_that("Full function test", {
 
   ##run single mode
   expect_silent(plot_Scatterplots(object = AgeS$Sampling, plot_mode = "single", plot_type = "smoothScatter"))
+
+  ##provide data.frame as input
+  expect_silent(plot_Scatterplots(object = as.data.frame(AgeS$Sampling[[1]])))
 })
 
