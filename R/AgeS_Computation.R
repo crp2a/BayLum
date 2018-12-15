@@ -455,7 +455,7 @@ AgeS_Computation <- function(
         data = dataList,
         n.chains = n.chains,
         monitor = c("A", "D", "sD"),
-        adapt = Iter,
+        adapt = min(Iter, 1000),
         silent.jags = quiet,
         method = "rjparallel"
       )
