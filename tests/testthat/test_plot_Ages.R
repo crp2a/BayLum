@@ -32,6 +32,11 @@ test_that("Full function test", {
   expect_silent(plot_Ages(object = Age,
             sample_names = c("test1", "test2")))
 
+  ##test AT == NULL
+  expect_silent(plot_Ages(object = Age, sample_order = c(1,2)))
+
+  ##check legend option
+  expect_silent(plot_Ages(object = Age, legend.pos = "top"))
 
 
 })
