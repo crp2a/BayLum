@@ -7,8 +7,8 @@
 #' Samples, for which data is avalilable in several BIN files, can be analysed.\cr
 #' Single-grain or Multi-grain OSL measurements can be analysed simultaneouly.
 #'
-#' @param DATA [list] of objects: LT, sLT, ITimes, dLab, ddot_env, regDose, J, K, Nb_measurement,
-#' provided by the function \code{\link{Generate_DataFile}} or \code{\link{Generate_DataFile_MG}} or \code{\link{combine_DataFiles}}.
+#' @param DATA [list] of objects: `LT`, `sLT`, `ITimes`, `dLab`, `ddot_env`, `regDose`, `J`, `K`, `Nb_measurement`,
+#' provided by the function [Generate_DataFile] or [Generate_DataFile_MG] or [combine_DataFiles].
 #' \code{DATA} contains informations for more than one sample.
 #' If there is stratigraphic relations between samples, informations in DATA must be ordered by order of incresing ages.
 #' See the details section to for more informations.

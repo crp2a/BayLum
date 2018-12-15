@@ -14,8 +14,8 @@ AgeS_Computation(DATA, SampleNames, Nb_sample, PriorAge = rep(c(0.01,
   t = 5, n.chains = 3, jags_method = "rjags", quiet = FALSE)
 }
 \arguments{
-\item{DATA}{\link{list} of objects: LT, sLT, ITimes, dLab, ddot_env, regDose, J, K, Nb_measurement,
-provided by the function \code{\link{Generate_DataFile}} or \code{\link{Generate_DataFile_MG}} or \code{\link{combine_DataFiles}}.
+\item{DATA}{\link{list} of objects: \code{LT}, \code{sLT}, \code{ITimes}, \code{dLab}, \code{ddot_env}, \code{regDose}, \code{J}, \code{K}, \code{Nb_measurement},
+provided by the function \link{Generate_DataFile} or \link{Generate_DataFile_MG} or \link{combine_DataFiles}.
 \code{DATA} contains informations for more than one sample.
 If there is stratigraphic relations between samples, informations in DATA must be ordered by order of incresing ages.
 See the details section to for more informations.}
