@@ -30,5 +30,12 @@ test_that("Full function test", {
 
   ##provide data.frame as input
   expect_silent(plot_Scatterplots(object = as.data.frame(AgeS$Sampling[[1]])))
+
+  ##stops
+  expect_error(plot_Scatterplots(object = as.data.frame(AgeS$Sampling[[1]][1])))
+  df <- as.data.frame(AgeS$Sampling[[1]])
+  df[[2]] <- as.character(df[[2]])
+  expect_error(plot_Scatterplots(object =df), regexp = "Only numeric values are allowed!")
+
 })
 
