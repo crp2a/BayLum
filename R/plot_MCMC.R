@@ -206,7 +206,7 @@ plot_MCMC <- function(
 
 
   ##order output according to the sample names (here number, e.g., A[1], A[2], ...)
-  o <- order(sample_info)
+  o <- order(as.numeric(sample_info))
 
   ##expand sample_names the right length
   if(!is.null(sample_names)){
