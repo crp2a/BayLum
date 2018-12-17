@@ -44,7 +44,7 @@
 #' Two plots: Traces of the MCMC chains and the corresponding density plots. This plots
 #' are similar to [coda::traceplot] and [coda::densplot].
 #'
-#' @section Function version: 0.1.1
+#' @section Function version: 0.1.2
 #'
 #' @keywords dplot
 #'
@@ -88,8 +88,8 @@ plot_MCMC <- function(
   }
 
   # Extract wanted parameters -------------------------------------------------------------------
-  if(!all(gsub(coda::varnames(object), pattern = "\\[.\\]" ,replacement = "") %in% variables)){
-    sel <- which(gsub(coda::varnames(object), pattern = "\\[.\\]" ,replacement = "") %in% variables)
+  if(!all(gsub(coda::varnames(object), pattern = "\\[.+\\]" ,replacement = "") %in% variables)){
+    sel <- which(gsub(coda::varnames(object), pattern = "\\[.+\\]" ,replacement = "") %in% variables)
 
     if(length(sel) == 0){
       allowed <- unique(gsub(coda::varnames(object), pattern = "\\[.\\]" ,replacement = ""))
@@ -167,7 +167,7 @@ plot_MCMC <- function(
 
     ##create a list of ylab for the traces using a lookup table
     ##if something is not yet in our lookup table it will produce NA
-    ylab_traces <- as.character(axes_labels[gsub(coda::varnames(object), pattern = "\\[.\\]" ,replacement = "")])
+    ylab_traces <- as.character(axes_labels[gsub(coda::varnames(object), pattern = "\\[.+\\]" ,replacement = "")])
 
     ##(2) density plots
     density_list <- lapply(traces_list, function(v){
@@ -183,7 +183,6 @@ plot_MCMC <- function(
 
 
   # Plotting ------------------------------------------------------------------------------------
-
   ##extract real variable names
   ##in our case, e.g, A[1] and A[2] ... two samples
   ##or just A, D, sD for one sample
@@ -205,6 +204,7 @@ plot_MCMC <- function(
 
   }
 
+
   ##order output according to the sample names (here number, e.g., A[1], A[2], ...)
   o <- order(sample_info)
 
@@ -222,7 +222,7 @@ plot_MCMC <- function(
 
   ##set mfrow if no single plot is wanted
   if(!plot_single)
-    par(mfrow = c(length(unique(gsub(coda::varnames(object), pattern = "\\[.\\]" ,replacement = ""))), 2))
+    par(mfrow = c(length(unique(gsub(coda::varnames(object), pattern = "\\[.+\\]" ,replacement = ""))), 2))
 
   ##plot everything in a loop
   for(v in o){

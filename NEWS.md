@@ -4,6 +4,7 @@
 * `Generate_DataFile_MG()` now works only on preselected records; the limitation of OSL only was removed.
 * `plot_Ages()` the sorting of the samples in the graph did not work as expected; along with this a new 
 argument `sample_order` was added.
+* `plot_MCMC()` accidentally could not display the chains from more than 9 samples; fixed (thanks to Maryam Heydari)
 * `AgeS_Computation()` now stops if a mismatch was encountered between the number of samples and the matrix provided via `THETA` 
 to prevent a 'JAGS' runtime error
 * `AgeS_Computation()` experimentally gained a new argument `jags_method` to support full automated processing in parallel using the R package 'runjags'; 
