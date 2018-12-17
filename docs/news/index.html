@@ -116,9 +116,9 @@
       
     </div>
 
-    <div id="baylum-0-1-4-release-date-2018-12-11" class="section level2">
+    <div id="baylum-0-1-4-release-date-2018-12-15" class="section level2">
 <h2 class="hasAnchor">
-<a href="#baylum-0-1-4-release-date-2018-12-11" class="anchor"></a>BayLum 0.1.4 (Release date: 2018-12-11)</h2>
+<a href="#baylum-0-1-4-release-date-2018-12-15" class="anchor"></a>BayLum 0.1.4 (Release date: 2018-12-15)</h2>
 <div id="bugfixes-changes" class="section level3">
 <h3 class="hasAnchor">
 <a href="#bugfixes-changes" class="anchor"></a>Bugfixes &amp; changes</h3>
@@ -127,6 +127,15 @@
 <code><a href="../reference/Generate_DataFile_MG.html">Generate_DataFile_MG()</a></code> now works only on preselected records; the limitation of OSL only was removed.</li>
 <li>
 <code><a href="../reference/plot_Ages.html">plot_Ages()</a></code> the sorting of the samples in the graph did not work as expected; along with this a new argument <code>sample_order</code> was added.</li>
+<li>
+<code><a href="../reference/plot_MCMC.html">plot_MCMC()</a></code> accidentally could not display the chains from more than 9 samples; fixed (thanks to Maryam Heydari)</li>
+<li>
+<code><a href="../reference/plot_MCMC.html">plot_MCMC()</a></code> the functions understand the output of <code><a href="../reference/AgeS_Computation.html">AgeS_Computation()</a></code> for an automated treatment</li>
+<li>
+<code><a href="../reference/AgeS_Computation.html">AgeS_Computation()</a></code> now stops if a mismatch was encountered between the number of samples and the matrix provided via <code>THETA</code> to prevent a ‘JAGS’ runtime error</li>
+<li>
+<code><a href="../reference/AgeS_Computation.html">AgeS_Computation()</a></code> experimentally gained a new argument <code>jags_method</code> to support full automated processing in parallel using the R package ‘runjags’; by default the calculation is done simply via ‘rjags’.</li>
+<li>All models now come with an example showing how they can be inspected (before the examples not working)</li>
 </ul>
 </div>
 <div id="new-functions" class="section level3">
@@ -245,7 +254,7 @@
     <div id="tocnav">
       <h2>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
-        <li><a href="#baylum-0-1-4-release-date-2018-12-11">0.1.4</a></li>
+        <li><a href="#baylum-0-1-4-release-date-2018-12-15">0.1.4</a></li>
         <li><a href="#baylum-0-1-3-release-date-2018-09-14">0.1.3</a></li>
         <li><a href="#baylum-0-1-2-release-date-2018-06-22">0.1.2</a></li>
         <li><a href="#baylum-0-1-1-release-date-2017-09-01">0.1.1</a></li>

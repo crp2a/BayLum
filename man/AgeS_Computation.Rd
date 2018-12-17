@@ -76,7 +76,8 @@ See details section for more informations on the proposed growth curves.}
 how individual equivalent dose values are distributed around the palaeodose.
 Allowed inputs are \bold{"cauchy"}, \bold{"gaussian"}, \bold{"lognormal_A"} and \bold{"lognormal_M"}, see details section for more informations.}
 
-\item{Iter}{\link{integer} (with default): number of iterations for the MCMC computation (for more information see \code{\link{jags.model}}).}
+\item{Iter}{\link{integer} (with default): number of iterations for the MCMC computation (for more information see \code{\link{jags.model}}).
+If \code{jags_method = "rjparalle"} this number is limited to \code{1000} (it will be automatically adapated).}
 
 \item{t}{\link{integer} (with default): 1 every \code{t} iterations of the MCMC is considered for sampling the posterior distribution
 (for more information see \code{\link{jags.model}}).}

@@ -32,7 +32,8 @@
 
 <meta property="og:title" content="Bayesian analysis for the OSL age estimation of various samples — AgeS_Computation" />
 
-<meta property="og:description" content="This function computes the age (in ka) of at least two samples according to the model developed in Combes and Philippe (2017),
+<meta property="og:description" content="This function computes the age (in ka) of at least two samples
+according to the model developed in Combes and Philippe (2017),
 based on outputs of Generate_DataFile or Generate_DataFile_MG
 or both of them using combine_DataFiles.
 Samples, for which data is avalilable in several BIN files, can be analysed.
@@ -126,7 +127,8 @@ Single-grain or Multi-grain OSL measurements can be analysed simultaneouly." />
 
     <div class="ref-description">
     
-    <p>This function computes the age (in ka) of at least two samples according to the model developed in Combes and Philippe (2017),
+    <p>This function computes the age (in ka) of at least two samples
+according to the model developed in Combes and Philippe (2017),
 based on outputs of <code><a href='Generate_DataFile.html'>Generate_DataFile</a></code> or <code><a href='Generate_DataFile_MG.html'>Generate_DataFile_MG</a></code>
 or both of them using <code><a href='combine_DataFiles.html'>combine_DataFiles</a></code>.<br />
 Samples, for which data is avalilable in several BIN files, can be analysed.<br />
@@ -141,78 +143,78 @@ Single-grain or Multi-grain OSL measurements can be analysed simultaneouly.</p>
   <span class='kw'>OutputTablePath</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>""</span>), <span class='kw'>THETA</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(), <span class='kw'>sepTHETA</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>","</span>),
   <span class='kw'>StratiConstraints</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(), <span class='kw'>sepSC</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>","</span>), <span class='kw'>LIN_fit</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>Origin_fit</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>distribution</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"cauchy"</span>), <span class='kw'>Iter</span> <span class='kw'>=</span> <span class='fl'>50000</span>,
-  <span class='kw'>t</span> <span class='kw'>=</span> <span class='fl'>5</span>, <span class='kw'>n.chains</span> <span class='kw'>=</span> <span class='fl'>3</span>, <span class='kw'>quiet</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
+  <span class='kw'>t</span> <span class='kw'>=</span> <span class='fl'>5</span>, <span class='kw'>n.chains</span> <span class='kw'>=</span> <span class='fl'>3</span>, <span class='kw'>jags_method</span> <span class='kw'>=</span> <span class='st'>"rjags"</span>, <span class='kw'>quiet</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>DATA</th>
-      <td><p>list of objects: LT, sLT, ITimes, dLab, ddot_env, regDose, J, K, Nb_measurement,
-provided by the function <code><a href='Generate_DataFile.html'>Generate_DataFile</a></code> or <code><a href='Generate_DataFile_MG.html'>Generate_DataFile_MG</a></code> or <code><a href='combine_DataFiles.html'>combine_DataFiles</a></code>.
+      <td><p><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a> of objects: <code>LT</code>, <code>sLT</code>, <code>ITimes</code>, <code>dLab</code>, <code>ddot_env</code>, <code>regDose</code>, <code>J</code>, <code>K</code>, <code>Nb_measurement</code>,
+provided by the function <a href='Generate_DataFile.html'>Generate_DataFile</a> or <a href='Generate_DataFile_MG.html'>Generate_DataFile_MG</a> or <a href='combine_DataFiles.html'>combine_DataFiles</a>.
 <code>DATA</code> contains informations for more than one sample.
 If there is stratigraphic relations between samples, informations in DATA must be ordered by order of incresing ages.
 See the details section to for more informations.</p></td>
     </tr>
     <tr>
       <th>SampleNames</th>
-      <td><p>character vector: names of samples. The length of this vector is equal to <code>Nb_sample</code>.</p></td>
+      <td><p><a href='https://www.rdocumentation.org/packages/base/topics/character'>character</a> vector: names of samples. The length of this vector is equal to <code>Nb_sample</code>.</p></td>
     </tr>
     <tr>
       <th>Nb_sample</th>
-      <td><p>integer : number of samples, <code>Nb_sample&gt;1</code>.</p></td>
+      <td><p><a href='https://www.rdocumentation.org/packages/base/topics/integer'>integer</a>: number of samples, <code>Nb_sample&gt;1</code>.</p></td>
     </tr>
     <tr>
       <th>PriorAge</th>
-      <td><p>numeric vector (with default): lower and upper bounds for age parameter of each sample (in ka).
+      <td><p><a href='https://www.rdocumentation.org/packages/base/topics/numeric'>numeric</a> vector (with default): lower and upper bounds for age parameter of each sample (in ka).
 Note that, <code>length(PriorAge)=2*Nb_sample</code>
 and <code>PriorAge[2i-1,2i]</code> correponds to the lower and upper bounds of sample whose number ID is equal to <code>i</code>.</p></td>
     </tr>
     <tr>
       <th>BinPerSample</th>
-      <td><p>integer vector (with default): vector with the number of BIN files per sample.
+      <td><p><a href='https://www.rdocumentation.org/packages/base/topics/integer'>integer</a> vector (with default): vector with the number of BIN files per sample.
 The length of this vector is equal to <code>Nb_sample</code>.
 <code>BinPerSample[i]</code> correponds to the number of BIN files for the sample whose number ID is equal to <code>i</code>.
 For more information to fill this vector, we refer to detatils in <a href='Generate_DataFile.html'>Generate_DataFile</a> or in <a href='Generate_DataFile_MG.html'>Generate_DataFile_MG</a>.</p></td>
     </tr>
     <tr>
       <th>SavePdf</th>
-      <td><p>boolean (with default): if TRUE save graphs in pdf file named <code>OutputFileName</code> in folder <code>OutputFilePath</code>.</p></td>
+      <td><p><a href='https://www.rdocumentation.org/packages/base/topics/logical'>logical</a> (with default): if TRUE save graphs in pdf file named <code>OutputFileName</code> in folder <code>OutputFilePath</code>.</p></td>
     </tr>
     <tr>
       <th>OutputFileName</th>
-      <td><p>character (with default): name of the pdf file that will be generated by the function if <code>SavePdf = TRUE</code>;
+      <td><p><a href='https://www.rdocumentation.org/packages/base/topics/character'>character</a> (with default): name of the pdf file that will be generated by the function if <code>SavePdf = TRUE</code>;
 <code>length(OutputFileName)=2</code>, see <b>PLOT OUTPUT</b> in <b>Value</b> section for more informations.</p></td>
     </tr>
     <tr>
       <th>OutputFilePath</th>
-      <td><p>character (with default): path to the pdf file that will be generated by the function if <code>SavePdf</code>=TRUE.
+      <td><p><a href='https://www.rdocumentation.org/packages/base/topics/character'>character</a> (with default): path to the pdf file that will be generated by the function if <code>SavePdf</code>=TRUE.
 If it is not equal to "", it must be terminated by "/".</p></td>
     </tr>
     <tr>
       <th>SaveEstimates</th>
-      <td><p>boolean (with default): if TRUE save Bayes estimates, credible interval at level 68% and 95%  and
+      <td><p><a href='https://www.rdocumentation.org/packages/base/topics/logical'>logical</a> (with default): if TRUE save Bayes estimates, credible interval at level 68% and 95%  and
 the result of the gelman en Rubin test of convergency, in a csv table named <code>OutputFileName</code> in folder <code>OutputFilePath</code>.</p></td>
     </tr>
     <tr>
       <th>OutputTableName</th>
-      <td><p>character (with default): name of the table that will be generated by the function if <code>SaveEstimates = TRUE</code>.</p></td>
+      <td><p><a href='https://www.rdocumentation.org/packages/base/topics/character'>character</a> (with default): name of the table that will be generated by the function if <code>SaveEstimates = TRUE</code>.</p></td>
     </tr>
     <tr>
       <th>OutputTablePath</th>
-      <td><p>character (with default): path to the table that will be generated by the function if <code>SaveEstimates = TRUE</code>.
+      <td><p><a href='https://www.rdocumentation.org/packages/base/topics/character'>character</a> (with default): path to the table that will be generated by the function if <code>SaveEstimates = TRUE</code>.
 If it is not equal to "", it must be terminated by "/".</p></td>
     </tr>
     <tr>
       <th>THETA</th>
-      <td><p>numeric matrix or character (with default): input object for systematic and individual error.
+      <td><p><a href='https://www.rdocumentation.org/packages/base/topics/numeric'>numeric</a> <a href='https://www.rdocumentation.org/packages/base/topics/matrix'>matrix</a> or <a href='https://www.rdocumentation.org/packages/base/topics/character'>character</a> (with default): input object for systematic and individual error.
 If systematic errors are considered, see the details section for instructions regarding how to correctly fill <code>THETA</code>;
 the user can refer to a matrix (numeric matrix) or to a csv file (character).
 Otherwise, default value is suitable, and only individual errors are considered.</p></td>
     </tr>
     <tr>
       <th>sepTHETA</th>
-      <td><p>character (with default): if <code>THETA</code> is character,
+      <td><p><a href='https://www.rdocumentation.org/packages/base/topics/character'>character</a> (with default): if <code>THETA</code> is character,
 indicate column separator in <code>THETA</code> csv file.</p></td>
     </tr>
     <tr>
@@ -224,48 +226,54 @@ If there is no stratigraphic relation default value is suitable.</p></td>
     </tr>
     <tr>
       <th>sepSC</th>
-      <td><p>character (with default): if <code>StratiConstraints</code> is character,
+      <td><p><a href='https://www.rdocumentation.org/packages/base/topics/character'>character</a> (with default): if <code>StratiConstraints</code> is character,
 indicate column separator in <code>StratiConstraints</code> .csv file.</p></td>
     </tr>
     <tr>
       <th>LIN_fit</th>
-      <td><p>logical (with default): if TRUE (default) allows a linear component,
+      <td><p><a href='https://www.rdocumentation.org/packages/base/topics/logical'>logical</a> (with default): if TRUE (default) allows a linear component,
 on top of the (default) saturating exponential curve, for the fitting of dose response curves.
 See details section for more informations on the proposed dose response curves.</p></td>
     </tr>
     <tr>
       <th>Origin_fit</th>
-      <td><p>logical (with default): if TRUE, forces the dose response curves to pass through the origin.
+      <td><p><a href='https://www.rdocumentation.org/packages/base/topics/logical'>logical</a> (with default): if TRUE, forces the dose response curves to pass through the origin.
 See details section for more informations on the proposed growth curves.</p></td>
     </tr>
     <tr>
       <th>distribution</th>
-      <td><p>character (with default): type of distribution that defines
+      <td><p><a href='https://www.rdocumentation.org/packages/base/topics/character'>character</a> (with default): type of distribution that defines
 how individual equivalent dose values are distributed around the palaeodose.
 Allowed inputs are <b>"cauchy"</b>, <b>"gaussian"</b>, <b>"lognormal_A"</b> and <b>"lognormal_M"</b>, see details section for more informations.</p></td>
     </tr>
     <tr>
       <th>Iter</th>
-      <td><p>integer (with default): number of iterations for the MCMC computation (for more information see <code>jags.model</code>).</p></td>
+      <td><p><a href='https://www.rdocumentation.org/packages/base/topics/integer'>integer</a> (with default): number of iterations for the MCMC computation (for more information see <code>jags.model</code>).
+If <code>jags_method = "rjparalle"</code> this number is limited to <code>1000</code> (it will be automatically adapated).</p></td>
     </tr>
     <tr>
       <th>t</th>
-      <td><p>integer (with default): 1 every <code>t</code> iterations of the MCMC is considered for sampling the posterior distribution
+      <td><p><a href='https://www.rdocumentation.org/packages/base/topics/integer'>integer</a> (with default): 1 every <code>t</code> iterations of the MCMC is considered for sampling the posterior distribution
 (for more information see <code>jags.model</code>).</p></td>
     </tr>
     <tr>
       <th>n.chains</th>
-      <td><p>integer (with default): number of independent chains for the model (for more information see <code>jags.model</code>).</p></td>
+      <td><p><a href='https://www.rdocumentation.org/packages/base/topics/integer'>integer</a> (with default): number of independent chains for the model (for more information see <code>jags.model</code>).</p></td>
+    </tr>
+    <tr>
+      <th>jags_method</th>
+      <td><p><a href='https://www.rdocumentation.org/packages/base/topics/character'>character</a> (with default): select computation method, supported are  <code>"rjags"</code> (the default) and <code>rjparallel</code>
+using package 'runjags'. The latter option uses the function <a href='https://www.rdocumentation.org/packages/runjags/topics/autorun.jags'>runjags::autorun.jags</a> to allow a full automated processing.</p></td>
     </tr>
     <tr>
       <th>quiet</th>
-      <td><p><code><a href='https://www.rdocumentation.org/packages/base/topics/logical'>logical</a></code> (with default): enables/disables rjags messages</p></td>
+      <td><p><a href='https://www.rdocumentation.org/packages/base/topics/logical'>logical</a> (with default): enables/disables <code>rjags</code> messages</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p><b>NUMERICAL OUTPUT</b></p>
+    <p><strong>NUMERICAL OUTPUT</strong></p>
 <ol>
 <li><p><b>A list containing the following objects:</b></p><ul>
 <li><p><b>Sampling</b>: that corresponds to a sample of the posterior distributions
@@ -291,7 +299,7 @@ or changing the parameter <code>distribution</code> or the growth curve, to reac
 the age, palaeodose and equivalent dose dispersion parameters for each sample.</p></li>
 </ol>
 
-<p><b>PLOT OUTPUT</b></p>
+<p><strong>PLOT OUTPUT</strong></p>
 <ol>
 <li><p><b>MCMC trajectories</b>: A graph with the MCMC trajectories and posterior distributions of the age, palaeodose and equivalent dose dispersion parameters
 is displayed, there is one page per sample. <br />
@@ -302,67 +310,6 @@ On each line, the plot on the left represents the MCMC trajectories, and the one
 </ol>
 
 <p>To give the results in a publication, we recommend to give the Bayes estimate of the parameters as well as the credible interval at 95% or 68%.</p>
-    
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
-
-    <p><b>** How to fill</b> <code>StratiConstraints</code> <b>? **</b><br /></p>
-<p>If there is stratigraphic relations between samples, <b>informations in DATA must be ordered by order of increasing ages</b>.
-To do this the user can either fill right <code>Names</code> in <code><a href='Generate_DataFile.html'>Generate_DataFile</a></code> or in <code><a href='Generate_DataFile_MG.html'>Generate_DataFile_MG</a></code>
-(as it is indicated in Details section of these function), or ordered by order of increasing ages
-outputs of <code><a href='Generate_DataFile.html'>Generate_DataFile</a></code> or <code><a href='Generate_DataFile_MG.html'>Generate_DataFile_MG</a></code> in <code><a href='combine_DataFiles.html'>combine_DataFiles</a></code>.</p>
-<p>The user can fill the <code>StratiConstraints</code> matrix as follow.</p><ol>
-<li><p><b>Size of the matrix</b>: row number of <code>StratiConstraints</code> matrix is equal to <code>Nb_sample+1</code>,
-and column number is equal to <code>Nb_sample</code>.</p></li>
-<li><p><b>First line of the matrix</b>:
-for all <code>i in {1,...,Nb_Sample}</code>, <code>StratiConstraints[1,i]=1</code> that means the lower bound of the sample age (given in <code>PriorAge[2i-1]</code>)
-for the sample whose number ID is equal to <code>i</code>, is taken into account.</p></li>
-<li><p><b>Sample relations</b>: for all  <code>j in {2,...,Nb_Sample+1}</code> and all <code>i in {j,...,Nb_Sample}</code>,
-<code>StratiConstraints[j,i]=1</code> if sample age whose number ID is equal to <code>j-1</code> is lower than sample age whose number ID is equal to <code>i</code>.
-Otherwise, <code>StratiConstraints[j,i]=0</code>.</p></li>
-</ol><p>Note that <code>StratiConstraints_{2:Nb_sample+A,1:Nb_sample}</code> is a upper triangular matrix.</p>
-<p>The user can also use <code><a href='SCMatrix.html'>SCMatrix</a></code> or <code><a href='SC_Ordered.html'>SC_Ordered</a></code> (if all samples are ordered) functions
-to construct the <code>StratiConstraints</code> matrix.</p>
-<p>The user can also refer to a csv file that containts the relation between samples as defined above.
-The user must take care about the separator used in the csv file using the argument <code>sepSC</code>.<br /></p>
-<p><b>** How to fill</b> <code>THETA</code> <b>covariance matrix concerning common and individual error? **</b><br /></p>
-<p>If systematic errors are considered, the user can fill the <code>THETA</code> matrix as follow.</p><ul>
-<li><p>row number of <code>THETA</code> is equal the column number, equal to <code>Nb_sample</code>.</p></li>
-<li><p>For all <code>i in {1,...,Nb_sample}</code>, <code>THETA[i,i]</code> containts individual error
-plus systematic error of the sample whose number ID is equal to <code>i</code>.</p></li>
-<li><p>For all <code>i,j in {1,...,Nb_sample}</code> and <code>i</code> different from <code>j</code> ,
-<code>THETA[i,j]</code> containts common error between samples whose number ID are equal to <code>i</code> and <code>j</code>.</p></li>
-</ul><p>Note that <code>THETA[i,j]</code> is a symetric matrix.</p>
-<p>The user can also refer to a .csv file that containts the errors as defined above.<br /></p>
-<p><b>** Option on growth curves **</b><br /></p>
-<p>As for <code><a href='Age_Computation.html'>Age_Computation</a></code> and <code><a href='Palaeodose_Computation.html'>Palaeodose_Computation</a></code>, the user can choose from 4 dose response curves:</p><ul>
-<li><p><b>Saturating exponential plus linear growth</b> (<code>AgesMultiCS2_EXPLIN</code>):</p>
-<p>for all <code>x</code> in IR+, <code>f(x)=a(1-exp(-x/b))+cx+d</code>; select</p><ul>
-<li><p><code>LIN_fit=TRUE</code></p></li>
-<li><p><code>Origin_fit=FALSE</code></p></li>
-</ul></li>
-<li><p><b>Saturating exponential growth</b> (<code>AgesMultiCS2_EXP</code>):</p>
-<p>for all <code>x</code> in IR+, <code>f(x)=a(1-exp(-x/b))+d</code>; select</p><ul>
-<li><p><code>LIN_fit=FALSE</code></p></li>
-<li><p><code>Origin_fit=FALSE</code></p></li>
-</ul></li>
-<li><p><b>Saturating exponential plus linear growth and fitting through the origin</b> (<code>AgesMultiCS2_EXPLINZO</code>):</p>
-<p>for all <code>x</code> in IR+, <code>f(x)=a(1-exp(-x/b))+cx</code>; select</p><ul>
-<li><p><code>LIN_fit=TRUE</code></p></li>
-<li><p><code>Origin_fit=TRUE</code></p></li>
-</ul></li>
-<li><p><b>Saturating exponential growth and fitting through the origin</b> (<code>AgesMultiCS2_EXPZO</code>):</p>
-<p>for all <code>x</code> in IR+, <code>f(x)=a(1-exp(-x/b))</code>; select</p><ul>
-<li><p><code>LIN_fit=FALSE</code></p></li>
-<li><p><code>Origin_fit=TRUE</code></p></li>
-</ul></li>
-</ul>
-    <p><b>** Option on equivalent dose distribution around the palaeodose **</b><br /></p>
-<p>The use can choose between :</p><ul>
-<li><p><code>cauchy</code>: a Cauchy distribution with location parameter equal to the palaeodose of the sample;</p></li>
-<li><p><code>gaussian</code>: a Gaussian distribution with mean equal to the palaeodose of the sample;</p></li>
-<li><p><code>lognormal_A</code>: a log-normal distribution with mean or <b>A</b>verage equal to the palaeodose of the sample:</p></li>
-<li><p><code>lognormal_M</code>: a log-normal distribution with <b>M</b>edian equal to the palaeodose of the sample.</p></li>
-</ul>
     
     <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
@@ -381,7 +328,7 @@ Quaternary Geochronology 28, 62-70. doi:10.1016/j.quageo.2015.04.001</p>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><a href='Generate_DataFile.html'>Generate_DataFile</a>, <a href='Generate_DataFile_MG.html'>Generate_DataFile_MG</a>, rjags, <a href='plot_MCMC.html'>plot_MCMC</a>, <a href='SCMatrix.html'>SCMatrix</a>, <a href='Age_Computation.html'>Age_Computation</a>, <a href='Palaeodose_Computation.html'>Palaeodose_Computation</a>, <a href='plot_Ages.html'>plot_Ages</a></p></div>
+    <div class='dont-index'><p><a href='Generate_DataFile.html'>Generate_DataFile</a>, <a href='Generate_DataFile_MG.html'>Generate_DataFile_MG</a>, rjags, <a href='plot_MCMC.html'>plot_MCMC</a>, <a href='SCMatrix.html'>SCMatrix</a>, <a href='Age_Computation.html'>Age_Computation</a>, <a href='Palaeodose_Computation.html'>Palaeodose_Computation</a>, <a href='plot_Ages.html'>plot_Ages</a>, <a href='create_ThetaMatrix.html'>create_ThetaMatrix</a>, <a href='https://www.rdocumentation.org/packages/runjags/topics/autorun.jags'>runjags::autorun.jags</a></p></div>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
@@ -410,16 +357,16 @@ Quaternary Geochronology 28, 62-70. doi:10.1016/j.quageo.2015.04.001</p>
 #&gt;  Sample name:  GDB5 
 #&gt; ---------------------
 #&gt; 		 Point estimate Uppers confidence interval
-#&gt; A_GDB5 	 0.96 		 0.97 
-#&gt; D_GDB5 	 1.35 		 2.16 
-#&gt; sD_GDB5 	 1.44 		 4 
+#&gt; A_GDB5 	 1.03 		 1.05 
+#&gt; D_GDB5 	 1.09 		 1.39 
+#&gt; sD_GDB5 	 0.96 		 0.97 
 #&gt; ----------------------------------------------
 #&gt;  Sample name:  GDB3 
 #&gt; ---------------------
 #&gt; 		 Point estimate Uppers confidence interval
-#&gt; A_GDB3 	 1.17 		 1.8 
-#&gt; D_GDB3 	 2.43 		 6.01 
-#&gt; sD_GDB3 	 1.79 		 3.27 
+#&gt; A_GDB3 	 0.95 		 0.96 
+#&gt; D_GDB3 	 1.18 		 1.25 
+#&gt; sD_GDB3 	 1.1 		 1.39 
 #&gt; 
 #&gt; 
 #&gt; ---------------------------------------------------------------------------------------------------
@@ -433,42 +380,42 @@ Quaternary Geochronology 28, 62-70. doi:10.1016/j.quageo.2015.04.001</p>
 #&gt;  Sample name:  GDB5 
 #&gt; ---------------------
 #&gt; Parameter 	 Bayes estimate 	  Credible interval 
-#&gt;  A_GDB5 	 7.43 
+#&gt;  A_GDB5 	 7.489 
 #&gt; 						 lower bound 	 upper bound
-#&gt; 				 at level 95% 	 6.34 		 9.04 
-#&gt; 				 at level 68% 	 6.75 		 7.81 
+#&gt; 				 at level 95% 	 6.5 		 8.43 
+#&gt; 				 at level 68% 	 7.14 		 8.11 
 #&gt; 
 #&gt; Parameter 	 Bayes estimate 	  Credible interval 
-#&gt;  D_GDB5 	 18.208 
+#&gt;  D_GDB5 	 18.664 
 #&gt; 						 lower bound 	 upper bound
-#&gt; 				 at level 95% 	 17.23 		 19.25 
-#&gt; 				 at level 68% 	 17.15 		 18.22 
+#&gt; 				 at level 95% 	 17.34 		 19.65 
+#&gt; 				 at level 68% 	 18.12 		 18.89 
 #&gt; 
 #&gt; Parameter 	 Bayes estimate 	  Credible interval 
-#&gt; sD_GDB5 	 4.592 
+#&gt; sD_GDB5 	 4.658 
 #&gt; 						 lower bound 	 upper bound
-#&gt; 				 at level 95% 	 4.52 		 4.94 
-#&gt; 				 at level 68% 	 4.69 		 4.94 
+#&gt; 				 at level 95% 	 3.6 		 5.05 
+#&gt; 				 at level 68% 	 4.55 		 4.96 
 #&gt; ----------------------------------------------
 #&gt;  Sample name:  GDB3 
 #&gt; ---------------------
 #&gt; Parameter 	 Bayes estimate 	  Credible interval 
-#&gt;  A_GDB3 	 46.794 
+#&gt;  A_GDB3 	 43.359 
 #&gt; 						 lower bound 	 upper bound
-#&gt; 				 at level 95% 	 40.64 		 53.16 
-#&gt; 				 at level 68% 	 45.23 		 51.22 
+#&gt; 				 at level 95% 	 38.44 		 49.54 
+#&gt; 				 at level 68% 	 38.44 		 44.63 
 #&gt; 
 #&gt; Parameter 	 Bayes estimate 	  Credible interval 
-#&gt;  D_GDB3 	 100.928 
+#&gt;  D_GDB3 	 99.407 
 #&gt; 						 lower bound 	 upper bound
-#&gt; 				 at level 95% 	 95.45 		 104.78 
-#&gt; 				 at level 68% 	 100.56 		 104.78 
+#&gt; 				 at level 95% 	 93.64 		 102.39 
+#&gt; 				 at level 68% 	 98.27 		 101.6 
 #&gt; 
 #&gt; Parameter 	 Bayes estimate 	  Credible interval 
-#&gt; sD_GDB3 	 15.321 
+#&gt; sD_GDB3 	 15.256 
 #&gt; 						 lower bound 	 upper bound
-#&gt; 				 at level 95% 	 10.41 		 16.47 
-#&gt; 				 at level 68% 	 11.43 		 15.34 
+#&gt; 				 at level 95% 	 13.33 		 17.13 
+#&gt; 				 at level 68% 	 13.33 		 15.39 
 #&gt; 
 #&gt; ----------------------------------------------</div><div class='img'><img src='AgeS_Computation-3.png' alt='' width='700' height='433' /></div><div class='input'>
 ## Age computation of samples GDB5 and GDB3,
@@ -480,6 +427,7 @@ Quaternary Geochronology 28, 62-70. doi:10.1016/j.quageo.2015.04.001</p>
   <span class='kw'>ncol</span> <span class='kw'>=</span> <span class='fl'>2</span>,
   <span class='kw'>nrow</span> <span class='kw'>=</span> (<span class='no'>Nb_sample</span>+<span class='fl'>1</span>),<span class='kw'>byrow</span> <span class='kw'>=</span> <span class='no'>T</span>)
 
+<span class='co'>##standard</span>
 <span class='no'>Age</span> <span class='kw'>&lt;-</span> <span class='fu'>AgeS_Computation</span>(
  <span class='kw'>DATA</span> <span class='kw'>=</span> <span class='no'>Data</span>,
  <span class='kw'>Nb_sample</span> <span class='kw'>=</span> <span class='no'>Nb_sample</span>,
@@ -487,7 +435,23 @@ Quaternary Geochronology 28, 62-70. doi:10.1016/j.quageo.2015.04.001</p>
  <span class='kw'>PriorAge</span> <span class='kw'>=</span> <span class='no'>priorage</span>,
  <span class='kw'>StratiConstraints</span> <span class='kw'>=</span> <span class='no'>SC</span>,
  <span class='kw'>Iter</span> <span class='kw'>=</span> <span class='fl'>10000</span>,
- <span class='kw'>quiet</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
+ <span class='kw'>quiet</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+ <span class='kw'>jags_method</span> <span class='kw'>=</span> <span class='st'>"rjags"</span>
+ )
+
+<span class='co'>##parallel mode</span>
+<span class='no'>Age</span> <span class='kw'>&lt;-</span> <span class='fu'>AgeS_Computation</span>(
+ <span class='kw'>DATA</span> <span class='kw'>=</span> <span class='no'>Data</span>,
+ <span class='kw'>Nb_sample</span> <span class='kw'>=</span> <span class='no'>Nb_sample</span>,
+ <span class='kw'>SampleNames</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"GDB5"</span>,<span class='st'>"GDB3"</span>),
+ <span class='kw'>PriorAge</span> <span class='kw'>=</span> <span class='no'>priorage</span>,
+ <span class='kw'>StratiConstraints</span> <span class='kw'>=</span> <span class='no'>SC</span>,
+ <span class='kw'>Iter</span> <span class='kw'>=</span> <span class='fl'>10000</span>,
+ <span class='kw'>quiet</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+ <span class='kw'>jags_method</span> <span class='kw'>=</span> <span class='st'>"rjparallel"</span>
+ )
+
+
 <span class='co'># }</span><div class='input'>
 </div></pre>
   </div>
@@ -497,8 +461,6 @@ Quaternary Geochronology 28, 62-70. doi:10.1016/j.quageo.2015.04.001</p>
       <li><a href="#arguments">Arguments</a></li>
       
       <li><a href="#value">Value</a></li>
-
-      <li><a href="#details">Details</a></li>
 
       <li><a href="#note">Note</a></li>
 

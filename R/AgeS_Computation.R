@@ -70,6 +70,8 @@
 #' Allowed inputs are \bold{"cauchy"}, \bold{"gaussian"}, \bold{"lognormal_A"} and \bold{"lognormal_M"}, see details section for more informations.
 #'
 #' @param Iter [integer] (with default): number of iterations for the MCMC computation (for more information see \code{\link{jags.model}}).
+#' If `jags_method = "rjparalle"` this number is limited to `1000` (it will be automatically adapated).
+#'
 #'
 #' @param t [integer] (with default): 1 every \code{t} iterations of the MCMC is considered for sampling the posterior distribution
 #' (for more information see \code{\link{jags.model}}).
@@ -455,7 +457,7 @@ AgeS_Computation <- function(
         data = dataList,
         n.chains = n.chains,
         monitor = c("A", "D", "sD"),
-        adapt = min(Iter, 1000),
+        adapt = max(Iter, 1000),
         silent.jags = quiet,
         method = "rjparallel"
       )
