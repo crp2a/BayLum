@@ -23,10 +23,14 @@ test_that("Full function test", {
     SampleNames = c("GDB5","GDB3"),
     PriorAge = priorage,
     Iter = 50,
-    n.chains = 2)$Sampling
+    n.chains = 2)
 
   ##test function itself
   expect_silent(plot_MCMC(object))
+  expect_warning(plot_MCMC(object2), regexp = "'n.iter' out of range, reset to number of observations")
+  expect_warning(plot_MCMC(object2$Sampling), regexp = "'n.iter' out of range, reset to number of observations")
+
+
 
   ##test arguments
 

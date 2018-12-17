@@ -44,11 +44,11 @@
 #' Two plots: Traces of the MCMC chains and the corresponding density plots. This plots
 #' are similar to [coda::traceplot] and [coda::densplot].
 #'
-#' @section Function version: 0.1.2
+#' @section Function version: 0.1.3
 #'
 #' @keywords dplot
 #'
-#' @author Sebastian Kreutzer, IRAMAT-CRP2A, Université Bordeaux Montaigne (France). This function
+#' @author Sebastian Kreutzer, IRAMAT-CRP2A, UMR 5060, CNRS-Université Bordeaux Montaigne (France). This function
 #' is a re-written version of the function `MCMC_plot()` by Claire Christophe
 #'
 #' @seealso [Age_Computation], [AgeS_Computation], [Palaeodose_Computation],
@@ -80,12 +80,20 @@ plot_MCMC <- function(
     if(class(object) == "mcmc"){
       object <- coda::as.mcmc.list(object)
 
-    }else{
-      stop("[plot_MCMC()] 'sample' has to be of class 'mcmc.list' or 'mcmc'!", call. = FALSE)
+    }else if(class(object) == "BayLum.list"){
+      if(!is.null(attributes(object)$originator)){
+        ##select what to do for different functions
+        switch(attributes(object)$originator,
+               AgeS_Computation = object <- object$Sampling
+        )
 
+      }
     }
 
   }
+
+  if(class(object) != "mcmc.list")
+    stop("[plot_MCMC()] 'sample' has to be of class 'mcmc.list' or 'mcmc'!", call. = FALSE)
 
   # Extract wanted parameters -------------------------------------------------------------------
   if(!all(gsub(coda::varnames(object), pattern = "\\[.+\\]" ,replacement = "") %in% variables)){
@@ -206,7 +214,14 @@ plot_MCMC <- function(
 
 
   ##order output according to the sample names (here number, e.g., A[1], A[2], ...)
-  o <- order(as.numeric(sample_info))
+  if(suppressWarnings(!any(is.na(as.numeric(sample_info))))){
+    o <- order(as.numeric(sample_info))
+
+  }else{
+    o <- order(sample_info)
+
+  }
+
 
   ##expand sample_names the right length
   if(!is.null(sample_names)){

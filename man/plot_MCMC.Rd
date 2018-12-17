@@ -56,7 +56,7 @@ The function is used in the function \link{Age_Computation}, \link{AgeS_Computat
 and \link{Palaeodose_Computation}, but can be used also as standalone plot function.
 }
 \section{Function version}{
- 0.1.2
+ 0.1.3
 }
 
 \examples{
@@ -70,7 +70,7 @@ plot_MCMC(object)
 \link[rjags:coda.samples]{rjags::coda.samples} and \link{rjags} packages.
 }
 \author{
-Sebastian Kreutzer, IRAMAT-CRP2A, Université Bordeaux Montaigne (France). This function
+Sebastian Kreutzer, IRAMAT-CRP2A, UMR 5060, CNRS-Université Bordeaux Montaigne (France). This function
 is a re-written version of the function \code{MCMC_plot()} by Claire Christophe
 }
 \keyword{dplot}
