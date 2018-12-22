@@ -38,9 +38,6 @@ Plummer, M. (2015). JAGS Version 4.0. 0 user manual.
 }
 \examples{
 data(Model_Palaeodose)
-## The JAGS model for a saturating exponential plus linear growth
-## (a function of the type \code{f(x)=a(1-exp(-x/b))+cx+d})
-## and a gaussian distribution of equivalent doses around the palaeodose:
-writeLines(Model_Age$AgeMultiBF_EXPLIN$gaussian)
+writeLines(Model_Palaeodose$PalaeodosesMultiBF_EXPLIN$gaussian)
 }
 \keyword{datasets}

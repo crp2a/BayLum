@@ -39,6 +39,6 @@ data(Model_AgeS)
 ## The JAGS model for a saturating exponential plus linear growth
 ## (a function of the type \code{f(x)=a(1-exp(-x/b))+cx+d})
 ## and a gaussian distribution of equivalent doses around the palaeodose:
-writeLines(Model_Age$AgeMultiBF_EXPLIN$gaussian)
+writeLines(Model_AgeS$AgeMultiBF_EXPLIN$gaussian)
 }
 \keyword{datasets}
