@@ -484,7 +484,8 @@ AgeS_Computation <- function(
     pdf(file=paste(OutputFilePath,OutputFileName[1],'.pdf',sep=""))
   }
 
-  plot_MCMC(echantillon, sample_names = SampleNames)
+  ##try makes sure that the function runs
+  try(plot_MCMC(echantillon, sample_names = SampleNames))
 
   if(SavePdf){
     dev.off()
@@ -606,7 +607,8 @@ AgeS_Computation <- function(
     "Distribution"= distribution,
     "PriorAge"= PriorAge,
     "StratiConstraints"= StratiConstraints,
-    "CovarianceMatrix"= THETA
+    "CovarianceMatrix"= THETA,
+     Model = jags
   )
 
   ##set attributes, to make things easer
