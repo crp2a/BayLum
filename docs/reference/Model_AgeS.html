@@ -63,7 +63,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">BayLum</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.4.3</span>
       </span>
     </div>
 
@@ -163,39 +163,57 @@ Technische Universit at Wien, Austria.</p>
 <span class='co'>## The JAGS model for a saturating exponential plus linear growth</span>
 <span class='co'>## (a function of the type \code{f(x)=a(1-exp(-x/b))+cx+d})</span>
 <span class='co'>## and a gaussian distribution of equivalent doses around the palaeodose:</span>
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/writeLines'>writeLines</a></span>(<span class='no'>Model_Age</span>$<span class='no'>AgeMultiBF_EXPLIN</span>$<span class='no'>gaussian</span>)</div><div class='output co'>#&gt; model {
-#&gt;     D~dnorm(A*ddot,omega)
-#&gt;   sD~dt(0,pow(0.16*D,-2),1)T(0,)#dgamma(0.01,0.01)
-#&gt;   pD&lt;-pow(sD,-2)
+<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/writeLines'>writeLines</a></span>(<span class='no'>Model_AgeS</span>$<span class='no'>AgesMultiCS2_EXP</span>$<span class='no'>gaussian</span>)</div><div class='output co'>#&gt; model {
+#&gt; 
+#&gt;   D~dmnorm(mu,omega)
+#&gt;   for(i1 in 1:I){
+#&gt;   sD[i1]~dt(0,pow(0.16*D[i1],-2),1)T(0,)
+#&gt;   pD[i1]&lt;-pow(sD[i1],-2)
+#&gt;   mu[i1]&lt;-A[i1]*ddot[i1]
+#&gt;   for(i2 in 1:I){
+#&gt;   Sigma[i1,i2]=A[i1]*A[i2]*Gamma[i1,i2]
+#&gt;   }
+#&gt;   }
+#&gt;   omega&lt;-inverse(Sigma)
 #&gt; 
 #&gt;   # Likelihood:
-#&gt;   for(bf in 1:BinPerSample){
+#&gt;   for(i in 1:I){
+#&gt;   for(bf in (CSBinPerSample[i]-BinPerSample[i]+1):(CSBinPerSample[i])){
 #&gt;   for(j in 1:J[bf]){
 #&gt;   # prior on growth function
 #&gt;   xa[(index[bf]+j)]~dnorm(6.5,1/(9.2^2))T(0,)
 #&gt;   xb[(index[bf]+j)]~dnorm(50,1/(1000^2))T(0,)
-#&gt;   xc[(index[bf]+j)]~dnorm(0.002,1/(0.01^2))T(0,)
 #&gt;   xd[(index[bf]+j)]~dnorm(0.5,1/(2.5^2))T(-xa[(index[bf]+j)],)
 #&gt;   sigmaf[(index[bf]+j)]~dexp(20)
 #&gt; 
-#&gt;   De[(index[bf]+j),1]~dnorm(D,pD)
+#&gt;   De[(index[bf]+j),1]~dnorm(D[i],pD[i])
 #&gt;   #
 #&gt;   xprecision[(index[bf]+j),1]&lt;-1/(sigmaf[(index[bf]+j)]^2+sN[(index[bf]+j),1]^2) ##&lt;-- ???? sN[j,1]^2 ????
 #&gt;   N[(index[bf]+j),1]~dnorm(xQ[(index[bf]+j),1],xprecision[(index[bf]+j),1])
-#&gt;   xQ[(index[bf]+j),1]&lt;-xa[(index[bf]+j)]*(1-exp(-De[(index[bf]+j),1]/xb[(index[bf]+j)]))+xc[(index[bf]+j)]*De[(index[bf]+j),1]+xd[(index[bf]+j)]
+#&gt;   xQ[(index[bf]+j),1]&lt;-xa[(index[bf]+j)]*(1-exp(-De[(index[bf]+j),1]/xb[(index[bf]+j)]))+xd[(index[bf]+j)]
 #&gt; 
 #&gt;   for(k in 2:K[bf]){
 #&gt;   xprecision[(index[bf]+j),k]&lt;-1/(sigmaf[(index[bf]+j)]^2+sN[(index[bf]+j),k]^2)
 #&gt;   N[(index[bf]+j),k]~dnorm(xQ[(index[bf]+j),k],xprecision[(index[bf]+j),k])
-#&gt;   xQ[(index[bf]+j),k]&lt;-xa[(index[bf]+j)]*(1-exp(-De[(index[bf]+j),k]/xb[(index[bf]+j)]))+xc[(index[bf]+j)]*De[(index[bf]+j),k]+xd[(index[bf]+j)]
+#&gt;   xQ[(index[bf]+j),k]&lt;-xa[(index[bf]+j)]*(1-exp(-De[(index[bf]+j),k]/xb[(index[bf]+j)]))+xd[(index[bf]+j)]
 #&gt;   De[(index[bf]+j),k]&lt;-IT[(index[bf]+j),(k-1)]*sDlab[bf]
 #&gt;   }
+#&gt;   }
+#&gt;   }
+#&gt;   }
 #&gt; 
+#&gt;   Atemp[1]=xbound[1]
+#&gt;   # i0=2
+#&gt;   u[1]~dunif(0,1)
+#&gt;   CS[1]=xbound[1]
+#&gt;   Atemp[2]&lt;-exp(u[1]*log(xbound[2]/CS[1])+log(CS[1]))
+#&gt;   # i0&gt;2
+#&gt;   for(i0 in 3:(I+1)){
+#&gt;   u[i0-1]~dunif(0,1)
+#&gt;   CS[i0-1]=max(StratiConstraints[(1:(i0-1)),(i0-1)]*c(xbound[(2*(i0-1)-1)],Atemp[2:(i0-1)]))
+#&gt;   Atemp[i0]&lt;-exp(u[(i0-1)]*log(xbound[2*(i0-1)]/CS[i0-1])+log(CS[i0-1]))
 #&gt;   }
-#&gt;   }
-#&gt;   omega&lt;-1/(A^2*Sigma)
-#&gt;   u~dunif(0,1)
-#&gt;   A&lt;-exp(u*log(xbound[2]/xbound[1])+log(xbound[1]))
+#&gt;   A=Atemp[2:(I+1)]
 #&gt;   }</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

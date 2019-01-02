@@ -65,7 +65,7 @@ Northern or Sourthen Hemisphere or marine atmospheric. It must be the same curve
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">BayLum</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.4.3</span>
       </span>
     </div>
 
@@ -271,6 +271,37 @@ On each line, the plot on the left represents the MCMC trajectories, and the one
 
 <p>To give the results in a publication, we recommend to give the Bayes estimate of the parameters as well as the credible interval at 95% or 68%.</p>
     
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>** How to fill StratiConstraints? **</p>
+<p>If there is stratigraphic relations between samples, <em>C-14 age in <code>Data_C14Cal</code> must be ordered by order of increasing ages</em>.</p>
+<p>The user can fill the <code>StratiConstraints</code> matrix as follow.</p><ol>
+<li><p><strong>Size of the matrix</strong>: row number of <code>StratiConstraints</code> matrix is equal to <code>Nb_sample+1</code>,
+and column number is equal to <code>Nb_sample</code>.</p></li>
+<li><p><strong>First line of the matrix</strong>:
+for all <code>i in {1,...,Nb_Sample}</code>, <code>StratiConstraints[1,i]=1</code> that means the lower bound
+of the sample age (given in <code>PriorAge[2i-1]</code>)
+for the sample whose number ID is equal to <code>i</code>, is taken into account.</p></li>
+<li><p><strong>Sample relations</strong>: for all  <code>j in {2,...,Nb_Sample+1}</code> and all <code>i in {j,...,Nb_Sample}</code>,
+<code>StratiConstraints[j,i]=1</code> if sample age whose number ID is equal to <code>j-1</code> is lower than
+sample age whose number ID is equal to <code>i</code>. Otherwise, <code>StratiConstraints[j,i]=0</code>.</p></li>
+</ol>
+    <p>Note that <code>StratiConstraints_{2:Nb_sample+1,1:Nb_sample}</code> is a upper triangular matrix.</p>
+<p>The user can also use <code>SCMatrix</code> or <a href='SC_Ordered.html'>SC_Ordered</a> (if all samples are ordered) functions
+to construct the <code>StratiConstraints</code> matrix.</p>
+<p>The user can also refer to a .csv file that containts the relation between samples as defined above.
+The user must take care about the separator used in the csv file using the argument <code>sepSC</code>.<br /></p>
+<p>** More precision on <code>Model</code> **<br /></p>
+<p>We propose two models "full" or "naive". If <code>Model = 'full'</code> that means
+measurement error and error on calibration curve are taken account in
+the Bayesian model; if <code>Model = "naive"</code> that means only error on measurement
+are taken account in the mode.</p>
+<p>More precisely, the model considered here, as the one developped by Christen, JA (1994),
+assume multiplicative effect of errors to address the problem of outliers.
+In addition, to not penalyse variables that are not outliers and damage theirs estimation,
+we introduce a structure of mixture, that means only variable that are considered
+as outlier have in addition a multiplicative error.</p>
+    
     <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
     <p>Please note that the initial values for all MCMC are currently all the same for all chains since we rely on the automatic
@@ -313,10 +344,10 @@ IntCal13 ans Marine13 radiocarbon age calibration curves 0-50000 years cal BP. R
 #&gt; &gt;&gt; MCMC Convergence of Age parameters &lt;&lt;
 #&gt; ----------------------------------------------
 #&gt; Sample name   Bayes estimate   Uppers credible interval
-#&gt; A_S-EVA-26510 	 1 		 1.01 
-#&gt; A_S-EVA-26506 	 1.01 		 1.02 
-#&gt; A_S-EVA-26507 	 1.03 		 1.05 
-#&gt; A_S-EVA-26508 	 1 		 1 
+#&gt; A_S-EVA-26510 	 1 		 1 
+#&gt; A_S-EVA-26506 	 1 		 1.01 
+#&gt; A_S-EVA-26507 	 1.03 		 1.08 
+#&gt; A_S-EVA-26508 	 1.02 		 1.02 
 #&gt; 
 #&gt; 
 #&gt; ---------------------------------------------------------------------------------------------------
@@ -334,7 +365,7 @@ IntCal13 ans Marine13 radiocarbon age calibration curves 0-50000 years cal BP. R
 #&gt; 				 at level 68% 	 42 		 42 
 #&gt; ------------------------------------------------------
 #&gt; Sample name 	 Bayes estimate  Credible interval: 
-#&gt; A_S-EVA-26506 	 46 
+#&gt; A_S-EVA-26506 	 47 
 #&gt; 						 lower bound 	 upper bound
 #&gt; 				 at level 95% 	 46 		 47 
 #&gt; 				 at level 68% 	 46 		 47 
@@ -360,6 +391,8 @@ IntCal13 ans Marine13 radiocarbon age calibration curves 0-50000 years cal BP. R
       <li><a href="#arguments">Arguments</a></li>
       
       <li><a href="#value">Value</a></li>
+
+      <li><a href="#details">Details</a></li>
 
       <li><a href="#note">Note</a></li>
 
