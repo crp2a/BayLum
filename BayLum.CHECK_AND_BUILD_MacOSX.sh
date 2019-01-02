@@ -67,6 +67,11 @@ echo ""
   eval R CMD BATCH --no-timing ${PATHPACKAGE}/BayLum.BuildScripts/BayLum.PBS_roxygen2.R /dev/null
   check_status
 
+# Update version number and knitr
+# =================================================================================================
+ echo -ne "-> Update version number and knit NEWS... \t"
+  eval R CMD BATCH --no-timing ${PATHPACKAGE}/BayLum.BuildScripts/BayLum.PBS_knitr.R /dev/null
+  check_status
 
 #
 # BUILD PACKAGE

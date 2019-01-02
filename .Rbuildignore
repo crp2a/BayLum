@@ -1,11 +1,21 @@
+##RStudio stuff
 ^.*\.Rproj$
 ^\.Rproj\.user$
-LICENSE
-README.md
+
+
+##Helpers
 NEWS.html
+NEWS.Rmd
+README.Rmd
 BayLum.BuildResults
 BayLum.BuildScripts
 BayLum.CHECK_AND_BUILD_MacOSX.sh
+cran-comments.md
+cran-comments.html
+
+README.md
+
+##GitHub stuff
 .gitignore
 .travis.yml
 appveyor.yml
@@ -13,5 +23,7 @@ codecov.yml
 ^docs$
 _pkgdown.yml
 ^_pkgdown\.yml$
-cran-comments.md
-cran-comments.html
+LICENSE
+
+
+
