@@ -111,6 +111,45 @@ This function calibrates the C-14 age of samples to get an age (in ka).
 The user can choose one of the following radiocarbon calibration curve:
 Northern or Sourthen Hemisphere or marine atmospheric. It must be the same curve for all samples.
 }
+\details{
+** How to fill StratiConstraints? **
+
+If there is stratigraphic relations between samples, \emph{C-14 age in \code{Data_C14Cal} must be ordered by order of increasing ages}.
+
+The user can fill the \code{StratiConstraints} matrix as follow.
+\enumerate{
+\item \strong{Size of the matrix}: row number of \code{StratiConstraints} matrix is equal to \code{Nb_sample+1},
+and column number is equal to \code{Nb_sample}.
+\item \strong{First line of the matrix}:
+for all \code{i in {1,...,Nb_Sample}}, \code{StratiConstraints[1,i]=1} that means the lower bound
+of the sample age (given in \code{PriorAge[2i-1]})
+for the sample whose number ID is equal to \code{i}, is taken into account.
+\item \strong{Sample relations}: for all  \code{j in {2,...,Nb_Sample+1}} and all \code{i in {j,...,Nb_Sample}},
+\code{StratiConstraints[j,i]=1} if sample age whose number ID is equal to \code{j-1} is lower than
+sample age whose number ID is equal to \code{i}. Otherwise, \code{StratiConstraints[j,i]=0}.
+}
+
+Note that \code{StratiConstraints_{2:Nb_sample+1,1:Nb_sample}} is a upper triangular matrix.
+
+The user can also use \code{SCMatrix} or \link{SC_Ordered} (if all samples are ordered) functions
+to construct the \code{StratiConstraints} matrix.
+
+The user can also refer to a .csv file that containts the relation between samples as defined above.
+The user must take care about the separator used in the csv file using the argument \code{sepSC}.\cr
+
+** More precision on \code{Model} **\cr
+
+We propose two models "full" or "naive". If \code{Model = 'full'} that means
+measurement error and error on calibration curve are taken account in
+the Bayesian model; if \code{Model = "naive"} that means only error on measurement
+are taken account in the mode.
+
+More precisely, the model considered here, as the one developped by Christen, JA (1994),
+assume multiplicative effect of errors to address the problem of outliers.
+In addition, to not penalyse variables that are not outliers and damage theirs estimation,
+we introduce a structure of mixture, that means only variable that are considered
+as outlier have in addition a multiplicative error.
+}
 \note{
 Please note that the initial values for all MCMC are currently all the same for all chains since we rely on the automatic
 initial value generation of JAGS. This is not optimal and will be changed in future. However, it does not affect the quality

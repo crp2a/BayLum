@@ -68,19 +68,21 @@
 #' If there is stratigraphic relations between samples, *C-14 age in `Data_C14Cal` must be ordered by order of increasing ages*.
 #'
 #' The user can fill the `StratiConstraints` matrix as follow.
-#' \enumerate{
-#'  \item \bold{Size of the matrix}: row number of `StratiConstraints` matrix is equal to `Nb_sample+1`,
-#' and column number is equal to `Nb_sample`.
-#'  \item \bold{First line of the matrix}:
-#' for all `i in {1,...,Nb_Sample}`, `StratiConstraints[1,i]=1` that means the lower bound of the sample age (given in `PriorAge[2i-1]`)
+#'\enumerate{
+#'  \item **Size of the matrix**: row number of `StratiConstraints` matrix is equal to `Nb_sample+1`,
+#'  and column number is equal to `Nb_sample`.
+#'  \item **First line of the matrix**:
+#' for all `i in {1,...,Nb_Sample}`, `StratiConstraints[1,i]=1` that means the lower bound
+#' of the sample age (given in `PriorAge[2i-1]`)
 #' for the sample whose number ID is equal to `i`, is taken into account.
-#'  \item \bold{Sample relations}: for all  `j in {2,...,Nb_Sample+1` and all `i in {j,...,Nb_Sample}`,
-#' `StratiConstraints[j,i]=1` if sample age whose number ID is equal to `j-1` is lower than sample age whose number ID is equal to `i`.
-#' Otherwise, `StratiConstraints[j,i]=0`.
+#'  \item **Sample relations**: for all  `j in {2,...,Nb_Sample+1}` and all `i in {j,...,Nb_Sample}`,
+#' `StratiConstraints[j,i]=1` if sample age whose number ID is equal to `j-1` is lower than
+#' sample age whose number ID is equal to `i`. Otherwise, `StratiConstraints[j,i]=0`.
 #' }
+#'
 #' Note that `StratiConstraints_{2:Nb_sample+1,1:Nb_sample}` is a upper triangular matrix.
 #'
-#' The user can also use `SCMatrix` or `\link{SC_Ordered}` (if all samples are ordered) functions
+#' The user can also use `SCMatrix` or [SC_Ordered] (if all samples are ordered) functions
 #' to construct the `StratiConstraints` matrix.
 #'
 #' The user can also refer to a .csv file that containts the relation between samples as defined above.
@@ -88,12 +90,16 @@
 #'
 #' ** More precision on `Model` **\cr
 #'
-#' We propose two models "full" or "naive". If `Model='full'` that means measurement error and error on calibration curve are taken account in
-#' the Bayesian model; if `Model="naive"` that means only error on measurement are taken account in the mode.
+#' We propose two models "full" or "naive". If `Model = 'full'` that means
+#' measurement error and error on calibration curve are taken account in
+#' the Bayesian model; if `Model = "naive"` that means only error on measurement
+#' are taken account in the mode.
 #'
-#' More precisely, the model considered here, as the one developped by Christen, JA (1994), assume multiplicative effect of errors to address the
-#' problem of outliers. In addition, to not penalyse variables that are not outliers and damage theirs estimation,
-#' we introduce a structure of mixture, that means only variable that are considered as outlier have in addition a multiplicative error.
+#' More precisely, the model considered here, as the one developped by Christen, JA (1994),
+#' assume multiplicative effect of errors to address the problem of outliers.
+#' In addition, to not penalyse variables that are not outliers and damage theirs estimation,
+#' we introduce a structure of mixture, that means only variable that are considered
+#' as outlier have in addition a multiplicative error.
 #'
 #' @return
 #' \bold{NUMERICAL OUTPUT}

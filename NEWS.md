@@ -6,11 +6,13 @@
 argument `sample_order` was added.
 * `plot_MCMC()` accidentally could not display the chains from more than 9 samples; fixed (thanks to Maryam Heydari)
 * `plot_MCMC()` the functions understand the output of `AgeS_Computation()` for an automated treatment
-* `AgeS_Computation()` now stops if a mismatch was encountered between the number of samples and the matrix provided via `THETA` 
-to prevent a 'JAGS' runtime error
-* `AgeS_Computation()` experimentally gained a new argument `jags_method` to support full automated processing in parallel using the R package 'runjags'; including a `...` argument for a more detailed control.
-by default the calculation is done simply via 'rjags'.
+* `AgeS_Computation()` now stops if a mismatch was encountered between the number of samples and the 
+matrix provided via `THETA` to prevent a 'JAGS' runtime error
+* `AgeS_Computation()` experimentally gained a new argument `jags_method` to support full automated 
+processing in parallel using the R package 'runjags'; including a `...` argument for a 
+more detailed control. By default the calculation is done simply via 'rjags' as usual
 * All models now come with an example showing how they can be inspected (before the examples not working)
+* Fix a couple of documentation glitches (e.g., part of the documentation was missing)
 
 ### New functions
 

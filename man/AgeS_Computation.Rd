@@ -74,7 +74,8 @@ See details section for more informations on the proposed growth curves.}
 
 \item{distribution}{\link{character} (with default): type of distribution that defines
 how individual equivalent dose values are distributed around the palaeodose.
-Allowed inputs are \bold{"cauchy"}, \bold{"gaussian"}, \bold{"lognormal_A"} and \bold{"lognormal_M"}, see details section for more informations.}
+Allowed inputs are \bold{"cauchy"}, \bold{"gaussian"}, \bold{"lognormal_A"} and \bold{"lognormal_M"},
+see details section for more informations.}
 
 \item{Iter}{\link{integer} (with default): number of iterations for the MCMC computation (for more information see \code{\link{jags.model}}).
 If \code{jags_method = "rjparalle"} this number is limited to \code{1000} (it will be automatically adapated).}
@@ -96,7 +97,7 @@ for supported arguments}
 \strong{NUMERICAL OUTPUT}
 
 \enumerate{
-\item \bold{A list of type \code{BayLum.list} containing the following objects:}
+\item \strong{A list of type \code{BayLum.list} containing the following objects:}
 \itemize{
 \item \bold{Sampling}: that corresponds to a sample of the posterior distributions
 of the age (in ka), palaeodose (in Gy) and equivalent dose dispersion (in Gy) parameters for each sample;
@@ -141,6 +142,107 @@ based on outputs of \code{\link{Generate_DataFile}} or \code{\link{Generate_Data
 or both of them using \code{\link{combine_DataFiles}}.\cr
 Samples, for which data is avalilable in several BIN files, can be analysed.\cr
 Single-grain or Multi-grain OSL measurements can be analysed simultaneouly.
+}
+\details{
+\strong{Supported \code{...} arguments}
+\tabular{lllll}{
+ARGUMENT \tab INPUT \tab METHOD \tab DEFAULT \tab DESCRIPTION\cr
+\code{max.time} \tab \link{character} \tab \code{rjparallel} \tab \code{Inf} \tab maximum allowed processing time, e.g.,
+\code{10m} for 10 minutes (cf. \link[runjags:autorun.jags]{runjags::autorun.jags})\cr
+\code{interacitve} \tab \link{logical} \tab \code{rjparallel} \tab \code{FALSE} \tab enable/disable interactive mode (cf. \link[runjags:autorun.jags]{runjags::autorun.jags})\cr
+\code{startburnin} \tab \link{integer} \tab \code{rjparallel} \tab  \code{4000} \tab number of burnin iterations (cf. \link[runjags:autorun.jags]{runjags::autorun.jags}) \cr
+\code{startsample} \tab \link{integer} \tab \code{rjparallel} \tab \code{10000} \tab total number of samples to assess convergence
+(cf. \link[runjags:autorun.jags]{runjags::autorun.jags})
+}
+
+\strong{How to fill \code{StratiConstraints}}\cr
+
+If there is stratigraphic relations between samples,
+\emph{informations in DATA must be ordered by order of increasing ages}.
+To do this the user can either fill right \code{Names} in \link{Generate_DataFile}
+or in \link{Generate_DataFile_MG} (as it is indicated in Details section of these function),
+or ordered by order of increasing ages outputs of \link{Generate_DataFile}
+or \link{Generate_DataFile_MG} in \link{combine_DataFiles}
+
+The user can fill the \code{StratiConstraints} matrix as follow.
+\enumerate{
+\item \bold{Size of the matrix}: row number of \code{StratiConstraints} matrix is equal to \code{Nb_sample+1},
+and column number is equal to \code{Nb_sample}.
+\item \bold{First line of the matrix}:
+for all \code{i in {1,...,Nb_Sample}}, \code{StratiConstraints[1,i]=1} that means the lower bound of the sample age (given in \code{PriorAge[2i-1]})
+for the sample whose number ID is equal to \code{i}, is taken into account.
+\item \bold{Sample relations}: for all  \code{j in {2,...,Nb_Sample+1}} and all \code{i in {j,...,Nb_Sample}},
+\code{StratiConstraints[j,i]=1} if sample age whose number ID is equal to \code{j-1} is lower than sample age whose number ID is equal to \code{i}.
+Otherwise, \code{StratiConstraints[j,i]=0}.
+}
+Note that \code{StratiConstraints_{2:Nb_sample+A,1:Nb_sample}} is a upper triangular matrix.
+
+The user can also use \code{\link{SCMatrix}} or \code{\link{SC_Ordered}} (if all samples are ordered) functions
+to construct the \code{StratiConstraints} matrix.
+
+The user can also refer to a csv file that containts the relation between samples as defined above.
+The user must take care about the separator used in the csv file using the argument \code{sepSC}.\cr
+
+\strong{How to fill \code{THETA} covariance matrix concerning common and individual error?}\cr
+
+If systematic errors are considered, the user can fill the \code{THETA} matrix as follow.
+\itemize{
+\item row number of \code{THETA} is equal the column number, equal to \code{Nb_sample}.
+\item For all \code{i in {1,...,Nb_sample}}, \code{THETA[i,i]} containts individual error
+plus systematic error of the sample whose number ID is equal to \code{i}.
+\item For all \code{i,j in {1,...,Nb_sample}} and \code{i} different from \code{j} ,
+\code{THETA[i,j]} containts common error between samples whose number ID are equal to \code{i} and \code{j}.
+}
+Note that \code{THETA[i,j]} is a symetric matrix.
+
+The user can also refer to a .csv file that containts the errors as defined above.\cr
+
+Alternatively you can use the function \link{create_ThetaMatrix}.
+
+\strong{Option on growth curves}\cr
+
+As for \code{\link{Age_Computation}} and \code{\link{Palaeodose_Computation}}, the user can choose from 4 dose response curves:
+\itemize{
+\item \bold{Saturating exponential plus linear growth} (\code{AgesMultiCS2_EXPLIN}):
+
+for all \code{x} in IR+, \code{f(x)=a(1-exp(-x/b))+cx+d}; select
+\itemize{
+\item \code{LIN_fit=TRUE}
+\item \code{Origin_fit=FALSE}
+}
+\item \bold{Saturating exponential growth} (\code{AgesMultiCS2_EXP}):
+
+for all \code{x} in IR+, \code{f(x)=a(1-exp(-x/b))+d}; select
+\itemize{
+\item \code{LIN_fit=FALSE}
+\item \code{Origin_fit=FALSE}
+}
+\item \bold{Saturating exponential plus linear growth and fitting
+through the origin} (\code{AgesMultiCS2_EXPLINZO}):
+
+for all \code{x} in IR+, \code{f(x)=a(1-exp(-x/b))+cx}; select
+\itemize{
+\item \code{LIN_fit=TRUE}
+\item \code{Origin_fit=TRUE}
+}
+\item \bold{Saturating exponential growth and fitting through the origin} (\code{AgesMultiCS2_EXPZO}):
+
+for all \code{x} in IR+, \code{f(x)=a(1-exp(-x/b))}; select
+\itemize{
+\item \code{LIN_fit=FALSE}
+\item \code{Origin_fit=TRUE}
+}
+}
+
+\strong{Option on equivalent dose distribution around the palaeodose}\cr
+
+The use can choose between :
+\itemize{
+\item \code{cauchy}: a Cauchy distribution with location parameter equal to the palaeodose of the sample;
+\item \code{gaussian}: a Gaussian distribution with mean equal to the palaeodose of the sample;
+\item \code{lognormal_A}: a log-normal distribution with mean or \bold{A}verage equal to the palaeodose of the sample:
+\item \code{lognormal_M}: a log-normal distribution with \bold{M}edian equal to the palaeodose of the sample.
+}
 }
 \note{
 Please note that the initial values for all MCMC are currently all the same for all chains since we rely on the automatic

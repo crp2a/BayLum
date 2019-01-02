@@ -67,7 +67,8 @@
 #'
 #' @param distribution [character] (with default): type of distribution that defines
 #' how individual equivalent dose values are distributed around the palaeodose.
-#' Allowed inputs are \bold{"cauchy"}, \bold{"gaussian"}, \bold{"lognormal_A"} and \bold{"lognormal_M"}, see details section for more informations.
+#' Allowed inputs are \bold{"cauchy"}, \bold{"gaussian"}, \bold{"lognormal_A"} and \bold{"lognormal_M"},
+#' see details section for more informations.
 #'
 #' @param Iter [integer] (with default): number of iterations for the MCMC computation (for more information see \code{\link{jags.model}}).
 #' If `jags_method = "rjparalle"` this number is limited to `1000` (it will be automatically adapated).
@@ -86,13 +87,12 @@
 #' @param ... further arguments that can be passed to control the Bayesian process, see details
 #' for supported arguments
 #'
-#' @details
 #'
-#' **Supported ... arguments**
-#'
-#' \tablular{lllll}{
+#' @details **Supported `...` arguments**
+#' \tabular{lllll}{
 #' ARGUMENT \tab INPUT \tab METHOD \tab DEFAULT \tab DESCRIPTION\cr
-#' `max.time` \tab [character] \tab `rjparallel` \tab `Inf` \tab maximum allowed processing time, e.g., `10m` for 10 minutes (cf. [runjags::autorun.jags])\cr
+#' `max.time` \tab [character] \tab `rjparallel` \tab `Inf` \tab maximum allowed processing time, e.g.,
+#' `10m` for 10 minutes (cf. [runjags::autorun.jags])\cr
 #'  `interacitve` \tab [logical] \tab `rjparallel` \tab `FALSE` \tab enable/disable interactive mode (cf. [runjags::autorun.jags])\cr
 #'  `startburnin` \tab [integer] \tab `rjparallel` \tab  `4000` \tab number of burnin iterations (cf. [runjags::autorun.jags]) \cr
 #' `startsample` \tab [integer] \tab `rjparallel` \tab `10000` \tab total number of samples to assess convergence
@@ -102,10 +102,12 @@
 #'
 #' **How to fill `StratiConstraints`**\cr
 #'
-#' If there is stratigraphic relations between samples, \bold{informations in DATA must be ordered by order of increasing ages}.
-#' To do this the user can either fill right \code{Names} in \code{\link{Generate_DataFile}} or in \code{\link{Generate_DataFile_MG}}
-#' (as it is indicated in Details section of these function), or ordered by order of increasing ages
-#' outputs of \code{\link{Generate_DataFile}} or \code{\link{Generate_DataFile_MG}} in \code{\link{combine_DataFiles}}.
+#' If there is stratigraphic relations between samples,
+#' *informations in DATA must be ordered by order of increasing ages*.
+#' To do this the user can either fill right `Names` in [Generate_DataFile]
+#' or in [Generate_DataFile_MG] (as it is indicated in Details section of these function),
+#' or ordered by order of increasing ages outputs of [Generate_DataFile]
+#' or [Generate_DataFile_MG] in [combine_DataFiles]
 #'
 #' The user can fill the \code{StratiConstraints} matrix as follow.
 #' \enumerate{
@@ -126,7 +128,7 @@
 #' The user can also refer to a csv file that containts the relation between samples as defined above.
 #' The user must take care about the separator used in the csv file using the argument \code{sepSC}.\cr
 #'
-#' ** How to fill \code{THETA} \bold{covariance matrix concerning common and individual error? **\cr
+#' **How to fill `THETA` covariance matrix concerning common and individual error?**\cr
 #'
 #' If systematic errors are considered, the user can fill the \code{THETA} matrix as follow.
 #' \itemize{
@@ -142,7 +144,7 @@
 #'
 #' Alternatively you can use the function [create_ThetaMatrix].
 #'
-#' ** Option on growth curves **\cr
+#' **Option on growth curves**\cr
 #'
 #' As for \code{\link{Age_Computation}} and \code{\link{Palaeodose_Computation}}, the user can choose from 4 dose response curves:
 #' \itemize{
@@ -160,7 +162,8 @@
 #'     \item \code{LIN_fit=FALSE}
 #'     \item \code{Origin_fit=FALSE}
 #'   }
-#'   \item \bold{Saturating exponential plus linear growth and fitting through the origin} (\code{AgesMultiCS2_EXPLINZO}):
+#'   \item \bold{Saturating exponential plus linear growth and fitting
+#'   through the origin} (\code{AgesMultiCS2_EXPLINZO}):
 #'
 #'   for all \code{x} in IR+, \code{f(x)=a(1-exp(-x/b))+cx}; select
 #'   \itemize{
@@ -176,7 +179,7 @@
 #'   }
 #' }
 #'
-#' ** Option on equivalent dose distribution around the palaeodose **\cr
+#' **Option on equivalent dose distribution around the palaeodose**\cr
 #'
 #' The use can choose between :
 #' \itemize{
@@ -190,7 +193,7 @@
 #' **NUMERICAL OUTPUT**
 #'
 #' \enumerate{
-#' \item \bold{A list of type `BayLum.list` containing the following objects:}
+#' \item **A list of type `BayLum.list` containing the following objects:**
 #'  \itemize{
 #'   \item \bold{Sampling}: that corresponds to a sample of the posterior distributions
 #'  of the age (in ka), palaeodose (in Gy) and equivalent dose dispersion (in Gy) parameters for each sample;
