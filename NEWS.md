@@ -1,4 +1,4 @@
-## BayLum 0.1.4 (Release date: 2018-12-15)
+## BayLum 0.1.4 (Release date: 2019-01-02)
 
 ### Bugfixes & changes
 * `Generate_DataFile_MG()` now works only on preselected records; the limitation of OSL only was removed.
@@ -8,7 +8,7 @@ argument `sample_order` was added.
 * `plot_MCMC()` the functions understand the output of `AgeS_Computation()` for an automated treatment
 * `AgeS_Computation()` now stops if a mismatch was encountered between the number of samples and the matrix provided via `THETA` 
 to prevent a 'JAGS' runtime error
-* `AgeS_Computation()` experimentally gained a new argument `jags_method` to support full automated processing in parallel using the R package 'runjags'; 
+* `AgeS_Computation()` experimentally gained a new argument `jags_method` to support full automated processing in parallel using the R package 'runjags'; including a `...` argument for a more detailed control.
 by default the calculation is done simply via 'rjags'.
 * All models now come with an example showing how they can be inspected (before the examples not working)
 

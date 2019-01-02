@@ -1,4 +1,4 @@
-#' @title Bayesian analysis for the OSL age estimation of various samples
+#' @title Bayesian analysis for OSL age estimation of various samples
 #'
 #' @description This function computes the age (in ka) of at least two samples
 #' according to the model developed in Combes and Philippe (2017),
@@ -48,7 +48,7 @@
 #' Otherwise, default value is suitable, and only individual errors are considered.
 #'
 #' @param sepTHETA [character] (with default): if \code{THETA} is character,
-#' indicate column separator in \code{THETA} csv file.
+#' indicate column separator in \code{THETA} CSV-file.
 #'
 #' @param StratiConstraints  numeric matrix or character(with default): input object for the statigraphic relation between samples.
 #' If there is stratigraphic relation between samples see the details section for instructions regarding how to correctly fill
@@ -83,8 +83,24 @@
 #'
 #' @param quiet [logical] (with default): enables/disables `rjags` messages
 #'
+#' @param ... further arguments that can be passed to control the Bayesian process, see details
+#' for supported arguments
+#'
 #' @details
-#' ** How to fill `StratiConstraints`**\cr
+#'
+#' **Supported ... arguments**
+#'
+#' \tablular{lllll}{
+#' ARGUMENT \tab INPUT \tab METHOD \tab DEFAULT \tab DESCRIPTION\cr
+#' `max.time` \tab [character] \tab `rjparallel` \tab `Inf` \tab maximum allowed processing time, e.g., `10m` for 10 minutes (cf. [runjags::autorun.jags])\cr
+#'  `interacitve` \tab [logical] \tab `rjparallel` \tab `FALSE` \tab enable/disable interactive mode (cf. [runjags::autorun.jags])\cr
+#'  `startburnin` \tab [integer] \tab `rjparallel` \tab  `4000` \tab number of burnin iterations (cf. [runjags::autorun.jags]) \cr
+#' `startsample` \tab [integer] \tab `rjparallel` \tab `10000` \tab total number of samples to assess convergence
+#' (cf. [runjags::autorun.jags])
+#' }
+#'
+#'
+#' **How to fill `StratiConstraints`**\cr
 #'
 #' If there is stratigraphic relations between samples, \bold{informations in DATA must be ordered by order of increasing ages}.
 #' To do this the user can either fill right \code{Names} in \code{\link{Generate_DataFile}} or in \code{\link{Generate_DataFile_MG}}
@@ -174,7 +190,7 @@
 #' **NUMERICAL OUTPUT**
 #'
 #' \enumerate{
-#' \item \bold{A list containing the following objects:}
+#' \item \bold{A list of type `BayLum.list` containing the following objects:}
 #'  \itemize{
 #'   \item \bold{Sampling}: that corresponds to a sample of the posterior distributions
 #'  of the age (in ka), palaeodose (in Gy) and equivalent dose dispersion (in Gy) parameters for each sample;
@@ -236,7 +252,8 @@
 #' Data <- combine_DataFiles(DATA2,DATA1)
 #'
 #' ## Age computation of samples GDB5 and GDB3,
-#' priorage=c(1,10,20,60) # these samples are not young
+#' priorage <- c(1,10,20,60) # these samples are not young
+#'
 #' ## without common error and without stratigraphic constraints
 #' Age <- AgeS_Computation(
 #'   DATA = Data,
@@ -309,7 +326,8 @@ AgeS_Computation <- function(
   t = 5,
   n.chains = 3,
   jags_method = "rjags",
-  quiet = FALSE
+  quiet = FALSE,
+  ...
 ){
 
   #--Index preparation
@@ -348,19 +366,24 @@ AgeS_Computation <- function(
     }
   }
 
-  ##JAGS will crash with a runtime error if the dimension of the theta matrix does not fit to the number
-  ##of samples
+  ##JAGS will crash with a runtime error if the dimension of the theta matrix does not match the
+  ##number of samples
   if(sum(dim(THETA)) %% Nb_sample != 0)
     stop("[AgeS_Computation()] The number of samples does not match the dimension of the THETA-matrix!", call. = FALSE)
 
 
   #--- StratiConstraints matrix
   if(length(StratiConstraints)==0){
-    StratiConstraints=matrix(data=c(rep(1,Nb_sample),rep(0,Nb_sample*Nb_sample)),ncol=Nb_sample,nrow = (Nb_sample+1),byrow = T)
+    StratiConstraints <- matrix(
+      data = c(rep(1, Nb_sample), rep(0, Nb_sample * Nb_sample)),
+      ncol = Nb_sample,
+      nrow = (Nb_sample + 1),
+      byrow = T
+    )
   }else{
     if(is(StratiConstraints)[1]=="character"){
-      SCMatrix=read.csv(StratiConstraints,sep=sepSC)
-      StratiConstraints=as.matrix(SCMatrix)
+      SCMatrix <- read.csv(StratiConstraints, sep = sepSC)
+      StratiConstraints <- as.matrix(SCMatrix)
     }
   }
 
@@ -379,6 +402,16 @@ AgeS_Computation <- function(
   # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++#
   # JAGS RUN --------------------- START
   # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++#
+
+  ##further settings provided eventually
+  process_settings <- modifyList(x = list(
+    max.time = Inf,
+    interactive = FALSE,
+    startburnin = 4000,
+    startsample = 10000
+
+  ), val = list(...))
+
 
   ##set variables
   dataList <- list(
@@ -459,7 +492,11 @@ AgeS_Computation <- function(
         monitor = c("A", "D", "sD"),
         adapt = max(Iter, 1000),
         silent.jags = quiet,
-        method = "rjparallel"
+        method = "rjparallel",
+        max.time = process_settings$max.time,
+        interactive = process_settings$interactive,
+        startburnin = process_settings$startburnin,
+        startsample = process_settings$startsample
       )
 
 
@@ -495,7 +532,7 @@ AgeS_Computation <- function(
   ##--- Graphical interpretation, and print result
 
   ##- Gelman and Rubin test of convergency of the MCMC
-  CV=gelman.diag(echantillon,multivariate=FALSE)
+  CV <- gelman.diag(echantillon,multivariate=FALSE)
   cat(paste("\n\n>> Results of the Gelman and Rubin criterion of convergence <<\n"))
   for(i in 1:Nb_sample){
     cat("----------------------------------------------\n")
@@ -607,8 +644,7 @@ AgeS_Computation <- function(
     "Distribution"= distribution,
     "PriorAge"= PriorAge,
     "StratiConstraints"= StratiConstraints,
-    "CovarianceMatrix"= THETA,
-     Model = jags
+    "CovarianceMatrix"= THETA
   )
 
   ##set attributes, to make things easer

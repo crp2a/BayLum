@@ -2,7 +2,7 @@
 % Please edit documentation in R/AgeS_Computation.R
 \name{AgeS_Computation}
 \alias{AgeS_Computation}
-\title{Bayesian analysis for the OSL age estimation of various samples}
+\title{Bayesian analysis for OSL age estimation of various samples}
 \usage{
 AgeS_Computation(DATA, SampleNames, Nb_sample, PriorAge = rep(c(0.01,
   100), Nb_sample), BinPerSample = rep(1, Nb_sample), SavePdf = FALSE,
@@ -11,7 +11,7 @@ AgeS_Computation(DATA, SampleNames, Nb_sample, PriorAge = rep(c(0.01,
   OutputTablePath = c(""), THETA = c(), sepTHETA = c(","),
   StratiConstraints = c(), sepSC = c(","), LIN_fit = TRUE,
   Origin_fit = FALSE, distribution = c("cauchy"), Iter = 50000,
-  t = 5, n.chains = 3, jags_method = "rjags", quiet = FALSE)
+  t = 5, n.chains = 3, jags_method = "rjags", quiet = FALSE, ...)
 }
 \arguments{
 \item{DATA}{\link{list} of objects: \code{LT}, \code{sLT}, \code{ITimes}, \code{dLab}, \code{ddot_env}, \code{regDose}, \code{J}, \code{K}, \code{Nb_measurement},
@@ -55,7 +55,7 @@ the user can refer to a matrix (numeric matrix) or to a csv file (character).
 Otherwise, default value is suitable, and only individual errors are considered.}
 
 \item{sepTHETA}{\link{character} (with default): if \code{THETA} is character,
-indicate column separator in \code{THETA} csv file.}
+indicate column separator in \code{THETA} CSV-file.}
 
 \item{StratiConstraints}{numeric matrix or character(with default): input object for the statigraphic relation between samples.
 If there is stratigraphic relation between samples see the details section for instructions regarding how to correctly fill
@@ -88,12 +88,15 @@ If \code{jags_method = "rjparalle"} this number is limited to \code{1000} (it wi
 using package 'runjags'. The latter option uses the function \link[runjags:autorun.jags]{runjags::autorun.jags} to allow a full automated processing.}
 
 \item{quiet}{\link{logical} (with default): enables/disables \code{rjags} messages}
+
+\item{...}{further arguments that can be passed to control the Bayesian process, see details
+for supported arguments}
 }
 \value{
 \strong{NUMERICAL OUTPUT}
 
 \enumerate{
-\item \bold{A list containing the following objects:}
+\item \bold{A list of type \code{BayLum.list} containing the following objects:}
 \itemize{
 \item \bold{Sampling}: that corresponds to a sample of the posterior distributions
 of the age (in ka), palaeodose (in Gy) and equivalent dose dispersion (in Gy) parameters for each sample;
@@ -151,7 +154,8 @@ data(DATA2,envir = environment())
 Data <- combine_DataFiles(DATA2,DATA1)
 
 ## Age computation of samples GDB5 and GDB3,
-priorage=c(1,10,20,60) # these samples are not young
+priorage <- c(1,10,20,60) # these samples are not young
+
 ## without common error and without stratigraphic constraints
 Age <- AgeS_Computation(
   DATA = Data,
