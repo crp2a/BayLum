@@ -496,6 +496,7 @@ AgeS_Computation <- function(
         adapt = max(Iter, 1000),
         silent.jags = quiet,
         method = "rjparallel",
+        inits = list(.RNG.seed = c(1234,1234,1234)),
         max.time = process_settings$max.time,
         interactive = process_settings$interactive,
         startburnin = process_settings$startburnin,

@@ -120,11 +120,14 @@
 #' \code{\link{Age_Computation}}, \code{\link{AgeS_Computation}}, \code{\link{Palaeodose_Computation}}
 #'
 #' @examples
-#' path<- system.file("extdata/FER1", "", package="BayLum")
-#' folder=""
+#' path <- system.file("extdata/FER1", "", package="BayLum")
+#' folder <- ""
 #' # give the number of sample
-#' nbsample=1
-#' DATA=Generate_DataFile_MG(Path=path,FolderNames=folder,Nb_sample=nbsample)
+#' nbsample <- 1
+#' DATA <- Generate_DataFile_MG(
+#'  Path = path,
+#'  FolderNames = folder,
+#'  Nb_sample = nbsample)
 #' str(DATA)
 #'
 #' # to save information in RData object in folder containing bin file

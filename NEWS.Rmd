@@ -28,6 +28,7 @@ processing in parallel using the R package 'runjags'; including a `...` argument
 more detailed control. By default the calculation is done simply via 'rjags' as usual
 * All models now come with an example showing how they can be inspected (before the examples not working)
 * Fix a couple of documentation glitches (e.g., part of the documentation was missing)
+* Add additional output to `Age_OSLC14()` enhance output table by additional information (\#11)
 
 ### New functions
 

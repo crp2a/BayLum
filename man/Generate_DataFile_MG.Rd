@@ -137,11 +137,14 @@ The function \code{\link{read_BIN2R}} developped in \code{\link{Luminescence}} p
 The function imports only BIN/BINX-file records which have been previously selected.
 }
 \examples{
-path<- system.file("extdata/FER1", "", package="BayLum")
-folder=""
+path <- system.file("extdata/FER1", "", package="BayLum")
+folder <- ""
 # give the number of sample
-nbsample=1
-DATA=Generate_DataFile_MG(Path=path,FolderNames=folder,Nb_sample=nbsample)
+nbsample <- 1
+DATA <- Generate_DataFile_MG(
+ Path = path,
+ FolderNames = folder,
+ Nb_sample = nbsample)
 str(DATA)
 
 # to save information in RData object in folder containing bin file
