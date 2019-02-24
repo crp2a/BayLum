@@ -529,11 +529,6 @@ Age_OSLC14 <- function(
         SampleNames = SampleNames,
         Bayes_estimate = CV$psrf[1:length(SampleNames), 1],
         Upper_Credibility_Interval = CV$psrf[1:length(SampleNames), 2],
-        AGE = AgePlotMoy,
-        HPD68.MIN = AgePlot68[,2],
-        HPD68.MAX = AgePlot68[,3],
-        HPD95.MIN = AgePlot95[,2],
-        HPD95.MAX = AgePlot95[,3],
         stringsAsFactors = FALSE
       )
 
