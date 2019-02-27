@@ -522,25 +522,6 @@ Age_OSLC14 <- function(
   }
 
 
-  ##CSV output
-  if(SaveEstimates){
-    df_output <-
-      data.frame(
-        SampleNames = SampleNames,
-        Bayes_estimate = CV$psrf[1:length(SampleNames), 1],
-        Upper_Credibility_Interval = CV$psrf[1:length(SampleNames), 2],
-        stringsAsFactors = FALSE
-      )
-
-    write.table(x = df_output,
-      file = paste0(OutputTablePath, OutputTableName, ".csv"),
-      sep = ";",
-      row.names = FALSE,
-      append = FALSE
-    )
-
-  }
-
 
   cat("\n\n________________________________________________________________________________\n")
   cat(" *** WARNING: following informations are only valid if MCMC chains converged  ***\n")
@@ -606,6 +587,31 @@ Age_OSLC14 <- function(
     if(SavePdf==TRUE){
       dev.print(pdf,file=paste(OutputFilePath,OutputFileName[2],'.pdf',sep=""),width=8,height=10)
     }
+  }
+
+
+  ##CSV output
+  if(SaveEstimates){
+    df_output <-
+      data.frame(
+        SampleNames = SampleNames,
+        Bayes_estimate = CV$psrf[1:length(SampleNames), 1],
+        Upper_Credibility_Interval = CV$psrf[1:length(SampleNames), 2],
+        AGE = AgePlotMoy,
+        HPD68.MIN = AgePlot68[,2],
+        HPD68.MAX = AgePlot68[,3],
+        HPD95.MIN = AgePlot95[,2],
+        HPD95.MAX = AgePlot95[,3],
+        stringsAsFactors = FALSE
+      )
+
+    write.table(x = df_output,
+                file = paste0(OutputTablePath, OutputTableName, ".csv"),
+                sep = ";",
+                row.names = FALSE,
+                append = FALSE
+    )
+
   }
 
   # Create return objecty -------------------------------------------------------------------------
