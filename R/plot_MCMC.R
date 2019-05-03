@@ -49,7 +49,7 @@
 #' @keywords dplot
 #'
 #' @author Sebastian Kreutzer, IRAMAT-CRP2A, UMR 5060, CNRS-Université Bordeaux Montaigne (France). This function
-#' is a re-written version of the function `MCMC_plot()` by Claire Christophe
+#' is a re-written version of the function 'MCMC_plot()' by Claire Christophe
 #'
 #' @seealso [Age_Computation], [AgeS_Computation], [Palaeodose_Computation],
 #' [rjags::coda.samples] and [rjags] packages.

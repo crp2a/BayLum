@@ -57,8 +57,8 @@
 #'
 #' @section Function version: 0.3.0
 #'
-#' @author Sebastian Kreutzer, IRAMAT-CRP2A, UMR 5060, CNRS - Université Bordeaux Montaigne (France), based on the
-#' function `ScatterSamples()` by Claire Christophe, Anne Philippe, Guillaume Guérin
+#' @author Sebastian Kreutzer, IRAMAT-CRP2A, UMR 5060, CNRS - Université Bordeaux Montaigne (France),
+#' based on the function 'ScatterSamples()' by Claire Christophe, Anne Philippe, Guillaume Guérin
 #'
 #' @seealso [Age_Computation], [AgeS_Computation], [AgeC14_Computation],
 #' and [rjags] packages.

@@ -102,6 +102,11 @@ plot_Scatterplots(
 and \link{rjags} packages.
 }
 \author{
-Sebastian Kreutzer, IRAMAT-CRP2A, UMR 5060, CNRS - Université Bordeaux Montaigne (France), based on the
-function \code{ScatterSamples()} by Claire Christophe, Anne Philippe, Guillaume Guérin
+Sebastian Kreutzer, IRAMAT-CRP2A, UMR 5060, CNRS - Université Bordeaux Montaigne (France),
+based on the function 'ScatterSamples()' by Claire Christophe, Anne Philippe, Guillaume Guérin
+} 
+
+\section{How to cite}{
+Kreutzer, S., Christophe, C., Philippe, A. (2019). plot_Scatterplots(): Display Scatter Plot Matrix of the Bayesian Age Results. Function version 0.3.0. In: Christophe, C., Philippe, A., Kreutzer, S., Guerin, G. (2019). BayLum: Chronological Bayesian Models Integrating Optically StimulatedR package version 0.1.4.9000-8. https://CRAN.R-project.org/package=BayLum
 }
+
