@@ -35,8 +35,8 @@ Suggests:
   R.rsp
 License: GPL-3
 Encoding: UTF-8
-URL: https://CRAN.R-project.org/package=BayLum 
-BugReports: https://github.com/R-Lum/BayLum/issues
+URL: http://github.com/crp2a/BayLum, https://cran.r-project.org/package=BayLum
+BugReports: https://github.com/crp2a/BayLum/issues
 LazyData: true
 VignetteBuilder: R.rsp
 RoxygenNote: 6.1.1

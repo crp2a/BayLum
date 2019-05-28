@@ -14,10 +14,10 @@ developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repo
 [![CRAN](http://www.r-pkg.org/badges/version/BayLum)](https://CRAN.R-project.org/package=BayLum)
 [![Downloads](http://cranlogs.r-pkg.org/badges/grand-total/BayLum)](http://www.r-pkg.org/pkg/BayLum)
 [![Build
-status](https://ci.appveyor.com/api/projects/status/vfpauhn2s6chkgrp/branch/master?svg=true)](https://ci.appveyor.com/project/RLumSK/baylum/branch/master)
+status](https://ci.appveyor.com/api/projects/status/1nh9kbu2vlef9yjq?svg=true)](https://ci.appveyor.com/project/nfrerebeau/baylum)
 [![Build
-Status](https://travis-ci.org/R-Lum/BayLum.svg?branch=master)](https://travis-ci.org/R-Lum/BayLum)
-[![codecov](https://codecov.io/gh/R-Lum/BayLum/branch/master/graph/badge.svg)](https://codecov.io/gh/R-Lum/BayLum)
+Status](https://travis-ci.org/crp2a/BayLum.svg?branch=master)](https://travis-ci.org/crp2a/BayLum)
+[![codecov](https://codecov.io/gh/crp2a/BayLum/branch/master/graph/badge.svg)](https://codecov.io/gh/crp2a/BayLum)
 
 An R package for chronological **Bay**esian models integrated for
 Optically Stimulated (OSL) **Lum**inescence Dating
@@ -29,7 +29,7 @@ To install the latest development builds directly from GitHub, run
 ``` r
 if(!require("devtools"))
   install.packages("devtools")
-devtools::install_github("R-Lum/BayLum@master")
+devtools::install_github("crp2a/BayLum@master")
 ```
 
 To install a developer build other than ‘master’, replace the term
@@ -57,5 +57,5 @@ This program is distributed in the hope that it will be useful, but
 WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the [GNU
 General Public
-License](https://github.com/R-Lum/BayLum/blob/master/LICENSE) for more
+License](https://github.com/crp2a/BayLum/blob/master/LICENSE) for more
 details.
