@@ -16,7 +16,8 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
@@ -63,7 +64,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">BayLum</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.4.8</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.4.9000.13</span>
       </span>
     </div>
 
@@ -116,7 +117,7 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Plots Lx/Tx as a function of the regenerative dose</h1>
-    
+    <small class="dont-index">Source: <a href='https://github.com/crp2a/BayLum/blob/master/R/LT_RegenDose.R'><code>R/LT_RegenDose.R</code></a></small>
     <div class="hidden name"><code>LT_RegenDose.Rd</code></div>
     </div>
 
@@ -127,60 +128,60 @@
     </div>
 
     <pre class="usage"><span class='fu'>LT_RegenDose</span>(<span class='no'>DATA</span>, <span class='no'>Path</span>, <span class='no'>FolderNames</span>, <span class='kw'>SampleNames</span> <span class='kw'>=</span> <span class='no'>FolderNames</span>,
-  <span class='no'>Nb_sample</span>, <span class='kw'>BinPerSample</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/rep'>rep</a></span>(<span class='fl'>1</span>, <span class='no'>Nb_sample</span>), <span class='kw'>SG</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/rep'>rep</a></span>(<span class='fl'>TRUE</span>,
-  <span class='no'>Nb_sample</span>), <span class='kw'>sepDP</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>","</span>), <span class='kw'>nrow</span> <span class='kw'>=</span> <span class='fl'>3L</span>, <span class='kw'>ncol</span> <span class='kw'>=</span> <span class='no'>nrow</span>)</pre>
+  <span class='no'>Nb_sample</span>, <span class='kw'>BinPerSample</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span>(<span class='fl'>1</span>, <span class='no'>Nb_sample</span>), <span class='kw'>SG</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span>(<span class='fl'>TRUE</span>,
+  <span class='no'>Nb_sample</span>), <span class='kw'>sepDP</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>","</span>), <span class='kw'>nrow</span> <span class='kw'>=</span> <span class='fl'>3L</span>, <span class='kw'>ncol</span> <span class='kw'>=</span> <span class='no'>nrow</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>DATA</th>
-      <td><p><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a> (<strong>required</strong>): list of objects LT, sLT, ITimes, dLab, ddot_env, regDose, J, K, Nb_measurement,
+      <td><p><a href='https://rdrr.io/r/base/list.html'>list</a> (<strong>required</strong>): list of objects LT, sLT, ITimes, dLab, ddot_env, regDose, J, K, Nb_measurement,
 provided by <code><a href='Generate_DataFile.html'>Generate_DataFile</a></code> or <code><a href='Generate_DataFile_MG.html'>Generate_DataFile_MG</a></code> or <code><a href='combine_DataFiles.html'>combine_DataFiles</a></code>.
 <code>DATA</code> can contain information from more than one sample.</p></td>
     </tr>
     <tr>
       <th>Path</th>
-      <td><p><a href='https://www.rdocumentation.org/packages/base/topics/character'>character</a> (<strong>required</strong>): path to the project folder
+      <td><p><a href='https://rdrr.io/r/base/character.html'>character</a> (<strong>required</strong>): path to the project folder
 (the same as the one used in <code><a href='Generate_DataFile.html'>Generate_DataFile</a></code>  or <code><a href='Generate_DataFile_MG.html'>Generate_DataFile_MG</a></code> to provide <code>DATA</code>)</p></td>
     </tr>
     <tr>
       <th>FolderNames</th>
-      <td><p><a href='https://www.rdocumentation.org/packages/base/topics/character'>character</a> (<strong>required</strong>):  vector of names of the sub-folders containing the BIN files,
+      <td><p><a href='https://rdrr.io/r/base/character.html'>character</a> (<strong>required</strong>):  vector of names of the sub-folders containing the BIN files,
 which were used by <code><a href='Generate_DataFile.html'>Generate_DataFile</a></code> or <code><a href='Generate_DataFile_MG.html'>Generate_DataFile_MG</a></code> to generate the <code>DATA</code> object.</p></td>
     </tr>
     <tr>
       <th>SampleNames</th>
-      <td><p><a href='https://www.rdocumentation.org/packages/base/topics/character'>character</a> (with default): Names of samples. To use if there is more than one bin file per sample.</p></td>
+      <td><p><a href='https://rdrr.io/r/base/character.html'>character</a> (with default): Names of samples. To use if there is more than one bin file per sample.</p></td>
     </tr>
     <tr>
       <th>Nb_sample</th>
-      <td><p><a href='https://www.rdocumentation.org/packages/base/topics/integer'>integer</a> (<strong>required</strong>): ID number (in <code>[1,Nb_sample]</code>) of the sample selected for plotting L/T as a function of regenerative doses.
+      <td><p><a href='https://rdrr.io/r/base/integer.html'>integer</a> (<strong>required</strong>): ID number (in <code>[1,Nb_sample]</code>) of the sample selected for plotting L/T as a function of regenerative doses.
 Required if the <code>DATA</code> object contains information for more than one sample.</p></td>
     </tr>
     <tr>
       <th>BinPerSample</th>
-      <td><p><a href='https://www.rdocumentation.org/packages/base/topics/integer'>integer</a> (with default): integer vector (with default): vector with the number of BIN files per sample,
+      <td><p><a href='https://rdrr.io/r/base/integer.html'>integer</a> (with default): integer vector (with default): vector with the number of BIN files per sample,
 which was used in <code><a href='Generate_DataFile.html'>Generate_DataFile</a></code> or <code><a href='Generate_DataFile_MG.html'>Generate_DataFile_MG</a></code> to generate the <code>DATA</code> object.</p></td>
     </tr>
     <tr>
       <th>SG</th>
-      <td><p><a href='https://www.rdocumentation.org/packages/base/topics/logical'>logical</a> (with default): vector to set the type of measurement for each sample (<code>length(SG)=Nb_sample</code>).
+      <td><p><a href='https://rdrr.io/r/base/logical.html'>logical</a> (with default): vector to set the type of measurement for each sample (<code>length(SG)=Nb_sample</code>).
 If the sample of number ID equal to <code>i</code>, <code>SG[i]=TRUE</code> if it is a Single-grain OSL measurements,
 <code>SG[i]</code>=FALSE if it is a Multi-grain OSL measurements.</p></td>
     </tr>
     <tr>
       <th>sepDP</th>
-      <td><p><a href='https://www.rdocumentation.org/packages/base/topics/character'>character</a> (with default): column separator in the DiscPose.csv file or in Disc.csv file.
+      <td><p><a href='https://rdrr.io/r/base/character.html'>character</a> (with default): column separator in the DiscPose.csv file or in Disc.csv file.
 It must be the same separator for all samples, for Single-grain OSL measurements or Multi-grain OSL measurements.</p></td>
     </tr>
     <tr>
       <th>nrow</th>
-      <td><p><a href='https://www.rdocumentation.org/packages/base/topics/integer'>integer</a> (with default): controls the arangment of the plots, here the number of rows. Can be set to <code>NULL</code>.</p></td>
+      <td><p><a href='https://rdrr.io/r/base/integer.html'>integer</a> (with default): controls the arangment of the plots, here the number of rows. Can be set to <code>NULL</code>.</p></td>
     </tr>
     <tr>
       <th>ncol</th>
-      <td><p><a href='https://www.rdocumentation.org/packages/base/topics/integer'>integer</a> (with default): controls the arangment of the plots, here the number of columns. Can be set to <code>NULL</code>.</p></td>
+      <td><p><a href='https://rdrr.io/r/base/integer.html'>integer</a> (with default): controls the arangment of the plots, here the number of columns. Can be set to <code>NULL</code>.</p></td>
     </tr>
     </table>
     
@@ -199,11 +200,15 @@ As well for a precise description of input <code>DATA</code>.</p>
 
     <div class='dont-index'><p><code><a href='Generate_DataFile.html'>Generate_DataFile</a></code>, <code><a href='Generate_DataFile_MG.html'>Generate_DataFile_MG</a></code></p></div>
     
+    <h2 class="hasAnchor" id="how-to-cite"><a class="anchor" href="#how-to-cite"></a>How to cite</h2>
+
+    <p>Christophe, C., Kreutzer, S., Philippe, A., 2019. LT_RegenDose(): Plots Lx/Tx as a function of the regenerative dose. In: Christophe, C., Philippe, A., Kreutzer, S., Guerin, G., 2019. BayLum: Chronological Bayesian Models Integrating Optically StimulatedR package version 0.1.4.9000-13. https://CRAN.R-project.org/package=BayLum</p>
+    
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'>## load data file generated by the function Generate_DataFile</span>
-<span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/data'>data</a></span>(<span class='no'>DATA3</span>,<span class='kw'>envir</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/environment'>environment</a></span>())
-<span class='no'>path</span><span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/system.file'>system.file</a></span>(<span class='st'>"extdata/FER1"</span>, <span class='st'>""</span>, <span class='kw'>package</span><span class='kw'>=</span><span class='st'>"BayLum"</span>)
+<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>DATA3</span>,<span class='kw'>envir</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/environment.html'>environment</a></span>())
+<span class='no'>path</span><span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='st'>"extdata/FER1"</span>, <span class='st'>""</span>, <span class='kw'>package</span><span class='kw'>=</span><span class='st'>"BayLum"</span>)
 <span class='no'>folder</span><span class='kw'>=</span><span class='st'>""</span>
 <span class='no'>samplename</span><span class='kw'>=</span><span class='st'>"FER1"</span>
 <span class='fu'>LT_RegenDose</span>(<span class='kw'>DATA</span><span class='kw'>=</span><span class='no'>DATA3</span>,<span class='kw'>Path</span><span class='kw'>=</span><span class='no'>path</span>,<span class='kw'>FolderNames</span><span class='kw'>=</span><span class='no'>folder</span>,<span class='kw'>SampleNames</span><span class='kw'>=</span><span class='no'>samplename</span>,<span class='kw'>Nb_sample</span><span class='kw'>=</span><span class='fl'>1</span>,<span class='kw'>SG</span><span class='kw'>=</span><span class='fl'>FALSE</span>)</div><div class='img'><img src='LT_RegenDose-1.png' alt='' width='700' height='433' /></div><div class='img'><img src='LT_RegenDose-2.png' alt='' width='700' height='433' /></div></pre>
@@ -218,6 +223,8 @@ As well for a precise description of input <code>DATA</code>.</p>
       <li><a href="#details">Details</a></li>
 
       <li><a href="#see-also">See also</a></li>
+
+      <li><a href="#how-to-cite">How to cite</a></li>
       
       <li><a href="#examples">Examples</a></li>
     </ul>
@@ -233,7 +240,7 @@ As well for a precise description of input <code>DATA</code>.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.9000.</p>
 </div>
       </footer>
    </div>

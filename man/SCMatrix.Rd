@@ -38,9 +38,4 @@ SCMatrix(Nb_sample=2,SampleNames=c("sample1","sample2"))
 }
 \author{
 Claire Christophe, Anne Philippe, Guillaume Guerin
-} 
-
-\section{How to cite}{
-Christophe, C., Philippe, A., Guerin, G., 2019. SCMatrix(): Definition of the stratigraphic constraint matrix. In: Christophe, C., Philippe, A., Kreutzer, S., Guerin, G., 2019. BayLum: Chronological Bayesian Models Integrating Optically StimulatedR package version 0.1.4.9000-13. https://CRAN.R-project.org/package=BayLum 
 }
-

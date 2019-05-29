@@ -16,7 +16,8 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
@@ -65,7 +66,7 @@ Northern or Sourthen Hemisphere or marine atmospheric. It must be the same curve
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">BayLum</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.4.8</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.4.9000.13</span>
       </span>
     </div>
 
@@ -118,7 +119,7 @@ Northern or Sourthen Hemisphere or marine atmospheric. It must be the same curve
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Bayesian analysis for C-14 age estimations of various samples</h1>
-    
+    <small class="dont-index">Source: <a href='https://github.com/crp2a/BayLum/blob/master/R/AgeC14_Computation.R'><code>R/AgeC14_Computation.R</code></a></small>
     <div class="hidden name"><code>AgeC14_Computation.Rd</code></div>
     </div>
 
@@ -131,12 +132,12 @@ Northern or Sourthen Hemisphere or marine atmospheric. It must be the same curve
     </div>
 
     <pre class="usage"><span class='fu'>AgeC14_Computation</span>(<span class='no'>Data_C14Cal</span>, <span class='no'>Data_SigmaC14Cal</span>, <span class='no'>SampleNames</span>, <span class='no'>Nb_sample</span>,
-  <span class='kw'>PriorAge</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/rep'>rep</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>10</span>, <span class='fl'>50</span>), <span class='no'>Nb_sample</span>), <span class='kw'>SavePdf</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>OutputFileName</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"MCMCplot"</span>, <span class='st'>"HPD_CalC-14Curve"</span>, <span class='st'>"summary"</span>),
-  <span class='kw'>OutputFilePath</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>""</span>), <span class='kw'>SaveEstimates</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>OutputTableName</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"DATA"</span>), <span class='kw'>OutputTablePath</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>""</span>),
-  <span class='kw'>StratiConstraints</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(), <span class='kw'>sepSC</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>","</span>), <span class='kw'>Model</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"full"</span>),
-  <span class='kw'>CalibrationCurve</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"AtmosphericNorth"</span>), <span class='kw'>Iter</span> <span class='kw'>=</span> <span class='fl'>50000</span>, <span class='kw'>t</span> <span class='kw'>=</span> <span class='fl'>5</span>,
+  <span class='kw'>PriorAge</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>10</span>, <span class='fl'>50</span>), <span class='no'>Nb_sample</span>), <span class='kw'>SavePdf</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>OutputFileName</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"MCMCplot"</span>, <span class='st'>"HPD_CalC-14Curve"</span>, <span class='st'>"summary"</span>),
+  <span class='kw'>OutputFilePath</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>""</span>), <span class='kw'>SaveEstimates</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>OutputTableName</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"DATA"</span>), <span class='kw'>OutputTablePath</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>""</span>),
+  <span class='kw'>StratiConstraints</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(), <span class='kw'>sepSC</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>","</span>), <span class='kw'>Model</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"full"</span>),
+  <span class='kw'>CalibrationCurve</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"AtmosphericNorth"</span>), <span class='kw'>Iter</span> <span class='kw'>=</span> <span class='fl'>50000</span>, <span class='kw'>t</span> <span class='kw'>=</span> <span class='fl'>5</span>,
   <span class='kw'>n.chains</span> <span class='kw'>=</span> <span class='fl'>3</span>, <span class='kw'>quiet</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -144,48 +145,48 @@ Northern or Sourthen Hemisphere or marine atmospheric. It must be the same curve
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>Data_C14Cal</th>
-      <td><p><a href='https://www.rdocumentation.org/packages/base/topics/numeric'>numeric</a> (<strong>required</strong>): corresponding to C-14 age estimate.</p></td>
+      <td><p><a href='https://rdrr.io/r/base/numeric.html'>numeric</a> (<strong>required</strong>): corresponding to C-14 age estimate.</p></td>
     </tr>
     <tr>
       <th>Data_SigmaC14Cal</th>
-      <td><p><a href='https://www.rdocumentation.org/packages/base/topics/numeric'>numeric</a> (<strong>required</strong>): correponding to the error of C-14 age estimates.</p></td>
+      <td><p><a href='https://rdrr.io/r/base/numeric.html'>numeric</a> (<strong>required</strong>): correponding to the error of C-14 age estimates.</p></td>
     </tr>
     <tr>
       <th>SampleNames</th>
-      <td><p><a href='https://www.rdocumentation.org/packages/base/topics/character'>character</a> (<strong>required</strong>): names of sample. The length of this vector is equal to <code>Nb_sample</code>.</p></td>
+      <td><p><a href='https://rdrr.io/r/base/character.html'>character</a> (<strong>required</strong>): names of sample. The length of this vector is equal to <code>Nb_sample</code>.</p></td>
     </tr>
     <tr>
       <th>Nb_sample</th>
-      <td><p><a href='https://www.rdocumentation.org/packages/base/topics/integer'>integer</a>: number of samples.</p></td>
+      <td><p><a href='https://rdrr.io/r/base/integer.html'>integer</a>: number of samples.</p></td>
     </tr>
     <tr>
       <th>PriorAge</th>
-      <td><p><a href='https://www.rdocumentation.org/packages/base/topics/numeric'>numeric</a> (with default): lower and upper bounds for age parameter of each sample in years (not in ka).
+      <td><p><a href='https://rdrr.io/r/base/numeric.html'>numeric</a> (with default): lower and upper bounds for age parameter of each sample in years (not in ka).
 Note that, <code>length(PriorAge) == 2 * Nb_sample</code>
 and <code>PriorAge[2i-1,2i]</code> correponds to the lower and upper bounds of sample whose number ID is equal to <code>i</code>.</p></td>
     </tr>
     <tr>
       <th>SavePdf</th>
-      <td><p><a href='https://www.rdocumentation.org/packages/base/topics/logical'>logical</a> (with default): if TRUE save graphs in pdf file named <code>OutputFileName</code> in folder <code>OutputFilePath</code>.</p></td>
+      <td><p><a href='https://rdrr.io/r/base/logical.html'>logical</a> (with default): if TRUE save graphs in pdf file named <code>OutputFileName</code> in folder <code>OutputFilePath</code>.</p></td>
     </tr>
     <tr>
       <th>OutputFileName</th>
-      <td><p><a href='https://www.rdocumentation.org/packages/base/topics/character'>character</a> (with default): name of the pdf file that will be generated by the function if <code>SavePd=TRUE</code>,
+      <td><p><a href='https://rdrr.io/r/base/character.html'>character</a> (with default): name of the pdf file that will be generated by the function if <code>SavePd=TRUE</code>,
 <code>length(OutputFileName)===3</code>, see <b>PLOT OUTPUT</b> in <b>Value</b> section for more informations.</p></td>
     </tr>
     <tr>
       <th>OutputFilePath</th>
-      <td><p><a href='https://www.rdocumentation.org/packages/base/topics/character'>character</a> (with default): path to the pdf file that will be generated by the function if <code>SavePdf=TRUE</code>.
+      <td><p><a href='https://rdrr.io/r/base/character.html'>character</a> (with default): path to the pdf file that will be generated by the function if <code>SavePdf=TRUE</code>.
 If it is not equal to "", it must be terminated by "/".</p></td>
     </tr>
     <tr>
       <th>SaveEstimates</th>
-      <td><p><a href='https://www.rdocumentation.org/packages/base/topics/logical'>logical</a> (with default): if TRUE save Bayes estimates, credible interval at level 68% and 95% and
+      <td><p><a href='https://rdrr.io/r/base/logical.html'>logical</a> (with default): if TRUE save Bayes estimates, credible interval at level 68% and 95% and
 the result of the gelman en Rubin test of convergency, in a csv table named <code>OutputFileName</code> in folder <code>OutputFilePath</code>.</p></td>
     </tr>
     <tr>
       <th>OutputTableName</th>
-      <td><p><a href='https://www.rdocumentation.org/packages/base/topics/logical'>logical</a> (with default): name of the table that will be generated by the function if <code>SaveEstimates=TRUE</code>.</p></td>
+      <td><p><a href='https://rdrr.io/r/base/logical.html'>logical</a> (with default): name of the table that will be generated by the function if <code>SaveEstimates=TRUE</code>.</p></td>
     </tr>
     <tr>
       <th>OutputTablePath</th>
@@ -194,24 +195,24 @@ If it is not equal to "", it must be terminated by "/".</p></td>
     </tr>
     <tr>
       <th>StratiConstraints</th>
-      <td><p><a href='https://www.rdocumentation.org/packages/base/topics/numeric'>numeric</a> matrix or character(with default): input object for the statigraphic relation between samples.
+      <td><p><a href='https://rdrr.io/r/base/numeric.html'>numeric</a> matrix or character(with default): input object for the statigraphic relation between samples.
 If there is stratigraphic relation between samples see the details section for instructions regarding how to correctly fill <code>StratiConstraints</code>;
 the user can refer to a matrix (numeric matrix) or to a csv file (character).
 If there is no stratigraphic relation default value is suitable.</p></td>
     </tr>
     <tr>
       <th>sepSC</th>
-      <td><p><a href='https://www.rdocumentation.org/packages/base/topics/character'>character</a> (with default): if <code>StratiConstraints</code> is character,
+      <td><p><a href='https://rdrr.io/r/base/character.html'>character</a> (with default): if <code>StratiConstraints</code> is character,
 indicate column separator in <code>StratiConstraints</code> csv file.</p></td>
     </tr>
     <tr>
       <th>Model</th>
-      <td><p><a href='https://www.rdocumentation.org/packages/base/topics/character'>character</a> (with default): if <b>"full"</b>, error on estimate calibration curve is taken account.
+      <td><p><a href='https://rdrr.io/r/base/character.html'>character</a> (with default): if <b>"full"</b>, error on estimate calibration curve is taken account.
 If <b>"naive"</b> this error is not taken account in the age estimate.</p></td>
     </tr>
     <tr>
       <th>CalibrationCurve</th>
-      <td><p><a href='https://www.rdocumentation.org/packages/base/topics/character'>character</a> (with default): calibration curve choosen. Allowed inputs are</p><ul>
+      <td><p><a href='https://rdrr.io/r/base/character.html'>character</a> (with default): calibration curve choosen. Allowed inputs are</p><ul>
 <li><p><b>"AtmosphericNorth"</b> for Northern Hemisphere atmospheric radiocarbon calibration curve,</p></li>
 <li><p><b>"Marine"</b> for Marine radiocarbon calibration curve,</p></li>
 <li><p><b>"AtmosphericSouth"</b> for Southern Hemisphere atmospheric radiocarbon calibration curve</p></li>
@@ -221,20 +222,20 @@ The decimal of this file must be a dot, and the separator must be a comma. </b><
     </tr>
     <tr>
       <th>Iter</th>
-      <td><p><a href='https://www.rdocumentation.org/packages/base/topics/integer'>integer</a> (with default): number of iterations for the MCMC computation (for more information see <a href='https://www.rdocumentation.org/packages/rjags/topics/jags.model'>rjags::jags.model</a>).</p></td>
+      <td><p><a href='https://rdrr.io/r/base/integer.html'>integer</a> (with default): number of iterations for the MCMC computation (for more information see <a href='https://rdrr.io/pkg/rjags/man/jags.model.html'>rjags::jags.model</a>).</p></td>
     </tr>
     <tr>
       <th>t</th>
       <td><p>integer (with default): 1 every <code>t</code> iterations of the MCMC is considered for sampling the posterior distribution
-(for more information see <a href='https://www.rdocumentation.org/packages/rjags/topics/jags.model'>rjags::jags.model</a>.</p></td>
+(for more information see <a href='https://rdrr.io/pkg/rjags/man/jags.model.html'>rjags::jags.model</a>.</p></td>
     </tr>
     <tr>
       <th>n.chains</th>
-      <td><p><a href='https://www.rdocumentation.org/packages/base/topics/integer'>integer</a> (with default): number of independent chains for the model (for more information see <a href='https://www.rdocumentation.org/packages/rjags/topics/jags.model'>rjags::jags.model</a>.</p></td>
+      <td><p><a href='https://rdrr.io/r/base/integer.html'>integer</a> (with default): number of independent chains for the model (for more information see <a href='https://rdrr.io/pkg/rjags/man/jags.model.html'>rjags::jags.model</a>.</p></td>
     </tr>
     <tr>
       <th>quiet</th>
-      <td><p><a href='https://www.rdocumentation.org/packages/base/topics/logical'>logical</a> (with default): enables/disables rjags messages</p></td>
+      <td><p><a href='https://rdrr.io/r/base/logical.html'>logical</a> (with default): enables/disables rjags messages</p></td>
     </tr>
     </table>
     
@@ -308,6 +309,10 @@ as outlier have in addition a multiplicative error.</p>
 initial value generation of JAGS. This is not optimal and will be changed in future. However, it does not affect the quality
 of the age estimates if the chains have converged.</p>
     
+    <h2 class="hasAnchor" id="how-to-cite"><a class="anchor" href="#how-to-cite"></a>How to cite</h2>
+
+    <p>Christophe, C., Philippe, A., Kreutzer, S., 2019. AgeC14_Computation(): Bayesian analysis for C-14 age estimations of various samples. In: Christophe, C., Philippe, A., Kreutzer, S., Guerin, G., 2019. BayLum: Chronological Bayesian Models Integrating Optically StimulatedR package version 0.1.4.9000-13. https://CRAN.R-project.org/package=BayLum</p>
+    
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
     <p>Christen, JA (1994). Summarizing a set of radiocarbon determinations: a robust approach. Applied Statistics, 489-503.</p>
@@ -325,11 +330,11 @@ IntCal13 ans Marine13 radiocarbon age calibration curves 0-50000 years cal BP. R
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'>## Load data</span>
-<span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/data'>data</a></span>(<span class='no'>DATA_C14</span>,<span class='kw'>envir</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/environment'>environment</a></span>())
+<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>DATA_C14</span>,<span class='kw'>envir</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/environment.html'>environment</a></span>())
 <span class='no'>C14Cal</span> <span class='kw'>&lt;-</span> <span class='no'>DATA_C14</span>$<span class='no'>C14</span>[,<span class='fl'>1</span>]
 <span class='no'>SigmaC14Cal</span> <span class='kw'>&lt;-</span> <span class='no'>DATA_C14</span>$<span class='no'>C14</span>[,<span class='fl'>2</span>]
 <span class='no'>Names</span> <span class='kw'>&lt;-</span> <span class='no'>DATA_C14</span>$<span class='no'>Names</span>
-<span class='no'>nb_sample</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/length'>length</a></span>(<span class='no'>Names</span>)
+<span class='no'>nb_sample</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/length.html'>length</a></span>(<span class='no'>Names</span>)
 
 <span class='co'>## Age computation of samples without stratigraphic relations</span>
 <span class='no'>Age</span> <span class='kw'>&lt;-</span> <span class='fu'>AgeC14_Computation</span>(
@@ -337,7 +342,7 @@ IntCal13 ans Marine13 radiocarbon age calibration curves 0-50000 years cal BP. R
  <span class='kw'>Data_SigmaC14Cal</span> <span class='kw'>=</span> <span class='no'>SigmaC14Cal</span>,
  <span class='kw'>SampleNames</span> <span class='kw'>=</span> <span class='no'>Names</span>,
  <span class='kw'>Nb_sample</span> <span class='kw'>=</span> <span class='no'>nb_sample</span>,
- <span class='kw'>PriorAge</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/rep'>rep</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>20</span>,<span class='fl'>60</span>),<span class='no'>nb_sample</span>),
+ <span class='kw'>PriorAge</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>20</span>,<span class='fl'>60</span>),<span class='no'>nb_sample</span>),
  <span class='kw'>Iter</span> <span class='kw'>=</span> <span class='fl'>500</span>,
  <span class='kw'>quiet</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: [plot_MCMC()] 'n.iter' out of range, reset to number of observations</span></div><div class='img'><img src='AgeC14_Computation-1.png' alt='' width='700' height='433' /></div><div class='img'><img src='AgeC14_Computation-2.png' alt='' width='700' height='433' /></div><div class='img'><img src='AgeC14_Computation-3.png' alt='' width='700' height='433' /></div><div class='img'><img src='AgeC14_Computation-4.png' alt='' width='700' height='433' /></div><div class='output co'>#&gt; 
 #&gt; 
@@ -345,9 +350,9 @@ IntCal13 ans Marine13 radiocarbon age calibration curves 0-50000 years cal BP. R
 #&gt; ----------------------------------------------
 #&gt; Sample name   Bayes estimate   Uppers credible interval
 #&gt; A_S-EVA-26510 	 1.02 		 1.08 
-#&gt; A_S-EVA-26506 	 1.02 		 1.08 
-#&gt; A_S-EVA-26507 	 1.01 		 1.04 
-#&gt; A_S-EVA-26508 	 1 		 1.02 
+#&gt; A_S-EVA-26506 	 1 		 1 
+#&gt; A_S-EVA-26507 	 1.04 		 1.09 
+#&gt; A_S-EVA-26508 	 1 		 1.01 
 #&gt; 
 #&gt; 
 #&gt; ---------------------------------------------------------------------------------------------------
@@ -361,7 +366,7 @@ IntCal13 ans Marine13 radiocarbon age calibration curves 0-50000 years cal BP. R
 #&gt; Sample name 	 Bayes estimate  Credible interval: 
 #&gt; A_S-EVA-26510 	 42 
 #&gt; 						 lower bound 	 upper bound
-#&gt; 				 at level 95% 	 41 		 43 
+#&gt; 				 at level 95% 	 41 		 42 
 #&gt; 				 at level 68% 	 42 		 42 
 #&gt; ------------------------------------------------------
 #&gt; Sample name 	 Bayes estimate  Credible interval: 
@@ -396,6 +401,8 @@ IntCal13 ans Marine13 radiocarbon age calibration curves 0-50000 years cal BP. R
 
       <li><a href="#note">Note</a></li>
 
+      <li><a href="#how-to-cite">How to cite</a></li>
+
       <li><a href="#references">References</a></li>
 
       <li><a href="#see-also">See also</a></li>
@@ -414,7 +421,7 @@ IntCal13 ans Marine13 radiocarbon age calibration curves 0-50000 years cal BP. R
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.9000.</p>
 </div>
       </footer>
    </div>

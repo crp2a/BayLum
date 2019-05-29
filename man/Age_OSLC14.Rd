@@ -288,12 +288,7 @@ SC <- matrix(data=c(1,1,1,0,1,1,0,0,1,0,0,0),ncol=3,nrow=4,byrow=TRUE)
 Age <- Age_OSLC14(DATA=Data,Data_C14Cal=C14Cal,Data_SigmaC14Cal=SigmaC14Cal,
    SampleNames=c("GDB5",Names,"GDB3"),Nb_sample=3,SampleNature=samplenature,
    PriorAge=prior,StratiConstraints=SC,Iter=50,n.chains=2)
-} 
-
-\section{How to cite}{
-Christophe, C., Philippe, A., Guerin, G., Kreutzer, S., 2019. Age_OSLC14(): Bayesian analysis for age estimation of OSL measerments and C-14 ages of various samples. In: Christophe, C., Philippe, A., Kreutzer, S., Guerin, G., 2019. BayLum: Chronological Bayesian Models Integrating Optically StimulatedR package version 0.1.4.9000-13. https://CRAN.R-project.org/package=BayLum 
 }
-
 \references{
 Reimer PJ, Bard E, Bayliss A, Beck JW, Blackwell PC, Bronl Ramsey C, Buck CE, Cheng H, Edwards RL, Friedrich M,
 Grootes PM, Guilderson TP, Haflidason H, Hajdas I, Hatte C, Heaton TJ, Hoffmann DL, Hogg AG, Hughen KA, Kaiser KF, Kromer B,

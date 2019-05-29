@@ -16,7 +16,8 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
@@ -60,7 +61,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">BayLum</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.4.8</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.4.9000.13</span>
       </span>
     </div>
 
@@ -113,31 +114,51 @@
   <div class="col-md-9 contents">
     <div class="page-header">
       <h1>Changelog <small></small></h1>
-      
+      <small>Source: <a href='https://github.com/crp2a/BayLum/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
-    <div id="baylum-014-release-date-2019-02-14" class="section level2">
+    <div id="baylum-0149000-13-2019-05-10" class="section level2">
 <h2 class="hasAnchor">
-<a href="#baylum-014-release-date-2019-02-14" class="anchor"></a>BayLum 0.1.4 (Release date: 2019-02-14)</h2>
+<a href="#baylum-0149000-13-2019-05-10" class="anchor"></a>BayLum 0.1.4.9000-13 (2019-05-10)</h2>
 <div id="bugfixes--changes" class="section level3">
 <h3 class="hasAnchor">
 <a href="#bugfixes--changes" class="anchor"></a>Bugfixes &amp; changes</h3>
 <ul>
 <li>
-<code><a href="../reference/Generate_DataFile_MG.html">Generate_DataFile_MG()</a></code> now works only on preselected records; the limitation of OSL only was removed.</li>
+<code><a href="../reference/Generate_DataFile_MG.html">Generate_DataFile_MG()</a></code>
+<ul>
+<li>now works only on preselected records; the limitation of OSL only was removed.</li>
+</ul>
+</li>
 <li>
-<code><a href="../reference/plot_Ages.html">plot_Ages()</a></code> the sorting of the samples in the graph did not work as expected; along with this a new argument <code>sample_order</code> was added.</li>
+<code><a href="../reference/plot_Ages.html">plot_Ages()</a></code>
+<ul>
+<li>the sorting of the samples in the graph did not work as expected; along with this a new argument <code>sample_order</code> was added.</li>
+</ul>
+</li>
 <li>
-<code><a href="../reference/plot_MCMC.html">plot_MCMC()</a></code> accidentally could not display the chains from more than 9 samples; fixed (thanks to Maryam Heydari)</li>
+<code><a href="../reference/plot_MCMC.html">plot_MCMC()</a></code>
+<ul>
+<li>Accidentally the function could not display the chains from more than 9 samples; fixed (thanks to Maryam Heydari)</li>
+<li>Now the function understand sthe output of <code><a href="../reference/AgeS_Computation.html">AgeS_Computation()</a></code> for an automated treatment</li>
+</ul>
+</li>
 <li>
-<code><a href="../reference/plot_MCMC.html">plot_MCMC()</a></code> the functions understand the output of <code><a href="../reference/AgeS_Computation.html">AgeS_Computation()</a></code> for an automated treatment</li>
+<code><a href="../reference/AgeS_Computation.html">AgeS_Computation()</a></code>
+<ul>
+<li>Now stops if a mismatch was encountered between the number of samples and the matrix provided via <code>THETA</code> to prevent a ‘JAGS’ runtime error</li>
+<li>The function experimentally gained a new argument <code>jags_method</code> to support full automated processing in parallel using the R package ‘runjags’; including a <code>...</code> argument for a more detailed control. By default the calculation is done simply via ‘rjags’ as usual</li>
+</ul>
+</li>
 <li>
-<code><a href="../reference/AgeS_Computation.html">AgeS_Computation()</a></code> now stops if a mismatch was encountered between the number of samples and the matrix provided via <code>THETA</code> to prevent a ‘JAGS’ runtime error</li>
-<li>
-<code><a href="../reference/AgeS_Computation.html">AgeS_Computation()</a></code> experimentally gained a new argument <code>jags_method</code> to support full automated processing in parallel using the R package ‘runjags’; including a <code>...</code> argument for a more detailed control. By default the calculation is done simply via ‘rjags’ as usual</li>
+<code><a href="../reference/Age_OSLC14.html">Age_OSLC14()</a></code>
+<ul>
+<li>Add additional output to enhance output table by additional information (<a href='https://github.com/crp2a/BayLum/issues/11'>#11</a>)</li>
+<li>The CSV-file option now returns the age and the HPD intervals</li>
+</ul>
+</li>
 <li>All models now come with an example showing how they can be inspected (before the examples not working)</li>
 <li>Fix a couple of documentation glitches (e.g., part of the documentation was missing)</li>
-<li>Add additional output to <code><a href="../reference/Age_OSLC14.html">Age_OSLC14()</a></code> enhance output table by additional information (#11)</li>
 </ul>
 </div>
 <div id="new-functions" class="section level3">
@@ -256,7 +277,7 @@
     <div id="tocnav">
       <h2>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
-        <li><a href="#baylum-014-release-date-2019-02-14">0.1.4</a></li>
+        <li><a href="#baylum-0149000-13-2019-05-10">0.1.4.9000-13</a></li>
         <li><a href="#baylum-013-release-date-2018-09-14">0.1.3</a></li>
         <li><a href="#baylum-012-release-date-2018-06-22">0.1.2</a></li>
         <li><a href="#baylum-011-release-date-2017-09-01">0.1.1</a></li>
@@ -273,7 +294,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.9000.</p>
 </div>
       </footer>
    </div>

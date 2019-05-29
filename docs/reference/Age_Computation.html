@@ -16,7 +16,8 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
@@ -65,7 +66,7 @@ A sample, for which data is avalilable in several BIN files, can be analysed." /
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">BayLum</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.4.8</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.4.9000.13</span>
       </span>
     </div>
 
@@ -118,7 +119,7 @@ A sample, for which data is avalilable in several BIN files, can be analysed." /
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Bayesian analysis for the OSL age estimation of one sample</h1>
-    
+    <small class="dont-index">Source: <a href='https://github.com/crp2a/BayLum/blob/master/R/Age_Computation.R'><code>R/Age_Computation.R</code></a></small>
     <div class="hidden name"><code>Age_Computation.Rd</code></div>
     </div>
 
@@ -130,12 +131,12 @@ A sample, for which data is avalilable in several BIN files, can be analysed.</p
     
     </div>
 
-    <pre class="usage"><span class='fu'>Age_Computation</span>(<span class='no'>DATA</span>, <span class='no'>SampleName</span>, <span class='kw'>PriorAge</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>0.01</span>, <span class='fl'>100</span>),
-  <span class='kw'>BinPerSample</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>1</span>), <span class='kw'>SavePdf</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>OutputFileName</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"MCMCplot"</span>), <span class='kw'>OutputFilePath</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>""</span>),
-  <span class='kw'>SaveEstimates</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>OutputTableName</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"DATA"</span>),
-  <span class='kw'>OutputTablePath</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>""</span>), <span class='kw'>LIN_fit</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>Origin_fit</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>distribution</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"cauchy"</span>), <span class='kw'>I</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>Iter</span> <span class='kw'>=</span> <span class='fl'>50000</span>, <span class='kw'>t</span> <span class='kw'>=</span> <span class='fl'>5</span>,
+    <pre class="usage"><span class='fu'>Age_Computation</span>(<span class='no'>DATA</span>, <span class='no'>SampleName</span>, <span class='kw'>PriorAge</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0.01</span>, <span class='fl'>100</span>),
+  <span class='kw'>BinPerSample</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1</span>), <span class='kw'>SavePdf</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>OutputFileName</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"MCMCplot"</span>), <span class='kw'>OutputFilePath</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>""</span>),
+  <span class='kw'>SaveEstimates</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>OutputTableName</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"DATA"</span>),
+  <span class='kw'>OutputTablePath</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>""</span>), <span class='kw'>LIN_fit</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>Origin_fit</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>distribution</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"cauchy"</span>), <span class='kw'>I</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>Iter</span> <span class='kw'>=</span> <span class='fl'>50000</span>, <span class='kw'>t</span> <span class='kw'>=</span> <span class='fl'>5</span>,
   <span class='kw'>n.chains</span> <span class='kw'>=</span> <span class='fl'>3</span>, <span class='kw'>quiet</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -143,92 +144,92 @@ A sample, for which data is avalilable in several BIN files, can be analysed.</p
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>DATA</th>
-      <td><p><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a> of objects: <code>LT</code>, <code>sLT</code>, <code>ITimes</code>, <code>dLab</code>, <code>ddot_env</code>, <code>regDose</code>, <code>J</code>, <code>K</code>, <code>Nb_measurement</code>,
+      <td><p><a href='https://rdrr.io/r/base/list.html'>list</a> of objects: <code>LT</code>, <code>sLT</code>, <code>ITimes</code>, <code>dLab</code>, <code>ddot_env</code>, <code>regDose</code>, <code>J</code>, <code>K</code>, <code>Nb_measurement</code>,
 provided by the function <a href='Generate_DataFile.html'>Generate_DataFile</a> or <a href='Generate_DataFile_MG.html'>Generate_DataFile_MG</a>.</p>
 <p><code>DATA</code> can contain information for more than one sample.</p></td>
     </tr>
     <tr>
       <th>SampleName</th>
-      <td><p><a href='https://www.rdocumentation.org/packages/base/topics/character'>character</a>: name of the sample.</p></td>
+      <td><p><a href='https://rdrr.io/r/base/character.html'>character</a>: name of the sample.</p></td>
     </tr>
     <tr>
       <th>PriorAge</th>
-      <td><p><a href='https://www.rdocumentation.org/packages/base/topics/numeric'>numeric</a> (with default): lower and upper bounds for the sample age parameter (in ka).
+      <td><p><a href='https://rdrr.io/r/base/numeric.html'>numeric</a> (with default): lower and upper bounds for the sample age parameter (in ka).
 Note that, <code>length(PriorAge)=2</code>.</p></td>
     </tr>
     <tr>
       <th>BinPerSample</th>
-      <td><p><a href='https://www.rdocumentation.org/packages/base/topics/integer'>integer</a> (with default): vector with the number of BIN files per sample.
+      <td><p><a href='https://rdrr.io/r/base/integer.html'>integer</a> (with default): vector with the number of BIN files per sample.
 If in <code>DATA</code> there is more than one sample,
 the <code>BinPerSample</code> vector must be the same as that used to run the function
 <a href='Generate_DataFile.html'>Generate_DataFile</a> or in <a href='Generate_DataFile_MG.html'>Generate_DataFile_MG</a> for generating the <code>DATA</code> object.</p></td>
     </tr>
     <tr>
       <th>SavePdf</th>
-      <td><p><a href='https://www.rdocumentation.org/packages/base/topics/logical'>logical</a> (with default): if TRUE save graph in pdf file named <code>OutputFileName</code> in folder <code>OutputFilePath</code>.</p></td>
+      <td><p><a href='https://rdrr.io/r/base/logical.html'>logical</a> (with default): if TRUE save graph in pdf file named <code>OutputFileName</code> in folder <code>OutputFilePath</code>.</p></td>
     </tr>
     <tr>
       <th>OutputFileName</th>
-      <td><p><a href='https://www.rdocumentation.org/packages/base/topics/character'>character</a> (with default): name of the pdf file that will be generated by the function if <code>SavePdf = TRUE</code>;
+      <td><p><a href='https://rdrr.io/r/base/character.html'>character</a> (with default): name of the pdf file that will be generated by the function if <code>SavePdf = TRUE</code>;
 <code>length(OutputFileName = 2</code>, see <strong>PLOT OUTPUT</strong> in <strong>Value</strong> section for more informations.</p></td>
     </tr>
     <tr>
       <th>OutputFilePath</th>
-      <td><p><a href='https://www.rdocumentation.org/packages/base/topics/character'>character</a> (with default): path to the pdf file that will be generated by the function if <code>SavePdf = TRUE</code>.
+      <td><p><a href='https://rdrr.io/r/base/character.html'>character</a> (with default): path to the pdf file that will be generated by the function if <code>SavePdf = TRUE</code>.
 If it is not equal to "", it must be terminated by "/".</p></td>
     </tr>
     <tr>
       <th>SaveEstimates</th>
-      <td><p><a href='https://www.rdocumentation.org/packages/base/topics/logical'>logical</a> (with default): if TRUE save Bayes estimates and credible interval at level 68% and 95%  and
+      <td><p><a href='https://rdrr.io/r/base/logical.html'>logical</a> (with default): if TRUE save Bayes estimates and credible interval at level 68% and 95%  and
 the result of the gelman en Rubin test of convergency, in a csv table named <code>OutputFileName</code> in folder <code>OutputFilePath</code>.</p></td>
     </tr>
     <tr>
       <th>OutputTableName</th>
-      <td><p><a href='https://www.rdocumentation.org/packages/base/topics/character'>character</a> (with default): name of the table that will be generated by the function if <code>SaveEstimates = TRUE</code>.</p></td>
+      <td><p><a href='https://rdrr.io/r/base/character.html'>character</a> (with default): name of the table that will be generated by the function if <code>SaveEstimates = TRUE</code>.</p></td>
     </tr>
     <tr>
       <th>OutputTablePath</th>
-      <td><p><a href='https://www.rdocumentation.org/packages/base/topics/character'>character</a> (with default): path to the table that will be generated by the function if  <code>SaveEstimates = TRUE</code>.
+      <td><p><a href='https://rdrr.io/r/base/character.html'>character</a> (with default): path to the table that will be generated by the function if  <code>SaveEstimates = TRUE</code>.
 If it is not equal to "", it must be terminated by "/".</p></td>
     </tr>
     <tr>
       <th>LIN_fit</th>
-      <td><p><a href='https://www.rdocumentation.org/packages/base/topics/logical'>logical</a> (with default): if <code>TRUE</code> (default) allows a linear component,
+      <td><p><a href='https://rdrr.io/r/base/logical.html'>logical</a> (with default): if <code>TRUE</code> (default) allows a linear component,
 on top of the (default) saturating exponential curve, for the fitting of dose response curves.
 See details section for more informations on the proposed dose response curves.</p></td>
     </tr>
     <tr>
       <th>Origin_fit</th>
-      <td><p><a href='https://www.rdocumentation.org/packages/base/topics/logical'>logical</a> (with default): if <code>TRUE</code>, forces the dose response curves to pass through the origin.
+      <td><p><a href='https://rdrr.io/r/base/logical.html'>logical</a> (with default): if <code>TRUE</code>, forces the dose response curves to pass through the origin.
 See details section for more informations on the proposed growth curves.</p></td>
     </tr>
     <tr>
       <th>distribution</th>
-      <td><p><a href='https://www.rdocumentation.org/packages/base/topics/character'>character</a> (with default): type of distribution that defines
+      <td><p><a href='https://rdrr.io/r/base/character.html'>character</a> (with default): type of distribution that defines
 how individual equivalent dose values are distributed around the palaeodose.
 Allowed inputs are <code>"cauchy"</code>, <code>"gaussian"</code>, <code>"lognormal_A"</code> and <code>"lognormal_M"</code>, see details section for more informations.</p></td>
     </tr>
     <tr>
       <th>I</th>
-      <td><p><a href='https://www.rdocumentation.org/packages/base/topics/integer'>integer</a> (with default): if <code>DATA</code> contains data from more than one sample,
+      <td><p><a href='https://rdrr.io/r/base/integer.html'>integer</a> (with default): if <code>DATA</code> contains data from more than one sample,
 I indicates the ID number of the sample to be analysed.</p></td>
     </tr>
     <tr>
       <th>Iter</th>
-      <td><p><a href='https://www.rdocumentation.org/packages/base/topics/integer'>integer</a> (with default): number of iterations for the MCMC computation (for more information see jags.model).</p></td>
+      <td><p><a href='https://rdrr.io/r/base/integer.html'>integer</a> (with default): number of iterations for the MCMC computation (for more information see jags.model).</p></td>
     </tr>
     <tr>
       <th>t</th>
-      <td><p><a href='https://www.rdocumentation.org/packages/base/topics/integer'>integer</a> (with default): 1 every <code>t</code> iterations of the MCMC is considered for sampling the posterior distribution
+      <td><p><a href='https://rdrr.io/r/base/integer.html'>integer</a> (with default): 1 every <code>t</code> iterations of the MCMC is considered for sampling the posterior distribution
 (for more information see jags.model).</p></td>
     </tr>
     <tr>
       <th>n.chains</th>
-      <td><p><a href='https://www.rdocumentation.org/packages/base/topics/integer'>integer</a> (with default): number of independent chains for the model (for more information see jags.model).</p></td>
+      <td><p><a href='https://rdrr.io/r/base/integer.html'>integer</a> (with default): number of independent chains for the model (for more information see jags.model).</p></td>
     </tr>
     <tr>
       <th>quiet</th>
-      <td><p><a href='https://www.rdocumentation.org/packages/base/topics/logical'>logical</a> (with default): enables/disables rjags messages</p></td>
+      <td><p><a href='https://rdrr.io/r/base/logical.html'>logical</a> (with default): enables/disables rjags messages</p></td>
     </tr>
     </table>
     
@@ -250,7 +251,7 @@ In addition, the user must visually assess the convergency of the trajectories b
 generated by the function (see <strong>PLOT OUTPUT</strong> for more informations).<br />
 If both convergencies (Gelman and Rubin test and plot checking) are satisfactory,
 the user can consider the printed estimates as valid. Otherwise, the user may try increasing the number of MCMC interations
-(<code>Iter</code>), or being more precise on the <code>PriorAge</code> parameter (for example specify if it is a young sample <code><a href='https://www.rdocumentation.org/packages/base/topics/c'>c(0.01,10)</a></code> an old sample <code><a href='https://www.rdocumentation.org/packages/base/topics/c'>c(10,100)</a></code>),
+(<code>Iter</code>), or being more precise on the <code>PriorAge</code> parameter (for example specify if it is a young sample <code><a href='https://rdrr.io/r/base/c.html'>c(0.01,10)</a></code> an old sample <code><a href='https://rdrr.io/r/base/c.html'>c(10,100)</a></code>),
 or changing the parameter <code>distribution</code> or the growth curve, to reach convergency.to reach convergency.</p></li>
 <li><p><strong>Credible intervals and Bayes estimates</strong>: prints the Bayes esitmates, the credible intervals at 95% and 68% for
 the age, palaeodose and equivalent dose dispersion parameters of the sample.</p></li>
@@ -301,6 +302,10 @@ On each line, the plot on the left represents the MCMC trajectories, and the one
 initial value generation of JAGS. This is not optimal and will be changed in future. However, it does not affect the quality
 of the age estimates if the chains have converged.</p>
     
+    <h2 class="hasAnchor" id="how-to-cite"><a class="anchor" href="#how-to-cite"></a>How to cite</h2>
+
+    <p>Christophe, C., Kreutzer, S., Philippe, A., 2019. Age_Computation(): Bayesian analysis for the OSL age estimation of one sample. In: Christophe, C., Philippe, A., Kreutzer, S., Guerin, G., 2019. BayLum: Chronological Bayesian Models Integrating Optically StimulatedR package version 0.1.4.9000-13. https://CRAN.R-project.org/package=BayLum</p>
+    
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
     <p>Combes, Benoit and Philippe, Anne, 2017.
@@ -318,8 +323,8 @@ Quaternary Geochronology 28, 62-70. doi:10.1016/j.quageo.2015.04.001</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'>## load data file generated by the function Generate_DataFile</span>
-<span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/data'>data</a></span>(<span class='no'>DATA1</span>,<span class='kw'>envir</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/environment'>environment</a></span>())
-<span class='no'>priorage</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>10</span>,<span class='fl'>60</span>) <span class='co'># GDB3 is an old sample</span>
+<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>DATA1</span>,<span class='kw'>envir</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/environment.html'>environment</a></span>())
+<span class='no'>priorage</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>10</span>,<span class='fl'>60</span>) <span class='co'># GDB3 is an old sample</span>
 <span class='no'>Age</span> <span class='kw'>&lt;-</span> <span class='fu'>Age_Computation</span>(
  <span class='kw'>DATA</span> <span class='kw'>=</span> <span class='no'>DATA1</span>,
  <span class='kw'>SampleName</span> <span class='kw'>=</span> <span class='st'>"GDB3"</span>,
@@ -334,9 +339,9 @@ Quaternary Geochronology 28, 62-70. doi:10.1016/j.quageo.2015.04.001</p>
 #&gt; &gt;&gt; Results of the Gelman and Rubin criterion of convergence &lt;&lt;
 #&gt; ----------------------------------------------
 #&gt; 	 Point estimate Uppers confidence interval
-#&gt; A	 0.99 		 0.99 
-#&gt; D	 1 		 1.07 
-#&gt; sD	 1.07 		 1.27 
+#&gt; A	 1.12 		 1.4 
+#&gt; D	 1.1 		 1.35 
+#&gt; sD	 1.23 		 1.69 
 #&gt; 
 #&gt; 
 #&gt; ---------------------------------------------------------------------------------------------------
@@ -345,20 +350,20 @@ Quaternary Geochronology 28, 62-70. doi:10.1016/j.quageo.2015.04.001</p>
 #&gt; 
 #&gt; parameter 	 Bayes estimate 	  Credible interval 
 #&gt; ----------------------------------------------
-#&gt; A 		 46.804 
+#&gt; A 		 46.116 
 #&gt; 						 lower bound 	 upper bound
-#&gt; 				 at level 95%	 38.75 		 56.53 
-#&gt; 				 at level 68%	 42.58 		 51.14 
+#&gt; 				 at level 95%	 37.39 		 50.34 
+#&gt; 				 at level 68%	 38.18 		 45.78 
 #&gt; ----------------------------------------------
-#&gt; D 		 103.164 
+#&gt; D 		 103.495 
 #&gt; 						 lower bound 	 upper bound
-#&gt; 				 at level 95%	 96.54 		 108.7 
-#&gt; 				 at level 68%	 101.34 		 108.7 
+#&gt; 				 at level 95%	 95.55 		 107.28 
+#&gt; 				 at level 68%	 98.75 		 104.25 
 #&gt; ----------------------------------------------
-#&gt; sD 		 15.896 
+#&gt; sD 		 16.62 
 #&gt; 						 lower bound 	 upper bound
-#&gt; 				 at level 95%	 10.64 		 20.94 
-#&gt; 				 at level 68%	 13.34 		 17.42 </div><div class='input'>
+#&gt; 				 at level 95%	 11.4 		 20.12 
+#&gt; 				 at level 68%	 12.14 		 16.14 </div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
@@ -371,6 +376,8 @@ Quaternary Geochronology 28, 62-70. doi:10.1016/j.quageo.2015.04.001</p>
       <li><a href="#details">Details</a></li>
 
       <li><a href="#note">Note</a></li>
+
+      <li><a href="#how-to-cite">How to cite</a></li>
 
       <li><a href="#references">References</a></li>
 
@@ -390,7 +397,7 @@ Quaternary Geochronology 28, 62-70. doi:10.1016/j.quageo.2015.04.001</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.9000.</p>
 </div>
       </footer>
    </div>

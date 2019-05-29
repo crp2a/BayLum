@@ -16,7 +16,8 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
@@ -69,7 +70,7 @@ Northern or Sourthen Hemisphere or marine atmospheric." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">BayLum</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.4.8</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.4.9000.13</span>
       </span>
     </div>
 
@@ -122,7 +123,7 @@ Northern or Sourthen Hemisphere or marine atmospheric." />
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Bayesian analysis for age estimation of OSL measerments and C-14 ages of various samples</h1>
-    
+    <small class="dont-index">Source: <a href='https://github.com/crp2a/BayLum/blob/master/R/Age_OSLC14.R'><code>R/Age_OSLC14.R</code></a></small>
     <div class="hidden name"><code>Age_OSLC14.Rd</code></div>
     </div>
 
@@ -139,14 +140,14 @@ Northern or Sourthen Hemisphere or marine atmospheric.</p>
     </div>
 
     <pre class="usage"><span class='fu'>Age_OSLC14</span>(<span class='no'>DATA</span>, <span class='no'>Data_C14Cal</span>, <span class='no'>Data_SigmaC14Cal</span>, <span class='no'>Nb_sample</span>, <span class='no'>SampleNames</span>,
-  <span class='no'>SampleNature</span>, <span class='kw'>PriorAge</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/rep'>rep</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>10</span>, <span class='fl'>60</span>), <span class='no'>Nb_sample</span>), <span class='kw'>SavePdf</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>OutputFileName</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"MCMCplot"</span>, <span class='st'>"HPD_Cal14CCurve"</span>, <span class='st'>"summary"</span>),
-  <span class='kw'>OutputFilePath</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>""</span>), <span class='kw'>SaveEstimates</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>OutputTableName</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"DATA"</span>), <span class='kw'>OutputTablePath</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>""</span>),
-  <span class='kw'>StratiConstraints</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(), <span class='kw'>sepSC</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>","</span>), <span class='kw'>BinPerSample</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/rep'>rep</a></span>(<span class='fl'>1</span>,
-  <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/sum'>sum</a></span>(<span class='no'>SampleNature</span>[<span class='fl'>1</span>, ])), <span class='kw'>THETA</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(), <span class='kw'>sepTHETA</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>","</span>),
-  <span class='kw'>LIN_fit</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>Origin_fit</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>distribution</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"cauchy"</span>),
-  <span class='kw'>Model_C14</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"full"</span>), <span class='kw'>CalibrationCurve</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"AtmosphericNorth"</span>),
+  <span class='no'>SampleNature</span>, <span class='kw'>PriorAge</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>10</span>, <span class='fl'>60</span>), <span class='no'>Nb_sample</span>), <span class='kw'>SavePdf</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>OutputFileName</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"MCMCplot"</span>, <span class='st'>"HPD_Cal14CCurve"</span>, <span class='st'>"summary"</span>),
+  <span class='kw'>OutputFilePath</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>""</span>), <span class='kw'>SaveEstimates</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>OutputTableName</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"DATA"</span>), <span class='kw'>OutputTablePath</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>""</span>),
+  <span class='kw'>StratiConstraints</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(), <span class='kw'>sepSC</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>","</span>), <span class='kw'>BinPerSample</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span>(<span class='fl'>1</span>,
+  <span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span>(<span class='no'>SampleNature</span>[<span class='fl'>1</span>, ])), <span class='kw'>THETA</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(), <span class='kw'>sepTHETA</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>","</span>),
+  <span class='kw'>LIN_fit</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>Origin_fit</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>distribution</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"cauchy"</span>),
+  <span class='kw'>Model_C14</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"full"</span>), <span class='kw'>CalibrationCurve</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"AtmosphericNorth"</span>),
   <span class='kw'>Iter</span> <span class='kw'>=</span> <span class='fl'>50000</span>, <span class='kw'>t</span> <span class='kw'>=</span> <span class='fl'>5</span>, <span class='kw'>n.chains</span> <span class='kw'>=</span> <span class='fl'>3</span>, <span class='kw'>quiet</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -298,7 +299,7 @@ The decimal of this file must be a dot, and the separator must be a comma. </b><
     </tr>
     <tr>
       <th>quiet</th>
-      <td><p><code><a href='https://www.rdocumentation.org/packages/base/topics/logical'>logical</a></code> (with default): enables/disables rjags messages</p></td>
+      <td><p><code><a href='https://rdrr.io/r/base/logical.html'>logical</a></code> (with default): enables/disables rjags messages</p></td>
     </tr>
     </table>
     
@@ -418,6 +419,10 @@ we introduce a structure of mixture, that means only variable that are considere
 initial value generation of JAGS. This is not optimal and will be changed in future. However, it does not affect the quality
 of the age estimates if the chains have converged.</p>
     
+    <h2 class="hasAnchor" id="how-to-cite"><a class="anchor" href="#how-to-cite"></a>How to cite</h2>
+
+    <p>Christophe, C., Philippe, A., Guerin, G., Kreutzer, S., 2019. Age_OSLC14(): Bayesian analysis for age estimation of OSL measerments and C-14 ages of various samples. In: Christophe, C., Philippe, A., Kreutzer, S., Guerin, G., 2019. BayLum: Chronological Bayesian Models Integrating Optically StimulatedR package version 0.1.4.9000-13. https://CRAN.R-project.org/package=BayLum</p>
+    
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
     <p>Reimer PJ, Bard E, Bayliss A, Beck JW, Blackwell PC, Bronl Ramsey C, Buck CE, Cheng H, Edwards RL, Friedrich M,
@@ -435,8 +440,8 @@ IntCal13 ans Marine13 radiocarbon age calibration curves 0-50000 years cal BP. R
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'>## Load data</span>
 <span class='co'># OSL data</span>
-<span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/data'>data</a></span>(<span class='no'>DATA1</span>,<span class='kw'>envir</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/environment'>environment</a></span>())
-<span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/data'>data</a></span>(<span class='no'>DATA2</span>,<span class='kw'>envir</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/environment'>environment</a></span>())
+<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>DATA1</span>,<span class='kw'>envir</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/environment.html'>environment</a></span>())
+<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>DATA2</span>,<span class='kw'>envir</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/environment.html'>environment</a></span>())
 <span class='no'>Data</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='combine_DataFiles.html'>combine_DataFiles</a></span>(<span class='no'>DATA2</span>,<span class='no'>DATA1</span>)
 
 <span class='co'># 14C data</span>
@@ -445,13 +450,13 @@ IntCal13 ans Marine13 radiocarbon age calibration curves 0-50000 years cal BP. R
 <span class='no'>Names</span> <span class='kw'>&lt;-</span> <span class='no'>DATA_C14</span>$<span class='no'>Names</span>[<span class='fl'>1</span>]
 
 <span class='co'># Prior Age</span>
-<span class='no'>prior</span><span class='kw'>=</span><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/rep'>rep</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>1</span>,<span class='fl'>60</span>),<span class='fl'>3</span>)
-<span class='no'>samplenature</span><span class='kw'>=</span><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/matrix'>matrix</a></span>(<span class='kw'>data</span><span class='kw'>=</span><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>1</span>,<span class='fl'>0</span>,<span class='fl'>1</span>,<span class='fl'>0</span>,<span class='fl'>1</span>,<span class='fl'>0</span>),<span class='kw'>ncol</span><span class='kw'>=</span><span class='fl'>3</span>,<span class='kw'>nrow</span><span class='kw'>=</span><span class='fl'>2</span>,<span class='kw'>byrow</span><span class='kw'>=</span><span class='fl'>TRUE</span>)
-<span class='no'>SC</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/matrix'>matrix</a></span>(<span class='kw'>data</span><span class='kw'>=</span><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>1</span>,<span class='fl'>1</span>,<span class='fl'>1</span>,<span class='fl'>0</span>,<span class='fl'>1</span>,<span class='fl'>1</span>,<span class='fl'>0</span>,<span class='fl'>0</span>,<span class='fl'>1</span>,<span class='fl'>0</span>,<span class='fl'>0</span>,<span class='fl'>0</span>),<span class='kw'>ncol</span><span class='kw'>=</span><span class='fl'>3</span>,<span class='kw'>nrow</span><span class='kw'>=</span><span class='fl'>4</span>,<span class='kw'>byrow</span><span class='kw'>=</span><span class='fl'>TRUE</span>)
+<span class='no'>prior</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1</span>,<span class='fl'>60</span>),<span class='fl'>3</span>)
+<span class='no'>samplenature</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span>(<span class='kw'>data</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1</span>,<span class='fl'>0</span>,<span class='fl'>1</span>,<span class='fl'>0</span>,<span class='fl'>1</span>,<span class='fl'>0</span>),<span class='kw'>ncol</span><span class='kw'>=</span><span class='fl'>3</span>,<span class='kw'>nrow</span><span class='kw'>=</span><span class='fl'>2</span>,<span class='kw'>byrow</span><span class='kw'>=</span><span class='fl'>TRUE</span>)
+<span class='no'>SC</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span>(<span class='kw'>data</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1</span>,<span class='fl'>1</span>,<span class='fl'>1</span>,<span class='fl'>0</span>,<span class='fl'>1</span>,<span class='fl'>1</span>,<span class='fl'>0</span>,<span class='fl'>0</span>,<span class='fl'>1</span>,<span class='fl'>0</span>,<span class='fl'>0</span>,<span class='fl'>0</span>),<span class='kw'>ncol</span><span class='kw'>=</span><span class='fl'>3</span>,<span class='kw'>nrow</span><span class='kw'>=</span><span class='fl'>4</span>,<span class='kw'>byrow</span><span class='kw'>=</span><span class='fl'>TRUE</span>)
 
 <span class='co'>## Age computation of samples</span>
 <span class='no'>Age</span> <span class='kw'>&lt;-</span> <span class='fu'>Age_OSLC14</span>(<span class='kw'>DATA</span><span class='kw'>=</span><span class='no'>Data</span>,<span class='kw'>Data_C14Cal</span><span class='kw'>=</span><span class='no'>C14Cal</span>,<span class='kw'>Data_SigmaC14Cal</span><span class='kw'>=</span><span class='no'>SigmaC14Cal</span>,
-   <span class='kw'>SampleNames</span><span class='kw'>=</span><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"GDB5"</span>,<span class='no'>Names</span>,<span class='st'>"GDB3"</span>),<span class='kw'>Nb_sample</span><span class='kw'>=</span><span class='fl'>3</span>,<span class='kw'>SampleNature</span><span class='kw'>=</span><span class='no'>samplenature</span>,
+   <span class='kw'>SampleNames</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"GDB5"</span>,<span class='no'>Names</span>,<span class='st'>"GDB3"</span>),<span class='kw'>Nb_sample</span><span class='kw'>=</span><span class='fl'>3</span>,<span class='kw'>SampleNature</span><span class='kw'>=</span><span class='no'>samplenature</span>,
    <span class='kw'>PriorAge</span><span class='kw'>=</span><span class='no'>prior</span>,<span class='kw'>StratiConstraints</span><span class='kw'>=</span><span class='no'>SC</span>,<span class='kw'>Iter</span><span class='kw'>=</span><span class='fl'>50</span>,<span class='kw'>n.chains</span><span class='kw'>=</span><span class='fl'>2</span>)</div><div class='output co'>#&gt; Compiling model graph
 #&gt;    Resolving undeclared variables
 #&gt;    Allocating nodes
@@ -468,9 +473,9 @@ IntCal13 ans Marine13 radiocarbon age calibration curves 0-50000 years cal BP. R
 #&gt; &gt;&gt; Convergence of MCMC for the age parameters &lt;&lt;
 #&gt; ----------------------------------------------
 #&gt; Sample name   Bayes estimate   Uppers credible interval
-#&gt; A_GDB5 	 1 		 1.16 
-#&gt; A_S-EVA-26510 	 1.23 		 1.97 
-#&gt; A_GDB3 	 1.07 		 1.39 
+#&gt; A_GDB5 	 0.97 		 1.03 
+#&gt; A_S-EVA-26510 	 1.4 		 2.53 
+#&gt; A_GDB3 	 0.99 		 1.11 
 #&gt; 
 #&gt; 
 #&gt; ________________________________________________________________________________
@@ -481,22 +486,22 @@ IntCal13 ans Marine13 radiocarbon age calibration curves 0-50000 years cal BP. R
 #&gt; &gt;&gt; Bayes estimates of Age for each sample and credible interval &lt;&lt;
 #&gt; ------------------------------------------------------
 #&gt; Sample name 	 Bayes estimate  Credible interval: 
-#&gt; A_GDB5 	 7.115 
+#&gt; A_GDB5 	 7.252 
 #&gt; 						 lower bound 	 upper bound
-#&gt; 				 at level 95% 	 5.69 		 8.53 
-#&gt; 				 at level 68% 	 6.57 		 7.57 
+#&gt; 				 at level 95% 	 6.22 		 8.89 
+#&gt; 				 at level 68% 	 6.66 		 7.65 
 #&gt; ------------------------------------------------------
 #&gt; Sample name 	 Bayes estimate  Credible interval: 
-#&gt; A_S-EVA-26510 	 41.853 
+#&gt; A_S-EVA-26510 	 41.834 
 #&gt; 						 lower bound 	 upper bound
-#&gt; 				 at level 95% 	 41.52 		 42.46 
-#&gt; 				 at level 68% 	 41.63 		 42.01 
+#&gt; 				 at level 95% 	 41.43 		 42.17 
+#&gt; 				 at level 68% 	 41.7 		 42.12 
 #&gt; ------------------------------------------------------
 #&gt; Sample name 	 Bayes estimate  Credible interval: 
-#&gt; A_GDB3 	 49.929 
+#&gt; A_GDB3 	 47.459 
 #&gt; 						 lower bound 	 upper bound
-#&gt; 				 at level 95% 	 45.02 		 57.46 
-#&gt; 				 at level 68% 	 45.02 		 50.88 
+#&gt; 				 at level 95% 	 42.23 		 53.06 
+#&gt; 				 at level 68% 	 44.17 		 48.85 
 #&gt; 
 #&gt; ------------------------------------------------------</div><div class='img'><img src='Age_OSLC14-4.png' alt='' width='700' height='433' /></div></pre>
   </div>
@@ -510,6 +515,8 @@ IntCal13 ans Marine13 radiocarbon age calibration curves 0-50000 years cal BP. R
       <li><a href="#details">Details</a></li>
 
       <li><a href="#note">Note</a></li>
+
+      <li><a href="#how-to-cite">How to cite</a></li>
 
       <li><a href="#references">References</a></li>
 
@@ -529,7 +536,7 @@ IntCal13 ans Marine13 radiocarbon age calibration curves 0-50000 years cal BP. R
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.9000.</p>
 </div>
       </footer>
    </div>

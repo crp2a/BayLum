@@ -63,9 +63,4 @@ LT_RegenDose(DATA=DATA3,Path=path,FolderNames=folder,SampleNames=samplename,Nb_s
 }
 \author{
 Claire Christophe, Sebastian Kreutzer, Anne Philippe, Guillaume Guérin
-} 
-
-\section{How to cite}{
-Christophe, C., Kreutzer, S., Philippe, A., 2019. LT_RegenDose(): Plots Lx/Tx as a function of the regenerative dose. In: Christophe, C., Philippe, A., Kreutzer, S., Guerin, G., 2019. BayLum: Chronological Bayesian Models Integrating Optically StimulatedR package version 0.1.4.9000-13. https://CRAN.R-project.org/package=BayLum 
 }
-

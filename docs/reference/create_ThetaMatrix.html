@@ -16,7 +16,8 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
@@ -65,7 +66,7 @@ covariance matrix \(\Sigma\) (Combès &amp;amp; Philippe, 2017)" />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">BayLum</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.4.8</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.4.9000.13</span>
       </span>
     </div>
 
@@ -118,7 +119,7 @@ covariance matrix \(\Sigma\) (Combès &amp;amp; Philippe, 2017)" />
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Create Theta Matrix</h1>
-    
+    <small class="dont-index">Source: <a href='https://github.com/crp2a/BayLum/blob/master/R/create_ThetaMatrix.R'><code>R/create_ThetaMatrix.R</code></a></small>
     <div class="hidden name"><code>create_ThetaMatrix.Rd</code></div>
     </div>
 
@@ -137,71 +138,63 @@ covariance matrix \(\Sigma\) (Combès &amp; Philippe, 2017)</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>input</th>
-      <td><p><a href='https://www.rdocumentation.org/packages/base/topics/character'>character</a> or <a href='https://www.rdocumentation.org/packages/base/topics/data.frame'>data.frame</a> (<em>optional</em>): input data frame or file connection
+      <td><p><a href='https://rdrr.io/r/base/character.html'>character</a> or <a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a> (<em>optional</em>): input data frame or file connection
 to import a CSV-file with the needed information. If nothing is provided the function returns
 an input template. The argument <code>output_file</code> can be used to write this input template to the file
 system</p></td>
     </tr>
     <tr>
       <th>output_file</th>
-      <td><p><a href='https://www.rdocumentation.org/packages/base/topics/character'>character</a> (optional): file path for the output CSV-file, the field separator
-is hard set to <code>","</code>. Please use <a href='https://www.rdocumentation.org/packages/utils/topics/write.table'>utils::write.table</a> for more flexibility.</p></td>
+      <td><p><a href='https://rdrr.io/r/base/character.html'>character</a> (optional): file path for the output CSV-file, the field separator
+is hard set to <code>","</code>. Please use <a href='https://rdrr.io/r/utils/write.table.html'>utils::write.table</a> for more flexibility.</p></td>
     </tr>
     <tr>
       <th>sigma_s</th>
-      <td><p><a href='https://www.rdocumentation.org/packages/base/topics/numeric'>numeric</a> (<strong>required</strong>): named character with values for systematic uncertainties. Those values
+      <td><p><a href='https://rdrr.io/r/base/numeric.html'>numeric</a> (<strong>required</strong>): named character with values for systematic uncertainties. Those values
 are lab-specific. Can be set to <code>NULL</code> to remove systematic uncertainties. The order of the <em>named</em>
 vector is not important, but the naming!
 <strong>Note</strong>: some of the uncertainties have a unit, please check details.</p></td>
     </tr>
     <tr>
       <th>...</th>
-      <td><p>further arguments that can be passed to <a href='https://www.rdocumentation.org/packages/utils/topics/read.table'>utils::read.table</a> (for the CSV-file import)</p></td>
+      <td><p>further arguments that can be passed to <a href='https://rdrr.io/r/utils/read.table.html'>utils::read.table</a> (for the CSV-file import)</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A symetric \(Theta\) matrix or if <code>input</code> is missing, a <a href='https://www.rdocumentation.org/packages/base/topics/data.frame'>data.frame</a> with an input
+    <p>A symetric \(Theta\) matrix or if <code>input</code> is missing, a <a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a> with an input
 template</p>
     
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>The function intends to ease the creation of the \(Theta\) matrix, which cannot be
-created straight forward, e.g., base R functions such as <code><a href='https://www.rdocumentation.org/packages/stats/topics/cor'>stats::cov</a></code>.
+created straight forward, e.g., base R functions such as <code><a href='https://rdrr.io/r/stats/cor.html'>stats::cov</a></code>.
 The relationship between the covariance matrix  \(Sigma\) and \(Theta\) is given with</p>
 <p>$$\Sigma_ij = A_i * A_j * \Theta_ij$$</p>
 <p>For details see Combès &amp; Philippe, 2017 and Guérin et al. (under review).</p>
 <p><strong>Input modes</strong></p>
 <p>The function supports two different operation modes:</p><ol>
-<li><p><code>input</code> is left empty: the function returns a <a href='https://www.rdocumentation.org/packages/base/topics/data.frame'>data.frame</a> template that can be used as input (the option <code>output_file</code> works as well)</p></li>
-<li><p><code>input</code> is fed with a <a href='https://www.rdocumentation.org/packages/base/topics/data.frame'>data.frame</a> or a <code>character</code> (file path), the \(\Theta\) matrix is returned</p></li>
+<li><p><code>input</code> is left empty: the function returns a <a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a> template that can be used as input (the option <code>output_file</code> works as well)</p></li>
+<li><p><code>input</code> is fed with a <a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a> or a <code>character</code> (file path), the \(\Theta\) matrix is returned</p></li>
 </ol>
     <p><strong>Input format</strong></p>
-<p>The function expects either a CSV-file or a <a href='https://www.rdocumentation.org/packages/base/topics/data.frame'>data.frame</a> as input. To create template you can
+<p>The function expects either a CSV-file or a <a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a> as input. To create template you can
 run the function leaving the argument <code>input</code> empty (see example). Please note the format
-of the input table (<a href='https://www.rdocumentation.org/packages/base/topics/data.frame'>data.frame</a>) needs to kept as specified in the template.</p>
+of the input table (<a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a>) needs to kept as specified in the template.</p>
 <p>The following table lists the meaning of the columns:</p>
 <table class='table'>
-<tr><td></td><td>COLUMN</td><td>DESCRIPTION</td></tr>
-<tr><td>UNIT</td><td></td><td><code>SAMPLE_ID</code></td></tr>
-<tr><td></td><td>sample name</td><td>-</td></tr>
-<tr><td></td><td><code>DR_BETA_K</code></td><td></td></tr>
-<tr><td>standard error beta-dose rate K</td><td>Gy/ka</td><td></td></tr>
-<tr><td><code>DR_BETA_U</code></td><td></td><td>standard error beta-dose rate U</td></tr>
-<tr><td>Gy/ka</td><td></td><td><code>DR_BETA_Th</code></td></tr>
-<tr><td></td><td>standard error beta-dose rate Th</td><td>Gy/ka</td></tr>
-<tr><td></td><td><code>DR_GAMMA_K</code></td><td></td></tr>
-<tr><td>standard error gamma-dose rate K</td><td>Gy/ka</td><td></td></tr>
-<tr><td><code>DR_GAMMA_U</code></td><td></td><td>standard error gamma-dose rate U</td></tr>
-<tr><td>Gy/ka</td><td></td><td><code>DR_GAMMA_Th</code></td></tr>
-<tr><td></td><td>standard error gamma-dose rate Th</td><td>Gy/ka</td></tr>
-<tr><td></td><td><code>DR_GAMMA_TOTAL</code></td><td></td></tr>
-<tr><td>standard error total gamma-dose rate</td><td>Gy/ka</td><td></td></tr>
-<tr><td><code>DR_TOTAL</code></td><td></td><td>total dose rate</td></tr>
-<tr><td>Gy/ka</td><td></td><td><code>DR_TOTAL_X</code></td></tr>
-<tr><td></td><td>standard error total dose rate</td><td>Gy/ka</td></tr>
-<tr><td></td><td></td><td>COLUMN</td></tr>
+<tr><td>COLUMN</td><td>DESCRIPTION</td><td>UNIT</td></tr>
+<tr><td><code>SAMPLE_ID</code></td><td>sample name</td><td>-</td></tr>
+<tr><td><code>DR_BETA_K</code></td><td>standard error beta-dose rate K</td><td>Gy/ka</td></tr>
+<tr><td><code>DR_BETA_U</code></td><td>standard error beta-dose rate U</td><td>Gy/ka</td></tr>
+<tr><td><code>DR_BETA_Th</code></td><td>standard error beta-dose rate Th</td><td>Gy/ka</td></tr>
+<tr><td><code>DR_GAMMA_K</code></td><td>standard error gamma-dose rate K</td><td>Gy/ka</td></tr>
+<tr><td><code>DR_GAMMA_U</code></td><td>standard error gamma-dose rate U</td><td>Gy/ka</td></tr>
+<tr><td><code>DR_GAMMA_Th</code></td><td>standard error gamma-dose rate Th</td><td>Gy/ka</td></tr>
+<tr><td><code>DR_GAMMA_TOTAL</code></td><td>standard error total gamma-dose rate</td><td>Gy/ka</td></tr>
+<tr><td><code>DR_TOTAL</code></td><td>total dose rate</td><td>Gy/ka</td></tr>
+<tr><td><code>DR_TOTAL_X</code></td><td>standard error total dose rate</td><td>Gy/ka</td></tr>
 </table>
     <p><em>Note: All columns can be set to 0 or NA, no column must be left empty! If a value &gt; 0 is provided
 for <code>DR_GAMMA_TOTAL</code> this value is taken and values in, e.g., <code>DR_GAMMA_K</code> are discarded (set to 0)!</em></p>
@@ -209,28 +202,25 @@ for <code>DR_GAMMA_TOTAL</code> this value is taken and values in, e.g., <code>D
 <p>The following table provides informaton on the named argument
 that can be provided via the argument <code>sigma_s</code></p>
 <table class='table'>
-<tr><td></td><td>ARGUMENT</td><td>DESCRIPTION</td></tr>
-<tr><td>UNIT</td><td></td><td><code>s_betaK</code></td></tr>
-<tr><td></td><td>relative uncertainty K concentration</td><td>-</td></tr>
-<tr><td></td><td><code>s_betaU</code></td><td></td></tr>
-<tr><td>relative uncertainty U concentration</td><td>-</td><td></td></tr>
-<tr><td><code>s_betaTh</code></td><td></td><td>relative uncertainty Th concentration</td></tr>
-<tr><td>-</td><td></td><td><code>s_gammaK</code></td></tr>
-<tr><td></td><td>relative uncertainty K concentration</td><td>-</td></tr>
-<tr><td></td><td><code>s_gammaU</code></td><td></td></tr>
-<tr><td>relative uncertainty U concentration</td><td>-</td><td></td></tr>
-<tr><td><code>s_gammaTh</code></td><td></td><td>relative uncertainty Th concentration</td></tr>
-<tr><td>-</td><td></td><td><code>s_gammaDR</code></td></tr>
-<tr><td></td><td>relative uncertainty gamma-dose rate</td><td>-</td></tr>
-<tr><td></td><td><code>s_CAL</code></td><td></td></tr>
-<tr><td>relative uncertainty beta-source calibration</td><td>-</td><td></td></tr>
-<tr><td><code>s_intDR</code></td><td></td><td>absolute uncertainty internal dose rate</td></tr>
-<tr><td>Gy/ka</td><td></td><td></td></tr>
+<tr><td>ARGUMENT</td><td>DESCRIPTION</td><td>UNIT</td></tr>
+<tr><td><code>s_betaK</code></td><td>relative uncertainty K concentration</td><td>-</td></tr>
+<tr><td><code>s_betaU</code></td><td>relative uncertainty U concentration</td><td>-</td></tr>
+<tr><td><code>s_betaTh</code></td><td>relative uncertainty Th concentration</td><td>-</td></tr>
+<tr><td><code>s_gammaK</code></td><td>relative uncertainty K concentration</td><td>-</td></tr>
+<tr><td><code>s_gammaU</code></td><td>relative uncertainty U concentration</td><td>-</td></tr>
+<tr><td><code>s_gammaTh</code></td><td>relative uncertainty Th concentration</td><td>-</td></tr>
+<tr><td><code>s_gammaDR</code></td><td>relative uncertainty gamma-dose rate</td><td>-</td></tr>
+<tr><td><code>s_CAL</code></td><td>relative uncertainty beta-source calibration</td><td>-</td></tr>
+<tr><td><code>s_intDR</code></td><td>absolute uncertainty internal dose rate</td><td>Gy/ka</td></tr>
 </table>
     
     <h2 class="hasAnchor" id="function-version"><a class="anchor" href="#function-version"></a>Function version</h2>
 
     <p>0.1.0</p>
+    
+    <h2 class="hasAnchor" id="how-to-cite"><a class="anchor" href="#how-to-cite"></a>How to cite</h2>
+
+    <p>Kreutzer, S., 2019. create_ThetaMatrix(): Create Theta Matrix. Function version 0.1.0. In: Christophe, C., Philippe, A., Kreutzer, S., Guerin, G., 2019. BayLum: Chronological Bayesian Models Integrating Optically StimulatedR package version 0.1.4.9000-13. https://CRAN.R-project.org/package=BayLum</p>
     
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
@@ -240,7 +230,7 @@ Quaternary Geochronology 39, 24–34. doi: <a href='https://doi.org/10.1016/j.qu
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><a href='AgeS_Computation.html'>AgeS_Computation</a>, <a href='Age_OSLC14.html'>Age_OSLC14</a>, <a href='https://www.rdocumentation.org/packages/utils/topics/read.table'>utils::read.table</a>, <a href='https://www.rdocumentation.org/packages/utils/topics/write.table'>utils::write.table</a></p></div>
+    <div class='dont-index'><p><a href='AgeS_Computation.html'>AgeS_Computation</a>, <a href='Age_OSLC14.html'>Age_OSLC14</a>, <a href='https://rdrr.io/r/utils/read.table.html'>utils::read.table</a>, <a href='https://rdrr.io/r/utils/write.table.html'>utils::write.table</a></p></div>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
@@ -251,12 +241,12 @@ Quaternary Geochronology 39, 24–34. doi: <a href='https://doi.org/10.1016/j.qu
 #&gt; 1             NA       NA         NA</div><div class='input'>
 </div><span class='co'># NOT RUN {</span>
 <span class='co'>##(2) return template as data.frame + file</span>
-<span class='no'>file_path</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/tempfile'>tempfile</a></span>(<span class='kw'>fileext</span> <span class='kw'>=</span> <span class='st'>".csv"</span>)
+<span class='no'>file_path</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempfile</a></span>(<span class='kw'>fileext</span> <span class='kw'>=</span> <span class='st'>".csv"</span>)
 <span class='fu'>create_ThetaMatrix</span>(<span class='kw'>output_file</span> <span class='kw'>=</span> <span class='no'>file_path</span> )
 
 <span class='co'>##NOT RUNNING EXAMPLE for sigma_s</span>
 <span class='fu'>calc_ThetaMatrix</span>(<span class='no'>...</span>,
-<span class='kw'>sigma_s</span> <span class='kw'>=</span>  <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(
+<span class='kw'>sigma_s</span> <span class='kw'>=</span>  <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(
  <span class='kw'>s_betaK</span> <span class='kw'>=</span> <span class='fl'>0.010</span>,
  <span class='kw'>s_betaU</span> <span class='kw'>=</span> <span class='fl'>0.007</span>,
  <span class='kw'>s_betaTh</span> <span class='kw'>=</span> <span class='fl'>0.006</span>,
@@ -283,6 +273,8 @@ Quaternary Geochronology 39, 24–34. doi: <a href='https://doi.org/10.1016/j.qu
 
       <li><a href="#function-version">Function version</a></li>
 
+      <li><a href="#how-to-cite">How to cite</a></li>
+
       <li><a href="#references">References</a></li>
 
       <li><a href="#see-also">See also</a></li>
@@ -302,7 +294,7 @@ on an 'MS Excel' sheet by Guillaume Guérin, IRAMAT-CRP2A, UMR 5060, CNRS-Univer
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.9000.</p>
 </div>
       </footer>
    </div>
