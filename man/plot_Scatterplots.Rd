@@ -67,7 +67,7 @@ Please note that not all arguments are supported by all plot types.
 }
 }
 \section{Function version}{
- 0.3.0
+ 0.3.1
 }
 
 \examples{
