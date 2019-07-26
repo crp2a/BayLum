@@ -16,14 +16,6 @@ knitr::opts_chunk$set(
 ## BayLum `r RLumBuild::.get_pkg_version()` (`r Sys.Date()`)
 
 ### Bugfixes & changes
-* `Generate_DataFile_MG()` 
-   * now works only on preselected records; the limitation of OSL only was removed.
-* `plot_Ages()` 
-   * the sorting of the samples in the graph did not work as expected; along with this a new 
-   argument `sample_order` was added.
-* `plot_MCMC()` 
-   * Accidentally the function could not display the chains from more than 9 samples; fixed (thanks to Maryam Heydari)
-   * Now the function understand sthe output of `AgeS_Computation()` for an automated treatment
 * `AgeS_Computation()` 
    * Now stops if a mismatch was encountered between the number of samples and the 
    matrix provided via `THETA` to prevent a 'JAGS' runtime error
@@ -33,6 +25,21 @@ knitr::opts_chunk$set(
 * `Age_OSLC14()`
    * Add additional output to enhance output table by additional information (\#11)
    * The CSV-file option now returns the age and the HPD intervals
+* `Generate_DataFile_MG()` 
+   * now works only on preselected records; the limitation of OSL only was removed.
+* `plot_Ages()` 
+   * the sorting of the samples in the graph did not work as expected; along with this a new 
+   argument `sample_order` was added.
+* `plot_MCMC()` 
+   * Accidentally the function could not display the chains from more than 9 samples; fixed (thanks to Maryam Heydari)
+   * Now the function understand sthe output of `AgeS_Computation()` for an automated treatment
+* `plot_Scatterplots()`
+   * Linebreaks and leading and trailing whitespace is now removed from the character (vector) provided
+   via `sample_names` 
+   * If the number of selected samples via `sample_selection` was shorter than the number of names 
+     provided by `sample_names` the function retruned an `subscript out of bounds` error; fixed
+     (reported by Maryam Heydari)
+
    
 * All models now come with an example showing how they can be inspected (before the examples not working)
 * Fix a couple of documentation glitches (e.g., part of the documentation was missing)

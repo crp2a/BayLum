@@ -55,7 +55,7 @@
 #' @return
 #' A scatter plot based on [hexbin::hexplom]
 #'
-#' @section Function version: 0.3.0
+#' @section Function version: 0.3.1
 #'
 #' @author Sebastian Kreutzer, IRAMAT-CRP2A, UMR 5060, CNRS - Université Bordeaux Montaigne (France),
 #' based on the function 'ScatterSamples()' by Claire Christophe, Anne Philippe, Guillaume Guérin
@@ -189,11 +189,19 @@ plot_Scatterplots <- function(
     sample_names <- paste0("Sample ", 1:n.samples)
 
   }else{
+
+    ##remove line breaks and trailing and leading space
+    sample_names <- trimws(gsub(pattern = "\n", replacement = "", x = sample_names, fixed = TRUE))
+
     if(length(sample_names) < n.samples){
       warning("[plot_Scatterplots()] length of 'sample_names' shorter than the number of samples; default values used!", call. = FALSE)
       sample_names <- paste0("Sample ", 1:n.samples)
 
     }
+
+    ##limit samples to selection, otherwise we risk to create a subscript out of bounds error
+    sample_names <- sample_names[sample_selection]
+
   }
 
   ##get number of chains
@@ -561,7 +569,7 @@ plot_Scatterplots <- function(
             name_plot(data = data_list[[p]][,c(2,2)], name = name[i], xdens = FALSE)
 
           }else{
-            name_plot(
+           name_plot(
               data = matrix(rep(m_data[,name[i]],2), ncol = 2), name = name[i])
 
           }
