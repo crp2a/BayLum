@@ -1,0 +1,265 @@
+{
+  "@context": [
+    "https://doi.org/10.5063/schema/codemeta-2.0",
+    "http://schema.org"
+  ],
+  "@type": "SoftwareSourceCode",
+  "identifier": "BayLum",
+  "description": "Bayesian analysis of luminescence data and C-14 age estimates. Bayesian models are based on the following publications: Combes, B. & Philippe, A. (2017) <doi:10.1016/j.quageo.2017.02.003> and Combes et al (2015) <doi:10.1016/j.quageo.2015.04.001>. This includes, amongst others, data import, export, application of age models and palaeodose model.",
+  "name": "BayLum: Chronological Bayesian Models Integrating Optically Stimulated\n        Luminescence and Radiocarbon Age Dating",
+  "codeRepository": "http://github.com/crp2a/BayLum",
+  "relatedLink": [
+    "https://cran.r-project.org/package=BayLum",
+    "https://CRAN.R-project.org/package=BayLum"
+  ],
+  "issueTracker": "https://github.com/crp2a/BayLum/issues",
+  "license": "https://spdx.org/licenses/GPL-3.0",
+  "version": "0.1.4.9000.20",
+  "programmingLanguage": {
+    "@type": "ComputerLanguage",
+    "name": "R",
+    "version": "3.7.0",
+    "url": "https://r-project.org"
+  },
+  "runtimePlatform": "R Under development (unstable) (2019-07-31 r76909)",
+  "provider": {
+    "@id": "https://cran.r-project.org",
+    "@type": "Organization",
+    "name": "Comprehensive R Archive Network (CRAN)",
+    "url": "https://cran.r-project.org"
+  },
+  "author": [
+    {
+      "@type": "Person",
+      "givenName": "Claire",
+      "familyName": "Christophe"
+    },
+    {
+      "@type": "Person",
+      "givenName": "Anne",
+      "familyName": "Philippe",
+      "email": "anne.philippe@univ-nantes.fr"
+    },
+    {
+      "@type": "Person",
+      "givenName": "Sebastian",
+      "familyName": "Kreutzer",
+      "@id": "https://orcid.org/0000-0002-0734-2199"
+    },
+    {
+      "@type": "Person",
+      "givenName": "Guillaume",
+      "familyName": "Guerin",
+      "@id": "https://orcid.org/0000-0001-6298-5579"
+    }
+  ],
+  "contributor": {},
+  "copyrightHolder": {},
+  "funder": {},
+  "maintainer": [
+    {
+      "@type": "Person",
+      "givenName": "Anne",
+      "familyName": "Philippe",
+      "email": "anne.philippe@univ-nantes.fr"
+    }
+  ],
+  "softwareSuggestions": [
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "testthat",
+      "name": "testthat",
+      "version": ">= 1.0.2",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=testthat"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "R.rsp",
+      "name": "R.rsp",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=R.rsp"
+    }
+  ],
+  "softwareRequirements": [
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "R",
+      "name": "R",
+      "version": ">= 3.3.0"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "utils",
+      "name": "utils"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "coda",
+      "name": "coda",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=coda"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "stats",
+      "name": "stats"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "graphics",
+      "name": "graphics"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "grDevices",
+      "name": "grDevices"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "methods",
+      "name": "methods"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "hexbin",
+      "name": "hexbin",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=hexbin"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "KernSmooth",
+      "name": "KernSmooth",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=KernSmooth"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "rjags",
+      "name": "rjags",
+      "version": ">= 4-6",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=rjags"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "runjags",
+      "name": "runjags",
+      "version": ">= 2.0.0",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=runjags"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "Luminescence",
+      "name": "Luminescence",
+      "version": ">= 0.8.2",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=Luminescence"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "ArchaeoPhases",
+      "name": "ArchaeoPhases",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=ArchaeoPhases"
+    }
+  ],
+  "releaseNotes": "https://crp2a@github.com/crp2a/BayLum/blob/master/NEWS.md",
+  "readme": "https://github.com/crp2a/BayLum/blob/master/README.md",
+  "contIntegration": [
+    "https://ci.appveyor.com/project/nfrerebeau/baylum",
+    "https://travis-ci.org/crp2a/BayLum",
+    "https://codecov.io/gh/crp2a/BayLum"
+  ],
+  "developmentStatus": "http://www.repostatus.org/#active",
+  "keywords": [
+    "luminescence-dating",
+    "bayesian-statistics",
+    "radiocarbon-dates",
+    "geochronology"
+  ],
+  "citation": [
+    {
+      "@type": "ScholarlyArticle",
+      "datePublished": "2019",
+      "author": [
+        {
+          "@type": "Person",
+          "givenName": "Anne",
+          "familyName": "Philippe"
+        },
+        {
+          "@type": "Person",
+          "givenName": "Guillaume",
+          "familyName": "Guerin"
+        },
+        {
+          "@type": "Person",
+          "givenName": "Sebastian",
+          "familyName": "Kreutzer"
+        }
+      ],
+      "name": "BayLum - An R package for Bayesian analysis of OSL ages: An introduction",
+      "identifier": "10.1016/j.quageo.2018.05.009",
+      "paginiation": "16-24",
+      "@id": "https://doi.org/10.1016/j.quageo.2018.05.009",
+      "sameAs": "https://doi.org/10.1016/j.quageo.2018.05.009",
+      "isPartOf": {
+        "@type": "PublicationIssue",
+        "datePublished": "2019",
+        "isPartOf": {
+          "@type": ["PublicationVolume", "Periodical"],
+          "volumeNumber": "49",
+          "name": "Quaternary Geochronology"
+        }
+      }
+    }
+  ]
+}

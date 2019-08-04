@@ -166,7 +166,12 @@ Age <- Age_Computation(
  Iter = 100,
  quiet = TRUE)
 
+} 
+
+\section{How to cite}{
+Christophe, C., Kreutzer, S., Philippe, A., 2019. Age_Computation(): Bayesian analysis for the OSL age estimation of one sample. In: Christophe, C., Philippe, A., Kreutzer, S., Guerin, G., 2019. BayLum: Chronological Bayesian Models Integrating Optically StimulatedR package version 0.1.4.9000-22. http://github.com/crp2a/BayLum, https://cran.r-project.org/package=BayLum
 }
+
 \references{
 Combes, Benoit and Philippe, Anne, 2017.
 Bayesian analysis of multiplicative Gaussian error for multiple ages estimation in optically

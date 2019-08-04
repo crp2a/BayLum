@@ -159,4 +159,9 @@ str(DATA)
 }
 \author{
 Claire Christophe, Sebastian Kreutzer, Anne Philippe, Guillaume Guérin
+} 
+
+\section{How to cite}{
+Christophe, C., Kreutzer, S., Philippe, A., 2019. Generate_DataFile_MG(): Generates, from one (or several) BIN file(s) of Multi-grain OSL measurements, a list of luminescence data and information before statistical analysis. In: Christophe, C., Philippe, A., Kreutzer, S., Guerin, G., 2019. BayLum: Chronological Bayesian Models Integrating Optically StimulatedR package version 0.1.4.9000-22. http://github.com/crp2a/BayLum, https://cran.r-project.org/package=BayLum
 }
+
