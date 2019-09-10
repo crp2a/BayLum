@@ -308,7 +308,7 @@ Age <- AgeS_Computation(
 } 
 
 \section{How to cite}{
-Christophe, C., Philippe, A., Kreutzer, S., 2019. AgeS_Computation(): Bayesian analysis for OSL age estimation of various samples. In: Christophe, C., Philippe, A., Kreutzer, S., Guerin, G., 2019. BayLum: Chronological Bayesian Models Integrating Optically StimulatedR package version 0.1.4.9000-22. http://github.com/crp2a/BayLum, https://cran.r-project.org/package=BayLum
+Christophe, C., Philippe, A., Kreutzer, S., 2019. AgeS_Computation(): Bayesian analysis for OSL age estimation of various samples. In: Christophe, C., Philippe, A., Kreutzer, S., Guerin, G., 2019. BayLum: Chronological Bayesian Models Integrating Optically StimulatedR package version 0.1.4.9000-23. https://CRAN.r-project.org/package=BayLum
 }
 
 \references{

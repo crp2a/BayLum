@@ -75,7 +75,7 @@ is a re-written version of the function 'MCMC_plot()' by Claire Christophe
 } 
 
 \section{How to cite}{
-Kreutzer, S., Christophe, C., 2019. plot_MCMC(): Plot MCMC trajectories and posterior distributions. Function version 0.1.3. In: Christophe, C., Philippe, A., Kreutzer, S., Guerin, G., 2019. BayLum: Chronological Bayesian Models Integrating Optically StimulatedR package version 0.1.4.9000-22. http://github.com/crp2a/BayLum, https://cran.r-project.org/package=BayLum
+Kreutzer, S., Christophe, C., 2019. plot_MCMC(): Plot MCMC trajectories and posterior distributions. Function version 0.1.3. In: Christophe, C., Philippe, A., Kreutzer, S., Guerin, G., 2019. BayLum: Chronological Bayesian Models Integrating Optically StimulatedR package version 0.1.4.9000-23. https://CRAN.r-project.org/package=BayLum
 }
 
 \keyword{dplot}
