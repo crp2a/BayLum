@@ -371,6 +371,7 @@ Age_OSLC14 <- function(
       ind_change=c(ind_change,i)
     }
   }
+
   ind_change=c(ind_change,Nb_sample)
   q=length(ind_change)%/%2
   r=length(ind_change)%%2
