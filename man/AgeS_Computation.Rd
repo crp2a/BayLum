@@ -4,14 +4,32 @@
 \alias{AgeS_Computation}
 \title{Bayesian analysis for OSL age estimation of various samples}
 \usage{
-AgeS_Computation(DATA, SampleNames, Nb_sample, PriorAge = rep(c(0.01,
-  100), Nb_sample), BinPerSample = rep(1, Nb_sample), SavePdf = FALSE,
-  OutputFileName = c("MCMCplot", "summary"), OutputFilePath = c(""),
-  SaveEstimates = FALSE, OutputTableName = c("DATA"),
-  OutputTablePath = c(""), THETA = c(), sepTHETA = c(","),
-  StratiConstraints = c(), sepSC = c(","), LIN_fit = TRUE,
-  Origin_fit = FALSE, distribution = c("cauchy"), Iter = 50000,
-  t = 5, n.chains = 3, jags_method = "rjags", quiet = FALSE, ...)
+AgeS_Computation(
+  DATA,
+  SampleNames,
+  Nb_sample,
+  PriorAge = rep(c(0.01, 100), Nb_sample),
+  BinPerSample = rep(1, Nb_sample),
+  SavePdf = FALSE,
+  OutputFileName = c("MCMCplot", "summary"),
+  OutputFilePath = c(""),
+  SaveEstimates = FALSE,
+  OutputTableName = c("DATA"),
+  OutputTablePath = c(""),
+  THETA = c(),
+  sepTHETA = c(","),
+  StratiConstraints = c(),
+  sepSC = c(","),
+  LIN_fit = TRUE,
+  Origin_fit = FALSE,
+  distribution = c("cauchy"),
+  Iter = 50000,
+  t = 5,
+  n.chains = 3,
+  jags_method = "rjags",
+  quiet = FALSE,
+  ...
+)
 }
 \arguments{
 \item{DATA}{\link{list} of objects: \code{LT}, \code{sLT}, \code{ITimes}, \code{dLab}, \code{ddot_env}, \code{regDose}, \code{J}, \code{K}, \code{Nb_measurement},
@@ -148,7 +166,7 @@ Single-grain or Multi-grain OSL measurements can be analysed simultaneouly.
 \tabular{lllll}{
 ARGUMENT \tab INPUT \tab METHOD \tab DEFAULT \tab DESCRIPTION\cr
 \code{max.time} \tab \link{character} \tab \code{rjparallel} \tab \code{Inf} \tab maximum allowed processing time, e.g.,
-\code{10m} for 10 minutes (cf. \link[runjags:autorun.jags]{runjags::autorun.jags})\cr
+\verb{10m} for 10 minutes (cf. \link[runjags:autorun.jags]{runjags::autorun.jags})\cr
 \code{interacitve} \tab \link{logical} \tab \code{rjparallel} \tab \code{FALSE} \tab enable/disable interactive mode (cf. \link[runjags:autorun.jags]{runjags::autorun.jags})\cr
 \code{startburnin} \tab \link{integer} \tab \code{rjparallel} \tab  \code{4000} \tab number of burnin iterations (cf. \link[runjags:autorun.jags]{runjags::autorun.jags}) \cr
 \code{startsample} \tab \link{integer} \tab \code{rjparallel} \tab \code{10000} \tab total number of samples to assess convergence
@@ -308,7 +326,7 @@ Age <- AgeS_Computation(
 } 
 
 \section{How to cite}{
-Christophe, C., Philippe, A., Kreutzer, S., 2019. AgeS_Computation(): Bayesian analysis for OSL age estimation of various samples. In: Christophe, C., Philippe, A., Kreutzer, S., Guerin, G., 2019. BayLum: Chronological Bayesian Models Integrating Optically StimulatedR package version 0.1.4.9000-26. https://CRAN.r-project.org/package=BayLum
+Christophe, C., Philippe, A., Kreutzer, S., 2019. AgeS_Computation(): Bayesian analysis for OSL age estimation of various samples. In: Christophe, C., Philippe, A., Kreutzer, S., Guerin, G., 2019. BayLum: Chronological Bayesian Models Integrating Optically StimulatedR package version 0.1.4.9000-28. https://CRAN.r-project.org/package=BayLum
 }
 
 \references{

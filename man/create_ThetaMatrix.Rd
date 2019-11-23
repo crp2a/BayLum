@@ -29,7 +29,7 @@ template
 \description{
 Create the \eqn{\Theta} matrix with the shared uncertainties
 that can used as input in, e.g., \link{AgeS_Computation} and \link{Age_OSLC14} which is used for the
-covariance matrix \eqn{\Sigma} (Combès & Philippe, 2017)
+covariance matrix \eqn{\Sigma} (Combès \& Philippe, 2017)
 }
 \details{
 The function intends to ease the creation of the \eqn{Theta} matrix, which cannot be
@@ -38,7 +38,7 @@ The relationship between the covariance matrix  \eqn{Sigma} and \eqn{Theta} is g
 
 \deqn{\Sigma_ij = A_i * A_j * \Theta_ij}
 
-For details see Combès & Philippe, 2017 and Guérin et al. (under review).
+For details see Combès \& Philippe, 2017 and Guérin et al. (under review).
 
 \strong{Input modes}
 
@@ -124,7 +124,7 @@ sigma_s =  c(
 } 
 
 \section{How to cite}{
-Kreutzer, S., 2019. create_ThetaMatrix(): Create Theta Matrix. Function version 0.1.0. In: Christophe, C., Philippe, A., Kreutzer, S., Guerin, G., 2019. BayLum: Chronological Bayesian Models Integrating Optically StimulatedR package version 0.1.4.9000-26. https://CRAN.r-project.org/package=BayLum
+Kreutzer, S., 2019. create_ThetaMatrix(): Create Theta Matrix. Function version 0.1.0. In: Christophe, C., Philippe, A., Kreutzer, S., Guerin, G., 2019. BayLum: Chronological Bayesian Models Integrating Optically StimulatedR package version 0.1.4.9000-28. https://CRAN.r-project.org/package=BayLum
 }
 
 \references{

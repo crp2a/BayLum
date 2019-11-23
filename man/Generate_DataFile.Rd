@@ -5,10 +5,19 @@
 \title{Generates, from one (or several) BIN-file(s) of Single-grain OSL measurements,
 a list of luminescence data and information before statistical analysis}
 \usage{
-Generate_DataFile(Path, FolderNames, Nb_sample,
-  Nb_binfile = length(FolderNames), BinPerSample = rep(1, Nb_sample),
-  sepDP = c(","), sepDE = c(","), sepDS = c(","), sepR = c("="),
-  verbose = TRUE, ...)
+Generate_DataFile(
+  Path,
+  FolderNames,
+  Nb_sample,
+  Nb_binfile = length(FolderNames),
+  BinPerSample = rep(1, Nb_sample),
+  sepDP = c(","),
+  sepDE = c(","),
+  sepDS = c(","),
+  sepR = c("="),
+  verbose = TRUE,
+  ...
+)
 }
 \arguments{
 \item{Path}{\link{character} (\strong{required}): the path to the project folder, containing one or more subfolders in which the BIN files
@@ -96,7 +105,7 @@ and its variance (squared error) both in Gy;
 \item \code{endTest=},
 \item \code{beginTestBackground=},
 \item \code{endTestBackground=} same values as above, for the test dose response (typically the same values should be used);
-\item \code{inflatePercent=} uncertainty arising from the instrument reproducibility (typically 0.02, i.e. 2\%);
+\item \code{inflatePercent=} uncertainty arising from the instrument reproducibility (typically 0.02, i.e. 2\\%);
 \item \code{nbOfLastCycleToRemove=} number of cycles at the end of the SAR protocol which should not be included in the dose response curve fitting
 (typically 1 if only a recycling test is performed, or 2 if both recycling and IR depletion are tested).\cr
 }
@@ -160,6 +169,6 @@ Claire Christophe, Sebastian Kreutzer, Anne Philippe, Guillaume Guerin
 } 
 
 \section{How to cite}{
-Christophe, C., Kreutzer, S., Philippe, A., Guerin, G., 2019. Generate_DataFile(): Generates, from one (or several) BIN-file(s) of Single-grain OSL measurements, a list of luminescence data and information before statistical analysis. In: Christophe, C., Philippe, A., Kreutzer, S., Guerin, G., 2019. BayLum: Chronological Bayesian Models Integrating Optically StimulatedR package version 0.1.4.9000-26. https://CRAN.r-project.org/package=BayLum
+Christophe, C., Kreutzer, S., Philippe, A., Guerin, G., 2019. Generate_DataFile(): Generates, from one (or several) BIN-file(s) of Single-grain OSL measurements, a list of luminescence data and information before statistical analysis. In: Christophe, C., Philippe, A., Kreutzer, S., Guerin, G., 2019. BayLum: Chronological Bayesian Models Integrating Optically StimulatedR package version 0.1.4.9000-28. https://CRAN.r-project.org/package=BayLum
 }
 

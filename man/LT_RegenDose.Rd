@@ -4,9 +4,18 @@
 \alias{LT_RegenDose}
 \title{Plots Lx/Tx as a function of the regenerative dose}
 \usage{
-LT_RegenDose(DATA, Path, FolderNames, SampleNames = FolderNames,
-  Nb_sample, BinPerSample = rep(1, Nb_sample), SG = rep(TRUE,
-  Nb_sample), sepDP = c(","), nrow = 3L, ncol = nrow)
+LT_RegenDose(
+  DATA,
+  Path,
+  FolderNames,
+  SampleNames = FolderNames,
+  Nb_sample,
+  BinPerSample = rep(1, Nb_sample),
+  SG = rep(TRUE, Nb_sample),
+  sepDP = c(","),
+  nrow = 3L,
+  ncol = nrow
+)
 }
 \arguments{
 \item{DATA}{\link{list} (\strong{required}): list of objects LT, sLT, ITimes, dLab, ddot_env, regDose, J, K, Nb_measurement,
@@ -21,7 +30,7 @@ which were used by \code{\link{Generate_DataFile}} or \code{\link{Generate_DataF
 
 \item{SampleNames}{\link{character} (with default): Names of samples. To use if there is more than one bin file per sample.}
 
-\item{Nb_sample}{\link{integer} (\strong{required}): ID number (in \code{[1,Nb_sample]}) of the sample selected for plotting L/T as a function of regenerative doses.
+\item{Nb_sample}{\link{integer} (\strong{required}): ID number (in \verb{[1,Nb_sample]}) of the sample selected for plotting L/T as a function of regenerative doses.
 Required if the \code{DATA} object contains information for more than one sample.}
 
 \item{BinPerSample}{\link{integer} (with default): integer vector (with default): vector with the number of BIN files per sample,
@@ -66,6 +75,6 @@ Claire Christophe, Sebastian Kreutzer, Anne Philippe, Guillaume Guérin
 } 
 
 \section{How to cite}{
-Christophe, C., Kreutzer, S., Philippe, A., 2019. LT_RegenDose(): Plots Lx/Tx as a function of the regenerative dose. In: Christophe, C., Philippe, A., Kreutzer, S., Guerin, G., 2019. BayLum: Chronological Bayesian Models Integrating Optically StimulatedR package version 0.1.4.9000-26. https://CRAN.r-project.org/package=BayLum
+Christophe, C., Kreutzer, S., Philippe, A., 2019. LT_RegenDose(): Plots Lx/Tx as a function of the regenerative dose. In: Christophe, C., Philippe, A., Kreutzer, S., Guerin, G., 2019. BayLum: Chronological Bayesian Models Integrating Optically StimulatedR package version 0.1.4.9000-28. https://CRAN.r-project.org/package=BayLum
 }
 
