@@ -100,7 +100,7 @@
 #' If both convergencies (Gelman and Rubin test and plot checking) are satisfactory,
 #' the user can consider the printed estimates as valid. Otherwise, the user may try increasing the number of MCMC interations
 #' (\code{Iter}) to reach convergency.
-#'  \item\bold{Credible intervals and Bayes estimates}: prints the Bayes esitmates, the credible intervals at 95\% and 68\% for
+#'  \item\bold{Credible intervals and Bayes estimates}: prints the Bayes esitmates, the credible intervals at 95% and 68% for
 #' the palaeodose and equivalent dose dispersion parameters for each sample.
 #' }
 #'
@@ -114,7 +114,7 @@
 #' On each line, the plot on the left represents the MCMC trajectories, and the one on the right the posterior distribution of the parameter.
 #'  \item \bold{Summary of palaeodose estimates}: plot credible intervals and Bayes estimate of each sample palaeodose on a same graph.
 #' }
-#' To give result in a publication, we recommend to give the Bayes estimate of the parameters as well as the credible interval at 95\% or 68\%.
+#' To give result in a publication, we recommend to give the Bayes estimate of the parameters as well as the credible interval at 95% or 68%.
 #'
 #' @author Claire Christophe, Sebastian Kreutzer, Anne Philippe, Guillaume Guérin
 #'
