@@ -2,12 +2,15 @@
 % Please edit documentation in R/plot_Ages.R
 \name{plot_Ages}
 \alias{plot_Ages}
-\title{Create age plot}
+\title{Create Age Plot}
 \usage{
 plot_Ages(object, sample_names = NULL, sample_order = NULL, ...)
 }
 \arguments{
-\item{object}{\link{list} (\strong{required}): Output as created by functions like \link{AgeC14_Computation}.}
+\item{object}{\link{list}  or \link{data.frame} (\strong{required}): Output as created by functions like \link{AgeC14_Computation}, which
+is a list of class \code{BayLum.list}. Alternativley the function supports a \link{data.frame} as input, however,
+in such a case the \link{data.frame} must resemble the ages \link{data.frame} created by the computation functions
+otherwise the input will be silently ignored.}
 
 \item{sample_names}{\link{character} (optional): alternative sample names used for the plotting.
 If the length of the provided \link{character} vector is shorter than the real number of samples, the names are recycled.}
@@ -23,7 +26,7 @@ are: \code{grid} (\code{TRUE}/\code{FALSE}), \code{legend} (\code{TRUE}/\code{FA
 The function returns a plot and the \link{data.frame} used to display the data
 }
 \description{
-Create age plot
+Create Age Plot
 }
 \details{
 This function creates an age plot showing the mean ages along with the credible intervals. The function
@@ -31,7 +34,7 @@ provides various arguments to modify the plot output, however, for an ultimate c
 the \link{data.frame} extracted from the input object for own plots.
 }
 \section{Function version}{
- 0.1.3
+ 0.1.4
 }
 
 \examples{
@@ -60,11 +63,11 @@ plot_Ages(Age)
 \link{AgeC14_Computation}, \link{AgeS_Computation}
 }
 \author{
-Sebastian Kreutzer, IRAMAT-CRP2A, UMR 5060, CNRS - Université Bordeaux Montaigne (France), based on code
+Sebastian Kreutzer, IRAMAT-CRP2A, UMR 5060, CNRS-Université Bordeaux Montaigne (France), based on code
 written by Claire Christophe
 } 
 
 \section{How to cite}{
-Kreutzer, S., Christophe, C., 2019. plot_Ages(): Create age plot. Function version 0.1.3. In: Christophe, C., Philippe, A., Kreutzer, S., Guerin, G., 2019. BayLum: Chronological Bayesian Models Integrating Optically StimulatedR package version 0.1.4.9000-28. https://CRAN.r-project.org/package=BayLum
+Kreutzer, S., Christophe, C., 2019. plot_Ages(): Create Age Plot. Function version 0.1.4. In: Christophe, C., Philippe, A., Kreutzer, S., Guerin, G., 2019. BayLum: Chronological Bayesian Models Integrating Optically Stimulated. R package version 0.1.4.9000-34. https://CRAN.r-project.org/package=BayLum
 }
 
