@@ -40,9 +40,11 @@ knitr::opts_chunk$set(
      provided by `sample_names` the function retruned an `subscript out of bounds` error; fixed
      (reported by Maryam Heydari)
 
-   
+#### Internals
+
 * All models now come with an example showing how they can be inspected (before the examples not working)
 * Fix a couple of documentation glitches (e.g., part of the documentation was missing)
+* Smooth the creation of `BayLum.list` objects using a central internal function
 
 ### New functions
 

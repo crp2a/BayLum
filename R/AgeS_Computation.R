@@ -633,7 +633,7 @@ AgeS_Computation <- function(
   }
 
   # Create return objecty -------------------------------------------------------------------------
-  output <- list(
+  output <- .list_BayLum(
     "Ages" = data.frame(
       SAMPLE = SampleNames,
       AGE = AgePlotMoy,
@@ -650,11 +650,6 @@ AgeS_Computation <- function(
     "StratiConstraints"= StratiConstraints,
     "CovarianceMatrix"= THETA
   )
-
-  ##set attributes, to make things easer
-  attr(output, "class") <- "BayLum.list"
-  attr(output, "originator") <- "AgeS_Computation"
-
 
   # Plot ages -----------------------------------------------------------------------------------
   plot_Ages(object = output, legend.pos = "bottomleft")

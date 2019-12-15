@@ -394,7 +394,7 @@ AgeC14_Computation <- function(Data_C14Cal,
 
 
    # Create return objecty -------------------------------------------------------------------------
-   output <- list(
+   output <- .list_BayLum(
       "Ages" = data.frame(
          SAMPLE = SampleNames,
          AGE = AgePlotMoy,
@@ -411,11 +411,6 @@ AgeC14_Computation <- function(Data_C14Cal,
       "PriorAge" = PriorAge,
       "StratiConstraints" = StratiConstraints
    )
-
-   ##set attributes, to make things easer
-   attr(output, "class") <- "BayLum.list"
-   attr(output, "originator") <- "AgeC14_Computation"
-
 
    # Plot ages -----------------------------------------------------------------------------------
    plot_Ages(object = output, legend.pos = "bottomleft")

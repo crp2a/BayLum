@@ -616,7 +616,7 @@ Age_OSLC14 <- function(
   }
 
   # Create return objecty -------------------------------------------------------------------------
-  output <- list(
+  output <- .list_BayLum(
     "Ages" = data.frame(
       SAMPLE = SampleNames,
       AGE = AgePlotMoy,
@@ -636,11 +636,6 @@ Age_OSLC14 <- function(
     "CalibrationCurve" = CalibrationCurve,
     "Outlier" = Outlier
   )
-
-
-  ##set attributes, to make things easer
-  attr(output, "class") <- "BayLum.list"
-  attr(output, "originator") <- "AgeS_Computation"
 
   # Plot ages -----------------------------------------------------------------------------------
   plot_Ages(object = output, legend.pos = "bottomleft")
