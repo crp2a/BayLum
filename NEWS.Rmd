@@ -28,8 +28,11 @@ knitr::opts_chunk$set(
 * `Generate_DataFile_MG()` 
    * now works only on preselected records; the limitation of OSL only was removed.
 * `plot_Ages()` 
-   * the sorting of the samples in the graph did not work as expected; along with this a new 
+   * The sorting of the samples in the graph did not work as expected; along with this a new 
    argument `sample_order` was added.
+   * The function accepts a data.frame as alternative input, if the `data.frame` is similiar the data frames
+   created by the compution functions (e.g., `AgeS_Computation()`). This option enables the manual creation 
+   of age plots from self-compiled data.
 * `plot_MCMC()` 
    * Accidentally the function could not display the chains from more than 9 samples; fixed (thanks to Maryam Heydari)
    * Now the function understand sthe output of `AgeS_Computation()` for an automated treatment
@@ -37,7 +40,7 @@ knitr::opts_chunk$set(
    * Linebreaks and leading and trailing whitespace is now removed from the character (vector) provided
    via `sample_names` 
    * If the number of selected samples via `sample_selection` was shorter than the number of names 
-     provided by `sample_names` the function retruned an `subscript out of bounds` error; fixed
+     provided by `sample_names` the function returned an `subscript out of bounds` error; fixed
      (reported by Maryam Heydari)
 
 #### Internals
@@ -66,7 +69,7 @@ error on CRAN; fixed.
 * All computation functions left text connections open after they have been exited; fixed. 
 * The output of `AgeC14_Compution()` and `AgeS_Computation()` gain a new class `BayLum.list`
 * Redundant code in `AgeC14_Compution()` and `AgeS_Computation()` has been removed 
-* The argument `Nb_chaines` was replaced by `n.chains` wherever it occured in the package (functions and documentation)
+* The argument `Nb_chaines` was replaced by `n.chains` wherever it occurred in the package (functions and documentation)
 * The function `plot_Scatterplots()` gained a new argument `plot_type`, allowing to switch between the default hexbin plot and 
 a function developed for 'BayLum` (`plot_type = "smoothScatter"`)
 * The function `plot_Scatterplots()` gained a new argument `plot_mode` to allow single xy plots 

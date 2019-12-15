@@ -1,10 +1,13 @@
-#' @title Create age plot
+#' @title Create Age Plot
 #'
 #' @details This function creates an age plot showing the mean ages along with the credible intervals. The function
 #' provides various arguments to modify the plot output, however, for an ultimate control the function returns
 #' the [data.frame] extracted from the input object for own plots.
 #'
-#' @param object [list] (**required**): Output as created by functions like [AgeC14_Computation].
+#' @param object [list]  or [data.frame] (**required**): Output as created by functions like [AgeC14_Computation], which
+#' is a list of class `BayLum.list`. Alternativley the function supports a [data.frame] as input, however,
+#' in such a case the [data.frame] must resemble the ages [data.frame] created by the computation functions
+#' otherwise the input will be silently ignored.
 #'
 #' @param sample_names [character] (optional): alternative sample names used for the plotting.
 #'  If the length of the provided [character] vector is shorter than the real number of samples, the names are recycled.
@@ -19,9 +22,9 @@
 #' @return
 #' The function returns a plot and the [data.frame] used to display the data
 #'
-#' @section Function version: 0.1.3
+#' @section Function version: 0.1.4
 #'
-#' @author Sebastian Kreutzer, IRAMAT-CRP2A, UMR 5060, CNRS - Université Bordeaux Montaigne (France), based on code
+#' @author Sebastian Kreutzer, IRAMAT-CRP2A, UMR 5060, CNRS-Université Bordeaux Montaigne (France), based on code
 #' written by Claire Christophe
 #'
 #' @seealso [AgeC14_Computation], [AgeS_Computation]
@@ -58,12 +61,20 @@ plot_Ages <- function(
 
 
   # Verify input --------------------------------------------------------------------------------
+  # ## if the input is of type data.frame, we try to sanitize this object
+  # ## however, we are very picky, otherwise we break the code below
+  if(is(object, "data.frame") && ncol(object) == 6 && nrow(object) >= 1 && !any(is.na(object))){
+    colnames(object) <- c("SAMPLE", "AGE", "HPD68.MIN", "HPD68.MAX", "HPD95.MIN", "HPD95.MAX")
+    object[[1]] <- as.character(object[[1]])
+    object <- .list_BayLum(Ages = object)
+
+  }
+
+  ## From here on everything must be a BayLum.list
   if (is.null(attributes(object)$class) || attributes(object)$class != "BayLum.list")
     stop("[plot_Ages()] Wrong input, only objects of type 'BayLum.list' are allowed. Please check the manual!",
       call. = FALSE
     )
-
-
 
   # Extract data --------------------------------------------------------------------------------
   df <- object[["Ages"]]
