@@ -11,7 +11,7 @@ None.
 This package has not yet external dependencies.
 
 ## Test environments
-* local macOS High Sierra 10.13.6, Xcode 9.4.1, R-devel and R-release (patched)
+* local macOS High Sierra 10.14.6, Xcode 9.4.1, R-devel and R-release (patched)
 * on AppVeyor CI
   * i386-w64-mingw32/i386 (32-bit), R-devel
   * x86_64_w64-mingw32/64 (64-bit), R-devel
