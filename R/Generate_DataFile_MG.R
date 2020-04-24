@@ -233,6 +233,15 @@ Generate_DataFile_MG <- function(
       Nb_measurement[bf]=length(ind)/J[bf]
       K[bf]=Nb_measurement[bf]/2-(rule[10,1]+1)
 
+      if (K[bf] < 0) {
+        stop(
+          paste0(
+            "[Generate_DataFile_MG()] In file ", FolderNames[bf],"/rule.csv the parameter 'nbOfLastCycleToRemove' + 1 is larger than the number of Lx/Tx cycles.\n\t(This usually indicates that you try to discard more Lx/Tx cycles than you have selected or stored in the BIN/BINX-file.)"
+          ),
+          call. = FALSE
+        )
+      }
+
       #--- check if K, Nb_measurement, prop are integer
       #---------------------------------------
       # if((prop-floor(pror))!=0){
@@ -265,12 +274,6 @@ Generate_DataFile_MG <- function(
             warning(paste("problem aliquot: position:",XLS_file[ii,2]))
             ii=J[bf]+1}
         }
-      }
-
-      if(K[bf]<0){
-        warning(paste("Problem folder: ",FolderNames[bf],
-                      ". Check in rule.csv file if the (nbOfLastCycleToRemove + 1) is not hihger than the (measurement number of Lx and Tx divided by 2).",sep=""),
-                call. = FALSE)
       }
 
       #--- computation of irradiation time
@@ -370,10 +373,3 @@ Generate_DataFile_MG <- function(
   Liste=list("LT"=LT,"sLT"=sLT,"ITimes"=ITimes,"dLab"=dLab,"ddot_env"=ddot,"regDose"=regDose,"J"=J,"K"=K,"Nb_measurement"=Nb_measurement)
   return(Liste)
 }
-
-DATA_OSL5<- Generate_DataFile_MG(
-  Path =c("~/R/Personen/Maryam_Heydari/20180625/Subfoldres/OSL5/"),
-  FolderNames = c("D1","D2","D3"),
-  Nb_sample = 1,
-  BinPerSample = rep(3, Nb_sample = 1)
-)
