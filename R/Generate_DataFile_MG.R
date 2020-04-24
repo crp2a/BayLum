@@ -156,16 +156,16 @@ Generate_DataFile_MG <- function(
   #---------------------------------------
   # BaSAR observations for samples
   LT=list()     # corresponding to observation of natural and regenerated luminescence signal : N_{k,j}^(i) per sample
-  sLT=list()    # correspondind to error of observation of L : sigma_{N_{K,j}^(i)} per sample
-  ITimes=list() # corresponding to obsevation : t_{k,j}^(i) per sample
+  sLT=list()    # corresponding to error of observation of L : sigma_{N_{K,j}^(i)} per sample
+  ITimes=list() # corresponding to observation : t_{k,j}^(i) per sample
 
   # information on bin file
   dLab=matrix(1,ncol=Nb_binfile,nrow=2)  # corresponding to dose source rate of the lab : d_{lab} per sample
-  regDose=list()          # computed regenerated dose multiplying the 2 aboves lines per sample
+  regDose=list()          # computed regenerated dose multiplying the 2 above lines per sample
   J=rep(0,Nb_binfile)     # aliquot number per sample
   Nb_measurement=rep(0,Nb_binfile) # measurement number per aliquot
   K=rep(0,Nb_binfile)     # point number considered for the growth curve
-  ddot=matrix(1,ncol=Nb_binfile,nrow=2)   # the dose rate recieved by the sample during the time,
+  ddot=matrix(1,ncol=Nb_binfile,nrow=2)   # the dose rate received by the sample during the time,
   #   if there is various bin file for one sample, they must have the same ddot
 
 
@@ -205,7 +205,7 @@ Generate_DataFile_MG <- function(
         verbose =  read_BIN2R.settings$verbose
       )[[1]]
 
-      # csv file indicating position and disc selection and preparation to be red
+      # csv file indicating position and disc selection and preparation to be read
       XLS_file[[2]]<-XLS_file[[1]]
       XLS_file[[1]] <- object@METADATA$FNAME[1:length(XLS_file[[1]])]
       names(XLS_file) <- c("BIN_FILE","DISC")
@@ -222,14 +222,12 @@ Generate_DataFile_MG <- function(
       # information for Lx/Tx
       prop=(length(c(rule[3,1]:rule[4,1]))/length(c(rule[1,1]:rule[2,1])))
 
-      #--- selection of measurement corresponding to the selection done
+      #--- selection of record ID corresponding to the selection done
       #---------------------------------------
-      ind=c()
-      for(j in 1:J[bf]){
-        ind=c(ind,object@METADATA[object@METADATA[,"POSITION"]== XLS_file[j,2] & object@METADATA[,"SEL"]==TRUE,1])
-      }
+      ind <- object@METADATA[(object@METADATA[["POSITION"]] %in% XLS_file[[2]]) & object@METADATA[["SEL"]], "ID"]
+
       # what is ind...
-      (object@METADATA[ind[1:20],c("POSITION","IRR_TIME")])
+      #print(object@METADATA[ind[1:20],c("POSITION","IRR_TIME")])
 
       # regeneration dose number
       Nb_measurement[bf]=length(ind)/J[bf]
@@ -373,3 +371,9 @@ Generate_DataFile_MG <- function(
   return(Liste)
 }
 
+DATA_OSL5<- Generate_DataFile_MG(
+  Path =c("~/R/Personen/Maryam_Heydari/20180625/Subfoldres/OSL5/"),
+  FolderNames = c("D1","D2","D3"),
+  Nb_sample = 1,
+  BinPerSample = rep(3, Nb_sample = 1)
+)
