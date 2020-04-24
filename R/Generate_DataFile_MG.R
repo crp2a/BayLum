@@ -230,9 +230,11 @@ Generate_DataFile_MG <- function(
       #print(object@METADATA[ind[1:20],c("POSITION","IRR_TIME")])
 
       # regeneration dose number
-      Nb_measurement[bf]=length(ind)/J[bf]
-      K[bf]=Nb_measurement[bf]/2-(rule[10,1]+1)
+      Nb_measurement[bf] <- length(ind)/J[bf]
+      if(Nb_measurement[bf]%%2 != 0)
+        stop("[Generate_DataFile_MG()] The number of curves is not a multiple of 2, please check your curve selection!", call. = FALSE)
 
+      K[bf] <- Nb_measurement[bf]/2-(rule[10,1]+1)
       if (K[bf] < 0) {
         stop(
           paste0(
