@@ -9,22 +9,29 @@
 <title>Generates, from one (or several) BIN-file(s) of Single-grain OSL measurements,
 a list of luminescence data and information before statistical analysis — Generate_DataFile • BayLum</title>
 
-<!-- jquery -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-<!-- Bootstrap -->
-<link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/flatly/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
+<!-- jquery -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+<!-- Bootstrap -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.4.0/flatly/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
+
+<!-- bootstrap-toc -->
+<link rel="stylesheet" href="../bootstrap-toc.css">
+<script src="../bootstrap-toc.js"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script>
 
-<!-- sticky kit -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
+<!-- headroom.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -32,15 +39,15 @@ a list of luminescence data and information before statistical analysis — Gene
 
 
 
+
 <meta property="og:title" content="Generates, from one (or several) BIN-file(s) of Single-grain OSL measurements,
 a list of luminescence data and information before statistical analysis — Generate_DataFile" />
-
 <meta property="og:description" content="This function is used to generate, from the BIN file(s), a list of values of:
 Single-grain OSL intensities and associated uncertainties, regenerative doses, etc., which will be the input of the Bayesian models.
 To be easy-to-use, this function requires a rigorous organisation - all needed files should be arranged in one folder -
 of informations concerning each BIN file. 
 It is possible to process data for various samples simultaneously and to consider more than one BIN file per sample." />
-<meta name="twitter:card" content="summary" />
+
 
 
 
@@ -54,9 +61,10 @@ It is possible to process data for various samples simultaneously and to conside
 <![endif]-->
 
 
+
   </head>
 
-  <body>
+  <body data-spy="scroll" data-target="#toc">
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -70,7 +78,7 @@ It is possible to process data for various samples simultaneously and to conside
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">BayLum</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.4.9000.13</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.4.9000-40</span>
       </span>
     </div>
 
@@ -94,7 +102,6 @@ It is possible to process data for various samples simultaneously and to conside
   <a href="../reference/index.html">References</a>
 </li>
       </ul>
-      
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="../news/index.html">
@@ -117,6 +124,7 @@ It is possible to process data for various samples simultaneously and to conside
 </div><!--/.navbar -->
 
       
+
       </header>
 
 <div class="row">
@@ -129,20 +137,27 @@ a list of luminescence data and information before statistical analysis</h1>
     </div>
 
     <div class="ref-description">
-    
     <p>This function is used to generate, from the BIN file(s), a list of values of:
 <b>Single-grain</b> OSL intensities and associated uncertainties, regenerative doses, etc., which will be the input of the Bayesian models.
 To be easy-to-use, this function requires a rigorous organisation - all needed files should be arranged in one folder -
 of informations concerning each BIN file. <br />
 It is possible to process data for various samples simultaneously and to consider more than one BIN file per sample.</p>
-    
     </div>
 
-    <pre class="usage"><span class='fu'>Generate_DataFile</span>(<span class='no'>Path</span>, <span class='no'>FolderNames</span>, <span class='no'>Nb_sample</span>,
-  <span class='kw'>Nb_binfile</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/length.html'>length</a></span>(<span class='no'>FolderNames</span>), <span class='kw'>BinPerSample</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span>(<span class='fl'>1</span>, <span class='no'>Nb_sample</span>),
-  <span class='kw'>sepDP</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>","</span>), <span class='kw'>sepDE</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>","</span>), <span class='kw'>sepDS</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>","</span>), <span class='kw'>sepR</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"="</span>),
-  <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)</pre>
-    
+    <pre class="usage"><span class='fu'>Generate_DataFile</span>(
+  <span class='no'>Path</span>,
+  <span class='no'>FolderNames</span>,
+  <span class='no'>Nb_sample</span>,
+  <span class='kw'>Nb_binfile</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/length.html'>length</a></span>(<span class='no'>FolderNames</span>),
+  <span class='kw'>BinPerSample</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span>(<span class='fl'>1</span>, <span class='no'>Nb_sample</span>),
+  <span class='kw'>sepDP</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>","</span>),
+  <span class='kw'>sepDE</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>","</span>),
+  <span class='kw'>sepDS</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>","</span>),
+  <span class='kw'>sepR</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"="</span>),
+  <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='no'>...</span>
+)</pre>
+
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
@@ -201,7 +216,7 @@ Otherwise, this vector must contain a list of 1 values.</p></td>
       <td><p>further arguments that can be passed to <a href='https://rdrr.io/pkg/Luminescence/man/read_BIN2R.html'>Luminescence::read_BIN2R</a>.</p></td>
     </tr>
     </table>
-    
+
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>A list containing the following objects:</p><ul>
@@ -219,7 +234,6 @@ Otherwise, this vector must contain a list of 1 values.</p></td>
 <p><b>** How to save this list **</b><br /></p>
 <p>You can save this list in a .RData object. To do this, you can use the fonction <code><a href='https://rdrr.io/r/base/save.html'>save</a></code>.
 Then, to load this list you can use the function <code><a href='https://rdrr.io/r/base/load.html'>load</a></code> (see example section fore more details).</p>
-    
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>With <code>Path</code> and <code>FolderNames</code>, this function goes to the subfolders containing the BIN files and associated information to compute
@@ -243,12 +257,13 @@ and its variance (squared error) both in Gy;</p></li>
 <li><p><code>endTest=</code>,</p></li>
 <li><p><code>beginTestBackground=</code>,</p></li>
 <li><p><code>endTestBackground=</code> same values as above, for the test dose response (typically the same values should be used);</p></li>
-<li><p><code>inflatePercent=</code> uncertainty arising from the instrument reproducibility (typically 0.02, i.e. 2%);</p></li>
+<li><p><code>inflatePercent=</code> uncertainty arising from the instrument reproducibility (typically 0.02, i.e. 2\<!-- %); --></p></li>
 <li><p><code>nbOfLastCycleToRemove=</code> number of cycles at the end of the SAR protocol which should not be included in the dose response curve fitting
 (typically 1 if only a recycling test is performed, or 2 if both recycling and IR depletion are tested).<br /></p></li>
 </ul></li>
 </ul>
-    <p><b>** How to fill the</b> <code>FolderNames</code> <b>vector? **</b><br /></p>
+
+<p><b>** How to fill the</b> <code>FolderNames</code> <b>vector? **</b><br /></p>
 <p><code>FolderNames</code> is a vector of length <code>Nb_binfile</code>. <code>FolderNames[i]</code> is the name (e.g., Sample1-File1, or successive names separated by "/" signs,
 if BIN files are in subfolders, e.g. Sample1/File1) of the subfolder containing all informations on the BIN file of ID number <code>i</code>.
 The names in <code>FolderNames</code> are ordered following two rules:</p><ul>
@@ -262,7 +277,8 @@ name containing the BIN file of sample 1 (respectively of sample 2).
 In addition, if we know that sample 1 is younger than sample 2, then <code>FolderNames</code> vector is correctly filled. <br />
 If conversely, <code>FolderNames=c(noun2,noun1)</code>, the analysis performed by <code><a href='AgeS_Computation.html'>AgeS_Computation</a></code> would not be consistent.<br /></p></li>
 </ul>
-    <p><b>** How to fill the</b> <code>BinPerSample</code> <b>vector? **</b><br /></p>
+
+<p><b>** How to fill the</b> <code>BinPerSample</code> <b>vector? **</b><br /></p>
 <p><code>BinPerSample[i]</code> correponds to the number of BIN files for the sample whose number ID is equal to <code>i</code>.<br />
 For example, let us consider a case with two samples (Sample1 and Sample2), with 2 BIN files for Sample1 and 1 for Sample2.
 In this case, <code>Nb_binfile</code>=3 and <code>Nb_sample</code>=2.
@@ -272,16 +288,13 @@ containing the first BIN file for Sample1, <code>"Sample1-File2"</code> the name
 <p>For the general BIN-file structure, the reader is referred to the following website:
 <code>http://www.nutech.dtu.dk/</code></p>
 <p>The function <code>read_BIN2R</code> developped in <code>Luminescence</code> package is used to read the BIN files.</p>
-    
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><code>read_BIN2R</code>, <code><a href='combine_DataFiles.html'>combine_DataFiles</a></code>, <code><a href='Generate_DataFile_MG.html'>Generate_DataFile_MG</a></code>, <code><a href='LT_RegenDose.html'>LT_RegenDose</a></code>
 <code><a href='Age_Computation.html'>Age_Computation</a></code>, <code><a href='AgeS_Computation.html'>AgeS_Computation</a></code>, <code><a href='Palaeodose_Computation.html'>Palaeodose_Computation</a></code></p></div>
-    
     <h2 class="hasAnchor" id="how-to-cite"><a class="anchor" href="#how-to-cite"></a>How to cite</h2>
 
-    <p>Christophe, C., Kreutzer, S., Philippe, A., Guerin, G., 2019. Generate_DataFile(): Generates, from one (or several) BIN-file(s) of Single-grain OSL measurements, a list of luminescence data and information before statistical analysis. In: Christophe, C., Philippe, A., Kreutzer, S., Guerin, G., 2019. BayLum: Chronological Bayesian Models Integrating Optically StimulatedR package version 0.1.4.9000-13. https://CRAN.R-project.org/package=BayLum</p>
-    
+    <p>Christophe, C., Kreutzer, S., Philippe, A., Guerin, G., 2020. Generate_DataFile(): Generates, from one (or several) BIN-file(s) of Single-grain OSL measurements, a list of luminescence data and information before statistical analysis. In: Christophe, C., Philippe, A., Kreutzer, S., Guerin, G., 2020. BayLum: Chronological Bayesian Models Integrating Optically Stimulated. R package version 0.1.4.9000-40. https://CRAN.r-project.org/package=BayLum</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'>## Example for one sample with one Bin File</span>
@@ -314,26 +327,13 @@ containing the first BIN file for Sample1, <code>"Sample1-File2"</code> the name
 
 </div></pre>
   </div>
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-    <h2>Contents</h2>
-    <ul class="nav nav-pills nav-stacked">
-      <li><a href="#arguments">Arguments</a></li>
-      
-      <li><a href="#value">Value</a></li>
-
-      <li><a href="#details">Details</a></li>
-
-      <li><a href="#see-also">See also</a></li>
-
-      <li><a href="#how-to-cite">How to cite</a></li>
-      
-      <li><a href="#examples">Examples</a></li>
-    </ul>
-
-    <h2>Author</h2>
-    <p>Claire Christophe, Sebastian Kreutzer, Anne Philippe, Guillaume Guerin</p>
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
+    <nav id="toc" data-toggle="toc" class="sticky-top">
+      <h2 data-toc-skip>Contents</h2>
+    </nav>
   </div>
 </div>
+
 
       <footer>
       <div class="copyright">
@@ -341,13 +341,16 @@ containing the first BIN file for Sample1, <code>"Sample1-File2"</code> the name
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
 </div>
+
       </footer>
    </div>
 
   
 
+
   </body>
 </html>
+
 

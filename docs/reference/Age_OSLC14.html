@@ -8,22 +8,29 @@
 
 <title>Bayesian analysis for age estimation of OSL measerments and C-14 ages of various samples — Age_OSLC14 • BayLum</title>
 
-<!-- jquery -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-<!-- Bootstrap -->
-<link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/flatly/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
+<!-- jquery -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+<!-- Bootstrap -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.4.0/flatly/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
+
+<!-- bootstrap-toc -->
+<link rel="stylesheet" href="../bootstrap-toc.css">
+<script src="../bootstrap-toc.js"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script>
 
-<!-- sticky kit -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
+<!-- headroom.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -31,8 +38,8 @@
 
 
 
-<meta property="og:title" content="Bayesian analysis for age estimation of OSL measerments and C-14 ages of various samples — Age_OSLC14" />
 
+<meta property="og:title" content="Bayesian analysis for age estimation of OSL measerments and C-14 ages of various samples — Age_OSLC14" />
 <meta property="og:description" content="This function compute an age of OSL data of at least two samples and calibrate 14C ages of samples to get an age (in ka).
 Age of OSL data are computed according to the model given in Combes and Philippe (2017).
 Single-grain or Multi-grain OSL measurements can be analysed simultaneouly (with output of Generate_DataFile
@@ -40,7 +47,7 @@ or Generate_DataFile_MG or both of them using combine_DataFiles).
 Samples, for which data is avalilable in several BIN files, can be analysed.
 For C14 data, the user can choose one of the following radiocarbon calibration curve:
 Northern or Sourthen Hemisphere or marine atmospheric." />
-<meta name="twitter:card" content="summary" />
+
 
 
 
@@ -54,9 +61,10 @@ Northern or Sourthen Hemisphere or marine atmospheric." />
 <![endif]-->
 
 
+
   </head>
 
-  <body>
+  <body data-spy="scroll" data-target="#toc">
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -70,7 +78,7 @@ Northern or Sourthen Hemisphere or marine atmospheric." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">BayLum</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.4.9000.13</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.4.9000-40</span>
       </span>
     </div>
 
@@ -94,7 +102,6 @@ Northern or Sourthen Hemisphere or marine atmospheric." />
   <a href="../reference/index.html">References</a>
 </li>
       </ul>
-      
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="../news/index.html">
@@ -117,6 +124,7 @@ Northern or Sourthen Hemisphere or marine atmospheric." />
 </div><!--/.navbar -->
 
       
+
       </header>
 
 <div class="row">
@@ -128,7 +136,6 @@ Northern or Sourthen Hemisphere or marine atmospheric." />
     </div>
 
     <div class="ref-description">
-    
     <p>This function compute an age of OSL data of at least two samples and calibrate 14C ages of samples to get an age (in ka).<br />
 Age of OSL data are computed according to the model given in Combes and Philippe (2017).
 Single-grain or Multi-grain OSL measurements can be analysed simultaneouly (with output of <code><a href='Generate_DataFile.html'>Generate_DataFile</a></code>
@@ -136,20 +143,38 @@ or <code><a href='Generate_DataFile_MG.html'>Generate_DataFile_MG</a></code> or 
 Samples, for which data is avalilable in several BIN files, can be analysed.<br />
 For C14 data, the user can choose one of the following radiocarbon calibration curve:
 Northern or Sourthen Hemisphere or marine atmospheric.</p>
-    
     </div>
 
-    <pre class="usage"><span class='fu'>Age_OSLC14</span>(<span class='no'>DATA</span>, <span class='no'>Data_C14Cal</span>, <span class='no'>Data_SigmaC14Cal</span>, <span class='no'>Nb_sample</span>, <span class='no'>SampleNames</span>,
-  <span class='no'>SampleNature</span>, <span class='kw'>PriorAge</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>10</span>, <span class='fl'>60</span>), <span class='no'>Nb_sample</span>), <span class='kw'>SavePdf</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+    <pre class="usage"><span class='fu'>Age_OSLC14</span>(
+  <span class='no'>DATA</span>,
+  <span class='no'>Data_C14Cal</span>,
+  <span class='no'>Data_SigmaC14Cal</span>,
+  <span class='no'>Nb_sample</span>,
+  <span class='no'>SampleNames</span>,
+  <span class='no'>SampleNature</span>,
+  <span class='kw'>PriorAge</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>10</span>, <span class='fl'>60</span>), <span class='no'>Nb_sample</span>),
+  <span class='kw'>SavePdf</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>OutputFileName</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"MCMCplot"</span>, <span class='st'>"HPD_Cal14CCurve"</span>, <span class='st'>"summary"</span>),
-  <span class='kw'>OutputFilePath</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>""</span>), <span class='kw'>SaveEstimates</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>OutputTableName</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"DATA"</span>), <span class='kw'>OutputTablePath</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>""</span>),
-  <span class='kw'>StratiConstraints</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(), <span class='kw'>sepSC</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>","</span>), <span class='kw'>BinPerSample</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span>(<span class='fl'>1</span>,
-  <span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span>(<span class='no'>SampleNature</span>[<span class='fl'>1</span>, ])), <span class='kw'>THETA</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(), <span class='kw'>sepTHETA</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>","</span>),
-  <span class='kw'>LIN_fit</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>Origin_fit</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>distribution</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"cauchy"</span>),
-  <span class='kw'>Model_C14</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"full"</span>), <span class='kw'>CalibrationCurve</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"AtmosphericNorth"</span>),
-  <span class='kw'>Iter</span> <span class='kw'>=</span> <span class='fl'>50000</span>, <span class='kw'>t</span> <span class='kw'>=</span> <span class='fl'>5</span>, <span class='kw'>n.chains</span> <span class='kw'>=</span> <span class='fl'>3</span>, <span class='kw'>quiet</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
-    
+  <span class='kw'>OutputFilePath</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>""</span>),
+  <span class='kw'>SaveEstimates</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>OutputTableName</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"DATA"</span>),
+  <span class='kw'>OutputTablePath</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>""</span>),
+  <span class='kw'>StratiConstraints</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(),
+  <span class='kw'>sepSC</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>","</span>),
+  <span class='kw'>BinPerSample</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span>(<span class='fl'>1</span>, <span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span>(<span class='no'>SampleNature</span>[<span class='fl'>1</span>, ])),
+  <span class='kw'>THETA</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(),
+  <span class='kw'>sepTHETA</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>","</span>),
+  <span class='kw'>LIN_fit</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>Origin_fit</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>distribution</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"cauchy"</span>),
+  <span class='kw'>Model_C14</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"full"</span>),
+  <span class='kw'>CalibrationCurve</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"AtmosphericNorth"</span>),
+  <span class='kw'>Iter</span> <span class='kw'>=</span> <span class='fl'>50000</span>,
+  <span class='kw'>t</span> <span class='kw'>=</span> <span class='fl'>5</span>,
+  <span class='kw'>n.chains</span> <span class='kw'>=</span> <span class='fl'>3</span>,
+  <span class='kw'>quiet</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
+)</pre>
+
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
@@ -302,7 +327,7 @@ The decimal of this file must be a dot, and the separator must be a comma. </b><
       <td><p><code><a href='https://rdrr.io/r/base/logical.html'>logical</a></code> (with default): enables/disables rjags messages</p></td>
     </tr>
     </table>
-    
+
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p><b>NUMERICAL OUTPUT</b><br /></p>
@@ -338,7 +363,6 @@ On each line, the plot on the left represents the MCMC trajectories, and the one
 <li><p><b>Summary of sample age estimates</b>: plot credible intervals and Bayes estimate of each sample age on a same graph.</p></li>
 </ol>
 
-    
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>Note that there is tree type of arguments in the previous list.
@@ -399,30 +423,29 @@ plus systematic error of the sample whose number ID is equal to <code>i</code>.<
 <li><p><code>Origin_fit=TRUE</code></p></li>
 </ul></li>
 </ul>
-    <p><b>** Option on equivalent dose distribution around the palaeodose **</b><br /></p>
+
+<p><b>** Option on equivalent dose distribution around the palaeodose **</b><br /></p>
 <p>The use can choose between :</p><ul>
 <li><p><code>cauchy</code>: a Cauchy distribution with location parameter equal to the palaeodose of the sample</p></li>
 <li><p><code>gaussian</code>: a Gaussian distribution with mean equal to the palaeodose of the sample</p></li>
 <li><p><code>lognormal_A</code>: a log-normal distribution with mean or <b>A</b>verage equal to the palaeodose of the sample</p></li>
 <li><p><code>lognormal_M</code>: a log-normal distribution with <b>M</b>edian equal to the palaeodose of the sample</p></li>
 </ul>
-    <p><b>** More precision on <code>Model</code> **</b><br /></p>
+
+<p><b>** More precision on <code>Model</code> **</b><br /></p>
 <p>We propose two models "full" or "naive". If <code>Model='full'</code> that means measurement error and error on calibration curve are taken account in
 the Bayesian model; if <code>Model="naive"</code> that means only error on measurement are taken account in the mode.</p>
 <p>More precisely, the model considered here, as the one developped by Christen, JA (1994), assume multiplicative effect of errors to address the
 problem of outliers. In addition, to not penalyse variables that are not outliers and damage theirs estimation,
 we introduce a structure of mixture, that means only variable that are considered as outlier have in addition a multiplicative error.</p>
-    
     <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
     <p>Please note that the initial values for all MCMC are currently all the same for all chains since we rely on the automatic
 initial value generation of JAGS. This is not optimal and will be changed in future. However, it does not affect the quality
 of the age estimates if the chains have converged.</p>
-    
     <h2 class="hasAnchor" id="how-to-cite"><a class="anchor" href="#how-to-cite"></a>How to cite</h2>
 
-    <p>Christophe, C., Philippe, A., Guerin, G., Kreutzer, S., 2019. Age_OSLC14(): Bayesian analysis for age estimation of OSL measerments and C-14 ages of various samples. In: Christophe, C., Philippe, A., Kreutzer, S., Guerin, G., 2019. BayLum: Chronological Bayesian Models Integrating Optically StimulatedR package version 0.1.4.9000-13. https://CRAN.R-project.org/package=BayLum</p>
-    
+    <p>Christophe, C., Philippe, A., Guerin, G., Kreutzer, S., 2020. Age_OSLC14(): Bayesian analysis for age estimation of OSL measerments and C-14 ages of various samples. In: Christophe, C., Philippe, A., Kreutzer, S., Guerin, G., 2020. BayLum: Chronological Bayesian Models Integrating Optically Stimulated. R package version 0.1.4.9000-40. https://CRAN.r-project.org/package=BayLum</p>
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
     <p>Reimer PJ, Bard E, Bayliss A, Beck JW, Blackwell PC, Bronl Ramsey C, Buck CE, Cheng H, Edwards RL, Friedrich M,
@@ -431,11 +454,9 @@ Manning SW, Niu M, Reimer RW, Richards DA, Scott EM, Southon JR, Staff RA, Turne
 IntCal13 ans Marine13 radiocarbon age calibration curves 0-50000 years cal BP. Radiocarbon 55(4)=1869-1887.</p>
 <p>Hogg AG, Hua Q, Blackwell PG, Niu M, Buck CE, Guilderson TP, Heaton TJ, Palmer JG, Reimer PJ, Reimer RW, Turney CSM, Zimmerman SRH.
 2013. SHCal13 Southern Hemisphere calibration, 0-50000 years cal BP. Radiocarbon 55(4):1889-1903</p>
-    
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p>rjags, <a href='plot_MCMC.html'>plot_MCMC</a>, <a href='SCMatrix.html'>SCMatrix</a>, <a href='plot_Ages.html'>plot_Ages</a></p></div>
-    
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'>## Load data</span>
@@ -473,9 +494,9 @@ IntCal13 ans Marine13 radiocarbon age calibration curves 0-50000 years cal BP. R
 #&gt; &gt;&gt; Convergence of MCMC for the age parameters &lt;&lt;
 #&gt; ----------------------------------------------
 #&gt; Sample name   Bayes estimate   Uppers credible interval
-#&gt; A_GDB5 	 0.97 		 1.03 
-#&gt; A_S-EVA-26510 	 1.4 		 2.53 
-#&gt; A_GDB3 	 0.99 		 1.11 
+#&gt; A_GDB5 	 0.97 		 0.99 
+#&gt; A_S-EVA-26510 	 0.97 		 1.05 
+#&gt; A_GDB3 	 2.66 		 6.39 
 #&gt; 
 #&gt; 
 #&gt; ________________________________________________________________________________
@@ -486,49 +507,32 @@ IntCal13 ans Marine13 radiocarbon age calibration curves 0-50000 years cal BP. R
 #&gt; &gt;&gt; Bayes estimates of Age for each sample and credible interval &lt;&lt;
 #&gt; ------------------------------------------------------
 #&gt; Sample name 	 Bayes estimate  Credible interval: 
-#&gt; A_GDB5 	 7.252 
+#&gt; A_GDB5 	 7.536 
 #&gt; 						 lower bound 	 upper bound
-#&gt; 				 at level 95% 	 6.22 		 8.89 
-#&gt; 				 at level 68% 	 6.66 		 7.65 
+#&gt; 				 at level 95% 	 6.67 		 9.19 
+#&gt; 				 at level 68% 	 7.08 		 7.82 
 #&gt; ------------------------------------------------------
 #&gt; Sample name 	 Bayes estimate  Credible interval: 
-#&gt; A_S-EVA-26510 	 41.834 
+#&gt; A_S-EVA-26510 	 41.719 
 #&gt; 						 lower bound 	 upper bound
-#&gt; 				 at level 95% 	 41.43 		 42.17 
-#&gt; 				 at level 68% 	 41.7 		 42.12 
+#&gt; 				 at level 95% 	 41.17 		 41.95 
+#&gt; 				 at level 68% 	 41.68 		 41.95 
 #&gt; ------------------------------------------------------
 #&gt; Sample name 	 Bayes estimate  Credible interval: 
-#&gt; A_GDB3 	 47.459 
+#&gt; A_GDB3 	 48.129 
 #&gt; 						 lower bound 	 upper bound
-#&gt; 				 at level 95% 	 42.23 		 53.06 
-#&gt; 				 at level 68% 	 44.17 		 48.85 
+#&gt; 				 at level 95% 	 42.73 		 56.05 
+#&gt; 				 at level 68% 	 45.82 		 51.21 
 #&gt; 
 #&gt; ------------------------------------------------------</div><div class='img'><img src='Age_OSLC14-4.png' alt='' width='700' height='433' /></div></pre>
   </div>
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-    <h2>Contents</h2>
-    <ul class="nav nav-pills nav-stacked">
-      <li><a href="#arguments">Arguments</a></li>
-      
-      <li><a href="#value">Value</a></li>
-
-      <li><a href="#details">Details</a></li>
-
-      <li><a href="#note">Note</a></li>
-
-      <li><a href="#how-to-cite">How to cite</a></li>
-
-      <li><a href="#references">References</a></li>
-
-      <li><a href="#see-also">See also</a></li>
-      
-      <li><a href="#examples">Examples</a></li>
-    </ul>
-
-    <h2>Author</h2>
-    <p>Claire Christophe, Anne Philippe, Guillaume Guerin, Sebastian Kreutzer</p>
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
+    <nav id="toc" data-toggle="toc" class="sticky-top">
+      <h2 data-toc-skip>Contents</h2>
+    </nav>
   </div>
 </div>
+
 
       <footer>
       <div class="copyright">
@@ -536,13 +540,16 @@ IntCal13 ans Marine13 radiocarbon age calibration curves 0-50000 years cal BP. R
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
 </div>
+
       </footer>
    </div>
 
   
 
+
   </body>
 </html>
+
 

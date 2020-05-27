@@ -8,22 +8,29 @@
 
 <title>Bayesian analysis for the OSL age estimation of one sample — Age_Computation • BayLum</title>
 
-<!-- jquery -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-<!-- Bootstrap -->
-<link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/flatly/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
+<!-- jquery -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+<!-- Bootstrap -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.4.0/flatly/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
+
+<!-- bootstrap-toc -->
+<link rel="stylesheet" href="../bootstrap-toc.css">
+<script src="../bootstrap-toc.js"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script>
 
-<!-- sticky kit -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
+<!-- headroom.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -31,12 +38,12 @@
 
 
 
-<meta property="og:title" content="Bayesian analysis for the OSL age estimation of one sample — Age_Computation" />
 
+<meta property="og:title" content="Bayesian analysis for the OSL age estimation of one sample — Age_Computation" />
 <meta property="og:description" content="This function computes the age (in ka) of a sample according to the model developed in Combes and Philippe (2017),
 based on an output of Generate_DataFile or Generate_DataFile_MG.
 A sample, for which data is avalilable in several BIN files, can be analysed." />
-<meta name="twitter:card" content="summary" />
+
 
 
 
@@ -50,9 +57,10 @@ A sample, for which data is avalilable in several BIN files, can be analysed." /
 <![endif]-->
 
 
+
   </head>
 
-  <body>
+  <body data-spy="scroll" data-target="#toc">
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -66,7 +74,7 @@ A sample, for which data is avalilable in several BIN files, can be analysed." /
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">BayLum</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.4.9000.13</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.4.9000-40</span>
       </span>
     </div>
 
@@ -90,7 +98,6 @@ A sample, for which data is avalilable in several BIN files, can be analysed." /
   <a href="../reference/index.html">References</a>
 </li>
       </ul>
-      
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="../news/index.html">
@@ -113,6 +120,7 @@ A sample, for which data is avalilable in several BIN files, can be analysed." /
 </div><!--/.navbar -->
 
       
+
       </header>
 
 <div class="row">
@@ -124,21 +132,32 @@ A sample, for which data is avalilable in several BIN files, can be analysed." /
     </div>
 
     <div class="ref-description">
-    
     <p>This function computes the age (in ka) of a sample according to the model developed in Combes and Philippe (2017),
 based on an output of <a href='Generate_DataFile.html'>Generate_DataFile</a> or <a href='Generate_DataFile_MG.html'>Generate_DataFile_MG</a>.<br />
 A sample, for which data is avalilable in several BIN files, can be analysed.</p>
-    
     </div>
 
-    <pre class="usage"><span class='fu'>Age_Computation</span>(<span class='no'>DATA</span>, <span class='no'>SampleName</span>, <span class='kw'>PriorAge</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0.01</span>, <span class='fl'>100</span>),
-  <span class='kw'>BinPerSample</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1</span>), <span class='kw'>SavePdf</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>OutputFileName</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"MCMCplot"</span>), <span class='kw'>OutputFilePath</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>""</span>),
-  <span class='kw'>SaveEstimates</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>OutputTableName</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"DATA"</span>),
-  <span class='kw'>OutputTablePath</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>""</span>), <span class='kw'>LIN_fit</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>Origin_fit</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>distribution</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"cauchy"</span>), <span class='kw'>I</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>Iter</span> <span class='kw'>=</span> <span class='fl'>50000</span>, <span class='kw'>t</span> <span class='kw'>=</span> <span class='fl'>5</span>,
-  <span class='kw'>n.chains</span> <span class='kw'>=</span> <span class='fl'>3</span>, <span class='kw'>quiet</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
-    
+    <pre class="usage"><span class='fu'>Age_Computation</span>(
+  <span class='no'>DATA</span>,
+  <span class='no'>SampleName</span>,
+  <span class='kw'>PriorAge</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0.01</span>, <span class='fl'>100</span>),
+  <span class='kw'>BinPerSample</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1</span>),
+  <span class='kw'>SavePdf</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>OutputFileName</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"MCMCplot"</span>),
+  <span class='kw'>OutputFilePath</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>""</span>),
+  <span class='kw'>SaveEstimates</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>OutputTableName</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"DATA"</span>),
+  <span class='kw'>OutputTablePath</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>""</span>),
+  <span class='kw'>LIN_fit</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>Origin_fit</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>distribution</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"cauchy"</span>),
+  <span class='kw'>I</span> <span class='kw'>=</span> <span class='fl'>1</span>,
+  <span class='kw'>Iter</span> <span class='kw'>=</span> <span class='fl'>50000</span>,
+  <span class='kw'>t</span> <span class='kw'>=</span> <span class='fl'>5</span>,
+  <span class='kw'>n.chains</span> <span class='kw'>=</span> <span class='fl'>3</span>,
+  <span class='kw'>quiet</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
+)</pre>
+
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
@@ -232,7 +251,7 @@ I indicates the ID number of the sample to be analysed.</p></td>
       <td><p><a href='https://rdrr.io/r/base/logical.html'>logical</a> (with default): enables/disables rjags messages</p></td>
     </tr>
     </table>
-    
+
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p><strong>NUMERICAL OUTPUT</strong></p>
@@ -262,7 +281,6 @@ the age, palaeodose and equivalent dose dispersion parameters of the sample.</p>
 The first line of the figure correponds to the age parameter, the second to the palaeodose parameter and the third to the equivalent dose dispersion parameter.
 On each line, the plot on the left represents the MCMC trajectories, and the one on the right the posterior distribution of the parameter.</p>
 <p>To give the results in a publication, we recommend to give the Bayes estimate of the parameter as well as the credible interval at 95% or 68%.</p>
-    
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p><strong>Option on growth curves</strong><br /></p>
@@ -288,24 +306,23 @@ On each line, the plot on the left represents the MCMC trajectories, and the one
 <li><p><code>Origin_fit=TRUE</code></p></li>
 </ul></li>
 </ul>
-    <p><strong>Option on equivalent dose distribution around the palaeodose</strong><br /></p>
+
+<p><strong>Option on equivalent dose distribution around the palaeodose</strong><br /></p>
 <p>The use can choose between :</p><ul>
 <li><p><code>cauchy</code>: a Cauchy distribution with location parameter equal to the palaeodose of the sample</p></li>
 <li><p><code>gaussian</code>: a Gaussian distribution with mean equal to the palaeodose of the sample</p></li>
 <li><p><code>lognormal_A</code>: a log-normal distribution with mean or <strong>A</strong>verage equal to the palaeodose of the sample</p></li>
 <li><p><code>lognormal_M</code>: a log-normal distribution with <strong>M</strong>edian equal to the palaeodose of the sample</p></li>
 </ul>
-    
+
     <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
     <p>Please note that the initial values for all MCMC are currently all the same for all chains since we rely on the automatic
 initial value generation of JAGS. This is not optimal and will be changed in future. However, it does not affect the quality
 of the age estimates if the chains have converged.</p>
-    
     <h2 class="hasAnchor" id="how-to-cite"><a class="anchor" href="#how-to-cite"></a>How to cite</h2>
 
-    <p>Christophe, C., Kreutzer, S., Philippe, A., 2019. Age_Computation(): Bayesian analysis for the OSL age estimation of one sample. In: Christophe, C., Philippe, A., Kreutzer, S., Guerin, G., 2019. BayLum: Chronological Bayesian Models Integrating Optically StimulatedR package version 0.1.4.9000-13. https://CRAN.R-project.org/package=BayLum</p>
-    
+    <p>Christophe, C., Kreutzer, S., Philippe, A., 2020. Age_Computation(): Bayesian analysis for the OSL age estimation of one sample. In: Christophe, C., Philippe, A., Kreutzer, S., Guerin, G., 2020. BayLum: Chronological Bayesian Models Integrating Optically Stimulated. R package version 0.1.4.9000-40. https://CRAN.r-project.org/package=BayLum</p>
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
     <p>Combes, Benoit and Philippe, Anne, 2017.
@@ -315,11 +332,9 @@ Quaternary Geochronology (39, 24-34)</p>
 <p>Combes, B., Philippe, A., Lanos, P., Mercier, N., Tribolo, C., Guerin, G., Guibert, P., Lahaye, C., 2015.
 A Bayesian central equivalent dose model for optically stimulated luminescence dating.
 Quaternary Geochronology 28, 62-70. doi:10.1016/j.quageo.2015.04.001</p>
-    
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><a href='Generate_DataFile.html'>Generate_DataFile</a>, <a href='Generate_DataFile_MG.html'>Generate_DataFile_MG</a>, rjags, <a href='plot_MCMC.html'>plot_MCMC</a>, <a href='AgeS_Computation.html'>AgeS_Computation</a>, <a href='Palaeodose_Computation.html'>Palaeodose_Computation</a></p></div>
-    
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'>## load data file generated by the function Generate_DataFile</span>
@@ -339,9 +354,9 @@ Quaternary Geochronology 28, 62-70. doi:10.1016/j.quageo.2015.04.001</p>
 #&gt; &gt;&gt; Results of the Gelman and Rubin criterion of convergence &lt;&lt;
 #&gt; ----------------------------------------------
 #&gt; 	 Point estimate Uppers confidence interval
-#&gt; A	 1.12 		 1.4 
-#&gt; D	 1.1 		 1.35 
-#&gt; sD	 1.23 		 1.69 
+#&gt; A	 1.01 		 1.04 
+#&gt; D	 1.02 		 1.1 
+#&gt; sD	 1.06 		 1.25 
 #&gt; 
 #&gt; 
 #&gt; ---------------------------------------------------------------------------------------------------
@@ -350,46 +365,29 @@ Quaternary Geochronology 28, 62-70. doi:10.1016/j.quageo.2015.04.001</p>
 #&gt; 
 #&gt; parameter 	 Bayes estimate 	  Credible interval 
 #&gt; ----------------------------------------------
-#&gt; A 		 46.116 
+#&gt; A 		 46.338 
 #&gt; 						 lower bound 	 upper bound
-#&gt; 				 at level 95%	 37.39 		 50.34 
-#&gt; 				 at level 68%	 38.18 		 45.78 
+#&gt; 				 at level 95%	 38.8 		 52.38 
+#&gt; 				 at level 68%	 41.53 		 47.87 
 #&gt; ----------------------------------------------
-#&gt; D 		 103.495 
+#&gt; D 		 103.26 
 #&gt; 						 lower bound 	 upper bound
-#&gt; 				 at level 95%	 95.55 		 107.28 
-#&gt; 				 at level 68%	 98.75 		 104.25 
+#&gt; 				 at level 95%	 97.79 		 107.77 
+#&gt; 				 at level 68%	 101.11 		 104.94 
 #&gt; ----------------------------------------------
-#&gt; sD 		 16.62 
+#&gt; sD 		 15.779 
 #&gt; 						 lower bound 	 upper bound
-#&gt; 				 at level 95%	 11.4 		 20.12 
-#&gt; 				 at level 68%	 12.14 		 16.14 </div><div class='input'>
+#&gt; 				 at level 95%	 11.37 		 21.12 
+#&gt; 				 at level 68%	 12.69 		 18.06 </div><div class='input'>
 </div></pre>
   </div>
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-    <h2>Contents</h2>
-    <ul class="nav nav-pills nav-stacked">
-      <li><a href="#arguments">Arguments</a></li>
-      
-      <li><a href="#value">Value</a></li>
-
-      <li><a href="#details">Details</a></li>
-
-      <li><a href="#note">Note</a></li>
-
-      <li><a href="#how-to-cite">How to cite</a></li>
-
-      <li><a href="#references">References</a></li>
-
-      <li><a href="#see-also">See also</a></li>
-      
-      <li><a href="#examples">Examples</a></li>
-    </ul>
-
-    <h2>Author</h2>
-    <p>Claire Christophe, Sebastian Kreutzer, Anne Philippe, Guillaume Guérin</p>
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
+    <nav id="toc" data-toggle="toc" class="sticky-top">
+      <h2 data-toc-skip>Contents</h2>
+    </nav>
   </div>
 </div>
+
 
       <footer>
       <div class="copyright">
@@ -397,13 +395,16 @@ Quaternary Geochronology 28, 62-70. doi:10.1016/j.quageo.2015.04.001</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
 </div>
+
       </footer>
    </div>
 
   
 
+
   </body>
 </html>
+
 

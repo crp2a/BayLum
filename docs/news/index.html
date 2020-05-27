@@ -8,22 +8,29 @@
 
 <title>Changelog • BayLum</title>
 
-<!-- jquery -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-<!-- Bootstrap -->
-<link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/flatly/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
+<!-- jquery -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+<!-- Bootstrap -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.4.0/flatly/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
+
+<!-- bootstrap-toc -->
+<link rel="stylesheet" href="../bootstrap-toc.css">
+<script src="../bootstrap-toc.js"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script>
 
-<!-- sticky kit -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
+<!-- headroom.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -31,7 +38,9 @@
 
 
 
+
 <meta property="og:title" content="Changelog" />
+
 
 
 
@@ -45,9 +54,10 @@
 <![endif]-->
 
 
+
   </head>
 
-  <body>
+  <body data-spy="scroll" data-target="#toc">
     <div class="container template-news">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -61,7 +71,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">BayLum</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.4.9000.13</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.4.9000-40</span>
       </span>
     </div>
 
@@ -85,7 +95,6 @@
   <a href="../reference/index.html">References</a>
 </li>
       </ul>
-      
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="../news/index.html">
@@ -108,41 +117,23 @@
 </div><!--/.navbar -->
 
       
+
       </header>
 
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-      <h1>Changelog <small></small></h1>
+      <h1 data-toc-skip>Changelog <small></small></h1>
       <small>Source: <a href='https://github.com/crp2a/BayLum/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
-    <div id="baylum-0149000-13-2019-05-10" class="section level2">
+    <div id="baylum-0149000-40-2020-05-27" class="section level2">
 <h2 class="hasAnchor">
-<a href="#baylum-0149000-13-2019-05-10" class="anchor"></a>BayLum 0.1.4.9000-13 (2019-05-10)</h2>
+<a href="#baylum-0149000-40-2020-05-27" class="anchor"></a>BayLum 0.1.4.9000-40 (2020-05-27)</h2>
 <div id="bugfixes--changes" class="section level3">
 <h3 class="hasAnchor">
 <a href="#bugfixes--changes" class="anchor"></a>Bugfixes &amp; changes</h3>
 <ul>
-<li>
-<code><a href="../reference/Generate_DataFile_MG.html">Generate_DataFile_MG()</a></code>
-<ul>
-<li>now works only on preselected records; the limitation of OSL only was removed.</li>
-</ul>
-</li>
-<li>
-<code><a href="../reference/plot_Ages.html">plot_Ages()</a></code>
-<ul>
-<li>the sorting of the samples in the graph did not work as expected; along with this a new argument <code>sample_order</code> was added.</li>
-</ul>
-</li>
-<li>
-<code><a href="../reference/plot_MCMC.html">plot_MCMC()</a></code>
-<ul>
-<li>Accidentally the function could not display the chains from more than 9 samples; fixed (thanks to Maryam Heydari)</li>
-<li>Now the function understand sthe output of <code><a href="../reference/AgeS_Computation.html">AgeS_Computation()</a></code> for an automated treatment</li>
-</ul>
-</li>
 <li>
 <code><a href="../reference/AgeS_Computation.html">AgeS_Computation()</a></code>
 <ul>
@@ -157,9 +148,44 @@
 <li>The CSV-file option now returns the age and the HPD intervals</li>
 </ul>
 </li>
+<li>
+<code><a href="../reference/Generate_DataFile_MG.html">Generate_DataFile_MG()</a></code>
+<ul>
+<li>now works only on preselected records; the limitation of OSL only was removed.</li>
+</ul>
+</li>
+<li>
+<code><a href="../reference/plot_Ages.html">plot_Ages()</a></code>
+<ul>
+<li>The sorting of the samples in the graph did not work as expected; along with this a new argument <code>sample_order</code> was added.</li>
+<li>The function accepts a data.frame as alternative input, if the <code>data.frame</code> is similiar the data frames created by the compution functions (e.g., <code><a href="../reference/AgeS_Computation.html">AgeS_Computation()</a></code>). This option enables the manual creation of age plots from self-compiled data.</li>
+</ul>
+</li>
+<li>
+<code><a href="../reference/plot_MCMC.html">plot_MCMC()</a></code>
+<ul>
+<li>Accidentally the function could not display the chains from more than 9 samples; fixed (thanks to Maryam Heydari)</li>
+<li>Now the function understand sthe output of <code><a href="../reference/AgeS_Computation.html">AgeS_Computation()</a></code> for an automated treatment</li>
+</ul>
+</li>
+<li>
+<code><a href="../reference/plot_Scatterplots.html">plot_Scatterplots()</a></code>
+<ul>
+<li>Linebreaks and leading and trailing whitespace is now removed from the character (vector) provided via <code>sample_names</code>
+</li>
+<li>If the number of selected samples via <code>sample_selection</code> was shorter than the number of names provided by <code>sample_names</code> the function returned an <code>subscript out of bounds</code> error; fixed (reported by Maryam Heydari)</li>
+</ul>
+</li>
+</ul>
+<div id="internals" class="section level4">
+<h4 class="hasAnchor">
+<a href="#internals" class="anchor"></a>Internals</h4>
+<ul>
 <li>All models now come with an example showing how they can be inspected (before the examples not working)</li>
 <li>Fix a couple of documentation glitches (e.g., part of the documentation was missing)</li>
+<li>Smooth the creation of <code>BayLum.list</code> objects using a central internal function</li>
 </ul>
+</div>
 </div>
 <div id="new-functions" class="section level3">
 <h3 class="hasAnchor">
@@ -168,6 +194,8 @@
 <li>
 <code><a href="../reference/create_ThetaMatrix.html">create_ThetaMatrix()</a></code> this function is a helper to create the theta matrix that can be provided as input for the functions <code><a href="../reference/AgeS_Computation.html">AgeS_Computation()</a></code> and <code><a href="../reference/Age_OSLC14.html">Age_OSLC14()</a></code>
 </li>
+<li>
+<code><a href="../reference/create_FolderTemplates.html">create_FolderTemplates()</a></code> creates the folder and file structures required by <code><a href="../reference/Generate_DataFile.html">Generate_DataFile()</a></code> and <code><a href="../reference/Generate_DataFile_MG.html">Generate_DataFile_MG()</a></code> on the user’s hard drive</li>
 </ul>
 </div>
 </div>
@@ -193,15 +221,15 @@
 <li>The output of <code>AgeC14_Compution()</code> and <code><a href="../reference/AgeS_Computation.html">AgeS_Computation()</a></code> gain a new class <code>BayLum.list</code>
 </li>
 <li>Redundant code in <code>AgeC14_Compution()</code> and <code><a href="../reference/AgeS_Computation.html">AgeS_Computation()</a></code> has been removed</li>
-<li>The argument <code>Nb_chaines</code> was replaced by <code>n.chains</code> wherever it occured in the package (functions and documentation)</li>
+<li>The argument <code>Nb_chaines</code> was replaced by <code>n.chains</code> wherever it occurred in the package (functions and documentation)</li>
 <li>The function <code><a href="../reference/plot_Scatterplots.html">plot_Scatterplots()</a></code> gained a new argument <code>plot_type</code>, allowing to switch between the default hexbin plot and a function developed for ’BayLum<code>(</code>plot_type = “smoothScatter”`)</li>
 <li>The function <code><a href="../reference/plot_Scatterplots.html">plot_Scatterplots()</a></code> gained a new argument <code>plot_mode</code> to allow single xy plots</li>
 <li>The function <code><a href="../reference/plot_Scatterplots.html">plot_Scatterplots()</a></code> now accepts a two column <code>data.frame</code> as inputbuild</li>
 </ul>
 </div>
-<div id="internals" class="section level3">
+<div id="internals-1" class="section level3">
 <h3 class="hasAnchor">
-<a href="#internals" class="anchor"></a>Internals</h3>
+<a href="#internals-1" class="anchor"></a>Internals</h3>
 <ul>
 <li>Add new package dependency <code>KernSmooth</code> used in <code><a href="../reference/plot_Scatterplots.html">plot_Scatterplots()</a></code>
 </li>
@@ -248,9 +276,9 @@
 <li>The function <code><a href="../reference/LT_RegenDose.html">LT_RegenDose()</a></code> gained two new arguments <code>nrow</code> and <code>ncol</code> became a little bit more user friendly</li>
 </ul>
 </div>
-<div id="internals-1" class="section level3">
+<div id="internals-2" class="section level3">
 <h3 class="hasAnchor">
-<a href="#internals-1" class="anchor"></a>Internals</h3>
+<a href="#internals-2" class="anchor"></a>Internals</h3>
 <ul>
 <li>Set patch level to 0 (for 3.3.0) to account for CRAN note</li>
 <li>Vignette was updated and corrected</li>
@@ -273,20 +301,14 @@
 </div>
   </div>
 
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-    <div id="tocnav">
-      <h2>Contents</h2>
-      <ul class="nav nav-pills nav-stacked">
-        <li><a href="#baylum-0149000-13-2019-05-10">0.1.4.9000-13</a></li>
-        <li><a href="#baylum-013-release-date-2018-09-14">0.1.3</a></li>
-        <li><a href="#baylum-012-release-date-2018-06-22">0.1.2</a></li>
-        <li><a href="#baylum-011-release-date-2017-09-01">0.1.1</a></li>
-        <li><a href="#baylum-010-release-date-2017-08-22">0.1.0</a></li>
-      </ul>
-    </div>
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
+    <nav id="toc" data-toggle="toc" class="sticky-top">
+      <h2 data-toc-skip>Contents</h2>
+    </nav>
   </div>
 
 </div>
+
 
       <footer>
       <div class="copyright">
@@ -294,13 +316,16 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
 </div>
+
       </footer>
    </div>
 
   
 
+
   </body>
 </html>
+
 

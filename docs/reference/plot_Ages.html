@@ -6,24 +6,31 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Create age plot — plot_Ages • BayLum</title>
+<title>Create Age Plot — plot_Ages • BayLum</title>
+
 
 <!-- jquery -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
-<link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/flatly/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.4.0/flatly/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
+
+<!-- bootstrap-toc -->
+<link rel="stylesheet" href="../bootstrap-toc.css">
+<script src="../bootstrap-toc.js"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script>
 
-<!-- sticky kit -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
+<!-- headroom.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -31,10 +38,10 @@
 
 
 
-<meta property="og:title" content="Create age plot — plot_Ages" />
 
-<meta property="og:description" content="Create age plot" />
-<meta name="twitter:card" content="summary" />
+<meta property="og:title" content="Create Age Plot — plot_Ages" />
+<meta property="og:description" content="Create Age Plot" />
+
 
 
 
@@ -48,9 +55,10 @@
 <![endif]-->
 
 
+
   </head>
 
-  <body>
+  <body data-spy="scroll" data-target="#toc">
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -64,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">BayLum</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.4.9000.13</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.4.9000-40</span>
       </span>
     </div>
 
@@ -88,7 +96,6 @@
   <a href="../reference/index.html">References</a>
 </li>
       </ul>
-      
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="../news/index.html">
@@ -111,30 +118,32 @@
 </div><!--/.navbar -->
 
       
+
       </header>
 
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Create age plot</h1>
+    <h1>Create Age Plot</h1>
     <small class="dont-index">Source: <a href='https://github.com/crp2a/BayLum/blob/master/R/plot_Ages.R'><code>R/plot_Ages.R</code></a></small>
     <div class="hidden name"><code>plot_Ages.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    
-    <p>Create age plot</p>
-    
+    <p>Create Age Plot</p>
     </div>
 
     <pre class="usage"><span class='fu'>plot_Ages</span>(<span class='no'>object</span>, <span class='kw'>sample_names</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>sample_order</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>...</span>)</pre>
-    
+
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>object</th>
-      <td><p><a href='https://rdrr.io/r/base/list.html'>list</a> (<strong>required</strong>): Output as created by functions like <a href='AgeC14_Computation.html'>AgeC14_Computation</a>.</p></td>
+      <td><p><a href='https://rdrr.io/r/base/list.html'>list</a>  or <a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a> (<strong>required</strong>): Output as created by functions like <a href='AgeC14_Computation.html'>AgeC14_Computation</a>, which
+is a list of class <code>BayLum.list</code>. Alternativley the function supports a <a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a> as input, however,
+in such a case the <a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a> must resemble the ages <a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a> created by the computation functions
+otherwise the input will be silently ignored.</p></td>
     </tr>
     <tr>
       <th>sample_names</th>
@@ -153,29 +162,24 @@ standard arguments are: <code>cex</code>, <code>xlim</code>, <code>main</code>, 
 are: <code>grid</code> (<code>TRUE</code>/<code>FALSE</code>), <code>legend</code> (<code>TRUE</code>/<code>FALSE</code>), <code>legend.text</code> (<a href='https://rdrr.io/r/base/character.html'>character</a> input needed), <code>legend.pos</code> <a href='https://rdrr.io/r/graphics/legend.html'>graphics::legend</a></p></td>
     </tr>
     </table>
-    
+
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>The function returns a plot and the <a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a> used to display the data</p>
-    
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>This function creates an age plot showing the mean ages along with the credible intervals. The function
 provides various arguments to modify the plot output, however, for an ultimate control the function returns
 the <a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a> extracted from the input object for own plots.</p>
-    
     <h2 class="hasAnchor" id="function-version"><a class="anchor" href="#function-version"></a>Function version</h2>
 
-    <p>0.1.3</p>
-    
+    <p>0.1.4</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><a href='AgeC14_Computation.html'>AgeC14_Computation</a>, <a href='AgeS_Computation.html'>AgeS_Computation</a></p></div>
-    
     <h2 class="hasAnchor" id="how-to-cite"><a class="anchor" href="#how-to-cite"></a>How to cite</h2>
 
-    <p>Kreutzer, S., Christophe, C., 2019. plot_Ages(): Create age plot. Function version 0.1.3. In: Christophe, C., Philippe, A., Kreutzer, S., Guerin, G., 2019. BayLum: Chronological Bayesian Models Integrating Optically StimulatedR package version 0.1.4.9000-13. https://CRAN.R-project.org/package=BayLum</p>
-    
+    <p>Kreutzer, S., Christophe, C., 2020. plot_Ages(): Create Age Plot. Function version 0.1.4. In: Christophe, C., Philippe, A., Kreutzer, S., Guerin, G., 2020. BayLum: Chronological Bayesian Models Integrating Optically Stimulated. R package version 0.1.4.9000-40. https://CRAN.r-project.org/package=BayLum</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'>## load data</span>
@@ -198,10 +202,10 @@ the <a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a> extracted fr
 #&gt; &gt;&gt; MCMC Convergence of Age parameters &lt;&lt;
 #&gt; ----------------------------------------------
 #&gt; Sample name   Bayes estimate   Uppers credible interval
-#&gt; A_S-EVA-26510 	 1 		 1 
-#&gt; A_S-EVA-26506 	 1.01 		 1.03 
-#&gt; A_S-EVA-26507 	 1.02 		 1.05 
-#&gt; A_S-EVA-26508 	 1.02 		 1.03 
+#&gt; A_S-EVA-26510 	 1.01 		 1.06 
+#&gt; A_S-EVA-26506 	 1 		 1 
+#&gt; A_S-EVA-26507 	 1 		 1.01 
+#&gt; A_S-EVA-26508 	 1 		 1.01 
 #&gt; 
 #&gt; 
 #&gt; ---------------------------------------------------------------------------------------------------
@@ -219,13 +223,13 @@ the <a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a> extracted fr
 #&gt; 				 at level 68% 	 42 		 42 
 #&gt; ------------------------------------------------------
 #&gt; Sample name 	 Bayes estimate  Credible interval: 
-#&gt; A_S-EVA-26506 	 47 
+#&gt; A_S-EVA-26506 	 46 
 #&gt; 						 lower bound 	 upper bound
 #&gt; 				 at level 95% 	 46 		 47 
 #&gt; 				 at level 68% 	 46 		 47 
 #&gt; ------------------------------------------------------
 #&gt; Sample name 	 Bayes estimate  Credible interval: 
-#&gt; A_S-EVA-26507 	 46 
+#&gt; A_S-EVA-26507 	 45 
 #&gt; 						 lower bound 	 upper bound
 #&gt; 				 at level 95% 	 44 		 47 
 #&gt; 				 at level 68% 	 45 		 46 
@@ -239,35 +243,19 @@ the <a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a> extracted fr
 #&gt; ------------------------------------------------------</div><div class='img'><img src='plot_Ages-5.png' alt='' width='700' height='433' /></div><div class='img'><img src='plot_Ages-6.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'>## plot output</span>
 <span class='fu'>plot_Ages</span>(<span class='no'>Age</span>)</div><div class='img'><img src='plot_Ages-7.png' alt='' width='700' height='433' /></div><div class='output co'>#&gt;        SAMPLE AGE HPD68.MIN HPD68.MAX HPD95.MIN HPD95.MAX ALT_SAMPLE_NAME AT
-#&gt; 1 S-EVA-26510  42     41.54     42.10     41.25     42.39              NA  4
-#&gt; 2 S-EVA-26506  47     46.19     46.92     45.85     47.11              NA  3
-#&gt; 3 S-EVA-26507  46     44.93     45.99     44.38     46.61              NA  2
-#&gt; 4 S-EVA-26508  46     44.97     46.21     44.35     46.95              NA  1</div><div class='input'>
+#&gt; 1 S-EVA-26510  42     41.52     42.09     41.25     42.41              NA  4
+#&gt; 2 S-EVA-26506  46     46.11     46.77     45.81     47.15              NA  3
+#&gt; 3 S-EVA-26507  45     44.74     45.87     44.40     46.54              NA  2
+#&gt; 4 S-EVA-26508  46     44.90     46.22     44.39     47.31              NA  1</div><div class='input'>
 </div></pre>
   </div>
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-    <h2>Contents</h2>
-    <ul class="nav nav-pills nav-stacked">
-      <li><a href="#arguments">Arguments</a></li>
-      
-      <li><a href="#value">Value</a></li>
-
-      <li><a href="#details">Details</a></li>
-
-      <li><a href="#function-version">Function version</a></li>
-
-      <li><a href="#see-also">See also</a></li>
-
-      <li><a href="#how-to-cite">How to cite</a></li>
-      
-      <li><a href="#examples">Examples</a></li>
-    </ul>
-
-    <h2>Author</h2>
-    <p>Sebastian Kreutzer, IRAMAT-CRP2A, UMR 5060, CNRS - Université Bordeaux Montaigne (France), based on code
-written by Claire Christophe</p>
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
+    <nav id="toc" data-toggle="toc" class="sticky-top">
+      <h2 data-toc-skip>Contents</h2>
+    </nav>
   </div>
 </div>
+
 
       <footer>
       <div class="copyright">
@@ -275,13 +263,16 @@ written by Claire Christophe</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
 </div>
+
       </footer>
    </div>
 
   
 
+
   </body>
 </html>
+
 
