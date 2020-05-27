@@ -51,8 +51,9 @@ knitr::opts_chunk$set(
 
 ### New functions
 
-* `create_ThetaMatrix()` this function is a helper to create the theta matrix that can be provided
-as input for the functions `AgeS_Computation()` and `Age_OSLC14()`
+* `create_ThetaMatrix()` this function is a helper to create the theta matrix that can be provided as input for the functions `AgeS_Computation()` and `Age_OSLC14()`
+* `create_FolderTemplates()` creates the folder and file structures required 
+by `Generate_DataFile()` and `Generate_DataFile_MG()` on the user's hard drive
 
 ## BayLum 0.1.3 (Release date: 2018-09-14)
 
