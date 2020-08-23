@@ -18,7 +18,7 @@
 #' @param variables [character] (with default): Variables in your [coda::mcmc] object to be plotted.
 #'
 #' @param axes_labels [character] (with default): Axes labels used for the trace and density plots. The labels should
-#' be provided as named [character] [vector] with the parameter names as the names used to asign the axes labelling.
+#' be provided as named [character] [vector] with the parameter names as the names used to assign the axes labelling.
 #' The labelling for the x-axis (trace plots) and y-axis (density plot) cannot be modified.
 #'
 #' @param plot_single [logical] (with default): Enables/disables the single plot mode of the function, i.e.
@@ -35,7 +35,7 @@
 #'
 #' @param rug [logical] (with default): Enable/disables [rug] under density plots
 #'
-#' @param ... further arguments that can be passed to modifiy the plot output. Supported arguments are
+#' @param ... further arguments that can be passed to modify the plot output. Supported arguments are
 #' `lwd`, `lty`, `col`, `type`, `cex`,`mtext`, cf. [mtext] for `mtext` and [plot.default] for the other
 #' arguments.
 #'
