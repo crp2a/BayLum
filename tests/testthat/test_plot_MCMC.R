@@ -15,7 +15,7 @@ test_that("Full function test", {
   Data <- combine_DataFiles(DATA2,DATA1)
 
   ## Age computation of samples GDB5 and GDB3,
-  priorage=c(1,10,20,60) # these samples are not young
+  priorage <- c(1,10,20,60) # these samples are not young
   ## without common error and without stratigraphic constraints
   object2 <- AgeS_Computation(
     DATA = Data,
@@ -45,7 +45,7 @@ test_that("Full function test", {
 
     #variables
     expect_silent(plot_MCMC(object, variables = c("A")))
-    expect_error(plot_MCMC(object, variables = c("U")))
+    expect_warning(plot_MCMC(object, variables = c("U")))
 
     ##n.chains
     expect_silent(plot_MCMC(object, n.chains = 1))

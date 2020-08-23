@@ -4,7 +4,7 @@
 #' corresponding densities. In particular it displays the posterior distributions of the age, if it is calculated,
 #' palaeodose and the equivalent dose dispersion parameters of the sample. The function output is very
 #' similar to plot output produced with the 'coda' package, but tailored to meet the needs in
-#' the context of the 'BayLum' package.
+#' the context of the `'BayLum'` package.
 #'
 #' The function is used in the function [Age_Computation], [AgeS_Computation]
 #' and [Palaeodose_Computation], but can be used also as standalone plot function.
@@ -44,11 +44,11 @@
 #' Two plots: Traces of the MCMC chains and the corresponding density plots. This plots
 #' are similar to [coda::traceplot] and [coda::densplot].
 #'
-#' @section Function version: 0.1.3
+#' @section Function version: 0.1.4
 #'
 #' @keywords dplot
 #'
-#' @author Sebastian Kreutzer, IRAMAT-CRP2A, UMR 5060, CNRS-Université Bordeaux Montaigne (France). This function
+#' @author Sebastian Kreutzer, Geography & Earth Sciences, Aberystwyth University (United Kingdom). This function
 #' is a re-written version of the function 'MCMC_plot()' by Claire Christophe
 #'
 #' @seealso [Age_Computation], [AgeS_Computation], [Palaeodose_Computation],
@@ -100,9 +100,9 @@ plot_MCMC <- function(
     sel <- which(gsub(coda::varnames(object), pattern = "\\[.+\\]" ,replacement = "") %in% variables)
 
     if(length(sel) == 0){
-      allowed <- unique(gsub(coda::varnames(object), pattern = "\\[.\\]" ,replacement = ""))
-      stop(paste0("[plot_MCMC()] Invalid 'variables', they did not match your dataset. Variable names of your dataset: ",
-                  paste(allowed, collapse = ", "), "."), call. = FALSE)
+      sel <- unique(gsub(coda::varnames(object), pattern = "\\[.\\]", replacement = ""))
+      warning(paste0("[plot_MCMC()] Invalid 'variables'. Set to found variables from your dataset: ",
+                  paste(sel, collapse = ", "), "."), call. = FALSE)
     }
 
     ##create new object
