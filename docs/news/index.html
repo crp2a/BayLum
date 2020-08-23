@@ -71,7 +71,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">BayLum</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.4.9000-40</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.4.9000-44</span>
       </span>
     </div>
 
@@ -127,9 +127,9 @@
       <small>Source: <a href='https://github.com/crp2a/BayLum/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
-    <div id="baylum-0149000-40-2020-05-27" class="section level2">
+    <div id="baylum-0149000-44-2020-08-23" class="section level2">
 <h2 class="hasAnchor">
-<a href="#baylum-0149000-40-2020-05-27" class="anchor"></a>BayLum 0.1.4.9000-40 (2020-05-27)</h2>
+<a href="#baylum-0149000-44-2020-08-23" class="anchor"></a>BayLum 0.1.4.9000-44 (2020-08-23)</h2>
 <div id="bugfixes--changes" class="section level3">
 <h3 class="hasAnchor">
 <a href="#bugfixes--changes" class="anchor"></a>Bugfixes &amp; changes</h3>
@@ -138,7 +138,7 @@
 <code><a href="../reference/AgeS_Computation.html">AgeS_Computation()</a></code>
 <ul>
 <li>Now stops if a mismatch was encountered between the number of samples and the matrix provided via <code>THETA</code> to prevent a ‘JAGS’ runtime error</li>
-<li>The function experimentally gained a new argument <code>jags_method</code> to support full automated processing in parallel using the R package ‘runjags’; including a <code>...</code> argument for a more detailed control. By default the calculation is done simply via ‘rjags’ as usual</li>
+<li>The function experimentally gained a new argument <code>jags_method</code> to support full automated processing in parallel using the R package <code>'runjags'</code>; including a <code>...</code> argument for a more detailed control. By default the calculation is done simply via <code>'rjags'</code> as usual</li>
 </ul>
 </li>
 <li>
@@ -158,20 +158,22 @@
 <code><a href="../reference/plot_Ages.html">plot_Ages()</a></code>
 <ul>
 <li>The sorting of the samples in the graph did not work as expected; along with this a new argument <code>sample_order</code> was added.</li>
-<li>The function accepts a data.frame as alternative input, if the <code>data.frame</code> is similiar the data frames created by the compution functions (e.g., <code><a href="../reference/AgeS_Computation.html">AgeS_Computation()</a></code>). This option enables the manual creation of age plots from self-compiled data.</li>
+<li>The function accepts a data.frame as alternative input, if the <code>data.frame</code> is similar the data frames created by the computation functions (e.g., <code><a href="../reference/AgeS_Computation.html">AgeS_Computation()</a></code>). This option enables the manual creation of age plots from self-compiled data.</li>
 </ul>
 </li>
 <li>
 <code><a href="../reference/plot_MCMC.html">plot_MCMC()</a></code>
 <ul>
 <li>Accidentally the function could not display the chains from more than 9 samples; fixed (thanks to Maryam Heydari)</li>
-<li>Now the function understand sthe output of <code><a href="../reference/AgeS_Computation.html">AgeS_Computation()</a></code> for an automated treatment</li>
+<li>Now the function understand the output of <code><a href="../reference/AgeS_Computation.html">AgeS_Computation()</a></code> for an automated treatment</li>
+<li>Wrong variable names now lead to a <code>warning</code> instead of a <code>stop</code>. This is less aggressive and it makes the function easier to use by users who only use the plot functionality of <code>'BayLum'</code>
+</li>
 </ul>
 </li>
 <li>
 <code><a href="../reference/plot_Scatterplots.html">plot_Scatterplots()</a></code>
 <ul>
-<li>Linebreaks and leading and trailing whitespace is now removed from the character (vector) provided via <code>sample_names</code>
+<li>Line breaks and leading and trailing white space is now removed from the character (vector) provided via <code>sample_names</code>
 </li>
 <li>If the number of selected samples via <code>sample_selection</code> was shorter than the number of names provided by <code>sample_names</code> the function returned an <code>subscript out of bounds</code> error; fixed (reported by Maryam Heydari)</li>
 </ul>

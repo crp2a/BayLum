@@ -9,11 +9,11 @@
 
 [![Project Status: Active – The project has reached a stable, usable
 state and is being actively
-developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)
-[![CRAN](http://www.r-pkg.org/badges/version/BayLum)](https://CRAN.R-project.org/package=BayLum)
+developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
+[![CRAN](https://www.r-pkg.org/badges/version/BayLum)](https://CRAN.R-project.org/package=BayLum)
 [![cran
 checks](https://cranchecks.info/badges/worst/BayLum)](https://cranchecks.info/pkgs/BayLum)
-[![Downloads](http://cranlogs.r-pkg.org/badges/grand-total/BayLum)](http://www.r-pkg.org/pkg/BayLum)
+[![Downloads](https://cranlogs.r-pkg.org/badges/grand-total/BayLum)](https://www.r-pkg.org/pkg/BayLum)
 [![Build
 status](https://ci.appveyor.com/api/projects/status/1nh9kbu2vlef9yjq?svg=true)](https://ci.appveyor.com/project/nfrerebeau/baylum)
 [![Build

@@ -68,6 +68,6 @@ written by Claire Christophe
 } 
 
 \section{How to cite}{
-Kreutzer, S., Christophe, C., 2020. plot_Ages(): Create Age Plot. Function version 0.1.4. In: Christophe, C., Philippe, A., Kreutzer, S., Guerin, G., 2020. BayLum: Chronological Bayesian Models Integrating Optically Stimulated. R package version 0.1.4.9000-40. https://CRAN.r-project.org/package=BayLum
+Kreutzer, S., Christophe, C., 2020. plot_Ages(): Create Age Plot. Function version 0.1.4. In: Christophe, C., Philippe, A., Kreutzer, S., Guerin, G., 2020. BayLum: Chronological Bayesian Models Integrating Optically Stimulated. R package version 0.1.4.9000-45. https://CRAN.r-project.org/package=BayLum
 }
 

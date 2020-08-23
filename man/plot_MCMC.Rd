@@ -27,7 +27,7 @@ argument \code{mtext}.}
 \item{variables}{\link{character} (with default): Variables in your \link[coda:mcmc]{coda::mcmc} object to be plotted.}
 
 \item{axes_labels}{\link{character} (with default): Axes labels used for the trace and density plots. The labels should
-be provided as named \link{character} \link{vector} with the parameter names as the names used to asign the axes labelling.
+be provided as named \link{character} \link{vector} with the parameter names as the names used to assign the axes labelling.
 The labelling for the x-axis (trace plots) and y-axis (density plot) cannot be modified.}
 
 \item{n.chains}{\link{numeric} (optional): Set the number of chains to visualise, if nothing is provided the
@@ -44,7 +44,7 @@ Please note that large numbers impact the plot performance.}
 \item{plot_single}{\link{logical} (with default): Enables/disables the single plot mode of the function, i.e.
 if set to \code{TRUE} every plot is returned in a single plot and own \link{par} settings can be applied.}
 
-\item{...}{further arguments that can be passed to modifiy the plot output. Supported arguments are
+\item{...}{further arguments that can be passed to modify the plot output. Supported arguments are
 \code{lwd}, \code{lty}, \code{col}, \code{type}, \code{cex},\code{mtext}, cf. \link{mtext} for \code{mtext} and \link{plot.default} for the other
 arguments.}
 }
@@ -57,14 +57,14 @@ This function uses the output of \link[rjags:jags.model]{rjags::jags.model} to v
 corresponding densities. In particular it displays the posterior distributions of the age, if it is calculated,
 palaeodose and the equivalent dose dispersion parameters of the sample. The function output is very
 similar to plot output produced with the 'coda' package, but tailored to meet the needs in
-the context of the 'BayLum' package.
+the context of the \code{'BayLum'} package.
 }
 \details{
 The function is used in the function \link{Age_Computation}, \link{AgeS_Computation}
 and \link{Palaeodose_Computation}, but can be used also as standalone plot function.
 }
 \section{Function version}{
- 0.1.3
+ 0.1.4
 }
 
 \examples{
@@ -78,12 +78,12 @@ plot_MCMC(object)
 \link[rjags:coda.samples]{rjags::coda.samples} and \link{rjags} packages.
 }
 \author{
-Sebastian Kreutzer, IRAMAT-CRP2A, UMR 5060, CNRS-Université Bordeaux Montaigne (France). This function
+Sebastian Kreutzer, Geography & Earth Sciences, Aberystwyth University (United Kingdom). This function
 is a re-written version of the function 'MCMC_plot()' by Claire Christophe
 } 
 
 \section{How to cite}{
-Kreutzer, S., Christophe, C., 2020. plot_MCMC(): Plot MCMC trajectories and posterior distributions. Function version 0.1.3. In: Christophe, C., Philippe, A., Kreutzer, S., Guerin, G., 2020. BayLum: Chronological Bayesian Models Integrating Optically Stimulated. R package version 0.1.4.9000-40. https://CRAN.r-project.org/package=BayLum
+Kreutzer, S., Christophe, C., 2020. plot_MCMC(): Plot MCMC trajectories and posterior distributions. Function version 0.1.4. In: Christophe, C., Philippe, A., Kreutzer, S., Guerin, G., 2020. BayLum: Chronological Bayesian Models Integrating Optically Stimulated. R package version 0.1.4.9000-45. https://CRAN.r-project.org/package=BayLum
 }
 
 \keyword{dplot}
