@@ -1,41 +1,46 @@
-#' Plots Lx/Tx as a function of the regenerative dose
+#' @title Plots Lx/Tx as a function of the regenerative dose
 #'
-#' This function plots Lx/Tx values as a function of regenerative dose,
+#' @description This function plots `Lx/Tx` values as a function of regenerative dose,
 #' for every selected aliquot and for each sample.
 #'
-#' @param DATA [list] (**required**): list of objects `LT`, `sLT`, `ITimes`, `dLab`, `ddot_env`, `regDose`, `J`, `K`, `Nb_measurement`,
-#' provided by \code{\link{Generate_DataFile}} or \code{\link{Generate_DataFile_MG}} or \code{\link{combine_DataFiles}}.
-#' \code{DATA} can contain information from more than one sample.
+#' @param DATA [list] (**required**): list of objects `LT`, `sLT`, `ITimes`, `dLab`, `ddot_env`, `regDose`, `J`, `K`, `Nb_measurement`, #' provided by [Generate_DataFile] or [Generate_DataFile_MG] or [combine_DataFiles].`DATA` can contain information from more than one sample.
 #'
 #' @param Path [character] (**required**): path to the project folder
-#' (the same as the one used in \code{\link{Generate_DataFile}}  or \code{\link{Generate_DataFile_MG}} to provide \code{DATA})
+#' (the same as the one used in [Generate_DataFile]  or [Generate_DataFile_MG] to provide \code{DATA})
 #'
-#' @param FolderNames [character] (**required**):  vector of names of the sub-folders containing the BIN files,
-#' which were used by \code{\link{Generate_DataFile}} or \code{\link{Generate_DataFile_MG}} to generate the \code{DATA} object.
+#' @param FolderNames [character] (**required**): vector of names of the sub-folders
+#' containing the BIN-files, which were used by [Generate_DataFile] or [Generate_DataFile_MG]
+#' to generate the `DATA` object.
 #'
-#' @param Nb_sample [integer] (**required**): ID number (in `[1,Nb_sample]`) of the sample selected for plotting L/T as a function of regenerative doses.
-#' Required if the \code{DATA} object contains information for more than one sample.
+#' @param Nb_sample [integer] (**required**): ID number (in `[1,Nb_sample]`) of the
+#' sample selected for plotting L/T as a function of regenerative doses.
+#' Required if the `DATA` object contains information for more than one sample.
 #'
-#' @param BinPerSample [integer] (with default): integer vector (with default): vector with the number of BIN files per sample,
-#' which was used in [Generate_DataFile] or [Generate_DataFile_MG]} to generate the \code{DATA} object.
+#' @param BinPerSample [integer] (with default): integer vector (with default):
+#' vector with the number of BIN files per sample, which was used in [Generate_DataFile] or
+#' [Generate_DataFile_MG] to generate the `DATA` object.
 #'
 #' @param SampleNames [character] (with default): Names of samples. To use if there is more than one bin file per sample.
 #'
-#' @param SG [logical] (with default): vector to set the type of measurement for each sample `length(SG)=Nb_sample`.
-#' If the sample of number ID equal to \code{i}, `SG[i]=TRUE` if it is a Single-grain OSL measurements,
-#' \code{SG[i]}=FALSE if it is a Multi-grain OSL measurements.
+#' @param SG [logical] (with default): vector to set the type of measurement for
+#' each sample `length(SG)=Nb_sample`.If the sample of number ID equal to `i`, `SG[i]=TRUE`
+#' if it is a Single-grain OSL measurements,
+#' `SG[i]=FALSE` if it is a Multi-grain OSL measurements.
 #'
-#' @param sepDP [character] (with default): column separator in the `DiscPose.csv` file or in Disc.csv file.
-#' It must be the same separator for all samples, for Single-grain OSL measurements or Multi-grain OSL measurements.
+#' @param sepDP [character] (with default): column separator in the `DiscPos.csv`
+#' file or in Disc.csv file. It must be the same separator for all samples,
+#' for single-grain OSL measurements or multi-grain OSL measurements.
 #'
-#' @param nrow [integer] (with default): controls the arrangement of the plots, here the number of rows. Can be set to `NULL`.
+#' @param nrow [integer] (with default): controls the arrangement of the plots,
+#' here the number of rows. Can be set to `NULL`.
 #'
-#' @param ncol [integer] (with default): controls the arrangement of the plots, here the number of columns. Can be set to `NULL`.
+#' @param ncol [integer] (with default): controls the arrangement of the plots,
+#' here the number of columns. Can be set to `NULL`.
 #'
 #' @details
-#' To fill \code{FolderNames} and \code{BinPerSample}, we refer to the \bold{Detail} section from the
+#' To fill `FolderNames` and `BinPerSample`, we refer to the \bold{Detail} section from the
 #' [Generate_DataFile] or [Generate_DataFile_MG] function.
-#' As well for a precise description of input \code{DATA}.
+#' As well for a precise description of input `DATA`.
 #'
 #' @return Lx/Tx plots; there are as many plots as selected aliquots in the `DiscPos.csv` file.
 #' There are 9 plots per page.
@@ -43,15 +48,21 @@
 #'
 #' @author Claire Christophe, Sebastian Kreutzer, Anne Philippe, Guillaume Guérin
 #'
-#' @seealso \code{\link{Generate_DataFile}}, \code{\link{Generate_DataFile_MG}}
+#' @seealso [Generate_DataFile], [Generate_DataFile_MG]
 #'
 #' @examples
 #' ## load data file generated by the function Generate_DataFile
 #' data(DATA3,envir = environment())
 #' path<- system.file("extdata/FER1", "", package="BayLum")
 #' folder=""
-#' samplename="FER1"
-#' LT_RegenDose(DATA=DATA3,Path=path,FolderNames=folder,SampleNames=samplename,Nb_sample=1,SG=FALSE)
+#' samplename <- "FER1"
+#' LT_RegenDose(
+#'  DATA = DATA3,
+#'  Path = path,
+#'  FolderNames = folder,
+#'  SampleNames = samplename,
+#'  Nb_sample = 1,
+#'  SG = FALSE)
 #' @md
 #' @export
 LT_RegenDose<-function(
