@@ -26,18 +26,18 @@ library(BayLum)
 Amongst others, this includes data import, export, application of age models and palaeodose modelling.
 
 Data can be processed simultaneously for various samples, including the input of multiple BIN/BINX-files per
-sample for single grain (SG) or multigrain (MG) OSL measurements. Stratigraphic constraints and 
+sample for single grain (SG) or multi-grain (MG) OSL measurements. Stratigraphic constraints and 
 systematic errors can be added to constrain the analysis further.
 
-For those who already know how to use **R**, 'BayLum' won't be difficult to use, 
+For those who already know how to use **R**, `'BayLum'` won't be difficult to use, 
 for all others, this brief introduction may be of help to make the first steps with **R** and 
 the package 'BayLum' as convenient as possible. 
 
 ## Installing `BayLum' package
 
 If you read this document before having installed **R** itself, you should first visit the 
-[R project](https://www.r-project.org) webpage and download and install **R**. 
-You may also consider installing [Rstudio](https://www.rstudio.com), 
+[R project](https://r-project.org) website and download and install **R**. 
+You may also consider installing [Rstudio](https://rstudio.com), 
 which provides an excellent desktop working environment for **R**; however it is not 
 a prerequisite.
 
@@ -212,8 +212,8 @@ word `cauchy` by `gaussian`, `lognormal_A` or `lognormal_M` for the argument `di
 The difference between the models: *lognormal_A* and *lognormal_M* is that the equivalent dose dispersion
 are distributed according to:
 
-- a lognormal distribution with mean or average equal to the palaeodose for the first model
-- a lognormal distribution with median equal to the palaeodose for the second model.
+- a log-normal distribution with mean or average equal to the palaeodose for the first model
+- a log-normal distribution with median equal to the palaeodose for the second model.
 
 
 ##### Remark 4: `SavePdf` and `SaveEstimates` option
@@ -224,7 +224,7 @@ These two arguments allow to save the results to files.
 You have to specify `OutputFileName` and `OutputFilePath` to define name and path of the PDF-file.
 
 - `SaveEstimates = TRUE` saves a CSV-file containing the Bayes estimates, the credible interval at 68\% and 95\%  and the Gelman and Rudin test of
-convergency of the parameters `A`, `D`, `sD`. For the export the arugments `OutputTableName` and `OutputTablePath` have to be specified.
+convergence of the parameters `A`, `D`, `sD`. For the export the arguments `OutputTableName` and `OutputTablePath` have to be specified.
 
 ##### Remark 4: `PriorAge` option
 
