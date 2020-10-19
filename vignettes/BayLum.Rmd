@@ -36,7 +36,7 @@ the package 'BayLum' as convenient as possible.
 ## Installing `BayLum' package
 
 If you read this document before having installed **R** itself, you should first visit the 
-[R project](https://r-project.org) website and download and install **R**. 
+[R project](https://www.r-project.org) website and download and install **R**. 
 You may also consider installing [Rstudio](https://rstudio.com), 
 which provides an excellent desktop working environment for **R**; however it is not 
 a prerequisite.
