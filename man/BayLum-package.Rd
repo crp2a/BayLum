@@ -12,12 +12,12 @@ application of age and palaeodose models.
 }
 \details{
 This package is based on the functions: \link{Generate_DataFile} and \link{Generate_DataFile_MG}
-to import luminisecence data. These functions create a list containing all informations to
+to import luminescence data. These functions create a list containing all informations to
 compute age of single-grain OSL measurements for the first function and multi-grain OSL
 measurements for the second.
 
 The functions: \link{Age_Computation} and \link{AgeS_Computation} use Bayesian analysis for OSL age
-estimation for one or various samples according to differents models
+estimation for one or various samples according to difference models
 (e.g. different dose-response curves and different equivalent dose distributions around the palaeodose).
 
 It is possible to consider various BIN/BINX-files per sample, to compute ages of samples in

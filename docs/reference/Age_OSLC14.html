@@ -78,7 +78,7 @@ Northern or Sourthen Hemisphere or marine atmospheric." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">BayLum</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.4.9000-44</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.0</span>
       </span>
     </div>
 
@@ -145,35 +145,35 @@ For C14 data, the user can choose one of the following radiocarbon calibration c
 Northern or Sourthen Hemisphere or marine atmospheric.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>Age_OSLC14</span>(
-  <span class='no'>DATA</span>,
-  <span class='no'>Data_C14Cal</span>,
-  <span class='no'>Data_SigmaC14Cal</span>,
-  <span class='no'>Nb_sample</span>,
-  <span class='no'>SampleNames</span>,
-  <span class='no'>SampleNature</span>,
-  <span class='kw'>PriorAge</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>10</span>, <span class='fl'>60</span>), <span class='no'>Nb_sample</span>),
-  <span class='kw'>SavePdf</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>OutputFileName</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"MCMCplot"</span>, <span class='st'>"HPD_Cal14CCurve"</span>, <span class='st'>"summary"</span>),
-  <span class='kw'>OutputFilePath</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>""</span>),
-  <span class='kw'>SaveEstimates</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>OutputTableName</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"DATA"</span>),
-  <span class='kw'>OutputTablePath</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>""</span>),
-  <span class='kw'>StratiConstraints</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(),
-  <span class='kw'>sepSC</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>","</span>),
-  <span class='kw'>BinPerSample</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span>(<span class='fl'>1</span>, <span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span>(<span class='no'>SampleNature</span>[<span class='fl'>1</span>, ])),
-  <span class='kw'>THETA</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(),
-  <span class='kw'>sepTHETA</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>","</span>),
-  <span class='kw'>LIN_fit</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>Origin_fit</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>distribution</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"cauchy"</span>),
-  <span class='kw'>Model_C14</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"full"</span>),
-  <span class='kw'>CalibrationCurve</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"AtmosphericNorth"</span>),
-  <span class='kw'>Iter</span> <span class='kw'>=</span> <span class='fl'>50000</span>,
-  <span class='kw'>t</span> <span class='kw'>=</span> <span class='fl'>5</span>,
-  <span class='kw'>n.chains</span> <span class='kw'>=</span> <span class='fl'>3</span>,
-  <span class='kw'>quiet</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
-)</pre>
+    <pre class="usage"><span class='fu'>Age_OSLC14</span><span class='op'>(</span>
+  <span class='va'>DATA</span>,
+  <span class='va'>Data_C14Cal</span>,
+  <span class='va'>Data_SigmaC14Cal</span>,
+  <span class='va'>Nb_sample</span>,
+  <span class='va'>SampleNames</span>,
+  <span class='va'>SampleNature</span>,
+  PriorAge <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>10</span>, <span class='fl'>60</span><span class='op'>)</span>, <span class='va'>Nb_sample</span><span class='op'>)</span>,
+  SavePdf <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  OutputFileName <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"MCMCplot"</span>, <span class='st'>"HPD_Cal14CCurve"</span>, <span class='st'>"summary"</span><span class='op'>)</span>,
+  OutputFilePath <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>""</span><span class='op'>)</span>,
+  SaveEstimates <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  OutputTableName <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"DATA"</span><span class='op'>)</span>,
+  OutputTablePath <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>""</span><span class='op'>)</span>,
+  StratiConstraints <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='op'>)</span>,
+  sepSC <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>","</span><span class='op'>)</span>,
+  BinPerSample <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span><span class='op'>(</span><span class='fl'>1</span>, <span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span><span class='op'>(</span><span class='va'>SampleNature</span><span class='op'>[</span><span class='fl'>1</span>, <span class='op'>]</span><span class='op'>)</span><span class='op'>)</span>,
+  THETA <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='op'>)</span>,
+  sepTHETA <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>","</span><span class='op'>)</span>,
+  LIN_fit <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  Origin_fit <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  distribution <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"cauchy"</span><span class='op'>)</span>,
+  Model_C14 <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"full"</span><span class='op'>)</span>,
+  CalibrationCurve <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"AtmosphericNorth"</span><span class='op'>)</span>,
+  Iter <span class='op'>=</span> <span class='fl'>50000</span>,
+  t <span class='op'>=</span> <span class='fl'>5</span>,
+  n.chains <span class='op'>=</span> <span class='fl'>3</span>,
+  quiet <span class='op'>=</span> <span class='cn'>FALSE</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -445,7 +445,7 @@ initial value generation of JAGS. This is not optimal and will be changed in fut
 of the age estimates if the chains have converged.</p>
     <h2 class="hasAnchor" id="how-to-cite"><a class="anchor" href="#how-to-cite"></a>How to cite</h2>
 
-    <p>Christophe, C., Philippe, A., Guerin, G., Kreutzer, S., 2020. Age_OSLC14(): Bayesian analysis for age estimation of OSL measerments and C-14 ages of various samples. In: Christophe, C., Philippe, A., Kreutzer, S., Guerin, G., 2020. BayLum: Chronological Bayesian Models Integrating Optically Stimulated. R package version 0.1.4.9000-44. https://CRAN.r-project.org/package=BayLum</p>
+    <p>Christophe, C., Philippe, A., Guerin, G., Kreutzer, S., 2020. Age_OSLC14(): Bayesian analysis for age estimation of OSL measerments and C-14 ages of various samples. In: Christophe, C., Philippe, A., Kreutzer, S., Guerin, G., 2020. BayLum: Chronological Bayesian Models Integrating Optically Stimulated. R package version 0.2.0. https://CRAN.r-project.org/package=BayLum</p>
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
     <p>Reimer PJ, Bard E, Bayliss A, Beck JW, Blackwell PC, Bronl Ramsey C, Buck CE, Cheng H, Edwards RL, Friedrich M,
@@ -457,28 +457,32 @@ IntCal13 ans Marine13 radiocarbon age calibration curves 0-50000 years cal BP. R
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p>rjags, <a href='plot_MCMC.html'>plot_MCMC</a>, <a href='SCMatrix.html'>SCMatrix</a>, <a href='plot_Ages.html'>plot_Ages</a></p></div>
+    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
+
+    <p>Claire Christophe, Anne Philippe, Guillaume Guerin, Sebastian Kreutzer</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'>## Load data</span>
 <span class='co'># OSL data</span>
-<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>DATA1</span>,<span class='kw'>envir</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/environment.html'>environment</a></span>())
-<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>DATA2</span>,<span class='kw'>envir</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/environment.html'>environment</a></span>())
-<span class='no'>Data</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='combine_DataFiles.html'>combine_DataFiles</a></span>(<span class='no'>DATA2</span>,<span class='no'>DATA1</span>)
+<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>DATA1</span>,envir <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/environment.html'>environment</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>DATA2</span>,envir <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/environment.html'>environment</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>
+<span class='va'>Data</span> <span class='op'>&lt;-</span> <span class='fu'><a href='combine_DataFiles.html'>combine_DataFiles</a></span><span class='op'>(</span><span class='va'>DATA2</span>,<span class='va'>DATA1</span><span class='op'>)</span>
 
 <span class='co'># 14C data</span>
-<span class='no'>C14Cal</span> <span class='kw'>&lt;-</span> <span class='no'>DATA_C14</span>$<span class='no'>C14</span>[<span class='fl'>1</span>,<span class='fl'>1</span>]
-<span class='no'>SigmaC14Cal</span> <span class='kw'>&lt;-</span> <span class='no'>DATA_C14</span>$<span class='no'>C14</span>[<span class='fl'>1</span>,<span class='fl'>2</span>]
-<span class='no'>Names</span> <span class='kw'>&lt;-</span> <span class='no'>DATA_C14</span>$<span class='no'>Names</span>[<span class='fl'>1</span>]
+<span class='va'>C14Cal</span> <span class='op'>&lt;-</span> <span class='va'>DATA_C14</span><span class='op'>$</span><span class='va'>C14</span><span class='op'>[</span><span class='fl'>1</span>,<span class='fl'>1</span><span class='op'>]</span>
+<span class='va'>SigmaC14Cal</span> <span class='op'>&lt;-</span> <span class='va'>DATA_C14</span><span class='op'>$</span><span class='va'>C14</span><span class='op'>[</span><span class='fl'>1</span>,<span class='fl'>2</span><span class='op'>]</span>
+<span class='va'>Names</span> <span class='op'>&lt;-</span> <span class='va'>DATA_C14</span><span class='op'>$</span><span class='va'>Names</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>]</span>
 
 <span class='co'># Prior Age</span>
-<span class='no'>prior</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1</span>,<span class='fl'>60</span>),<span class='fl'>3</span>)
-<span class='no'>samplenature</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span>(<span class='kw'>data</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1</span>,<span class='fl'>0</span>,<span class='fl'>1</span>,<span class='fl'>0</span>,<span class='fl'>1</span>,<span class='fl'>0</span>),<span class='kw'>ncol</span><span class='kw'>=</span><span class='fl'>3</span>,<span class='kw'>nrow</span><span class='kw'>=</span><span class='fl'>2</span>,<span class='kw'>byrow</span><span class='kw'>=</span><span class='fl'>TRUE</span>)
-<span class='no'>SC</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span>(<span class='kw'>data</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1</span>,<span class='fl'>1</span>,<span class='fl'>1</span>,<span class='fl'>0</span>,<span class='fl'>1</span>,<span class='fl'>1</span>,<span class='fl'>0</span>,<span class='fl'>0</span>,<span class='fl'>1</span>,<span class='fl'>0</span>,<span class='fl'>0</span>,<span class='fl'>0</span>),<span class='kw'>ncol</span><span class='kw'>=</span><span class='fl'>3</span>,<span class='kw'>nrow</span><span class='kw'>=</span><span class='fl'>4</span>,<span class='kw'>byrow</span><span class='kw'>=</span><span class='fl'>TRUE</span>)
+<span class='va'>prior</span><span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span>,<span class='fl'>60</span><span class='op'>)</span>,<span class='fl'>3</span><span class='op'>)</span>
+<span class='va'>samplenature</span><span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span><span class='op'>(</span>data<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span>,<span class='fl'>0</span>,<span class='fl'>1</span>,<span class='fl'>0</span>,<span class='fl'>1</span>,<span class='fl'>0</span><span class='op'>)</span>,ncol<span class='op'>=</span><span class='fl'>3</span>,nrow<span class='op'>=</span><span class='fl'>2</span>,byrow<span class='op'>=</span><span class='cn'>TRUE</span><span class='op'>)</span>
+<span class='va'>SC</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span><span class='op'>(</span>data<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span>,<span class='fl'>1</span>,<span class='fl'>1</span>,<span class='fl'>0</span>,<span class='fl'>1</span>,<span class='fl'>1</span>,<span class='fl'>0</span>,<span class='fl'>0</span>,<span class='fl'>1</span>,<span class='fl'>0</span>,<span class='fl'>0</span>,<span class='fl'>0</span><span class='op'>)</span>,ncol<span class='op'>=</span><span class='fl'>3</span>,nrow<span class='op'>=</span><span class='fl'>4</span>,byrow<span class='op'>=</span><span class='cn'>TRUE</span><span class='op'>)</span>
 
 <span class='co'>## Age computation of samples</span>
-<span class='no'>Age</span> <span class='kw'>&lt;-</span> <span class='fu'>Age_OSLC14</span>(<span class='kw'>DATA</span><span class='kw'>=</span><span class='no'>Data</span>,<span class='kw'>Data_C14Cal</span><span class='kw'>=</span><span class='no'>C14Cal</span>,<span class='kw'>Data_SigmaC14Cal</span><span class='kw'>=</span><span class='no'>SigmaC14Cal</span>,
-   <span class='kw'>SampleNames</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"GDB5"</span>,<span class='no'>Names</span>,<span class='st'>"GDB3"</span>),<span class='kw'>Nb_sample</span><span class='kw'>=</span><span class='fl'>3</span>,<span class='kw'>SampleNature</span><span class='kw'>=</span><span class='no'>samplenature</span>,
-   <span class='kw'>PriorAge</span><span class='kw'>=</span><span class='no'>prior</span>,<span class='kw'>StratiConstraints</span><span class='kw'>=</span><span class='no'>SC</span>,<span class='kw'>Iter</span><span class='kw'>=</span><span class='fl'>50</span>,<span class='kw'>n.chains</span><span class='kw'>=</span><span class='fl'>2</span>)</div><div class='output co'>#&gt; Compiling model graph
+<span class='va'>Age</span> <span class='op'>&lt;-</span> <span class='fu'>Age_OSLC14</span><span class='op'>(</span>DATA<span class='op'>=</span><span class='va'>Data</span>,Data_C14Cal<span class='op'>=</span><span class='va'>C14Cal</span>,Data_SigmaC14Cal<span class='op'>=</span><span class='va'>SigmaC14Cal</span>,
+   SampleNames<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"GDB5"</span>,<span class='va'>Names</span>,<span class='st'>"GDB3"</span><span class='op'>)</span>,Nb_sample<span class='op'>=</span><span class='fl'>3</span>,SampleNature<span class='op'>=</span><span class='va'>samplenature</span>,
+   PriorAge<span class='op'>=</span><span class='va'>prior</span>,StratiConstraints<span class='op'>=</span><span class='va'>SC</span>,Iter<span class='op'>=</span><span class='fl'>50</span>,n.chains<span class='op'>=</span><span class='fl'>2</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; Compiling model graph
 #&gt;    Resolving undeclared variables
 #&gt;    Allocating nodes
 #&gt; Graph information:
@@ -494,9 +498,9 @@ IntCal13 ans Marine13 radiocarbon age calibration curves 0-50000 years cal BP. R
 #&gt; &gt;&gt; Convergence of MCMC for the age parameters &lt;&lt;
 #&gt; ----------------------------------------------
 #&gt; Sample name   Bayes estimate   Uppers credible interval
-#&gt; A_GDB5 	 1.09 		 1.46 
-#&gt; A_S-EVA-26510 	 1.04 		 1.25 
-#&gt; A_GDB3 	 0.98 		 0.99 
+#&gt; A_GDB5 	 0.96 		 0.99 
+#&gt; A_S-EVA-26510 	 1.12 		 1.13 
+#&gt; A_GDB3 	 0.99 		 1.12 
 #&gt; 
 #&gt; 
 #&gt; ________________________________________________________________________________
@@ -507,22 +511,22 @@ IntCal13 ans Marine13 radiocarbon age calibration curves 0-50000 years cal BP. R
 #&gt; &gt;&gt; Bayes estimates of Age for each sample and credible interval &lt;&lt;
 #&gt; ------------------------------------------------------
 #&gt; Sample name 	 Bayes estimate  Credible interval: 
-#&gt; A_GDB5 	 7.116 
+#&gt; A_GDB5 	 7.408 
 #&gt; 						 lower bound 	 upper bound
-#&gt; 				 at level 95% 	 6.15 		 8.22 
-#&gt; 				 at level 68% 	 6.51 		 7.57 
+#&gt; 				 at level 95% 	 6.51 		 8.7 
+#&gt; 				 at level 68% 	 6.64 		 7.7 
 #&gt; ------------------------------------------------------
 #&gt; Sample name 	 Bayes estimate  Credible interval: 
-#&gt; A_S-EVA-26510 	 41.804 
+#&gt; A_S-EVA-26510 	 41.834 
 #&gt; 						 lower bound 	 upper bound
-#&gt; 				 at level 95% 	 41.24 		 42.19 
-#&gt; 				 at level 68% 	 41.68 		 42.04 
+#&gt; 				 at level 95% 	 40.99 		 42.97 
+#&gt; 				 at level 68% 	 41.61 		 42.24 
 #&gt; ------------------------------------------------------
 #&gt; Sample name 	 Bayes estimate  Credible interval: 
-#&gt; A_GDB3 	 48.176 
+#&gt; A_GDB3 	 49.237 
 #&gt; 						 lower bound 	 upper bound
-#&gt; 				 at level 95% 	 42.23 		 56.57 
-#&gt; 				 at level 68% 	 42.23 		 48.2 
+#&gt; 				 at level 95% 	 43.62 		 57.39 
+#&gt; 				 at level 68% 	 43.62 		 49.33 
 #&gt; 
 #&gt; ------------------------------------------------------</div><div class='img'><img src='Age_OSLC14-4.png' alt='' width='700' height='433' /></div></pre>
   </div>
@@ -540,7 +544,7 @@ IntCal13 ans Marine13 radiocarbon age calibration curves 0-50000 years cal BP. R
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

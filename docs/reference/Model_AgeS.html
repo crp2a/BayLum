@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>JAGS models use in <code>AgeS_Computation</code> — Model_AgeS • BayLum</title>
+<title>JAGS models use in AgeS_Computation — Model_AgeS • BayLum</title>
 
 
 <!-- jquery -->
@@ -39,7 +39,7 @@
 
 
 
-<meta property="og:title" content="JAGS models use in <code>AgeS_Computation</code> — Model_AgeS" />
+<meta property="og:title" content="JAGS models use in AgeS_Computation — Model_AgeS" />
 <meta property="og:description" content="A list of JAGS models use to a Bayesian analysis of OSL age of various samples. There are models for various growth curves and various distrubution to describe equivalent dose distribution around the palaeodose." />
 
 
@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">BayLum</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.4.9000-44</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.0</span>
       </span>
     </div>
 
@@ -133,12 +133,12 @@
     <p>A list of JAGS models use to a Bayesian analysis of OSL age of various samples. There are models for various growth curves and various distrubution to describe equivalent dose distribution around the palaeodose.</p>
     </div>
 
-    <pre class="usage"><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='st'>"Model_AgeS"</span>)</pre>
+    <pre class="usage"><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='st'>"Model_AgeS"</span><span class='op'>)</span></pre>
 
 
     <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
-    <p>This list contains:</p><dl'>
+    <p>This list contains:</p><dl>
    <dt><code>AgesMultiCS2_EXPLIN</code></dt><dd><p>a list of 4 models that all consider a saturating exponential plus linear growth. These 4 models have different distribution to describe equivalent dose values around the palaeodose.</p></dd>
    <dt><code>AgesMultiCS2_EXP</code></dt><dd><p>a list of 4 models that all consider a saturating exponential growth. These 4 models have different distribution to describe equivalent dose values around the palaeodose.</p></dd>
    <dt><code>AgesMultiCS2_EXPZO</code></dt><dd><p>a list of 4 models that all consider a saturating exponential plus linear growth and fitting through the origin. These 4 models have different distribution to describe equivalent dose values around the palaeodose.</p></dd>
@@ -148,7 +148,7 @@
 
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>The different distibutions to describe equivalent dose values around the palaeodose are:</p><dl'>
+    <p>The different distibutions to describe equivalent dose values around the palaeodose are:</p><dl>
    <dt><code>cauchy</code></dt><dd><p>a Cauchy distribution with postition parameter equal to the palaeodose of the sample</p></dd>
    <dt><code>gaussian</code></dt><dd><p>a Gaussian distribution with mean equal to the palaeodose of the sample</p></dd>
    <dt><code>lognormal_A</code></dt><dd><p>a log-normal distribution with mean or <b>A</b>verage equal to the palaeodose of the sample</p></dd>
@@ -166,11 +166,12 @@ Technische Universit at Wien, Austria.</p>
     <div class='dont-index'><p><code>rjags</code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>Model_AgeS</span>)
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>Model_AgeS</span><span class='op'>)</span>
 <span class='co'>## The JAGS model for a saturating exponential plus linear growth</span>
 <span class='co'>## (a function of the type \code{f(x)=a(1-exp(-x/b))+cx+d})</span>
 <span class='co'>## and a gaussian distribution of equivalent doses around the palaeodose:</span>
-<span class='fu'><a href='https://rdrr.io/r/base/writeLines.html'>writeLines</a></span>(<span class='no'>Model_AgeS</span>$<span class='no'>AgesMultiCS2_EXP</span>$<span class='no'>gaussian</span>)</div><div class='output co'>#&gt; model {
+<span class='fu'><a href='https://rdrr.io/r/base/writeLines.html'>writeLines</a></span><span class='op'>(</span><span class='va'>Model_AgeS</span><span class='op'>$</span><span class='va'>AgesMultiCS2_EXP</span><span class='op'>$</span><span class='va'>gaussian</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; model {
 #&gt; 
 #&gt;   D~dmnorm(mu,omega)
 #&gt;   for(i1 in 1:I){
@@ -237,7 +238,7 @@ Technische Universit at Wien, Austria.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">BayLum</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.4.9000-44</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.0</span>
       </span>
     </div>
 
@@ -133,12 +133,12 @@
     <p>C14 cal age estiamtes and theirs error of samples S-EVA-26510, S-EVA-26506, S-EVA-26507, S-EVA-26508.</p>
     </div>
 
-    <pre class="usage"><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='st'>"DATA_C14"</span>)</pre>
+    <pre class="usage"><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='st'>"DATA_C14"</span><span class='op'>)</span></pre>
 
 
     <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
-    <p>A list containing:</p><dl'>
+    <p>A list containing:</p><dl>
    <dt><code>Names:</code></dt><dd><p>character vector of the sample names;</p></dd>
    <dt><code>C14:</code></dt><dd><p>numeric matrix, in the first column the 14C Cal age of the samples, and in the second column theirs errors.</p></dd>
    
@@ -150,8 +150,9 @@
 <p>Guerin, G., Frouin, M., Talamo, S., Aldeias, V., Bruxelles, L., Chiotti, L., Goldberg, P., Hublin, J.J., Jain, M., Lahaye, C., Madelaine, S., Maureille, B., McPherron, S., Mercier, N., Murray, A., Sandgathe, D., Steele, T., Thomsen, K., Turq, A. (2015). A multi-method luminescence dating of the Palaeolithic sequence of La Ferrassie based on new excavations adjacent to the La Ferrassie 1 and 2 skeletons. Journal of Archaeological Science, 58, 147-166.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>DATA_C14</span>)
-(<span class='no'>DATA_C14</span>)</div><div class='output co'>#&gt; $Names
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>DATA_C14</span><span class='op'>)</span>
+<span class='op'>(</span><span class='va'>DATA_C14</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; $Names
 #&gt; [1] "S-EVA-26510" "S-EVA-26506" "S-EVA-26507" "S-EVA-26508"
 #&gt; 
 #&gt; $C14
@@ -176,7 +177,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

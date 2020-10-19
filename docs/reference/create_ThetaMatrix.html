@@ -74,7 +74,7 @@ covariance matrix \(\Sigma\) (Combès \&amp;amp; Philippe, 2017)" />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">BayLum</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.4.9000-44</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.0</span>
       </span>
     </div>
 
@@ -137,7 +137,7 @@ that can used as input in, e.g., <a href='AgeS_Computation.html'>AgeS_Computatio
 covariance matrix \(\Sigma\) (Combès \&amp; Philippe, 2017)</p>
     </div>
 
-    <pre class="usage"><span class='fu'>create_ThetaMatrix</span>(<span class='no'>input</span>, <span class='kw'>output_file</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>sigma_s</span>, <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>create_ThetaMatrix</span><span class='op'>(</span><span class='va'>input</span>, output_file <span class='op'>=</span> <span class='cn'>NULL</span>, <span class='va'>sigma_s</span>, <span class='va'>...</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -228,7 +228,7 @@ that can be provided via the argument <code>sigma_s</code></p>
     <p>0.1.0</p>
     <h2 class="hasAnchor" id="how-to-cite"><a class="anchor" href="#how-to-cite"></a>How to cite</h2>
 
-    <p>Kreutzer, S., 2020. create_ThetaMatrix(): Create Theta Matrix. Function version 0.1.0. In: Christophe, C., Philippe, A., Kreutzer, S., Guerin, G., 2020. BayLum: Chronological Bayesian Models Integrating Optically Stimulated. R package version 0.1.4.9000-44. https://CRAN.r-project.org/package=BayLum</p>
+    <p>Kreutzer, S., 2020. create_ThetaMatrix(): Create Theta Matrix. Function version 0.1.0. In: Christophe, C., Philippe, A., Kreutzer, S., Guerin, G., 2020. BayLum: Chronological Bayesian Models Integrating Optically Stimulated. R package version 0.2.0. https://CRAN.r-project.org/package=BayLum</p>
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
     <p>Combès, B., Philippe, A., 2017. Bayesian analysis of individual and systematic multiplicative errors
@@ -237,32 +237,41 @@ Quaternary Geochronology 39, 24–34. doi: <a href='https://doi.org/10.1016/j.qu
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><a href='AgeS_Computation.html'>AgeS_Computation</a>, <a href='Age_OSLC14.html'>Age_OSLC14</a>, <a href='https://rdrr.io/r/utils/read.table.html'>utils::read.table</a>, <a href='https://rdrr.io/r/utils/write.table.html'>utils::write.table</a></p></div>
+    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
+
+    <p>Sebastian Kreutzer, IRAMAT-CRP2A, UMR 5060, CNRS-Université Bordeaux Montaigne (France), based
+on an 'MS Excel' sheet by Guillaume Guérin, IRAMAT-CRP2A, UMR 5060, CNRS-Université Bordeaux Montaigne (France)</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'>##(1) return template data.frame (no file output)</span>
-<span class='fu'>create_ThetaMatrix</span>()</div><div class='output co'>#&gt; <span class='message'>[create_ThetaMatrix()] 'input' missing, input template returned!</span></div><div class='output co'>#&gt;   SAMPLE_ID DR_BETA_K DR_BETA_U DR_BETA_TH DR_GAMMA_K DR_GAMMA_U DR_GAMMA_TH
+<span class='fu'>create_ThetaMatrix</span><span class='op'>(</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='message'>[create_ThetaMatrix()] 'input' missing, input template returned!</span></div><div class='output co'>#&gt;   SAMPLE_ID DR_BETA_K DR_BETA_U DR_BETA_TH DR_GAMMA_K DR_GAMMA_U DR_GAMMA_TH
 #&gt; 1        NA        NA        NA         NA         NA         NA          NA
 #&gt;   DR_GAMMA_TOTAL DR_TOTAL DR_TOTAL_X
 #&gt; 1             NA       NA         NA</div><div class='input'>
-<span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
+<span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
 <span class='co'>##(2) return template as data.frame + file</span>
-<span class='no'>file_path</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempfile</a></span>(<span class='kw'>fileext</span> <span class='kw'>=</span> <span class='st'>".csv"</span>)
-<span class='fu'>create_ThetaMatrix</span>(<span class='kw'>output_file</span> <span class='kw'>=</span> <span class='no'>file_path</span> )
+<span class='va'>file_path</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempfile</a></span><span class='op'>(</span>fileext <span class='op'>=</span> <span class='st'>".csv"</span><span class='op'>)</span>
+<span class='fu'>create_ThetaMatrix</span><span class='op'>(</span>output_file <span class='op'>=</span> <span class='va'>file_path</span> <span class='op'>)</span>
 
 <span class='co'>##NOT RUNNING EXAMPLE for sigma_s</span>
-<span class='fu'>calc_ThetaMatrix</span>(<span class='no'>...</span>,
-<span class='kw'>sigma_s</span> <span class='kw'>=</span>  <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(
- <span class='kw'>s_betaK</span> <span class='kw'>=</span> <span class='fl'>0.010</span>,
- <span class='kw'>s_betaU</span> <span class='kw'>=</span> <span class='fl'>0.007</span>,
- <span class='kw'>s_betaTh</span> <span class='kw'>=</span> <span class='fl'>0.006</span>,
- <span class='kw'>s_gammaK</span> <span class='kw'>=</span> <span class='fl'>0.010</span>,
- <span class='kw'>s_gammaU</span> <span class='kw'>=</span> <span class='fl'>0.007</span>,
- <span class='kw'>s_gammaTh</span> <span class='kw'>=</span> <span class='fl'>0.006</span>,
- <span class='kw'>s_gammaDR</span> <span class='kw'>=</span> <span class='fl'>0.05</span>,
- <span class='kw'>s_CAL</span> <span class='kw'>=</span> <span class='fl'>0.020</span>,
- <span class='kw'>s_intDR</span> <span class='kw'>=</span> <span class='fl'>0.030</span>))
+<span class='fu'>calc_ThetaMatrix</span><span class='op'>(</span><span class='va'>...</span>,
+sigma_s <span class='op'>=</span>  <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span>
+ s_betaK <span class='op'>=</span> <span class='fl'>0.010</span>,
+ s_betaU <span class='op'>=</span> <span class='fl'>0.007</span>,
+ s_betaTh <span class='op'>=</span> <span class='fl'>0.006</span>,
+ s_gammaK <span class='op'>=</span> <span class='fl'>0.010</span>,
+ s_gammaU <span class='op'>=</span> <span class='fl'>0.007</span>,
+ s_gammaTh <span class='op'>=</span> <span class='fl'>0.006</span>,
+ s_gammaDR <span class='op'>=</span> <span class='fl'>0.05</span>,
+ s_CAL <span class='op'>=</span> <span class='fl'>0.020</span>,
+ s_intDR <span class='op'>=</span> <span class='fl'>0.030</span><span class='op'>)</span><span class='op'>)</span>
 
-}</div></pre>
+<span class='op'>}</span>
+
+
+
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -278,7 +287,7 @@ Quaternary Geochronology 39, 24–34. doi: <a href='https://doi.org/10.1016/j.qu
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

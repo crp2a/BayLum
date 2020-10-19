@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">BayLum</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.4.9000-44</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.0</span>
       </span>
     </div>
 
@@ -80,13 +80,13 @@
 
       
 
-      </header><script src="BayLum_files/header-attrs-2.3/header-attrs.js"></script><script src="BayLum_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
+      </header><script src="BayLum_files/header-attrs-2.4/header-attrs.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>BayLum: An Introduction</h1>
                         <h4 class="author">Claire Christophe, Anne Philippe, Sebastian Kreutzer, Guillaume Guérin</h4>
             
-            <h4 class="date">Updated for BayLum package version 0.1.4.9000.44 (2020-08-23)</h4>
+            <h4 class="date">Updated for BayLum package version 0.2.0 (2020-10-19)</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/crp2a/BayLum/blob/master/vignettes/BayLum.Rmd"><code>vignettes/BayLum.Rmd</code></a></small>
       <div class="hidden name"><code>BayLum.Rmd</code></div>
@@ -99,18 +99,20 @@
 <h1 class="hasAnchor">
 <a href="#introduction" class="anchor"></a>Introduction</h1>
 <p>‘BayLum’ provides a collection of various <strong>R</strong> functions for Bayesian analysis of luminescence data. Amongst others, this includes data import, export, application of age models and palaeodose modelling.</p>
-<p>Data can be processed simultaneously for various samples, including the input of multiple BIN/BINX-files per sample for single grain (SG) or multigrain (MG) OSL measurements. Stratigraphic constraints and systematic errors can be added to constrain the analysis further.</p>
-<p>For those who already know how to use <strong>R</strong>, ‘BayLum’ won’t be difficult to use, for all others, this brief introduction may be of help to make the first steps with <strong>R</strong> and the package ‘BayLum’ as convenient as possible.</p>
+<p>Data can be processed simultaneously for various samples, including the input of multiple BIN/BINX-files per sample for single grain (SG) or multi-grain (MG) OSL measurements. Stratigraphic constraints and systematic errors can be added to constrain the analysis further.</p>
+<p>For those who already know how to use <strong>R</strong>, <code>'BayLum'</code> won’t be difficult to use, for all others, this brief introduction may be of help to make the first steps with <strong>R</strong> and the package ‘BayLum’ as convenient as possible.</p>
 <div id="installing-baylum-package" class="section level2">
 <h2 class="hasAnchor">
 <a href="#installing-baylum-package" class="anchor"></a>Installing `BayLum’ package</h2>
-<p>If you read this document before having installed <strong>R</strong> itself, you should first visit the <a href="https://www.r-project.org">R project</a> webpage and download and install <strong>R</strong>. You may also consider installing <a href="https://www.rstudio.com">Rstudio</a>, which provides an excellent desktop working environment for <strong>R</strong>; however it is not a prerequisite.</p>
+<p>If you read this document before having installed <strong>R</strong> itself, you should first visit the <a href="https://www.r-project.org">R project</a> website and download and install <strong>R</strong>. You may also consider installing <a href="https://rstudio.com">Rstudio</a>, which provides an excellent desktop working environment for <strong>R</strong>; however it is not a prerequisite.</p>
 <p>Despite, you will need the external software <em>JAGS</em> (Just Another Gibs Sampler). Please visit the <a href="http://mcmc-jags.sourceforge.net">JAGS</a> webpage and follow the installation instructions. Now you are nearly ready to work with ‘BayLum’.</p>
 <p>If you have not yet installed `BayLum’, please run the following two <strong>R</strong> code lines to install ‘BayLum’ on your computer.</p>
-<div class="sourceCode" id="cb1"><html><body><pre class="r"><span class="kw">if</span>(!<span class="fu"><a href="https://rdrr.io/r/base/library.html">require</a></span>(<span class="st">"BayLum"</span>))
-  <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"BayLum"</span>, <span class="kw">dependencies</span> <span class="kw">=</span> <span class="fl">TRUE</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb1"><pre class="downlit">
+<span class="kw">if</span><span class="op">(</span><span class="op">!</span><span class="kw"><a href="https://rdrr.io/r/base/library.html">require</a></span><span class="op">(</span><span class="st"><a href="https://CRAN.r-project.org/package=BayLum">"BayLum"</a></span><span class="op">)</span><span class="op">)</span>
+  <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"BayLum"</span>, dependencies <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></pre></div>
 <p>Alternatively, you can load an already installed <strong>R</strong> package (here ‘BayLum’) into your session by using the following <strong>R</strong> call.</p>
-<div class="sourceCode" id="cb2"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">BayLum</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb2"><pre class="downlit">
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://CRAN.r-project.org/package=BayLum">BayLum</a></span><span class="op">)</span></pre></div>
 </div>
 </div>
 <div id="first-steps-age-analysis-of-one-sample" class="section level1">
@@ -120,9 +122,11 @@
 <h2 class="hasAnchor">
 <a href="#import-information-from-a-binbinx-file-" class="anchor"></a>Import information from a BIN/BINX-file.</h2>
 <p>Let us consider the sample is named <em>samp1</em>, which is the example dataset coming with the package. All information related to this sample is stored in a subfolder called also <em>samp1</em>. To test the package example, first, we add the path of the example dataset to the object <code>path</code>.</p>
-<div class="sourceCode" id="cb3"><html><body><pre class="r"><span class="no">path</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span>(<span class="st">"extdata/"</span>, <span class="kw">package</span> <span class="kw">=</span> <span class="st">"BayLum"</span>), <span class="st">"/"</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb3"><pre class="downlit">
+<span class="va">path</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span><span class="op">(</span><span class="st">"extdata/"</span>, package <span class="op">=</span> <span class="st">"BayLum"</span><span class="op">)</span>, <span class="st">"/"</span><span class="op">)</span></pre></div>
 <p>Please note that for your own dataset (i.e. not included in the package) you have to replace this call by something like:</p>
-<div class="sourceCode" id="cb4"><html><body><pre class="r"><span class="no">path</span> <span class="kw">&lt;-</span> <span class="st">"Users/Master_of_luminescence/Documents/MyFamousOSLData"</span></pre></body></html></div>
+<div class="sourceCode" id="cb4"><pre class="downlit">
+<span class="va">path</span> <span class="op">&lt;-</span> <span class="st">"Users/Master_of_luminescence/Documents/MyFamousOSLData"</span></pre></div>
 <p>In our example the folder contains the following subfolders and files:</p>
 <table class="table"><tbody>
 <tr class="odd">
@@ -188,13 +192,14 @@
 </tbody></table>
 <p>See <em>“What are the required files in each subfolder?”</em> in the manual of <code><a href="../reference/Generate_DataFile.html">Generate_DataFile()</a></code> function for the meaning of these files.</p>
 <p>To import your data, simply call the function <code><a href="../reference/Generate_DataFile.html">Generate_DataFile()</a></code>:</p>
-<div class="sourceCode" id="cb5"><html><body><pre class="r"><span class="no">DATA1</span> <span class="kw">&lt;-</span>
-  <span class="fu"><a href="../reference/Generate_DataFile.html">Generate_DataFile</a></span>(
-  <span class="kw">Path</span> <span class="kw">=</span> <span class="no">path</span>,
-  <span class="kw">FolderNames</span> <span class="kw">=</span> <span class="st">"samp1"</span>,
-  <span class="kw">Nb_sample</span> <span class="kw">=</span> <span class="fl">1</span>,
-  <span class="kw">verbose</span> <span class="kw">=</span> <span class="fl">FALSE</span>
-  )</pre></body></html></div>
+<div class="sourceCode" id="cb5"><pre class="downlit">
+<span class="va">DATA1</span> <span class="op">&lt;-</span>
+  <span class="fu"><a href="../reference/Generate_DataFile.html">Generate_DataFile</a></span><span class="op">(</span>
+  Path <span class="op">=</span> <span class="va">path</span>,
+  FolderNames <span class="op">=</span> <span class="st">"samp1"</span>,
+  Nb_sample <span class="op">=</span> <span class="fl">1</span>,
+  verbose <span class="op">=</span> <span class="cn">FALSE</span>
+  <span class="op">)</span></pre></div>
 <div id="remarks" class="section level3">
 <h3 class="hasAnchor">
 <a href="#remarks" class="anchor"></a>Remarks</h3>
@@ -203,15 +208,18 @@
 <a href="#data-importexport" class="anchor"></a>Data import/export</h4>
 <p>The import may take a while, in particular for large BIN/BINX-files. This can become annoying if you want to play with the data. In such situations, it makes sense to save your imported data somewhere else before continuing.</p>
 <p>To save the obove imported data on your hardrive use</p>
-<div class="sourceCode" id="cb6"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/save.html">save</a></span>(<span class="no">DATA1</span>, <span class="kw">file</span> <span class="kw">=</span> <span class="st">"YourPath/DATA1.RData"</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb6"><pre class="downlit">
+<span class="fu"><a href="https://rdrr.io/r/base/save.html">save</a></span><span class="op">(</span><span class="va">DATA1</span>, file <span class="op">=</span> <span class="st">"YourPath/DATA1.RData"</span><span class="op">)</span></pre></div>
 <p>To load the data use</p>
-<div class="sourceCode" id="cb7"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/load.html">load</a></span>(<span class="no">DATA1</span>, <span class="kw">file</span> <span class="kw">=</span> <span class="st">"YourPath/DATA1.RData"</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb7"><pre class="downlit">
+<span class="fu"><a href="https://rdrr.io/r/base/load.html">load</a></span><span class="op">(</span><span class="va">DATA1</span>, file <span class="op">=</span> <span class="st">"YourPath/DATA1.RData"</span><span class="op">)</span></pre></div>
 </div>
 <div id="data-structure" class="section level4">
 <h4 class="hasAnchor">
 <a href="#data-structure" class="anchor"></a>Data structure</h4>
 <p>To see the overall structure of the data generated from the BIN/BINX-file and the associated CSV-files, the following call can be used:</p>
-<div class="sourceCode" id="cb8"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span>(<span class="no">DATA1</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb8"><pre class="downlit">
+<span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="va">DATA1</span><span class="op">)</span></pre></div>
 <pre><code>List of 9
  $ LT            :List of 1
   ..$ : num [1, 1:7] 2.042 0.842 1.678 3.826 4.258 ...
@@ -276,14 +284,15 @@
 <h4 class="hasAnchor">
 <a href="#visualise-lxtx-values-and-dose-points" class="anchor"></a>Visualise Lx/Tx values and dose points</h4>
 <p>To get an impression on how your data look like, you can visualise them by using the function <code><a href="../reference/LT_RegenDose.html">LT_RegenDose()</a></code>:</p>
-<div class="sourceCode" id="cb10"><html><body><pre class="r"><span class="fu"><a href="../reference/LT_RegenDose.html">LT_RegenDose</a></span>(
-  <span class="kw">DATA</span> <span class="kw">=</span> <span class="no">DATA1</span>,
-  <span class="kw">Path</span> <span class="kw">=</span> <span class="no">path</span>,
-  <span class="kw">FolderNames</span> <span class="kw">=</span> <span class="st">"samp1"</span>,
-  <span class="kw">SampleNames</span> <span class="kw">=</span> <span class="st">"samp1"</span>,
-  <span class="kw">Nb_sample</span> <span class="kw">=</span> <span class="fl">1</span>,
-  <span class="kw">nrow</span> <span class="kw">=</span> <span class="kw">NULL</span>
-  )</pre></body></html></div>
+<div class="sourceCode" id="cb10"><pre class="downlit">
+<span class="fu"><a href="../reference/LT_RegenDose.html">LT_RegenDose</a></span><span class="op">(</span>
+  DATA <span class="op">=</span> <span class="va">DATA1</span>,
+  Path <span class="op">=</span> <span class="va">path</span>,
+  FolderNames <span class="op">=</span> <span class="st">"samp1"</span>,
+  SampleNames <span class="op">=</span> <span class="st">"samp1"</span>,
+  Nb_sample <span class="op">=</span> <span class="fl">1</span>,
+  nrow <span class="op">=</span> <span class="cn">NULL</span>
+  <span class="op">)</span></pre></div>
 <p><img src="BayLum_files/figure-html/unnamed-chunk-11-1.png" width="700" style="display: block; margin: auto;"></p>
 <p>Note that here we consider only one sample, and the name of the folder is the name of the sample. For that reason the argumetns were set to <code>FolderNames = samp1</code> and <code>SampleNames = samp1</code>.</p>
 </div>
@@ -298,15 +307,16 @@
 <h2 class="hasAnchor">
 <a href="#age-computation" class="anchor"></a>Age computation</h2>
 <p>To compute the age of the sample <em>samp1</em>, you can run the following code:</p>
-<div class="sourceCode" id="cb11"><html><body><pre class="r"><span class="no">Age</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/Age_Computation.html">Age_Computation</a></span>(
-  <span class="kw">DATA</span> <span class="kw">=</span> <span class="no">DATA1</span>,
-  <span class="kw">SampleName</span> <span class="kw">=</span> <span class="st">"samp1"</span>,
-  <span class="kw">PriorAge</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">10</span>, <span class="fl">100</span>),
-  <span class="kw">distribution</span> <span class="kw">=</span> <span class="st">"cauchy"</span>,
-  <span class="kw">LIN_fit</span> <span class="kw">=</span> <span class="fl">TRUE</span>,
-  <span class="kw">Origin_fit</span> <span class="kw">=</span> <span class="fl">FALSE</span>,
-  <span class="kw">Iter</span> <span class="kw">=</span> <span class="fl">10000</span>
-  )</pre></body></html></div>
+<div class="sourceCode" id="cb11"><pre class="downlit">
+<span class="va">Age</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/Age_Computation.html">Age_Computation</a></span><span class="op">(</span>
+  DATA <span class="op">=</span> <span class="va">DATA1</span>,
+  SampleName <span class="op">=</span> <span class="st">"samp1"</span>,
+  PriorAge <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">100</span><span class="op">)</span>,
+  distribution <span class="op">=</span> <span class="st">"cauchy"</span>,
+  LIN_fit <span class="op">=</span> <span class="cn">TRUE</span>,
+  Origin_fit <span class="op">=</span> <span class="cn">FALSE</span>,
+  Iter <span class="op">=</span> <span class="fl">10000</span>
+  <span class="op">)</span></pre></div>
 <pre><code>Compiling model graph
    Resolving undeclared variables
    Allocating nodes
@@ -326,9 +336,9 @@ samp1
 &gt;&gt; Results of the Gelman and Rubin criterion of convergence &lt;&lt;
 ----------------------------------------------
      Point estimate Uppers confidence interval
-A    1       1 
-D    1       1 
-sD   1.03        1.04 
+A    1.08        1.19 
+D    1.08        1.18 
+sD   1.05        1.08 
 
 
 ---------------------------------------------------------------------------------------------------
@@ -337,20 +347,20 @@ sD   1.03        1.04
 
 parameter    Bayes estimate       Credible interval 
 ----------------------------------------------
-A        24.587 
+A        22.965 
                          lower bound     upper bound
-                 at level 95%    10.01       70.39 
-                 at level 68%    10.01       22.78 
+                 at level 95%    10          49.87 
+                 at level 68%    10          21.12 
 ----------------------------------------------
-D        61.1 
+D        57.181 
                          lower bound     upper bound
-                 at level 95%    20.34       177.19 
-                 at level 68%    21.36       57.95 
+                 at level 95%    19.93       123.66 
+                 at level 68%    22.04       52.95 
 ----------------------------------------------
-sD       32.204 
+sD       34.645 
                          lower bound     upper bound
-                 at level 95%    0.32        115.21 
-                 at level 68%    0.52        29.98 </code></pre>
+                 at level 95%    0.12        119.02 
+                 at level 68%    0.99        26.52 </code></pre>
 <p>This also works if <code>DATA1</code> is the output of <code><a href="../reference/Generate_DataFile_MG.html">Generate_DataFile_MG()</a></code>.</p>
 <div id="remark-1-mcmc-trajectories" class="section level5">
 <h5 class="hasAnchor">
@@ -374,8 +384,8 @@ sD       32.204
 <p>By default, a <em>cauchy</em> distribution is assumed, but you can choose another distribution by replacing the word <code>cauchy</code> by <code>gaussian</code>, <code>lognormal_A</code> or <code>lognormal_M</code> for the argument <code>distribution</code>.</p>
 <p>The difference between the models: <em>lognormal_A</em> and <em>lognormal_M</em> is that the equivalent dose dispersion are distributed according to:</p>
 <ul>
-<li>a lognormal distribution with mean or average equal to the palaeodose for the first model</li>
-<li>a lognormal distribution with median equal to the palaeodose for the second model.</li>
+<li>a log-normal distribution with mean or average equal to the palaeodose for the first model</li>
+<li>a log-normal distribution with median equal to the palaeodose for the second model.</li>
 </ul>
 </div>
 <div id="remark-4-savepdf-and-saveestimates-option" class="section level5">
@@ -384,7 +394,7 @@ sD       32.204
 <p>These two arguments allow to save the results to files.</p>
 <ul>
 <li><p><code>SavePdf = TRUE</code> create a PDF-file with MCMC trajectories of parameters <code>A</code> (age), <code>D</code> (palaeodose), <code>sD</code> (equivalent doses dispersion). You have to specify <code>OutputFileName</code> and <code>OutputFilePath</code> to define name and path of the PDF-file.</p></li>
-<li><p><code>SaveEstimates = TRUE</code> saves a CSV-file containing the Bayes estimates, the credible interval at 68% and 95% and the Gelman and Rudin test of convergency of the parameters <code>A</code>, <code>D</code>, <code>sD</code>. For the export the arugments <code>OutputTableName</code> and <code>OutputTablePath</code> have to be specified.</p></li>
+<li><p><code>SaveEstimates = TRUE</code> saves a CSV-file containing the Bayes estimates, the credible interval at 68% and 95% and the Gelman and Rudin test of convergence of the parameters <code>A</code>, <code>D</code>, <code>sD</code>. For the export the arguments <code>OutputTableName</code> and <code>OutputTablePath</code> have to be specified.</p></li>
 </ul>
 </div>
 <div id="remark-4-priorage-option" class="section level5">
@@ -400,29 +410,31 @@ sD       32.204
 <a href="#multiple-binbinx-files-for-one-sample" class="anchor"></a>Multiple BIN/BINX-files for one sample</h2>
 <p>In the previous example we considered only the simplest case: one sample, and one BIN/BINX-file. However, ‘BayLum’ allows to process multiple BIN/BINX-files for one sample. To work with multiple BIN/BINX-files, the names of the subfolders need to beset in argument <code>Names</code> and both files need to be located unter the same <code>Path</code>.</p>
 <p>For the case</p>
-<div class="sourceCode" id="cb14"><html><body><pre class="r"><span class="no">Names</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"samp1"</span>, <span class="st">"samp2"</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb14"><pre class="downlit">
+<span class="va">Names</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"samp1"</span>, <span class="st">"samp2"</span><span class="op">)</span></pre></div>
 <p>the call <code><a href="../reference/Generate_DataFile.html">Generate_DataFile()</a></code> (or <code><a href="../reference/Generate_DataFile_MG.html">Generate_DataFile_MG()</a></code>) becomes as follows:</p>
-<div class="sourceCode" id="cb15"><html><body><pre class="r"><span class="co">##argument setting</span>
-<span class="no">nbsample</span> <span class="kw">&lt;-</span> <span class="fl">1</span>
-<span class="no">nbbinfile</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span>(<span class="no">Names</span>)
-<span class="no">Binpersample</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span>(<span class="no">Names</span>))
+<div class="sourceCode" id="cb15"><pre class="downlit">
+<span class="co">##argument setting</span>
+<span class="va">nbsample</span> <span class="op">&lt;-</span> <span class="fl">1</span>
+<span class="va">nbbinfile</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">Names</span><span class="op">)</span>
+<span class="va">Binpersample</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">Names</span><span class="op">)</span><span class="op">)</span>
 
 <span class="co">##call data file generator</span>
-<span class="no">DATA_BF</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/Generate_DataFile.html">Generate_DataFile</a></span>(
-  <span class="kw">Path</span> <span class="kw">=</span> <span class="no">path</span>,
-  <span class="kw">FolderNames</span> <span class="kw">=</span> <span class="no">Names</span>,
-  <span class="kw">Nb_sample</span> <span class="kw">=</span> <span class="no">nbsample</span>,
-  <span class="kw">Nb_binfile</span> <span class="kw">=</span> <span class="no">nbbinfile</span>,
-  <span class="kw">BinPerSample</span> <span class="kw">=</span> <span class="no">Binpersample</span>,
-  <span class="kw">verbose</span> <span class="kw">=</span> <span class="fl">FALSE</span>
-  )
+<span class="va">DATA_BF</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/Generate_DataFile.html">Generate_DataFile</a></span><span class="op">(</span>
+  Path <span class="op">=</span> <span class="va">path</span>,
+  FolderNames <span class="op">=</span> <span class="va">Names</span>,
+  Nb_sample <span class="op">=</span> <span class="va">nbsample</span>,
+  Nb_binfile <span class="op">=</span> <span class="va">nbbinfile</span>,
+  BinPerSample <span class="op">=</span> <span class="va">Binpersample</span>,
+  verbose <span class="op">=</span> <span class="cn">FALSE</span>
+  <span class="op">)</span>
 
 <span class="co">##calculate the age</span>
-<span class="no">Age</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/Age_Computation.html">Age_Computation</a></span>(
-  <span class="kw">DATA</span> <span class="kw">=</span> <span class="no">DATA_BF</span>,
-  <span class="kw">SampleName</span> <span class="kw">=</span> <span class="no">Names</span>,
-  <span class="kw">BinPerSample</span> <span class="kw">=</span> <span class="no">Binpersample</span>
-  )</pre></body></html></div>
+<span class="va">Age</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/Age_Computation.html">Age_Computation</a></span><span class="op">(</span>
+  DATA <span class="op">=</span> <span class="va">DATA_BF</span>,
+  SampleName <span class="op">=</span> <span class="va">Names</span>,
+  BinPerSample <span class="op">=</span> <span class="va">Binpersample</span>
+  <span class="op">)</span></pre></div>
 <pre><code>Compiling model graph
    Resolving undeclared variables
    Allocating nodes
@@ -442,8 +454,8 @@ samp1 samp2
 &gt;&gt; Results of the Gelman and Rubin criterion of convergence &lt;&lt;
 ----------------------------------------------
      Point estimate Uppers confidence interval
-A    1.01        1.02 
-D    1.01        1.02 
+A    1       1 
+D    1       1 
 sD   1       1 
 
 
@@ -453,20 +465,20 @@ sD   1       1
 
 parameter    Bayes estimate       Credible interval 
 ----------------------------------------------
-A        2.287 
+A        2.209 
                          lower bound     upper bound
-                 at level 95%    1.32        3.36 
-                 at level 68%    1.72        2.67 
+                 at level 95%    0.9         3.59 
+                 at level 68%    1.67        2.74 
 ----------------------------------------------
-D        5.689 
+D        5.512 
                          lower bound     upper bound
-                 at level 95%    3.25        7.82 
-                 at level 68%    4.61        6.74 
+                 at level 95%    2.15        8.63 
+                 at level 68%    4.29        6.72 
 ----------------------------------------------
-sD       0.74 
+sD       0.757 
                          lower bound     upper bound
                  at level 95%    0       2.25 
-                 at level 68%    0       0.71 </code></pre>
+                 at level 68%    0       0.81 </code></pre>
 </div>
 </div>
 <div id="age-analysis-of-various-samples" class="section level1">
@@ -478,27 +490,29 @@ sD       0.74
 <p>The function <code><a href="../reference/Generate_DataFile.html">Generate_DataFile()</a></code> (or <code>Generate_DataFile_MF()</code>) can process multiple files simultaneously including multiple BIN/BINX-files per sample.</p>
 <p>We assume that we are interested in two samples named: <em>sample1</em> and <em>sample2</em>. In addition, we have two BIN/BINX-files for the first sample named: <em>sample1-1</em> and <em>sample1-2</em>, and one BIN-file for the 2nd sample named <em>sample2-1</em>. In such case, we need three subfolders named <em>sample1-1</em>, <em>sample1-2</em> and <em>sample2-1</em>; which each subfolder containing only one BIN-file named <strong>bin.BIN</strong>, and its associated files <strong>DiscPos.csv</strong>, <strong>DoseEnv.csv</strong>, <strong>DoseSourve.csv</strong> and <strong>rule.csv</strong>. All of these 3 subfolders must be located in <em>path</em>.</p>
 <p>To fill the argument corectly <code>BinPerSample</code>: <span class="math inline">\(binpersample=c(\underbrace{2}_{\text{sample 1: 2 bin files}},\underbrace{1}_{\text{sample 2: 1 bin file}})\)</span></p>
-<div class="sourceCode" id="cb18"><html><body><pre class="r"><span class="no">Names</span> <span class="kw">&lt;-</span>
-  <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"sample1-1"</span>, <span class="st">"sample1-2"</span>, <span class="st">"sample2-1"</span>) <span class="co"># give the name of the folder datat</span>
-  <span class="no">nbsample</span> <span class="kw">&lt;-</span> <span class="fl">2</span>    <span class="co"># give the number of samples</span>
-  <span class="no">nbbinfile</span> <span class="kw">&lt;-</span> <span class="fl">3</span>   <span class="co"># give the number of bin files</span>
-  <span class="no">DATA</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/Generate_DataFile.html">Generate_DataFile</a></span>(
-  <span class="kw">Path</span> <span class="kw">=</span> <span class="no">path</span>,
-  <span class="kw">FolderNames</span> <span class="kw">=</span> <span class="no">Names</span>,
-  <span class="kw">Nb_sample</span> <span class="kw">=</span> <span class="no">nbsample</span>,
-  <span class="kw">Nb_binfile</span> <span class="kw">=</span> <span class="no">nbbinfile</span>,
-  <span class="kw">BinPerSample</span> <span class="kw">=</span> <span class="no">binpersample</span>
-  )</pre></body></html></div>
+<div class="sourceCode" id="cb18"><pre class="downlit">
+<span class="va">Names</span> <span class="op">&lt;-</span>
+  <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"sample1-1"</span>, <span class="st">"sample1-2"</span>, <span class="st">"sample2-1"</span><span class="op">)</span> <span class="co"># give the name of the folder datat</span>
+  <span class="va">nbsample</span> <span class="op">&lt;-</span> <span class="fl">2</span>    <span class="co"># give the number of samples</span>
+  <span class="va">nbbinfile</span> <span class="op">&lt;-</span> <span class="fl">3</span>   <span class="co"># give the number of bin files</span>
+  <span class="va">DATA</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/Generate_DataFile.html">Generate_DataFile</a></span><span class="op">(</span>
+  Path <span class="op">=</span> <span class="va">path</span>,
+  FolderNames <span class="op">=</span> <span class="va">Names</span>,
+  Nb_sample <span class="op">=</span> <span class="va">nbsample</span>,
+  Nb_binfile <span class="op">=</span> <span class="va">nbbinfile</span>,
+  BinPerSample <span class="op">=</span> <span class="va">binpersample</span>
+  <span class="op">)</span></pre></div>
 <div id="combine-files-using-the-function-combine_datafiles" class="section level3">
 <h3 class="hasAnchor">
 <a href="#combine-files-using-the-function-combine_datafiles" class="anchor"></a>Combine files using the function <code>combine_DataFiles()</code>
 </h3>
 <p>If the user has already saved informations imported with <code><a href="../reference/Generate_DataFile.html">Generate_DataFile()</a></code> function (or <code><a href="../reference/Generate_DataFile_MG.html">Generate_DataFile_MG()</a></code> function) these data can be concatenate with the function <code><a href="../reference/combine_DataFiles.html">combine_DataFiles()</a></code>.</p>
 <p>For example, if <code>DATA1</code> is the output of sample named “GDB3”, and <code>DATA2</code> is the output of sample “GDB5”, both data can be merged with the following call:</p>
-<div class="sourceCode" id="cb19"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span>(<span class="st">"DATA1"</span>, <span class="kw">envir</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/environment.html">environment</a></span>())
-<span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span>(<span class="st">"DATA2"</span>, <span class="kw">envir</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/environment.html">environment</a></span>())
-<span class="no">DATA3</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/combine_DataFiles.html">combine_DataFiles</a></span>(<span class="kw">L1</span> <span class="kw">=</span> <span class="no">DATA2</span>, <span class="kw">L2</span> <span class="kw">=</span> <span class="no">DATA1</span>)
-<span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span>(<span class="no">DATA3</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb19"><pre class="downlit">
+<span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="st">"DATA1"</span>, envir <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/environment.html">environment</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="st">"DATA2"</span>, envir <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/environment.html">environment</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>
+<span class="va">DATA3</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/combine_DataFiles.html">combine_DataFiles</a></span><span class="op">(</span>L1 <span class="op">=</span> <span class="va">DATA2</span>, L2 <span class="op">=</span> <span class="va">DATA1</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="va">DATA3</span><span class="op">)</span></pre></div>
 <pre><code>List of 9
  $ LT            :List of 2
   ..$ : num [1:188, 1:6] 4.54 2.73 2.54 2.27 1.48 ...
@@ -526,13 +540,14 @@ sD       0.74
 <li>2 <code>integer</code>s (1 <code>integer</code> per BIN files here we have 1 BIN-file per sample) for <code>DATA1$J</code>, <code>DATA1$K</code>, <code>DATA1$Nb_measurement</code>.</li>
 </ul>
 <p>Single-grain and multiple-grain OSL measurements can be merged in the same way. To plot the <span class="math inline">\(L/T\)</span> as a function of the regenerative dose the function <code><a href="../reference/LT_RegenDose.html">LT_RegenDose()</a></code> can be used again:</p>
-<div class="sourceCode" id="cb21"><html><body><pre class="r"><span class="fu"><a href="../reference/LT_RegenDose.html">LT_RegenDose</a></span>(
-  <span class="kw">DATA</span> <span class="kw">=</span> <span class="no">DATA3</span>,
-  <span class="kw">Path</span> <span class="kw">=</span> <span class="no">path</span>,
-  <span class="kw">FolderNames</span> <span class="kw">=</span> <span class="no">Names</span>,
-  <span class="kw">Nb_sample</span> <span class="kw">=</span> <span class="no">nbsample</span>,
-  <span class="kw">SG</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span>(<span class="fl">TRUE</span>, <span class="no">nbsample</span>)
-)</pre></body></html></div>
+<div class="sourceCode" id="cb21"><pre class="downlit">
+<span class="fu"><a href="../reference/LT_RegenDose.html">LT_RegenDose</a></span><span class="op">(</span>
+  DATA <span class="op">=</span> <span class="va">DATA3</span>,
+  Path <span class="op">=</span> <span class="va">path</span>,
+  FolderNames <span class="op">=</span> <span class="va">Names</span>,
+  Nb_sample <span class="op">=</span> <span class="va">nbsample</span>,
+  SG <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="cn">TRUE</span>, <span class="va">nbsample</span><span class="op">)</span>
+<span class="op">)</span></pre></div>
 <p><em>Note: In the example <code>DATA3</code> contains information from the samples ‘GDB3’ and ‘GDB5’, which are single-grain OSL measurements. For a correct treatment the argument <code>SG</code> has to be manually set be the user. Please see the function manual for further details.</em></p>
 </div>
 </div>
@@ -540,18 +555,19 @@ sD       0.74
 <h2 class="hasAnchor">
 <a href="#age-analysis-without-stratigraphic-constraints" class="anchor"></a>Age analysis without stratigraphic constraints</h2>
 <p>If there no stratigraphic constraints were set, the following code to analyse simultaneously the age of the sample <em>GDB5</em> and <em>GDB3</em>.</p>
-<div class="sourceCode" id="cb22"><html><body><pre class="r"><span class="no">priorage</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">1</span>, <span class="fl">10</span>, <span class="fl">10</span>, <span class="fl">100</span>)
-<span class="no">Age</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/AgeS_Computation.html">AgeS_Computation</a></span>(
-  <span class="kw">DATA</span> <span class="kw">=</span> <span class="no">DATA3</span>,
-  <span class="kw">Nb_sample</span> <span class="kw">=</span> <span class="fl">2</span>,
-  <span class="kw">SampleNames</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"GDB5"</span>, <span class="st">"GDB3"</span>),
-  <span class="kw">PriorAge</span> <span class="kw">=</span> <span class="no">priorage</span>,
-  <span class="kw">distribution</span> <span class="kw">=</span> <span class="st">"cauchy"</span>,
-  <span class="kw">LIN_fit</span> <span class="kw">=</span> <span class="fl">TRUE</span>,
-  <span class="kw">Origin_fit</span> <span class="kw">=</span> <span class="fl">FALSE</span>,
-  <span class="kw">Iter</span> <span class="kw">=</span> <span class="fl">1000</span>,
-  <span class="kw">jags_method</span> <span class="kw">=</span> <span class="st">"rjags"</span>
-)</pre></body></html></div>
+<div class="sourceCode" id="cb22"><pre class="downlit">
+<span class="va">priorage</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">10</span>, <span class="fl">10</span>, <span class="fl">100</span><span class="op">)</span>
+<span class="va">Age</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/AgeS_Computation.html">AgeS_Computation</a></span><span class="op">(</span>
+  DATA <span class="op">=</span> <span class="va">DATA3</span>,
+  Nb_sample <span class="op">=</span> <span class="fl">2</span>,
+  SampleNames <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"GDB5"</span>, <span class="st">"GDB3"</span><span class="op">)</span>,
+  PriorAge <span class="op">=</span> <span class="va">priorage</span>,
+  distribution <span class="op">=</span> <span class="st">"cauchy"</span>,
+  LIN_fit <span class="op">=</span> <span class="cn">TRUE</span>,
+  Origin_fit <span class="op">=</span> <span class="cn">FALSE</span>,
+  Iter <span class="op">=</span> <span class="fl">1000</span>, 
+  jags_method <span class="op">=</span> <span class="st">"rjags"</span>
+<span class="op">)</span></pre></div>
 <pre><code>Compiling model graph
    Resolving undeclared variables
    Allocating nodes
@@ -570,16 +586,16 @@ Initializing model</code></pre>
  Sample name:  GDB5 
 ---------------------
          Point estimate Uppers confidence interval
-A_GDB5   1.01        1.04 
-D_GDB5   1.05        1.17 
-sD_GDB5      1.02        1.08 
+A_GDB5   1.03        1.1 
+D_GDB5   1.02        1.08 
+sD_GDB5      1.01        1.04 
 ----------------------------------------------
  Sample name:  GDB3 
 ---------------------
          Point estimate Uppers confidence interval
-A_GDB3   1       1.01 
-D_GDB3   1.02        1.06 
-sD_GDB3      1.02        1.06 
+A_GDB3   1.01        1.03 
+D_GDB3   1.05        1.16 
+sD_GDB3      1.01        1.04 
 
 
 ---------------------------------------------------------------------------------------------------
@@ -593,42 +609,42 @@ sD_GDB3      1.02        1.06
  Sample name:  GDB5 
 ---------------------
 Parameter    Bayes estimate       Credible interval 
- A_GDB5      7.206 
+ A_GDB5      7.102 
                          lower bound     upper bound
-                 at level 95%    6.05        8.57 
-                 at level 68%    6.4         7.78 
+                 at level 95%    5.84        8.56 
+                 at level 68%    6.16        7.54 
 
 Parameter    Bayes estimate       Credible interval 
- D_GDB5      17.876 
+ D_GDB5      17.704 
                          lower bound     upper bound
-                 at level 95%    16.71       18.96 
-                 at level 68%    17.3        18.46 
+                 at level 95%    16.67       18.91 
+                 at level 68%    17.09       18.26 
 
 Parameter    Bayes estimate       Credible interval 
-sD_GDB5      4.464 
+sD_GDB5      4.494 
                          lower bound     upper bound
-                 at level 95%    3.6         5.4 
-                 at level 68%    4.15        5.19 
+                 at level 95%    3.41        5.5 
+                 at level 68%    4       4.97 
 ----------------------------------------------
  Sample name:  GDB3 
 ---------------------
 Parameter    Bayes estimate       Credible interval 
- A_GDB3      46.869 
+ A_GDB3      47.007 
                          lower bound     upper bound
-                 at level 95%    37.47       58.07 
-                 at level 68%    40.55       50.85 
+                 at level 95%    35.96       56.41 
+                 at level 68%    40.93       51.36 
 
 Parameter    Bayes estimate       Credible interval 
- D_GDB3      104.478 
+ D_GDB3      105.796 
                          lower bound     upper bound
-                 at level 95%    97.17       112.51 
-                 at level 68%    100.55          108.08 
+                 at level 95%    98.05       112.73 
+                 at level 68%    101.99          109.78 
 
 Parameter    Bayes estimate       Credible interval 
-sD_GDB3      15.529 
+sD_GDB3      15.888 
                          lower bound     upper bound
-                 at level 95%    9.9         19.59 
-                 at level 68%    12.77       17.63 
+                 at level 95%    10.22       21.13 
+                 at level 68%    12.58       18.96 
 
 ----------------------------------------------</code></pre>
 <p><img src="BayLum_files/figure-html/unnamed-chunk-18-3.png" width="480" style="display: block; margin: auto;"></p>
@@ -650,19 +666,21 @@ sD_GDB3      15.529
 <h3 class="hasAnchor">
 <a href="#ordering-samples" class="anchor"></a>Ordering samples</h3>
 <p>To take into account stratigraphic constraints, the information on the samples need to be ordered. Either you enter a sample name (corresponding to subfolder names) in <code>Names</code> parameter of the function <code><a href="../reference/Generate_DataFile.html">Generate_DataFile()</a></code>, ordered by order of increasing ages or you enter saved .RData informations of each sample in <code><a href="../reference/combine_DataFiles.html">combine_DataFiles()</a></code>, ordered by increasing ages.</p>
-<div class="sourceCode" id="cb26"><html><body><pre class="r"><span class="co"># using Generate_DataFile function</span>
-<span class="no">Names</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"samp1"</span>, <span class="st">"samp2"</span>)
-<span class="no">nbsample</span> <span class="kw">&lt;-</span> <span class="fl">2</span>
-<span class="no">DATA3</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/Generate_DataFile.html">Generate_DataFile</a></span>(
-  <span class="kw">Path</span> <span class="kw">=</span> <span class="no">path</span>,
-  <span class="kw">FolderNames</span> <span class="kw">=</span> <span class="no">Names</span>,
-  <span class="kw">Nb_sample</span> <span class="kw">=</span> <span class="no">nbsample</span>,
-  <span class="kw">verbose</span> <span class="kw">=</span> <span class="fl">FALSE</span>
-)</pre></body></html></div>
-<div class="sourceCode" id="cb27"><html><body><pre class="r"><span class="co"># using the function combine_DataFiles()</span>
-<span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span>(<span class="no">DATA1</span>, <span class="kw">envir</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/environment.html">environment</a></span>()) <span class="co"># .RData on sample GDB3</span>
-<span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span>(<span class="no">DATA2</span>, <span class="kw">envir</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/environment.html">environment</a></span>()) <span class="co"># .RData on sample GDB5</span>
-<span class="no">DATA3</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/combine_DataFiles.html">combine_DataFiles</a></span>(<span class="kw">L1</span> <span class="kw">=</span> <span class="no">DATA1</span>, <span class="kw">L2</span> <span class="kw">=</span> <span class="no">DATA2</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb26"><pre class="downlit">
+<span class="co"># using Generate_DataFile function</span>
+<span class="va">Names</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"samp1"</span>, <span class="st">"samp2"</span><span class="op">)</span>
+<span class="va">nbsample</span> <span class="op">&lt;-</span> <span class="fl">2</span>
+<span class="va">DATA3</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/Generate_DataFile.html">Generate_DataFile</a></span><span class="op">(</span>
+  Path <span class="op">=</span> <span class="va">path</span>,
+  FolderNames <span class="op">=</span> <span class="va">Names</span>,
+  Nb_sample <span class="op">=</span> <span class="va">nbsample</span>,
+  verbose <span class="op">=</span> <span class="cn">FALSE</span>
+<span class="op">)</span></pre></div>
+<div class="sourceCode" id="cb27"><pre class="downlit">
+<span class="co"># using the function combine_DataFiles()</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="va">DATA1</span>, envir <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/environment.html">environment</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="co"># .RData on sample GDB3</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="va">DATA2</span>, envir <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/environment.html">environment</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="co"># .RData on sample GDB5</span>
+<span class="va">DATA3</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/combine_DataFiles.html">combine_DataFiles</a></span><span class="op">(</span>L1 <span class="op">=</span> <span class="va">DATA1</span>, L2 <span class="op">=</span> <span class="va">DATA2</span><span class="op">)</span></pre></div>
 </div>
 <div id="define-matrix-to-set-stratigraphic-constraints" class="section level3">
 <h3 class="hasAnchor">
@@ -674,32 +692,35 @@ sD_GDB3      15.529
 <li><p>sample relations: for all <span class="math inline">\(j\)</span> in ${2,…,Nb_Sample+1}$ and all <span class="math inline">\(i\)</span> in <span class="math inline">\(\{j,...,Nb\_Sample\}\)</span>, <code>StratiConstraints[j,i] &lt;- 1</code> if the sample age whose ID is equal to <span class="math inline">\(j-1\)</span> is lower than the sample age whose ID is equal to <span class="math inline">\(i\)</span>. Otherwise, <code>StratiConstraints[j,i] &lt;- 0</code>.</p></li>
 </ul>
 <p>To the define such matrix the function <em>SCMatrix()</em> can be used:</p>
-<div class="sourceCode" id="cb28"><html><body><pre class="r"><span class="no">SC</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/SCMatrix.html">SCMatrix</a></span>(<span class="kw">Nb_sample</span> <span class="kw">=</span> <span class="fl">2</span>,
-               <span class="kw">SampleNames</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"samp1"</span>, <span class="st">"samp2"</span>))</pre></body></html></div>
+<div class="sourceCode" id="cb28"><pre class="downlit">
+<span class="va">SC</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/SCMatrix.html">SCMatrix</a></span><span class="op">(</span>Nb_sample <span class="op">=</span> <span class="fl">2</span>,
+               SampleNames <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"samp1"</span>, <span class="st">"samp2"</span><span class="op">)</span><span class="op">)</span></pre></div>
 <p>In our case: 2 samples, <code>SC</code> is a matrix with 3 rows and 2 columns. The first row contains <code><a href="https://rdrr.io/r/base/c.html">c(1,1)</a></code> (because we take into account the prior ages), the second line contains <code><a href="https://rdrr.io/r/base/c.html">c(0,1)</a></code> (sample 2, named <em>samp2</em> is supposed to be older than sample 1, named <em>samp1</em>) and the third line contains <code><a href="https://rdrr.io/r/base/c.html">c(0,0)</a></code> (sample 2, named <em>samp2</em> is not younger than the sample 1, here named <em>samp1</em>). We can also fill the matrix with the stratigraphic relations as follow:</p>
-<div class="sourceCode" id="cb29"><html><body><pre class="r"><span class="no">SC</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span>(
-  <span class="kw">data</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">1</span>, <span class="fl">1</span>, <span class="fl">0</span>, <span class="fl">1</span>, <span class="fl">0</span>, <span class="fl">0</span>),
-  <span class="kw">ncol</span> <span class="kw">=</span> <span class="fl">2</span>,
-  <span class="kw">nrow</span> <span class="kw">=</span> (<span class="fl">2</span> + <span class="fl">1</span>),
-  <span class="kw">byrow</span> <span class="kw">=</span> <span class="no">T</span>
-  )</pre></body></html></div>
+<div class="sourceCode" id="cb29"><pre class="downlit">
+<span class="va">SC</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span>
+  data <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">1</span>, <span class="fl">0</span>, <span class="fl">1</span>, <span class="fl">0</span>, <span class="fl">0</span><span class="op">)</span>,
+  ncol <span class="op">=</span> <span class="fl">2</span>,
+  nrow <span class="op">=</span> <span class="op">(</span><span class="fl">2</span> <span class="op">+</span> <span class="fl">1</span><span class="op">)</span>,
+  byrow <span class="op">=</span> <span class="cn">T</span>
+  <span class="op">)</span></pre></div>
 </div>
 <div id="age-computation-1" class="section level3">
 <h3 class="hasAnchor">
 <a href="#age-computation-1" class="anchor"></a>Age computation</h3>
-<div class="sourceCode" id="cb30"><html><body><pre class="r"><span class="no">Age</span> <span class="kw">&lt;-</span>
-  <span class="fu"><a href="../reference/AgeS_Computation.html">AgeS_Computation</a></span>(
-  <span class="kw">DATA</span> <span class="kw">=</span> <span class="no">DATA3</span>,
-  <span class="kw">Nb_sample</span> <span class="kw">=</span> <span class="fl">2</span>,
-  <span class="kw">SampleNames</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"samp1"</span>, <span class="st">"samp2"</span>),
-  <span class="kw">PriorAge</span> <span class="kw">=</span> <span class="no">priorage</span>,
-  <span class="kw">distribution</span> <span class="kw">=</span> <span class="st">"cauchy"</span>,
-  <span class="kw">LIN_fit</span> <span class="kw">=</span> <span class="fl">TRUE</span>,
-  <span class="kw">Origin_fit</span> <span class="kw">=</span> <span class="fl">FALSE</span>,
-  <span class="kw">StratiConstraints</span> <span class="kw">=</span> <span class="no">SC</span>,
-  <span class="kw">Iter</span> <span class="kw">=</span> <span class="fl">1000</span>,
-  <span class="kw">jags_method</span> <span class="kw">=</span> <span class="st">'rjags'</span>
-  )</pre></body></html></div>
+<div class="sourceCode" id="cb30"><pre class="downlit">
+<span class="va">Age</span> <span class="op">&lt;-</span>
+  <span class="fu"><a href="../reference/AgeS_Computation.html">AgeS_Computation</a></span><span class="op">(</span>
+  DATA <span class="op">=</span> <span class="va">DATA3</span>,
+  Nb_sample <span class="op">=</span> <span class="fl">2</span>,
+  SampleNames <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"samp1"</span>, <span class="st">"samp2"</span><span class="op">)</span>,
+  PriorAge <span class="op">=</span> <span class="va">priorage</span>,
+  distribution <span class="op">=</span> <span class="st">"cauchy"</span>,
+  LIN_fit <span class="op">=</span> <span class="cn">TRUE</span>,
+  Origin_fit <span class="op">=</span> <span class="cn">FALSE</span>,
+  StratiConstraints <span class="op">=</span> <span class="va">SC</span>,
+  Iter <span class="op">=</span> <span class="fl">1000</span>, 
+  jags_method <span class="op">=</span> <span class="st">'rjags'</span>
+  <span class="op">)</span></pre></div>
 <pre><code>Compiling model graph
    Resolving undeclared variables
    Allocating nodes
@@ -718,16 +739,16 @@ Initializing model</code></pre>
  Sample name:  samp1 
 ---------------------
          Point estimate Uppers confidence interval
-A_samp1      1.07        1.13 
-D_samp1      1.07        1.23 
-sD_samp1     1.02        1.07 
+A_samp1      1       1 
+D_samp1      1       1.01 
+sD_samp1     1       1.01 
 ----------------------------------------------
  Sample name:  samp2 
 ---------------------
          Point estimate Uppers confidence interval
-A_samp2      1.01        1.03 
-D_samp2      1.07        1.24 
-sD_samp2     1.04        1.13 
+A_samp2      1.01        1.01 
+D_samp2      1       1.01 
+sD_samp2     1.02        1.06 
 
 
 ---------------------------------------------------------------------------------------------------
@@ -741,42 +762,42 @@ sD_samp2     1.04        1.13
  Sample name:  samp1 
 ---------------------
 Parameter    Bayes estimate       Credible interval 
- A_samp1     9.72 
+ A_samp1     9.731 
                          lower bound     upper bound
-                 at level 95%    9.13        10 
-                 at level 68%    9.69        10 
+                 at level 95%    9.25        10 
+                 at level 68%    9.7         10 
 
 Parameter    Bayes estimate       Credible interval 
- D_samp1     29.239 
+ D_samp1     29.419 
                          lower bound     upper bound
-                 at level 95%    23.6        33.92 
-                 at level 68%    27.21       32.23 
+                 at level 95%    24.14       34.96 
+                 at level 68%    26.31       31.63 
 
 Parameter    Bayes estimate       Credible interval 
-sD_samp1     68.532 
+sD_samp1     66.743 
                          lower bound     upper bound
-                 at level 95%    56.48       86.91 
-                 at level 68%    61.79       77.85 
+                 at level 95%    50.71       85.1 
+                 at level 68%    59.94       77.05 
 ----------------------------------------------
  Sample name:  samp2 
 ---------------------
 Parameter    Bayes estimate       Credible interval 
- A_samp2     10.427 
+ A_samp2     10.389 
                          lower bound     upper bound
-                 at level 95%    10          11.29 
-                 at level 68%    10.01       10.45 
+                 at level 95%    10          11.17 
+                 at level 68%    10.01       10.44 
 
 Parameter    Bayes estimate       Credible interval 
- D_samp2     18.19 
+ D_samp2     18.185 
                          lower bound     upper bound
-                 at level 95%    17.04       19.4 
-                 at level 68%    17.6        18.88 
+                 at level 95%    17.16       19.53 
+                 at level 68%    17.54       18.74 
 
 Parameter    Bayes estimate       Credible interval 
-sD_samp2     4.512 
+sD_samp2     4.556 
                          lower bound     upper bound
-                 at level 95%    3.44        5.59 
-                 at level 68%    3.76        4.83 
+                 at level 95%    3.45        5.56 
+                 at level 68%    4.14        5.16 
 
 ----------------------------------------------</code></pre>
 <p><img src="BayLum_files/figure-html/unnamed-chunk-23-3.png" width="480" style="display: block; margin: auto;"></p>
@@ -821,7 +842,7 @@ sD_samp2     4.512
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

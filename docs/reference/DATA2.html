@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>DATA on sample named GDB5
-<!-- %%   ~~ data name/kind ... ~~ --> — DATA2 • BayLum</title>
+ — DATA2 • BayLum</title>
 
 
 <!-- jquery -->
@@ -41,7 +41,7 @@
 
 
 <meta property="og:title" content="DATA on sample named GDB5
-<!-- %%   ~~ data name/kind ... ~~ --> — DATA2" />
+ — DATA2" />
 <meta property="og:description" content="list of objects: LT, sLT, ITimes, dLab, ddot_env, regDose, J,K,Nb_measurement obtained using Generate_DataFile function  with single-grain OSL measurementsl of the sample GDB5.
 " />
 
@@ -75,7 +75,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">BayLum</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.4.9000-44</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.0</span>
       </span>
     </div>
 
@@ -138,12 +138,12 @@
 <!-- %%  ~~ A concise (1-5 lines) description of the dataset. ~~ --></p>
     </div>
 
-    <pre class="usage"><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='st'>"DATA2"</span>)</pre>
+    <pre class="usage"><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='st'>"DATA2"</span><span class='op'>)</span></pre>
 
 
     <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
-    <p>A data frame containing:</p><dl'>
+    <p>A data frame containing:</p><dl>
    <dt><code>LT:</code></dt><dd><p>(one list per sample): each list contains all L/T values for the corresponding sample;</p></dd>
    <dt><code>sLT:</code></dt><dd><p>(one list per sample): each list contains all uncertainties on L/T values for the corresponding sample;</p></dd>
    <dt><code>ITimes:</code></dt><dd><p>(one list per sample): each list contains irradiation time values for the corresponding sample;</p></dd>
@@ -162,8 +162,9 @@
 <p>Tribolo, C., Asrat, A., Bahain, J. J., Chapon, C., Douville, E., Fragnol, C., Hernandez, M., Hovers, E., Leplongeon, A.,  Martin, L,  Pleurdeau, D,  Pearson, O ,  Puaud, S,  Assefa, Z. (2017). Across the Gap: Geochronological and Sedimentological Analyses from the Late Pleistocene-Holocene Sequence of Goda Buticha, Southeastern Ethiopia. PloS one, 12(1), e0169418.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>DATA2</span>)
-<span class='fu'><a href='https://rdrr.io/r/utils/str.html'>str</a></span>(<span class='no'>DATA2</span>)</div><div class='output co'>#&gt; List of 9
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>DATA2</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/utils/str.html'>str</a></span><span class='op'>(</span><span class='va'>DATA2</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; List of 9
 #&gt;  $ LT            :List of 1
 #&gt;   ..$ : num [1:188, 1:6] 4.54 2.73 2.54 2.27 1.48 ...
 #&gt;  $ sLT           :List of 1
@@ -192,7 +193,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

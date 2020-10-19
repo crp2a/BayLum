@@ -77,7 +77,7 @@ Single-grain or Multi-grain OSL measurements can be analysed simultaneouly." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">BayLum</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.4.9000-44</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.0</span>
       </span>
     </div>
 
@@ -143,32 +143,32 @@ Samples, for which data is avalilable in several BIN files, can be analysed.<br 
 Single-grain or Multi-grain OSL measurements can be analysed simultaneouly.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>AgeS_Computation</span>(
-  <span class='no'>DATA</span>,
-  <span class='no'>SampleNames</span>,
-  <span class='no'>Nb_sample</span>,
-  <span class='kw'>PriorAge</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0.01</span>, <span class='fl'>100</span>), <span class='no'>Nb_sample</span>),
-  <span class='kw'>BinPerSample</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span>(<span class='fl'>1</span>, <span class='no'>Nb_sample</span>),
-  <span class='kw'>SavePdf</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>OutputFileName</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"MCMCplot"</span>, <span class='st'>"summary"</span>),
-  <span class='kw'>OutputFilePath</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>""</span>),
-  <span class='kw'>SaveEstimates</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>OutputTableName</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"DATA"</span>),
-  <span class='kw'>OutputTablePath</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>""</span>),
-  <span class='kw'>THETA</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(),
-  <span class='kw'>sepTHETA</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>","</span>),
-  <span class='kw'>StratiConstraints</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(),
-  <span class='kw'>sepSC</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>","</span>),
-  <span class='kw'>LIN_fit</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>Origin_fit</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>distribution</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"cauchy"</span>),
-  <span class='kw'>Iter</span> <span class='kw'>=</span> <span class='fl'>50000</span>,
-  <span class='kw'>t</span> <span class='kw'>=</span> <span class='fl'>5</span>,
-  <span class='kw'>n.chains</span> <span class='kw'>=</span> <span class='fl'>3</span>,
-  <span class='kw'>jags_method</span> <span class='kw'>=</span> <span class='st'>"rjags"</span>,
-  <span class='kw'>quiet</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='no'>...</span>
-)</pre>
+    <pre class="usage"><span class='fu'>AgeS_Computation</span><span class='op'>(</span>
+  <span class='va'>DATA</span>,
+  <span class='va'>SampleNames</span>,
+  <span class='va'>Nb_sample</span>,
+  PriorAge <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0.01</span>, <span class='fl'>100</span><span class='op'>)</span>, <span class='va'>Nb_sample</span><span class='op'>)</span>,
+  BinPerSample <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span><span class='op'>(</span><span class='fl'>1</span>, <span class='va'>Nb_sample</span><span class='op'>)</span>,
+  SavePdf <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  OutputFileName <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"MCMCplot"</span>, <span class='st'>"summary"</span><span class='op'>)</span>,
+  OutputFilePath <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>""</span><span class='op'>)</span>,
+  SaveEstimates <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  OutputTableName <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"DATA"</span><span class='op'>)</span>,
+  OutputTablePath <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>""</span><span class='op'>)</span>,
+  THETA <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='op'>)</span>,
+  sepTHETA <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>","</span><span class='op'>)</span>,
+  StratiConstraints <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='op'>)</span>,
+  sepSC <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>","</span><span class='op'>)</span>,
+  LIN_fit <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  Origin_fit <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  distribution <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"cauchy"</span><span class='op'>)</span>,
+  Iter <span class='op'>=</span> <span class='fl'>50000</span>,
+  t <span class='op'>=</span> <span class='fl'>5</span>,
+  n.chains <span class='op'>=</span> <span class='fl'>3</span>,
+  jags_method <span class='op'>=</span> <span class='st'>"rjags"</span>,
+  quiet <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  <span class='va'>...</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -425,7 +425,7 @@ initial value generation of JAGS. This is not optimal and will be changed in fut
 of the age estimates if the chains have converged.</p>
     <h2 class="hasAnchor" id="how-to-cite"><a class="anchor" href="#how-to-cite"></a>How to cite</h2>
 
-    <p>Christophe, C., Philippe, A., Kreutzer, S., 2020. AgeS_Computation(): Bayesian analysis for OSL age estimation of various samples. In: Christophe, C., Philippe, A., Kreutzer, S., Guerin, G., 2020. BayLum: Chronological Bayesian Models Integrating Optically Stimulated. R package version 0.1.4.9000-44. https://CRAN.r-project.org/package=BayLum</p>
+    <p>Christophe, C., Philippe, A., Kreutzer, S., 2020. AgeS_Computation(): Bayesian analysis for OSL age estimation of various samples. In: Christophe, C., Philippe, A., Kreutzer, S., Guerin, G., 2020. BayLum: Chronological Bayesian Models Integrating Optically Stimulated. R package version 0.2.0. https://CRAN.r-project.org/package=BayLum</p>
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
     <p>Combes, Benoit and Philippe, Anne, 2017.
@@ -437,26 +437,30 @@ Quaternary Geochronology 28, 62-70. doi:10.1016/j.quageo.2015.04.001</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><a href='Generate_DataFile.html'>Generate_DataFile</a>, <a href='Generate_DataFile_MG.html'>Generate_DataFile_MG</a>, rjags, <a href='plot_MCMC.html'>plot_MCMC</a>, <a href='SCMatrix.html'>SCMatrix</a>, <a href='Age_Computation.html'>Age_Computation</a>, <a href='Palaeodose_Computation.html'>Palaeodose_Computation</a>, <a href='plot_Ages.html'>plot_Ages</a>, <a href='create_ThetaMatrix.html'>create_ThetaMatrix</a>, <a href='https://rdrr.io/pkg/runjags/man/autorun.jags.html'>runjags::autorun.jags</a></p></div>
+    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
+
+    <p>Claire Christophe, Anne Philippe, Guillaume Guérin, Sebastian Kreutzer</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'>## load data</span>
-<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>DATA1</span>,<span class='kw'>envir</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/environment.html'>environment</a></span>())
-<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>DATA2</span>,<span class='kw'>envir</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/environment.html'>environment</a></span>())
-<span class='no'>Data</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='combine_DataFiles.html'>combine_DataFiles</a></span>(<span class='no'>DATA2</span>,<span class='no'>DATA1</span>)
+<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>DATA1</span>,envir <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/environment.html'>environment</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>DATA2</span>,envir <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/environment.html'>environment</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>
+<span class='va'>Data</span> <span class='op'>&lt;-</span> <span class='fu'><a href='combine_DataFiles.html'>combine_DataFiles</a></span><span class='op'>(</span><span class='va'>DATA2</span>,<span class='va'>DATA1</span><span class='op'>)</span>
 
 <span class='co'>## Age computation of samples GDB5 and GDB3,</span>
-<span class='no'>priorage</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1</span>,<span class='fl'>10</span>,<span class='fl'>20</span>,<span class='fl'>60</span>) <span class='co'># these samples are not young</span>
+<span class='va'>priorage</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span>,<span class='fl'>10</span>,<span class='fl'>20</span>,<span class='fl'>60</span><span class='op'>)</span> <span class='co'># these samples are not young</span>
 
 <span class='co'>## without common error and without stratigraphic constraints</span>
-<span class='no'>Age</span> <span class='kw'>&lt;-</span> <span class='fu'>AgeS_Computation</span>(
-  <span class='kw'>DATA</span> <span class='kw'>=</span> <span class='no'>Data</span>,
-  <span class='kw'>Nb_sample</span> <span class='kw'>=</span> <span class='fl'>2</span>,
-  <span class='kw'>SampleNames</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"GDB5"</span>,<span class='st'>"GDB3"</span>),
-  <span class='kw'>PriorAge</span> <span class='kw'>=</span> <span class='no'>priorage</span>,
-  <span class='kw'>Iter</span> <span class='kw'>=</span> <span class='fl'>50</span>,
-  <span class='kw'>n.chains</span> <span class='kw'>=</span> <span class='fl'>2</span>,
-  <span class='kw'>quiet</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
-  )</div><div class='output co'>#&gt; <span class='warning'>Warning: Adaptation incomplete</span></div><div class='output co'>#&gt; NOTE: Stopping adaptation
+<span class='va'>Age</span> <span class='op'>&lt;-</span> <span class='fu'>AgeS_Computation</span><span class='op'>(</span>
+  DATA <span class='op'>=</span> <span class='va'>Data</span>,
+  Nb_sample <span class='op'>=</span> <span class='fl'>2</span>,
+  SampleNames <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"GDB5"</span>,<span class='st'>"GDB3"</span><span class='op'>)</span>,
+  PriorAge <span class='op'>=</span> <span class='va'>priorage</span>,
+  Iter <span class='op'>=</span> <span class='fl'>50</span>,
+  n.chains <span class='op'>=</span> <span class='fl'>2</span>,
+  quiet <span class='op'>=</span> <span class='cn'>TRUE</span>
+  <span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='warning'>Warning: Adaptation incomplete</span></div><div class='output co'>#&gt; NOTE: Stopping adaptation
 #&gt; 
 #&gt; </div><div class='output co'>#&gt; <span class='warning'>Warning: [plot_MCMC()] 'n.iter' out of range, reset to number of observations</span></div><div class='img'><img src='AgeS_Computation-1.png' alt='' width='700' height='433' /></div><div class='img'><img src='AgeS_Computation-2.png' alt='' width='700' height='433' /></div><div class='output co'>#&gt; 
 #&gt; 
@@ -465,16 +469,16 @@ Quaternary Geochronology 28, 62-70. doi:10.1016/j.quageo.2015.04.001</p>
 #&gt;  Sample name:  GDB5 
 #&gt; ---------------------
 #&gt; 		 Point estimate Uppers confidence interval
-#&gt; A_GDB5 	 1.11 		 1.49 
-#&gt; D_GDB5 	 1.14 		 1.4 
-#&gt; sD_GDB5 	 0.97 		 1.04 
+#&gt; A_GDB5 	 1.69 		 3.01 
+#&gt; D_GDB5 	 1.13 		 1.61 
+#&gt; sD_GDB5 	 0.99 		 1 
 #&gt; ----------------------------------------------
 #&gt;  Sample name:  GDB3 
 #&gt; ---------------------
 #&gt; 		 Point estimate Uppers confidence interval
-#&gt; A_GDB3 	 1.81 		 3.37 
-#&gt; D_GDB3 	 3.46 		 12.36 
-#&gt; sD_GDB3 	 1.11 		 1.49 
+#&gt; A_GDB3 	 1 		 1.15 
+#&gt; D_GDB3 	 1.57 		 2.78 
+#&gt; sD_GDB3 	 1.02 		 1.16 
 #&gt; 
 #&gt; 
 #&gt; ---------------------------------------------------------------------------------------------------
@@ -488,79 +492,81 @@ Quaternary Geochronology 28, 62-70. doi:10.1016/j.quageo.2015.04.001</p>
 #&gt;  Sample name:  GDB5 
 #&gt; ---------------------
 #&gt; Parameter 	 Bayes estimate 	  Credible interval 
-#&gt;  A_GDB5 	 7.241 
+#&gt;  A_GDB5 	 7.573 
 #&gt; 						 lower bound 	 upper bound
-#&gt; 				 at level 95% 	 6.25 		 7.87 
-#&gt; 				 at level 68% 	 7 		 7.66 
+#&gt; 				 at level 95% 	 6.5 		 8.33 
+#&gt; 				 at level 68% 	 6.98 		 7.97 
 #&gt; 
 #&gt; Parameter 	 Bayes estimate 	  Credible interval 
-#&gt;  D_GDB5 	 18.717 
+#&gt;  D_GDB5 	 18.841 
 #&gt; 						 lower bound 	 upper bound
-#&gt; 				 at level 95% 	 18.06 		 19.59 
-#&gt; 				 at level 68% 	 18.09 		 18.73 
+#&gt; 				 at level 95% 	 17.81 		 19.83 
+#&gt; 				 at level 68% 	 17.81 		 19.15 
 #&gt; 
 #&gt; Parameter 	 Bayes estimate 	  Credible interval 
-#&gt; sD_GDB5 	 4.852 
+#&gt; sD_GDB5 	 5.086 
 #&gt; 						 lower bound 	 upper bound
-#&gt; 				 at level 95% 	 4.05 		 5.51 
-#&gt; 				 at level 68% 	 4.58 		 5.28 
+#&gt; 				 at level 95% 	 4.35 		 5.99 
+#&gt; 				 at level 68% 	 4.35 		 4.75 
 #&gt; ----------------------------------------------
 #&gt;  Sample name:  GDB3 
 #&gt; ---------------------
 #&gt; Parameter 	 Bayes estimate 	  Credible interval 
-#&gt;  A_GDB3 	 44.037 
+#&gt;  A_GDB3 	 44.217 
 #&gt; 						 lower bound 	 upper bound
-#&gt; 				 at level 95% 	 34.85 		 50.64 
-#&gt; 				 at level 68% 	 39.52 		 46.77 
+#&gt; 				 at level 95% 	 38.24 		 52.58 
+#&gt; 				 at level 68% 	 41.89 		 47.91 
 #&gt; 
 #&gt; Parameter 	 Bayes estimate 	  Credible interval 
-#&gt;  D_GDB3 	 100.839 
+#&gt;  D_GDB3 	 97.333 
 #&gt; 						 lower bound 	 upper bound
-#&gt; 				 at level 95% 	 95.57 		 107.6 
-#&gt; 				 at level 68% 	 95.69 		 103.09 
+#&gt; 				 at level 95% 	 95.5 		 100.42 
+#&gt; 				 at level 68% 	 94.77 		 97.75 
 #&gt; 
 #&gt; Parameter 	 Bayes estimate 	  Credible interval 
-#&gt; sD_GDB3 	 16.08 
+#&gt; sD_GDB3 	 15.287 
 #&gt; 						 lower bound 	 upper bound
-#&gt; 				 at level 95% 	 12.23 		 20.61 
-#&gt; 				 at level 68% 	 13.66 		 16.99 
+#&gt; 				 at level 95% 	 11.43 		 18.96 
+#&gt; 				 at level 68% 	 12.61 		 16.23 
 #&gt; 
 #&gt; ----------------------------------------------</div><div class='img'><img src='AgeS_Computation-3.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'>## Age computation of samples GDB5 and GDB3,</span>
 <span class='co'>## without common error, assuming GDB5 age younder than GDB3 age</span>
-<span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
-<span class='no'>Nb_sample</span> <span class='kw'>&lt;-</span> <span class='fl'>2</span>
-<span class='no'>SC</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span>(
-  <span class='kw'>data</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1</span>,<span class='fl'>1</span>,<span class='fl'>0</span>,<span class='fl'>1</span>,<span class='fl'>0</span>,<span class='fl'>0</span>),
-  <span class='kw'>ncol</span> <span class='kw'>=</span> <span class='fl'>2</span>,
-  <span class='kw'>nrow</span> <span class='kw'>=</span> (<span class='no'>Nb_sample</span>+<span class='fl'>1</span>),<span class='kw'>byrow</span> <span class='kw'>=</span> <span class='no'>T</span>)
+<span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
+<span class='va'>Nb_sample</span> <span class='op'>&lt;-</span> <span class='fl'>2</span>
+<span class='va'>SC</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span><span class='op'>(</span>
+  data <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span>,<span class='fl'>1</span>,<span class='fl'>0</span>,<span class='fl'>1</span>,<span class='fl'>0</span>,<span class='fl'>0</span><span class='op'>)</span>,
+  ncol <span class='op'>=</span> <span class='fl'>2</span>,
+  nrow <span class='op'>=</span> <span class='op'>(</span><span class='va'>Nb_sample</span><span class='op'>+</span><span class='fl'>1</span><span class='op'>)</span>,byrow <span class='op'>=</span> <span class='cn'>T</span><span class='op'>)</span>
 
 <span class='co'>##standard</span>
-<span class='no'>Age</span> <span class='kw'>&lt;-</span> <span class='fu'>AgeS_Computation</span>(
- <span class='kw'>DATA</span> <span class='kw'>=</span> <span class='no'>Data</span>,
- <span class='kw'>Nb_sample</span> <span class='kw'>=</span> <span class='no'>Nb_sample</span>,
- <span class='kw'>SampleNames</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"GDB5"</span>,<span class='st'>"GDB3"</span>),
- <span class='kw'>PriorAge</span> <span class='kw'>=</span> <span class='no'>priorage</span>,
- <span class='kw'>StratiConstraints</span> <span class='kw'>=</span> <span class='no'>SC</span>,
- <span class='kw'>Iter</span> <span class='kw'>=</span> <span class='fl'>10000</span>,
- <span class='kw'>quiet</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
- <span class='kw'>jags_method</span> <span class='kw'>=</span> <span class='st'>"rjags"</span>
- )
+<span class='va'>Age</span> <span class='op'>&lt;-</span> <span class='fu'>AgeS_Computation</span><span class='op'>(</span>
+ DATA <span class='op'>=</span> <span class='va'>Data</span>,
+ Nb_sample <span class='op'>=</span> <span class='va'>Nb_sample</span>,
+ SampleNames <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"GDB5"</span>,<span class='st'>"GDB3"</span><span class='op'>)</span>,
+ PriorAge <span class='op'>=</span> <span class='va'>priorage</span>,
+ StratiConstraints <span class='op'>=</span> <span class='va'>SC</span>,
+ Iter <span class='op'>=</span> <span class='fl'>10000</span>,
+ quiet <span class='op'>=</span> <span class='cn'>FALSE</span>,
+ jags_method <span class='op'>=</span> <span class='st'>"rjags"</span>
+ <span class='op'>)</span>
 
 <span class='co'>##parallel mode</span>
-<span class='no'>Age</span> <span class='kw'>&lt;-</span> <span class='fu'>AgeS_Computation</span>(
- <span class='kw'>DATA</span> <span class='kw'>=</span> <span class='no'>Data</span>,
- <span class='kw'>Nb_sample</span> <span class='kw'>=</span> <span class='no'>Nb_sample</span>,
- <span class='kw'>SampleNames</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"GDB5"</span>,<span class='st'>"GDB3"</span>),
- <span class='kw'>PriorAge</span> <span class='kw'>=</span> <span class='no'>priorage</span>,
- <span class='kw'>StratiConstraints</span> <span class='kw'>=</span> <span class='no'>SC</span>,
- <span class='kw'>Iter</span> <span class='kw'>=</span> <span class='fl'>10000</span>,
- <span class='kw'>quiet</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
- <span class='kw'>jags_method</span> <span class='kw'>=</span> <span class='st'>"rjparallel"</span>
- )
+<span class='va'>Age</span> <span class='op'>&lt;-</span> <span class='fu'>AgeS_Computation</span><span class='op'>(</span>
+ DATA <span class='op'>=</span> <span class='va'>Data</span>,
+ Nb_sample <span class='op'>=</span> <span class='va'>Nb_sample</span>,
+ SampleNames <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"GDB5"</span>,<span class='st'>"GDB3"</span><span class='op'>)</span>,
+ PriorAge <span class='op'>=</span> <span class='va'>priorage</span>,
+ StratiConstraints <span class='op'>=</span> <span class='va'>SC</span>,
+ Iter <span class='op'>=</span> <span class='fl'>10000</span>,
+ quiet <span class='op'>=</span> <span class='cn'>FALSE</span>,
+ jags_method <span class='op'>=</span> <span class='st'>"rjparallel"</span>
+ <span class='op'>)</span>
 
 
-}</div></pre>
+<span class='op'>}</span>
+
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -576,7 +582,7 @@ Quaternary Geochronology 28, 62-70. doi:10.1016/j.quageo.2015.04.001</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

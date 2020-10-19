@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Prior for JAGS models use in <code>Age_OSLC14</code> — ModelPrior • BayLum</title>
+<title>Prior for JAGS models use in Age_OSLC14 — ModelPrior • BayLum</title>
 
 
 <!-- jquery -->
@@ -39,7 +39,7 @@
 
 
 
-<meta property="og:title" content="Prior for JAGS models use in <code>Age_OSLC14</code> — ModelPrior" />
+<meta property="og:title" content="Prior for JAGS models use in Age_OSLC14 — ModelPrior" />
 <meta property="og:description" content="A list to define prior in JAGS models, taking acount OSL data and C14 data in stratigraphic constraint.
 The difficulty is in the fact that each cases is different. The youngest sample can be a C14 as well as a OSL sample.
 To resolve this problem we consider diferent cases thanks to this list." />
@@ -74,7 +74,7 @@ To resolve this problem we consider diferent cases thanks to this list." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">BayLum</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.4.9000-44</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.0</span>
       </span>
     </div>
 
@@ -137,12 +137,12 @@ The difficulty is in the fact that each cases is different. The youngest sample 
 To resolve this problem we consider diferent cases thanks to this list.</p>
     </div>
 
-    <pre class="usage"><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='st'>"ModelPrior"</span>)</pre>
+    <pre class="usage"><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='st'>"ModelPrior"</span><span class='op'>)</span></pre>
 
 
     <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
-    <p>This list contains:</p><dl'>
+    <p>This list contains:</p><dl>
     <dt><code>Sample1_C14</code></dt><dd><p>model considering that the youngest sample is a C14 sample</p></dd>
     <dt><code>Sample1_OSL</code></dt><dd><p>model considering that the youngest sample is a OSL sample</p></dd>
     <dt><code>C14_OSL</code></dt><dd><p>model considering that the second sample is a C14 sample</p></dd>
@@ -160,9 +160,10 @@ Technische Universit at Wien, Austria.</p>
 <p>Plummer, M. (2015). JAGS Version 4.0. 0 user manual.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>ModelPrior</span>)
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>ModelPrior</span><span class='op'>)</span>
 <span class='co'>## ModelPrior[[OSL]]</span>
-<span class='fu'><a href='https://rdrr.io/r/base/writeLines.html'>writeLines</a></span>(<span class='no'>ModelPrior</span>$<span class='no'>OSL</span>)</div><div class='output co'>#&gt; 
+<span class='fu'><a href='https://rdrr.io/r/base/writeLines.html'>writeLines</a></span><span class='op'>(</span><span class='va'>ModelPrior</span><span class='op'>$</span><span class='va'>OSL</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; 
 #&gt;       # donnee OSL
 #&gt;       kk&lt;-k+1
 #&gt;       for(i in (ind_change[2*q+1]+1):ind_change[2*(q+1)]){
@@ -186,7 +187,7 @@ Technische Universit at Wien, Austria.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>
