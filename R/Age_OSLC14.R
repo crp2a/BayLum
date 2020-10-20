@@ -443,7 +443,7 @@ Age_OSLC14 <- function(
     q <- q-1
     if(q == 0) {
       stop("[Age_OSLC14()] If you see this message, you are probably trying to run the model with a small number of samples.
-           You can still use the function, buty the C-14 sample cannot be the first sample.", call. = FALSE)
+           You can still use the function, but the C-14 sample cannot be the first sample.", call. = FALSE)
 
     }
 
