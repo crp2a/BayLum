@@ -45,12 +45,13 @@
 #'
 #' @param CalibrationCurve [character] (with default): calibration curve choosen. Allowed inputs are
 #' \itemize{
-#'   \item \bold{"AtmosphericNorth"} for Northern Hemisphere atmospheric radiocarbon calibration curve,
-#'   \item \bold{"Marine"} for Marine radiocarbon calibration curve,
-#'   \item \bold{"AtmosphericSouth"} for Southern Hemisphere atmospheric radiocarbon calibration curve
+#'   \item \bold{"Intcal13"} or \bold{"Intcal13"} for Northern Hemisphere atmospheric radiocarbon calibration curve,
+#'   \item \bold{"Marine13"} or \bold{"Marine13"} for Marine radiocarbon calibration curve,
+#'   \item \bold{"SHCal13"} or \bold{"SHCal20"} for Southern Hemisphere atmospheric radiocarbon calibration curve
 #'   \item \bold{a csv file, with tree columns, the first column is dedicated to "Cal.BP", the second to "XC-14.age", the third to "Error".
 #'   The decimal of this file must be a dot, and the separator must be a comma. }
 #' }
+
 #'
 #' @param Iter [integer] (with default): number of iterations for the MCMC computation (for more information see [rjags::jags.model]).
 #'
@@ -191,7 +192,7 @@ AgeC14_Computation <- function(Data_C14Cal,
  StratiConstraints = c(),
  sepSC = c(','),
  Model = c("full"),
- CalibrationCurve = c("AtmosphericNorth"),
+ CalibrationCurve = c("IntCal20"),
  Iter = 50000,
  t = 5,
  n.chains = 3,
@@ -205,21 +206,11 @@ AgeC14_Computation <- function(Data_C14Cal,
 
    #--- Calibration curve
    TableauCalib=c()
-   if(CalibrationCurve=="AtmosphericNorth"){
-     AtmosphericNorth_CalC14<-0
-     data(AtmosphericNorth_CalC14,envir = environment())
-     TableauCalib=AtmosphericNorth_CalC14
-   }else{if(CalibrationCurve=="AtmosphericSouth"){
-     AtmosphericSouth_CalC14<-0
-     data(AtmosphericSouth_CalC14,envir = environment())
-     TableauCalib=AtmosphericSouth_CalC14
-   }else{if(CalibrationCurve=="Marine"){
-     Marine_CalC14<-0
-     data(Marine_CalC14,envir = environment())
-     TableauCalib=Marine_CalC14
-   }else{
-     TableauCalib=read.csv(file=CalibrationCurve,sep=",",dec=".")
-   }}}
+   if ( CalibrationCurve %in%  c("IntCal13","IntCal20","Marine13","Marine20", "SHCal13" , "SHCal20"))
+   {TableauCalib = get(data(list= CalibrationCurve,envir = environment())) }else
+   {TableauCalib=read.csv(file=CalibrationCurve,sep=",",dec=".")}
+
+
    AgeBP=rev(TableauCalib[,1])
    CalC14=rev(TableauCalib[,2])
    SigmaCalC14=rev(TableauCalib[,3])
