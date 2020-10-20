@@ -1,5 +1,5 @@
-\name{AtmosphericNorth_CalC14}
-\alias{AtmosphericNorth_CalC14}
+\name{IntCal13}
+\alias{IntCal13}
 \docType{data}
 \title{
 Atmospheric North data for calibration of 14C age
@@ -7,9 +7,9 @@ Atmospheric North data for calibration of 14C age
 \description{
 As 14C years is not equal to calendar years because atmospheric 14C concentration varies through time. Hence, data in AtmosphericNorth_CalC14 allows a calibration for mid-latitude Northern Hemisphere atmospher reservoir.
 }
-\usage{data("AtmosphericNorth_CalC14")}
+\usage{data("IntCal13")}
 \format{
-  A data frame with 5 variables.
+  A data frame with 3 variables.
   \describe{
     \item{\code{CAL.BP}}{a numeric vector correpondig to calendar years befor present}
     \item{\code{X14C.age}}{a numeric vector correponding to 14C age}
@@ -26,7 +26,7 @@ As 14C years is not equal to calendar years because atmospheric 14C concentratio
 Reimer PJ, Bard E, Bayliss A, Beck JW, Blackwell PC, Bronl Ramsey C, Buck CE, Cheng H, Edwards RL, Friedrich M, Grootes PM, Guilderson TP, Haflidason H, Hajdas I, Hatte C, Heaton TJ, Hoffmann DL, Hogg AG, Hughen KA, Kaiser KF, Kromer B, Manning SW, Niu M, Reimer RW, Richards DA, Scott EM, Southon JR, Staff RA, Turney CSM, van der Plicht J. 2013. IntCal13 ans Marine13 radiocarbon age calibration curves 0-50000 years cal BP. Radiocarbon 55(4)=1869-1887.
 }
 \examples{
-data(AtmosphericNorth_CalC14)
-## maybe str(AtmosphericNorth_CalC14) ; head(AtmosphericNorth_CalC14) ...
+data(IntCal13)
+## maybe str(IntCal13) ; head(IntCal13) ...
 }
 \keyword{datasets}
