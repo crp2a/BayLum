@@ -68,7 +68,7 @@ plot_MCMC <- function(
   variables = c("A", "D", "sD"),
   axes_labels = c("A" = "Age (ka)", "D" = "D (Gy)", "sD" = "sD (Gy)"),
   n.chains = NULL,
-  n.iter = 1000L,
+  n.iter = min(1000,nrow(object)),
   smooth = FALSE,
   rug = TRUE,
   plot_single = FALSE,
