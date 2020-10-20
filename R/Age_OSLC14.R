@@ -369,7 +369,7 @@ Age_OSLC14 <- function(
   CalC14=rev(TableauCalib[,2])
   SigmaCalC14=rev(TableauCalib[,3])
 
-  # #--- C14 prepration: Calibration curve
+  # #--- C14 preparation: Calibration curve
   # TableauCalib=read.csv(file=paste("inst/extdata/",CalibrationCurve,"_CalC14.csv",sep=""),sep=",",dec=".")
   # AgeBP=rev(TableauCalib[,1])/1000
   # CalC14=rev(TableauCalib[,2])
@@ -405,50 +405,57 @@ Age_OSLC14 <- function(
   }
 
   #---  Index preparation
-  ind_OSL=which(SampleNature[1,]==1)
-  CS_OSL=cumsum(SampleNature[1,])
-  ind_C14=which(SampleNature[2,]==1)
-  CS_C14=cumsum(SampleNature[2,])
-  ind_change=c(1)
-  for(i in 2:(Nb_sample-1)){
-    if(SampleNature[1,i]!=SampleNature[1,i+1]){
-      ind_change=c(ind_change,i)
+  ind_OSL <- which(SampleNature[1, ] == 1)
+  CS_OSL <- cumsum(SampleNature[1, ])
+  ind_C14 <- which(SampleNature[2, ] == 1)
+  CS_C14 <- cumsum(SampleNature[2, ])
+
+  ind_change <- c(1)
+  for (i in 2:(Nb_sample - 1)) {
+    if (SampleNature[1, i] != SampleNature[1, i + 1]) {
+      ind_change <- c(ind_change, i)
     }
   }
+  ind_change <- c(ind_change,Nb_sample)
 
-  ind_change=c(ind_change,Nb_sample)
-  q=length(ind_change)%/%2
-  r=length(ind_change)%%2
+  q <- length(ind_change)%/%2
+  r <- length(ind_change)%%2
 
   ##--- description du model BUG
-  BUGModel=c()
+  BUGModel <- c()
   #- Prior
-  ModelPrior<-0
+  ModelPrior <- 0
   data(ModelPrior,envir = environment())
-  BUGPrior=c()
+  BUGPrior <- c()
 
-  if(r==1){
+  if (r == 1) {
     if(SampleNature[1,1]==1){
-      BUGPrior=paste(BUGPrior,ModelPrior$Sample1_OSL)
+      BUGPrior <- paste(BUGPrior,ModelPrior$Sample1_OSL)
     }else{
-      BUGPrior=paste(BUGPrior,ModelPrior$Sample1_C14)
+      BUGPrior <- paste(BUGPrior,ModelPrior$Sample1_C14)
     }
     if(SampleNature[1,2]==1){
-      BUGPrior=paste(BUGPrior,ModelPrior$OSL_C14)
+      BUGPrior <- paste(BUGPrior, ModelPrior$OSL_C14)
     }else{
-      BUGPrior=paste(BUGPrior,ModelPrior$C14_OSL)
+      BUGPrior <- paste(BUGPrior, ModelPrior$C14_OSL)
     }
   }else{
-    q=q-1
+    q <- q-1
+    if(q == 0) {
+      stop("[Age_OSLC14()] If you see this message, you are probably trying to run the model with a small number of samples.
+           You can still use the function, buty the C-14 sample cannot be the first sample.", call. = FALSE)
+
+    }
+
     if(SampleNature[1,1]==1){
-      BUGPrior=paste(BUGPrior,ModelPrior$Sample1_OSL)
+      BUGPrior <- paste(BUGPrior,ModelPrior$Sample1_OSL)
     }else{
-      BUGPrior=paste(BUGPrior,ModelPrior$Sample1_C14)
+      BUGPrior <- paste(BUGPrior,ModelPrior$Sample1_C14)
     }
     if(SampleNature[1,2]==1){
-      BUGPrior=paste(BUGPrior,ModelPrior$OSL_C14)
+      BUGPrior <- paste(BUGPrior,ModelPrior$OSL_C14)
     }else{
-      BUGPrior=paste(BUGPrior,ModelPrior$C14_OSL)
+      BUGPrior <- paste(BUGPrior,ModelPrior$C14_OSL)
     }
     if(SampleNature[1,Nb_sample]==1){
       BUGPrior=paste(BUGPrior,ModelPrior$OSL)
@@ -456,7 +463,7 @@ Age_OSLC14 <- function(
   }
 
   #- partie C14
-  ModelC14<-0
+  ModelC14 <- 0
   data(ModelC14,envir = environment())
   if(Model_C14=="full"){
     BUGModel=paste(ModelC14$full,BUGPrior)
@@ -508,6 +515,8 @@ Age_OSLC14 <- function(
   ##open text connection
   con <-  textConnection(BUGModel)
 
+  ##TODO
+  #print(readLines(con))
   jags <-
     rjags::jags.model(
       file = con,
