@@ -24,6 +24,9 @@
       - The CSV-file option now returns the age and the HPD intervals
       - The bugs model for the `gaussian` distribution did not work due
         to a wrongly set index (\#13); fixed.
+      - If a small number of samples was used and the first was a C-14
+        sample JAGS crashed; now it throws are more comprehensible error
+        message (\#14).
   - `Generate_DataFile_MG()`
       - now works only on preselected records; the limitation of OSL
         only was removed.
