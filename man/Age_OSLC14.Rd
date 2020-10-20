@@ -27,7 +27,7 @@ Age_OSLC14(
   Origin_fit = FALSE,
   distribution = c("cauchy"),
   Model_C14 = c("full"),
-  CalibrationCurve = c("AtmosphericNorth"),
+  CalibrationCurve = c("IntCal20"),
   Iter = 50000,
   t = 5,
   n.chains = 3,
@@ -130,11 +130,11 @@ curve is taken account, for C-14 samples.  If \code{"naive"} this error is not t
 \item{CalibrationCurve}{\link{character} (with default): calibration curve chosen, for C-14 samples.
 Allowed inputs are
 \itemize{
-\item \code{"AtmosphericNorth"} for Northern Hemisphere atmospheric radiocarbon calibration curve,
-\item \code{"Marine"} for Marine radiocarbon calibration curve,
-\item \code{"AtmosphericSouth"} for Southern Hemisphere atmospheric radiocarbon calibration curve,
-\item \bold{a CSV-file, with tree columns, the first column is dedicated to \code{Cal.BP}, the second to \code{X14C.age},
-the third to \code{Error}. The decimal delimiter of this file must be a dot, and the separator must be a comma.}
+\item \bold{"Intcal13"} or \bold{"Intcal13"} for Northern Hemisphere atmospheric radiocarbon calibration curve,
+\item \bold{"Marine13"} or \bold{"Marine13"} for Marine radiocarbon calibration curve,
+\item \bold{"SHCal13"} or \bold{"SHCal20"} for Southern Hemisphere atmospheric radiocarbon calibration curve
+\item \bold{a csv file, with tree columns, the first column is dedicated to "Cal.BP", the second to "XC-14.age", the third to "Error".
+The decimal of this file must be a dot, and the separator must be a comma. }
 }}
 
 \item{Iter}{\link{numeric} (with default): number of iterations for the MCMC computation
