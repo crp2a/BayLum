@@ -10,7 +10,7 @@ plot_MCMC(
   variables = c("A", "D", "sD"),
   axes_labels = c(A = "Age (ka)", D = "D (Gy)", sD = "sD (Gy)"),
   n.chains = NULL,
-  n.iter = min(1000, nrow(object)),
+  n.iter = 1000,
   smooth = FALSE,
   rug = TRUE,
   plot_single = FALSE,
