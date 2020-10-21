@@ -69,7 +69,7 @@ by `Generate_DataFile()` and `Generate_DataFile_MG()` on the user's hard drive
  however, both functions now return a new list of class `BayLum.list` which is recognised by the function `plot_Ages()` and can be used to plot the typical age plot while providing several arguments for adjusting the plot output. 
 
 ### Bugfixes & changes
-* The newly introduced function `combine_DataFiles()` did not work on R < 3.5.0, which caused an 
+* The newly introduced function `combine_DataFiles()`  did not work on R < 3.5.0, which caused an 
 error on CRAN; fixed.
 * The function `ScatterSamples()` is replaced by the function `plot_Scatterplots()`
 * All computation functions left text connections open after they have been exited; fixed. 
