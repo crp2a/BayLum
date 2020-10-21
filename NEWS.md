@@ -64,6 +64,10 @@
     documentation was missing)
   - Smooth the creation of `BayLum.list` objects using a central
     internal function
+  - Add new C-14 calibration data and unify the names of those datasets.
+    Allowed inputs are
+    `"IntCal13"`,`"IntCal20"`,`"Marine13"`,`"Marine20"`, `"SHCal13"`,
+    `"SHCal20"` or an own dataset which must be stored in a CSV-file.
 
 ### New functions
 
