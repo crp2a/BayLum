@@ -9,7 +9,7 @@
 #'
 #'@param ... arguments passed to [list]
 #'
-#'@param originator [character] (*with default*): argument to set orignator manually
+#'@param originator [character] (*with default*): argument to set originator manually
 #'
 #'@author Sebastian Kreutzer, IRAMAT-CRP2A, UMR 5060, CNRS-Université Bordeaux Montaigne (France)
 #'
