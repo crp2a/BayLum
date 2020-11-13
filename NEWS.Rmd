@@ -15,6 +15,8 @@ knitr::opts_chunk$set(
 
 ## BayLum `r RLumBuild::.get_pkg_version()` (`r Sys.Date()`)
 
+*Note: This package version needs at least R >= 3.5.0.*
+
 ### Bugfixes & changes
 * `AgeS_Computation()` 
    * Now stops if a mismatch was encountered between the number of samples and the 
