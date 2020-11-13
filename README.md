@@ -41,7 +41,7 @@ To install a developer build other than ‘master’, replace the term
 
 ## Note
 
-**The package comes without any guarantee\!**
+**The package comes without any guarantee!**
 
 Please further note that this version is a development version and may
 change day by day. For stable branches please visit the package on [CRAN
