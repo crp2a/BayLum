@@ -23,7 +23,8 @@ AgeC14_Computation(
   Iter = 50000,
   t = 5,
   n.chains = 3,
-  quiet = FALSE
+  quiet = FALSE,
+  roundingOfValue = 3
 )
 }
 \arguments{
@@ -83,6 +84,8 @@ The decimal of this file must be a dot, and the separator must be a comma. }
 \item{n.chains}{\link{integer} (with default): number of independent chains for the model (for more information see \link[rjags:jags.model]{rjags::jags.model}.}
 
 \item{quiet}{\link{logical} (with default): enables/disables \link{rjags} messages}
+
+\item{roundingOfValue}{\link{integer} (with default):  Integer indicating the number of decimal places to be used, default = 3.}
 }
 \value{
 \bold{NUMERICAL OUTPUT}
@@ -184,7 +187,8 @@ Age <- AgeC14_Computation(
  Nb_sample = nb_sample,
  PriorAge = rep(c(20,60),nb_sample),
  Iter = 500,
- quiet = TRUE)
+ quiet = TRUE,
+ roundingOfValue=3)
 
 } 
 

@@ -28,6 +28,7 @@ AgeS_Computation(
   n.chains = 3,
   jags_method = "rjags",
   quiet = FALSE,
+  roundingOfValue = 3,
   ...
 )
 }
@@ -107,6 +108,8 @@ If \code{jags_method = "rjparalle"} this number is limited to \code{1000} (it wi
 using package 'runjags'. The latter option uses the function \link[runjags:autorun.jags]{runjags::autorun.jags} to allow a full automated processing.}
 
 \item{quiet}{\link{logical} (with default): enables/disables \code{rjags} messages}
+
+\item{roundingOfValue}{\link{integer} (with default):  Integer indicating the number of decimal places to be used, default = 3.}
 
 \item{...}{further arguments that can be passed to control the Bayesian process, see details
 for supported arguments}

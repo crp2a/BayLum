@@ -84,6 +84,8 @@
 #'
 #' @param quiet [logical] (with default): enables/disables `rjags` messages
 #'
+#' @param  roundingOfValue [integer] (with default):  Integer indicating the number of decimal places to be used, default = 3.
+#'
 #' @param ... further arguments that can be passed to control the Bayesian process, see details
 #' for supported arguments
 #'
@@ -330,6 +332,7 @@ AgeS_Computation <- function(
   n.chains = 3,
   jags_method = "rjags",
   quiet = FALSE,
+  roundingOfValue=3,
   ...
 ){
 
@@ -543,9 +546,9 @@ AgeS_Computation <- function(
     cat(paste(" Sample name: ", SampleNames[i],"\n"))
     cat("---------------------\n")
     cat(paste("\t\t", "Point estimate", "Uppers confidence interval\n"))
-    cat(paste(paste("A_",SampleNames[i],sep=""),"\t",round(CV$psrf[i,1],2),"\t\t",round(CV$psrf[i,2],2),"\n"))
-    cat(paste(paste("D_",SampleNames[i],sep=""),"\t",round(CV$psrf[(Nb_sample+i),1],2),"\t\t",round(CV$psrf[(Nb_sample+i),2],2),"\n"))
-    cat(paste(paste("sD_",SampleNames[i],sep=""),"\t",round(CV$psrf[(2*Nb_sample+i),1],2),"\t\t",round(CV$psrf[(2*Nb_sample+i),2],2),"\n"))
+    cat(paste(paste("A_",SampleNames[i],sep=""),"\t",round(CV$psrf[i,1],roundingOfValue),"\t\t",round(CV$psrf[i,2],roundingOfValue),"\n"))
+    cat(paste(paste("D_",SampleNames[i],sep=""),"\t",round(CV$psrf[(Nb_sample+i),1],roundingOfValue),"\t\t",round(CV$psrf[(Nb_sample+i),2],roundingOfValue),"\n"))
+    cat(paste(paste("sD_",SampleNames[i],sep=""),"\t",round(CV$psrf[(2*Nb_sample+i),1],roundingOfValue),"\t\t",round(CV$psrf[(2*Nb_sample+i),2],roundingOfValue),"\n"))
   }
 
   cat("\n\n---------------------------------------------------------------------------------------------------\n")
@@ -574,43 +577,43 @@ AgeS_Computation <- function(
     cat("---------------------\n")
 
     cat(paste("Parameter", "\t","Bayes estimate","\t"," Credible interval \n"))
-    cat(paste(paste(" A_",SampleNames[i],sep=""),"\t",round(mean(sample[,i]),3),'\n'))
+    cat(paste(paste(" A_",SampleNames[i],sep=""),"\t",round(mean(sample[,i]),roundingOfValue),'\n'))
     cat("\t\t\t\t\t\t lower bound \t upper bound\n")
-    HPD_95=ArchaeoPhases::CredibleInterval(sample[,i],0.95)
-    HPD_68=ArchaeoPhases::CredibleInterval(sample[,i],0.68)
-    cat("\t\t\t\t at level 95% \t",round(c(HPD_95[2]),2),"\t\t",round(c(HPD_95[3]),2),"\n")
-    cat("\t\t\t\t at level 68% \t",round(c(HPD_68[2]),2),"\t\t",round(c(HPD_68[3]),2),"\n")
+    HPD_95=ArchaeoPhases::CredibleInterval(sample[,i],0.95,roundingOfValue=roundingOfValue)
+    HPD_68=ArchaeoPhases::CredibleInterval(sample[,i],0.68,roundingOfValue=roundingOfValue)
+    cat("\t\t\t\t at level 95% \t",round(c(HPD_95[2]),roundingOfValue),"\t\t",round(c(HPD_95[3]),roundingOfValue),"\n")
+    cat("\t\t\t\t at level 68% \t",round(c(HPD_68[2]),roundingOfValue),"\t\t",round(c(HPD_68[3]),roundingOfValue),"\n")
     AgePlot95[i,]=HPD_95
     AgePlot68[i,]=HPD_68
-    AgePlotMoy[i]=round(mean(sample[,i]),3)
+    AgePlotMoy[i]=round(mean(sample[,i]),roundingOfValue)
 
-    R[i,3]=round(mean(sample[,i]),2)
-    R[i,c(1,5)]=round(HPD_95[2:3],2)
-    R[i,c(2,4)]=round(HPD_68[2:3],2)
-
-    cat(paste("\nParameter", "\t","Bayes estimate","\t"," Credible interval \n"))
-    cat(paste(paste(" D_",SampleNames[i],sep=""),"\t",round(mean(sample[,(Nb_sample+i)]),3),'\n'))
-    cat("\t\t\t\t\t\t lower bound \t upper bound\n")
-    HPD_95=ArchaeoPhases::CredibleInterval(sample[,(Nb_sample+i)],0.95)
-    HPD_68=ArchaeoPhases::CredibleInterval(sample[,(Nb_sample+i)],0.68)
-    cat("\t\t\t\t at level 95% \t",round(c(HPD_95[2]),2),"\t\t",round(c(HPD_95[3]),2),"\n")
-    cat("\t\t\t\t at level 68% \t",round(c(HPD_68[2]),2),"\t\t",round(c(HPD_68[3]),2),"\n")
-
-    R[(Nb_sample+i),3]=round(mean(sample[,(Nb_sample+i)]),2)
-    R[(Nb_sample+i),c(1,5)]=round(HPD_95[2:3],2)
-    R[(Nb_sample+i),c(2,4)]=round(HPD_68[2:3],2)
+    R[i,3]=round(mean(sample[,i]),roundingOfValue)
+    R[i,c(1,5)]=round(HPD_95[2:3],roundingOfValue)
+    R[i,c(2,4)]=round(HPD_68[2:3],roundingOfValue)
 
     cat(paste("\nParameter", "\t","Bayes estimate","\t"," Credible interval \n"))
-    cat(paste(paste("sD_",SampleNames[i],sep=""),"\t",round(mean(sample[,(2*Nb_sample+i)]),3),'\n'))
+    cat(paste(paste(" D_",SampleNames[i],sep=""),"\t",round(mean(sample[,(Nb_sample+i)]),roundingOfValue),'\n'))
     cat("\t\t\t\t\t\t lower bound \t upper bound\n")
-    HPD_95=ArchaeoPhases::CredibleInterval(echantillon[[1]][,(2*Nb_sample+i)],0.95)
-    HPD_68=ArchaeoPhases::CredibleInterval(echantillon[[1]][,(2*Nb_sample+i)],0.68)
-    cat("\t\t\t\t at level 95% \t",round(c(HPD_95[2]),2),"\t\t",round(c(HPD_95[3]),2),"\n")
-    cat("\t\t\t\t at level 68% \t",round(c(HPD_68[2]),2),"\t\t",round(c(HPD_68[3]),2),"\n")
+    HPD_95=ArchaeoPhases::CredibleInterval(sample[,(Nb_sample+i)],0.95,roundingOfValue=roundingOfValue)
+    HPD_68=ArchaeoPhases::CredibleInterval(sample[,(Nb_sample+i)],0.68,roundingOfValue=roundingOfValue)
+    cat("\t\t\t\t at level 95% \t",round(c(HPD_95[2]),roundingOfValue),"\t\t",round(c(HPD_95[3]),roundingOfValue),"\n")
+    cat("\t\t\t\t at level 68% \t",round(c(HPD_68[2]),roundingOfValue),"\t\t",round(c(HPD_68[3]),roundingOfValue),"\n")
 
-    R[(2*Nb_sample+i),3]=round(mean(sample[,(2*Nb_sample+i)]),2)
-    R[(2*Nb_sample+i),c(1,5)]=round(HPD_95[2:3],2)
-    R[(2*Nb_sample+i),c(2,4)]=round(HPD_68[2:3],2)
+    R[(Nb_sample+i),3]=round(mean(sample[,(Nb_sample+i)]),roundingOfValue)
+    R[(Nb_sample+i),c(1,5)]=round(HPD_95[2:3],roundingOfValue)
+    R[(Nb_sample+i),c(2,4)]=round(HPD_68[2:3],roundingOfValue)
+
+    cat(paste("\nParameter", "\t","Bayes estimate","\t"," Credible interval \n"))
+    cat(paste(paste("sD_",SampleNames[i],sep=""),"\t",round(mean(sample[,(2*Nb_sample+i)]),roundingOfValue),'\n'))
+    cat("\t\t\t\t\t\t lower bound \t upper bound\n")
+    HPD_95=ArchaeoPhases::CredibleInterval(echantillon[[1]][,(2*Nb_sample+i)],0.95,roundingOfValue=roundingOfValue)
+    HPD_68=ArchaeoPhases::CredibleInterval(echantillon[[1]][,(2*Nb_sample+i)],0.68,roundingOfValue=roundingOfValue)
+    cat("\t\t\t\t at level 95% \t",round(c(HPD_95[2]),roundingOfValue),"\t\t",round(c(HPD_95[3]),roundingOfValue),"\n")
+    cat("\t\t\t\t at level 68% \t",round(c(HPD_68[2]),roundingOfValue),"\t\t",round(c(HPD_68[3]),roundingOfValue),"\n")
+
+    R[(2*Nb_sample+i),3]=round(mean(sample[,(2*Nb_sample+i)]),roundingOfValue)
+    R[(2*Nb_sample+i),c(1,5)]=round(HPD_95[2:3],roundingOfValue)
+    R[(2*Nb_sample+i),c(2,4)]=round(HPD_68[2:3],roundingOfValue)
 
     # R[(3*(i-1)+1):(3*i),6]=c('','','')
     # R[(3*(i-1)+1):(3*i),7]=round(CV$psrf[c(i,i+Nb_sample,i+2*Nb_sample),1],2)
@@ -619,7 +622,7 @@ AgeS_Computation <- function(
 
   }
   cat("\n----------------------------------------------\n")
-  R[,c(7,8)] <- round(CV$psrf,2)
+  R[,c(7,8)] <- round(CV$psrf,roundingOfValue)
 
   # check if there is stratigraphic order between sample.
   #if(sum(StratiConstraints[2:Nb_sample,1:Nb_sample]>0)){

@@ -58,6 +58,8 @@
 #'
 #' @param quiet [logical] (with default): enables/disables \link{rjags} messages
 #'
+#' @param  roundingOfValue [integer] (with default):  Integer indicating the number of decimal places to be used, default = 3.
+#'
 #' @details
 #'
 #' **Option on growth curves**\cr
@@ -186,7 +188,8 @@ Age_Computation <- function(
   Iter = 50000,
   t = 5,
   n.chains = 3,
-  quiet = FALSE
+  quiet = FALSE,
+  roundingOfValue = 3
 ){
 
   Model_Age<-0
@@ -264,9 +267,9 @@ Age_Computation <- function(
   cat(paste("\n\n>> Results of the Gelman and Rubin criterion of convergence <<\n"))
   cat("----------------------------------------------\n")
   cat(paste("\t", "Point estimate", "Uppers confidence interval\n"))
-  cat(paste("A\t",round(CV$psrf[1,1],2),"\t\t",round(CV$psrf[1,2],2),"\n"))
-  cat(paste("D\t",round(CV$psrf[2,1],2),"\t\t",round(CV$psrf[2,2],2),"\n"))
-  cat(paste("sD\t",round(CV$psrf[3,1],2),"\t\t",round(CV$psrf[3,2],2),"\n"))
+  cat(paste("A\t",round(CV$psrf[1,1],roundingOfValue),"\t\t",round(CV$psrf[1,2],roundingOfValue),"\n"))
+  cat(paste("D\t",round(CV$psrf[2,1],roundingOfValue),"\t\t",round(CV$psrf[2,2],roundingOfValue),"\n"))
+  cat(paste("sD\t",round(CV$psrf[3,1],roundingOfValue),"\t\t",round(CV$psrf[3,2],roundingOfValue),"\n"))
 
   cat("\n\n---------------------------------------------------------------------------------------------------\n")
   cat(" *** WARNING: The following information are only valid if the MCMC chains have converged  ***\n")
@@ -279,43 +282,43 @@ Age_Computation <- function(
   cat(paste("parameter", "\t","Bayes estimate","\t"," Credible interval \n"))
   cat("----------------------------------------------\n")
   cat(paste("A","\t\t", round(mean(sample[,1]),3),'\n'))
-  HPD_95=ArchaeoPhases::CredibleInterval(echantillon[[1]][,1],0.95)
-  HPD_68=ArchaeoPhases::CredibleInterval(echantillon[[1]][,1],0.68)
+  HPD_95=ArchaeoPhases::CredibleInterval(echantillon[[1]][,1],0.95,roundingOfValue = roundingOfValue)
+  HPD_68=ArchaeoPhases::CredibleInterval(echantillon[[1]][,1],0.68,roundingOfValue = roundingOfValue)
   cat("\t\t\t\t\t\t lower bound \t upper bound\n")
-  cat("\t\t\t\t at level 95%\t",round(c(HPD_95[2]),2),"\t\t",round(c(HPD_95[3]),2),"\n")
-  cat("\t\t\t\t at level 68%\t",round(c(HPD_68[2]),2),"\t\t",round(c(HPD_68[3]),2),"\n")
+  cat("\t\t\t\t at level 95%\t",round(c(HPD_95[2]),2),"\t\t",round(c(HPD_95[3]),roundingOfValue),"\n")
+  cat("\t\t\t\t at level 68%\t",round(c(HPD_68[2]),2),"\t\t",round(c(HPD_68[3]),roundingOfValue),"\n")
   cat("----------------------------------------------\n")
 
-  R[1,3]=round(mean(sample[,1]),3)
-  R[1,c(1,5)]=round(HPD_95[2:3],3)
-  R[1,c(2,4)]=round(HPD_68[2:3],3)
+  R[1,3]=round(mean(sample[,1]),roundingOfValue)
+  R[1,c(1,5)]=round(HPD_95[2:3],roundingOfValue)
+  R[1,c(2,4)]=round(HPD_68[2:3],roundingOfValue)
 
-  cat(paste("D","\t\t", round(mean(sample[,2]),3),'\n'))
-  HPD_95=ArchaeoPhases::CredibleInterval(echantillon[[1]][,2],0.95)
-  HPD_68=ArchaeoPhases::CredibleInterval(echantillon[[1]][,2],0.68)
+  cat(paste("D","\t\t", round(mean(sample[,2]),roundingOfValue),'\n'))
+  HPD_95=ArchaeoPhases::CredibleInterval(echantillon[[1]][,2],0.95,roundingOfValue = roundingOfValue)
+  HPD_68=ArchaeoPhases::CredibleInterval(echantillon[[1]][,2],0.68,roundingOfValue = roundingOfValue)
   cat("\t\t\t\t\t\t lower bound \t upper bound\n")
-  cat("\t\t\t\t at level 95%\t",round(c(HPD_95[2]),2),"\t\t",round(c(HPD_95[3]),2),"\n")
-  cat("\t\t\t\t at level 68%\t",round(c(HPD_68[2]),2),"\t\t",round(c(HPD_68[3]),2),"\n")
+  cat("\t\t\t\t at level 95%\t",round(c(HPD_95[2]),roundingOfValue),"\t\t",round(c(HPD_95[3]),roundingOfValue),"\n")
+  cat("\t\t\t\t at level 68%\t",round(c(HPD_68[2]),roundingOfValue),"\t\t",round(c(HPD_68[3]),roundingOfValue),"\n")
 
-  R[2,3]=round(mean(sample[,2]),3)
-  R[2,c(1,5)]=round(HPD_95[2:3],3)
-  R[2,c(2,4)]=round(HPD_68[2:3],3)
+  R[2,3]=round(mean(sample[,2]),roundingOfValue)
+  R[2,c(1,5)]=round(HPD_95[2:3],roundingOfValue)
+  R[2,c(2,4)]=round(HPD_68[2:3],roundingOfValue)
 
   cat("----------------------------------------------\n")
   cat(paste("sD","\t\t", round(mean(sample[,3]),3),'\n'))
-  HPD_95=ArchaeoPhases::CredibleInterval(echantillon[[1]][,3],0.95)
-  HPD_68=ArchaeoPhases::CredibleInterval(echantillon[[1]][,3],0.68)
+  HPD_95=ArchaeoPhases::CredibleInterval(echantillon[[1]][,3],0.95,roundingOfValue = roundingOfValue)
+  HPD_68=ArchaeoPhases::CredibleInterval(echantillon[[1]][,3],0.68,roundingOfValue = roundingOfValue)
   cat("\t\t\t\t\t\t lower bound \t upper bound\n")
-  cat("\t\t\t\t at level 95%\t",round(c(HPD_95[2]),2),"\t\t",round(c(HPD_95[3]),2),"\n")
-  cat("\t\t\t\t at level 68%\t",round(c(HPD_68[2]),2),"\t\t",round(c(HPD_68[3]),2),"\n")
+  cat("\t\t\t\t at level 95%\t",round(c(HPD_95[2]),roundingOfValue),"\t\t",round(c(HPD_95[3]),roundingOfValue),"\n")
+  cat("\t\t\t\t at level 68%\t",round(c(HPD_68[2]),roundingOfValue),"\t\t",round(c(HPD_68[3]),roundingOfValue),"\n")
 
-  R[3,3]=round(mean(sample[,3]),3)
-  R[3,c(1,5)]=round(HPD_95[2:3],3)
-  R[3,c(2,4)]=round(HPD_68[2:3],3)
+  R[3,3]=round(mean(sample[,3]),roundingOfValue)
+  R[3,c(1,5)]=round(HPD_95[2:3],roundingOfValue)
+  R[3,c(2,4)]=round(HPD_68[2:3],roundingOfValue)
 
   R[,6]=c('','','')
-  R[,7]=round(CV$psrf[,1],2)
-  R[,8]=round(CV$psrf[,2],2)
+  R[,7]=round(CV$psrf[,1],roundingOfValue)
+  R[,8]=round(CV$psrf[,2],roundingOfValue)
 
   if(SaveEstimates==TRUE){
     write.csv(R,file=c(paste(OutputTablePath,"Estimates",OutputTableName,".csv",sep="")))

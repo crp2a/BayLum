@@ -31,7 +31,8 @@ Age_OSLC14(
   Iter = 50000,
   t = 5,
   n.chains = 3,
-  quiet = FALSE
+  quiet = FALSE,
+  roundingOfValue = 3
 )
 }
 \arguments{
@@ -147,6 +148,8 @@ considered for sampling the posterior distribution (for more information see [\l
 (for more information see [\link[rjags:jags.model]{rjags::jags.model}).}
 
 \item{quiet}{\link{logical} (with default): enables/disables \link{rjags} messages}
+
+\item{roundingOfValue}{\link{integer} (with default):  Integer indicating the number of decimal places to be used, default = 3.}
 }
 \value{
 \bold{NUMERICAL OUTPUT}\cr

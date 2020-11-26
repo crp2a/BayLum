@@ -62,6 +62,8 @@
 #'
 #' @param quiet [logical] (with default): enables/disables [rjags] messages
 #'
+#' @param roundingOfValue  [integer] (with default):  Integer indicating the number of decimal places to be used, default = 3.
+#'
 #' @details
 #'
 #' ** How to fill StratiConstraints? **
@@ -174,7 +176,8 @@
 #'  Nb_sample = nb_sample,
 #'  PriorAge = rep(c(20,60),nb_sample),
 #'  Iter = 500,
-#'  quiet = TRUE)
+#'  quiet = TRUE,
+#'  roundingOfValue=3)
 #'
 #' @md
 #' @export
@@ -196,7 +199,8 @@ AgeC14_Computation <- function(Data_C14Cal,
  Iter = 50000,
  t = 5,
  n.chains = 3,
- quiet = FALSE
+ quiet = FALSE,
+ roundingOfValue = 3
 ){
 
 
@@ -301,7 +305,7 @@ AgeC14_Computation <- function(Data_C14Cal,
    for(i in 1:Nb_sample){
      #cat(paste(" Sample name: ", SampleNames[i],"\n"))
      #cat("---------------------\n")
-     cat(paste(paste("A_",SampleNames[i],sep=""),"\t",round(CV$psrf[i,1],2),"\t\t",round(CV$psrf[i,2],2),"\n"))
+     cat(paste(paste("A_",SampleNames[i],sep=""),"\t",round(CV$psrf[i,1],roundingOfValue),"\t\t",round(CV$psrf[i,2],roundingOfValue),"\n"))
    }
 
    cat("\n\n---------------------------------------------------------------------------------------------------\n")
@@ -329,22 +333,22 @@ AgeC14_Computation <- function(Data_C14Cal,
      #cat("---------------------\n")
 
      cat(paste("Sample name", "\t","Bayes estimate"," Credible interval: \n"))
-     cat(paste(paste("A_",SampleNames[i],sep=""),"\t",round(mean(Sample[,i])),'\n'))
+     cat(paste(paste("A_",SampleNames[i],sep=""),"\t",(mean(Sample[,i])),'\n'))
      cat("\t\t\t\t\t\t lower bound \t upper bound\n")
-     HPD_95=ArchaeoPhases::CredibleInterval(Sample[,i],0.95)
-     HPD_68=ArchaeoPhases::CredibleInterval(Sample[,i],0.68)
-     cat("\t\t\t\t at level 95% \t",round(c(HPD_95[2]),2),"\t\t",round(c(HPD_95[3]),2),"\n")
-     cat("\t\t\t\t at level 68% \t",round(c(HPD_68[2]),2),"\t\t",round(c(HPD_68[3]),2),"\n")
+     HPD_95=ArchaeoPhases::CredibleInterval(Sample[,i],0.95,roundingOfValue=roundingOfValue)
+     HPD_68=ArchaeoPhases::CredibleInterval(Sample[,i],0.68,roundingOfValue=roundingOfValue)
+     cat("\t\t\t\t at level 95% \t",(c(HPD_95[2])),"\t\t",(c(HPD_95[3])),"\n")
+     cat("\t\t\t\t at level 68% \t",(c(HPD_68[2])),"\t\t",(c(HPD_68[3])),"\n")
      AgePlot95[i,] <- HPD_95
      AgePlot68[i,] <- HPD_68
-     AgePlotMoy[i]=round(mean(Sample[,i]))
+     AgePlotMoy[i]=(mean(Sample[,i]))
 
-     R[i,3]=round(mean(Sample[,i]))
-     R[i,c(1,5)]=round(HPD_95[2:3])
-     R[i,c(2,4)]=round(HPD_68[2:3])
+     R[i,3]=(mean(Sample[,i]))
+     R[i,c(1,5)]=(HPD_95[2:3])
+     R[i,c(2,4)]=(HPD_68[2:3])
      R[i,6]=c('')
-     R[i,7]=round(CV$psrf[i,1],2)
-     R[i,8]=round(CV$psrf[i,2],2)
+     R[i,7]=round(CV$psrf[i,1],roundingOfValue)
+     R[i,8]=round(CV$psrf[i,2],roundingOfValue)
 
    }
 

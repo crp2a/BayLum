@@ -22,7 +22,8 @@ Age_Computation(
   Iter = 50000,
   t = 5,
   n.chains = 3,
-  quiet = FALSE
+  quiet = FALSE,
+  roundingOfValue = 3
 )
 }
 \arguments{
@@ -79,6 +80,8 @@ I indicates the ID number of the sample to be analysed.}
 \item{n.chains}{\link{integer} (with default): number of independent chains for the model (for more information see \link{jags.model}).}
 
 \item{quiet}{\link{logical} (with default): enables/disables \link{rjags} messages}
+
+\item{roundingOfValue}{\link{integer} (with default):  Integer indicating the number of decimal places to be used, default = 3.}
 }
 \value{
 \strong{NUMERICAL OUTPUT}
