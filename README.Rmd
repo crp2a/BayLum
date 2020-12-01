@@ -15,7 +15,7 @@ knitr::opts_chunk$set(
 library(BayLum)
 ```
  
-# BayLum 
+# BayLum <img width=120px src="man/figures/BayLum_logo.png" align="right" />
 
 [![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 [![CRAN](https://www.r-pkg.org/badges/version/BayLum)](https://CRAN.R-project.org/package=BayLum)

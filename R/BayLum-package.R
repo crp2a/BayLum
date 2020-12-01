@@ -1,4 +1,8 @@
-#' @title Chronological Bayesian Models Integrating Optically Stimulated Luminescence and C-14 Dating
+#' @title Chronological Bayesian Models Integrating Optically Stimulated Luminescence and C-14 Dating\cr
+#'
+#' \if{html}{
+#' \figure{BayLum_logo.png}{options: width="50px"}\cr
+#' }
 #'
 #' @description A collection of various R functions for Bayesian analysis of luminescence
 #' data and C-14 age estimates. This includes, amongst others, data import, export,
