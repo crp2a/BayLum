@@ -1,7 +1,6 @@
-context("Test plot_Scatterplots()")
-
 test_that("Full function test", {
   testthat::skip_on_cran()
+  local_edition(3)
 
   #load test data
   data(AgeS,envir = environment())

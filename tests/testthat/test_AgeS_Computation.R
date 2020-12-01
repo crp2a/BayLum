@@ -1,7 +1,6 @@
-context("Test AgeS_Computation()")
-
 test_that("Full function test", {
   testthat::skip_on_cran()
+  local_edition(3)
 
   ## load data
   data(DATA1,envir = environment())
@@ -9,7 +8,7 @@ test_that("Full function test", {
   Data <- combine_DataFiles(DATA2,DATA1)
 
   ## without common error and without stratigraphic constraints
-  expect_is(AgeS_Computation(
+  expect_s3_class(suppressWarnings(AgeS_Computation(
     DATA = Data,
     Nb_sample = 2,
     SampleNames = c("GDB5","GDB3"),
@@ -17,7 +16,7 @@ test_that("Full function test", {
     Iter = 50,
     n.chains = 2,
     quiet = TRUE
-  ), class = "BayLum.list")
+  )), class = "BayLum.list")
 
 
 })

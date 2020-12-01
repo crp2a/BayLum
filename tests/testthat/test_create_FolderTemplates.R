@@ -1,7 +1,6 @@
-context("Test create_FolderTemplates")
-
 test_that("Full function test", {
   testthat::skip_on_cran()
+  local_edition(3)
 
   ## set tempdir
   tempdir <- tempdir()

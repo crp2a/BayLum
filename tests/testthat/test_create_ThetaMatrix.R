@@ -1,7 +1,6 @@
-context("Test create_ThetaMatrix()")
-
 test_that("Full function test", {
   testthat::skip_on_cran()
+  local_edition(3)
 
   ##sigma_s
   sigma_s <-  c(
@@ -25,7 +24,7 @@ test_that("Full function test", {
 
   ##create reference dataset
   ##without anything
-  expect_type(create_ThetaMatrix(), type = "list")
+  expect_type(suppressMessages(create_ThetaMatrix()), type = "list")
   file <- tempfile(fileext = ".csv")
   ##tests adding the *.csv ending
   expect_type(create_ThetaMatrix(output_file = tempfile()), type = "list")
@@ -42,13 +41,16 @@ test_that("Full function test", {
   expect_warning(create_ThetaMatrix(input = df, sigma_s = sigma_s))
 
   #standard import from file
-  expect_is(create_ThetaMatrix(input = input_file, sigma_s = sigma_s), class = "matrix")
+  expect_type(
+    suppressWarnings(create_ThetaMatrix(input = input_file, sigma_s = sigma_s)), "double")
 
   #standard export to file
-  expect_type(create_ThetaMatrix(input = df, output_file = tempfile(), sigma_s = sigma_s), type = "double")
+  expect_type(suppressWarnings(
+    create_ThetaMatrix(input = df, output_file = tempfile(), sigma_s = sigma_s)),
+              type = "double")
 
   ##run with sigma_s NULL
-  expect_is(create_ThetaMatrix(input = df, sigma_s = NULL), class = "matrix")
+  expect_type(suppressWarnings(create_ThetaMatrix(input = df, sigma_s = NULL)), "double")
 
   ##add NA
   df[1,1] <- NA

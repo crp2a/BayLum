@@ -19,7 +19,7 @@ Depends: R(>= 3.5.0), utils, coda
 Imports: stats, graphics, grDevices, methods, hexbin, KernSmooth, rjags
         (>= 4-10), runjags (>= 2.0.4), Luminescence (>= 0.8.2),
         ArchaeoPhases (>= 1.5)
-Suggests: testthat (>= 1.0.2), R.rsp
+Suggests: testthat (>= 3.0.0), R.rsp
 License: GPL-3
 Encoding: UTF-8
 URL: https://CRAN.r-project.org/package=BayLum

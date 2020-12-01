@@ -1,7 +1,6 @@
-context("Test plot_Ages()")
-
 test_that("Full function test", {
   testthat::skip_on_cran()
+  local_edition(3)
 
   ##create needed dataset
   ## load data
@@ -12,21 +11,21 @@ test_that("Full function test", {
   nb_sample <- length(Names)
 
   ## Age computation
-  Age <- AgeC14_Computation(
+  Age <- suppressWarnings(AgeC14_Computation(
     Data_C14Cal = C14Cal,
     Data_SigmaC14Cal = SigmaC14Cal,
     SampleNames = Names,
     Nb_sample = nb_sample,
     PriorAge = rep(c(20,60),nb_sample),
     Iter = 500,
-    quiet = TRUE)
+    quiet = TRUE))
 
   ##test function input
   expect_error(plot_Ages(object = "list"),
                regexp = "Wrong input, only objects of type 'BayLum.list' are allowed. Please check the manual!")
 
-  ##test reguarl output
-  expect_is(plot_Ages(Age), class = "data.frame")
+  ##test regular output
+  expect_s3_class(plot_Ages(Age), class = "data.frame")
 
   ##test some features
   expect_silent(plot_Ages(object = Age,
