@@ -155,7 +155,8 @@ A sample, for which data is avalilable in several BIN files, can be analysed.</p
   Iter <span class='op'>=</span> <span class='fl'>50000</span>,
   t <span class='op'>=</span> <span class='fl'>5</span>,
   n.chains <span class='op'>=</span> <span class='fl'>3</span>,
-  quiet <span class='op'>=</span> <span class='cn'>FALSE</span>
+  quiet <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  roundingOfValue <span class='op'>=</span> <span class='fl'>3</span>
 <span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -249,6 +250,10 @@ I indicates the ID number of the sample to be analysed.</p></td>
     <tr>
       <th>quiet</th>
       <td><p><a href='https://rdrr.io/r/base/logical.html'>logical</a> (with default): enables/disables rjags messages</p></td>
+    </tr>
+    <tr>
+      <th>roundingOfValue</th>
+      <td><p><a href='https://rdrr.io/r/base/integer.html'>integer</a> (with default):  Integer indicating the number of decimal places to be used, default = 3.</p></td>
     </tr>
     </table>
 
@@ -358,9 +363,9 @@ Quaternary Geochronology 28, 62-70. doi:10.1016/j.quageo.2015.04.001</p>
 #&gt; &gt;&gt; Results of the Gelman and Rubin criterion of convergence &lt;&lt;
 #&gt; ----------------------------------------------
 #&gt; 	 Point estimate Uppers confidence interval
-#&gt; A	 1.08 		 1.29 
-#&gt; D	 1.33 		 1.94 
-#&gt; sD	 1.15 		 1.48 
+#&gt; A	 1.045 		 1.181 
+#&gt; D	 1.027 		 1.142 
+#&gt; sD	 1.006 		 1.082 
 #&gt; 
 #&gt; 
 #&gt; ---------------------------------------------------------------------------------------------------
@@ -369,20 +374,20 @@ Quaternary Geochronology 28, 62-70. doi:10.1016/j.quageo.2015.04.001</p>
 #&gt; 
 #&gt; parameter 	 Bayes estimate 	  Credible interval 
 #&gt; ----------------------------------------------
-#&gt; A 		 46.377 
+#&gt; A 		 46.001 
 #&gt; 						 lower bound 	 upper bound
-#&gt; 				 at level 95%	 41 		 56.78 
-#&gt; 				 at level 68%	 40.25 		 47.96 
+#&gt; 				 at level 95%	 38.83 		 53.016 
+#&gt; 				 at level 68%	 41.56 		 47.674 
 #&gt; ----------------------------------------------
-#&gt; D 		 104.176 
+#&gt; D 		 103.429 
 #&gt; 						 lower bound 	 upper bound
-#&gt; 				 at level 95%	 100.4 		 111.16 
-#&gt; 				 at level 68%	 103.72 		 108.95 
+#&gt; 				 at level 95%	 98.657 		 109.799 
+#&gt; 				 at level 68%	 100.205 		 104.42 
 #&gt; ----------------------------------------------
-#&gt; sD 		 15.976 
+#&gt; sD 		 15.483 
 #&gt; 						 lower bound 	 upper bound
-#&gt; 				 at level 95%	 9.73 		 17.66 
-#&gt; 				 at level 68%	 12.21 		 17.26 </div><div class='input'>
+#&gt; 				 at level 95%	 11.135 		 19.684 
+#&gt; 				 at level 68%	 13.939 		 18.595 </div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

@@ -152,11 +152,12 @@ Northern or Sourthen Hemisphere or marine atmospheric. It must be the same curve
   StratiConstraints <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='op'>)</span>,
   sepSC <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>","</span><span class='op'>)</span>,
   Model <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"full"</span><span class='op'>)</span>,
-  CalibrationCurve <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"AtmosphericNorth"</span><span class='op'>)</span>,
+  CalibrationCurve <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"IntCal20"</span><span class='op'>)</span>,
   Iter <span class='op'>=</span> <span class='fl'>50000</span>,
   t <span class='op'>=</span> <span class='fl'>5</span>,
   n.chains <span class='op'>=</span> <span class='fl'>3</span>,
-  quiet <span class='op'>=</span> <span class='cn'>FALSE</span>
+  quiet <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  roundingOfValue <span class='op'>=</span> <span class='fl'>3</span>
 <span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -232,9 +233,9 @@ If <b>"naive"</b> this error is not taken account in the age estimate.</p></td>
     <tr>
       <th>CalibrationCurve</th>
       <td><p><a href='https://rdrr.io/r/base/character.html'>character</a> (with default): calibration curve choosen. Allowed inputs are</p><ul>
-<li><p><b>"AtmosphericNorth"</b> for Northern Hemisphere atmospheric radiocarbon calibration curve,</p></li>
-<li><p><b>"Marine"</b> for Marine radiocarbon calibration curve,</p></li>
-<li><p><b>"AtmosphericSouth"</b> for Southern Hemisphere atmospheric radiocarbon calibration curve</p></li>
+<li><p><b>"Intcal13"</b> or <b>"Intcal13"</b> for Northern Hemisphere atmospheric radiocarbon calibration curve,</p></li>
+<li><p><b>"Marine13"</b> or <b>"Marine13"</b> for Marine radiocarbon calibration curve,</p></li>
+<li><p><b>"SHCal13"</b> or <b>"SHCal20"</b> for Southern Hemisphere atmospheric radiocarbon calibration curve</p></li>
 <li><p><b>a csv file, with tree columns, the first column is dedicated to "Cal.BP", the second to "XC-14.age", the third to "Error".
 The decimal of this file must be a dot, and the separator must be a comma. </b></p></li>
 </ul></td>
@@ -255,6 +256,10 @@ The decimal of this file must be a dot, and the separator must be a comma. </b><
     <tr>
       <th>quiet</th>
       <td><p><a href='https://rdrr.io/r/base/logical.html'>logical</a> (with default): enables/disables rjags messages</p></td>
+    </tr>
+    <tr>
+      <th>roundingOfValue</th>
+      <td><p><a href='https://rdrr.io/r/base/integer.html'>integer</a> (with default):  Integer indicating the number of decimal places to be used, default = 3.</p></td>
     </tr>
     </table>
 
@@ -361,16 +366,17 @@ IntCal13 ans Marine13 radiocarbon age calibration curves 0-50000 years cal BP. R
  Nb_sample <span class='op'>=</span> <span class='va'>nb_sample</span>,
  PriorAge <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>20</span>,<span class='fl'>60</span><span class='op'>)</span>,<span class='va'>nb_sample</span><span class='op'>)</span>,
  Iter <span class='op'>=</span> <span class='fl'>500</span>,
- quiet <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+ quiet <span class='op'>=</span> <span class='cn'>TRUE</span>,
+ roundingOfValue<span class='op'>=</span><span class='fl'>3</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; <span class='warning'>Warning: [plot_MCMC()] 'n.iter' out of range, reset to number of observations</span></div><div class='img'><img src='AgeC14_Computation-1.png' alt='' width='700' height='433' /></div><div class='img'><img src='AgeC14_Computation-2.png' alt='' width='700' height='433' /></div><div class='img'><img src='AgeC14_Computation-3.png' alt='' width='700' height='433' /></div><div class='img'><img src='AgeC14_Computation-4.png' alt='' width='700' height='433' /></div><div class='output co'>#&gt; 
 #&gt; 
 #&gt; &gt;&gt; MCMC Convergence of Age parameters &lt;&lt;
 #&gt; ----------------------------------------------
 #&gt; Sample name   Bayes estimate   Uppers credible interval
-#&gt; A_S-EVA-26510 	 1 		 1.02 
-#&gt; A_S-EVA-26506 	 1 		 1.01 
-#&gt; A_S-EVA-26507 	 1.01 		 1.06 
-#&gt; A_S-EVA-26508 	 1.07 		 1.09 
+#&gt; A_S-EVA-26510 	 1.004 		 1.026 
+#&gt; A_S-EVA-26506 	 1.013 		 1.047 
+#&gt; A_S-EVA-26507 	 1.01 		 1.039 
+#&gt; A_S-EVA-26508 	 1.004 		 1.018 
 #&gt; 
 #&gt; 
 #&gt; ---------------------------------------------------------------------------------------------------
@@ -382,28 +388,28 @@ IntCal13 ans Marine13 radiocarbon age calibration curves 0-50000 years cal BP. R
 #&gt; &gt;&gt; Bayes estimates of Age for each sample and credible interval &lt;&lt;
 #&gt; ------------------------------------------------------
 #&gt; Sample name 	 Bayes estimate  Credible interval: 
-#&gt; A_S-EVA-26510 	 42 
+#&gt; A_S-EVA-26510 	 41.9550690427652 
 #&gt; 						 lower bound 	 upper bound
-#&gt; 				 at level 95% 	 41 		 42 
-#&gt; 				 at level 68% 	 42 		 42 
+#&gt; 				 at level 95% 	 41.507 		 42.343 
+#&gt; 				 at level 68% 	 41.82 		 42.22 
 #&gt; ------------------------------------------------------
 #&gt; Sample name 	 Bayes estimate  Credible interval: 
-#&gt; A_S-EVA-26506 	 47 
+#&gt; A_S-EVA-26506 	 45.6942103552519 
 #&gt; 						 lower bound 	 upper bound
-#&gt; 				 at level 95% 	 46 		 47 
-#&gt; 				 at level 68% 	 46 		 47 
+#&gt; 				 at level 95% 	 45.029 		 46.247 
+#&gt; 				 at level 68% 	 45.457 		 46.007 
 #&gt; ------------------------------------------------------
 #&gt; Sample name 	 Bayes estimate  Credible interval: 
-#&gt; A_S-EVA-26507 	 45 
+#&gt; A_S-EVA-26507 	 44.8433306695501 
 #&gt; 						 lower bound 	 upper bound
-#&gt; 				 at level 95% 	 45 		 47 
-#&gt; 				 at level 68% 	 45 		 46 
+#&gt; 				 at level 95% 	 43.803 		 45.862 
+#&gt; 				 at level 68% 	 44.434 		 45.29 
 #&gt; ------------------------------------------------------
 #&gt; Sample name 	 Bayes estimate  Credible interval: 
-#&gt; A_S-EVA-26508 	 46 
+#&gt; A_S-EVA-26508 	 45.0467691664634 
 #&gt; 						 lower bound 	 upper bound
-#&gt; 				 at level 95% 	 44 		 47 
-#&gt; 				 at level 68% 	 45 		 46 
+#&gt; 				 at level 95% 	 44.092 		 46.355 
+#&gt; 				 at level 68% 	 44.576 		 45.528 
 #&gt; 
 #&gt; ------------------------------------------------------</div><div class='img'><img src='AgeC14_Computation-5.png' alt='' width='700' height='433' /></div><div class='img'><img src='AgeC14_Computation-6.png' alt='' width='700' height='433' /></div><div class='input'>
 </div></pre>

@@ -127,9 +127,10 @@
       <small>Source: <a href='https://github.com/crp2a/BayLum/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
-    <div id="baylum-020-2020-10-19" class="section level2">
+    <div id="baylum-020-2020-12-01" class="section level2">
 <h2 class="hasAnchor">
-<a href="#baylum-020-2020-10-19" class="anchor"></a>BayLum 0.2.0 (2020-10-19)</h2>
+<a href="#baylum-020-2020-12-01" class="anchor"></a>BayLum 0.2.0 (2020-12-01)</h2>
+<p><em>Note: This package version needs at least R &gt;= 3.5.0.</em></p>
 <div id="bugfixes--changes" class="section level3">
 <h3 class="hasAnchor">
 <a href="#bugfixes--changes" class="anchor"></a>Bugfixes &amp; changes</h3>
@@ -146,6 +147,8 @@
 <ul>
 <li>Add additional output to enhance output table by additional information (<a href='https://github.com/crp2a/BayLum/issues/11'>#11</a>)</li>
 <li>The CSV-file option now returns the age and the HPD intervals</li>
+<li>The bugs model for the <code>gaussian</code> distribution did not work due to a wrongly set index (<a href='https://github.com/crp2a/BayLum/issues/13'>#13</a>); fixed.</li>
+<li>If a small number of samples was used and the first was a C-14 sample JAGS crashed; now it throws are more comprehensible error message (<a href='https://github.com/crp2a/BayLum/issues/14'>#14</a>).</li>
 </ul>
 </li>
 <li>
@@ -186,6 +189,7 @@
 <li>All models now come with an example showing how they can be inspected (before the examples not working)</li>
 <li>Fix a couple of documentation glitches (e.g., part of the documentation was missing)</li>
 <li>Smooth the creation of <code>BayLum.list</code> objects using a central internal function</li>
+<li>Add new C-14 calibration data and unify the names of those datasets. Allowed inputs are <code>"IntCal13"</code>,<code>"IntCal20"</code>,<code>"Marine13"</code>,<code>"Marine20"</code>, <code>"SHCal13"</code>, <code>"SHCal20"</code> or an own dataset which must be stored in a CSV-file.</li>
 </ul>
 </div>
 </div>
@@ -216,7 +220,7 @@
 <h3 class="hasAnchor">
 <a href="#bugfixes--changes-1" class="anchor"></a>Bugfixes &amp; changes</h3>
 <ul>
-<li>The newly introduced function combine_DataFiles() did not work on R &lt; 3.5.0, which caused an error on CRAN; fixed.</li>
+<li>The newly introduced function <code><a href="../reference/combine_DataFiles.html">combine_DataFiles()</a></code> did not work on R &lt; 3.5.0, which caused an error on CRAN; fixed.</li>
 <li>The function <code><a href="../reference/plot_Scatterplots.html">ScatterSamples()</a></code> is replaced by the function <code><a href="../reference/plot_Scatterplots.html">plot_Scatterplots()</a></code>
 </li>
 <li>All computation functions left text connections open after they have been exited; fixed.</li>
