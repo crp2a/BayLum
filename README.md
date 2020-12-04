@@ -14,8 +14,8 @@ developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.re
 [![cran
 checks](https://cranchecks.info/badges/worst/BayLum)](https://cranchecks.info/pkgs/BayLum)
 [![Downloads](https://cranlogs.r-pkg.org/badges/grand-total/BayLum)](https://www.r-pkg.org/pkg/BayLum)
-[![Build
-status](https://ci.appveyor.com/api/projects/status/1nh9kbu2vlef9yjq?svg=true)](https://ci.appveyor.com/project/nfrerebeau/baylum)
+[![Build 
+status](https://ci.appveyor.com/api/projects/status/ai37938e8sij09ab?svg=true)](https://ci.appveyor.com/project/archeometre/baylum)
 [![Build
 Status](https://travis-ci.org/crp2a/BayLum.svg?branch=master)](https://travis-ci.org/crp2a/BayLum)
 [![codecov](https://codecov.io/gh/crp2a/BayLum/branch/master/graph/badge.svg)](https://codecov.io/gh/crp2a/BayLum)
