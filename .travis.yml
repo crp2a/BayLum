@@ -29,6 +29,7 @@ jobs:
     r: devel
     env: CACHE_NAME=JOB3
   - os: osx
+    osx_image: xcode11.4
     r: release
     before_install:
       - sudo rm '/usr/local/bin/gfortran'
@@ -39,6 +40,7 @@ jobs:
         fi
       - brew install jags
       - brew install libssh2
+      - brew install libgit2
     env: CACHE_NAME=JOB4
 
 ##create notifications
@@ -46,7 +48,7 @@ notifications:
   email:
     recipients:
       - sk@r-luminescence.de
-      - gguerin@u-bordeaux-montaigne.fr
+      - guillaume.guerin@univ-rennes1.fr
       - anne.philippe@univ-nantes.fr
     on_success: change
     on_failure: change
