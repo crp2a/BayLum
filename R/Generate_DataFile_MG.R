@@ -23,8 +23,11 @@
 #' If there is more than one BIN file per sample, see the details section for instructions regarding how to correctly fill \code{BinPerSample} vector.
 #' Otherwise, this vector must contain a list of 1 values.
 #' @param sepD [character] (with default): column separator in the DiscPose.csv files.
+#'
 #' @param sepDE [character] (with default): column separator in the DoseEnv.csv files.
+#'
 #' @param sepDS [character] (with default): column separator in the DoseLab.csv files.
+#'
 #' @param sepR [character] (with default): column separator in the Rule.csv files.
 #'
 #' @param verbose [logical] (with default): enable/disable verbose mode
@@ -92,7 +95,10 @@
 #'
 #' For the general BIN-file structure, the reader is referred to the following website:  \code{http://www.nutech.dtu.dk/}
 #'
-#' The function \code{\link{read_BIN2R}} developped in \code{\link{Luminescence}} package is used to read the BIN files.
+#' The function \code{\link{read_BIN2R}} developed in \code{\link{Luminescence}} package is used to read the BIN files.
+#'
+#' @note The function automatically converts your input data into a sequence order similar to the Run 1 at a
+#' time option. However, this can only work if position numbers are not used twice!
 #'
 #' @return A list containing the following objects:
 #' \itemize{
@@ -168,7 +174,6 @@ Generate_DataFile_MG <- function(
   ddot=matrix(1,ncol=Nb_binfile,nrow=2)   # the dose rate received by the sample during the time,
   #   if there is various bin file for one sample, they must have the same ddot
 
-
   # Fetch additional arguments for read_BIN2R()----------------------------------------------------
 
   ##the internal preset
@@ -205,8 +210,14 @@ Generate_DataFile_MG <- function(
         verbose =  read_BIN2R.settings$verbose
       )[[1]]
 
+      ##sort dataset in correct order by aliquots
+      o <- object@METADATA[["ID"]][order(object@METADATA[["POSITION"]])]
+      object@METADATA <- object@METADATA[o,]
+      object@DATA <- object@DATA[o]
+      object@METADATA[["ID"]] <- 1:nrow(object@METADATA)
+
       # csv file indicating position and disc selection and preparation to be read
-      XLS_file[[2]]<-XLS_file[[1]]
+      XLS_file[[2]] <- XLS_file[[1]]
       XLS_file[[1]] <- object@METADATA$FNAME[1:length(XLS_file[[1]])]
       names(XLS_file) <- c("BIN_FILE","DISC")
 
@@ -277,6 +288,7 @@ Generate_DataFile_MG <- function(
             ii=J[bf]+1}
         }
       }
+
 
       #--- computation of irradiation time
       #---------------------------------------
@@ -372,6 +384,18 @@ Generate_DataFile_MG <- function(
 
   #--- return information needed to compute BaSAR analysis
   #---------------------------------------
-  Liste=list("LT"=LT,"sLT"=sLT,"ITimes"=ITimes,"dLab"=dLab,"ddot_env"=ddot,"regDose"=regDose,"J"=J,"K"=K,"Nb_measurement"=Nb_measurement)
+  Liste = list(
+    "LT" = LT,
+    "sLT" = sLT,
+    "ITimes" = ITimes,
+    "dLab" = dLab,
+    "ddot_env" = ddot,
+    "regDose" = regDose,
+    "J" = J,
+    "K" = K,
+    "Nb_measurement" = Nb_measurement
+  )
   return(Liste)
 }
+
+

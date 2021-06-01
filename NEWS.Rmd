@@ -15,6 +15,14 @@ knitr::opts_chunk$set(
 
 ## BayLum `r RLumBuild::.get_pkg_version()` (`r Sys.Date()`)
 
+### Bugfixes & changes
+
+#### `Generate_DataFile_MG()` 
+* The function now automatically orders BIN/BINX-files follwing the Run 1 at a time
+option. Regardless of whether this option was used for the measurement. 
+
+## BayLum 0.2.0 (2020-12-06)
+
 *Note: This package version needs at least R >= 3.5.0.*
 
 ### Bugfixes & changes
