@@ -140,9 +140,12 @@ for the second sample. In this case, \code{BinPerSample=c(2,1)}.
 
 For the general BIN-file structure, the reader is referred to the following website:  \code{http://www.nutech.dtu.dk/}
 
-The function \code{\link{read_BIN2R}} developped in \code{\link{Luminescence}} package is used to read the BIN files.
+The function \code{\link{read_BIN2R}} developed in \code{\link{Luminescence}} package is used to read the BIN files.
 }
 \note{
+The function automatically converts your input data into a sequence order similar to the Run 1 at a
+time option. However, this can only work if position numbers are not used twice!
+
 The function imports only BIN/BINX-file records which have been previously selected.
 }
 \examples{
@@ -171,6 +174,6 @@ Claire Christophe, Sebastian Kreutzer, Anne Philippe, Guillaume Guérin
 } 
 
 \section{How to cite}{
-Christophe, C., Kreutzer, S., Philippe, A., 2020. Generate_DataFile_MG(): Generates, from one (or several) BIN file(s) of Multi-grain OSL measurements, a list of luminescence data and information before statistical analysis. In: Christophe, C., Philippe, A., Kreutzer, S., Guerin, G., 2020. BayLum: Chronological Bayesian Models Integrating Optically Stimulated. R package version 0.2.0. https://CRAN.r-project.org/package=BayLum
+Christophe, C., Kreutzer, S., Philippe, A., 2021. Generate_DataFile_MG(): Generates, from one (or several) BIN file(s) of Multi-grain OSL measurements, a list of luminescence data and information before statistical analysis. In: Christophe, C., Philippe, A., Kreutzer, S., Guerin, G., 2021. BayLum: Chronological Bayesian Models Integrating Optically Stimulated. R package version 0.2.0. https://CRAN.r-project.org/package=BayLum
 }
 
