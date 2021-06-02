@@ -22,6 +22,7 @@ knitr::opts_chunk$set(
 automatically orders the curves in the BIN/BINX-file following the "Run 1 at a time"
 option. Regardless of whether this option was used for the measurement or not. Please note: 
 this cannot work if you have assigned a position number more than one time to different aliquots.
+* `verbose = FALSE` was not respected under all circumstances; fixed.
 
 ## BayLum 0.2.0 (2020-12-06)
 
