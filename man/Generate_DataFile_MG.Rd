@@ -16,17 +16,18 @@ Generate_DataFile_MG(
   sepDS = c(","),
   sepR = c("="),
   verbose = TRUE,
+  force_run1_at_a_time = FALSE,
   ...
 )
 }
 \arguments{
-\item{Path}{\link{character} (\strong{required}): the path to the project folder, containing one or more subfolders in which the BIN files
+\item{Path}{\link{character} (\strong{required}): the path to the project folder, containing one or more sub folders in which the BIN files
 are located. If it is not equal to "", it must be terminated by "/".}
 
 \item{FolderNames}{\link{character} (\strong{required}) vector: list of names of the sub-folders containing the BIN files
 \itemize{
-\item each subfolder must contain a BIN file and associated csv files.
-See details for more informations on associated csv files required in the subfolders.
+\item each sub folder must contain a BIN file and associated csv files.
+See details for more informations on associated csv files required in the sub folders.
 If there is more than one BIN file per sample, see the details section for instructions regarding how to correctly fill the
 \code{FolderNames} vector.
 }}
@@ -50,6 +51,13 @@ Otherwise, this vector must contain a list of 1 values.}
 
 \item{verbose}{\link{logical} (with default): enable/disable verbose mode}
 
+\item{force_run1_at_a_time}{(\emph{with default}): if set to \code{TRUE} the curves are reshuffled in the
+way they would occur if measured using the option "Run 1 at a time" (only Risø readers,
+lexsyg readers usually measure this way by design). This option is useful because
+the function expects such an input to extract the data correctly even you have written
+you sequence without using the "Run 1 at a time" option. Note: This re-ordering must fail
+if you have used a position more than one time for different samples!}
+
 \item{...}{further arguments that can be passed to \link[Luminescence:read_BIN2R]{Luminescence::read_BIN2R}.}
 }
 \value{
@@ -68,7 +76,7 @@ A list containing the following objects:
 
 \bold{** How to save this list **}
 
-You can save this list in a .RData object. To do this, you can use the fonction \code{\link{save}}.
+You can save this list in a .RData object. To do this, you can use the function \code{\link{save}}.
 Then, to load this list you can use the function \code{\link{load}} (see example section fore more details).
 }
 \description{
@@ -143,9 +151,6 @@ For the general BIN-file structure, the reader is referred to the following webs
 The function \code{\link{read_BIN2R}} developed in \code{\link{Luminescence}} package is used to read the BIN files.
 }
 \note{
-The function automatically converts your input data into a sequence order similar to the Run 1 at a
-time option. However, this can only work if position numbers are not used twice!
-
 The function imports only BIN/BINX-file records which have been previously selected.
 }
 \examples{
@@ -174,6 +179,6 @@ Claire Christophe, Sebastian Kreutzer, Anne Philippe, Guillaume Guérin
 } 
 
 \section{How to cite}{
-Christophe, C., Kreutzer, S., Philippe, A., 2021. Generate_DataFile_MG(): Generates, from one (or several) BIN file(s) of Multi-grain OSL measurements, a list of luminescence data and information before statistical analysis. In: Christophe, C., Philippe, A., Kreutzer, S., Guerin, G., 2021. BayLum: Chronological Bayesian Models Integrating Optically Stimulated. R package version 0.2.1.9000-1. https://CRAN.r-project.org/package=BayLum
+Christophe, C., Kreutzer, S., Philippe, A., 2021. Generate_DataFile_MG(): Generates, from one (or several) BIN file(s) of Multi-grain OSL measurements, a list of luminescence data and information before statistical analysis. In: Christophe, C., Philippe, A., Kreutzer, S., Guerin, G., 2021. BayLum: Chronological Bayesian Models Integrating Optically Stimulated. R package version 0.2.1.9000-4. https://CRAN.r-project.org/package=BayLum
 }
 
