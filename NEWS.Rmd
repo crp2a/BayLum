@@ -18,8 +18,10 @@ knitr::opts_chunk$set(
 ### Bugfixes & changes
 
 #### `Generate_DataFile_MG()` 
-* The function now automatically orders BIN/BINX-files follwing the Run 1 at a time
-option. Regardless of whether this option was used for the measurement. 
+* The function gained a new argument `force_run1_at_a_time`. If set to `TRUE` it 
+automatically orders the curves in the BIN/BINX-file following the "Run 1 at a time"
+option. Regardless of whether this option was used for the measurement or not. Please note: 
+this cannot work if you have assigned a position number more than one time to different aliquots.
 
 ## BayLum 0.2.0 (2020-12-06)
 

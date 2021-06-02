@@ -9,11 +9,11 @@
 #' It is possible to process data for various samples simultaneously and to consider more
 #' than one BIN-file per sample.
 #'
-#' @param Path [character] (**required**): the path to the project folder, containing one or more subfolders in which the BIN files
+#' @param Path [character] (**required**): the path to the project folder, containing one or more sub folders in which the BIN files
 #' are located. If it is not equal to "", it must be terminated by "/".
 #' @param FolderNames [character] (**required**) vector: list of names of the sub-folders containing the BIN files
-#' - each subfolder must contain a BIN file and associated csv files.
-#' See details for more informations on associated csv files required in the subfolders.
+#' - each sub folder must contain a BIN file and associated csv files.
+#' See details for more informations on associated csv files required in the sub folders.
 #' If there is more than one BIN file per sample, see the details section for instructions regarding how to correctly fill the
 #' \code{FolderNames} vector.
 #' @param Nb_sample [integer] (**required**): number of samples.
@@ -29,6 +29,13 @@
 #' @param sepDS [character] (with default): column separator in the DoseLab.csv files.
 #'
 #' @param sepR [character] (with default): column separator in the Rule.csv files.
+#'
+#' @param force_run1_at_a_time (*with default*): if set to `TRUE` the curves are reshuffled in the
+#' way they would occur if measured using the option "Run 1 at a time" (only Risø readers,
+#' lexsyg readers usually measure this way by design). This option is useful because
+#' the function expects such an input to extract the data correctly even you have written
+#' you sequence without using the "Run 1 at a time" option. Note: This re-ordering must fail
+#' if you have used a position more than one time for different samples!
 #'
 #' @param verbose [logical] (with default): enable/disable verbose mode
 #'
@@ -97,8 +104,6 @@
 #'
 #' The function \code{\link{read_BIN2R}} developed in \code{\link{Luminescence}} package is used to read the BIN files.
 #'
-#' @note The function automatically converts your input data into a sequence order similar to the Run 1 at a
-#' time option. However, this can only work if position numbers are not used twice!
 #'
 #' @return A list containing the following objects:
 #' \itemize{
@@ -115,7 +120,7 @@
 #'
 #' \bold{** How to save this list **}
 #'
-#' You can save this list in a .RData object. To do this, you can use the fonction \code{\link{save}}.
+#' You can save this list in a .RData object. To do this, you can use the function \code{\link{save}}.
 #' Then, to load this list you can use the function \code{\link{load}} (see example section fore more details).
 #'
 #' @author Claire Christophe, Sebastian Kreutzer, Anne Philippe, Guillaume Guérin
@@ -154,6 +159,7 @@ Generate_DataFile_MG <- function(
   sepDS = c(","),
   sepR = c("="),
   verbose = TRUE,
+  force_run1_at_a_time = FALSE,
   ...
 ){
 
@@ -195,7 +201,7 @@ Generate_DataFile_MG <- function(
   for(i in 1:Nb_sample){
     for(nb in 1:BinPerSample[i]){
       bf=bf+1
-      print(paste("File being read:",FolderNames[bf]))
+      if(verbose) message(paste("File being read:",FolderNames[bf]))
 
       # read files....
       XLS_file <- read.csv(file=paste(Path,FolderNames[bf],"/Disc.csv",sep=""),sep=sepD)
@@ -211,10 +217,12 @@ Generate_DataFile_MG <- function(
       )[[1]]
 
       ##sort dataset in correct order by aliquots
-      o <- object@METADATA[["ID"]][order(object@METADATA[["POSITION"]])]
-      object@METADATA <- object@METADATA[o,]
-      object@DATA <- object@DATA[o]
-      object@METADATA[["ID"]] <- 1:nrow(object@METADATA)
+      if(force_run1_at_a_time) {
+        o <- object@METADATA[["ID"]][order(object@METADATA[["POSITION"]])]
+        object@METADATA <- object@METADATA[o,]
+        object@DATA <- object@DATA[o]
+        object@METADATA[["ID"]] <- 1:nrow(object@METADATA)
+      }
 
       # csv file indicating position and disc selection and preparation to be read
       XLS_file[[2]] <- XLS_file[[1]]
