@@ -27,6 +27,11 @@
   "journal_volume": "49",
   "keywords": ["luminescence dating", "bayesian statistics", "radiocarbon dates", "geochronology", "r package"],
   "upload_type": "software",
+  "communities": [
+    {
+      "identifier": "archeosciences-bordeaux"
+    }
+  ],
   "license": "GPL-3.0+",
   "access_right": "open",
   "version": "0.2.1.9000-4",
