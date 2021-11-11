@@ -18,6 +18,21 @@ test_that("Full function test", {
     quiet = TRUE
   )), class = "BayLum.list")
 
+  ## test parallel computation
+  ## this takes too long!
+  # expect_s3_class(suppressWarnings(AgeS_Computation(
+  #   DATA = Data,
+  #   Nb_sample = 2,
+  #   SampleNames = c("GDB5","GDB3"),
+  #   PriorAge = c(1,10,20,60),
+  #   Iter = 50,
+  #   quiet = FALSE,
+  #   jags_method = "rjparallel",
+  #   n.chains = 2,
+  #   startburnin = 50,
+  #   startsample = 4000
+  # )), class = "BayLum.list")
+
 
 })
 

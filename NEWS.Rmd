@@ -17,6 +17,15 @@ knitr::opts_chunk$set(
 
 ### Bugfixes & changes
 
+#### `AgeS_Computation()`
+* The function crashed if `jags_method = "rjparallel"` with a runtime error due to missing information 
+about the RNG type; fixed (thanks to @IMHarly for spotting).
+* If `jags_method = "rjparallel"` the inits were preset to a specific value for the random number generator. 
+While this setting led to a crash of the function and probably caused no harm, 
+the setting did not make any sense. Now, the random number generator settings (seed, type etc.) can 
+be provided via the argument `inits`, which is passed to `runjags::autorun.jags`. The default is `NA`
+to maintain the expected behaviour if `jags_method = "rjparallel"` is used.
+
 #### `Generate_DataFile_MG()` 
 * The function gained a new argument `force_run1_at_a_time`. If set to `TRUE` it 
 automatically orders the curves in the BIN/BINX-file following the "Run 1 at a time"
