@@ -1,16 +1,16 @@
 #' @title Bayesian analysis for OSL age estimation of various samples
 #'
 #' @description This function computes the age (in ka) of at least two samples
-#' according to the model developed in Combes and Philippe (2017),
+#' according to the model developed in Combès and Philippe (2017),
 #' based on outputs of \code{\link{Generate_DataFile}} or \code{\link{Generate_DataFile_MG}}
 #' or both of them using \code{\link{combine_DataFiles}}.\cr
-#' Samples, for which data is avalilable in several BIN files, can be analysed.\cr
-#' Single-grain or Multi-grain OSL measurements can be analysed simultaneouly.
+#' Samples, for which data is available in several BIN files, can be analysed.\cr
+#' Single-grain or Multi-grain OSL measurements can be analysed simultaneously.
 #'
 #' @param DATA [list] of objects: `LT`, `sLT`, `ITimes`, `dLab`, `ddot_env`, `regDose`, `J`, `K`, `Nb_measurement`,
 #' provided by the function [Generate_DataFile] or [Generate_DataFile_MG] or [combine_DataFiles].
 #' \code{DATA} contains informations for more than one sample.
-#' If there is stratigraphic relations between samples, informations in DATA must be ordered by order of incresing ages.
+#' If there is stratigraphic relations between samples, informations in DATA must be ordered by order of increasing ages.
 #' See the details section to for more informations.
 #'
 #' @param SampleNames [character] vector: names of samples. The length of this vector is equal to \code{Nb_sample}.
@@ -19,12 +19,12 @@
 #'
 #' @param PriorAge [numeric] vector (with default): lower and upper bounds for age parameter of each sample (in ka).
 #' Note that, \code{length(PriorAge)=2*Nb_sample}
-#' and `PriorAge[2i-1,2i]` correponds to the lower and upper bounds of sample whose number ID is equal to `i`.
+#' and `PriorAge[2i-1,2i]` corresponds to the lower and upper bounds of sample whose number ID is equal to `i`.
 #'
 #' @param BinPerSample [integer] vector (with default): vector with the number of BIN files per sample.
 #' The length of this vector is equal to `Nb_sample`.
-#' `BinPerSample[i]` correponds to the number of BIN files for the sample whose number ID is equal to `i`.
-#' For more information to fill this vector, we refer to detatils in [Generate_DataFile] or in [Generate_DataFile_MG].
+#' `BinPerSample[i]` corresponds to the number of BIN files for the sample whose number ID is equal to `i`.
+#' For more information to fill this vector, we refer to details in [Generate_DataFile] or in [Generate_DataFile_MG].
 #'
 #' @param SavePdf [logical] (with default): if TRUE save graphs in pdf file named \code{OutputFileName} in folder \code{OutputFilePath}.
 #'
@@ -95,7 +95,7 @@
 #' ARGUMENT \tab INPUT \tab METHOD \tab DEFAULT \tab DESCRIPTION\cr
 #' `max.time` \tab [character] \tab `rjparallel` \tab `Inf` \tab maximum allowed processing time, e.g.,
 #' `10m` for 10 minutes (cf. [runjags::autorun.jags])\cr
-#'  `interacitve` \tab [logical] \tab `rjparallel` \tab `FALSE` \tab enable/disable interactive mode (cf. [runjags::autorun.jags])\cr
+#'  `interactive` \tab [logical] \tab `rjparallel` \tab `FALSE` \tab enable/disable interactive mode (cf. [runjags::autorun.jags])\cr
 #'  `startburnin` \tab [integer] \tab `rjparallel` \tab  `4000` \tab number of burnin iterations (cf. [runjags::autorun.jags]) \cr
 #' `startsample` \tab [integer] \tab `rjparallel` \tab `10000` \tab total number of samples to assess convergence
 #' (cf. [runjags::autorun.jags]) \cr
@@ -136,14 +136,14 @@
 #' If systematic errors are considered, the user can fill the \code{THETA} matrix as follow.
 #' \itemize{
 #'  \item row number of \code{THETA} is equal the column number, equal to \code{Nb_sample}.
-#'  \item For all \code{i in {1,...,Nb_sample}}, \code{THETA[i,i]} containts individual error
+#'  \item For all \code{i in {1,...,Nb_sample}}, \code{THETA[i,i]} contains individual error
 #'  plus systematic error of the sample whose number ID is equal to \code{i}.
 #'  \item For all \code{i,j in {1,...,Nb_sample}} and \code{i} different from \code{j} ,
-#' \code{THETA[i,j]} containts common error between samples whose number ID are equal to \code{i} and \code{j}.
+#' \code{THETA[i,j]} contains common error between samples whose number ID are equal to \code{i} and \code{j}.
 #' }
 #' Note that \code{THETA[i,j]} is a symetric matrix.
 #'
-#' The user can also refer to a .csv file that containts the errors as defined above.\cr
+#' The user can also refer to a .csv file that contains the errors as defined above.\cr
 #'
 #' Alternatively you can use the function [create_ThetaMatrix].
 #'
@@ -333,7 +333,7 @@ AgeS_Computation <- function(
   n.chains = 3,
   jags_method = "rjags",
   quiet = FALSE,
-  roundingOfValue=3,
+  roundingOfValue = 3,
   ...
 ){
 
