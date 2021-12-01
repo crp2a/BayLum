@@ -25,6 +25,10 @@ While this setting led to a crash of the function and probably caused no harm,
 the setting did not make any sense. Now, the random number generator settings (seed, type etc.) can 
 be provided via the argument `inits`, which is passed to `runjags::autorun.jags`. The default is `NA`
 to maintain the expected behaviour if `jags_method = "rjparallel"` is used.
+* The function gained a new argument `model` to inject custom models to run with the parameters as already defined
+for the model. This option allows to adjust priors and likelihoods to test different scenarios. Please not that
+this option works without a safety net, mean the function does not check whether the paramters in the model are actually 
+available. 
 
 #### `Generate_DataFile_MG()` 
 * The function gained a new argument `force_run1_at_a_time`. If set to `TRUE` it 
