@@ -129,6 +129,7 @@ individual equivalent dose values around the palaeodose of the sample;
 \item \bold{PriorAge}: stating the priors used for the age parameter (in ka);
 \item \bold{StratiConstraints}: stating the stratigraphic relations between samples considered in the model;
 \item \bold{CovarianceMatrix}: stating the covariance matrix of error used in the model, highlighting common errors between samples or not.
+\item \bold{model}: returns the model that was used for the Bayesian modelling as a \link{character}
 }
 \item\bold{The Gelman and Rubin test of convergency}: prints the result of the Gelman and Rubin test of convergence for
 the age, palaeodose and equivalent dose dispersion parameters for each sample.
@@ -330,7 +331,7 @@ Age <- AgeS_Computation(
 } 
 
 \section{How to cite}{
-Christophe, C., Philippe, A., Kreutzer, S., 2021. AgeS_Computation(): Bayesian analysis for OSL age estimation of various samples. In: Christophe, C., Philippe, A., Kreutzer, S., Guerin, G., 2021. BayLum: Chronological Bayesian Models Integrating Optically Stimulated. R package version 0.2.1.9000-9. https://CRAN.r-project.org/package=BayLum
+Christophe, C., Philippe, A., Kreutzer, S., 2021. AgeS_Computation(): Bayesian analysis for OSL age estimation of various samples. In: Christophe, C., Philippe, A., Kreutzer, S., Guerin, G., 2021. BayLum: Chronological Bayesian Models Integrating Optically Stimulated. R package version 0.2.1.9000-11. https://CRAN.r-project.org/package=BayLum
 }
 
 \references{
