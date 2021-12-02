@@ -206,6 +206,7 @@
 #'   \item \bold{PriorAge}: stating the priors used for the age parameter (in ka);
 #'   \item \bold{StratiConstraints}: stating the stratigraphic relations between samples considered in the model;
 #'   \item \bold{CovarianceMatrix}: stating the covariance matrix of error used in the model, highlighting common errors between samples or not.
+#'   \item \bold{model}: returns the model that was used for the Bayesian modelling as a [character]
 #'  }
 #'   \item\bold{The Gelman and Rubin test of convergency}: prints the result of the Gelman and Rubin test of convergence for
 #' the age, palaeodose and equivalent dose dispersion parameters for each sample.
@@ -653,7 +654,8 @@ AgeS_Computation <- function(
     "Distribution"= distribution,
     "PriorAge"= PriorAge,
     "StratiConstraints"= StratiConstraints,
-    "CovarianceMatrix"= THETA
+    "CovarianceMatrix"= THETA,
+    "model" = model
   )
 
   # Plot ages -----------------------------------------------------------------------------------
