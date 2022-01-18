@@ -15,8 +15,6 @@ developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.re
 [![cran
 checks](https://cranchecks.info/badges/worst/BayLum)](https://cranchecks.info/pkgs/BayLum)
 [![Downloads](https://cranlogs.r-pkg.org/badges/grand-total/BayLum)](https://www.r-pkg.org/pkg/BayLum)
-[![Build
-status](https://ci.appveyor.com/api/projects/status/ai37938e8sij09ab?svg=true)](https://ci.appveyor.com/project/archeometre/baylum)
 [![R-CMD-check](https://github.com/crp2a/BayLum/workflows/GitHub%20Actions%20CI/badge.svg)](https://github.com/crp2a/BayLum/actions)
 [![codecov](https://codecov.io/gh/crp2a/BayLum/branch/master/graph/badge.svg)](https://codecov.io/gh/crp2a/BayLum)
 
