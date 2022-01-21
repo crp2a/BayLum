@@ -10,14 +10,18 @@
 #' than one BIN-file per sample.
 #'
 #' @param Path [character] (**required**): the path to the project folder, containing one or more sub folders in which the BIN files
-#' are located. If it is not equal to "", it must be terminated by "/".
+#' are located. If it is not equal to `""`, it must end with `"/"`.
+#'
 #' @param FolderNames [character] (**required**) vector: list of names of the sub-folders containing the BIN files
 #' - each sub folder must contain a BIN file and associated csv files.
 #' See details for more informations on associated csv files required in the sub folders.
 #' If there is more than one BIN file per sample, see the details section for instructions regarding how to correctly fill the
 #' \code{FolderNames} vector.
-#' @param Nb_sample [integer] (**required**): number of samples.
+#'
+#' @param Nb_sample [integer] (**required**): number of
+#'
 #' @param Nb_binfile [integer] (with default): number of BIN files. It must be equal to, or greater than \code{Nb_sample}.
+#'
 #' @param BinPerSample [integer] vector (with default): vector with the number of BIN files per sample.
 #' The length of this vector must be equal to \code{Nb_sample} and the sum of entries of this vector must be equal to \code{Nb_binfile}.
 #' If there is more than one BIN file per sample, see the details section for instructions regarding how to correctly fill \code{BinPerSample} vector.
@@ -30,12 +34,15 @@
 #'
 #' @param sepR [character] (with default): column separator in the Rule.csv files.
 #'
-#' @param force_run1_at_a_time (*with default*): if set to `TRUE` the curves are reshuffled in the
-#' way they would occur if measured using the option "Run 1 at a time" (only Risø readers,
-#' lexsyg readers usually measure this way by design). This option is useful because
-#' the function expects such an input to extract the data correctly even you have written
-#' you sequence without using the "Run 1 at a time" option. Note: This re-ordering must fail
-#' if you have used a position more than one time for different samples!
+#' @param force_run1_at_a_time (*with default*): if set to `TRUE`, the order of the records is
+#' pushed to follow the one "Run 1 at a time" order (this is, all sequence steps were performed on
+#' one aliquot before moving to the next aliquot), regardless of their original sequence.
+#' The default is `FALSE` because `'BayLum'` assumes that the sample was measured with the
+#' "Run 1 at a time" option (only Risø readers, lexsyg readers do not have another option).
+#' In other words, the argument allows you to automatically correct your input data to follow the order `'BayLum'` expects.
+#' Why isn't the default value `TRUE`?. Because this re-ordering must fail
+#' if a measurement position was used more than once for different samples!
+#' This typically happens when different BIN/BINX files are merged.
 #'
 #' @param verbose [logical] (with default): enable/disable verbose mode
 #'
