@@ -37,12 +37,12 @@ the package 'BayLum' as convenient as possible.
 
 If you read this document before having installed **R** itself, you should first visit the 
 [R project](https://www.r-project.org) website and download and install **R**. 
-You may also consider installing [Rstudio](https://rstudio.com), 
+You may also consider installing [Rstudio](https://www.rstudio.com), 
 which provides an excellent desktop working environment for **R**; however it is not 
 a prerequisite.
 
 Despite, you will need the external software *JAGS* (Just Another Gibs Sampler). 
-Please visit the [JAGS](http://mcmc-jags.sourceforge.net) webpage and follow the installation instructions. 
+Please visit the [JAGS](https://mcmc-jags.sourceforge.io) webpage and follow the installation instructions. 
 Now you are nearly ready to work with 'BayLum'. 
 
 If you have not yet installed `BayLum', please run the following two **R** code lines to 

@@ -11,7 +11,6 @@
 #' @name BayLum-package
 #' @aliases BayLum-package BayLum
 #' @docType package
-#' @author Claire Christophe, Anne Philippe, Sebastian Kreutzer, Guillaume Guérin
 #' @keywords package
 #' @details This package is based on the functions: [Generate_DataFile] and [Generate_DataFile_MG]
 #' to import luminescence data. These functions create a list containing all informations to
