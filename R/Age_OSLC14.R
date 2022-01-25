@@ -1,8 +1,8 @@
 #' @title Bayesian analysis for age estimation of OSL measurements and C-14 ages of various samples
 #'
-#' @description This function compute an age of OSL data of at least two samples and calibrate
+#' @description This function computes an age of OSL data consisting of at least two samples and calibrate
 #' C-14 ages of samples to get an age (in ka).\cr
-#' Age of OSL data are computed according to the model given in Combes and Philippe (2017).
+#' Ages of OSL data are computed according to the model given in Combes and Philippe (2017).
 #' Single-grain or Multi-grain OSL measurements can be analysed simultaneously
 #' (with output of [Generate_DataFile] or [Generate_DataFile_MG] or both of them using [combine_DataFiles]).
 #' Samples, for which data is available in several BIN files, can be analysed.\cr
@@ -129,7 +129,7 @@
 #'
 #' @details
 #'
-#' Note that there is tree type of arguments in the previous list.
+#' Note that there are three types of arguments in the previous list.
 #' There are arguments for information concerning only OSL samples: \code{DATA}, \code{BinPerSample}, \code{THETA},
 #' \code{sepTHETA}, \code{LIN_fit}, \code{Origin_fit}, \code{distribution}.
 #'
