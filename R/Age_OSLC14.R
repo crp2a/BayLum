@@ -119,6 +119,9 @@
 #'
 #' @param n.chains [numeric] (with default): number of independent chains for the model
 #' (for more information see [[rjags::jags.model]).
+#' 
+#' @param jags_method [character] (with default): select computation method, supported are  `"rjags"` (the default) and `rjparallel`
+#' using package `'runjags'`. The latter option uses the function [runjags::autorun.jags] to allow a full automated processing.
 #'
 #' @param quiet [logical] (with default): enables/disables [rjags] messages
 #'
