@@ -16,7 +16,7 @@ developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.re
 checks](https://cranchecks.info/badges/worst/BayLum)](https://cranchecks.info/pkgs/BayLum)
 [![Downloads](https://cranlogs.r-pkg.org/badges/grand-total/BayLum)](https://www.r-pkg.org/pkg/BayLum)
 [![R-CMD-check](https://github.com/crp2a/BayLum/workflows/GitHub%20Actions%20CI/badge.svg)](https://github.com/crp2a/BayLum/actions)
-[![codecov](https://codecov.io/gh/crp2a/BayLum/branch/master/graph/badge.svg)](https://codecov.io/gh/crp2a/BayLum)
+[![codecov](https://app.codecov.io/gh/crp2a/BayLum/branch/master/graph/badge.svg)](https://app.codecov.io/gh/crp2a/BayLum)
 
 An R package for chronological **Bay**esian models integrated for
 Optically Stimulated (OSL) **Lum**inescence Dating
@@ -35,7 +35,7 @@ To install a developer build other than ‘master’, replace the term
 ‘master’ in the codeline by the name of the wanted developer build.
 
 **Please note that you need to have
-[JAGS](http://mcmc-jags.sourceforge.net) installed on your computer**
+[JAGS](https://mcmc-jags.sourceforge.io) installed on your computer**
 
 ## Note
 
