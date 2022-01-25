@@ -166,12 +166,7 @@ data(DATA1,envir = environment())
 ## Palaeodose computation of samples GDB3
 P=Palaeodose_Computation(DATA=DATA1,Nb_sample=1,SampleNames=c("GDB5"),Iter=100)
 
-} 
-
-\section{How to cite}{
-Christophe, C., Kreutzer, S., Philippe, A., 2021. Palaeodose_Computation(): Bayesian analysis for the palaeodose estimation of various samples. In: Christophe, C., Philippe, A., Kreutzer, S., Guerin, G., 2021. BayLum: Chronological Bayesian Models Integrating Optically Stimulated. R package version 0.2.1.9000-11. https://CRAN.r-project.org/package=BayLum
 }
-
 \references{
 Combes, B., Philippe, A., Lanos, P., Mercier, N., Tribolo, C., Guerin, G., Guibert, P., Lahaye, C., 2015.
 A Bayesian central equivalent dose model for optically stimulated luminescence dating.

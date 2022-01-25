@@ -31,8 +31,10 @@ Age_OSLC14(
   Iter = 50000,
   t = 5,
   n.chains = 3,
+  jags_method = "rjags",
   quiet = FALSE,
-  roundingOfValue = 3
+  roundingOfValue = 3,
+  ...
 )
 }
 \arguments{
@@ -150,6 +152,9 @@ considered for sampling the posterior distribution (for more information see [\l
 \item{quiet}{\link{logical} (with default): enables/disables \link{rjags} messages}
 
 \item{roundingOfValue}{\link{integer} (with default):  Integer indicating the number of decimal places to be used, default = 3.}
+
+\item{...}{further arguments that can be passed to control the Bayesian process, see details
+for supported arguments}
 }
 \value{
 \bold{NUMERICAL OUTPUT}\cr
@@ -210,6 +215,18 @@ There are arguments for information concerning only C14 samples: \code{Data_C14C
 There are arguments for information concerning all the samples: \code{Nb_sample}, \code{SampleNames}, \code{SampleNature},
 \code{PriorAge}, \code{SavePdf}, \code{OutputFileName}, \code{OutputFilePath}, \code{SaveEstimates}, \code{OutputTableName},
 \code{OutputTablePath}, \code{StratiConstraints}, \code{sepSC}.\cr
+
+\bold{\strong{Supported \code{...} arguments}}
+\tabular{lllll}{
+ARGUMENT \tab INPUT \tab METHOD \tab DEFAULT \tab DESCRIPTION\cr
+\code{max.time} \tab \link{character} \tab \code{rjparallel} \tab \code{Inf} \tab maximum allowed processing time, e.g.,
+\verb{10m} for 10 minutes (cf. \link[runjags:autorun.jags]{runjags::autorun.jags})\cr
+\code{interactive} \tab \link{logical} \tab \code{rjparallel} \tab \code{FALSE} \tab enable/disable interactive mode (cf. \link[runjags:autorun.jags]{runjags::autorun.jags})\cr
+\code{startburnin} \tab \link{integer} \tab \code{rjparallel} \tab  \code{4000} \tab number of burn-in iterations (cf. \link[runjags:autorun.jags]{runjags::autorun.jags}) \cr
+\code{startsample} \tab \link{integer} \tab \code{rjparallel} \tab \code{10000} \tab total number of samples to assess convergence
+(cf. \link[runjags:autorun.jags]{runjags::autorun.jags}) \cr
+\code{inits} \tab named \link{list} \tab \code{rjparallel} \tab \code{NA} \tab fine control over random seeds and random number generator \link[runjags:autorun.jags]{runjags::autorun.jags}
+}
 
 \bold{** How to fill} \code{StratiConstraints} \bold{? **}\cr
 
@@ -329,12 +346,7 @@ SC <- matrix(data=c(1,1,1,0,1,1,0,0,1,0,0,0),ncol=3,nrow=4,byrow=TRUE)
 Age <- Age_OSLC14(DATA=Data,Data_C14Cal=C14Cal,Data_SigmaC14Cal=SigmaC14Cal,
    SampleNames=c("GDB5",Names,"GDB3"),Nb_sample=3,SampleNature=samplenature,
    PriorAge=prior,StratiConstraints=SC,Iter=50,n.chains=2)
-} 
-
-\section{How to cite}{
-Christophe, C., Philippe, A., Guerin, G., Kreutzer, S., 2021. Age_OSLC14(): Bayesian analysis for age estimation of OSL measurements and C-14 ages of various samples. In: Christophe, C., Philippe, A., Kreutzer, S., Guerin, G., 2021. BayLum: Chronological Bayesian Models Integrating Optically Stimulated. R package version 0.2.1.9000-11. https://CRAN.r-project.org/package=BayLum
 }
-
 \references{
 Reimer PJ, Bard E, Bayliss A, Beck JW, Blackwell PC, Bronl Ramsey C, Buck CE, Cheng H, Edwards RL, Friedrich M,
 Grootes PM, Guilderson TP, Haflidason H, Hajdas I, Hatte C, Heaton TJ, Hoffmann DL, Hogg AG, Hughen KA, Kaiser KF, Kromer B,

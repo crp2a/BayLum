@@ -121,12 +121,7 @@ sigma_s =  c(
 
 
 
-} 
-
-\section{How to cite}{
-Kreutzer, S., 2021. create_ThetaMatrix(): Create Theta Matrix. Function version 0.1.0. In: Christophe, C., Philippe, A., Kreutzer, S., Guerin, G., 2021. BayLum: Chronological Bayesian Models Integrating Optically Stimulated. R package version 0.2.1.9000-11. https://CRAN.r-project.org/package=BayLum
 }
-
 \references{
 Combès, B., Philippe, A., 2017. Bayesian analysis of individual and systematic multiplicative errors
 for estimating ages with stratigraphic constraints in optically stimulated luminescence dating.

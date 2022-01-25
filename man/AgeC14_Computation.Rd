@@ -190,12 +190,7 @@ Age <- AgeC14_Computation(
  quiet = TRUE,
  roundingOfValue=3)
 
-} 
-
-\section{How to cite}{
-Christophe, C., Philippe, A., Kreutzer, S., 2021. AgeC14_Computation(): Bayesian analysis for C-14 age estimations of various samples. In: Christophe, C., Philippe, A., Kreutzer, S., Guerin, G., 2021. BayLum: Chronological Bayesian Models Integrating Optically Stimulated. R package version 0.2.1.9000-11. https://CRAN.r-project.org/package=BayLum
 }
-
 \references{
 Christen, JA (1994). Summarizing a set of radiocarbon determinations: a robust approach. Applied Statistics, 489-503.
 
