@@ -129,7 +129,7 @@
 #'
 #' @details
 #'
-#' Note that there are threetypes of arguments in the previous list.
+#' Note that there are three types of arguments in the previous list.
 #' There are arguments for information concerning only OSL samples: \code{DATA}, \code{BinPerSample}, \code{THETA},
 #' \code{sepTHETA}, \code{LIN_fit}, \code{Origin_fit}, \code{distribution}.
 #'
