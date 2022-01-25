@@ -4,7 +4,7 @@ Title: Chronological Bayesian Models Integrating Optically Stimulated
         Luminescence and Radiocarbon Age Dating
 Description: Bayesian analysis of luminescence data and C-14 age estimates. Bayesian models are based on the following publications: Combes, B. & Philippe, A. (2017) <doi:10.1016/j.quageo.2017.02.003> and Combes et al (2015) <doi:10.1016/j.quageo.2015.04.001>. This includes, amongst others, data import, export, application of age models and palaeodose model.
 Date: 2022-01-25
-Version: 0.2.1.9000-14
+Version: 0.2.1.9000-15
 Author: Claire Christophe [aut], 
     Anne Philippe [aut, cre], 
     Sebastian Kreutzer [aut] (<https://orcid.org/0000-0002-0734-2199>), 
@@ -17,11 +17,21 @@ Authors@R: c(
     person("Guillaume", "Guerin", role = "aut", comment = c(ORCID = "0000-0001-6298-5579")),
     person("Baumgarten", "Frederik", role = "ctb"))
 Maintainer: Anne Philippe <anne.philippe@univ-nantes.fr>
-Depends: R(>= 3.5.0), utils, coda
-Imports: stats, graphics, grDevices, methods, hexbin, KernSmooth, rjags
-        (>= 4-10), runjags (>= 2.0.4), Luminescence (>= 0.8.2),
-        ArchaeoPhases (>= 1.5)
-Suggests: testthat (>= 3.0.0), R.rsp
+Depends: 
+  R(>= 4.0), 
+  utils, 
+  coda (>= 0.19)
+Imports: 
+  methods, 
+  hexbin (>= 1.28.2), 
+  KernSmooth (>= 2.23), 
+  rjags (>= 4-12), 
+  runjags (>= 2.2.0), 
+  Luminescence (>= 0.9.18),
+  ArchaeoPhases (>= 1.5)
+Suggests: 
+  testthat (>= 3.1.2),
+  R.rsp (>= 0.44.0)
 License: GPL-3
 Encoding: UTF-8
 URL: https://CRAN.r-project.org/package=BayLum
