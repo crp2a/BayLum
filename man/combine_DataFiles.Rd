@@ -52,4 +52,9 @@ str(DATA3)
 \author{
 Sebastian Kreutzer, IRAMAT-CRP2A, UMR 5060, CNRS - Université Bordeaux Montaigne (France), adapting
 the idea from the function 'Concat_DataFile()' by Claire Christophe.
+} 
+
+\section{How to cite}{
+Kreutzer, S., Christophe, C., 2022. combine_DataFiles(): Old function Concat_DataFile(). Function version 0.1.1. In: Christophe, C., Philippe, A., Kreutzer, S., Guerin, G., 2022. BayLum: Chronological Bayesian Models Integrating Optically Stimulated. R package version 0.2.1.9000-14. https://CRAN.r-project.org/package=BayLum
 }
+

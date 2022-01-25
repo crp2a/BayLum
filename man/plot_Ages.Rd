@@ -65,4 +65,9 @@ plot_Ages(Age)
 \author{
 Sebastian Kreutzer, IRAMAT-CRP2A, UMR 5060, CNRS-Université Bordeaux Montaigne (France), based on code
 written by Claire Christophe
+} 
+
+\section{How to cite}{
+Kreutzer, S., Christophe, C., 2022. plot_Ages(): Create Age Plot. Function version 0.1.4. In: Christophe, C., Philippe, A., Kreutzer, S., Guerin, G., 2022. BayLum: Chronological Bayesian Models Integrating Optically Stimulated. R package version 0.2.1.9000-14. https://CRAN.r-project.org/package=BayLum
 }
+

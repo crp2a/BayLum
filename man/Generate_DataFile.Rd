@@ -166,4 +166,9 @@ str(Data)
 }
 \author{
 Claire Christophe, Sebastian Kreutzer, Anne Philippe, Guillaume Guerin
+} 
+
+\section{How to cite}{
+Christophe, C., Kreutzer, S., Philippe, A., Guerin, G., 2022. Generate_DataFile(): Generates, from one (or several) BIN-file(s) of Single-grain OSL measurements, a list of luminescence data and information before statistical analysis. In: Christophe, C., Philippe, A., Kreutzer, S., Guerin, G., 2022. BayLum: Chronological Bayesian Models Integrating Optically Stimulated. R package version 0.2.1.9000-14. https://CRAN.r-project.org/package=BayLum
 }
+

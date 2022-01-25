@@ -24,7 +24,6 @@
       "name": "Baumgarten, Frederik Harly",
       "affiliation": "Risø DTU"
     }
-
   ],
   "journal_title": "Quaternary Geochronology",
   "language": "eng",
@@ -39,6 +38,6 @@
   ],
   "license": "GPL-3.0+",
   "access_right": "open",
-  "version": "0.2.1.9000-12",
+  "version": "0.2.1.9000-14",
   "publication_date": "2022-01-25"
 }

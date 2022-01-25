@@ -22,7 +22,7 @@ Generate_DataFile_MG(
 }
 \arguments{
 \item{Path}{\link{character} (\strong{required}): the path to the project folder, containing one or more sub folders in which the BIN files
-are located. If it is not equal to "", it must be terminated by "/".}
+are located. If it is not equal to \code{""}, it must end with \code{"/"}.}
 
 \item{FolderNames}{\link{character} (\strong{required}) vector: list of names of the sub-folders containing the BIN files
 \itemize{
@@ -32,7 +32,7 @@ If there is more than one BIN file per sample, see the details section for instr
 \code{FolderNames} vector.
 }}
 
-\item{Nb_sample}{\link{integer} (\strong{required}): number of samples.}
+\item{Nb_sample}{\link{integer} (\strong{required}): number of}
 
 \item{Nb_binfile}{\link{integer} (with default): number of BIN files. It must be equal to, or greater than \code{Nb_sample}.}
 
@@ -51,12 +51,15 @@ Otherwise, this vector must contain a list of 1 values.}
 
 \item{verbose}{\link{logical} (with default): enable/disable verbose mode}
 
-\item{force_run1_at_a_time}{(\emph{with default}): if set to \code{TRUE} the curves are reshuffled in the
-way they would occur if measured using the option "Run 1 at a time" (only Risø readers,
-lexsyg readers usually measure this way by design). This option is useful because
-the function expects such an input to extract the data correctly even you have written
-you sequence without using the "Run 1 at a time" option. Note: This re-ordering must fail
-if you have used a position more than one time for different samples!}
+\item{force_run1_at_a_time}{(\emph{with default}): if set to \code{TRUE}, the order of the records is
+pushed to follow the one "Run 1 at a time" order (this is, all sequence steps were performed on
+one aliquot before moving to the next aliquot), regardless of their original sequence.
+The default is \code{FALSE} because \code{'BayLum'} assumes that the sample was measured with the
+"Run 1 at a time" option (only Risø readers, lexsyg readers do not have another option).
+In other words, the argument allows you to automatically correct your input data to follow the order \code{'BayLum'} expects.
+Why isn't the default value \code{TRUE}?. Because this re-ordering must fail
+if a measurement position was used more than once for different samples!
+This typically happens when different BIN/BINX files are merged.}
 
 \item{...}{further arguments that can be passed to \link[Luminescence:read_BIN2R]{Luminescence::read_BIN2R}.}
 }
@@ -176,4 +179,9 @@ str(DATA)
 }
 \author{
 Claire Christophe, Sebastian Kreutzer, Anne Philippe, Guillaume Guérin
+} 
+
+\section{How to cite}{
+Christophe, C., Kreutzer, S., Philippe, A., 2022. Generate_DataFile_MG(): Generates, from one (or several) BIN file(s) of Multi-grain OSL measurements, a list of luminescence data and information before statistical analysis. In: Christophe, C., Philippe, A., Kreutzer, S., Guerin, G., 2022. BayLum: Chronological Bayesian Models Integrating Optically Stimulated. R package version 0.2.1.9000-14. https://CRAN.r-project.org/package=BayLum
 }
+

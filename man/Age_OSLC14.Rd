@@ -149,6 +149,9 @@ considered for sampling the posterior distribution (for more information see [\l
 \item{n.chains}{\link{numeric} (with default): number of independent chains for the model
 (for more information see [\link[rjags:jags.model]{rjags::jags.model}).}
 
+\item{jags_method}{\link{character} (with default): select computation method, supported are  \code{"rjags"} (the default) and \code{rjparallel}
+using package \code{'runjags'}. The latter option uses the function \link[runjags:autorun.jags]{runjags::autorun.jags} to allow a full automated processing.}
+
 \item{quiet}{\link{logical} (with default): enables/disables \link{rjags} messages}
 
 \item{roundingOfValue}{\link{integer} (with default):  Integer indicating the number of decimal places to be used, default = 3.}
@@ -216,7 +219,7 @@ There are arguments for information concerning all the samples: \code{Nb_sample}
 \code{PriorAge}, \code{SavePdf}, \code{OutputFileName}, \code{OutputFilePath}, \code{SaveEstimates}, \code{OutputTableName},
 \code{OutputTablePath}, \code{StratiConstraints}, \code{sepSC}.\cr
 
-\bold{\strong{Supported \code{...} arguments}}
+\strong{Supported \code{...} arguments}
 \tabular{lllll}{
 ARGUMENT \tab INPUT \tab METHOD \tab DEFAULT \tab DESCRIPTION\cr
 \code{max.time} \tab \link{character} \tab \code{rjparallel} \tab \code{Inf} \tab maximum allowed processing time, e.g.,
@@ -228,7 +231,7 @@ ARGUMENT \tab INPUT \tab METHOD \tab DEFAULT \tab DESCRIPTION\cr
 \code{inits} \tab named \link{list} \tab \code{rjparallel} \tab \code{NA} \tab fine control over random seeds and random number generator \link[runjags:autorun.jags]{runjags::autorun.jags}
 }
 
-\bold{** How to fill} \code{StratiConstraints} \bold{? **}\cr
+\strong{How to fill `StratiConstraints?}\cr
 
 If there are stratigraphic relations between samples, \bold{14C estimate age in \code{Data_C14Cal} must be ordered by order of increasing ages,
 as informations in \code{DATA}}. Names in \code{SampleNames} must be ordered and corresponds to the order in \code{Data_C14Cal} and in \code{DATA},
@@ -247,18 +250,18 @@ Otherwise, \code{StratiConstraints[j,i]=0}.
 }
 Note that \code{StratiConstraints_{2:Nb_sample+1,1:Nb_sample}} is a upper triangular matrix.
 
-The user can also use \code{\link{SCMatrix}}  or \code{\link{SC_Ordered}} (if all samples are ordered) function to construc
+The user can also use \code{\link{SCMatrix}}  or \code{\link{SC_Ordered}} (if all samples are ordered) function to construct
 the \code{StratiConstraints} matrix.
 
 The user can also refer to a csv file that contains the relation between samples as defined above.
-The user must be carefull about which separator is used in the csv file using the argument \code{sepSC}.\cr
+The user must be careful about which separator is used in the csv file using the argument \code{sepSC}.\cr
 
-\bold{** How to fill} \code{THETA} \bold{covariance matrix concerning common and individual error? **}\cr
+\strong{How to fill \code{THETA} covariance matrix concerning common and individual error?}\cr
 
 If systematic errors are considered, the user can fill the \code{THETA} matrix as follow.
 \itemize{
 \item row number of \code{THETA} is equal the column number, equal to \code{Nb_sample}.
-\item For all \code{i in {1,...,Nb_sample}}, \code{THETA[i,i]} containts individual error
+\item For all \code{i in {1,...,Nb_sample}}, \code{THETA[i,i]} contains individual error
 plus systematic error of the sample whose number ID is equal to \code{i}.
 \item For all \code{i,j in {1,...,Nb_sample}} and \code{i} different from \code{j} ,
 \code{THETA[i,j]} contains common error between samples whose number ID are equal to \code{i} and \code{j}.
@@ -267,7 +270,7 @@ Note that \code{THETA[i,j]} is a symmetric matrix.
 
 The user can also refer to a .csv file that contains the errors as defined above.\cr
 
-\bold{** Option on growth curves **}\cr
+\strong{Option on growth curves}\cr
 
 As for \code{\link{Age_Computation}} and \code{\link{Palaeodose_Computation}}, the user can choose from 4 dose response curves:
 \itemize{
@@ -301,7 +304,7 @@ for all \code{x} in IR+, \code{f(x)=a(1-exp(-x/b))}; select
 }
 }
 
-\bold{** Option on equivalent dose distribution around the palaeodose **}\cr
+\strong{Option on equivalent dose distribution around the palaeodose}\cr
 
 The use can choose between :
 \itemize{
@@ -311,13 +314,13 @@ The use can choose between :
 \item \code{lognormal_M}: a log-normal distribution with \bold{M}edian equal to the palaeodose of the sample
 }
 
-\bold{** More precision on \code{Model} **}\cr
+\strong{More precision on \code{Model}}\cr
 
 We propose two models "full" or "naive". If \code{Model='full'} that means measurement error and error on calibration curve are taken account in
 the Bayesian model; if \code{Model="naive"} that means only error on measurement are taken account in the mode.
 
-More precisely, the model considered here, as the one developped by Christen, JA (1994), assume multiplicative effect of errors to address the
-problem of outliers. In addition, to not penalyse variables that are not outliers and damage theirs estimation,
+More precisely, the model considered here, as the one developed by Christen, JA (1994), assume multiplicative effect of errors to address the
+problem of outliers. In addition, to not penalise variables that are not outliers and damage theirs estimation,
 we introduce a structure of mixture, that means only variable that are considered as outlier have in addition a multiplicative error.
 }
 \note{
@@ -346,7 +349,12 @@ SC <- matrix(data=c(1,1,1,0,1,1,0,0,1,0,0,0),ncol=3,nrow=4,byrow=TRUE)
 Age <- Age_OSLC14(DATA=Data,Data_C14Cal=C14Cal,Data_SigmaC14Cal=SigmaC14Cal,
    SampleNames=c("GDB5",Names,"GDB3"),Nb_sample=3,SampleNature=samplenature,
    PriorAge=prior,StratiConstraints=SC,Iter=50,n.chains=2)
+} 
+
+\section{How to cite}{
+Christophe, C., Philippe, A., Guerin, G., Kreutzer, S., Baumgarten, F.H., 2022. Age_OSLC14(): Bayesian analysis for age estimation of OSL measurements and C-14 ages of various samples. In: Christophe, C., Philippe, A., Kreutzer, S., Guerin, G., 2022. BayLum: Chronological Bayesian Models Integrating Optically Stimulated. R package version 0.2.1.9000-14. https://CRAN.r-project.org/package=BayLum
 }
+
 \references{
 Reimer PJ, Bard E, Bayliss A, Beck JW, Blackwell PC, Bronl Ramsey C, Buck CE, Cheng H, Edwards RL, Friedrich M,
 Grootes PM, Guilderson TP, Haflidason H, Hajdas I, Hatte C, Heaton TJ, Hoffmann DL, Hogg AG, Hughen KA, Kaiser KF, Kromer B,
@@ -360,5 +368,5 @@ Hogg AG, Hua Q, Blackwell PG, Niu M, Buck CE, Guilderson TP, Heaton TJ, Palmer J
 \link{rjags}, \link{plot_MCMC}, \link{SCMatrix}, \link{plot_Ages}
 }
 \author{
-Claire Christophe, Anne Philippe, Guillaume Guerin, Sebastian Kreutzer
+Claire Christophe, Anne Philippe, Guillaume Guerin, Sebastian Kreutzer, Frederik Harly Baumgarten
 }

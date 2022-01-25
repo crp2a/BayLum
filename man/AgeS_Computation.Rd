@@ -328,7 +328,12 @@ Age <- AgeS_Computation(
 
 }
 
+} 
+
+\section{How to cite}{
+Christophe, C., Philippe, A., Kreutzer, S., 2022. AgeS_Computation(): Bayesian analysis for OSL age estimation of various samples. In: Christophe, C., Philippe, A., Kreutzer, S., Guerin, G., 2022. BayLum: Chronological Bayesian Models Integrating Optically Stimulated. R package version 0.2.1.9000-14. https://CRAN.r-project.org/package=BayLum
 }
+
 \references{
 Combes, Benoit and Philippe, Anne, 2017.
 Bayesian analysis of multiplicative Gaussian error for multiple ages estimation in optically stimulated luminescence dating.

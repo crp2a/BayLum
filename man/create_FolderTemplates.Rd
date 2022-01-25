@@ -52,6 +52,11 @@ create_FolderTemplates(tempdir())
 \author{
 Sebastian Kreutzer, Geography & Earth Sciences, Aberystwyth University
 (United Kingdom)
+} 
+
+\section{How to cite}{
+Kreutzer, S., 2022. create_FolderTemplates(): Create Folder Templates. Function version 0.1.0. In: Christophe, C., Philippe, A., Kreutzer, S., Guerin, G., 2022. BayLum: Chronological Bayesian Models Integrating Optically Stimulated. R package version 0.2.1.9000-14. https://CRAN.r-project.org/package=BayLum
 }
+
 \keyword{IO}
 \keyword{datagen}
