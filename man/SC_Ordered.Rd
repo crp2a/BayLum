@@ -29,10 +29,5 @@ SC <- SC_Ordered(Nb_sample = 3)
 }
 \author{
 Claire Christophe, Anne Philippe, Sebastian Kreutzer, Guillaume Guérin
-} 
-
-\section{How to cite}{
-Christophe, C., Philippe, A., Kreutzer, S., 2021. SC_Ordered(): Create stratigraphically ordered sample matrix. In: Christophe, C., Philippe, A., Kreutzer, S., Guerin, G., 2021. BayLum: Chronological Bayesian Models Integrating Optically Stimulated. R package version 0.2.1.9000-11. https://CRAN.r-project.org/package=BayLum
 }
-
 \keyword{datagen}

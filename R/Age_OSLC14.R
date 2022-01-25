@@ -1,8 +1,8 @@
 #' @title Bayesian analysis for age estimation of OSL measurements and C-14 ages of various samples
 #'
-#' @description This function compute an age of OSL data of at least two samples and calibrate
+#' @description This function computes an age of OSL data consisting of at least two samples and calibrate
 #' C-14 ages of samples to get an age (in ka).\cr
-#' Age of OSL data are computed according to the model given in Combes and Philippe (2017).
+#' Ages of OSL data are computed according to the model given in Combes and Philippe (2017).
 #' Single-grain or Multi-grain OSL measurements can be analysed simultaneously
 #' (with output of [Generate_DataFile] or [Generate_DataFile_MG] or both of them using [combine_DataFiles]).
 #' Samples, for which data is available in several BIN files, can be analysed.\cr
@@ -119,14 +119,20 @@
 #'
 #' @param n.chains [numeric] (with default): number of independent chains for the model
 #' (for more information see [[rjags::jags.model]).
+#' 
+#' @param jags_method [character] (with default): select computation method, supported are  `"rjags"` (the default) and `rjparallel`
+#' using package `'runjags'`. The latter option uses the function [runjags::autorun.jags] to allow a full automated processing.
 #'
 #' @param quiet [logical] (with default): enables/disables [rjags] messages
 #'
 #' @param roundingOfValue [integer] (with default):  Integer indicating the number of decimal places to be used, default = 3.
 #'
+#' @param ... further arguments that can be passed to control the Bayesian process, see details
+#' for supported arguments
+#'
 #' @details
 #'
-#' Note that there is tree type of arguments in the previous list.
+#' Note that there are three types of arguments in the previous list.
 #' There are arguments for information concerning only OSL samples: \code{DATA}, \code{BinPerSample}, \code{THETA},
 #' \code{sepTHETA}, \code{LIN_fit}, \code{Origin_fit}, \code{distribution}.
 #'
@@ -137,9 +143,21 @@
 #' \code{PriorAge}, \code{SavePdf}, \code{OutputFileName}, \code{OutputFilePath}, \code{SaveEstimates}, \code{OutputTableName},
 #' \code{OutputTablePath}, \code{StratiConstraints}, \code{sepSC}.\cr
 #'
+#' \bold{**Supported `...` arguments**}
+#' \tabular{lllll}{
+#' ARGUMENT \tab INPUT \tab METHOD \tab DEFAULT \tab DESCRIPTION\cr
+#' `max.time` \tab [character] \tab `rjparallel` \tab `Inf` \tab maximum allowed processing time, e.g.,
+#' `10m` for 10 minutes (cf. [runjags::autorun.jags])\cr
+#'  `interactive` \tab [logical] \tab `rjparallel` \tab `FALSE` \tab enable/disable interactive mode (cf. [runjags::autorun.jags])\cr
+#'  `startburnin` \tab [integer] \tab `rjparallel` \tab  `4000` \tab number of burn-in iterations (cf. [runjags::autorun.jags]) \cr
+#' `startsample` \tab [integer] \tab `rjparallel` \tab `10000` \tab total number of samples to assess convergence
+#' (cf. [runjags::autorun.jags]) \cr
+#' `inits` \tab named [list] \tab `rjparallel` \tab `NA` \tab fine control over random seeds and random number generator [runjags::autorun.jags]
+#' }
+#'
 #' \bold{** How to fill} \code{StratiConstraints} \bold{? **}\cr
 #'
-#' If there is stratigraphic relations between samples, \bold{14C estimate age in \code{Data_C14Cal} must be ordered by order of increasing ages,
+#' If there are stratigraphic relations between samples, \bold{14C estimate age in \code{Data_C14Cal} must be ordered by order of increasing ages,
 #' as informations in \code{DATA}}. Names in \code{SampleNames} must be ordered and corresponds to the order in \code{Data_C14Cal} and in \code{DATA},
 #' also if it is needed to mix names of OSL samples and 14C samples.
 #'
@@ -159,8 +177,8 @@
 #' The user can also use \code{\link{SCMatrix}}  or \code{\link{SC_Ordered}} (if all samples are ordered) function to construc
 #' the \code{StratiConstraints} matrix.
 #'
-#' The user can also refer to a csv file that containts the relation between samples as defined above.
-#' The user must take care about the separator used in the csv file using the argument \code{sepSC}.\cr
+#' The user can also refer to a csv file that contains the relation between samples as defined above.
+#' The user must be carefull about which separator is used in the csv file using the argument \code{sepSC}.\cr
 #'
 #'  \bold{** How to fill} \code{THETA} \bold{covariance matrix concerning common and individual error? **}\cr
 #'
@@ -337,9 +355,10 @@ Age_OSLC14 <- function(
   Iter = 50000,
   t = 5,
   n.chains = 3,
+  jags_method = "rjags",
   quiet = FALSE,
-  roundingOfValue = 3) {
-
+  roundingOfValue = 3,
+  ...) {
 
   #--- StratiConstraints matrix
   if(length(StratiConstraints)==0){
@@ -350,24 +369,24 @@ Age_OSLC14 <- function(
       StratiConstraints=as.matrix(SCMatrix)
     }
   }
-
+  
   #--- Calibration curve
   TableauCalib=c()
- if ( CalibrationCurve %in%  c("IntCal13","IntCal20","Marine13","Marine20", "SHCal13" , "SHCal20"))
+  if ( CalibrationCurve %in%  c("IntCal13","IntCal20","Marine13","Marine20", "SHCal13" , "SHCal20"))
   {TableauCalib = get(data(list= CalibrationCurve,envir = environment())) }else
   {TableauCalib=read.csv(file=CalibrationCurve,sep=",",dec=".")}
-
-
+  
+  
   AgeBP=rev(TableauCalib[,1])
   CalC14=rev(TableauCalib[,2])
   SigmaCalC14=rev(TableauCalib[,3])
-
+  
   # #--- C14 preparation: Calibration curve
   # TableauCalib=read.csv(file=paste("inst/extdata/",CalibrationCurve,"_CalC14.csv",sep=""),sep=",",dec=".")
   # AgeBP=rev(TableauCalib[,1])/1000
   # CalC14=rev(TableauCalib[,2])
   # SigmaCalC14=rev(TableauCalib[,3])
-
+  
   #--- OSL preparation
   #- Index preparation
   CSBinPerSample=cumsum(BinPerSample)
@@ -378,6 +397,7 @@ Age_OSLC14 <- function(
   CSLengthSample=c()
   CSLengthSample=c(0,cumsum(LengthSample))
   index2=c(0,cumsum(DATA$J))
+  
   #- File preparation
   LT=matrix(data=0,nrow=sum(DATA$J),ncol=(max(DATA$K)+1))
   sLT=matrix(data=0,nrow=sum(DATA$J),ncol=(max(DATA$K)+1))
@@ -387,6 +407,7 @@ Age_OSLC14 <- function(
     sLT[seq(CSLengthSample[ns]+1,CSLengthSample[ns+1],1),1:length(DATA$sLT[[ns]][1,])]<-DATA$sLT[[ns]]
     IrrT[seq(CSLengthSample[ns]+1,CSLengthSample[ns+1],1),1:length(DATA$ITimes[[ns]][1,])]<-DATA$ITimes[[ns]]
   }
+  
   #- THETA matrix
   if(length(THETA[,1])==0){
     THETA=diag(DATA$ddot_env[2,CSBinPerSample]+(DATA$ddot_env[1,CSBinPerSample])^2*DATA$dLab[2,CSBinPerSample])
@@ -396,13 +417,13 @@ Age_OSLC14 <- function(
       THETA=as.matrix(errorMatrix)
     }
   }
-
+  
   #---  Index preparation
   ind_OSL <- which(SampleNature[1, ] == 1)
   CS_OSL <- cumsum(SampleNature[1, ])
   ind_C14 <- which(SampleNature[2, ] == 1)
   CS_C14 <- cumsum(SampleNature[2, ])
-
+  
   ind_change <- c(1)
   for (i in 2:(Nb_sample - 1)) {
     if (SampleNature[1, i] != SampleNature[1, i + 1]) {
@@ -410,17 +431,18 @@ Age_OSLC14 <- function(
     }
   }
   ind_change <- c(ind_change,Nb_sample)
-
+  
   q <- length(ind_change)%/%2
   r <- length(ind_change)%%2
-
+  
   ##--- description du model BUG
   BUGModel <- c()
+  
   #- Prior
   ModelPrior <- 0
   data(ModelPrior,envir = environment())
   BUGPrior <- c()
-
+  
   if (r == 1) {
     if(SampleNature[1,1]==1){
       BUGPrior <- paste(BUGPrior,ModelPrior$Sample1_OSL)
@@ -437,9 +459,9 @@ Age_OSLC14 <- function(
     if(q == 0) {
       stop("[Age_OSLC14()] If you see this message, you are probably trying to run the model with a small number of samples.
            You can still use the function, but the C-14 sample cannot be the first sample.", call. = FALSE)
-
+      
     }
-
+    
     if(SampleNature[1,1]==1){
       BUGPrior <- paste(BUGPrior,ModelPrior$Sample1_OSL)
     }else{
@@ -454,7 +476,7 @@ Age_OSLC14 <- function(
       BUGPrior=paste(BUGPrior,ModelPrior$OSL)
     }else{BUGPrior=paste(BUGPrior,ModelPrior$C14)}
   }
-
+  
   #- partie C14
   ModelC14 <- 0
   data(ModelC14,envir = environment())
@@ -463,6 +485,7 @@ Age_OSLC14 <- function(
   }else{
     BUGModel=paste(ModelC14$naive,BUGPrior)
   }
+  
   #- partie OSL
   ModelOSL<-0
   data(ModelOSL,envir = environment())
@@ -474,7 +497,7 @@ Age_OSLC14 <- function(
   }else{cO=c()}
   Model_GrowthCurve=c(paste("AgesMultiOSL_EXP",cLIN,cO,sep=""))
   BUGModel=c(paste("model{",ModelOSL[[Model_GrowthCurve]][[distribution]],BUGModel,"}"))
-
+  
   if(Model_C14=="full"){
     dataList = list('q'=q,"ind_change"=ind_change,"ind_OSL"=ind_OSL,"ind_C14"=ind_C14,"CS_OSL"=CS_OSL,"CS_C14"=CS_C14,
                     'X'=Data_C14Cal,"sigma"=Data_SigmaC14Cal,
@@ -504,59 +527,118 @@ Age_OSLC14 <- function(
                     "CSBinPerSample"=CSBinPerSample,
                     "xbound"=PriorAge,"StratiConstraints"=StratiConstraints)
   }
-
-  ##open text connection
-  con <-  textConnection(BUGModel)
-
-  ##TODO
-  #print(readLines(con))
-  jags <-
-    rjags::jags.model(
-      file = con,
-      data = dataList,
-      n.chains = n.chains,
-      n.adapt = Iter,
-      quiet = quiet
-    )
-
-  ##close connection
-  close(con)
-
-  ##set progress.bar
-  if(quiet) progress.bar <- 'none' else progress.bar <- 'text'
-
-  update(jags,Iter)
-  echantillon <-
-    rjags::coda.samples(jags,
-                        c("A", 'Z'),
-                        min(Iter, 10000),
-                        thin = t,
-                        progress.bar = progress.bar)
-  U <- summary(echantillon)
-
-  Sample=echantillon[[1]]
-  for(i in 2:n.chains){
-    Sample=rbind(Sample,echantillon[[i]])
+  
+  # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++#
+  # JAGS RUN --------------------- START
+  # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++#
+  
+  ##further settings provided eventually
+  process_settings <- modifyList(x = list(
+    max.time = Inf,
+    interactive = FALSE,
+    startburnin = 4000,
+    startsample = 10000,
+    inits = NA
+    
+  ), val = list(...))
+  
+  if(jags_method == "rjags"){
+    
+    ##create text connection
+    con <- textConnection(BUGModel)
+    
+    ##define jags model
+    jags <-
+      rjags::jags.model(
+        file = con,
+        data = dataList,
+        n.chains = n.chains,
+        n.adapt = Iter,
+        quiet = quiet
+      )
+    
+    ##close textconnection
+    close(con)
+    
+    ##set progress.bar
+    if(quiet) progress.bar <- 'none' else progress.bar <- 'text'
+    
+    ##run JGAS process and update it
+    update(jags,Iter)
+    echantillon <-
+      rjags::coda.samples(
+        model = jags,
+        variable.names = c("A", "D", "sD"),
+        n.iter = min(Iter, 10000),
+        thin = t,
+        progress.bar = progress.bar
+      )
+    
+    ##combine mcmclists in the old way as Claire did (to not break the code)
+    U <- summary(echantillon)
+    
+    Sample=echantillon[[1]]
+    for(i in 2:n.chains){
+      Sample=rbind(Sample,echantillon[[i]])
+    }
+    
+    ##(2) rjparallel >> run this in parallel using the package 'runjags'
+  }else if(jags_method == "rjparallel"){
+    
+    ##as input a text file is wanted, so we have to cheat a little bit
+    temp_file <- tempfile(fileext = ".txt")
+    writeLines(BUGModel, con = temp_file)
+    
+    ##run the autoprocessing
+    results_runjags <-
+      runjags::autorun.jags(
+        model = temp_file,
+        data = dataList,
+        n.chains = n.chains,
+        monitor = c("A", "D", "sD"),
+        adapt = max(Iter, 1000),
+        silent.jags = quiet,
+        method = "rjparallel",
+        inits = process_settings$inits,
+        max.time = process_settings$max.time,
+        interactive = process_settings$interactive,
+        startburnin = process_settings$startburnin,
+        startsample = process_settings$startsample
+      )
+    
+    
+    ##extract mcmc list
+    echantillon <- results_runjags$mcmc
+    U <- summary(echantillon)
+    
+    ##combine chains into one data.frame
+    Sample <- as.data.frame(runjags::combine.mcmc(echantillon))
+    
+    
+  }else{
+    stop(paste("[AgeS_Computation()] jags_method = ", jags_method, " not supported!"), call. = FALSE)
+    
   }
-
+  
+  ## attach "A_" to sample names for the A-parameter
   nom=c()
   for(i in 1:Nb_sample){
     nom=c(nom,paste("A_",SampleNames[i],sep=""))
   }
-
+  
   ##plot MCMC
   if(SavePdf){
     pdf(file=paste(OutputFilePath,OutputFileName[1],'.pdf',sep=""))
   }
-
+  
   plot_MCMC(echantillon, sample_names = SampleNames)
-
+  
   if(SavePdf){
     dev.off()
   }
-
+  
   Outlier <- SampleNames[ind_C14[which(U$statistics[(Nb_sample+1):(Nb_sample+sum(SampleNature[2,])),1]<1.5)]]
-
+  
   ##- Gelman and Rubin test of convergency of the MCMC
   CV=gelman.diag(echantillon,multivariate=FALSE)
   cat(paste("\n\n>> Convergence of MCMC for the age parameters <<\n"))
@@ -567,13 +649,13 @@ Age_OSLC14 <- function(
     #cat("---------------------\n")
     cat(paste(paste("A_",SampleNames[i],sep=""),"\t",round(CV$psrf[i,1],roundingOfValue),"\t\t",round(CV$psrf[i,2],roundingOfValue),"\n"))
   }
-
-
-
+  
+  
+  
   cat("\n\n________________________________________________________________________________\n")
   cat(" *** WARNING: following informations are only valid if MCMC chains converged  ***\n")
   cat("________________________________________________________________________________\n")
-
+  
   # Matrix of results
   rnames=c()
   for(i in 1:Nb_sample){
@@ -583,7 +665,7 @@ Age_OSLC14 <- function(
            dimnames=list(rnames,c("lower bound at 95%","lower bound at 68%","Bayes estimate",
                                   "upper bound at 68%","upper bound at 95%","",
                                   "Convergencies: Bayes estimate","Convergencies: uppers credible interval")))
-
+  
   ##- Bayes estimate and credible interval
   cat(paste("\n\n>> Bayes estimates of Age for each sample and credible interval <<\n"))
   AgePlot95=matrix(data=NA,nrow=Nb_sample,ncol=3)
@@ -593,7 +675,7 @@ Age_OSLC14 <- function(
     cat("------------------------------------------------------\n")
     #cat(paste(" Sample name: ", SampleNames[i],"\n"))
     #cat("---------------------\n")
-
+    
     cat(paste("Sample name", "\t","Bayes estimate"," Credible interval: \n"))
     cat(paste(paste("A_",SampleNames[i],sep=""),"\t",round(mean(Sample[,i]),roundingOfValue),'\n'))
     cat("\t\t\t\t\t\t lower bound \t upper bound\n")
@@ -604,18 +686,19 @@ Age_OSLC14 <- function(
     AgePlot95[i,]=HPD_95
     AgePlot68[i,]=HPD_68
     AgePlotMoy[i]=round(mean(Sample[,i]),roundingOfValue)
-
+    
     R[i,3]=round(mean(Sample[,i]),roundingOfValue)
     R[i,c(1,5)]=round(HPD_95[2:3],roundingOfValue)
     R[i,c(2,4)]=round(HPD_68[2:3],roundingOfValue)
     R[i,6]=c('')
     R[i,7]=round(CV$psrf[i,1],roundingOfValue)
     R[i,8]=round(CV$psrf[i,2],roundingOfValue)
-
+    
   }
-
+  
   cat("\n------------------------------------------------------\n")
-
+  R[,c(7,8)] <- round(CV$psrf[1:Nb_sample,],roundingOfValue)
+  
   # Representation graphique des resultats
   #        des HPD sur la courbe de calibration
   if(sum(SampleNature[2,])>1){
@@ -635,33 +718,14 @@ Age_OSLC14 <- function(
       dev.print(pdf,file=paste(OutputFilePath,OutputFileName[2],'.pdf',sep=""),width=8,height=10)
     }
   }
-
-
+  
+  
   ##CSV output
-  if(SaveEstimates){
-    df_output <-
-      data.frame(
-        SampleNames = SampleNames,
-        Bayes_estimate = CV$psrf[1:length(SampleNames), 1],
-        Upper_Credibility_Interval = CV$psrf[1:length(SampleNames), 2],
-        AGE = AgePlotMoy,
-        HPD68.MIN = AgePlot68[,2],
-        HPD68.MAX = AgePlot68[,3],
-        HPD95.MIN = AgePlot95[,2],
-        HPD95.MAX = AgePlot95[,3],
-        stringsAsFactors = FALSE
-      )
-
-    write.table(x = df_output,
-                file = paste0(OutputTablePath, OutputTableName, ".csv"),
-                sep = ";",
-                row.names = FALSE,
-                append = FALSE
-    )
-
+  if(SaveEstimates==TRUE){
+    write.csv(R,file=c(paste(OutputTablePath,"Estimates",OutputTableName,".csv",sep="")))
   }
-
-  # Create return objecty -------------------------------------------------------------------------
+  
+  # Create return object -------------------------------------------------------------------------
   output <- .list_BayLum(
     "Ages" = data.frame(
       SAMPLE = SampleNames,
@@ -682,10 +746,10 @@ Age_OSLC14 <- function(
     "CalibrationCurve" = CalibrationCurve,
     "Outlier" = Outlier
   )
-
+  
   # Plot ages -----------------------------------------------------------------------------------
   plot_Ages(object = output, legend.pos = "bottomleft")
-
+  
   ##TODO: get rid of this
   if(SavePdf){
     dev.print(
@@ -695,9 +759,9 @@ Age_OSLC14 <- function(
       height = 10
     )
   }
-
-
+  
+  
   # Return output -------------------------------------------------------------------------------
   return(output)
-
+  
 }
