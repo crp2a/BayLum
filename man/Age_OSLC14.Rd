@@ -230,7 +230,7 @@ ARGUMENT \tab INPUT \tab METHOD \tab DEFAULT \tab DESCRIPTION\cr
 
 \bold{** How to fill} \code{StratiConstraints} \bold{? **}\cr
 
-If there is stratigraphic relations between samples, \bold{14C estimate age in \code{Data_C14Cal} must be ordered by order of increasing ages,
+If there are stratigraphic relations between samples, \bold{14C estimate age in \code{Data_C14Cal} must be ordered by order of increasing ages,
 as informations in \code{DATA}}. Names in \code{SampleNames} must be ordered and corresponds to the order in \code{Data_C14Cal} and in \code{DATA},
 also if it is needed to mix names of OSL samples and 14C samples.
 
@@ -250,8 +250,8 @@ Note that \code{StratiConstraints_{2:Nb_sample+1,1:Nb_sample}} is a upper triang
 The user can also use \code{\link{SCMatrix}}  or \code{\link{SC_Ordered}} (if all samples are ordered) function to construc
 the \code{StratiConstraints} matrix.
 
-The user can also refer to a csv file that containts the relation between samples as defined above.
-The user must take care about the separator used in the csv file using the argument \code{sepSC}.\cr
+The user can also refer to a csv file that contains the relation between samples as defined above.
+The user must be carefull about which separator is used in the csv file using the argument \code{sepSC}.\cr
 
 \bold{** How to fill} \code{THETA} \bold{covariance matrix concerning common and individual error? **}\cr
 
