@@ -40,7 +40,7 @@ devtools::install_github("crp2a/BayLum@master")
 To install a developer build other than 'master', replace the term 'master' in the codeline by the name
 of the wanted developer build. 
 
-**Please note that you need to have [JAGS](http://mcmc-jags.sourceforge.net) installed on your computer**
+**Please note that you need to have [JAGS](https://mcmc-jags.sourceforge.net) installed on your computer**
 
 ## Note
 
