@@ -32,6 +32,10 @@ available.
 * The function now returns the used model as a character string, in combination with the new 
 parameter `model` it can be used to modify the model on the fly.
 
+#### `Age_OSLC14()`
+* Add support for `"rjparallel"` via new argument `jags_method = "rjparallel"`, like
+in `AgeS_Computation()` (thanks @IMHarly, #20).
+
 #### `Generate_DataFile_MG()` 
 * The function gained a new argument `force_run1_at_a_time`. If set to `TRUE` it 
 automatically orders the curves in the BIN/BINX-file following the "Run 1 at a time"
