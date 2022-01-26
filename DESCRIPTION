@@ -9,13 +9,13 @@ Author: Claire Christophe [aut],
     Anne Philippe [aut, cre], 
     Sebastian Kreutzer [aut] (<https://orcid.org/0000-0002-0734-2199>), 
     Guillaume Guerin [aut] (<https://orcid.org/0000-0001-6298-5579>),
-    Frederik Harly Baumgarten [ctb]
+    Frederik Harly Baumgarten [ctb] (<https://orcid.org/0000-0002-4374-5948>)
 Authors@R: c(
     person("Claire", "Christophe", role = c("aut")),
     person("Anne", "Philippe", role = c("aut", "cre"), email = "anne.philippe@univ-nantes.fr"),
     person("Sebastian", "Kreutzer", role = "aut", comment = c(ORCID = "0000-0002-0734-2199")),
     person("Guillaume", "Guerin", role = "aut", comment = c(ORCID = "0000-0001-6298-5579")),
-    person("Frederik Harly", "Baumgarten", role = "ctb"))
+    person("Frederik Harly", "Baumgarten", role = "ctb", comment = c(ORCID = "0000-0002-4374-5948")))
 Maintainer: Anne Philippe <anne.philippe@univ-nantes.fr>
 Depends: 
   R(>= 4.0), 
