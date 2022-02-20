@@ -1,27 +1,19 @@
 {
-  "@context": [
-    "https://doi.org/10.5063/schema/codemeta-2.0",
-    "http://schema.org"
-  ],
+  "@context": "https://doi.org/10.5063/schema/codemeta-2.0",
   "@type": "SoftwareSourceCode",
   "identifier": "BayLum",
   "description": "Bayesian analysis of luminescence data and C-14 age estimates. Bayesian models are based on the following publications: Combes, B. & Philippe, A. (2017) <doi:10.1016/j.quageo.2017.02.003> and Combes et al (2015) <doi:10.1016/j.quageo.2015.04.001>. This includes, amongst others, data import, export, application of age models and palaeodose model.",
   "name": "BayLum: Chronological Bayesian Models Integrating Optically Stimulated\n        Luminescence and Radiocarbon Age Dating",
-  "codeRepository": "http://github.com/crp2a/BayLum",
-  "relatedLink": [
-    "https://cran.r-project.org/package=BayLum",
-    "https://CRAN.R-project.org/package=BayLum"
-  ],
+  "codeRepository": "https://github.com/crp2a/BayLum",
   "issueTracker": "https://github.com/crp2a/BayLum/issues",
   "license": "https://spdx.org/licenses/GPL-3.0",
-  "version": "0.1.4.9000.20",
+  "version": "0.2.1",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
-    "version": "3.7.0",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R Under development (unstable) (2019-07-31 r76909)",
+  "runtimePlatform": "R Under development (unstable) (2022-02-15 r81747)",
   "provider": {
     "@id": "https://cran.r-project.org",
     "@type": "Organization",
@@ -38,7 +30,8 @@
       "@type": "Person",
       "givenName": "Anne",
       "familyName": "Philippe",
-      "email": "anne.philippe@univ-nantes.fr"
+      "email": "anne.philippe@univ-nantes.fr",
+      "@id": "https://orcid.org/0000-0002-5331-5087"
     },
     {
       "@type": "Person",
@@ -53,15 +46,21 @@
       "@id": "https://orcid.org/0000-0001-6298-5579"
     }
   ],
-  "contributor": {},
-  "copyrightHolder": {},
-  "funder": {},
+  "contributor": [
+    {
+      "@type": "Person",
+      "givenName": "Frederik Harly",
+      "familyName": "Baumgarten",
+      "@id": "https://orcid.org/0000-0002-4374-5948"
+    }
+  ],
   "maintainer": [
     {
       "@type": "Person",
       "givenName": "Anne",
       "familyName": "Philippe",
-      "email": "anne.philippe@univ-nantes.fr"
+      "email": "anne.philippe@univ-nantes.fr",
+      "@id": "https://orcid.org/0000-0002-5331-5087"
     }
   ],
   "softwareSuggestions": [
@@ -69,7 +68,7 @@
       "@type": "SoftwareApplication",
       "identifier": "testthat",
       "name": "testthat",
-      "version": ">= 1.0.2",
+      "version": ">= 3.1.2",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -82,6 +81,7 @@
       "@type": "SoftwareApplication",
       "identifier": "R.rsp",
       "name": "R.rsp",
+      "version": ">= 0.44.0",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -91,22 +91,23 @@
       "sameAs": "https://CRAN.R-project.org/package=R.rsp"
     }
   ],
-  "softwareRequirements": [
-    {
+  "softwareRequirements": {
+    "1": {
       "@type": "SoftwareApplication",
       "identifier": "R",
       "name": "R",
-      "version": ">= 3.3.0"
+      "version": ">= 4.0"
     },
-    {
+    "2": {
       "@type": "SoftwareApplication",
       "identifier": "utils",
       "name": "utils"
     },
-    {
+    "3": {
       "@type": "SoftwareApplication",
       "identifier": "coda",
       "name": "coda",
+      "version": ">= 0.19",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -115,30 +116,16 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=coda"
     },
-    {
-      "@type": "SoftwareApplication",
-      "identifier": "stats",
-      "name": "stats"
-    },
-    {
-      "@type": "SoftwareApplication",
-      "identifier": "graphics",
-      "name": "graphics"
-    },
-    {
-      "@type": "SoftwareApplication",
-      "identifier": "grDevices",
-      "name": "grDevices"
-    },
-    {
+    "4": {
       "@type": "SoftwareApplication",
       "identifier": "methods",
       "name": "methods"
     },
-    {
+    "5": {
       "@type": "SoftwareApplication",
       "identifier": "hexbin",
       "name": "hexbin",
+      "version": ">= 1.28.2",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -147,10 +134,11 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=hexbin"
     },
-    {
+    "6": {
       "@type": "SoftwareApplication",
       "identifier": "KernSmooth",
       "name": "KernSmooth",
+      "version": ">= 2.23",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -159,11 +147,11 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=KernSmooth"
     },
-    {
+    "7": {
       "@type": "SoftwareApplication",
       "identifier": "rjags",
       "name": "rjags",
-      "version": ">= 4-6",
+      "version": ">= 4-12",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -172,11 +160,11 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=rjags"
     },
-    {
+    "8": {
       "@type": "SoftwareApplication",
       "identifier": "runjags",
       "name": "runjags",
-      "version": ">= 2.0.0",
+      "version": ">= 2.2.0",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -185,11 +173,11 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=runjags"
     },
-    {
+    "9": {
       "@type": "SoftwareApplication",
       "identifier": "Luminescence",
       "name": "Luminescence",
-      "version": ">= 0.8.2",
+      "version": ">= 0.9.18",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -198,10 +186,11 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=Luminescence"
     },
-    {
+    "10": {
       "@type": "SoftwareApplication",
       "identifier": "ArchaeoPhases",
       "name": "ArchaeoPhases",
+      "version": ">= 1.5",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -209,23 +198,44 @@
         "url": "https://cran.r-project.org"
       },
       "sameAs": "https://CRAN.R-project.org/package=ArchaeoPhases"
-    }
-  ],
-  "releaseNotes": "https://crp2a@github.com/crp2a/BayLum/blob/master/NEWS.md",
-  "readme": "https://github.com/crp2a/BayLum/blob/master/README.md",
-  "contIntegration": [
-    "https://ci.appveyor.com/project/nfrerebeau/baylum",
-    "https://travis-ci.org/crp2a/BayLum",
-    "https://codecov.io/gh/crp2a/BayLum"
-  ],
-  "developmentStatus": "http://www.repostatus.org/#active",
-  "keywords": [
-    "luminescence-dating",
-    "bayesian-statistics",
-    "radiocarbon-dates",
-    "geochronology"
-  ],
+    },
+    "SystemRequirements": null
+  },
+  "fileSize": "3086.359KB",
   "citation": [
+    {
+      "@type": "SoftwareSourceCode",
+      "datePublished": "2022",
+      "author": [
+        {
+          "@type": "Person",
+          "givenName": "Claire",
+          "familyName": "Christophe"
+        },
+        {
+          "@type": "Person",
+          "givenName": "Anne",
+          "familyName": "Philippe",
+          "email": "anne.philippe@univ-nantes.fr",
+          "@id": "https://orcid.org/0000-0002-5331-5087"
+        },
+        {
+          "@type": "Person",
+          "givenName": "Sebastian",
+          "familyName": "Kreutzer",
+          "@id": "https://orcid.org/0000-0002-0734-2199"
+        },
+        {
+          "@type": "Person",
+          "givenName": "Guillaume",
+          "familyName": "Guerin",
+          "@id": "https://orcid.org/0000-0001-6298-5579"
+        }
+      ],
+      "name": "BayLum: Chronological Bayesian Models Integrating Optically Stimulated Luminescence and Radiocarbon Age Dating",
+      "url": "https://CRAN.r-project.org/package=BayLum",
+      "description": "R package version 0.2.1"
+    },
     {
       "@type": "ScholarlyArticle",
       "datePublished": "2019",
@@ -248,7 +258,7 @@
       ],
       "name": "BayLum - An R package for Bayesian analysis of OSL ages: An introduction",
       "identifier": "10.1016/j.quageo.2018.05.009",
-      "paginiation": "16-24",
+      "pagination": "16-24",
       "@id": "https://doi.org/10.1016/j.quageo.2018.05.009",
       "sameAs": "https://doi.org/10.1016/j.quageo.2018.05.009",
       "isPartOf": {
@@ -261,5 +271,9 @@
         }
       }
     }
-  ]
+  ],
+  "relatedLink": ["https://CRAN.r-project.org/package=BayLum", "https://CRAN.R-project.org/package=BayLum"],
+  "releaseNotes": "https://github.com/crp2a/BayLum/blob/master/NEWS.md",
+  "contIntegration": "https://app.codecov.io/gh/crp2a/BayLum",
+  "developmentStatus": "https://www.repostatus.org/#active"
 }
