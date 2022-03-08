@@ -133,7 +133,7 @@
 #'
 #' **How to fill `THETA` covariance matrix concerning common and individual error?**\cr
 #'
-#' If systematic errors are considered, the user can fill the \code{THETA} matrix as follow.
+#' If systematic errors are considered, the user can fill the \code{THETA} matrix as follows.
 #' \itemize{
 #'  \item row number of \code{THETA} is equal the column number, equal to \code{Nb_sample}.
 #'  \item For all \code{i in {1,...,Nb_sample}}, \code{THETA[i,i]} contains individual error
