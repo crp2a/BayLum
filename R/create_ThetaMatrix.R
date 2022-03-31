@@ -186,10 +186,10 @@ create_ThetaMatrix <- function(
     ##return
     return(df)
 
-  }else if(class(input) == "data.frame"){
+  }else if(inherits(input, "data.frame")){
      df <- input
 
-  }else if(class(input) == "character"){
+  }else if(inherits(input, "character")){
     if(!file.exists(input))
       stop(paste0("[create_ThetaMatrix()] File ", input, " does not exist!"), call. = FALSE)
 

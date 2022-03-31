@@ -76,11 +76,11 @@ plot_MCMC <- function(
 ){
 
   # Integrity tests ---------------------------------------------------------------------------
-  if(class(object) != "mcmc.list"){
-    if(class(object) == "mcmc"){
+  if(!inherits(object, "mcmc.list")){
+    if(inherits(object, "mcmc")){
       object <- coda::as.mcmc.list(object)
 
-    }else if(class(object) == "BayLum.list"){
+    }else if(inherits(object, "BayLum.list")){
       if(!is.null(attributes(object)$originator)){
         ##select what to do for different functions
         switch(attributes(object)$originator,
@@ -92,7 +92,7 @@ plot_MCMC <- function(
 
   }
 
-  if(class(object) != "mcmc.list")
+  if(!inherits(object, "mcmc.list"))
     stop("[plot_MCMC()] 'sample' has to be of class 'mcmc.list' or 'mcmc'!", call. = FALSE)
 
   # Extract wanted parameters -------------------------------------------------------------------
