@@ -567,7 +567,7 @@ Age_OSLC14 <- function(
     echantillon <-
       rjags::coda.samples(
         model = jags,
-        variable.names = c("A", "D", "sD"),
+        variable.names = c("A", "Z"),
         n.iter = min(Iter, 10000),
         thin = t,
         progress.bar = progress.bar
@@ -594,7 +594,7 @@ Age_OSLC14 <- function(
         model = temp_file,
         data = dataList,
         n.chains = n.chains,
-        monitor = c("A", "D", "sD"),
+        monitor = c("A", "Z"),
         adapt = max(Iter, 1000),
         silent.jags = quiet,
         method = "rjparallel",
