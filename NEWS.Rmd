@@ -21,3 +21,5 @@ knitr::opts_chunk$set(
 * Regression error, the function tried to observe more variables than were actually in the model; fixed.
 (thanks to  @IMHarly, #21)
 
+## Internals
+* A few fixes regarding string comparisons in `if()` conditions.
