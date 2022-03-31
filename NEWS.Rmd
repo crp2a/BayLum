@@ -13,7 +13,11 @@ knitr::opts_chunk$set(
 )
 ```
 
-## BayLum `r RLumBuild::.get_pkg_version()` (`r Sys.Date()`)
+# BayLum `r RLumBuild::.get_pkg_version()` (`r Sys.Date()`)
 
-* Dummy
+## Bugfixes and changes
+
+### `Age_OSLC14()`
+* Regression error, the function tried to observe more variables than were actually in the model; fixed.
+(thanks to  @IMHarly, #21)
 
