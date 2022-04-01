@@ -7,7 +7,7 @@
   "codeRepository": "https://github.com/crp2a/BayLum",
   "issueTracker": "https://github.com/crp2a/BayLum/issues",
   "license": "https://spdx.org/licenses/GPL-3.0",
-  "version": "0.2.2.9000.4",
+  "version": "0.2.2.9000.6",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
@@ -199,9 +199,9 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=ArchaeoPhases"
     },
-    "SystemRequirements": null
+    "SystemRequirements": "JAGS >= 4.3.0 (https://mcmc-jags.sourceforge.io/)"
   },
-  "fileSize": "3077.42KB",
+  "fileSize": "3077.49KB",
   "citation": [
     {
       "@type": "SoftwareSourceCode",
@@ -234,7 +234,7 @@
       ],
       "name": "BayLum: Chronological Bayesian Models Integrating Optically Stimulated Luminescence and Radiocarbon Age Dating",
       "url": "https://CRAN.r-project.org/package=BayLum",
-      "description": "R package version 0.2.2.9000-4"
+      "description": "R package version 0.2.2.9000-6"
     },
     {
       "@type": "ScholarlyArticle",
