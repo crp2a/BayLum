@@ -4,7 +4,7 @@ Title: Chronological Bayesian Models Integrating Optically Stimulated
         Luminescence and Radiocarbon Age Dating
 Description: Bayesian analysis of luminescence data and C-14 age estimates. Bayesian models are based on the following publications: Combes, B. & Philippe, A. (2017) <doi:10.1016/j.quageo.2017.02.003> and Combes et al (2015) <doi:10.1016/j.quageo.2015.04.001>. This includes, amongst others, data import, export, application of age models and palaeodose model.
 Date: 2022-03-31
-Version: 0.2.2.9000-4
+Version: 0.2.2.9000-5
 Author: Claire Christophe [aut], 
     Anne Philippe [aut, cre] (<https://orcid.org/0000-0002-5331-5087>), 
     Sebastian Kreutzer [aut] (<https://orcid.org/0000-0002-0734-2199>), 
@@ -37,6 +37,7 @@ Encoding: UTF-8
 URL: https://CRAN.r-project.org/package=BayLum
 BugReports: https://github.com/crp2a/BayLum/issues
 LazyData: true
+NeedsCompilation: no
+SystemRequirements:	JAGS >= 4.3.0 (https://mcmc-jags.sourceforge.io/)
 VignetteBuilder: R.rsp
 RoxygenNote: 7.1.2
-NeedsCompilation: no
