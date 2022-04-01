@@ -18,7 +18,7 @@ Authors@R: c(
     person("Frederik Harly", "Baumgarten", role = "ctb", comment = c(ORCID = "0000-0002-4374-5948")))
 Maintainer: Anne Philippe <anne.philippe@univ-nantes.fr>
 Depends: 
-  R(>= 4.0), 
+  R(>= 4.1), 
   utils, 
   coda (>= 0.19)
 Imports: 
