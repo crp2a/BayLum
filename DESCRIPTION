@@ -38,6 +38,6 @@ URL: https://CRAN.r-project.org/package=BayLum
 BugReports: https://github.com/crp2a/BayLum/issues
 LazyData: true
 NeedsCompilation: no
-SystemRequirements:	JAGS >= 4.3.0 (https://mcmc-jags.sourceforge.io/)
+SystemRequirements: JAGS >= 4.3.0 (https://mcmc-jags.sourceforge.io/)
 VignetteBuilder: R.rsp
 RoxygenNote: 7.1.2
