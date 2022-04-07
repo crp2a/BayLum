@@ -28,21 +28,26 @@ Age_OSLC14(
   distribution = c("cauchy"),
   Model_C14 = c("full"),
   CalibrationCurve = c("IntCal20"),
-  Iter = 50000,
+  Iter = 10000,
+  burnin = 4000,
+  adapt = 1000,
   t = 5,
   n.chains = 3,
   jags_method = "rjags",
+  autorun = FALSE,
   quiet = FALSE,
   roundingOfValue = 3,
   ...
 )
 }
 \arguments{
-\item{DATA}{list of objects: \code{LT}, \code{sLT}, \code{ITimes}, \code{dLab}, \code{ddot_env}, \code{regDose}, \code{J},
-\code{K}, \code{Nb_measurement}, provided by the function \link{Generate_DataFile} or \link{Generate_DataFile_MG} or \link{combine_DataFiles}.
+\item{DATA}{Two types of inputs are supported.
+(1): a list of objects: \code{LT}, \code{sLT}, \code{ITimes}, \code{dLab}, \code{ddot_env}, \code{regDose}, \code{J},
+\code{K}, \code{Nb_measurement}, provided by the function \link{Generate_DataFile}, \link{Generate_DataFile_MG} or \link{combine_DataFiles}.
 \code{DATA} contains information for more than one sample.
 If there is stratigraphic relations between samples, informations in DATA must be ordered by order of
-increasing ages. See the details section to for more informations.}
+increasing ages. See the details section to for more informations.
+(2): an object of class "runjags" which is provided by the output of \link{Age_OSLC14}. When input of class "runjags" is identified, no new JAGS model is created. Instead, the JAGS model specified by the "runjags" object is extended. Useful for when convergence was not originally achieved and a complete restart is not desirable.}
 
 \item{Data_C14Cal}{\link{numeric} vector: corresponding to C-14 age estimate
 (in years, conversion in ka is automatically done in the function).
@@ -140,8 +145,11 @@ Allowed inputs are
 The decimal of this file must be a dot, and the separator must be a comma. }
 }}
 
-\item{Iter}{\link{numeric} (with default): number of iterations for the MCMC computation
-(for more information see \link[rjags:jags.model]{rjags::jags.model}.}
+\item{Iter}{\link{integer} (with default): the number of iterations to run and who will be used to assess convergence and ages (see \code{\link{runjags::run.JAGS}}).}
+
+\item{burnin}{\link{integer} (with default): the number of iterations used to "home in" on the stationary posterior distribution. These are not used for assessing convergence (see \code{\link{runjags::run.JAGS}}).}
+
+\item{adapt}{\link{integer} (with default): the number of iterations used in the adaptive phase of the simulation (see \code{\link{runjags::run.JAGS}}).}
 
 \item{t}{\link{numeric} (with default): 1 every \code{t} iterations of the MCMC is
 considered for sampling the posterior distribution (for more information see [\link[rjags:jags.model]{rjags::jags.model}.}
@@ -149,8 +157,9 @@ considered for sampling the posterior distribution (for more information see [\l
 \item{n.chains}{\link{numeric} (with default): number of independent chains for the model
 (for more information see [\link[rjags:jags.model]{rjags::jags.model}).}
 
-\item{jags_method}{\link{character} (with default): select computation method, supported are  \code{"rjags"} (the default) and \code{rjparallel}
-using package \code{'runjags'}. The latter option uses the function \link[runjags:autorun.jags]{runjags::autorun.jags} to allow a full automated processing.}
+\item{jags_method}{\link{character} (with default): select which method to use in order to call JAGS, supported are  \code{"rjags"} (the default), \code{rjparallel}, \code{simple}, \code{interruptible}, \code{parallel}, and \code{snow} (for more information about each of these possibilities, see \code{\link{runjags::run.JAGS}})}
+
+\item{autorun}{\link{logical} (with default): choose to automate JAGS processing. JAGS model will be automatically extended until convergence is reached (for more information see \code{\link{runjags::autorun.jags}}).}
 
 \item{quiet}{\link{logical} (with default): enables/disables \link{rjags} messages}
 
@@ -186,6 +195,7 @@ Otherwise, the user may try increasing the number of MCMC iterations (\code{Iter
 or be more precise on the \code{PriorAge} parameter to reach convergence.
 \item \bold{Credible intervals and Bayes estimates}: prints the Bayes' estimates, the credible intervals at 95\% and 68\% for
 the age parameters for each sample.
+\item \bold{JAGS model output}: returns the JAGS model with class "runjags".
 }
 
 \bold{PLOT OUTPUT}
@@ -349,12 +359,7 @@ SC <- matrix(data=c(1,1,1,0,1,1,0,0,1,0,0,0),ncol=3,nrow=4,byrow=TRUE)
 Age <- Age_OSLC14(DATA=Data,Data_C14Cal=C14Cal,Data_SigmaC14Cal=SigmaC14Cal,
    SampleNames=c("GDB5",Names,"GDB3"),Nb_sample=3,SampleNature=samplenature,
    PriorAge=prior,StratiConstraints=SC,Iter=50,n.chains=2)
-} 
-
-\section{How to cite}{
-Christophe, C., Philippe, A., Guerin, G., Kreutzer, S., Baumgarten, F.H., 2022. Age_OSLC14(): Bayesian analysis for age estimation of OSL measurements and C-14 ages of various samples. In: Christophe, C., Philippe, A., Kreutzer, S., Guerin, G., 2022. BayLum: Chronological Bayesian Models Integrating Optically Stimulated. R package version 0.2.2.9000-7. https://CRAN.r-project.org/package=BayLum
 }
-
 \references{
 Reimer PJ, Bard E, Bayliss A, Beck JW, Blackwell PC, Bronl Ramsey C, Buck CE, Cheng H, Edwards RL, Friedrich M,
 Grootes PM, Guilderson TP, Haflidason H, Hajdas I, Hatte C, Heaton TJ, Hoffmann DL, Hogg AG, Hughen KA, Kaiser KF, Kromer B,
