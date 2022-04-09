@@ -4,7 +4,7 @@ on:
     branches: [master]
 
   pull_request:
-    branches: [master]
+    branches: [master, new_feature]
 
 name: GitHub Actions CI
 
