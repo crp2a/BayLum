@@ -7,11 +7,13 @@
 #' Samples, for which data is available in several BIN files, can be analysed.\cr
 #' Single-grain or Multi-grain OSL measurements can be analysed simultaneously.
 #'
-#' @param DATA [list] of objects: `LT`, `sLT`, `ITimes`, `dLab`, `ddot_env`, `regDose`, `J`, `K`, `Nb_measurement`,
-#' provided by the function [Generate_DataFile] or [Generate_DataFile_MG] or [combine_DataFiles].
+#' @param Two inputs are possible:
+#' (1): DATA [list] of objects: `LT`, `sLT`, `ITimes`, `dLab`, `ddot_env`, `regDose`, `J`, `K`, `Nb_measurement`,
+#' provided by the function [Generate_DataFile], [Generate_DataFile_MG] or [combine_DataFiles].
 #' \code{DATA} contains informations for more than one sample.
 #' If there is stratigraphic relations between samples, informations in DATA must be ordered by order of increasing ages.
 #' See the details section to for more informations.
+#' (2): An object of class "runjags" which is provided by the output of [AgeS_Computation]. When input of class "runjags" is identified, no new JAGS model is created. Instead, the JAGS model specified by the "runjags" object is extended. Useful for when convergence was not originally achieved and a complete restart is not desirable.
 #'
 #' @param SampleNames [character] vector: names of samples. The length of this vector is equal to `Nb_sample`.
 #'
@@ -70,21 +72,22 @@
 #'
 #' @param model [character] (*optional*): allows to provide a custom model to the function as text string. Please note that if this option is chosen the parameter `distribution` is ignored and no safety net is applied. If the function crashes it is up to the user.
 #'
-#' @param Iter [integer] (with default): number of iterations for the MCMC computation (for more information see \code{\link{jags.model}}).
-#' If `jags_method = "rjparallel"` this number is limited to `1000` (it will be automatically adapted).
+#' @param adapt [integer] (with default): the number of iterations used in the adaptive phase of the simulation (see \code{\link{runjags::run.JAGS}}).
+#' @param burnin [integer] (with default): the number of iterations used to "home in" on the stationary posterior distribution. These are not used for assessing convergence (see \code{\link{runjags::run.JAGS}}).
+#' @param Iter [integer] (with default): the number of iterations to run which will be used to assess convergence and ages (see \code{\link{runjags::run.JAGS}}).
 #'
+#' @param t [integer] (with default): 1 every \code{t} iterations of the MCMC is considered for sampling the posterior distribution.
+#' (for more information see \code{\link{runjags::run.JAGS}}).
 #'
-#' @param t [integer] (with default): 1 every \code{t} iterations of the MCMC is considered for sampling the posterior distribution
-#' (for more information see \code{\link{jags.model}}).
+#' @param n.chains [integer] (with default): number of independent chains for the model (for more information see \code{\link{runjags::run.JAGS}}).
 #'
-#' @param n.chains [integer] (with default): number of independent chains for the model (for more information see \code{\link{jags.model}}).
+#' @param jags_method [character] (with default): select which method to use in order to call JAGS, supported are  `"rjags"` (the default), `rjparallel`, `simple`, `interruptible`, `parallel`, and `snow` (for more information about each of these possibilities, see \code{\link{runjags::run.JAGS}})
 #'
-#' @param jags_method [character] (with default): select computation method, supported are  `"rjags"` (the default) and `rjparallel`
-#' using package `'runjags'`. The latter option uses the function [runjags::autorun.jags] to allow a full automated processing.
+#' @param autorun [logical] (with default): choose to automate JAGS processing. JAGS model will be automatically extended until convergence is reached (for more information see \code{\link{runjags::autorun.jags}}).
 #'
 #' @param quiet [logical] (with default): enables/disables `rjags` messages
 #'
-#' @param  roundingOfValue [integer] (with default):  Integer indicating the number of decimal places to be used, default = 3.
+#' @param roundingOfValue [integer] (with default):  Integer indicating the number of decimal places to be used, default = 3.
 #'
 #' @param ... further arguments that can be passed to control the Bayesian process, see details
 #' for supported arguments
@@ -97,7 +100,7 @@
 #' `10m` for 10 minutes (cf. [runjags::autorun.jags])\cr
 #'  `interactive` \tab [logical] \tab `rjparallel` \tab `FALSE` \tab enable/disable interactive mode (cf. [runjags::autorun.jags])\cr
 #'  `startburnin` \tab [integer] \tab `rjparallel` \tab  `4000` \tab number of burn-in iterations (cf. [runjags::autorun.jags]) \cr
-#' `startsample` \tab [integer] \tab `rjparallel` \tab `10000` \tab total number of samples to assess convergence
+#'  `startsample` \tab [integer] \tab `rjparallel` \tab `10000` \tab total number of samples to assess convergence
 #' (cf. [runjags::autorun.jags]) \cr
 #' `inits` \tab named [list] \tab `rjparallel` \tab `NA` \tab fine control over random seeds and random number generator [runjags::autorun.jags]
 #' }
@@ -133,7 +136,7 @@
 #'
 #' **How to fill `THETA` covariance matrix concerning common and individual error?**\cr
 #'
-#' If systematic errors are considered, the user can fill the \code{THETA} matrix as follow.
+#' If systematic errors are considered, the user can fill the \code{THETA} matrix as follows.
 #' \itemize{
 #'  \item row number of \code{THETA} is equal the column number, equal to \code{Nb_sample}.
 #'  \item For all \code{i in {1,...,Nb_sample}}, \code{THETA[i,i]} contains individual error
@@ -207,6 +210,7 @@
 #'   \item \bold{StratiConstraints}: stating the stratigraphic relations between samples considered in the model;
 #'   \item \bold{CovarianceMatrix}: stating the covariance matrix of error used in the model, highlighting common errors between samples or not.
 #'   \item \bold{model}: returns the model that was used for the Bayesian modelling as a [character]
+#'   \item \bold{JAGS model output}: returns the JAGS model with class "runjags".
 #'  }
 #'   \item\bold{The Gelman and Rubin test of convergency}: prints the result of the Gelman and Rubin test of convergence for
 #' the age, palaeodose and equivalent dose dispersion parameters for each sample.
@@ -309,314 +313,461 @@
 #'
 #' @md
 #' @export
-AgeS_Computation <- function(
-  DATA,
-  SampleNames,
-  Nb_sample,
-  PriorAge = rep(c(0.01, 100), Nb_sample),
-  BinPerSample = rep(1, Nb_sample),
-  SavePdf = FALSE,
-  OutputFileName = c('MCMCplot', "summary"),
-  OutputFilePath = c(""),
-  SaveEstimates = FALSE,
-  OutputTableName = c("DATA"),
-  OutputTablePath = c(''),
-  THETA = c(),
-  sepTHETA = c(','),
-  StratiConstraints = c(),
-  sepSC = c(','),
-  LIN_fit = TRUE,
-  Origin_fit = FALSE,
-  distribution = c("cauchy"),
-  model = NULL,
-  Iter = 50000,
-  t = 5,
-  n.chains = 3,
-  jags_method = "rjags",
-  quiet = FALSE,
-  roundingOfValue = 3,
-  ...
-){
-
-  #--Index preparation
-  CSBinPerSample <- cumsum(BinPerSample)
-  LengthSample <- c()
-  for(ns in 1:Nb_sample){
-    LengthSample <- c(LengthSample,length(DATA$LT[[ns]][,1]))
-  }
-  CSLengthSample <- c()
-  CSLengthSample <- c(0,cumsum(LengthSample))
-  index2 <- c(0,cumsum(DATA$J))
-
-  #--- File preparation
-  LT <- matrix(data = 0,
-               nrow = sum(DATA$J),
-               ncol = (max(DATA$K) + 1))
-  sLT <- matrix(data = 0,
-                nrow = sum(DATA$J),
-                ncol = (max(DATA$K) + 1))
-  IrrT <- matrix(data = 0,
-                 nrow = sum(DATA$J),
-                 ncol = (max(DATA$K)))
-  for(ns in 1:Nb_sample){
-    LT[seq(CSLengthSample[ns]+1,CSLengthSample[ns+1],1),1:length(DATA$LT[[ns]][1,])]<-DATA$LT[[ns]]
-    sLT[seq(CSLengthSample[ns]+1,CSLengthSample[ns+1],1),1:length(DATA$sLT[[ns]][1,])]<-DATA$sLT[[ns]]
-    IrrT[seq(CSLengthSample[ns]+1,CSLengthSample[ns+1],1),1:length(DATA$ITimes[[ns]][1,])]<-DATA$ITimes[[ns]]
-  }
-
-  #--- THETA matrix
-  if(length(THETA[,1])==0){
-    THETA=diag(DATA$ddot_env[2,CSBinPerSample]+(DATA$ddot_env[1,CSBinPerSample])^2*DATA$dLab[2,CSBinPerSample])
-  }else{
-    if(is(THETA)[1]=="character"){
-      errorMatrix=read.csv(THETA,sep=sepTHETA)
-      THETA=as.matrix(errorMatrix)
-    }
-  }
-
-  ##JAGS will crash with a runtime error if the dimension of the theta matrix does not match the
-  ##number of samples
-  if(sum(dim(THETA)) %% Nb_sample != 0)
-    stop("[AgeS_Computation()] The number of samples does not match the dimension of the THETA-matrix!", call. = FALSE)
-
-
-  #--- StratiConstraints matrix
-  if(length(StratiConstraints)==0){
-    StratiConstraints <- matrix(
-      data = c(rep(1, Nb_sample), rep(0, Nb_sample * Nb_sample)),
-      ncol = Nb_sample,
-      nrow = (Nb_sample + 1),
-      byrow = T
-    )
-  }else{
-    if(is(StratiConstraints)[1]=="character"){
-      SCMatrix <- read.csv(StratiConstraints, sep = sepSC)
-      StratiConstraints <- as.matrix(SCMatrix)
-    }
-  }
-
-  #--- BUG file selection
-  Model_AgeS<-0
-  data(Model_AgeS,envir = environment())
-
-  if(LIN_fit==TRUE){
-    cLIN=c('LIN')
-  }else{cLIN=c()}
-  if(Origin_fit==TRUE){
-    cO=c("ZO")
-  }else{cO=c()}
-  Model_GrowthCurve=c(paste("AgesMultiCS2_EXP",cLIN,cO,sep=""))
-
-  # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++#
-  # JAGS RUN --------------------- START
-  # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++#
-
-  ##further settings provided eventually
-  process_settings <- modifyList(x = list(
-    max.time = Inf,
-    interactive = FALSE,
-    startburnin = 4000,
-    startsample = 10000,
-    inits = NA
-
-  ), val = list(...))
-
-
-  ##set variables
-  dataList <- list(
-    'N' = LT,
-    'sN' = sLT,
-    "IT" = IrrT,
-    "sDlab" = DATA$dLab[1, ],
-    'J' = DATA$J,
-    'K' = DATA$K,
-    "I" = Nb_sample,
-    "ddot" = DATA$ddot_env[1, CSBinPerSample],
-    "Gamma" = THETA,
-    "xbound" = PriorAge,
-    "StratiConstraints" = StratiConstraints,
-    "index" = index2,
-    "BinPerSample" = BinPerSample,
-    "CSBinPerSample" = CSBinPerSample
-  )
-
-  ##select model
-  if(is.null(model))
-    model <- Model_AgeS[[Model_GrowthCurve]][[distribution]]
-
-  ##now we have two options, run standard 'rjags' the default or use the package
-  ##runjags
-  ##(1) rjags >> this runs the standard code
-  if(jags_method == "rjags"){
-
-    ##create text connection
-    con <- textConnection(model)
-
-    ##define jags model
-    jags <-
-      rjags::jags.model(
-        file = con,
-        data = dataList,
-        n.chains = n.chains,
-        n.adapt = Iter,
-        quiet = quiet
-      )
-
-    ##close textconnection
-    close(con)
-
-    ##set progress.bar
-    if(quiet) progress.bar <- 'none' else progress.bar <- 'text'
-
-    ##run JGAS process and update it
-    update(jags,Iter)
-    echantillon <-
-      rjags::coda.samples(
-        model = jags,
-        variable.names = c("A", "D", "sD"),
-        n.iter = min(Iter, 10000),
-        thin = t,
-        progress.bar = progress.bar
-      )
-
-    ##combine mcmclists in the old way as Claire did (to not break the code)
-    sample <- echantillon[[1]]
-    for(i in 2:n.chains){
-      sample <- rbind(sample,echantillon[[i]])
-    }
-
-  ##(2) rjparallel >> run this in parallel using the package 'runjags'
-  }else if(jags_method == "rjparallel"){
-
-    ##as input a text file is wanted, so we have to cheat a little bit
-    temp_file <- tempfile(fileext = ".txt")
-    writeLines(model, con = temp_file)
-
-    ##run the autoprocessing
+AgeS_Computation <- function(DATA,
+                              SampleNames,
+                              Nb_sample,
+                              PriorAge = rep(c(0.01, 100), Nb_sample),
+                              BinPerSample = rep(1, Nb_sample),
+                              SavePdf = FALSE,
+                              OutputFileName = c('MCMCplot', "summary"),
+                              OutputFilePath = c(""),
+                              SaveEstimates = FALSE,
+                              OutputTableName = c("DATA"),
+                              OutputTablePath = c(''),
+                              THETA = c(),
+                              sepTHETA = c(','),
+                              StratiConstraints = c(),
+                              sepSC = c(','),
+                              LIN_fit = TRUE,
+                              Origin_fit = FALSE,
+                              distribution = c("cauchy"),
+                              model = NULL,
+                              Iter = 10000,
+                              burnin = 4000,
+                              adapt = 1000,
+                              t = 5,
+                              n.chains = 3,
+                              jags_method = "rjags",
+                              autorun = FALSE,
+                              quiet = FALSE,
+                              roundingOfValue = 3,
+                              ...) {
+  #---check to see if DATA input is a runjags-object and extend if so ####
+  if (class(DATA) == "runjags") {
     results_runjags <-
-      runjags::autorun.jags(
-        model = temp_file,
-        data = dataList,
-        n.chains = n.chains,
-        monitor = c("A", "D", "sD"),
-        adapt = max(Iter, 1000),
+      runjags::extend.JAGS(
+        runjags.object = DATA,
+        adapt = adapt,
+        burnin = burnin,
+        sample = Iter,
+        thin = t,
+        method = jags_method,
         silent.jags = quiet,
-        method = "rjparallel",
-        inits = process_settings$inits,
-        max.time = process_settings$max.time,
-        interactive = process_settings$interactive,
-        startburnin = process_settings$startburnin,
-        startsample = process_settings$startsample
+        ...
       )
 
+    # storing the arguments used for the orignal BayLum run (as to not lose them when results are processed)
+    results_runjags$args <- list(
+      "Model_GrowthCurve" = DATA$args$Model_GrowthCurve,
+      "Distribution" = DATA$args$Distribution,
+      "PriorAge" = DATA$args$PriorAge,
+      "StratiConstraints" = DATA$args$StratiConstraints,
+      "CovarianceMatrix" = DATA$args$CovarianceMatrix,
+      "model" = DATA$args$model
+    )
+  }
+  #---check to see if DATA input is a DataFile and run JAGS ####
+  if (class(DATA) != "runjags") {
 
-     ##extract mcmc list
-     echantillon <- results_runjags$mcmc
+    ##---Index preparation ####
+    CSBinPerSample <- cumsum(BinPerSample)
+    LengthSample <- c()
+    for (ns in 1:Nb_sample) {
+      LengthSample <- c(LengthSample, length(DATA$LT[[ns]][, 1]))
+    }
+    CSLengthSample <- c()
+    CSLengthSample <- c(0, cumsum(LengthSample))
+    index2 <- c(0, cumsum(DATA$J))
 
-     ##combine chains into one data.frame
-     sample <- as.data.frame(runjags::combine.mcmc(echantillon))
+    ##---File preparation ####
+    LT <- matrix(data = 0,
+                 nrow = sum(DATA$J),
+                 ncol = (max(DATA$K) + 1))
+    sLT <- matrix(data = 0,
+                  nrow = sum(DATA$J),
+                  ncol = (max(DATA$K) + 1))
+    IrrT <- matrix(data = 0,
+                   nrow = sum(DATA$J),
+                   ncol = (max(DATA$K)))
+    for (ns in 1:Nb_sample) {
+      LT[seq(CSLengthSample[ns] + 1, CSLengthSample[ns + 1], 1), 1:length(DATA$LT[[ns]][1, ])] <-
+        DATA$LT[[ns]]
+      sLT[seq(CSLengthSample[ns] + 1, CSLengthSample[ns + 1], 1), 1:length(DATA$sLT[[ns]][1, ])] <-
+        DATA$sLT[[ns]]
+      IrrT[seq(CSLengthSample[ns] + 1, CSLengthSample[ns + 1], 1), 1:length(DATA$ITimes[[ns]][1, ])] <-
+        DATA$ITimes[[ns]]
+    }
 
+    ##---THETA matrix ####
+    if (length(THETA[, 1]) == 0) {
+      THETA = diag(DATA$ddot_env[2, CSBinPerSample] + (DATA$ddot_env[1, CSBinPerSample]) ^
+                     2 * DATA$dLab[2, CSBinPerSample])
+    } else{
+      if (is(THETA)[1] == "character") {
+        errorMatrix = read.csv(THETA, sep = sepTHETA)
+        THETA = as.matrix(errorMatrix)
+      }
+    }
 
-  }else{
-    stop(paste("[AgeS_Computation()] jags_method = ", jags_method, " not supported!"), call. = FALSE)
+    ##JAGS will crash with a runtime error if the dimension of the theta matrix does not match the
+    ##number of samples
+    if (sum(dim(THETA)) %% Nb_sample != 0)
+      stop(
+        "[AgeS_Computation()] The number of samples does not match the dimension of the THETA-matrix!",
+        call. = FALSE
+      )
 
+    ##---StratiConstraints matrix ####
+    if (length(StratiConstraints) == 0) {
+      StratiConstraints <- matrix(
+        data = c(rep(1, Nb_sample), rep(0, Nb_sample * Nb_sample)),
+        ncol = Nb_sample,
+        nrow = (Nb_sample + 1),
+        byrow = T
+      )
+    } else{
+      if (is(StratiConstraints)[1] == "character") {
+        SCMatrix <- read.csv(StratiConstraints, sep = sepSC)
+        StratiConstraints <- as.matrix(SCMatrix)
+      }
+    }
+
+    ##---BUG file selection ####
+    Model_AgeS <- 0
+    data(Model_AgeS, envir = environment())
+
+    if (LIN_fit == TRUE) {
+      cLIN = c('LIN')
+    } else{
+      cLIN = c()
+    }
+    if (Origin_fit == TRUE) {
+      cO = c("ZO")
+    } else{
+      cO = c()
+    }
+    Model_GrowthCurve = c(paste("AgesMultiCS2_EXP", cLIN, cO, sep = ""))
+
+    # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++#
+    ##---JAGS RUN --------------------- START ####
+    # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++#
+    ##set variables
+    dataList <- list(
+      'N' = LT,
+      'sN' = sLT,
+      "IT" = IrrT,
+      "sDlab" = DATA$dLab[1,],
+      'J' = DATA$J,
+      'K' = DATA$K,
+      "I" = Nb_sample,
+      "ddot" = DATA$ddot_env[1, CSBinPerSample],
+      "Gamma" = THETA,
+      "xbound" = PriorAge,
+      "StratiConstraints" = StratiConstraints,
+      "index" = index2,
+      "BinPerSample" = BinPerSample,
+      "CSBinPerSample" = CSBinPerSample
+    )
+
+    ##select model
+    if (is.null(model))
+      model <- Model_AgeS[[Model_GrowthCurve]][[distribution]]
+
+    ##there are two main ways of running JAGS: single-run vs auto-run
+    ##(1) if user selects to do single-run:
+    if (autorun == FALSE) {
+      ##a text file is wanted as input, so we have to cheat a little bit
+      temp_file <- tempfile(fileext = ".txt")
+      writeLines(model, con = temp_file)
+
+      ##run JAGS
+      results_runjags <-
+        runjags::run.JAGS(
+          model = temp_file,
+          data = dataList,
+          n.chains = n.chains,
+          monitor = c("A", "D", "sD"),
+          adapt = adapt,
+          burnin = burnin,
+          sample = Iter,
+          silent.jags = quiet,
+          method = jags_method,
+          thin = t
+        )
+    }
+
+    ##(2) if user selects to do auto-run:
+    if (autorun == TRUE) {
+      ##further settings provided eventually
+      process_settings <- modifyList(x = list(
+        max.time = Inf,
+        interactive = FALSE,
+        startburnin = 4000,
+        startsample = 10000,
+        inits = NA
+
+      ), val = list(...))
+
+      ##a text file is wanted as input, so we have to cheat a little bit
+      temp_file <- tempfile(fileext = ".txt")
+      writeLines(model, con = temp_file)
+
+      ##run the autoprocessing
+      results_runjags <-
+        runjags::autorun.JAGS(
+          model = temp_file,
+          data = dataList,
+          n.chains = n.chains,
+          monitor = c("A", "D", "sD"),
+          adapt = adapt,
+          startburnin = process_settings$startburnin,
+          startsample = process_settings$startsample,
+          silent.jags = quiet,
+          method = jags_method,
+          thin = t,
+          inits = process_settings$inits,
+          max.time = process_settings$max.time,
+          interactive = process_settings$interactive
+        )
+    }
+    # storing the arguments used for the BayLum-run this way,
+    # because it allows us an easy way to code the storage of arguments when extending a JAGS-model.
+    results_runjags$args <- list(
+      "Model_GrowthCurve" = Model_GrowthCurve,
+      "Distribution" = distribution,
+      "PriorAge" = PriorAge,
+      "StratiConstraints" = StratiConstraints,
+      "CovarianceMatrix" = THETA,
+      "model" = model
+    )
+    # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++#
+    # JAGS RUN --------------------- END
+    # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++#
   }
 
-  # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++#
-  # JAGS RUN --------------------- END
-  # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++#
+  #---processing of JAGS results
+  ##extract mcmc list from runjags object
+  echantillon <- results_runjags$mcmc
 
-  ##plot MCMC
-  if(SavePdf){
-    pdf(file=paste(OutputFilePath,OutputFileName[1],'.pdf',sep=""))
+  ##combine chains into one data.frame
+  sample <- as.data.frame(runjags::combine.mcmc(echantillon))
+
+  #---plot MCMC ####
+  if (SavePdf) {
+    pdf(file = paste(OutputFilePath, OutputFileName[1], '.pdf', sep = ""))
   }
 
   ##try makes sure that the function runs
   try(plot_MCMC(echantillon, sample_names = SampleNames))
 
-  if(SavePdf){
+  if (SavePdf) {
     dev.off()
   }
 
-
-  ##--- Graphical interpretation, and print result
-
-  ##- Gelman and Rubin test of convergence of the MCMC
-  CV <- gelman.diag(echantillon,multivariate=FALSE)
-  cat(paste("\n\n>> Results of the Gelman and Rubin criterion of convergence <<\n"))
-  for(i in 1:Nb_sample){
+  #---Gelman and Rubin test of convergence of the MCMC ####
+  CV <- gelman.diag(echantillon, multivariate = FALSE)
+  cat(paste(
+    "\n\n>> Results of the Gelman and Rubin criterion of convergence <<\n"
+  ))
+  for (i in 1:Nb_sample) {
     cat("----------------------------------------------\n")
-    cat(paste(" Sample name: ", SampleNames[i],"\n"))
+    cat(paste(" Sample name: ", SampleNames[i], "\n"))
     cat("---------------------\n")
     cat(paste("\t\t", "Point estimate", "Uppers confidence interval\n"))
-    cat(paste(paste("A_",SampleNames[i],sep=""),"\t",round(CV$psrf[i,1],roundingOfValue),"\t\t",round(CV$psrf[i,2],roundingOfValue),"\n"))
-    cat(paste(paste("D_",SampleNames[i],sep=""),"\t",round(CV$psrf[(Nb_sample+i),1],roundingOfValue),"\t\t",round(CV$psrf[(Nb_sample+i),2],roundingOfValue),"\n"))
-    cat(paste(paste("sD_",SampleNames[i],sep=""),"\t",round(CV$psrf[(2*Nb_sample+i),1],roundingOfValue),"\t\t",round(CV$psrf[(2*Nb_sample+i),2],roundingOfValue),"\n"))
+    cat(paste(
+      paste("A_", SampleNames[i], sep = ""),
+      "\t",
+      round(CV$psrf[i, 1], roundingOfValue),
+      "\t\t",
+      round(CV$psrf[i, 2], roundingOfValue),
+      "\n"
+    ))
+    cat(paste(
+      paste("D_", SampleNames[i], sep = ""),
+      "\t",
+      round(CV$psrf[(Nb_sample + i), 1], roundingOfValue),
+      "\t\t",
+      round(CV$psrf[(Nb_sample + i), 2], roundingOfValue),
+      "\n"
+    ))
+    cat(paste(
+      paste("sD_", SampleNames[i], sep = ""),
+      "\t",
+      round(CV$psrf[(2 * Nb_sample + i), 1], roundingOfValue),
+      "\t\t",
+      round(CV$psrf[(2 * Nb_sample + i), 2], roundingOfValue),
+      "\n"
+    ))
   }
 
-  cat("\n\n---------------------------------------------------------------------------------------------------\n")
-  cat(" *** WARNING: The following information are only valid if the MCMC chains have converged  ***\n")
-  cat("---------------------------------------------------------------------------------------------------\n\n")
+  cat(
+    "\n\n---------------------------------------------------------------------------------------------------\n"
+  )
+  cat(
+    " *** WARNING: The following information are only valid if the MCMC chains have converged  ***\n"
+  )
+  cat(
+    "---------------------------------------------------------------------------------------------------\n\n"
+  )
 
-  # Matrix of results
-  rnames <- rep(NA,3*Nb_sample)
-  for(i in 1:Nb_sample){
-    rnames[i]=c(paste("A_",SampleNames[i],sep=""))
-    rnames[Nb_sample+i]=c(paste("D_",SampleNames[i],sep=""))
-    rnames[2*Nb_sample+i]=c(paste("sD_",SampleNames[i],sep=""))
+  #---print results ####
+  ##Matrix of results
+  rnames <- rep(NA, 3 * Nb_sample)
+  for (i in 1:Nb_sample) {
+    rnames[i] = c(paste("A_", SampleNames[i], sep = ""))
+    rnames[Nb_sample + i] = c(paste("D_", SampleNames[i], sep = ""))
+    rnames[2 * Nb_sample + i] = c(paste("sD_", SampleNames[i], sep = ""))
   }
-  R=matrix(data=NA,ncol=8,nrow=3*Nb_sample,
-           dimnames=list(rnames,c("lower bound at 95%","lower bound at 68%","Bayes estimate","upper bound at 68%","upper bound at 95%",
-                                  "","Convergencies: Point estimate","Convergencies: uppers confidence interval")))
+  R = matrix(
+    data = NA,
+    ncol = 8,
+    nrow = 3 * Nb_sample,
+    dimnames = list(
+      rnames,
+      c(
+        "lower bound at 95%",
+        "lower bound at 68%",
+        "Bayes estimate",
+        "upper bound at 68%",
+        "upper bound at 95%",
+        "",
+        "Convergencies: Point estimate",
+        "Convergencies: uppers confidence interval"
+      )
+    )
+  )
 
-  ##- Bayes estimate and credible interval
-  cat(paste("\n\n>> Bayes estimates of Age, Palaeodose and its dispersion for each sample and credible interval <<\n"))
-  AgePlot95=matrix(data=NA,nrow=Nb_sample,ncol=3)
-  AgePlot68=matrix(data=NA,nrow=Nb_sample,ncol=3)
-  AgePlotMoy=rep(0,Nb_sample)
-  for(i in 1:Nb_sample){
+  ##Bayes estimate and credible interval
+  cat(
+    paste(
+      "\n\n>> Bayes estimates of Age, Palaeodose and its dispersion for each sample and credible interval <<\n"
+    )
+  )
+  AgePlot95 = matrix(data = NA,
+                     nrow = Nb_sample,
+                     ncol = 3)
+  AgePlot68 = matrix(data = NA,
+                     nrow = Nb_sample,
+                     ncol = 3)
+  AgePlotMoy = rep(0, Nb_sample)
+  for (i in 1:Nb_sample) {
     cat("----------------------------------------------\n")
-    cat(paste(" Sample name: ", SampleNames[i],"\n"))
+    cat(paste(" Sample name: ", SampleNames[i], "\n"))
     cat("---------------------\n")
 
-    cat(paste("Parameter", "\t","Bayes estimate","\t"," Credible interval \n"))
-    cat(paste(paste(" A_",SampleNames[i],sep=""),"\t",round(mean(sample[,i]),roundingOfValue),'\n'))
+    cat(paste(
+      "Parameter",
+      "\t",
+      "Bayes estimate",
+      "\t",
+      " Credible interval \n"
+    ))
+    cat(paste(
+      paste(" A_", SampleNames[i], sep = ""),
+      "\t",
+      round(mean(sample[, i]), roundingOfValue),
+      '\n'
+    ))
     cat("\t\t\t\t\t\t lower bound \t upper bound\n")
-    HPD_95=ArchaeoPhases::CredibleInterval(sample[,i],0.95,roundingOfValue=roundingOfValue)
-    HPD_68=ArchaeoPhases::CredibleInterval(sample[,i],0.68,roundingOfValue=roundingOfValue)
-    cat("\t\t\t\t at level 95% \t",round(c(HPD_95[2]),roundingOfValue),"\t\t",round(c(HPD_95[3]),roundingOfValue),"\n")
-    cat("\t\t\t\t at level 68% \t",round(c(HPD_68[2]),roundingOfValue),"\t\t",round(c(HPD_68[3]),roundingOfValue),"\n")
-    AgePlot95[i,]=HPD_95
-    AgePlot68[i,]=HPD_68
-    AgePlotMoy[i]=round(mean(sample[,i]),roundingOfValue)
+    HPD_95 = ArchaeoPhases::CredibleInterval(sample[, i], 0.95, roundingOfValue =
+                                               roundingOfValue)
+    HPD_68 = ArchaeoPhases::CredibleInterval(sample[, i], 0.68, roundingOfValue =
+                                               roundingOfValue)
+    cat(
+      "\t\t\t\t at level 95% \t",
+      round(c(HPD_95[2]), roundingOfValue),
+      "\t\t",
+      round(c(HPD_95[3]), roundingOfValue),
+      "\n"
+    )
+    cat(
+      "\t\t\t\t at level 68% \t",
+      round(c(HPD_68[2]), roundingOfValue),
+      "\t\t",
+      round(c(HPD_68[3]), roundingOfValue),
+      "\n"
+    )
+    AgePlot95[i, ] = HPD_95
+    AgePlot68[i, ] = HPD_68
+    AgePlotMoy[i] = round(mean(sample[, i]), roundingOfValue)
 
-    R[i,3]=round(mean(sample[,i]),roundingOfValue)
-    R[i,c(1,5)]=round(HPD_95[2:3],roundingOfValue)
-    R[i,c(2,4)]=round(HPD_68[2:3],roundingOfValue)
+    R[i, 3] = round(mean(sample[, i]), roundingOfValue)
+    R[i, c(1, 5)] = round(HPD_95[2:3], roundingOfValue)
+    R[i, c(2, 4)] = round(HPD_68[2:3], roundingOfValue)
 
-    cat(paste("\nParameter", "\t","Bayes estimate","\t"," Credible interval \n"))
-    cat(paste(paste(" D_",SampleNames[i],sep=""),"\t",round(mean(sample[,(Nb_sample+i)]),roundingOfValue),'\n'))
+    cat(paste(
+      "\nParameter",
+      "\t",
+      "Bayes estimate",
+      "\t",
+      " Credible interval \n"
+    ))
+    cat(paste(
+      paste(" D_", SampleNames[i], sep = ""),
+      "\t",
+      round(mean(sample[, (Nb_sample + i)]), roundingOfValue),
+      '\n'
+    ))
     cat("\t\t\t\t\t\t lower bound \t upper bound\n")
-    HPD_95=ArchaeoPhases::CredibleInterval(sample[,(Nb_sample+i)],0.95,roundingOfValue=roundingOfValue)
-    HPD_68=ArchaeoPhases::CredibleInterval(sample[,(Nb_sample+i)],0.68,roundingOfValue=roundingOfValue)
-    cat("\t\t\t\t at level 95% \t",round(c(HPD_95[2]),roundingOfValue),"\t\t",round(c(HPD_95[3]),roundingOfValue),"\n")
-    cat("\t\t\t\t at level 68% \t",round(c(HPD_68[2]),roundingOfValue),"\t\t",round(c(HPD_68[3]),roundingOfValue),"\n")
+    HPD_95 = ArchaeoPhases::CredibleInterval(sample[, (Nb_sample + i)], 0.95, roundingOfValue =
+                                               roundingOfValue)
+    HPD_68 = ArchaeoPhases::CredibleInterval(sample[, (Nb_sample + i)], 0.68, roundingOfValue =
+                                               roundingOfValue)
+    cat(
+      "\t\t\t\t at level 95% \t",
+      round(c(HPD_95[2]), roundingOfValue),
+      "\t\t",
+      round(c(HPD_95[3]), roundingOfValue),
+      "\n"
+    )
+    cat(
+      "\t\t\t\t at level 68% \t",
+      round(c(HPD_68[2]), roundingOfValue),
+      "\t\t",
+      round(c(HPD_68[3]), roundingOfValue),
+      "\n"
+    )
 
-    R[(Nb_sample+i),3]=round(mean(sample[,(Nb_sample+i)]),roundingOfValue)
-    R[(Nb_sample+i),c(1,5)]=round(HPD_95[2:3],roundingOfValue)
-    R[(Nb_sample+i),c(2,4)]=round(HPD_68[2:3],roundingOfValue)
+    R[(Nb_sample + i), 3] = round(mean(sample[, (Nb_sample + i)]), roundingOfValue)
+    R[(Nb_sample + i), c(1, 5)] = round(HPD_95[2:3], roundingOfValue)
+    R[(Nb_sample + i), c(2, 4)] = round(HPD_68[2:3], roundingOfValue)
 
-    cat(paste("\nParameter", "\t","Bayes estimate","\t"," Credible interval \n"))
-    cat(paste(paste("sD_",SampleNames[i],sep=""),"\t",round(mean(sample[,(2*Nb_sample+i)]),roundingOfValue),'\n'))
+    cat(paste(
+      "\nParameter",
+      "\t",
+      "Bayes estimate",
+      "\t",
+      " Credible interval \n"
+    ))
+    cat(paste(
+      paste("sD_", SampleNames[i], sep = ""),
+      "\t",
+      round(mean(sample[, (2 * Nb_sample + i)]), roundingOfValue),
+      '\n'
+    ))
     cat("\t\t\t\t\t\t lower bound \t upper bound\n")
-    HPD_95=ArchaeoPhases::CredibleInterval(echantillon[[1]][,(2*Nb_sample+i)],0.95,roundingOfValue=roundingOfValue)
-    HPD_68=ArchaeoPhases::CredibleInterval(echantillon[[1]][,(2*Nb_sample+i)],0.68,roundingOfValue=roundingOfValue)
-    cat("\t\t\t\t at level 95% \t",round(c(HPD_95[2]),roundingOfValue),"\t\t",round(c(HPD_95[3]),roundingOfValue),"\n")
-    cat("\t\t\t\t at level 68% \t",round(c(HPD_68[2]),roundingOfValue),"\t\t",round(c(HPD_68[3]),roundingOfValue),"\n")
+    HPD_95 = ArchaeoPhases::CredibleInterval(echantillon[[1]][, (2 * Nb_sample +
+                                                                   i)], 0.95, roundingOfValue = roundingOfValue)
+    HPD_68 = ArchaeoPhases::CredibleInterval(echantillon[[1]][, (2 * Nb_sample +
+                                                                   i)], 0.68, roundingOfValue = roundingOfValue)
+    cat(
+      "\t\t\t\t at level 95% \t",
+      round(c(HPD_95[2]), roundingOfValue),
+      "\t\t",
+      round(c(HPD_95[3]), roundingOfValue),
+      "\n"
+    )
+    cat(
+      "\t\t\t\t at level 68% \t",
+      round(c(HPD_68[2]), roundingOfValue),
+      "\t\t",
+      round(c(HPD_68[3]), roundingOfValue),
+      "\n"
+    )
 
-    R[(2*Nb_sample+i),3]=round(mean(sample[,(2*Nb_sample+i)]),roundingOfValue)
-    R[(2*Nb_sample+i),c(1,5)]=round(HPD_95[2:3],roundingOfValue)
-    R[(2*Nb_sample+i),c(2,4)]=round(HPD_68[2:3],roundingOfValue)
+    R[(2 * Nb_sample + i), 3] = round(mean(sample[, (2 * Nb_sample + i)]), roundingOfValue)
+    R[(2 * Nb_sample + i), c(1, 5)] = round(HPD_95[2:3], roundingOfValue)
+    R[(2 * Nb_sample + i), c(2, 4)] = round(HPD_68[2:3], roundingOfValue)
 
     # R[(3*(i-1)+1):(3*i),6]=c('','','')
     # R[(3*(i-1)+1):(3*i),7]=round(CV$psrf[c(i,i+Nb_sample,i+2*Nb_sample),1],2)
@@ -625,44 +776,63 @@ AgeS_Computation <- function(
 
   }
   cat("\n----------------------------------------------\n")
-  R[,c(7,8)] <- round(CV$psrf,roundingOfValue)
+  R[, c(7, 8)] <- round(CV$psrf, roundingOfValue)
 
-  # check if there is stratigraphic order between sample.
-  #if(sum(StratiConstraints[2:Nb_sample,1:Nb_sample]>0)){
+  ##check if there is stratigraphic order between sample.
+  ##if(sum(StratiConstraints[2:Nb_sample,1:Nb_sample]>0)){
+  ##}
 
-
-
-  #}
-
-  if(SaveEstimates==TRUE){
-    write.csv(R,file=c(paste(OutputTablePath,"Estimates",OutputTableName,".csv",sep="")))
+  #---print csv table ####
+  if (SaveEstimates == TRUE) {
+    write.csv(R, file = c(
+      paste(
+        OutputTablePath,
+        "Estimates",
+        OutputTableName,
+        ".csv",
+        sep = ""
+      )
+    ))
   }
 
-  # Create return objecty -------------------------------------------------------------------------
+  #---Create return object ####
+  .list_BayLum <- function(..., originator = sys.call(which = -1)[[1]]){
+    ## set list
+    l <- list(...)
+
+    ## update originators
+    attr(l, "class") <- "BayLum.list"
+    attr(l, "originator") <- as.character(originator)
+
+    return(l)
+
+  }
+
   output <- .list_BayLum(
     "Ages" = data.frame(
       SAMPLE = SampleNames,
       AGE = AgePlotMoy,
-      HPD68.MIN = AgePlot68[,2],
-      HPD68.MAX = AgePlot68[,3],
-      HPD95.MIN = AgePlot95[,2],
-      HPD95.MAX = AgePlot95[,3],
+      HPD68.MIN = AgePlot68[, 2],
+      HPD68.MAX = AgePlot68[, 3],
+      HPD95.MIN = AgePlot95[, 2],
+      HPD95.MAX = AgePlot95[, 3],
       stringsAsFactors = FALSE
     ),
-    "Sampling"= echantillon,
-    "Model_GrowthCurve"= Model_GrowthCurve,
-    "Distribution"= distribution,
-    "PriorAge"= PriorAge,
-    "StratiConstraints"= StratiConstraints,
-    "CovarianceMatrix"= THETA,
-    "model" = model
+    "Sampling" = echantillon,
+    "Model_GrowthCurve" = results_runjags$args$Model_GrowthCurve,
+    "Distribution" = results_runjags$args$Distribution,
+    "PriorAge" = results_runjags$args$PriorAge,
+    "StratiConstraints" = results_runjags$args$StratiConstraints,
+    "CovarianceMatrix" = results_runjags$args$CovarianceMatrix,
+    "model" = results_runjags$model,
+    "runjags_object" = results_runjags
   )
 
-  # Plot ages -----------------------------------------------------------------------------------
-  plot_Ages(object = output, legend.pos = "bottomleft")
+  #---Plot ages ####
+  BayLum::plot_Ages(object = output, legend.pos = "bottomleft")
 
   ##TODO: get rid of this ... at some point
-  if(SavePdf){
+  if (SavePdf) {
     dev.print(
       pdf,
       file = paste(OutputFilePath, OutputFileName[3], '.pdf', sep = ""),
@@ -671,8 +841,6 @@ AgeS_Computation <- function(
     )
   }
 
-
-  # Return output -------------------------------------------------------------------------------
+  #---Return output ####
   return(output)
-
 }
