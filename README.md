@@ -45,6 +45,12 @@ Please further note that this version is a development version and may
 change day by day. For stable branches please visit the package on [CRAN
 ‘BayLum’](https://CRAN.R-project.org/package=BayLum).
 
+## Funding
+
+The development of `'BayLum'` was supported by [LabEx LaScArBx (ANR
+-n.ANR-10-LABX-52)](https://lascarbx.labex.u-bordeaux.fr) between 2015
+and 2018 (in particular through the MAM and COVADIM projects).
+
 ## License
 
 This program is free software: you can redistribute it and/or modify it

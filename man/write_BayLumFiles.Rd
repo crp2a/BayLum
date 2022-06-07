@@ -124,7 +124,7 @@ Frederik Baumgarten, RadPhys, DTU Physics, Technical University of Denmark (Denm
 } 
 
 \section{How to cite}{
-Baumgarten, F.H., 2022. write_BayLumFiles(): Write BayLum Template Files. Function version 0.1.0. In: Christophe, C., Philippe, A., Kreutzer, S., Guerin, G., 2022. BayLum: Chronological Bayesian Models Integrating Optically Stimulated. R package version 0.2.2.9000-9. https://CRAN.r-project.org/package=BayLum
+Baumgarten, F.H., 2022. write_BayLumFiles(): Write BayLum Template Files. Function version 0.1.0. In: Christophe, C., Philippe, A., Kreutzer, S., Guérin, G., 2022. BayLum: Chronological Bayesian Models Integrating Optically Stimulated. R package version 0.2.2.9000-12. https://CRAN.r-project.org/package=BayLum
 }
 
 \keyword{IO}
