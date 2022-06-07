@@ -2,7 +2,7 @@
 % Please edit documentation in R/write_BayLumFiles.R
 \name{write_BayLumFiles}
 \alias{write_BayLumFiles}
-\title{Write BayLum Files}
+\title{Write BayLum Template Files}
 \usage{
 write_BayLumFiles(
   folder = "BayLum_files",
@@ -33,32 +33,32 @@ write_BayLumFiles(
 
 \item{DiscPos}{\link{numeric} (\emph{with default}): List of data frames with each data frame having one or two columns to identify an aliquot to be included in the analysis. The first column corresponds to the position number, and the second column corresponds to the grain number. The length of the list should be the number of .bin-files included. If only one column is detected for a sample, the this function will assume you are dealing with multi-grain aliquots. If two columns is detected, this function will assume you are dealing with single-grains.}
 
-\item{DRenv}{\link{numeric} (\emph{with default}): Vector where DRenv\link{i} corresponds to environmental dose rate for .bin-file\link{i}. Length should be one or the number of .bin-files included in the analysis.}
+\item{DRenv}{\link{numeric} (\emph{with default}): Vector where \code{DRenv[i]} corresponds to environmental dose rate for \code{.bin-file[i]}. Length should be one or the number of .bin-files included in the analysis.}
 
-\item{DRenv.error}{\link{numeric} (\emph{with default}): Vector where DRenv.error\link{i} corresponds to environmental dose rate error for .bin-file\link{i}. Length should be one or the number of .bin-files included in the analysis.}
+\item{DRenv.error}{\link{numeric} (\emph{with default}): Vector where \code{DRenv.error[i]} corresponds to environmental dose rate error for \code{.bin-file[i]}. Length should be one or the number of .bin-files included in the analysis.}
 
-\item{DRsource}{\link{numeric} (\emph{with default}): Vector where DRsource\link{i} corresponds to source dose rate for .bin-file\link{i}. Length should be one or the number of .bin-files included in the analysis.}
+\item{DRsource}{\link{numeric} (\emph{with default}): Vector where \code{DRsource[i]} corresponds to source dose rate for \code{.bin-file[i]}. Length should be one or the number of .bin-files included in the analysis.}
 
-\item{DRsource.error}{\link{numeric} (\emph{with default}): Vector where DRsource.error\link{i} corresponds to source dose rate error for .bin-file\link{i}. Length should be one or the number of .bin-files included in the analysis.}
+\item{DRsource.error}{\link{numeric} (\emph{with default}): Vector where \code{DRsource.error[i]} corresponds to source dose rate error for \code{.bin-file[i]}. Length should be one or the number of .bin-files included in the analysis.}
 
-\item{signal.integral.min}{\link{numeric} (\emph{with default}): Vector where signal.integral.min\link{i} corresponds to the channel number where the OSL signal should be summed from for .bin-file\link{i}. Length should be one or the number of .bin-files included in the analysis.}
+\item{signal.integral.min}{\link{numeric} (\emph{with default}): Vector where \code{signal.integral.min[i]} corresponds to the channel number where the OSL signal should be summed from for\code{bin-file[i]} Length should be one or the number of .bin-files included in the analysis.}
 
-\item{signal.integral.max}{\link{numeric} (\emph{with default}): Vector where signal.integral.max\link{i} corresponds to the channel number where the OSL signal should be summed from to for .bin-file\link{i}. Length should be one or the number of .bin-files included in the analysis.}
+\item{signal.integral.max}{\link{numeric} (\emph{with default}): Vector where \code{signal.integral.max[i]} corresponds to the channel number where the OSL signal should be summed from to for \code{bin-file[i]} Length should be one or the number of .bin-files included in the analysis.}
 
-\item{background.integral.min}{\link{numeric} (\emph{with default}): Vector where background.integral.min\link{i} corresponds to the channel number where the OSL background signal should be summed from for .bin-file\link{i}. Length should be one or the number of .bin-files included in the analysis.}
+\item{background.integral.min}{\link{numeric} (\emph{with default}): Vector where \code{background.integral.min[i]} corresponds to the channel number where the OSL background signal should be summed from for\code{bin-file[i]} Length should be one or the number of .bin-files included in the analysis.}
 
-\item{background.integral.max}{\link{numeric} (\emph{with default}): Vector where background.integral.max\link{i} corresponds to the channel number where the OSL background signal should be summed to for .bin-file\link{i}. Length should be one or the number of .bin-files included in the analysis.}
+\item{background.integral.max}{\link{numeric} (\emph{with default}): Vector where \code{background.integral.max[i]} corresponds to the channel number where the OSL background signal should be summed to for \code{.bin-file[i]}. Length should be one or the number of .bin-files included in the analysis.}
 
-\item{inflatePercent}{\link{numeric} (\emph{with default}): Vector where inflatePercent\link{i} corresponds to uncertainty due to instrumental reproducibility to .bin-file\link{i}. Length should be one or the number of .bin-files included in the analysis.}
+\item{inflatePercent}{\link{numeric} (\emph{with default}): Vector where \code{inflatePercent[i]} corresponds to uncertainty due to instrumental reproducibility to\code{bin-file[i]} Length should be one or the number of .bin-files included in the analysis.}
 
-\item{nbOfLastCycleToRemove}{\link{numeric} (\emph{with default}): Vector where nbOfLastCycleToRemove\link{i} corresponds to the number of regeneration points to remove for analysis for .bin-file\link{i}. Length should be one or the number of .bin-files included in the analysis.}
+\item{nbOfLastCycleToRemove}{\link{numeric} (\emph{with default}): Vector where \code{nbOfLastCycleToRemove[i]} corresponds to the number of regeneration points to remove for analysis for \code{bin-file[i]} Length should be one or the number of .bin-files included in the analysis.}
 }
 \value{
-There will be no output if the function ran as intented.
+There will be no output if the function ran as intended.
 }
 \description{
 This function allows the user to write all .csv files expected by
-\link{Generate_DataFile} and \link{Generate_DataFile_MG}. Unlike \link{Create_TemplateFolder},
+\link{Generate_DataFile} and \link{Generate_DataFile_MG}. Unlike \link{create_FolderTemplates},
 this function makes it possible to write .csv files with all necessary info.
 No further modification of .csv files are required. The purpose of this function is (i) to reduce tedious manual editing of .csv files and the errors that result
 (ii) to introduce an easy way to review the info that went into the .csv files (by revisiting code rather than opening individual .csv file) and (iii) to streamline folder
@@ -75,55 +75,57 @@ SampleNames <- c("OSL-1-MG","OSL-2-SG")
 # number of .bin-files for each sample
 BinPerSample <- c(1,3)
 
-# List of data.frames of accepted aliquot/grain to be included in the analysis for each .bin-file.  
+# List of data.frames of accepted aliquot/grain to be included
+# in the analysis for each .bin-file.
 DiscPos <- list(
 data.frame("position" = 1:48),
 data.frame("position" = c(1,1,1,1), "grain" = c(4,67,92,99)),
 data.frame("position" = c(2,2,2,2), "grain" = c(7,13,41,72)),
-data.frame("position" = c(3,3,3,3), "grain" = c(7,52,67,88))
-)
+data.frame("position" = c(3,3,3,3), "grain" = c(7,52,67,88)))
 
 # example 1: write to disk (all together)
 write_BayLumFiles(
-folder = paste(getwd(),"new_BayLum_folder",sep = "/")
+folder = paste(tempdir(),"new_BayLum_folder",sep = "/"),
 SampleNames = SampleNames,
 BinPerSample = BinPerSample,
 DiscPos = DiscPos,
 DRenv = c(1.75, 1.52, 1.52, 1.52),
 DRenv.error = c(0.04, 0.03, 0.03, 0.03),
 DRsource = c(0.2075, 0.1501, 0.1501, 0.1501),
-DRsource.error = c(0.0010, 0.0008, 0.0008, 0.0008),
-) 
+DRsource.error = c(0.0010, 0.0008, 0.0008, 0.0008))
 
 # example 2: write to disk (by sample)
 write_BayLumFiles(
-folder = paste(getwd(),"new_BayLum_folder",sep = "/")
+folder = paste(tempdir(),"new_BayLum_folder",sep = "/"),
 SampleNames = "OSL-1-MG",
 BinPerSample = 1,
 DiscPos = DiscPos[[1]],
 DRenv = 1.75,
 DRenv.error = 0.04,
 DRsource = 0.2075,
-DRsource.error = 0.0010,
-)
+DRsource.error = 0.0010)
 
 write_BayLumFiles(
-folder = paste(getwd(),"new_BayLum_folder",sep = "/")
+folder = paste(tempdir(),"new_BayLum_folder",sep = "/"),
 SampleNames = "OSL-2-SG",
 BinPerSample = 3,
-DiscPos = DiscPos[[2:4]],
+DiscPos = DiscPos[2:4],
 DRenv = 1.75,
 DRenv.error = 0.04,
 DRsource = 0.2075,
-DRsource.error = 0.0010,
-)
- 
+DRsource.error = 0.0010)
+
 }
 \seealso{
 \link{Generate_DataFile}, \link{Generate_DataFile_MG}
 }
 \author{
-Frederik Baumgarten, RadPhys, DTU Physics, Technical University of Denmark
+Frederik Baumgarten, RadPhys, DTU Physics, Technical University of Denmark (Denmark)
+} 
+
+\section{How to cite}{
+Baumgarten, F.H., 2022. write_BayLumFiles(): Write BayLum Template Files. Function version 0.1.0. In: Christophe, C., Philippe, A., Kreutzer, S., Guerin, G., 2022. BayLum: Chronological Bayesian Models Integrating Optically Stimulated. R package version 0.2.2.9000-9. https://CRAN.r-project.org/package=BayLum
 }
+
 \keyword{IO}
 \keyword{datagen}
