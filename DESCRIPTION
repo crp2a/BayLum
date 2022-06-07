@@ -15,7 +15,7 @@ Authors@R: c(
     person("Anne", "Philippe", role = c("aut", "cre"), email = "anne.philippe@univ-nantes.fr",  comment = c(ORCID = "0000-0002-5331-5087")),
     person("Sebastian", "Kreutzer", role = "aut", comment = c(ORCID = "0000-0002-0734-2199")),
     person("Guillaume", "Guerin", role = "aut", comment = c(ORCID = "0000-0001-6298-5579")),
-    person("Frederik Harly", "Baumgarten", role = "ctb", comment = c(ORCID = "0000-0002-4374-5948")))
+    person("Frederik Harly", "Baumgarten", role = "aut", comment = c(ORCID = "0000-0002-4374-5948")))
 Maintainer: Anne Philippe <anne.philippe@univ-nantes.fr>
 Depends: 
   R(>= 4.1), 
@@ -25,7 +25,7 @@ Imports:
   methods, 
   hexbin (>= 1.28.2), 
   KernSmooth (>= 2.23), 
-  rjags (>= 4-12), 
+  rjags (>= 4-13), 
   runjags (>= 2.2.0), 
   Luminescence (>= 0.9.18),
   ArchaeoPhases (>= 1.5)
@@ -38,6 +38,6 @@ URL: https://CRAN.r-project.org/package=BayLum
 BugReports: https://github.com/crp2a/BayLum/issues
 LazyData: true
 NeedsCompilation: no
-SystemRequirements: JAGS >= 4.3.0 (https://mcmc-jags.sourceforge.io/)
+SystemRequirements: JAGS >= 4.3.1 (https://mcmc-jags.sourceforge.io/)
 VignetteBuilder: R.rsp
 RoxygenNote: 7.2.0
