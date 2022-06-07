@@ -2,7 +2,7 @@
 #'
 #' This function computes the age (in ka) of a sample according to the model developed in Combes and Philippe (2017),
 #' based on an output of [Generate_DataFile] or [Generate_DataFile_MG].\cr
-#' A sample, for which data is avalilable in several BIN files, can be analysed.
+#' A sample, for which data is available in several BIN files, can be analysed.
 #'
 #' @param DATA [list] of objects: `LT`, `sLT`, `ITimes`, `dLab`, `ddot_env`, `regDose`, `J`, `K`, `Nb_measurement`,
 #' provided by the function [Generate_DataFile] or [Generate_DataFile_MG].

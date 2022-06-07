@@ -7,7 +7,7 @@
 #' Samples, for which data is available in several BIN files, can be analysed.\cr
 #' Single-grain or Multi-grain OSL measurements can be analysed simultaneously.
 #'
-#' @param Two inputs are possible:
+#' @param DATA (**required**) Two inputs are possible:
 #' (1): DATA [list] of objects: `LT`, `sLT`, `ITimes`, `dLab`, `ddot_env`, `regDose`, `J`, `K`, `Nb_measurement`,
 #' provided by the function [Generate_DataFile], [Generate_DataFile_MG] or [combine_DataFiles].
 #' \code{DATA} contains informations for more than one sample.
@@ -72,19 +72,18 @@
 #'
 #' @param model [character] (*optional*): allows to provide a custom model to the function as text string. Please note that if this option is chosen the parameter `distribution` is ignored and no safety net is applied. If the function crashes it is up to the user.
 #'
-#' @param adapt [integer] (with default): the number of iterations used in the adaptive phase of the simulation (see \code{\link{runjags::run.JAGS}}).
-#' @param burnin [integer] (with default): the number of iterations used to "home in" on the stationary posterior distribution. These are not used for assessing convergence (see \code{\link{runjags::run.JAGS}}).
-#' @param Iter [integer] (with default): the number of iterations to run which will be used to assess convergence and ages (see \code{\link{runjags::run.JAGS}}).
+#' @param adapt [integer] (with default): the number of iterations used in the adaptive phase of the simulation (see [runjags::run.jags]).
+#' @param burnin [integer] (with default): the number of iterations used to "home in" on the stationary posterior distribution. These are not used for assessing convergence (see [runjags::run.jags]).
+#' @param Iter [integer] (with default): the number of iterations to run which will be used to assess convergence and ages (see [runjags::run.jags]).
 #'
 #' @param t [integer] (with default): 1 every \code{t} iterations of the MCMC is considered for sampling the posterior distribution.
-#' (for more information see \code{\link{runjags::run.JAGS}}).
+#' (for more information see [runjags::run.jags]).
 #'
-#' @param n.chains [integer] (with default): number of independent chains for the model (for more information see \code{\link{runjags::run.JAGS}}).
+#' @param n.chains [integer] (with default): number of independent chains for the model (for more information see [runjags::run.jags]).
 #'
-#' @param jags_method [character] (with default): select which method to use in order to call JAGS, supported are  `"rjags"` (the default), `rjparallel`, `simple`, `interruptible`, `parallel`, and `snow` (for more information about each of these possibilities, see \code{\link{runjags::run.JAGS}})
+#' @param jags_method [character] (with default): select which method to use in order to call JAGS, supported are  `"rjags"` (the default), `rjparallel`, `simple`, `interruptible`, `parallel`, and `snow` (for more information about each of these possibilities, see [runjags::run.jags])
 #'
-#' @param autorun [logical] (with default): choose to automate JAGS processing. JAGS model will be automatically extended until convergence is reached (for more information see \code{\link{runjags::autorun.jags}}).
-#'
+#' @param autorun [logical] (with default): choose to automate JAGS processing. JAGS model will be automatically extended until convergence is reached (for more information see [runjags::autorun.jags]).
 #' @param quiet [logical] (with default): enables/disables `rjags` messages
 #'
 #' @param roundingOfValue [integer] (with default):  Integer indicating the number of decimal places to be used, default = 3.
@@ -257,27 +256,28 @@
 #' Quaternary Geochronology 28, 62-70. doi:10.1016/j.quageo.2015.04.001
 #'
 #' @examples
-#' ## load data
-#' data(DATA1,envir = environment())
-#' data(DATA2,envir = environment())
-#' Data <- combine_DataFiles(DATA2,DATA1)
+# ## load data
+# data(DATA1,envir = environment())
+# data(DATA2,envir = environment())
+# Data <- combine_DataFiles(DATA2,DATA1)
+#
+# ## Age computation of samples GDB5 and GDB3,
+# priorage <- c(1,10,20,60) # these samples are not young
+#
+# ## without common error and without stratigraphic constraints
+# Age <- AgeS_Computation(
+#   DATA = Data,
+#   Nb_sample = 2,
+#   SampleNames = c("GDB5","GDB3"),
+#   PriorAge = priorage,
+#   Iter = 50,
+#   n.chains = 2,
+#   burnin = 20,
+#   adapt = 20,
+#   quiet = TRUE)
 #'
 #' ## Age computation of samples GDB5 and GDB3,
-#' priorage <- c(1,10,20,60) # these samples are not young
-#'
-#' ## without common error and without stratigraphic constraints
-#' Age <- AgeS_Computation(
-#'   DATA = Data,
-#'   Nb_sample = 2,
-#'   SampleNames = c("GDB5","GDB3"),
-#'   PriorAge = priorage,
-#'   Iter = 50,
-#'   n.chains = 2,
-#'   quiet = TRUE
-#'   )
-#'
-#' ## Age computation of samples GDB5 and GDB3,
-#' ## without common error, assuming GDB5 age younder than GDB3 age
+#' ## without common error, assuming GDB5 age younger than GDB3 age
 #' \dontrun{
 #' Nb_sample <- 2
 #' SC <- matrix(
@@ -313,37 +313,39 @@
 #'
 #' @md
 #' @export
-AgeS_Computation <- function(DATA,
-                              SampleNames,
-                              Nb_sample,
-                              PriorAge = rep(c(0.01, 100), Nb_sample),
-                              BinPerSample = rep(1, Nb_sample),
-                              SavePdf = FALSE,
-                              OutputFileName = c('MCMCplot', "summary"),
-                              OutputFilePath = c(""),
-                              SaveEstimates = FALSE,
-                              OutputTableName = c("DATA"),
-                              OutputTablePath = c(''),
-                              THETA = c(),
-                              sepTHETA = c(','),
-                              StratiConstraints = c(),
-                              sepSC = c(','),
-                              LIN_fit = TRUE,
-                              Origin_fit = FALSE,
-                              distribution = c("cauchy"),
-                              model = NULL,
-                              Iter = 10000,
-                              burnin = 4000,
-                              adapt = 1000,
-                              t = 5,
-                              n.chains = 3,
-                              jags_method = "rjags",
-                              autorun = FALSE,
-                              quiet = FALSE,
-                              roundingOfValue = 3,
-                              ...) {
+AgeS_Computation <- function(
+    DATA,
+    SampleNames,
+    Nb_sample,
+    PriorAge = rep(c(0.01, 100), Nb_sample),
+    BinPerSample = rep(1, Nb_sample),
+    SavePdf = FALSE,
+    OutputFileName = c('MCMCplot', "summary"),
+    OutputFilePath = c(""),
+    SaveEstimates = FALSE,
+    OutputTableName = c("DATA"),
+    OutputTablePath = c(''),
+    THETA = c(),
+    sepTHETA = c(','),
+    StratiConstraints = c(),
+    sepSC = c(','),
+    LIN_fit = TRUE,
+    Origin_fit = FALSE,
+    distribution = c("cauchy"),
+    model = NULL,
+    Iter = 10000,
+    burnin = 4000,
+    adapt = 1000,
+    t = 5,
+    n.chains = 3,
+    jags_method = "rjags",
+    autorun = FALSE,
+    quiet = FALSE,
+    roundingOfValue = 3,
+    ...
+) {
   #---check to see if DATA input is a runjags-object and extend if so ####
-  if (class(DATA) == "runjags") {
+  if (inherits(DATA, "runjags")) {
     results_runjags <-
       runjags::extend.JAGS(
         runjags.object = DATA,
@@ -356,7 +358,7 @@ AgeS_Computation <- function(DATA,
         ...
       )
 
-    # storing the arguments used for the orignal BayLum run (as to not lose them when results are processed)
+    # storing the arguments used for the original BayLum run (as to not lose them when results are processed)
     results_runjags$args <- list(
       "Model_GrowthCurve" = DATA$args$Model_GrowthCurve,
       "Distribution" = DATA$args$Distribution,
@@ -367,8 +369,7 @@ AgeS_Computation <- function(DATA,
     )
   }
   #---check to see if DATA input is a DataFile and run JAGS ####
-  if (class(DATA) != "runjags") {
-
+  if (!inherits(DATA, "runjags")) {
     ##---Index preparation ####
     CSBinPerSample <- cumsum(BinPerSample)
     LengthSample <- c()
@@ -414,8 +415,7 @@ AgeS_Computation <- function(DATA,
     if (sum(dim(THETA)) %% Nb_sample != 0)
       stop(
         "[AgeS_Computation()] The number of samples does not match the dimension of the THETA-matrix!",
-        call. = FALSE
-      )
+        call. = FALSE)
 
     ##---StratiConstraints matrix ####
     if (length(StratiConstraints) == 0) {
@@ -475,7 +475,7 @@ AgeS_Computation <- function(DATA,
 
     ##there are two main ways of running JAGS: single-run vs auto-run
     ##(1) if user selects to do single-run:
-    if (autorun == FALSE) {
+    if (!autorun) {
       ##a text file is wanted as input, so we have to cheat a little bit
       temp_file <- tempfile(fileext = ".txt")
       writeLines(model, con = temp_file)
@@ -497,7 +497,7 @@ AgeS_Computation <- function(DATA,
     }
 
     ##(2) if user selects to do auto-run:
-    if (autorun == TRUE) {
+    if (autorun) {
       ##further settings provided eventually
       process_settings <- modifyList(x = list(
         max.time = Inf,
