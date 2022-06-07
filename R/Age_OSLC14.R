@@ -113,9 +113,9 @@
 #'   The decimal of this file must be a dot, and the separator must be a comma. }
 #' }
 #'
-#' @param adapt [integer] (with default): the number of iterations used in the adaptive phase of the simulation (see \code{\link{runjags::run.JAGS}}).
-#' @param burnin [integer] (with default): the number of iterations used to "home in" on the stationary posterior distribution. These are not used for assessing convergence (see \code{\link{runjags::run.JAGS}}).
-#' @param Iter [integer] (with default): the number of iterations to run and who will be used to assess convergence and ages (see \code{\link{runjags::run.JAGS}}).
+#' @param adapt [integer] (with default): the number of iterations used in the adaptive phase of the simulation (see [runjags::run.jags]]).
+#' @param burnin [integer] (with default): the number of iterations used to "home in" on the stationary posterior distribution. These are not used for assessing convergence (see [runjags::run.jags]]).
+#' @param Iter [integer] (with default): the number of iterations to run and who will be used to assess convergence and ages (see [runjags::run.jags]]).
 #'
 #' @param t [numeric] (with default): 1 every `t` iterations of the MCMC is
 #' considered for sampling the posterior distribution (for more information see [[rjags::jags.model].
@@ -123,9 +123,9 @@
 #' @param n.chains [numeric] (with default): number of independent chains for the model
 #' (for more information see [[rjags::jags.model]).
 #'
-#' @param jags_method [character] (with default): select which method to use in order to call JAGS, supported are  `"rjags"` (the default), `rjparallel`, `simple`, `interruptible`, `parallel`, and `snow` (for more information about each of these possibilities, see \code{\link{runjags::run.JAGS}})
+#' @param jags_method [character] (with default): select which method to use in order to call JAGS, supported are  `"rjags"` (the default), `rjparallel`, `simple`, `interruptible`, `parallel`, and `snow` (for more information about each of these possibilities, see [runjags::run.jags]])
 #'
-#' @param autorun [logical] (with default): choose to automate JAGS processing. JAGS model will be automatically extended until convergence is reached (for more information see \code{\link{runjags::autorun.jags}}).
+#' @param autorun [logical] (with default): choose to automate JAGS processing. JAGS model will be automatically extended until convergence is reached (for more information see [runjags::autorun.jags]).
 #'
 #' @param quiet [logical] (with default): enables/disables [rjags] messages
 #'
@@ -327,45 +327,58 @@
 #' SC <- matrix(data=c(1,1,1,0,1,1,0,0,1,0,0,0),ncol=3,nrow=4,byrow=TRUE)
 #'
 #' ## Age computation of samples
-#' Age <- Age_OSLC14(DATA=Data,Data_C14Cal=C14Cal,Data_SigmaC14Cal=SigmaC14Cal,
-#'    SampleNames=c("GDB5",Names,"GDB3"),Nb_sample=3,SampleNature=samplenature,
-#'    PriorAge=prior,StratiConstraints=SC,Iter=50,n.chains=2)
+#' Age <- Age_OSLC14(
+#'  DATA = Data,
+#'  Data_C14Cal = C14Cal,
+#'  Data_SigmaC14Cal = SigmaC14Cal,
+#'  SampleNames = c("GDB5",Names,"GDB3"),
+#'  Nb_sample = 3,
+#'  SampleNature = samplenature,
+#'  PriorAge = prior,
+#'  StratiConstraints = SC,
+#'  Iter = 20,
+#'  burnin = 20,
+#'  adapt = 20,
+#'  n.chains = 2)
+#'
 #' @md
 #' @export
-Age_OSLC14 <- function(DATA,
-                       Data_C14Cal,
-                       Data_SigmaC14Cal,
-                       Nb_sample,
-                       SampleNames,
-                       SampleNature,
-                       PriorAge = rep(c(10, 60), Nb_sample),
-                       SavePdf = FALSE,
-                       OutputFileName = c('MCMCplot', 'HPD_Cal14CCurve', "summary"),
-                       OutputFilePath = c(""),
-                       SaveEstimates = FALSE,
-                       OutputTableName = c("DATA"),
-                       OutputTablePath = c(''),
-                       StratiConstraints = c(),
-                       sepSC = c(','),
-                       BinPerSample = rep(1, sum(SampleNature[1,])),
-                       THETA = c(),
-                       sepTHETA = c(','),
-                       LIN_fit = TRUE,
-                       Origin_fit = FALSE,
-                       distribution = c("cauchy"),
-                       Model_C14 = c("full"),
-                       CalibrationCurve = c("IntCal20"),
-                       Iter = 10000,
-                       burnin = 4000,
-                       adapt = 1000,
-                       t = 5,
-                       n.chains = 3,
-                       jags_method = "rjags",
-                       autorun = FALSE,
-                       quiet = FALSE,
-                       roundingOfValue = 3,
-                       ...) {
-  if (class(DATA) == "runjags") {
+Age_OSLC14 <- function(
+    DATA,
+    Data_C14Cal,
+    Data_SigmaC14Cal,
+    Nb_sample,
+    SampleNames,
+    SampleNature,
+    PriorAge = rep(c(10, 60), Nb_sample),
+    SavePdf = FALSE,
+    OutputFileName = c('MCMCplot', 'HPD_Cal14CCurve', "summary"),
+    OutputFilePath = c(""),
+    SaveEstimates = FALSE,
+    OutputTableName = c("DATA"),
+    OutputTablePath = c(''),
+    StratiConstraints = c(),
+    sepSC = c(','),
+    BinPerSample = rep(1, sum(SampleNature[1,])),
+    THETA = c(),
+    sepTHETA = c(','),
+    LIN_fit = TRUE,
+    Origin_fit = FALSE,
+    distribution = c("cauchy"),
+    Model_C14 = c("full"),
+    CalibrationCurve = c("IntCal20"),
+    Iter = 10000,
+    burnin = 4000,
+    adapt = 1000,
+    t = 5,
+    n.chains = 3,
+    jags_method = "rjags",
+    autorun = FALSE,
+    quiet = FALSE,
+    roundingOfValue = 3,
+    ...
+) {
+  if (inherits(DATA, "runjags")) {
     ind_OSL <- which(DATA$args$SampleNature[1,] == 1)
     CS_OSL <- cumsum(DATA$args$SampleNature[1,])
     ind_C14 <- which(DATA$args$SampleNature[2,] == 1)
@@ -404,7 +417,7 @@ Age_OSLC14 <- function(DATA,
     )
   }
 
-  if(class(DATA) != "runjags") {
+  if(!inherits(DATA, "runjags")) {
     #--- StratiConstraints matrix ####
     if (length(StratiConstraints) == 0) {
       StratiConstraints = matrix(
@@ -422,12 +435,8 @@ Age_OSLC14 <- function(DATA,
 
     #--- Calibration curve ####
     TableauCalib = c()
-    if (CalibrationCurve %in%  c("IntCal13",
-                                 "IntCal20",
-                                 "Marine13",
-                                 "Marine20",
-                                 "SHCal13" ,
-                                 "SHCal20")) {
+    if (CalibrationCurve %in%  c(
+      "IntCal13", "IntCal20", "Marine13", "Marine20", "SHCal13" , "SHCal20")) {
       TableauCalib = get(data(list = CalibrationCurve, envir = environment()))
     } else {
       TableauCalib = read.csv(file = CalibrationCurve,
