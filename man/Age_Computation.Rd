@@ -119,7 +119,7 @@ To give the results in a publication, we recommend to give the Bayes estimate of
 \description{
 This function computes the age (in ka) of a sample according to the model developed in Combes and Philippe (2017),
 based on an output of \link{Generate_DataFile} or \link{Generate_DataFile_MG}.\cr
-A sample, for which data is avalilable in several BIN files, can be analysed.
+A sample, for which data is available in several BIN files, can be analysed.
 }
 \details{
 \strong{Option on growth curves}\cr
@@ -185,7 +185,7 @@ Age <- Age_Computation(
 } 
 
 \section{How to cite}{
-Christophe, C., Kreutzer, S., Philippe, A., 2022. Age_Computation(): Bayesian analysis for the OSL age estimation of one sample. In: Christophe, C., Philippe, A., Kreutzer, S., Guerin, G., 2022. BayLum: Chronological Bayesian Models Integrating Optically Stimulated. R package version 0.2.2.9000-7. https://CRAN.r-project.org/package=BayLum
+Christophe, C., Kreutzer, S., Philippe, A., 2022. Age_Computation(): Bayesian analysis for the OSL age estimation of one sample. In: Christophe, C., Philippe, A., Kreutzer, S., Guerin, G., 2022. BayLum: Chronological Bayesian Models Integrating Optically Stimulated. R package version 0.2.2.9000-9. https://CRAN.r-project.org/package=BayLum
 }
 
 \references{

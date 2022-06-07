@@ -24,21 +24,26 @@ AgeS_Computation(
   Origin_fit = FALSE,
   distribution = c("cauchy"),
   model = NULL,
-  Iter = 50000,
+  Iter = 10000,
+  burnin = 4000,
+  adapt = 1000,
   t = 5,
   n.chains = 3,
   jags_method = "rjags",
+  autorun = FALSE,
   quiet = FALSE,
   roundingOfValue = 3,
   ...
 )
 }
 \arguments{
-\item{DATA}{\link{list} of objects: \code{LT}, \code{sLT}, \code{ITimes}, \code{dLab}, \code{ddot_env}, \code{regDose}, \code{J}, \code{K}, \code{Nb_measurement},
-provided by the function \link{Generate_DataFile} or \link{Generate_DataFile_MG} or \link{combine_DataFiles}.
+\item{DATA}{(\strong{required}) Two inputs are possible:
+(1): DATA \link{list} of objects: \code{LT}, \code{sLT}, \code{ITimes}, \code{dLab}, \code{ddot_env}, \code{regDose}, \code{J}, \code{K}, \code{Nb_measurement},
+provided by the function \link{Generate_DataFile}, \link{Generate_DataFile_MG} or \link{combine_DataFiles}.
 \code{DATA} contains informations for more than one sample.
 If there is stratigraphic relations between samples, informations in DATA must be ordered by order of increasing ages.
-See the details section to for more informations.}
+See the details section to for more informations.
+(2): An object of class "runjags" which is provided by the output of \link{AgeS_Computation}. When input of class "runjags" is identified, no new JAGS model is created. Instead, the JAGS model specified by the "runjags" object is extended. Useful for when convergence was not originally achieved and a complete restart is not desirable.}
 
 \item{SampleNames}{\link{character} vector: names of samples. The length of this vector is equal to \code{Nb_sample}.}
 
@@ -97,16 +102,20 @@ see details section for more informations.}
 
 \item{model}{\link{character} (\emph{optional}): allows to provide a custom model to the function as text string. Please note that if this option is chosen the parameter \code{distribution} is ignored and no safety net is applied. If the function crashes it is up to the user.}
 
-\item{Iter}{\link{integer} (with default): number of iterations for the MCMC computation (for more information see \code{\link{jags.model}}).
-If \code{jags_method = "rjparallel"} this number is limited to \code{1000} (it will be automatically adapted).}
+\item{Iter}{\link{integer} (with default): the number of iterations to run which will be used to assess convergence and ages (see \link[runjags:run.jags]{runjags::run.jags}).}
 
-\item{t}{\link{integer} (with default): 1 every \code{t} iterations of the MCMC is considered for sampling the posterior distribution
-(for more information see \code{\link{jags.model}}).}
+\item{burnin}{\link{integer} (with default): the number of iterations used to "home in" on the stationary posterior distribution. These are not used for assessing convergence (see \link[runjags:run.jags]{runjags::run.jags}).}
 
-\item{n.chains}{\link{integer} (with default): number of independent chains for the model (for more information see \code{\link{jags.model}}).}
+\item{adapt}{\link{integer} (with default): the number of iterations used in the adaptive phase of the simulation (see \link[runjags:run.jags]{runjags::run.jags}).}
 
-\item{jags_method}{\link{character} (with default): select computation method, supported are  \code{"rjags"} (the default) and \code{rjparallel}
-using package \code{'runjags'}. The latter option uses the function \link[runjags:autorun.jags]{runjags::autorun.jags} to allow a full automated processing.}
+\item{t}{\link{integer} (with default): 1 every \code{t} iterations of the MCMC is considered for sampling the posterior distribution.
+(for more information see \link[runjags:run.jags]{runjags::run.jags}).}
+
+\item{n.chains}{\link{integer} (with default): number of independent chains for the model (for more information see \link[runjags:run.jags]{runjags::run.jags}).}
+
+\item{jags_method}{\link{character} (with default): select which method to use in order to call JAGS, supported are  \code{"rjags"} (the default), \code{rjparallel}, \code{simple}, \code{interruptible}, \code{parallel}, and \code{snow} (for more information about each of these possibilities, see \link[runjags:run.jags]{runjags::run.jags})}
+
+\item{autorun}{\link{logical} (with default): choose to automate JAGS processing. JAGS model will be automatically extended until convergence is reached (for more information see \link[runjags:autorun.jags]{runjags::autorun.jags}).}
 
 \item{quiet}{\link{logical} (with default): enables/disables \code{rjags} messages}
 
@@ -130,6 +139,7 @@ individual equivalent dose values around the palaeodose of the sample;
 \item \bold{StratiConstraints}: stating the stratigraphic relations between samples considered in the model;
 \item \bold{CovarianceMatrix}: stating the covariance matrix of error used in the model, highlighting common errors between samples or not.
 \item \bold{model}: returns the model that was used for the Bayesian modelling as a \link{character}
+\item \bold{JAGS model output}: returns the JAGS model with class "runjags".
 }
 \item\bold{The Gelman and Rubin test of convergency}: prints the result of the Gelman and Rubin test of convergence for
 the age, palaeodose and equivalent dose dispersion parameters for each sample.
@@ -209,7 +219,7 @@ The user must take care about the separator used in the csv file using the argum
 
 \strong{How to fill \code{THETA} covariance matrix concerning common and individual error?}\cr
 
-If systematic errors are considered, the user can fill the \code{THETA} matrix as follow.
+If systematic errors are considered, the user can fill the \code{THETA} matrix as follows.
 \itemize{
 \item row number of \code{THETA} is equal the column number, equal to \code{Nb_sample}.
 \item For all \code{i in {1,...,Nb_sample}}, \code{THETA[i,i]} contains individual error
@@ -274,27 +284,9 @@ initial value generation of JAGS. This is not optimal and will be changed in fut
 of the age estimates if the chains have converged.
 }
 \examples{
-## load data
-data(DATA1,envir = environment())
-data(DATA2,envir = environment())
-Data <- combine_DataFiles(DATA2,DATA1)
 
 ## Age computation of samples GDB5 and GDB3,
-priorage <- c(1,10,20,60) # these samples are not young
-
-## without common error and without stratigraphic constraints
-Age <- AgeS_Computation(
-  DATA = Data,
-  Nb_sample = 2,
-  SampleNames = c("GDB5","GDB3"),
-  PriorAge = priorage,
-  Iter = 50,
-  n.chains = 2,
-  quiet = TRUE
-  )
-
-## Age computation of samples GDB5 and GDB3,
-## without common error, assuming GDB5 age younder than GDB3 age
+## without common error, assuming GDB5 age younger than GDB3 age
 \dontrun{
 Nb_sample <- 2
 SC <- matrix(
@@ -331,7 +323,7 @@ Age <- AgeS_Computation(
 } 
 
 \section{How to cite}{
-Christophe, C., Philippe, A., Kreutzer, S., 2022. AgeS_Computation(): Bayesian analysis for OSL age estimation of various samples. In: Christophe, C., Philippe, A., Kreutzer, S., Guerin, G., 2022. BayLum: Chronological Bayesian Models Integrating Optically Stimulated. R package version 0.2.2.9000-7. https://CRAN.r-project.org/package=BayLum
+Christophe, C., Philippe, A., Kreutzer, S., 2022. AgeS_Computation(): Bayesian analysis for OSL age estimation of various samples. In: Christophe, C., Philippe, A., Kreutzer, S., Guerin, G., 2022. BayLum: Chronological Bayesian Models Integrating Optically Stimulated. R package version 0.2.2.9000-9. https://CRAN.r-project.org/package=BayLum
 }
 
 \references{
