@@ -22,7 +22,7 @@ library(BayLum)
 
 # Introduction
 
-'BayLum' provides a collection of various **R** functions for Bayesian analysis of luminescence data. 
+`'BayLum'` provides a collection of various **R** functions for Bayesian analysis of luminescence data. 
 Amongst others, this includes data import, export, application of age models and palaeodose modelling.
 
 Data can be processed simultaneously for various samples, including the input of multiple BIN/BINX-files per
@@ -31,7 +31,7 @@ systematic errors can be added to constrain the analysis further.
 
 For those who already know how to use **R**, `'BayLum'` won't be difficult to use, 
 for all others, this brief introduction may be of help to make the first steps with **R** and 
-the package 'BayLum' as convenient as possible. 
+the package `'BayLum'` as convenient as possible. 
 
 ## Installing `BayLum' package
 
@@ -99,8 +99,7 @@ DATA1 <-
   Path = path,
   FolderNames = "samp1",
   Nb_sample = 1,
-  verbose = FALSE
-  )
+  verbose = FALSE)
 ```
 
 ### Remarks
