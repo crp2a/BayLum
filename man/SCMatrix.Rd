@@ -41,6 +41,6 @@ Claire Christophe, Anne Philippe, Guillaume Guerin
 } 
 
 \section{How to cite}{
-Christophe, C., Philippe, A., 2022. SCMatrix(): Definition of the stratigraphic constraint matrix. In: Christophe, C., Philippe, A., Kreutzer, S., Guérin, G., 2022. BayLum: Chronological Bayesian Models Integrating Optically Stimulated. R package version 0.2.2.9000-12. https://CRAN.r-project.org/package=BayLum
+Christophe, C., Philippe, A., 2022. SCMatrix(): Definition of the stratigraphic constraint matrix. In: Christophe, C., Philippe, A., Kreutzer, S., Guérin, G., 2022. BayLum: Chronological Bayesian Models Integrating Optically Stimulated. R package version 0.2.2.9000-15. https://CRAN.r-project.org/package=BayLum
 }
 

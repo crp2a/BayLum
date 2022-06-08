@@ -236,7 +236,7 @@
 #'  \item \bold{Summary of sample age estimates}: plot credible intervals and Bayes estimate of each sample age on a same graph.
 #' }
 #'
-#' To give the results in a publication, we recommend to give the Bayes estimate of the parameters as well as the credible interval at 95% or 68%.
+#' To give the results in a publication, we recommend to give the Bayes' estimate of the parameters as well as the credible interval at 95% or 68%.
 #'
 #' @author Claire Christophe, Anne Philippe, Guillaume Guérin, Sebastian Kreutzer
 #'

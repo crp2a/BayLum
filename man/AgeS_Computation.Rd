@@ -166,7 +166,7 @@ On each line, the plot on the left represents the MCMC trajectories, and the one
 \item \bold{Summary of sample age estimates}: plot credible intervals and Bayes estimate of each sample age on a same graph.
 }
 
-To give the results in a publication, we recommend to give the Bayes estimate of the parameters as well as the credible interval at 95\% or 68\%.
+To give the results in a publication, we recommend to give the Bayes' estimate of the parameters as well as the credible interval at 95\% or 68\%.
 }
 \description{
 This function computes the age (in ka) of at least two samples
@@ -323,7 +323,7 @@ Age <- AgeS_Computation(
 } 
 
 \section{How to cite}{
-Christophe, C., Philippe, A., Guérin, G., Kreutzer, S., 2022. AgeS_Computation(): Bayesian analysis for OSL age estimation of various samples. In: Christophe, C., Philippe, A., Kreutzer, S., Guérin, G., 2022. BayLum: Chronological Bayesian Models Integrating Optically Stimulated. R package version 0.2.2.9000-12. https://CRAN.r-project.org/package=BayLum
+Christophe, C., Philippe, A., Guérin, G., Kreutzer, S., 2022. AgeS_Computation(): Bayesian analysis for OSL age estimation of various samples. In: Christophe, C., Philippe, A., Kreutzer, S., Guérin, G., 2022. BayLum: Chronological Bayesian Models Integrating Optically Stimulated. R package version 0.2.2.9000-15. https://CRAN.r-project.org/package=BayLum
 }
 
 \references{

@@ -5,8 +5,8 @@
 \title{Write BayLum Template Files}
 \usage{
 write_BayLumFiles(
-  folder = "BayLum_files",
-  SampleNames,
+  folder,
+  SampleNames = "Sample_1",
   BinPerSample = rep(1, length(SampleNames)),
   SubSampleNames = NULL,
   DiscPos = NULL,
@@ -23,9 +23,9 @@ write_BayLumFiles(
 )
 }
 \arguments{
-\item{folder}{\link{character} (\strong{with default}): The name of the main folder in which all subsequent BayLum files and folders will be located. This could be a path to an already existing folder, or the path/name of a folder to be created.}
+\item{folder}{\link{character} (\emph{required}*): The name of the main folder in which all subsequent BayLum files and folders will be located. This could be a path to an already existing folder, or the path/name of a folder to be created.}
 
-\item{SampleNames}{\link{character} (\strong{required}): Vector of sample names.}
+\item{SampleNames}{\link{character} (\strong{with default}): Vector of sample names.}
 
 \item{BinPerSample}{\link{numeric} (\emph{with default}): Vector of numbers indicating the number of .bin-files per sample.}
 
@@ -54,7 +54,7 @@ write_BayLumFiles(
 \item{nbOfLastCycleToRemove}{\link{numeric} (\emph{with default}): Vector where \code{nbOfLastCycleToRemove[i]} corresponds to the number of regeneration points to remove for analysis for \code{bin-file[i]} Length should be one or the number of .bin-files included in the analysis.}
 }
 \value{
-There will be no output if the function ran as intended.
+The function returns nothing, but writes the folder structure.
 }
 \description{
 This function allows the user to write all .csv files expected by
@@ -124,7 +124,7 @@ Frederik Baumgarten, RadPhys, DTU Physics, Technical University of Denmark (Denm
 } 
 
 \section{How to cite}{
-Baumgarten, F.H., 2022. write_BayLumFiles(): Write BayLum Template Files. Function version 0.1.0. In: Christophe, C., Philippe, A., Kreutzer, S., Guérin, G., 2022. BayLum: Chronological Bayesian Models Integrating Optically Stimulated. R package version 0.2.2.9000-12. https://CRAN.r-project.org/package=BayLum
+Baumgarten, F.H., 2022. write_BayLumFiles(): Write BayLum Template Files. Function version 0.1.0. In: Christophe, C., Philippe, A., Kreutzer, S., Guérin, G., 2022. BayLum: Chronological Bayesian Models Integrating Optically Stimulated. R package version 0.2.2.9000-15. https://CRAN.r-project.org/package=BayLum
 }
 
 \keyword{IO}
