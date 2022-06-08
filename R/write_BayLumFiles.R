@@ -1,11 +1,11 @@
-#' @title Write BayLum Template Files
+#' @title Write BayLum .csv-files
 #'
 #' @description This function allows the user to write all .csv files expected by
 #' [Generate_DataFile] and [Generate_DataFile_MG]. Unlike [create_FolderTemplates],
-#' this function makes it possible to write .csv files with all necessary info.
-#' No further modification of .csv files are required. The purpose of this function is (i) to reduce tedious manual editing of .csv files and the errors that result
-#' (ii) to introduce an easy way to review the info that went into the .csv files (by revisiting code rather than opening individual .csv file) and (iii) to streamline folder
-#' and file creation when preparing data to run BayLum's modelling functions. Note: the user will still need to move the appropriate .bin files into all the sample folders.
+#' this function makes it possible to write .csv files with all information directly from R.
+#' No further modification of .csv files are required. The purpose of this function is (i) to reduce tedious manual editing of .csv-files and the errors that result
+#' (ii) to introduce an easy way to review information inside .csv-files (by revisiting code rather than opening individual .csv-files) and (iii) to streamline folder
+#' and file creation when preparing data to run BayLum's modelling functions. Note: the user will still need to move the appropriate .bin-files into all the sample folders.
 #'
 #' @author Frederik Baumgarten, RadPhys, DTU Physics, Technical University of Denmark (Denmark)
 #'
@@ -13,13 +13,13 @@
 #'
 #' @param folder [character] (*required**): The name of the main folder in which all subsequent BayLum files and folders will be located. This could be a path to an already existing folder, or the path/name of a folder to be created.
 #'
-#' @param SampleNames [character] (**with default**): Vector of sample names.
+#' @param SampleNames [character] (*required*): Vector of sample names.
 #'
 #' @param BinPerSample [numeric] (*with default*): Vector of numbers indicating the number of .bin-files per sample.
 #'
 #' @param SubSampleNames [character] (*optional*): Vector of names to give each subfolder within a sample when the number of .bin-files in a sample counts more than one. If omitted or NULL, the subfolders are named by the subfolder count number.
 #'
-#' @param DiscPos [numeric] (*with default*): List of data frames with each data frame having one or two columns to identify an aliquot to be included in the analysis. The first column corresponds to the position number, and the second column corresponds to the grain number. The length of the list should be the number of .bin-files included. If only one column is detected for a sample, the this function will assume you are dealing with multi-grain aliquots. If two columns is detected, this function will assume you are dealing with single-grains.
+#' @param DiscPos [numeric] (*with default*): List of data frames with each data frame having one or two columns to identify aliquots/grains to be included in the analysis. The first column corresponds to the position number, and the second column corresponds to the grain number. If the data frame has only one column, a Disc.csv will be written. If the data.frame has two columns, a DiscPos.csv will be written. The length of the list should be the number of .bin-files included.
 #'
 #' @param DRenv [numeric] (*with default*): Vector where `DRenv[i]` corresponds to environmental dose rate for `.bin-file[i]`. Length should be one or the number of .bin-files included in the analysis.
 #'
@@ -39,7 +39,7 @@
 #'
 #' @param inflatePercent [numeric] (*with default*): Vector where `inflatePercent[i]` corresponds to uncertainty due to instrumental reproducibility to`bin-file[i]` Length should be one or the number of .bin-files included in the analysis.
 #'
-#' @param nbOfLastCycleToRemove [numeric] (*with default*): Vector where `nbOfLastCycleToRemove[i]` corresponds to the number of regeneration points to remove for analysis for `bin-file[i]` Length should be one or the number of .bin-files included in the analysis.
+#' @param nbOfLastCycleToRemove [numeric] (*with default*): Vector where `nbOfLastCycleToRemove[i]` corresponds to the number of regeneration points to remove in analysis for `bin-file[i]` Length should be one or the number of .bin-files included in the analysis.
 
 #' @seealso [Generate_DataFile], [Generate_DataFile_MG]
 #'
