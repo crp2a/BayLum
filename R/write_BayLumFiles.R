@@ -147,9 +147,9 @@ write_BayLumFiles <- function(
   }
 
   ##check for correct input and stop if missing inputs exist
-  arg.fail <- sapply(1:length(arg.list), function(x) {
+  arg.fail <- vapply(1:length(arg.list), function(x) {
     length(arg.list[[x]]) != length(SampleNames_expanded)
-  })
+  }, logical(1))
 
   if (sum(arg.fail) > 0) {
     err <- paste0(c(
