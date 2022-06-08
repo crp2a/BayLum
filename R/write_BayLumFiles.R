@@ -140,11 +140,8 @@ write_BayLumFiles <- function(
   }
 
   ##make the vector of subsamplenames when subsamples exist, but are not named ####
-  if (is.null(SubSampleNames)) {
-    SubSampleNames <- unlist(sapply(BinPerSample, function(n) {
-      1:n
-    }))
-  }
+  if (is.null(SubSampleNames))
+    SubSampleNames <- unlist(lapply(BinPerSample, seq_len))
 
   ##check for correct input and stop if missing inputs exist
   arg.fail <- vapply(1:length(arg.list), function(x) {
@@ -285,3 +282,27 @@ write_BayLumFiles <- function(
 
   }
 }
+
+SampleNames <- c("OSL-1-MG","OSL-2-SG")
+
+# number of .bin-files for each sample
+BinPerSample <- c(1,3)
+
+# List of data.frames of accepted aliquot/grain to be included
+# in the analysis for each .bin-file.
+DiscPos <- list(
+data.frame("position" = 1:48),
+data.frame("position" = c(1,1,1,1), "grain" = c(4,67,92,99)),
+data.frame("position" = c(2,2,2,2), "grain" = c(7,13,41,72)),
+data.frame("position" = c(3,3,3,3), "grain" = c(7,52,67,88)))
+
+# example 1: write to disk (all together)
+write_BayLumFiles(
+folder = paste(tempdir(),"new_BayLum_folder",sep = "/"),
+SampleNames = SampleNames,
+BinPerSample = BinPerSample,
+DiscPos = DiscPos,
+DRenv = c(1.75, 1.52, 1.52, 1.52),
+DRenv.error = c(0.04, 0.03, 0.03, 0.03),
+DRsource = c(0.2075, 0.1501, 0.1501, 0.1501),
+DRsource.error = c(0.0010, 0.0008, 0.0008, 0.0008))
