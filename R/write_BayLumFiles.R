@@ -152,15 +152,12 @@ write_BayLumFiles <- function(
   })
 
   if (sum(arg.fail) > 0) {
-    cat("It may be that input is missing.\n")
-    cat(
-      "The following arguments(s) have more than 1 entry, but does not agree with the specified number of samples/subsamples\n"
-    )
-    print(names(arg.list)[arg.fail])
-    cat(
-      "\n\nAll arguments passed to \"rule.csv\" must be either 1 or match the number of specified samples"
-    )
-    stop()
+    err <- paste0(c(
+      "[write_BayLumFiles()] It seems that input is missing. The following arguments(s) have more than 1 entry,
+      but does not agree with the specified number of samples/subsamples:\n\t -> ",
+      paste0(names(arg.list)[arg.fail], collapse = ", "),
+      "\n\nAll arguments passed to \"rule.csv\" must be either 1 or match the number of specified samples!"))
+    stop(err, call. = FALSE)
   }
 
   ##create main folder and sample folder ####
