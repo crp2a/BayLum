@@ -81,15 +81,15 @@
 #'
 #' @param n.chains [integer] (with default): number of independent chains for the model (for more information see [runjags::run.jags]).
 #'
-#' @param jags_method [character] (with default): select which method to use in order to call JAGS, supported are  `"rjags"` (the default), `rjparallel`, `simple`, `interruptible`, `parallel`, and `snow` (for more information about each of these possibilities, see [runjags::run.jags])
+#' @param jags_method [character] (with default): select which method to use in order to call JAGS. jags_methods `"rjags"` (the default) and `"rjparallel"` have been tested. (for more information about these possibilities and others, see [runjags::run.jags])
 #'
 #' @param autorun [logical] (with default): choose to automate JAGS processing. JAGS model will be automatically extended until convergence is reached (for more information see [runjags::autorun.jags]).
 #' @param quiet [logical] (with default): enables/disables `rjags` messages
 #'
 #' @param roundingOfValue [integer] (with default):  Integer indicating the number of decimal places to be used, default = 3.
 #'
-#' @param ... further arguments that can be passed to control the Bayesian process, see details
-#' for supported arguments
+#' @param ... further arguments that can be passed to control the Bayesian process. 1) When creating a new JAGS model, see details
+#' for supported arguments. 2) If extending a JAGS model see arguments of [runjags::extend.JAGS].
 #'
 #'
 #' @details **Supported `...` arguments**
@@ -244,7 +244,7 @@
 #' initial value generation of JAGS. This is not optimal and will be changed in future. However, it does not affect the quality
 #' of the age estimates if the chains have converged.
 #'
-#' @seealso [Generate_DataFile], [Generate_DataFile_MG], [rjags], [plot_MCMC], [SCMatrix], [Age_Computation], [Palaeodose_Computation], [plot_Ages], [create_ThetaMatrix], [runjags::autorun.jags]
+#' @seealso [Generate_DataFile], [Generate_DataFile_MG], [rjags], [plot_MCMC], [SCMatrix], [Age_Computation], [Palaeodose_Computation], [plot_Ages], [create_ThetaMatrix], [runjags]
 #'
 #' @references
 #' Combes, Benoit and Philippe, Anne, 2017.
@@ -256,59 +256,70 @@
 #' Quaternary Geochronology 28, 62-70. doi:10.1016/j.quageo.2015.04.001
 #'
 #' @examples
-# ## load data
-# data(DATA1,envir = environment())
-# data(DATA2,envir = environment())
-# Data <- combine_DataFiles(DATA2,DATA1)
-#
-# ## Age computation of samples GDB5 and GDB3,
-# priorage <- c(1,10,20,60) # these samples are not young
-#
-# ## without common error and without stratigraphic constraints
-# Age <- AgeS_Computation(
-#   DATA = Data,
-#   Nb_sample = 2,
-#   SampleNames = c("GDB5","GDB3"),
-#   PriorAge = priorage,
-#   Iter = 50,
-#   n.chains = 2,
-#   burnin = 20,
-#   adapt = 20,
-#   quiet = TRUE)
-#'
 #' ## Age computation of samples GDB5 and GDB3,
+#' ## load data
+#' data(DATA2) # GD85
+#' data(DATA1) # GD83
+#'
+#' ## produce DataFile
+#' Data <- combine_DataFiles(DATA2, DATA1)
+#'
 #' ## without common error, assuming GDB5 age younger than GDB3 age
-#' \dontrun{
 #' Nb_sample <- 2
 #' SC <- matrix(
 #'   data = c(1,1,0,1,0,0),
 #'   ncol = 2,
 #'   nrow = (Nb_sample+1),byrow = T)
 #'
-#' ##standard
+#'\dontrun{
+#' ## run standard
 #' Age <- AgeS_Computation(
-#'  DATA = Data,
-#'  Nb_sample = Nb_sample,
-#'  SampleNames = c("GDB5","GDB3"),
-#'  PriorAge = priorage,
-#'  StratiConstraints = SC,
-#'  Iter = 10000,
-#'  quiet = FALSE,
-#'  jags_method = "rjags"
-#'  )
-#'
-#' ##parallel mode
+#'   DATA = Data,
+#'   Nb_sample = Nb_sample,
+#'   SampleNames = c("GDB5","GDB3"),
+#'   PriorAge = rep(c(1,100), 2),
+#'   StratiConstraints = SC,
+#'   Iter = 100,
+#'   quiet = FALSE,
+#'   jags_method = "rjags"
+#' )
+#' 
+#' ## extend model
+#' Age_extended <- AgeS_Computation(
+#'   DATA = Age$runjags_object,
+#'   Nb_sample = Nb_sample,
+#'   SampleNames = c("GDB5","GDB3"),
+#'   PriorAge = rep(c(1,100), 2),
+#'   StratiConstraints = SC,
+#'   adapt = 0,
+#'   burnin = 500,
+#'   Iter = 1000,
+#'   quiet = FALSE,
+#'   jags_method = "rjags"
+#' )
+#' 
+#' ## autorun mode
 #' Age <- AgeS_Computation(
-#'  DATA = Data,
-#'  Nb_sample = Nb_sample,
-#'  SampleNames = c("GDB5","GDB3"),
-#'  PriorAge = priorage,
-#'  StratiConstraints = SC,
-#'  Iter = 10000,
-#'  quiet = FALSE,
-#'  jags_method = "rjparallel")
-#'
-#'
+#'   DATA = Data,
+#'   Nb_sample = Nb_sample,
+#'   SampleNames = c("GDB5","GDB3"),
+#'   PriorAge = rep(c(1,100), 2),
+#'   StratiConstraints = SC,
+#'   Iter = 10000,
+#'   quiet = FALSE,
+#'   jags_method = "rjags", 
+#'   autorun = TRUE)
+#' 
+#' ## parallel mode
+#' Age <- AgeS_Computation(
+#'   DATA = Data,
+#'   Nb_sample = Nb_sample,
+#'   SampleNames = c("GDB5","GDB3"),
+#'   PriorAge = rep(c(1,100), 2),
+#'   StratiConstraints = SC,
+#'   Iter = 10000,
+#'   quiet = FALSE,
+#'   jags_method = "rjparallel")
 #' }
 #'
 #' @md
