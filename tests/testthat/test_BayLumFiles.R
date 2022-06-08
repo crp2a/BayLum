@@ -6,6 +6,9 @@ test_that("BayLumFiles", {
   expect_silent(write_BayLumFiles(folder = tempdir(), SampleNames = "test"))
 
   ## crash function
+    ## missing arguments
+    expect_error(write_BayLumFiles())
+
     ## wrong number of arguments
     expect_error(
       write_BayLumFiles(

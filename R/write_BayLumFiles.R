@@ -13,7 +13,7 @@
 #'
 #' @param folder [character] (*required**): The name of the main folder in which all subsequent BayLum files and folders will be located. This could be a path to an already existing folder, or the path/name of a folder to be created.
 #'
-#' @param SampleNames [character] (**required**): Vector of sample names.
+#' @param SampleNames [character] (**with default**): Vector of sample names.
 #'
 #' @param BinPerSample [numeric] (*with default*): Vector of numbers indicating the number of .bin-files per sample.
 #'
@@ -98,7 +98,7 @@
 #' @export
 write_BayLumFiles <- function(
     folder,
-    SampleNames,
+    SampleNames = "Sample_1",
     BinPerSample = rep(1, length(SampleNames)),
     SubSampleNames = NULL,
     DiscPos = NULL,
@@ -162,8 +162,8 @@ write_BayLumFiles <- function(
 
   ##create main folder and sample folder ####
   for (i in 1:length(SampleNames)) {
-    dir.create(folder, showWarnings = F)
-    dir.create(paste(folder, SampleNames[i], sep = "/"), showWarnings = F)
+    dir.create(folder, showWarnings = FALSE)
+    dir.create(paste(folder, SampleNames[i], sep = "/"), showWarnings = FALSE)
   }
 
   ##find which samples have only one bin-file to it ####
@@ -181,7 +181,7 @@ write_BayLumFiles <- function(
 
   ##create the last line of folders, which will be the subsample (if > 1) folders
   for (n in 1:length(SampleNames_expanded)) {
-    dir.create(sub.dir[n], showWarnings = F)
+    dir.create(sub.dir[n], showWarnings = FALSE)
   }
 
   ##create necessary csv files for BayLum ####
@@ -192,7 +192,7 @@ write_BayLumFiles <- function(
       write.csv(
         data.frame("position" = c(1,1,1), "grain" = c(1,2,3)),
         paste(sub.dir[i], "DiscPos.csv", sep = "/"),
-        row.names = F
+        row.names = FALSE
       )
     } else {
       # check if DiscPos is a data frame and convert if not (useful when multi-grain and user did not bother to input vector of aliquots as data.frame)
@@ -205,7 +205,7 @@ write_BayLumFiles <- function(
         write.csv(
           data.frame("position" = DiscPos[[i]][, 1]),
           paste(sub.dir[i], "Disc.csv", sep = "/"),
-          row.names = F
+          row.names = FALSE
         )
       }
 
@@ -214,7 +214,7 @@ write_BayLumFiles <- function(
         write.csv(
           data.frame("position" = DiscPos[[i]][, 1], "grain" = DiscPos[[i]][, 2]),
           paste(sub.dir[i], "DiscPos.csv", sep = "/"),
-          row.names = F
+          row.names = FALSE
         )
       }
     }
@@ -227,7 +227,7 @@ write_BayLumFiles <- function(
         "var" = arg.list$DRsource.error[i] ^ 2
       ),
       paste(sub.dir[i], "DoseSource.csv", sep = "/"),
-      row.names = F
+      row.names = FALSE
     )
 
     ##write dose env ####
@@ -237,7 +237,7 @@ write_BayLumFiles <- function(
         "var" = arg.list$DRenv.error[i] ^ 2
       ),
       paste(sub.dir[i], "DoseEnv.csv", sep = "/"),
-      row.names = F
+      row.names = FALSE
     )
 
     ##write rule ####
@@ -279,8 +279,8 @@ write_BayLumFiles <- function(
         check.names = FALSE
       ),
       paste(sub.dir[i], "rule.csv", sep = "/"),
-      row.names = F,
-      quote = F
+      row.names = FALSE,
+      quote = FALSE
     )
 
   }
