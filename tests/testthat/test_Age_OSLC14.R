@@ -42,13 +42,14 @@ test_that("Full function test", {
       PriorAge = prior,
       StratiConstraints = SC,
       Iter = 50,
+      adapt = 50,
+      burnin = 50,
       n.chains = 2
     )
   ), class = "BayLum.list")
 
-  ## check autorun mode via creating an error (everything else takes too long)
-  expect_error(
-    Age_OSLC14(
+  ## check  mode via creating an error (everything else takes too long)
+  expect_s3_class(suppressWarnings(Age_OSLC14(
       DATA = Data,
       jags_method = 'rjparallel',
       Data_C14Cal = C14Cal,
@@ -59,9 +60,11 @@ test_that("Full function test", {
       PriorAge = prior,
       StratiConstraints = SC,
       Iter = 50,
+      burnin = 20,
+      adapt = 20,
       n.chains = 2,
       startburnin = 50,
-      startsample = 400))
+      startsample = 400)), "BayLum.list")
 
   ##crash function for wrong ordering
   samplenature <-
