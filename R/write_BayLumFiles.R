@@ -43,7 +43,7 @@
 
 #' @seealso [Generate_DataFile], [Generate_DataFile_MG]
 #'
-#' @return There will be no output if the function ran as intended.
+#' @return The function returns nothing, but writes the folder structure.
 #'
 #' @examples
 #' # example samples
