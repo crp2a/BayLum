@@ -114,10 +114,10 @@ write_BayLumFiles <- function(
     nbOfLastCycleToRemove = 2
 ) {
   ##expand SampleNames to reflect all eventual directories
-  SampleNames_expanded = rep(SampleNames, BinPerSample)
+  SampleNames_expanded <- rep(SampleNames, BinPerSample)
 
   ## make list of arguments
-  arg.list = mget(
+  arg.list <- mget(
     c(
       "DRenv",
       "DRenv.error",
@@ -141,13 +141,13 @@ write_BayLumFiles <- function(
 
   ##make the vector of subsamplenames when subsamples exist, but are not named ####
   if (is.null(SubSampleNames)) {
-    SubSampleNames = unlist(sapply(BinPerSample, function(n) {
+    SubSampleNames <- unlist(sapply(BinPerSample, function(n) {
       1:n
     }))
   }
 
   ##check for correct input and stop if missing inputs exist
-  arg.fail = sapply(1:length(arg.list), function(x) {
+  arg.fail <- sapply(1:length(arg.list), function(x) {
     length(arg.list[[x]]) != length(SampleNames_expanded)
   })
 
@@ -175,7 +175,7 @@ write_BayLumFiles <- function(
   ##if sample has 2 or more subsamples then add those extra subsample path lines to vector of all sample paths ####
   for (i in 1:length(SampleNames_expanded)) {
     if (duplicate_SampleNames[i]) {
-      sub.dir[i] = paste(folder, SampleNames_expanded[i], SubSampleNames[i], sep = "/")
+      sub.dir[i] <- paste(folder, SampleNames_expanded[i], SubSampleNames[i], sep = "/")
     }
   }
 
