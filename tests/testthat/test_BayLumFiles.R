@@ -2,6 +2,8 @@ test_that("BayLumFiles", {
   testthat::skip_on_cran()
   local_edition(3)
 
+  ## simple run (no error expected)
+  expect_silent(write_BayLumFiles(folder = tempdir(), SampleNames = "test"))
 
   ## crash function
     ## wrong number of arguments

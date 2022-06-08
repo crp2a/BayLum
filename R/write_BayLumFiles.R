@@ -11,7 +11,7 @@
 #'
 #' @section Function version: 0.1.0
 #'
-#' @param folder [character] (**with default**): The name of the main folder in which all subsequent BayLum files and folders will be located. This could be a path to an already existing folder, or the path/name of a folder to be created.
+#' @param folder [character] (*required**): The name of the main folder in which all subsequent BayLum files and folders will be located. This could be a path to an already existing folder, or the path/name of a folder to be created.
 #'
 #' @param SampleNames [character] (**required**): Vector of sample names.
 #'
@@ -97,7 +97,7 @@
 #' @md
 #' @export
 write_BayLumFiles <- function(
-    folder = "BayLum_files",
+    folder,
     SampleNames,
     BinPerSample = rep(1, length(SampleNames)),
     SubSampleNames = NULL,
