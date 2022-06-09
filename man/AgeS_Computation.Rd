@@ -113,7 +113,7 @@ see details section for more informations.}
 
 \item{n.chains}{\link{integer} (with default): number of independent chains for the model (for more information see \link[runjags:run.jags]{runjags::run.jags}).}
 
-\item{jags_method}{\link{character} (with default): select which method to use in order to call JAGS, supported are  \code{"rjags"} (the default), \code{rjparallel}, \code{simple}, \code{interruptible}, \code{parallel}, and \code{snow} (for more information about each of these possibilities, see \link[runjags:run.jags]{runjags::run.jags})}
+\item{jags_method}{\link{character} (with default): select which method to use in order to call JAGS. jags_methods \code{"rjags"} (the default) and \code{"rjparallel"} have been tested. (for more information about these possibilities and others, see \link[runjags:run.jags]{runjags::run.jags})}
 
 \item{autorun}{\link{logical} (with default): choose to automate JAGS processing. JAGS model will be automatically extended until convergence is reached (for more information see \link[runjags:autorun.jags]{runjags::autorun.jags}).}
 
@@ -121,8 +121,8 @@ see details section for more informations.}
 
 \item{roundingOfValue}{\link{integer} (with default):  Integer indicating the number of decimal places to be used, default = 3.}
 
-\item{...}{further arguments that can be passed to control the Bayesian process, see details
-for supported arguments}
+\item{...}{further arguments that can be passed to control the Bayesian process. 1) When creating a new JAGS model, see details
+for supported arguments. 2) If extending a JAGS model see arguments of \link[runjags:run.jags]{runjags::extend.JAGS}.}
 }
 \value{
 \strong{NUMERICAL OUTPUT}
@@ -284,46 +284,77 @@ initial value generation of JAGS. This is not optimal and will be changed in fut
 of the age estimates if the chains have converged.
 }
 \examples{
-
 ## Age computation of samples GDB5 and GDB3,
+## load data
+data(DATA2) # GD85
+data(DATA1) # GD83
+
+## produce DataFile
+Data <- combine_DataFiles(DATA2, DATA1)
+
 ## without common error, assuming GDB5 age younger than GDB3 age
-\dontrun{
 Nb_sample <- 2
 SC <- matrix(
   data = c(1,1,0,1,0,0),
   ncol = 2,
-  nrow = (Nb_sample+1),byrow = T)
+  nrow = (Nb_sample+1),
+  byrow = TRUE)
 
-##standard
+\dontrun{
+## run standard
 Age <- AgeS_Computation(
- DATA = Data,
- Nb_sample = Nb_sample,
- SampleNames = c("GDB5","GDB3"),
- PriorAge = priorage,
- StratiConstraints = SC,
- Iter = 10000,
- quiet = FALSE,
- jags_method = "rjags"
- )
+  DATA = Data,
+  Nb_sample = Nb_sample,
+  SampleNames = c("GDB5","GDB3"),
+  PriorAge = rep(c(1,100), 2),
+  StratiConstraints = SC,
+  Iter = 100,
+  quiet = FALSE,
+  jags_method = "rjags"
+)
 
-##parallel mode
+## extend model
+Age_extended <- AgeS_Computation(
+  DATA = Age$runjags_object,
+  Nb_sample = Nb_sample,
+  SampleNames = c("GDB5","GDB3"),
+  PriorAge = rep(c(1,100), 2),
+  StratiConstraints = SC,
+  adapt = 0,
+  burnin = 500,
+  Iter = 1000,
+  quiet = FALSE,
+  jags_method = "rjags"
+)
+
+## autorun mode
 Age <- AgeS_Computation(
- DATA = Data,
- Nb_sample = Nb_sample,
- SampleNames = c("GDB5","GDB3"),
- PriorAge = priorage,
- StratiConstraints = SC,
- Iter = 10000,
- quiet = FALSE,
- jags_method = "rjparallel")
+  DATA = Data,
+  Nb_sample = Nb_sample,
+  SampleNames = c("GDB5","GDB3"),
+  PriorAge = rep(c(1,100), 2),
+  StratiConstraints = SC,
+  Iter = 10000,
+  quiet = FALSE,
+  jags_method = "rjags",
+  autorun = TRUE)
 
-
+## parallel mode
+Age <- AgeS_Computation(
+  DATA = Data,
+  Nb_sample = Nb_sample,
+  SampleNames = c("GDB5","GDB3"),
+  PriorAge = rep(c(1,100), 2),
+  StratiConstraints = SC,
+  Iter = 10000,
+  quiet = FALSE,
+  jags_method = "rjparallel")
 }
 
 } 
 
 \section{How to cite}{
-Christophe, C., Philippe, A., Guérin, G., Kreutzer, S., 2022. AgeS_Computation(): Bayesian analysis for OSL age estimation of various samples. In: Christophe, C., Philippe, A., Kreutzer, S., Guérin, G., 2022. BayLum: Chronological Bayesian Models Integrating Optically Stimulated. R package version 0.2.2.9000-15. https://CRAN.r-project.org/package=BayLum
+Christophe, C., Philippe, A., Guérin, G., Kreutzer, S., 2022. AgeS_Computation(): Bayesian analysis for OSL age estimation of various samples. In: Christophe, C., Philippe, A., Kreutzer, S., Guérin, G., 2022. BayLum: Chronological Bayesian Models Integrating Optically Stimulated. R package version 0.2.2.9000-17. https://CRAN.r-project.org/package=BayLum
 }
 
 \references{
@@ -336,7 +367,7 @@ A Bayesian central equivalent dose model for optically stimulated luminescence d
 Quaternary Geochronology 28, 62-70. doi:10.1016/j.quageo.2015.04.001
 }
 \seealso{
-\link{Generate_DataFile}, \link{Generate_DataFile_MG}, \link{rjags}, \link{plot_MCMC}, \link{SCMatrix}, \link{Age_Computation}, \link{Palaeodose_Computation}, \link{plot_Ages}, \link{create_ThetaMatrix}, \link[runjags:autorun.jags]{runjags::autorun.jags}
+\link{Generate_DataFile}, \link{Generate_DataFile_MG}, \link{rjags}, \link{plot_MCMC}, \link{SCMatrix}, \link{Age_Computation}, \link{Palaeodose_Computation}, \link{plot_Ages}, \link{create_ThetaMatrix}, \link{runjags}
 }
 \author{
 Claire Christophe, Anne Philippe, Guillaume Guérin, Sebastian Kreutzer
