@@ -269,7 +269,8 @@
 #' SC <- matrix(
 #'   data = c(1,1,0,1,0,0),
 #'   ncol = 2,
-#'   nrow = (Nb_sample+1),byrow = T)
+#'   nrow = (Nb_sample+1),
+#'   byrow = TRUE)
 #'
 #'\dontrun{
 #' ## run standard
@@ -283,7 +284,7 @@
 #'   quiet = FALSE,
 #'   jags_method = "rjags"
 #' )
-#' 
+#'
 #' ## extend model
 #' Age_extended <- AgeS_Computation(
 #'   DATA = Age$runjags_object,
@@ -297,7 +298,7 @@
 #'   quiet = FALSE,
 #'   jags_method = "rjags"
 #' )
-#' 
+#'
 #' ## autorun mode
 #' Age <- AgeS_Computation(
 #'   DATA = Data,
@@ -307,9 +308,9 @@
 #'   StratiConstraints = SC,
 #'   Iter = 10000,
 #'   quiet = FALSE,
-#'   jags_method = "rjags", 
+#'   jags_method = "rjags",
 #'   autorun = TRUE)
-#' 
+#'
 #' ## parallel mode
 #' Age <- AgeS_Computation(
 #'   DATA = Data,
