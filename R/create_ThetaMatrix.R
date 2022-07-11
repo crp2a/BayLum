@@ -2,7 +2,7 @@
 #'
 #' @description Create the \eqn{\Theta} matrix with the shared uncertainties
 #' that can used as input in, e.g., [AgeS_Computation] and [Age_OSLC14] which is used for the
-#' covariance matrix \eqn{\Sigma} (Combès \& Philippe, 2017)
+#' covariance matrix \eqn{\Sigma} (Combès & Philippe, 2017)
 #'
 #' @details The function intends to ease the creation of the \eqn{Theta} matrix, which cannot be
 #' created straight forward, e.g., base R functions such as `stats::cov`.
@@ -10,7 +10,7 @@
 #'
 #' \deqn{\Sigma_ij = A_i * A_j * \Theta_ij}
 #'
-#' For details see Combès \& Philippe, 2017 and Guérin et al. (under review).
+#' For details see Combès & Philippe, 2017 and Guérin et al. (under review).
 #'
 #' **Input modes**
 #'

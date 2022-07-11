@@ -34,3 +34,4 @@ work with `'BayLum'`.
 
 ## Internals
 * A few fixes regarding string comparisons in `if()` conditions.
+* Fix CRAN warning regarding `Escaped LaTeX specials: \&`
