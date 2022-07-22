@@ -105,7 +105,7 @@ plot_Scatterplots <- function(
 
   # Verify input --------------------------------------------------------------------------------
   if (is.null(attributes(object)$class) || attributes(object)$class != "mcmc.list")
-    if(class(object) != "data.frame"){
+    if(!inherits(object, "data.frame")){
       stop("[plot_Scatterplots()] Wrong input, only objects of type 'mcmc.list' or single 'data.frame' are allowed. Please check the manual!",
            call. = FALSE
       )
