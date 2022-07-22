@@ -32,7 +32,7 @@ Claire Christophe, Anne Philippe, Sebastian Kreutzer, Guillaume Guérin
 } 
 
 \section{How to cite}{
-Christophe, C., Philippe, A., Kreutzer, S., Guérin, G., 2022. SC_Ordered(): Create stratigraphically ordered sample matrix. In: Christophe, C., Philippe, A., Kreutzer, S., Guérin, G., 2022. BayLum: Chronological Bayesian Models Integrating Optically Stimulated. R package version 0.2.2.9000-18. https://CRAN.r-project.org/package=BayLum
+Christophe, C., Philippe, A., Kreutzer, S., Guérin, G., 2022. SC_Ordered(): Create stratigraphically ordered sample matrix. In: Christophe, C., Philippe, A., Kreutzer, S., Guérin, G., Baumgarten, F.H., 2022. BayLum: Chronological Bayesian Models Integrating Optically Stimulated. R package version 0.2.2.9000-21. https://CRAN.r-project.org/package=BayLum
 }
 
 \keyword{datagen}
