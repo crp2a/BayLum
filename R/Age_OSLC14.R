@@ -322,11 +322,21 @@
 #' Names <- DATA_C14$Names[1]
 #'
 #' # Prior Age
-#' prior=rep(c(1,60),3)
-#' samplenature=matrix(data=c(1,0,1,0,1,0),ncol=3,nrow=2,byrow=TRUE)
-#' SC <- matrix(data=c(1,1,1,0,1,1,0,0,1,0,0,0),ncol=3,nrow=4,byrow=TRUE)
+#' prior <- rep(c(1,60),3)
+#' samplenature <- matrix(
+#'  data = c(1,0,1,0,1,0),
+#'  ncol = 3,
+#'  nrow = 2,
+#'  byrow = TRUE)
+#'
+#' SC <- matrix(
+#'  data = c(1,1,1,0,1,1,0,0,1,0,0,0),
+#'  ncol = 3,
+#'  nrow =4 ,
+#'  byrow = TRUE)
 #'
 #' ## Age computation of samples
+#' \dontrun{
 #' Age <- Age_OSLC14(
 #'  DATA = Data,
 #'  Data_C14Cal = C14Cal,
@@ -340,6 +350,7 @@
 #'  burnin = 20,
 #'  adapt = 20,
 #'  n.chains = 2)
+#' }
 #'
 #' @md
 #' @export
