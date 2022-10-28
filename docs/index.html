@@ -35,7 +35,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">BayLum</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.2.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.3.0</span>
       </span>
     </div>
 
@@ -87,47 +87,37 @@
       </header><div class="row">
   <div class="contents col-md-9">
 <div class="section level1">
-<div class="page-header"><h1 id="baylum-">BayLum
-<img width="120px" src="reference/figures/BayLum_logo.png" align="right"><a class="anchor" aria-label="anchor" href="#baylum-"></a>
+<div class="page-header"><h1 id="baylum-">BayLum <img width="120px" src="reference/figures/BayLum_logo.png" align="right"><a class="anchor" aria-label="anchor" href="#baylum-"></a>
 </h1></div>
 
-<p>An R package for chronological <strong>Bay</strong>esian models
-integrated for Optically Stimulated (OSL) <strong>Lum</strong>inescence
-Dating</p>
+<p>An R package for chronological <strong>Bay</strong>esian models integrated for Optically Stimulated (OSL) <strong>Lum</strong>inescence Dating</p>
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
-<p>To install the latest development builds directly from GitHub,
-run</p>
+<p>To install the latest development builds directly from GitHub, run</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw">if</span><span class="op">(</span><span class="op">!</span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="st"><a href="https://devtools.r-lib.org/" class="external-link">"devtools"</a></span><span class="op">)</span><span class="op">)</span>
-  <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"devtools"</span><span class="op">)</span>
-<span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://devtools.r-lib.org/reference/remote-reexports.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"crp2a/BayLum@master"</span><span class="op">)</span></code></pre></div>
-<p>To install a developer build other than ‘master’, replace the term
-‘master’ in the codeline by the name of the wanted developer build.</p>
-<p><strong>Please note that you need to have <a href="https://mcmc-jags.sourceforge.io" class="external-link">JAGS</a> installed on your
-computer</strong></p>
+<code class="sourceCode R"><span><span class="kw">if</span><span class="op">(</span><span class="op">!</span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="st"><a href="https://devtools.r-lib.org/" class="external-link">"devtools"</a></span><span class="op">)</span><span class="op">)</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"devtools"</span><span class="op">)</span></span>
+<span><span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"crp2a/BayLum@master"</span><span class="op">)</span></span></code></pre></div>
+<p>To install a developer build other than ‘master’, replace the term ‘master’ in the codeline by the name of the wanted developer build.</p>
+<p><strong>Please note that you need to have <a href="https://mcmc-jags.sourceforge.io" class="external-link">JAGS</a> installed on your computer</strong></p>
 </div>
 <div class="section level2">
 <h2 id="note">Note<a class="anchor" aria-label="anchor" href="#note"></a>
 </h2>
 <p><strong>The package comes without any guarantee!</strong></p>
-<p>Please further note that this version is a development version and
-may change day by day. For stable branches please visit the package on
-<a href="https://CRAN.R-project.org/package=BayLum" class="external-link">CRAN
-‘BayLum’</a>.</p>
+<p>Please further note that this version is a development version and may change day by day. For stable branches please visit the package on <a href="https://CRAN.R-project.org/package=BayLum" class="external-link">CRAN ‘BayLum’</a>.</p>
+</div>
+<div class="section level2">
+<h2 id="funding">Funding<a class="anchor" aria-label="anchor" href="#funding"></a>
+</h2>
+<p>The development of <code>'BayLum'</code> was supported by <a href="https://lascarbx.labex.u-bordeaux.fr" class="external-link">LabEx LaScArBx (ANR -n.ANR-10-LABX-52)</a> between 2015 and 2018 (in particular through the MAM and COVADIM projects).</p>
 </div>
 <div class="section level2">
 <h2 id="license">License<a class="anchor" aria-label="anchor" href="#license"></a>
 </h2>
-<p>This program is free software: you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by the
-Free Software Foundation, either version 3 of the License, or any later
-version.</p>
-<p>This program is distributed in the hope that it will be useful, but
-WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the <a href="https://github.com/crp2a/BayLum/blob/master/LICENSE" class="external-link">GNU General
-Public License</a> for more details.</p>
+<p>This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or any later version.</p>
+<p>This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the <a href="https://github.com/crp2a/BayLum/blob/master/LICENSE" class="external-link">GNU General Public License</a> for more details.</p>
 </div>
 </div>
   </div>
@@ -163,8 +153,8 @@ Public License</a> for more details.</p>
 <li>Claire Christophe <br><small class="roles"> Author </small>  </li>
 <li>Anne Philippe <br><small class="roles"> Author, maintainer </small> <a href="https://orcid.org/0000-0002-5331-5087" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
 <li>Sebastian Kreutzer <br><small class="roles"> Author </small> <a href="https://orcid.org/0000-0002-0734-2199" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
-<li>Guillaume Guerin <br><small class="roles"> Author </small> <a href="https://orcid.org/0000-0001-6298-5579" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
-<li><a href="authors.html">More about authors...</a></li>
+<li>Guillaume Guérin <br><small class="roles"> Author </small> <a href="https://orcid.org/0000-0001-6298-5579" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
+<li>Frederik Harly Baumgarten <br><small class="roles"> Author </small> <a href="https://orcid.org/0000-0002-4374-5948" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
 </ul>
 </div>
 
@@ -187,14 +177,12 @@ Public License</a> for more details.</p>
 
       <footer><div class="copyright">
   <p></p>
-<p>Developed by Claire Christophe, Anne Philippe, Sebastian Kreutzer,
-Guillaume Guerin.</p>
+<p>Developed by Claire Christophe, Anne Philippe, Sebastian Kreutzer, Guillaume Guérin, Frederik Harly Baumgarten.</p>
 </div>
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a>
-2.0.2.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer>

@@ -18,7 +18,7 @@ for samples that are all ordered by increasing age."><!-- mathjax --><script src
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">BayLum</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.2.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.3.0</span>
       </span>
     </div>
 
@@ -74,17 +74,20 @@ for samples that are all ordered by increasing age.</p>
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">SC_Ordered</span><span class="op">(</span><span class="va">Nb_sample</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">SC_Ordered</span><span class="op">(</span><span class="va">Nb_sample</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>Nb_sample</dt>
 <dd><p><a href="https://rdrr.io/r/base/integer.html" class="external-link">integer</a> (<strong>required</strong>): the number of samples</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>Stratigraphic matrix where each sample are ordered by increasing order.
+    
+
+<p>Stratigraphic matrix where each sample are ordered by increasing order.
 This matrix can be intergrated in the function <a href="AgeS_Computation.html">AgeS_Computation</a>.
 Please see <a href="AgeS_Computation.html">AgeS_Computation</a> for more information on this matrix.</p>
     </div>
@@ -98,15 +101,15 @@ Please see <a href="AgeS_Computation.html">AgeS_Computation</a> for more informa
     </div>
     <div id="how-to-cite">
     <h2>How to cite</h2>
-    <p>Christophe, C., Philippe, A., Kreutzer, S., 2022. SC_Ordered(): Create stratigraphically ordered sample matrix. In: Christophe, C., Philippe, A., Kreutzer, S., Guerin, G., 2022. BayLum: Chronological Bayesian Models Integrating Optically Stimulated. R package version 0.2.1. https://CRAN.r-project.org/package=BayLum</p>
+    <p>Christophe, C., Philippe, A., Kreutzer, S., Guérin, G., 2022. SC_Ordered(): Create stratigraphically ordered sample matrix. In: Christophe, C., Philippe, A., Kreutzer, S., Guérin, G., Baumgarten, F.H., 2022. BayLum: Chronological Bayesian Models Integrating Optically Stimulated. R package version 0.3.0. https://CRAN.r-project.org/package=BayLum</p>
     </div>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="co"># compute the stratigraphic matrix for 3 samples such that the first sample is younger</span></span>
-<span class="r-in"><span class="co"># than the second, and the second is younger than the third</span></span>
-<span class="r-in"><span class="va">SC</span> <span class="op">&lt;-</span> <span class="fu">SC_Ordered</span><span class="op">(</span>Nb_sample <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span>
-<span class="r-in"></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># compute the stratigraphic matrix for 3 samples such that the first sample is younger</span></span></span>
+<span class="r-in"><span><span class="co"># than the second, and the second is younger than the third</span></span></span>
+<span class="r-in"><span><span class="va">SC</span> <span class="op">&lt;-</span> <span class="fu">SC_Ordered</span><span class="op">(</span>Nb_sample <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -117,13 +120,11 @@ Please see <a href="AgeS_Computation.html">AgeS_Computation</a> for more informa
 
 
       <footer><div class="copyright">
-  <p></p><p>Developed by Claire Christophe, Anne Philippe, Sebastian Kreutzer,
-Guillaume Guerin.</p>
+  <p></p><p>Developed by Claire Christophe, Anne Philippe, Sebastian Kreutzer, Guillaume Guérin, Frederik Harly Baumgarten.</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a>
-2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

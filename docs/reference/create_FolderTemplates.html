@@ -21,7 +21,7 @@ The function uses the example data of BayLum to create the templates."><!-- math
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">BayLum</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.2.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.3.0</span>
       </span>
     </div>
 
@@ -80,13 +80,13 @@ The function uses the example data of <code>BayLum</code> to create the template
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">create_FolderTemplates</span><span class="op">(</span>
-  <span class="va">path</span>,
-  mode <span class="op">=</span> <span class="st">"SG"</span>,
-  n_folders <span class="op">=</span> <span class="fl">1</span>,
-  names <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="st">"Sample_"</span>, <span class="fl">1</span><span class="op">:</span><span class="va">n_folders</span><span class="op">)</span>,
-  verbose <span class="op">=</span> <span class="cn">TRUE</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">create_FolderTemplates</span><span class="op">(</span></span>
+<span>  <span class="va">path</span>,</span>
+<span>  mode <span class="op">=</span> <span class="st">"SG"</span>,</span>
+<span>  n_folders <span class="op">=</span> <span class="fl">1</span>,</span>
+<span>  names <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="st">"Sample_"</span>, <span class="fl">1</span><span class="op">:</span><span class="va">n_folders</span><span class="op">)</span>,</span>
+<span>  verbose <span class="op">=</span> <span class="cn">TRUE</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -94,20 +94,31 @@ The function uses the example data of <code>BayLum</code> to create the template
     <dl><dt>path</dt>
 <dd><p><a href="https://rdrr.io/r/base/character.html" class="external-link">character</a> (<strong>required</strong>): path to the folder where the templates
 should be created</p></dd>
+
+
 <dt>mode</dt>
 <dd><p><a href="https://rdrr.io/r/base/character.html" class="external-link">character</a> (<em>with default</em>): depending on the dataset you can
 create templates or single grain (<code>SG</code>) or multi-grain (<code>MG</code>) data</p></dd>
+
+
 <dt>n_folders</dt>
 <dd><p><a href="https://rdrr.io/r/base/numeric.html" class="external-link">numeric</a> (<em>with default</em>): number of template folders
 to be created</p></dd>
+
+
 <dt>names</dt>
 <dd><p><a href="https://rdrr.io/r/base/character.html" class="external-link">character</a> (<em>optional</em>): allows give own names to the subfolders.</p></dd>
+
+
 <dt>verbose</dt>
 <dd><p><a href="https://rdrr.io/r/base/logical.html" class="external-link">logical</a> (<em>with default</em>): enables/disables verbose mode</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>If the templates were created successfully on the hard drive, the function
+    
+
+<p>If the templates were created successfully on the hard drive, the function
 returns nothing.</p>
     </div>
     <div id="function-version">
@@ -125,19 +136,19 @@ returns nothing.</p>
     </div>
     <div id="how-to-cite">
     <h2>How to cite</h2>
-    <p>Kreutzer, S., 2022. create_FolderTemplates(): Create Folder Templates. Function version 0.1.0. In: Christophe, C., Philippe, A., Kreutzer, S., Guerin, G., 2022. BayLum: Chronological Bayesian Models Integrating Optically Stimulated. R package version 0.2.1. https://CRAN.r-project.org/package=BayLum</p>
+    <p>Kreutzer, S., 2022. create_FolderTemplates(): Create Folder Templates. Function version 0.1.0. In: Christophe, C., Philippe, A., Kreutzer, S., Guérin, G., Baumgarten, F.H., 2022. BayLum: Chronological Bayesian Models Integrating Optically Stimulated. R package version 0.3.0. https://CRAN.r-project.org/package=BayLum</p>
     </div>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="fu">create_FolderTemplates</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">create_FolderTemplates</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [create_FolderTemplates()]</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> -|</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  |__(dir created:) /var/folders/yz/3s5p1pss4352wtlzt9_bzbp00000gp/T//RtmpNzwGLb </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  |__(dir created:) /var/folders/yz/3s5p1pss4352wtlzt9_bzbp00000gp/T//RtmpAb1qsH </span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> All templates created. Please modify the parameters according to your data!</span>
-<span class="r-in"></span>
-<span class="r-in"></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -148,13 +159,11 @@ returns nothing.</p>
 
 
       <footer><div class="copyright">
-  <p></p><p>Developed by Claire Christophe, Anne Philippe, Sebastian Kreutzer,
-Guillaume Guerin.</p>
+  <p></p><p>Developed by Claire Christophe, Anne Philippe, Sebastian Kreutzer, Guillaume Guérin, Frederik Harly Baumgarten.</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a>
-2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

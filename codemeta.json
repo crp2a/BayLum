@@ -199,7 +199,7 @@
     },
     "SystemRequirements": "JAGS >= 4.3.1 (https://mcmc-jags.sourceforge.io/)"
   },
-  "fileSize": "3157.393KB",
+  "fileSize": "3147.484KB",
   "citation": [
     {
       "@type": "SoftwareSourceCode",

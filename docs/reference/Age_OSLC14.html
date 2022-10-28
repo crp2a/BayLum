@@ -24,7 +24,7 @@ Northern or Southern Hemisphere or marine atmospheric."><!-- mathjax --><script 
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">BayLum</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.2.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.3.0</span>
       </span>
     </div>
 
@@ -86,63 +86,78 @@ Northern or Southern Hemisphere or marine atmospheric.</p>
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">Age_OSLC14</span><span class="op">(</span>
-  <span class="va">DATA</span>,
-  <span class="va">Data_C14Cal</span>,
-  <span class="va">Data_SigmaC14Cal</span>,
-  <span class="va">Nb_sample</span>,
-  <span class="va">SampleNames</span>,
-  <span class="va">SampleNature</span>,
-  PriorAge <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">60</span><span class="op">)</span>, <span class="va">Nb_sample</span><span class="op">)</span>,
-  SavePdf <span class="op">=</span> <span class="cn">FALSE</span>,
-  OutputFileName <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"MCMCplot"</span>, <span class="st">"HPD_Cal14CCurve"</span>, <span class="st">"summary"</span><span class="op">)</span>,
-  OutputFilePath <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">""</span><span class="op">)</span>,
-  SaveEstimates <span class="op">=</span> <span class="cn">FALSE</span>,
-  OutputTableName <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"DATA"</span><span class="op">)</span>,
-  OutputTablePath <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">""</span><span class="op">)</span>,
-  StratiConstraints <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">)</span>,
-  sepSC <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">","</span><span class="op">)</span>,
-  BinPerSample <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">SampleNature</span><span class="op">[</span><span class="fl">1</span>, <span class="op">]</span><span class="op">)</span><span class="op">)</span>,
-  THETA <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">)</span>,
-  sepTHETA <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">","</span><span class="op">)</span>,
-  LIN_fit <span class="op">=</span> <span class="cn">TRUE</span>,
-  Origin_fit <span class="op">=</span> <span class="cn">FALSE</span>,
-  distribution <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"cauchy"</span><span class="op">)</span>,
-  Model_C14 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"full"</span><span class="op">)</span>,
-  CalibrationCurve <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"IntCal20"</span><span class="op">)</span>,
-  Iter <span class="op">=</span> <span class="fl">50000</span>,
-  t <span class="op">=</span> <span class="fl">5</span>,
-  n.chains <span class="op">=</span> <span class="fl">3</span>,
-  jags_method <span class="op">=</span> <span class="st">"rjags"</span>,
-  quiet <span class="op">=</span> <span class="cn">FALSE</span>,
-  roundingOfValue <span class="op">=</span> <span class="fl">3</span>,
-  <span class="va">...</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">Age_OSLC14</span><span class="op">(</span></span>
+<span>  <span class="va">DATA</span>,</span>
+<span>  <span class="va">Data_C14Cal</span>,</span>
+<span>  <span class="va">Data_SigmaC14Cal</span>,</span>
+<span>  <span class="va">Nb_sample</span>,</span>
+<span>  <span class="va">SampleNames</span>,</span>
+<span>  <span class="va">SampleNature</span>,</span>
+<span>  PriorAge <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">60</span><span class="op">)</span>, <span class="va">Nb_sample</span><span class="op">)</span>,</span>
+<span>  SavePdf <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  OutputFileName <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"MCMCplot"</span>, <span class="st">"HPD_Cal14CCurve"</span>, <span class="st">"summary"</span><span class="op">)</span>,</span>
+<span>  OutputFilePath <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">""</span><span class="op">)</span>,</span>
+<span>  SaveEstimates <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  OutputTableName <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"DATA"</span><span class="op">)</span>,</span>
+<span>  OutputTablePath <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">""</span><span class="op">)</span>,</span>
+<span>  StratiConstraints <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<span>  sepSC <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">","</span><span class="op">)</span>,</span>
+<span>  BinPerSample <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">SampleNature</span><span class="op">[</span><span class="fl">1</span>, <span class="op">]</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>  THETA <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<span>  sepTHETA <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">","</span><span class="op">)</span>,</span>
+<span>  LIN_fit <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  Origin_fit <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  distribution <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"cauchy"</span><span class="op">)</span>,</span>
+<span>  Model_C14 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"full"</span><span class="op">)</span>,</span>
+<span>  CalibrationCurve <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"IntCal20"</span><span class="op">)</span>,</span>
+<span>  Iter <span class="op">=</span> <span class="fl">10000</span>,</span>
+<span>  burnin <span class="op">=</span> <span class="fl">4000</span>,</span>
+<span>  adapt <span class="op">=</span> <span class="fl">1000</span>,</span>
+<span>  t <span class="op">=</span> <span class="fl">5</span>,</span>
+<span>  n.chains <span class="op">=</span> <span class="fl">3</span>,</span>
+<span>  jags_method <span class="op">=</span> <span class="st">"rjags"</span>,</span>
+<span>  autorun <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  quiet <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  roundingOfValue <span class="op">=</span> <span class="fl">3</span>,</span>
+<span>  <span class="va">...</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>DATA</dt>
-<dd><p>list of objects: <code>LT</code>, <code>sLT</code>, <code>ITimes</code>, <code>dLab</code>, <code>ddot_env</code>, <code>regDose</code>, <code>J</code>,
-<code>K</code>, <code>Nb_measurement</code>, provided by the function <a href="Generate_DataFile.html">Generate_DataFile</a> or <a href="Generate_DataFile_MG.html">Generate_DataFile_MG</a> or <a href="combine_DataFiles.html">combine_DataFiles</a>.
+<dd><p>Two types of inputs are supported.
+(1): a list of objects: <code>LT</code>, <code>sLT</code>, <code>ITimes</code>, <code>dLab</code>, <code>ddot_env</code>, <code>regDose</code>, <code>J</code>,
+<code>K</code>, <code>Nb_measurement</code>, provided by the function <a href="Generate_DataFile.html">Generate_DataFile</a>, <a href="Generate_DataFile_MG.html">Generate_DataFile_MG</a> or <a href="combine_DataFiles.html">combine_DataFiles</a>.
 <code>DATA</code> contains information for more than one sample.
 If there is stratigraphic relations between samples, informations in DATA must be ordered by order of
-increasing ages. See the details section to for more informations.</p></dd>
+increasing ages. See the details section to for more informations.
+(2): an object of class "runjags" which is provided by the output of Age_OSLC14. When input of class "runjags" is identified, no new JAGS model is created. Instead, the JAGS model specified by the "runjags" object is extended. Useful for when convergence was not originally achieved and a complete restart is not desirable.</p></dd>
+
+
 <dt>Data_C14Cal</dt>
 <dd><p><a href="https://rdrr.io/r/base/numeric.html" class="external-link">numeric</a> vector: corresponding to C-14 age estimate
 (in years, conversion in ka is automatically done in the function).
 If there is stratigraphic relations between samples, <code>Data_C14Cal</code> must be ordered
 by order of increasing ages.</p></dd>
+
+
 <dt>Data_SigmaC14Cal</dt>
 <dd><p><a href="https://rdrr.io/r/base/numeric.html" class="external-link">numeric</a>: corresponding to the error of C-14 age estimates.</p></dd>
+
+
 <dt>Nb_sample</dt>
 <dd><p><a href="https://rdrr.io/r/base/numeric.html" class="external-link">numeric</a>: number of samples (OSL data and C-14 age),
 (<code>Nb_sample&gt;3</code>, at least to sample of OSL data and one sample of C-14 age).</p></dd>
+
+
 <dt>SampleNames</dt>
 <dd><p><a href="https://rdrr.io/r/base/character.html" class="external-link">character</a>: sample names for both OSL data and C14 data.
 The length of this vector is equal to <code>Nb_sample</code>.
 If there is stratigraphic relation, this vector must be ordered by increasing
 order (to mix OSL samples and C-14 ages if it is needed).</p></dd>
+
+
 <dt>SampleNature</dt>
 <dd><p><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a>: states the nature of the sample.
 Row number of <code>SampleNature</code> matrix is equal to <code>2</code> and column number is equal
@@ -150,70 +165,104 @@ to <code>Nb_sample</code>. First line of the matrix: <code>SampleNature[1,i]</co
 whose number ID is equal to <code>i</code>, is an OSL sample <code>1</code> or not <code>0</code>.
 Second line of the matrix: <code>SampleNature[2,i]</code> states if sample whose number ID
 is equal to <code>i</code>, is an C-14 sample <code>1</code> or not `0.</p></dd>
+
+
 <dt>PriorAge</dt>
 <dd><p><a href="https://rdrr.io/r/base/numeric.html" class="external-link">numeric</a> (with default): lower and upper bounds for age parameter of each sample <strong>(in ka)</strong>.
 Note that, <code>length(PriorAge) = 2*Nb_sample</code> sand <code>PriorAge[2i-1,2i]</code> corresponds
 to the lower and upper bounds of sample whose number ID is equal to <code>i</code>.</p></dd>
+
+
 <dt>SavePdf</dt>
 <dd><p><a href="https://rdrr.io/r/base/logical.html" class="external-link">logical</a> (with default): if <code>TRUE</code> save graphs in pdf file
 named <code>OutputFileName</code> in folder <code>OutputFilePath</code>.</p></dd>
+
+
 <dt>OutputFileName</dt>
 <dd><p><a href="https://rdrr.io/r/base/character.html" class="external-link">character</a> (with default): name of the pdf file that
 will be generated by the function if <code>SavePdf=TRUE</code>, <code>length(OutputFileName)=3</code>,
 see <strong>PLOT OUTPUT</strong> in <strong>Value</strong> section for more informations.</p></dd>
+
+
 <dt>OutputFilePath</dt>
 <dd><p><a href="https://rdrr.io/r/base/character.html" class="external-link">character</a> (with default): path to the pdf file that will
 be generated by the function if <code>SavePdf=TRUE</code>. If it is not equal to "", it must be terminated by "/".</p></dd>
+
+
 <dt>SaveEstimates</dt>
 <dd><p><a href="https://rdrr.io/r/base/logical.html" class="external-link">logical</a> (with default): if TRUE save Bayes' estimates,
 credible interval at level 68% and 95%  and the result of the Gelman en Rubin
 test of convergence, in a CSV-table named <code>OutputFileName</code> in folder <code>OutputFilePath</code>.</p></dd>
+
+
 <dt>OutputTableName</dt>
 <dd><p><a href="https://rdrr.io/r/base/character.html" class="external-link">character</a> (with default): name of the table that will
 be generated by the function if <code>SaveEstimates=TRUE</code>.</p></dd>
+
+
 <dt>OutputTablePath</dt>
 <dd><p><a href="https://rdrr.io/r/base/character.html" class="external-link">character</a> (with default): path to the table that will
 be generated by the function if <code>SaveEstimates=TRUE</code>. If it is not equal to "",
 it must be terminated by "/".</p></dd>
+
+
 <dt>StratiConstraints</dt>
 <dd><p><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a> or <a href="https://rdrr.io/r/base/character.html" class="external-link">character</a> (with default): input object for the
 stratigraphic relation between samples. If there is stratigraphic relation between
 samples see the details section for instructions regarding how to correctly fill <code>StratiConstraints</code>,
 the user can refer to a <a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a> or to a CSV-file <a href="https://rdrr.io/r/base/character.html" class="external-link">character</a>. Otherwise, default value is suitable.</p></dd>
+
+
 <dt>sepSC</dt>
 <dd><p><a href="https://rdrr.io/r/base/character.html" class="external-link">character</a> (with default): if <code>StratiConstraints</code> is character,
 indicate column separator in <code>StratiConstraints</code> CSV-file.</p></dd>
+
+
 <dt>BinPerSample</dt>
 <dd><p><a href="https://rdrr.io/r/base/numeric.html" class="external-link">numeric</a> (with default): vector with the number of BIN-files
 per OSL sample. The length of this vector is equal to the number of OSL samples.
 <code>BinPerSample[i]</code> corresponds to the number of BIN files for the sample whose
 number ID is equal to <code>i</code>.  For more information to fill this vector, we refer
 to details in <a href="Generate_DataFile.html">Generate_DataFile</a> or in <a href="Generate_DataFile_MG.html">Generate_DataFile_MG</a>.</p></dd>
+
+
 <dt>THETA</dt>
 <dd><p>numeric <a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a> or <a href="https://rdrr.io/r/base/character.html" class="external-link">character</a> (with default): input object for
 systematic and individual error for OSL samples. If systematic errors are considered,
 see the details section for instructions regarding how to correctly fill <code>THETA</code>;
 the user can refer to a matrix (numeric matrix) or to a csv file (character).
 Otherwise, default value is suitable, and only individual error is considered.</p></dd>
+
+
 <dt>sepTHETA</dt>
 <dd><p><a href="https://rdrr.io/r/base/character.html" class="external-link">character</a> (with default): if <code>THETA</code> is character,
 indicate column separator in <code>THETA</code> CSV-file.</p></dd>
+
+
 <dt>LIN_fit</dt>
 <dd><p><a href="https://rdrr.io/r/base/logical.html" class="external-link">logical</a> (with default): if <code>TRUE</code> (default) allows a linear component,
 on top of the (default) saturating exponential curve, for the fitting of dose response curves,
 for OSL samples. See details for more informations on the proposed dose response curves.</p></dd>
+
+
 <dt>Origin_fit</dt>
 <dd><p>p<a href="https://rdrr.io/r/base/logical.html" class="external-link">logical</a> (with default): if <code>TRUE</code>, forces the dose response
 curves to pass through the origin. See details for more informations on the proposed
 growth curves, for OSL samples.</p></dd>
+
+
 <dt>distribution</dt>
 <dd><p><a href="https://rdrr.io/r/base/character.html" class="external-link">character</a> (with default): type of distribution that defines
 how individual equivalent dose values are distributed around the palaeodose, for OSL samples.
 Allowed inputs are <code>"cauchy"</code>, <code>"gaussian"</code>, <code>"lognormal_A"</code> and <code>"lognormal_M"</code>,
 see details for more informations.</p></dd>
+
+
 <dt>Model_C14</dt>
 <dd><p><a href="https://rdrr.io/r/base/character.html" class="external-link">character</a> (with default): if <code>"full"</code>, error on estimate calibration
 curve is taken account, for C-14 samples.  If <code>"naive"</code> this error is not taken account in the age estimate.</p></dd>
+
+
 <dt>CalibrationCurve</dt>
 <dd><p><a href="https://rdrr.io/r/base/character.html" class="external-link">character</a> (with default): calibration curve chosen, for C-14 samples.
 Allowed inputs are</p><ul><li><p><b>"Intcal13"</b> or <b>"Intcal13"</b> for Northern Hemisphere atmospheric radiocarbon calibration curve,</p></li>
@@ -222,29 +271,60 @@ Allowed inputs are</p><ul><li><p><b>"Intcal13"</b> or <b>"Intcal13"</b> for Nort
 <li><p><b>a csv file, with tree columns, the first column is dedicated to "Cal.BP", the second to "XC-14.age", the third to "Error".
 The decimal of this file must be a dot, and the separator must be a comma. </b></p></li>
 </ul></dd>
+
+
 <dt>Iter</dt>
-<dd><p><a href="https://rdrr.io/r/base/numeric.html" class="external-link">numeric</a> (with default): number of iterations for the MCMC computation
-(for more information see <a href="https://rdrr.io/pkg/rjags/man/jags.model.html" class="external-link">rjags::jags.model</a>.</p></dd>
+<dd><p><a href="https://rdrr.io/r/base/integer.html" class="external-link">integer</a> (with default): the number of iterations to run and who will be used to assess convergence and ages (see <a href="https://rdrr.io/pkg/runjags/man/run.jags.html" class="external-link">runjags::run.jags</a>]).</p></dd>
+
+
+<dt>burnin</dt>
+<dd><p><a href="https://rdrr.io/r/base/integer.html" class="external-link">integer</a> (with default): the number of iterations used to "home in" on the stationary posterior distribution. These are not used for assessing convergence (see <a href="https://rdrr.io/pkg/runjags/man/run.jags.html" class="external-link">runjags::run.jags</a>]).</p></dd>
+
+
+<dt>adapt</dt>
+<dd><p><a href="https://rdrr.io/r/base/integer.html" class="external-link">integer</a> (with default): the number of iterations used in the adaptive phase of the simulation (see <a href="https://rdrr.io/pkg/runjags/man/run.jags.html" class="external-link">runjags::run.jags</a>]).</p></dd>
+
+
 <dt>t</dt>
 <dd><p><a href="https://rdrr.io/r/base/numeric.html" class="external-link">numeric</a> (with default): 1 every <code>t</code> iterations of the MCMC is
 considered for sampling the posterior distribution (for more information see [<a href="https://rdrr.io/pkg/rjags/man/jags.model.html" class="external-link">rjags::jags.model</a>.</p></dd>
+
+
 <dt>n.chains</dt>
 <dd><p><a href="https://rdrr.io/r/base/numeric.html" class="external-link">numeric</a> (with default): number of independent chains for the model
 (for more information see [<a href="https://rdrr.io/pkg/rjags/man/jags.model.html" class="external-link">rjags::jags.model</a>).</p></dd>
+
+
 <dt>jags_method</dt>
-<dd><p><a href="https://rdrr.io/r/base/character.html" class="external-link">character</a> (with default): select computation method, supported are  <code>"rjags"</code> (the default) and <code>rjparallel</code>
-using package <code>'runjags'</code>. The latter option uses the function <a href="https://rdrr.io/pkg/runjags/man/autorun.jags.html" class="external-link">runjags::autorun.jags</a> to allow a full automated processing.</p></dd>
+<dd><p><a href="https://rdrr.io/r/base/character.html" class="external-link">character</a> (with default): select which method to use in order to call JAGS, supported are  <code>"rjags"</code> (the default), <code>rjparallel</code>, <code>simple</code>, <code>interruptible</code>, <code>parallel</code>, and <code>snow</code> (for more information about each of these possibilities, see <a href="https://rdrr.io/pkg/runjags/man/run.jags.html" class="external-link">runjags::run.jags</a>])</p></dd>
+
+
+<dt>autorun</dt>
+<dd><p><a href="https://rdrr.io/r/base/logical.html" class="external-link">logical</a> (with default): choose to automate JAGS processing. JAGS model will be automatically extended until convergence is reached (for more information see <a href="https://rdrr.io/pkg/runjags/man/autorun.jags.html" class="external-link">runjags::autorun.jags</a>).</p></dd>
+
+
 <dt>quiet</dt>
 <dd><p><a href="https://rdrr.io/r/base/logical.html" class="external-link">logical</a> (with default): enables/disables rjags messages</p></dd>
+
+
 <dt>roundingOfValue</dt>
 <dd><p><a href="https://rdrr.io/r/base/integer.html" class="external-link">integer</a> (with default):  Integer indicating the number of decimal places to be used, default = 3.</p></dd>
+
+
 <dt>...</dt>
 <dd><p>further arguments that can be passed to control the Bayesian process, see details
 for supported arguments</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p><b>NUMERICAL OUTPUT</b><br></p><ol><li><p><b>A list containing the following objects:</b></p><ul><li><p><b>Sampling</b>: that corresponds to a sample of the posterior distributions of the age parameters (in ka for both C14 samples and OSL samples);</p></li>
+    
+
+<p><b>NUMERICAL OUTPUT</b><br></p>
+
+
+
+<ol><li><p><b>A list containing the following objects:</b></p><ul><li><p><b>Sampling</b>: that corresponds to a sample of the posterior distributions of the age parameters (in ka for both C14 samples and OSL samples);</p></li>
 <li><p><b>PriorAge</b>: stating the priors used for the age parameter;</p></li>
 <li><p><b>StratiConstraints</b>: stating the stratigraphic relations between samples considered in the model;</p></li>
 <li><p><b>Model_OSL_GrowthCurve</b>: stating which dose response fitting option was chosen;</p></li>
@@ -264,7 +344,12 @@ Otherwise, the user may try increasing the number of MCMC iterations (<code>Iter
 or be more precise on the <code>PriorAge</code> parameter to reach convergence.</p></li>
 <li><p><b>Credible intervals and Bayes estimates</b>: prints the Bayes' estimates, the credible intervals at 95% and 68% for
 the age parameters for each sample.</p></li>
-</ol><p><b>PLOT OUTPUT</b></p><ol><li><p><b>MCMC trajectories</b>: A graph with the MCMC trajectories and posterior distributions of the age parameter is displayed. <br>
+<li><p><b>JAGS model output</b>: returns the JAGS model with class "runjags".</p></li>
+</ol><p><b>PLOT OUTPUT</b></p>
+
+
+
+<ol><li><p><b>MCMC trajectories</b>: A graph with the MCMC trajectories and posterior distributions of the age parameter is displayed. <br>
 On each line, the plot on the left represents the MCMC trajectories, and the one on the right the posterior distribution of the parameter.</p></li>
 <li><p><b>Age estimate and HPD at 95% of 14C samples on calibration curve</b>: plot age estimate and HPD on calibration plot.</p></li>
 <li><p><b>Summary of sample age estimates</b>: plot credible intervals and Bayes estimate of each sample age on a same graph.</p></li>
@@ -343,7 +428,7 @@ of the age estimates if the chains have converged.</p>
     </div>
     <div id="how-to-cite">
     <h2>How to cite</h2>
-    <p>Christophe, C., Philippe, A., Guerin, G., Kreutzer, S., Baumgarten, F.H., 2022. Age_OSLC14(): Bayesian analysis for age estimation of OSL measurements and C-14 ages of various samples. In: Christophe, C., Philippe, A., Kreutzer, S., Guerin, G., 2022. BayLum: Chronological Bayesian Models Integrating Optically Stimulated. R package version 0.2.1. https://CRAN.r-project.org/package=BayLum</p>
+    <p>Christophe, C., Philippe, A., Kreutzer, S., Baumgarten, F.H., 2022. Age_OSLC14(): Bayesian analysis for age estimation of OSL measurements and C-14 ages of various samples. In: Christophe, C., Philippe, A., Kreutzer, S., Guérin, G., Baumgarten, F.H., 2022. BayLum: Chronological Bayesian Models Integrating Optically Stimulated. R package version 0.3.0. https://CRAN.r-project.org/package=BayLum</p>
     </div>
     <div id="references">
     <h2>References</h2>
@@ -365,81 +450,48 @@ IntCal13 ans Marine13 radiocarbon age calibration curves 0-50000 years cal BP. R
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="co">## Load data</span></span>
-<span class="r-in"><span class="co"># OSL data</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">DATA1</span>,envir <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/environment.html" class="external-link">environment</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">DATA2</span>,envir <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/environment.html" class="external-link">environment</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">Data</span> <span class="op">&lt;-</span> <span class="fu"><a href="combine_DataFiles.html">combine_DataFiles</a></span><span class="op">(</span><span class="va">DATA2</span>,<span class="va">DATA1</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># 14C data</span></span>
-<span class="r-in"><span class="va">C14Cal</span> <span class="op">&lt;-</span> <span class="va">DATA_C14</span><span class="op">$</span><span class="va">C14</span><span class="op">[</span><span class="fl">1</span>,<span class="fl">1</span><span class="op">]</span></span>
-<span class="r-in"><span class="va">SigmaC14Cal</span> <span class="op">&lt;-</span> <span class="va">DATA_C14</span><span class="op">$</span><span class="va">C14</span><span class="op">[</span><span class="fl">1</span>,<span class="fl">2</span><span class="op">]</span></span>
-<span class="r-in"><span class="va">Names</span> <span class="op">&lt;-</span> <span class="va">DATA_C14</span><span class="op">$</span><span class="va">Names</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># Prior Age</span></span>
-<span class="r-in"><span class="va">prior</span><span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">60</span><span class="op">)</span>,<span class="fl">3</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">samplenature</span><span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span>data<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">0</span>,<span class="fl">1</span>,<span class="fl">0</span>,<span class="fl">1</span>,<span class="fl">0</span><span class="op">)</span>,ncol<span class="op">=</span><span class="fl">3</span>,nrow<span class="op">=</span><span class="fl">2</span>,byrow<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">SC</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span>data<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">1</span>,<span class="fl">1</span>,<span class="fl">0</span>,<span class="fl">1</span>,<span class="fl">1</span>,<span class="fl">0</span>,<span class="fl">0</span>,<span class="fl">1</span>,<span class="fl">0</span>,<span class="fl">0</span>,<span class="fl">0</span><span class="op">)</span>,ncol<span class="op">=</span><span class="fl">3</span>,nrow<span class="op">=</span><span class="fl">4</span>,byrow<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co">## Age computation of samples</span></span>
-<span class="r-in"><span class="va">Age</span> <span class="op">&lt;-</span> <span class="fu">Age_OSLC14</span><span class="op">(</span>DATA<span class="op">=</span><span class="va">Data</span>,Data_C14Cal<span class="op">=</span><span class="va">C14Cal</span>,Data_SigmaC14Cal<span class="op">=</span><span class="va">SigmaC14Cal</span>,</span>
-<span class="r-in">   SampleNames<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"GDB5"</span>,<span class="va">Names</span>,<span class="st">"GDB3"</span><span class="op">)</span>,Nb_sample<span class="op">=</span><span class="fl">3</span>,SampleNature<span class="op">=</span><span class="va">samplenature</span>,</span>
-<span class="r-in">   PriorAge<span class="op">=</span><span class="va">prior</span>,StratiConstraints<span class="op">=</span><span class="va">SC</span>,Iter<span class="op">=</span><span class="fl">50</span>,n.chains<span class="op">=</span><span class="fl">2</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Compiling model graph</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    Resolving undeclared variables</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    Allocating nodes</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Graph information:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    Observed stochastic nodes: 1446</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    Unobserved stochastic nodes: 1742</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    Total graph size: 49173</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Initializing model</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Adaptation incomplete</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> NOTE: Stopping adaptation</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>[plot_MCMC()] 'n.iter' out of range, reset to number of observations</span>
-<span class="r-plt img"><img src="Age_OSLC14-1.png" alt="" width="700" height="433"></span>
-<span class="r-plt img"><img src="Age_OSLC14-2.png" alt="" width="700" height="433"></span>
-<span class="r-plt img"><img src="Age_OSLC14-3.png" alt="" width="700" height="433"></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &gt;&gt; Convergence of MCMC for the age parameters &lt;&lt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ----------------------------------------------</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Sample name   Bayes estimate   Uppers credible interval</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> A_GDB5 	 1.129 		 1.349 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> A_S-EVA-26510 	 0.991 		 0.991 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> A_GDB3 	 1.374 		 2.377 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ________________________________________________________________________________</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  *** WARNING: following informations are only valid if MCMC chains converged  ***</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ________________________________________________________________________________</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &gt;&gt; Bayes estimates of Age for each sample and credible interval &lt;&lt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ------------------------------------------------------</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Sample name 	 Bayes estimate  Credible interval: </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> A_GDB5 	 7.285 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 						 lower bound 	 upper bound</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 				 at level 95% 	 5.963 		 8.557 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 				 at level 68% 	 6.792 		 7.719 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ------------------------------------------------------</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Sample name 	 Bayes estimate  Credible interval: </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> A_S-EVA-26510 	 41.898 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 						 lower bound 	 upper bound</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 				 at level 95% 	 41.499 		 42.152 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 				 at level 68% 	 41.901 		 42.111 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ------------------------------------------------------</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Sample name 	 Bayes estimate  Credible interval: </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> A_GDB3 	 46.6 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 						 lower bound 	 upper bound</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 				 at level 95% 	 42.892 		 52.494 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 				 at level 68% 	 43.931 		 47.241 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ------------------------------------------------------</span>
-<span class="r-plt img"><img src="Age_OSLC14-4.png" alt="" width="700" height="433"></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co">## Load data</span></span></span>
+<span class="r-in"><span><span class="co"># OSL data</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">DATA1</span>,envir <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/environment.html" class="external-link">environment</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">DATA2</span>,envir <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/environment.html" class="external-link">environment</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">Data</span> <span class="op">&lt;-</span> <span class="fu"><a href="combine_DataFiles.html">combine_DataFiles</a></span><span class="op">(</span><span class="va">DATA2</span>,<span class="va">DATA1</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># 14C data</span></span></span>
+<span class="r-in"><span><span class="va">C14Cal</span> <span class="op">&lt;-</span> <span class="va">DATA_C14</span><span class="op">$</span><span class="va">C14</span><span class="op">[</span><span class="fl">1</span>,<span class="fl">1</span><span class="op">]</span></span></span>
+<span class="r-in"><span><span class="va">SigmaC14Cal</span> <span class="op">&lt;-</span> <span class="va">DATA_C14</span><span class="op">$</span><span class="va">C14</span><span class="op">[</span><span class="fl">1</span>,<span class="fl">2</span><span class="op">]</span></span></span>
+<span class="r-in"><span><span class="va">Names</span> <span class="op">&lt;-</span> <span class="va">DATA_C14</span><span class="op">$</span><span class="va">Names</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Prior Age</span></span></span>
+<span class="r-in"><span><span class="va">prior</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">60</span><span class="op">)</span>,<span class="fl">3</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">samplenature</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span> data <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">0</span>,<span class="fl">1</span>,<span class="fl">0</span>,<span class="fl">1</span>,<span class="fl">0</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span> ncol <span class="op">=</span> <span class="fl">3</span>,</span></span>
+<span class="r-in"><span> nrow <span class="op">=</span> <span class="fl">2</span>,</span></span>
+<span class="r-in"><span> byrow <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">SC</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span> data <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">1</span>,<span class="fl">1</span>,<span class="fl">0</span>,<span class="fl">1</span>,<span class="fl">1</span>,<span class="fl">0</span>,<span class="fl">0</span>,<span class="fl">1</span>,<span class="fl">0</span>,<span class="fl">0</span>,<span class="fl">0</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span> ncol <span class="op">=</span> <span class="fl">3</span>,</span></span>
+<span class="r-in"><span> nrow <span class="op">=</span><span class="fl">4</span> ,</span></span>
+<span class="r-in"><span> byrow <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co">## Age computation of samples</span></span></span>
+<span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span><span class="va">Age</span> <span class="op">&lt;-</span> <span class="fu">Age_OSLC14</span><span class="op">(</span></span></span>
+<span class="r-in"><span> DATA <span class="op">=</span> <span class="va">Data</span>,</span></span>
+<span class="r-in"><span> Data_C14Cal <span class="op">=</span> <span class="va">C14Cal</span>,</span></span>
+<span class="r-in"><span> Data_SigmaC14Cal <span class="op">=</span> <span class="va">SigmaC14Cal</span>,</span></span>
+<span class="r-in"><span> SampleNames <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"GDB5"</span>,<span class="va">Names</span>,<span class="st">"GDB3"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span> Nb_sample <span class="op">=</span> <span class="fl">3</span>,</span></span>
+<span class="r-in"><span> SampleNature <span class="op">=</span> <span class="va">samplenature</span>,</span></span>
+<span class="r-in"><span> PriorAge <span class="op">=</span> <span class="va">prior</span>,</span></span>
+<span class="r-in"><span> StratiConstraints <span class="op">=</span> <span class="va">SC</span>,</span></span>
+<span class="r-in"><span> Iter <span class="op">=</span> <span class="fl">20</span>,</span></span>
+<span class="r-in"><span> burnin <span class="op">=</span> <span class="fl">20</span>,</span></span>
+<span class="r-in"><span> adapt <span class="op">=</span> <span class="fl">20</span>,</span></span>
+<span class="r-in"><span> n.chains <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">}</span></span></span>
+<span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -450,13 +502,11 @@ IntCal13 ans Marine13 radiocarbon age calibration curves 0-50000 years cal BP. R
 
 
       <footer><div class="copyright">
-  <p></p><p>Developed by Claire Christophe, Anne Philippe, Sebastian Kreutzer,
-Guillaume Guerin.</p>
+  <p></p><p>Developed by Claire Christophe, Anne Philippe, Sebastian Kreutzer, Guillaume Guérin, Frederik Harly Baumgarten.</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a>
-2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

@@ -22,7 +22,7 @@ Single-grain or Multi-grain OSL measurements can be analysed simultaneously."><!
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">BayLum</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.2.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.3.0</span>
       </span>
     </div>
 
@@ -82,123 +82,195 @@ Single-grain or Multi-grain OSL measurements can be analysed simultaneously.</p>
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">AgeS_Computation</span><span class="op">(</span>
-  <span class="va">DATA</span>,
-  <span class="va">SampleNames</span>,
-  <span class="va">Nb_sample</span>,
-  PriorAge <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.01</span>, <span class="fl">100</span><span class="op">)</span>, <span class="va">Nb_sample</span><span class="op">)</span>,
-  BinPerSample <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">1</span>, <span class="va">Nb_sample</span><span class="op">)</span>,
-  SavePdf <span class="op">=</span> <span class="cn">FALSE</span>,
-  OutputFileName <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"MCMCplot"</span>, <span class="st">"summary"</span><span class="op">)</span>,
-  OutputFilePath <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">""</span><span class="op">)</span>,
-  SaveEstimates <span class="op">=</span> <span class="cn">FALSE</span>,
-  OutputTableName <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"DATA"</span><span class="op">)</span>,
-  OutputTablePath <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">""</span><span class="op">)</span>,
-  THETA <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">)</span>,
-  sepTHETA <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">","</span><span class="op">)</span>,
-  StratiConstraints <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">)</span>,
-  sepSC <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">","</span><span class="op">)</span>,
-  LIN_fit <span class="op">=</span> <span class="cn">TRUE</span>,
-  Origin_fit <span class="op">=</span> <span class="cn">FALSE</span>,
-  distribution <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"cauchy"</span><span class="op">)</span>,
-  model <span class="op">=</span> <span class="cn">NULL</span>,
-  Iter <span class="op">=</span> <span class="fl">50000</span>,
-  t <span class="op">=</span> <span class="fl">5</span>,
-  n.chains <span class="op">=</span> <span class="fl">3</span>,
-  jags_method <span class="op">=</span> <span class="st">"rjags"</span>,
-  quiet <span class="op">=</span> <span class="cn">FALSE</span>,
-  roundingOfValue <span class="op">=</span> <span class="fl">3</span>,
-  <span class="va">...</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">AgeS_Computation</span><span class="op">(</span></span>
+<span>  <span class="va">DATA</span>,</span>
+<span>  <span class="va">SampleNames</span>,</span>
+<span>  <span class="va">Nb_sample</span>,</span>
+<span>  PriorAge <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.01</span>, <span class="fl">100</span><span class="op">)</span>, <span class="va">Nb_sample</span><span class="op">)</span>,</span>
+<span>  BinPerSample <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">1</span>, <span class="va">Nb_sample</span><span class="op">)</span>,</span>
+<span>  SavePdf <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  OutputFileName <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"MCMCplot"</span>, <span class="st">"summary"</span><span class="op">)</span>,</span>
+<span>  OutputFilePath <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">""</span><span class="op">)</span>,</span>
+<span>  SaveEstimates <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  OutputTableName <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"DATA"</span><span class="op">)</span>,</span>
+<span>  OutputTablePath <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">""</span><span class="op">)</span>,</span>
+<span>  THETA <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<span>  sepTHETA <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">","</span><span class="op">)</span>,</span>
+<span>  StratiConstraints <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<span>  sepSC <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">","</span><span class="op">)</span>,</span>
+<span>  LIN_fit <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  Origin_fit <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  distribution <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"cauchy"</span><span class="op">)</span>,</span>
+<span>  model <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  Iter <span class="op">=</span> <span class="fl">10000</span>,</span>
+<span>  burnin <span class="op">=</span> <span class="fl">4000</span>,</span>
+<span>  adapt <span class="op">=</span> <span class="fl">1000</span>,</span>
+<span>  t <span class="op">=</span> <span class="fl">5</span>,</span>
+<span>  n.chains <span class="op">=</span> <span class="fl">3</span>,</span>
+<span>  jags_method <span class="op">=</span> <span class="st">"rjags"</span>,</span>
+<span>  autorun <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  quiet <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  roundingOfValue <span class="op">=</span> <span class="fl">3</span>,</span>
+<span>  <span class="va">...</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>DATA</dt>
-<dd><p><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a> of objects: <code>LT</code>, <code>sLT</code>, <code>ITimes</code>, <code>dLab</code>, <code>ddot_env</code>, <code>regDose</code>, <code>J</code>, <code>K</code>, <code>Nb_measurement</code>,
-provided by the function <a href="Generate_DataFile.html">Generate_DataFile</a> or <a href="Generate_DataFile_MG.html">Generate_DataFile_MG</a> or <a href="combine_DataFiles.html">combine_DataFiles</a>.
+<dd><p>(<strong>required</strong>) Two inputs are possible:
+(1): DATA <a href="https://rdrr.io/r/base/list.html" class="external-link">list</a> of objects: <code>LT</code>, <code>sLT</code>, <code>ITimes</code>, <code>dLab</code>, <code>ddot_env</code>, <code>regDose</code>, <code>J</code>, <code>K</code>, <code>Nb_measurement</code>,
+provided by the function <a href="Generate_DataFile.html">Generate_DataFile</a>, <a href="Generate_DataFile_MG.html">Generate_DataFile_MG</a> or <a href="combine_DataFiles.html">combine_DataFiles</a>.
 <code>DATA</code> contains informations for more than one sample.
 If there is stratigraphic relations between samples, informations in DATA must be ordered by order of increasing ages.
-See the details section to for more informations.</p></dd>
+See the details section to for more informations.
+(2): An object of class "runjags" which is provided by the output of AgeS_Computation. When input of class "runjags" is identified, no new JAGS model is created. Instead, the JAGS model specified by the "runjags" object is extended. Useful for when convergence was not originally achieved and a complete restart is not desirable.</p></dd>
+
+
 <dt>SampleNames</dt>
 <dd><p><a href="https://rdrr.io/r/base/character.html" class="external-link">character</a> vector: names of samples. The length of this vector is equal to <code>Nb_sample</code>.</p></dd>
+
+
 <dt>Nb_sample</dt>
 <dd><p><a href="https://rdrr.io/r/base/integer.html" class="external-link">integer</a>: number of samples, <code>Nb_sample&gt;1</code>.</p></dd>
+
+
 <dt>PriorAge</dt>
 <dd><p><a href="https://rdrr.io/r/base/numeric.html" class="external-link">numeric</a> vector (with default): lower and upper bounds for age parameter of each sample (in ka).
 Note that, <code>length(PriorAge)=2*Nb_sample</code>
 and <code>PriorAge[2i-1,2i]</code> corresponds to the lower and upper bounds of sample whose number ID is equal to <code>i</code>.</p></dd>
+
+
 <dt>BinPerSample</dt>
 <dd><p><a href="https://rdrr.io/r/base/integer.html" class="external-link">integer</a> vector (with default): vector with the number of BIN files per sample.
 The length of this vector is equal to <code>Nb_sample</code>.
 <code>BinPerSample[i]</code> corresponds to the number of BIN files for the sample whose number ID is equal to <code>i</code>.
 For more information to fill this vector, we refer to details in <a href="Generate_DataFile.html">Generate_DataFile</a> or in <a href="Generate_DataFile_MG.html">Generate_DataFile_MG</a>.</p></dd>
+
+
 <dt>SavePdf</dt>
 <dd><p><a href="https://rdrr.io/r/base/logical.html" class="external-link">logical</a> (with default): if TRUE save graphs in pdf file named <code>OutputFileName</code> in folder <code>OutputFilePath</code>.</p></dd>
+
+
 <dt>OutputFileName</dt>
 <dd><p><a href="https://rdrr.io/r/base/character.html" class="external-link">character</a> (with default): name of the pdf file that will be generated by the function if <code>SavePdf = TRUE</code>;
 <code>length(OutputFileName)=2</code>, see <b>PLOT OUTPUT</b> in <b>Value</b> section for more informations.</p></dd>
+
+
 <dt>OutputFilePath</dt>
 <dd><p><a href="https://rdrr.io/r/base/character.html" class="external-link">character</a> (with default): path to the pdf file that will be generated by the function if <code>SavePdf</code>=TRUE.
 If it is not equal to "", it must be terminated by "/".</p></dd>
+
+
 <dt>SaveEstimates</dt>
 <dd><p><a href="https://rdrr.io/r/base/logical.html" class="external-link">logical</a> (with default): if TRUE save Bayes' estimates, credible interval at level 68% and 95%  and
 the result of the Gelman en Rubin test of convergence, in a csv table named <code>OutputFileName</code> in folder <code>OutputFilePath</code>.</p></dd>
+
+
 <dt>OutputTableName</dt>
 <dd><p><a href="https://rdrr.io/r/base/character.html" class="external-link">character</a> (with default): name of the table that will be generated by the function if <code>SaveEstimates = TRUE</code>.</p></dd>
+
+
 <dt>OutputTablePath</dt>
 <dd><p><a href="https://rdrr.io/r/base/character.html" class="external-link">character</a> (with default): path to the table that will be generated by the function if <code>SaveEstimates = TRUE</code>.
 If it is not equal to "", it must be terminated by "/".</p></dd>
+
+
 <dt>THETA</dt>
 <dd><p><a href="https://rdrr.io/r/base/numeric.html" class="external-link">numeric</a> <a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a> or <a href="https://rdrr.io/r/base/character.html" class="external-link">character</a> (with default): input object for systematic and individual error.
 If systematic errors are considered, see the details section for instructions regarding how to correctly fill <code>THETA</code>;
 the user can refer to a matrix (numeric matrix) or to a csv file (character).
 Otherwise, default value is suitable, and only individual errors are considered.</p></dd>
+
+
 <dt>sepTHETA</dt>
 <dd><p><a href="https://rdrr.io/r/base/character.html" class="external-link">character</a> (with default): if <code>THETA</code> is character,
 indicate column separator in <code>THETA</code> CSV-file.</p></dd>
+
+
 <dt>StratiConstraints</dt>
 <dd><p>numeric matrix or character(with default): input object for the stratigraphic relation between samples. If there is stratigraphic relation between samples see the details section for instructions regarding how to correctly fill <code>StratiConstraints</code>; the user can refer to a matrix (numeric matrix) or to a csv file (character).
 If there is no stratigraphic relation default value is suitable.</p></dd>
+
+
 <dt>sepSC</dt>
 <dd><p><a href="https://rdrr.io/r/base/character.html" class="external-link">character</a> (with default): if <code>StratiConstraints</code> is character,
 indicate column separator in <code>StratiConstraints</code> .csv file.</p></dd>
+
+
 <dt>LIN_fit</dt>
 <dd><p><a href="https://rdrr.io/r/base/logical.html" class="external-link">logical</a> (with default): if TRUE (default) allows a linear component,
 on top of the (default) saturating exponential curve, for the fitting of dose response curves.
 See details section for more informations on the proposed dose response curves.</p></dd>
+
+
 <dt>Origin_fit</dt>
 <dd><p><a href="https://rdrr.io/r/base/logical.html" class="external-link">logical</a> (with default): if TRUE, forces the dose response curves to pass through the origin.
 See details section for more informations on the proposed growth curves.</p></dd>
+
+
 <dt>distribution</dt>
 <dd><p><a href="https://rdrr.io/r/base/character.html" class="external-link">character</a> (with default): type of distribution that defines
 how individual equivalent dose values are distributed around the palaeodose.
 Allowed inputs are <code>"cauchy"</code>, <code>"gaussian"</code>, <code>"lognormal_A"</code> and <code>"lognormal_M"</code>,
 see details section for more informations.</p></dd>
+
+
 <dt>model</dt>
 <dd><p><a href="https://rdrr.io/r/base/character.html" class="external-link">character</a> (<em>optional</em>): allows to provide a custom model to the function as text string. Please note that if this option is chosen the parameter <code>distribution</code> is ignored and no safety net is applied. If the function crashes it is up to the user.</p></dd>
+
+
 <dt>Iter</dt>
-<dd><p><a href="https://rdrr.io/r/base/integer.html" class="external-link">integer</a> (with default): number of iterations for the MCMC computation (for more information see <code>jags.model</code>).
-If <code>jags_method = "rjparallel"</code> this number is limited to <code>1000</code> (it will be automatically adapted).</p></dd>
+<dd><p><a href="https://rdrr.io/r/base/integer.html" class="external-link">integer</a> (with default): the number of iterations to run which will be used to assess convergence and ages (see <a href="https://rdrr.io/pkg/runjags/man/run.jags.html" class="external-link">runjags::run.jags</a>).</p></dd>
+
+
+<dt>burnin</dt>
+<dd><p><a href="https://rdrr.io/r/base/integer.html" class="external-link">integer</a> (with default): the number of iterations used to "home in" on the stationary posterior distribution. These are not used for assessing convergence (see <a href="https://rdrr.io/pkg/runjags/man/run.jags.html" class="external-link">runjags::run.jags</a>).</p></dd>
+
+
+<dt>adapt</dt>
+<dd><p><a href="https://rdrr.io/r/base/integer.html" class="external-link">integer</a> (with default): the number of iterations used in the adaptive phase of the simulation (see <a href="https://rdrr.io/pkg/runjags/man/run.jags.html" class="external-link">runjags::run.jags</a>).</p></dd>
+
+
 <dt>t</dt>
-<dd><p><a href="https://rdrr.io/r/base/integer.html" class="external-link">integer</a> (with default): 1 every <code>t</code> iterations of the MCMC is considered for sampling the posterior distribution
-(for more information see <code>jags.model</code>).</p></dd>
+<dd><p><a href="https://rdrr.io/r/base/integer.html" class="external-link">integer</a> (with default): 1 every <code>t</code> iterations of the MCMC is considered for sampling the posterior distribution.
+(for more information see <a href="https://rdrr.io/pkg/runjags/man/run.jags.html" class="external-link">runjags::run.jags</a>).</p></dd>
+
+
 <dt>n.chains</dt>
-<dd><p><a href="https://rdrr.io/r/base/integer.html" class="external-link">integer</a> (with default): number of independent chains for the model (for more information see <code>jags.model</code>).</p></dd>
+<dd><p><a href="https://rdrr.io/r/base/integer.html" class="external-link">integer</a> (with default): number of independent chains for the model (for more information see <a href="https://rdrr.io/pkg/runjags/man/run.jags.html" class="external-link">runjags::run.jags</a>).</p></dd>
+
+
 <dt>jags_method</dt>
-<dd><p><a href="https://rdrr.io/r/base/character.html" class="external-link">character</a> (with default): select computation method, supported are  <code>"rjags"</code> (the default) and <code>rjparallel</code>
-using package <code>'runjags'</code>. The latter option uses the function <a href="https://rdrr.io/pkg/runjags/man/autorun.jags.html" class="external-link">runjags::autorun.jags</a> to allow a full automated processing.</p></dd>
+<dd><p><a href="https://rdrr.io/r/base/character.html" class="external-link">character</a> (with default): select which method to use in order to call JAGS. jags_methods <code>"rjags"</code> (the default) and <code>"rjparallel"</code> have been tested. (for more information about these possibilities and others, see <a href="https://rdrr.io/pkg/runjags/man/run.jags.html" class="external-link">runjags::run.jags</a>)</p></dd>
+
+
+<dt>autorun</dt>
+<dd><p><a href="https://rdrr.io/r/base/logical.html" class="external-link">logical</a> (with default): choose to automate JAGS processing. JAGS model will be automatically extended until convergence is reached (for more information see <a href="https://rdrr.io/pkg/runjags/man/autorun.jags.html" class="external-link">runjags::autorun.jags</a>).</p></dd>
+
+
 <dt>quiet</dt>
 <dd><p><a href="https://rdrr.io/r/base/logical.html" class="external-link">logical</a> (with default): enables/disables <code>rjags</code> messages</p></dd>
+
+
 <dt>roundingOfValue</dt>
 <dd><p><a href="https://rdrr.io/r/base/integer.html" class="external-link">integer</a> (with default):  Integer indicating the number of decimal places to be used, default = 3.</p></dd>
+
+
 <dt>...</dt>
-<dd><p>further arguments that can be passed to control the Bayesian process, see details
-for supported arguments</p></dd>
+<dd><p>further arguments that can be passed to control the Bayesian process. 1) When creating a new JAGS model, see details
+for supported arguments. 2) If extending a JAGS model see arguments of <a href="https://rdrr.io/pkg/runjags/man/run.jags.html" class="external-link">runjags::extend.JAGS</a>.</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p><strong>NUMERICAL OUTPUT</strong></p><ol><li><p><strong>A list of type <code>BayLum.list</code> containing the following objects:</strong></p><ul><li><p><b>Sampling</b>: that corresponds to a sample of the posterior distributions
+    
+
+<p><strong>NUMERICAL OUTPUT</strong></p>
+
+
+
+<ol><li><p><strong>A list of type <code>BayLum.list</code> containing the following objects:</strong></p><ul><li><p><b>Sampling</b>: that corresponds to a sample of the posterior distributions
 of the age (in ka), palaeodose (in Gy) and equivalent dose dispersion (in Gy) parameters for each sample;</p></li>
 <li><p><b>Model_GrowthCurve</b>: stating which dose response fitting option was chosen;</p></li>
 <li><p><b>Distribution</b>: stating which distribution was chosen to model the dispersion of
@@ -207,6 +279,7 @@ individual equivalent dose values around the palaeodose of the sample;</p></li>
 <li><p><b>StratiConstraints</b>: stating the stratigraphic relations between samples considered in the model;</p></li>
 <li><p><b>CovarianceMatrix</b>: stating the covariance matrix of error used in the model, highlighting common errors between samples or not.</p></li>
 <li><p><b>model</b>: returns the model that was used for the Bayesian modelling as a <a href="https://rdrr.io/r/base/character.html" class="external-link">character</a></p></li>
+<li><p><b>JAGS model output</b>: returns the JAGS model with class "runjags".</p></li>
 </ul></li>
 <li><p><b>The Gelman and Rubin test of convergency</b>: prints the result of the Gelman and Rubin test of convergence for
 the age, palaeodose and equivalent dose dispersion parameters for each sample.
@@ -220,13 +293,17 @@ or being more precise on the <code>PriorAge</code> parameter (for example specif
 or changing the parameter <code>distribution</code> or the growth curve, to reach convergence.</p></li>
 <li><p><b>Credible intervals and Bayes estimates</b>: prints the Bayes estimates, the credible intervals at 95% and 68% for
 the age, palaeodose and equivalent dose dispersion parameters for each sample.</p></li>
-</ol><p><strong>PLOT OUTPUT</strong></p><ol><li><p><b>MCMC trajectories</b>: A graph with the MCMC trajectories and posterior distributions of the age, palaeodose and equivalent dose dispersion parameters
+</ol><p><strong>PLOT OUTPUT</strong></p>
+
+
+
+<ol><li><p><b>MCMC trajectories</b>: A graph with the MCMC trajectories and posterior distributions of the age, palaeodose and equivalent dose dispersion parameters
 is displayed, there is one page per sample. <br>
 The first line of the figure corresponds to the age parameter, the second to the palaeodose parameter
 and the third to the equivalent dose dispersion parameter.
 On each line, the plot on the left represents the MCMC trajectories, and the one on the right the posterior distribution of the parameter.</p></li>
 <li><p><b>Summary of sample age estimates</b>: plot credible intervals and Bayes estimate of each sample age on a same graph.</p></li>
-</ol><p>To give the results in a publication, we recommend to give the Bayes estimate of the parameters as well as the credible interval at 95% or 68%.</p>
+</ol><p>To give the results in a publication, we recommend to give the Bayes' estimate of the parameters as well as the credible interval at 95% or 68%.</p>
     </div>
     <div id="details">
     <h2>Details</h2>
@@ -253,7 +330,7 @@ to construct the <code>StratiConstraints</code> matrix.</p>
 <p>The user can also refer to a csv file that contains the relation between samples as defined above.
 The user must take care about the separator used in the csv file using the argument <code>sepSC</code>.<br></p>
 <p><strong>How to fill <code>THETA</code> covariance matrix concerning common and individual error?</strong><br></p>
-<p>If systematic errors are considered, the user can fill the <code>THETA</code> matrix as follow.</p><ul><li><p>row number of <code>THETA</code> is equal the column number, equal to <code>Nb_sample</code>.</p></li>
+<p>If systematic errors are considered, the user can fill the <code>THETA</code> matrix as follows.</p><ul><li><p>row number of <code>THETA</code> is equal the column number, equal to <code>Nb_sample</code>.</p></li>
 <li><p>For all <code>i in {1,...,Nb_sample}</code>, <code>THETA[i,i]</code> contains individual error
 plus systematic error of the sample whose number ID is equal to <code>i</code>.</p></li>
 <li><p>For all <code>i,j in {1,...,Nb_sample}</code> and <code>i</code> different from <code>j</code> ,
@@ -293,7 +370,7 @@ of the age estimates if the chains have converged.</p>
     </div>
     <div id="how-to-cite">
     <h2>How to cite</h2>
-    <p>Christophe, C., Philippe, A., Kreutzer, S., 2022. AgeS_Computation(): Bayesian analysis for OSL age estimation of various samples. In: Christophe, C., Philippe, A., Kreutzer, S., Guerin, G., 2022. BayLum: Chronological Bayesian Models Integrating Optically Stimulated. R package version 0.2.1. https://CRAN.r-project.org/package=BayLum</p>
+    <p>Christophe, C., Philippe, A., Guérin, G., Kreutzer, S., 2022. AgeS_Computation(): Bayesian analysis for OSL age estimation of various samples. In: Christophe, C., Philippe, A., Kreutzer, S., Guérin, G., Baumgarten, F.H., 2022. BayLum: Chronological Bayesian Models Integrating Optically Stimulated. R package version 0.3.0. https://CRAN.r-project.org/package=BayLum</p>
     </div>
     <div id="references">
     <h2>References</h2>
@@ -306,7 +383,7 @@ Quaternary Geochronology 28, 62-70. doi:10.1016/j.quageo.2015.04.001</p>
     </div>
     <div id="see-also">
     <h2>See also</h2>
-    <div class="dont-index"><p><a href="Generate_DataFile.html">Generate_DataFile</a>, <a href="Generate_DataFile_MG.html">Generate_DataFile_MG</a>, rjags, <a href="plot_MCMC.html">plot_MCMC</a>, <a href="SCMatrix.html">SCMatrix</a>, <a href="Age_Computation.html">Age_Computation</a>, <a href="Palaeodose_Computation.html">Palaeodose_Computation</a>, <a href="plot_Ages.html">plot_Ages</a>, <a href="create_ThetaMatrix.html">create_ThetaMatrix</a>, <a href="https://rdrr.io/pkg/runjags/man/autorun.jags.html" class="external-link">runjags::autorun.jags</a></p></div>
+    <div class="dont-index"><p><a href="Generate_DataFile.html">Generate_DataFile</a>, <a href="Generate_DataFile_MG.html">Generate_DataFile_MG</a>, rjags, <a href="plot_MCMC.html">plot_MCMC</a>, <a href="SCMatrix.html">SCMatrix</a>, <a href="Age_Computation.html">Age_Computation</a>, <a href="Palaeodose_Computation.html">Palaeodose_Computation</a>, <a href="plot_Ages.html">plot_Ages</a>, <a href="create_ThetaMatrix.html">create_ThetaMatrix</a>, runjags</p></div>
     </div>
     <div id="author">
     <h2>Author</h2>
@@ -315,136 +392,73 @@ Quaternary Geochronology 28, 62-70. doi:10.1016/j.quageo.2015.04.001</p>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="co">## load data</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">DATA1</span>,envir <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/environment.html" class="external-link">environment</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">DATA2</span>,envir <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/environment.html" class="external-link">environment</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">Data</span> <span class="op">&lt;-</span> <span class="fu"><a href="combine_DataFiles.html">combine_DataFiles</a></span><span class="op">(</span><span class="va">DATA2</span>,<span class="va">DATA1</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co">## Age computation of samples GDB5 and GDB3,</span></span>
-<span class="r-in"><span class="va">priorage</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">10</span>,<span class="fl">20</span>,<span class="fl">60</span><span class="op">)</span> <span class="co"># these samples are not young</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co">## without common error and without stratigraphic constraints</span></span>
-<span class="r-in"><span class="va">Age</span> <span class="op">&lt;-</span> <span class="fu">AgeS_Computation</span><span class="op">(</span></span>
-<span class="r-in">  DATA <span class="op">=</span> <span class="va">Data</span>,</span>
-<span class="r-in">  Nb_sample <span class="op">=</span> <span class="fl">2</span>,</span>
-<span class="r-in">  SampleNames <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"GDB5"</span>,<span class="st">"GDB3"</span><span class="op">)</span>,</span>
-<span class="r-in">  PriorAge <span class="op">=</span> <span class="va">priorage</span>,</span>
-<span class="r-in">  Iter <span class="op">=</span> <span class="fl">50</span>,</span>
-<span class="r-in">  n.chains <span class="op">=</span> <span class="fl">2</span>,</span>
-<span class="r-in">  quiet <span class="op">=</span> <span class="cn">TRUE</span></span>
-<span class="r-in">  <span class="op">)</span></span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Adaptation incomplete</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> NOTE: Stopping adaptation</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>[plot_MCMC()] 'n.iter' out of range, reset to number of observations</span>
-<span class="r-plt img"><img src="AgeS_Computation-1.png" alt="" width="700" height="433"></span>
-<span class="r-plt img"><img src="AgeS_Computation-2.png" alt="" width="700" height="433"></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &gt;&gt; Results of the Gelman and Rubin criterion of convergence &lt;&lt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ----------------------------------------------</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  Sample name:  GDB5 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ---------------------</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 		 Point estimate Uppers confidence interval</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> A_GDB5 	 1.985 		 3.942 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> D_GDB5 	 1.35 		 2.156 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> sD_GDB5 	 0.994 		 1.037 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ----------------------------------------------</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  Sample name:  GDB3 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ---------------------</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 		 Point estimate Uppers confidence interval</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> A_GDB3 	 1.145 		 1.65 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> D_GDB3 	 1.676 		 3.04 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> sD_GDB3 	 1.197 		 1.781 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ---------------------------------------------------------------------------------------------------</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  *** WARNING: The following information are only valid if the MCMC chains have converged  ***</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ---------------------------------------------------------------------------------------------------</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &gt;&gt; Bayes estimates of Age, Palaeodose and its dispersion for each sample and credible interval &lt;&lt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ----------------------------------------------</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  Sample name:  GDB5 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ---------------------</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Parameter 	 Bayes estimate 	  Credible interval </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  A_GDB5 	 7.196 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 						 lower bound 	 upper bound</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 				 at level 95% 	 5.853 		 8.24 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 				 at level 68% 	 6.72 		 7.997 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Parameter 	 Bayes estimate 	  Credible interval </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  D_GDB5 	 18.393 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 						 lower bound 	 upper bound</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 				 at level 95% 	 17.602 		 19.228 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 				 at level 68% 	 18.029 		 18.898 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Parameter 	 Bayes estimate 	  Credible interval </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> sD_GDB5 	 4.66 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 						 lower bound 	 upper bound</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 				 at level 95% 	 3.729 		 5.449 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 				 at level 68% 	 4.039 		 4.984 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ----------------------------------------------</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  Sample name:  GDB3 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ---------------------</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Parameter 	 Bayes estimate 	  Credible interval </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  A_GDB3 	 43.945 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 						 lower bound 	 upper bound</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 				 at level 95% 	 33.559 		 51.303 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 				 at level 68% 	 39.171 		 47.819 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Parameter 	 Bayes estimate 	  Credible interval </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  D_GDB3 	 97.767 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 						 lower bound 	 upper bound</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 				 at level 95% 	 94.566 		 100.095 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 				 at level 68% 	 96.597 		 99.614 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Parameter 	 Bayes estimate 	  Credible interval </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> sD_GDB3 	 16.064 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 						 lower bound 	 upper bound</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 				 at level 95% 	 10.339 		 16.936 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 				 at level 68% 	 13.307 		 15.733 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ----------------------------------------------</span>
-<span class="r-plt img"><img src="AgeS_Computation-3.png" alt="" width="700" height="433"></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co">## Age computation of samples GDB5 and GDB3,</span></span>
-<span class="r-in"><span class="co">## without common error, assuming GDB5 age younder than GDB3 age</span></span>
-<span class="r-in"><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span>
-<span class="r-in"><span class="va">Nb_sample</span> <span class="op">&lt;-</span> <span class="fl">2</span></span>
-<span class="r-in"><span class="va">SC</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span></span>
-<span class="r-in">  data <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">1</span>,<span class="fl">0</span>,<span class="fl">1</span>,<span class="fl">0</span>,<span class="fl">0</span><span class="op">)</span>,</span>
-<span class="r-in">  ncol <span class="op">=</span> <span class="fl">2</span>,</span>
-<span class="r-in">  nrow <span class="op">=</span> <span class="op">(</span><span class="va">Nb_sample</span><span class="op">+</span><span class="fl">1</span><span class="op">)</span>,byrow <span class="op">=</span> <span class="cn">T</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co">##standard</span></span>
-<span class="r-in"><span class="va">Age</span> <span class="op">&lt;-</span> <span class="fu">AgeS_Computation</span><span class="op">(</span></span>
-<span class="r-in"> DATA <span class="op">=</span> <span class="va">Data</span>,</span>
-<span class="r-in"> Nb_sample <span class="op">=</span> <span class="va">Nb_sample</span>,</span>
-<span class="r-in"> SampleNames <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"GDB5"</span>,<span class="st">"GDB3"</span><span class="op">)</span>,</span>
-<span class="r-in"> PriorAge <span class="op">=</span> <span class="va">priorage</span>,</span>
-<span class="r-in"> StratiConstraints <span class="op">=</span> <span class="va">SC</span>,</span>
-<span class="r-in"> Iter <span class="op">=</span> <span class="fl">10000</span>,</span>
-<span class="r-in"> quiet <span class="op">=</span> <span class="cn">FALSE</span>,</span>
-<span class="r-in"> jags_method <span class="op">=</span> <span class="st">"rjags"</span></span>
-<span class="r-in"> <span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co">##parallel mode</span></span>
-<span class="r-in"><span class="va">Age</span> <span class="op">&lt;-</span> <span class="fu">AgeS_Computation</span><span class="op">(</span></span>
-<span class="r-in"> DATA <span class="op">=</span> <span class="va">Data</span>,</span>
-<span class="r-in"> Nb_sample <span class="op">=</span> <span class="va">Nb_sample</span>,</span>
-<span class="r-in"> SampleNames <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"GDB5"</span>,<span class="st">"GDB3"</span><span class="op">)</span>,</span>
-<span class="r-in"> PriorAge <span class="op">=</span> <span class="va">priorage</span>,</span>
-<span class="r-in"> StratiConstraints <span class="op">=</span> <span class="va">SC</span>,</span>
-<span class="r-in"> Iter <span class="op">=</span> <span class="fl">10000</span>,</span>
-<span class="r-in"> quiet <span class="op">=</span> <span class="cn">FALSE</span>,</span>
-<span class="r-in"> jags_method <span class="op">=</span> <span class="st">"rjparallel"</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="op">}</span></span>
-<span class="r-in"></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co">## Age computation of samples GDB5 and GDB3,</span></span></span>
+<span class="r-in"><span><span class="co">## load data</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">DATA2</span><span class="op">)</span> <span class="co"># GD85</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">DATA1</span><span class="op">)</span> <span class="co"># GD83</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co">## produce DataFile</span></span></span>
+<span class="r-in"><span><span class="va">Data</span> <span class="op">&lt;-</span> <span class="fu"><a href="combine_DataFiles.html">combine_DataFiles</a></span><span class="op">(</span><span class="va">DATA2</span>, <span class="va">DATA1</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co">## without common error, assuming GDB5 age younger than GDB3 age</span></span></span>
+<span class="r-in"><span><span class="va">Nb_sample</span> <span class="op">&lt;-</span> <span class="fl">2</span></span></span>
+<span class="r-in"><span><span class="va">SC</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>  data <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">1</span>,<span class="fl">0</span>,<span class="fl">1</span>,<span class="fl">0</span>,<span class="fl">0</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  ncol <span class="op">=</span> <span class="fl">2</span>,</span></span>
+<span class="r-in"><span>  nrow <span class="op">=</span> <span class="op">(</span><span class="va">Nb_sample</span><span class="op">+</span><span class="fl">1</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  byrow <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span><span class="co">## run standard</span></span></span>
+<span class="r-in"><span><span class="va">Age</span> <span class="op">&lt;-</span> <span class="fu">AgeS_Computation</span><span class="op">(</span></span></span>
+<span class="r-in"><span>  DATA <span class="op">=</span> <span class="va">Data</span>,</span></span>
+<span class="r-in"><span>  Nb_sample <span class="op">=</span> <span class="va">Nb_sample</span>,</span></span>
+<span class="r-in"><span>  SampleNames <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"GDB5"</span>,<span class="st">"GDB3"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  PriorAge <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">100</span><span class="op">)</span>, <span class="fl">2</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  StratiConstraints <span class="op">=</span> <span class="va">SC</span>,</span></span>
+<span class="r-in"><span>  Iter <span class="op">=</span> <span class="fl">100</span>,</span></span>
+<span class="r-in"><span>  quiet <span class="op">=</span> <span class="cn">FALSE</span>,</span></span>
+<span class="r-in"><span>  jags_method <span class="op">=</span> <span class="st">"rjags"</span></span></span>
+<span class="r-in"><span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co">## extend model</span></span></span>
+<span class="r-in"><span><span class="va">Age_extended</span> <span class="op">&lt;-</span> <span class="fu">AgeS_Computation</span><span class="op">(</span></span></span>
+<span class="r-in"><span>  DATA <span class="op">=</span> <span class="va">Age</span><span class="op">$</span><span class="va">runjags_object</span>,</span></span>
+<span class="r-in"><span>  Nb_sample <span class="op">=</span> <span class="va">Nb_sample</span>,</span></span>
+<span class="r-in"><span>  SampleNames <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"GDB5"</span>,<span class="st">"GDB3"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  PriorAge <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">100</span><span class="op">)</span>, <span class="fl">2</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  StratiConstraints <span class="op">=</span> <span class="va">SC</span>,</span></span>
+<span class="r-in"><span>  adapt <span class="op">=</span> <span class="fl">0</span>,</span></span>
+<span class="r-in"><span>  burnin <span class="op">=</span> <span class="fl">500</span>,</span></span>
+<span class="r-in"><span>  Iter <span class="op">=</span> <span class="fl">1000</span>,</span></span>
+<span class="r-in"><span>  quiet <span class="op">=</span> <span class="cn">FALSE</span>,</span></span>
+<span class="r-in"><span>  jags_method <span class="op">=</span> <span class="st">"rjags"</span></span></span>
+<span class="r-in"><span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co">## autorun mode</span></span></span>
+<span class="r-in"><span><span class="va">Age</span> <span class="op">&lt;-</span> <span class="fu">AgeS_Computation</span><span class="op">(</span></span></span>
+<span class="r-in"><span>  DATA <span class="op">=</span> <span class="va">Data</span>,</span></span>
+<span class="r-in"><span>  Nb_sample <span class="op">=</span> <span class="va">Nb_sample</span>,</span></span>
+<span class="r-in"><span>  SampleNames <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"GDB5"</span>,<span class="st">"GDB3"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  PriorAge <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">100</span><span class="op">)</span>, <span class="fl">2</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  StratiConstraints <span class="op">=</span> <span class="va">SC</span>,</span></span>
+<span class="r-in"><span>  Iter <span class="op">=</span> <span class="fl">10000</span>,</span></span>
+<span class="r-in"><span>  quiet <span class="op">=</span> <span class="cn">FALSE</span>,</span></span>
+<span class="r-in"><span>  jags_method <span class="op">=</span> <span class="st">"rjags"</span>,</span></span>
+<span class="r-in"><span>  autorun <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co">## parallel mode</span></span></span>
+<span class="r-in"><span><span class="va">Age</span> <span class="op">&lt;-</span> <span class="fu">AgeS_Computation</span><span class="op">(</span></span></span>
+<span class="r-in"><span>  DATA <span class="op">=</span> <span class="va">Data</span>,</span></span>
+<span class="r-in"><span>  Nb_sample <span class="op">=</span> <span class="va">Nb_sample</span>,</span></span>
+<span class="r-in"><span>  SampleNames <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"GDB5"</span>,<span class="st">"GDB3"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  PriorAge <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">100</span><span class="op">)</span>, <span class="fl">2</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  StratiConstraints <span class="op">=</span> <span class="va">SC</span>,</span></span>
+<span class="r-in"><span>  Iter <span class="op">=</span> <span class="fl">10000</span>,</span></span>
+<span class="r-in"><span>  quiet <span class="op">=</span> <span class="cn">FALSE</span>,</span></span>
+<span class="r-in"><span>  jags_method <span class="op">=</span> <span class="st">"rjparallel"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">}</span></span></span>
+<span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -455,13 +469,11 @@ Quaternary Geochronology 28, 62-70. doi:10.1016/j.quageo.2015.04.001</p>
 
 
       <footer><div class="copyright">
-  <p></p><p>Developed by Claire Christophe, Anne Philippe, Sebastian Kreutzer,
-Guillaume Guerin.</p>
+  <p></p><p>Developed by Claire Christophe, Anne Philippe, Sebastian Kreutzer, Guillaume Guérin, Frederik Harly Baumgarten.</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a>
-2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

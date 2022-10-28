@@ -21,7 +21,7 @@ Single-grain or Multi-grain OSL measurements can be analysed simultaneouly."><!-
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">BayLum</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.2.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.3.0</span>
       </span>
     </div>
 
@@ -80,24 +80,24 @@ Single-grain or Multi-grain OSL measurements can be analysed simultaneouly.</p>
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">Palaeodose_Computation</span><span class="op">(</span>
-  <span class="va">DATA</span>,
-  <span class="va">SampleNames</span>,
-  <span class="va">Nb_sample</span>,
-  BinPerSample <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">1</span>, <span class="va">Nb_sample</span><span class="op">)</span>,
-  SavePdf <span class="op">=</span> <span class="cn">FALSE</span>,
-  OutputFileName <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"MCMCplot"</span><span class="op">)</span>,
-  OutputFilePath <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">""</span><span class="op">)</span>,
-  SaveEstimates <span class="op">=</span> <span class="cn">FALSE</span>,
-  OutputTableName <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"DATA"</span><span class="op">)</span>,
-  OutputTablePath <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">""</span><span class="op">)</span>,
-  LIN_fit <span class="op">=</span> <span class="cn">TRUE</span>,
-  Origin_fit <span class="op">=</span> <span class="cn">FALSE</span>,
-  distribution <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"cauchy"</span><span class="op">)</span>,
-  Iter <span class="op">=</span> <span class="fl">50000</span>,
-  t <span class="op">=</span> <span class="fl">5</span>,
-  n.chains <span class="op">=</span> <span class="fl">3</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">Palaeodose_Computation</span><span class="op">(</span></span>
+<span>  <span class="va">DATA</span>,</span>
+<span>  <span class="va">SampleNames</span>,</span>
+<span>  <span class="va">Nb_sample</span>,</span>
+<span>  BinPerSample <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">1</span>, <span class="va">Nb_sample</span><span class="op">)</span>,</span>
+<span>  SavePdf <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  OutputFileName <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"MCMCplot"</span><span class="op">)</span>,</span>
+<span>  OutputFilePath <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">""</span><span class="op">)</span>,</span>
+<span>  SaveEstimates <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  OutputTableName <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"DATA"</span><span class="op">)</span>,</span>
+<span>  OutputTablePath <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">""</span><span class="op">)</span>,</span>
+<span>  LIN_fit <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  Origin_fit <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  distribution <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"cauchy"</span><span class="op">)</span>,</span>
+<span>  Iter <span class="op">=</span> <span class="fl">50000</span>,</span>
+<span>  t <span class="op">=</span> <span class="fl">5</span>,</span>
+<span>  n.chains <span class="op">=</span> <span class="fl">3</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -106,50 +106,87 @@ Single-grain or Multi-grain OSL measurements can be analysed simultaneouly.</p>
 <dd><p>list of objects: LT, sLT, ITimes, dLab, ddot_env, regDose, J, K, Nb_measurement,
 provided by <code><a href="Generate_DataFile.html">Generate_DataFile</a></code> or <code><a href="Generate_DataFile_MG.html">Generate_DataFile_MG</a></code>.
 <code>DATA</code> contains information for more than one sample.</p></dd>
+
+
 <dt>SampleNames</dt>
 <dd><p>character vector: names of sample. The length of this vector is equal to <code>Nb_sample</code>.</p></dd>
+
+
 <dt>Nb_sample</dt>
 <dd><p>integer: number of samples.</p></dd>
+
+
 <dt>BinPerSample</dt>
 <dd><p>integer vector (with default): vector with the number of BIN files per sample.
 The length of this vector is equal to <code>Nb_sample</code>.
 <code>BinPerSample</code>[i] correponds to the number of BIN files for the sample whose number ID is equal to <code>i</code>.
 For more information to fill this vector, we refer to detatils in <code><a href="Generate_DataFile.html">Generate_DataFile</a></code> or <code><a href="Generate_DataFile_MG.html">Generate_DataFile_MG</a></code>.</p></dd>
+
+
 <dt>SavePdf</dt>
 <dd><p>boolean (with default): if TRUE save graph in pdf file named <code>OutputFileName</code> in folder <code>OutputFilePath</code>.</p></dd>
+
+
 <dt>OutputFileName</dt>
 <dd><p>character (with default): name of the pdf files that will be generated by the function.</p></dd>
+
+
 <dt>OutputFilePath</dt>
 <dd><p>character (with default): path to the pdf files that will be generated by the function.</p></dd>
+
+
 <dt>SaveEstimates</dt>
 <dd><p>boolean (with default): if TRUE save Bayes estimates and credible interval at level 68<!-- % and 95%, -->
 in a csv table named <code>OutputFileName</code> in folder <code>OutputFilePath</code>.</p></dd>
+
+
 <dt>OutputTableName</dt>
 <dd><p>character (with default): name of the table that will be generated by the function if <code>SaveEstimates</code>=TRUE.</p></dd>
+
+
 <dt>OutputTablePath</dt>
 <dd><p>character (with default): path to the table that will be generated by the function if <code>SaveEstimates</code>=TRUE.</p></dd>
+
+
 <dt>LIN_fit</dt>
 <dd><p>logical (with default): if TRUE (default) allows a linear component,
 on top of the (default) saturating exponential curve, for the fitting of dose response curves.
 Please see details for more informations on the proposed dose response curves.</p></dd>
+
+
 <dt>Origin_fit</dt>
 <dd><p>logical (with default): if TRUE, forces the dose response curves to pass through the origin.
 Please see details for more informations on the proposed growth curves.</p></dd>
+
+
 <dt>distribution</dt>
 <dd><p>character (with default): type of distribution that defines
 how individual equivalent dose values are distributed around the palaeodose.
 Allowed inputs are <b>"cauchy"</b>, <b>"gaussian"</b>, <b>"lognormal_A"</b> and <b>"lognormal_M"</b>.</p></dd>
+
+
 <dt>Iter</dt>
 <dd><p>integer (with default): number of iterations for the MCMC computation (for more information see <code>jags.model</code>).</p></dd>
+
+
 <dt>t</dt>
 <dd><p>integer (with default): 1 every <code>t</code> iterations of the MCMC is considered for sampling the posterior distribution
 (for more information see <code>jags.model</code>).</p></dd>
+
+
 <dt>n.chains</dt>
 <dd><p>integer (with default): number of independent chains for the model (for more information see <code>jags.model</code>).</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p><b>NUMERICAL OUTPUT</b><br></p><ol><li><p><b>A list containing the following objects:</b></p><ul><li><p><b>Sampling</b> that corresponds to a sample of the posterior distributions
+    
+
+<p><b>NUMERICAL OUTPUT</b><br></p>
+
+
+
+<ol><li><p><b>A list containing the following objects:</b></p><ul><li><p><b>Sampling</b> that corresponds to a sample of the posterior distributions
  of palaeodose and equivalent dose dispersion parameters (both in Gy).</p></li>
 <li><p><b>Model_GrowthCurve</b>, stating which dose response fitting option was chosen;</p></li>
 <li><p><b>Distribution</b>, stating which distribution was chosen to model the dispersion of
@@ -164,13 +201,19 @@ the user can consider the printed estimates as valid. Otherwise, the user may tr
 (<code>Iter</code>) to reach convergency.</p></li>
 <li><p><b>Credible intervals and Bayes estimates</b>: prints the Bayes esitmates, the credible intervals at 95<!-- % and 68% for -->
 the palaeodose and equivalent dose dispersion parameters for each sample.</p></li>
-</ol><p><b>PLOT OUTPUT</b></p><ol><li><p><b>MCMC trajectories</b>
+</ol><p><b>PLOT OUTPUT</b></p>
+
+
+
+<ol><li><p><b>MCMC trajectories</b>
 A graph with the MCMC trajectories and posterior distributions of the palaeodose and equivalent dose dispersion parameters
 is displayed, there is one page per sample. <br>
 The first line of the figure correponds to the palaeodose parameter and the second to the equivalent dose dispersion parameter.
 On each line, the plot on the left represents the MCMC trajectories, and the one on the right the posterior distribution of the parameter.</p></li>
 <li><p><b>Summary of palaeodose estimates</b>: plot credible intervals and Bayes estimate of each sample palaeodose on a same graph.</p></li>
 </ol><p>To give result in a publication, we recommend to give the Bayes estimate of the parameters as well as the credible interval at 95<!-- % or 68%. --></p>
+
+
     </div>
     <div id="details">
     <h2>Details</h2>
@@ -205,7 +248,7 @@ of the age estimates if the chains have converged.</p>
     </div>
     <div id="how-to-cite">
     <h2>How to cite</h2>
-    <p>Christophe, C., Kreutzer, S., Philippe, A., 2022. Palaeodose_Computation(): Bayesian analysis for the palaeodose estimation of various samples. In: Christophe, C., Philippe, A., Kreutzer, S., Guerin, G., 2022. BayLum: Chronological Bayesian Models Integrating Optically Stimulated. R package version 0.2.1. https://CRAN.r-project.org/package=BayLum</p>
+    <p>Christophe, C., Kreutzer, S., Philippe, A., Guérin, G., 2022. Palaeodose_Computation(): Bayesian analysis for the palaeodose estimation of various samples. In: Christophe, C., Philippe, A., Kreutzer, S., Guérin, G., Baumgarten, F.H., 2022. BayLum: Chronological Bayesian Models Integrating Optically Stimulated. R package version 0.3.0. https://CRAN.r-project.org/package=BayLum</p>
     </div>
     <div id="references">
     <h2>References</h2>
@@ -226,10 +269,10 @@ Quaternary Geochronology 28, 62-70. doi:10.1016/j.quageo.2015.04.001</p>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="co">## Load data</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">DATA1</span>,envir <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/environment.html" class="external-link">environment</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-in"><span class="co">## Palaeodose computation of samples GDB3</span></span>
-<span class="r-in"><span class="va">P</span><span class="op">=</span><span class="fu">Palaeodose_Computation</span><span class="op">(</span>DATA<span class="op">=</span><span class="va">DATA1</span>,Nb_sample<span class="op">=</span><span class="fl">1</span>,SampleNames<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"GDB5"</span><span class="op">)</span>,Iter<span class="op">=</span><span class="fl">100</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co">## Load data</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">DATA1</span>,envir <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/environment.html" class="external-link">environment</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="co">## Palaeodose computation of samples GDB3</span></span></span>
+<span class="r-in"><span><span class="va">P</span><span class="op">=</span><span class="fu">Palaeodose_Computation</span><span class="op">(</span>DATA<span class="op">=</span><span class="va">DATA1</span>,Nb_sample<span class="op">=</span><span class="fl">1</span>,SampleNames<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"GDB5"</span><span class="op">)</span>,Iter<span class="op">=</span><span class="fl">100</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Compiling model graph</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    Resolving undeclared variables</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    Allocating nodes</span>
@@ -249,8 +292,8 @@ Quaternary Geochronology 28, 62-70. doi:10.1016/j.quageo.2015.04.001</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  Sample name:  GDB5 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ---------------------</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 		 Point estimate Uppers confidence interval</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> D_GDB5 	 10.93 		 21.86 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> sD_GDB5 	 2.86 		 5.53 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> D_GDB5 	 5.64 		 13.9 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> sD_GDB5 	 1.83 		 3.23 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ---------------------------------------------------------------------------------------------------</span>
@@ -264,19 +307,19 @@ Quaternary Geochronology 28, 62-70. doi:10.1016/j.quageo.2015.04.001</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  Sample name:  GDB5 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ---------------------</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Parameter 	 Bayes estimate 	  Credible interval </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> D_GDB5 	 147.889 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> D_GDB5 	 141.002 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 						 lower bound 	 upper bound</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 				 at level 95% 	 104 		 182 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 				 at level 68% 	 104 		 170 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 				 at level 95% 	 107 		 183 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 				 at level 68% 	 104 		 152 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Parameter 	 Bayes estimate 	  Credible interval </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> sD_GDB5 	 14.341 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> sD_GDB5 	 17.413 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 						 lower bound 	 upper bound</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 				 at level 95% 	 7 		 22 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 				 at level 68% 	 8 		 17 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 				 at level 95% 	 10 		 22 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 				 at level 68% 	 15 		 21 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ----------------------------------------------</span>
-<span class="r-in"></span>
+<span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -287,13 +330,11 @@ Quaternary Geochronology 28, 62-70. doi:10.1016/j.quageo.2015.04.001</p>
 
 
       <footer><div class="copyright">
-  <p></p><p>Developed by Claire Christophe, Anne Philippe, Sebastian Kreutzer,
-Guillaume Guerin.</p>
+  <p></p><p>Developed by Claire Christophe, Anne Philippe, Sebastian Kreutzer, Guillaume Guérin, Frederik Harly Baumgarten.</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a>
-2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

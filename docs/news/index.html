@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">BayLum</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.2.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.3.0</span>
       </span>
     </div>
 
@@ -67,262 +67,32 @@
     </div>
 
     <div class="section level2">
-<h2 class="page-header" data-toc-text="0.2.1" id="baylum-021-2022-02-20">BayLum 0.2.1 (2022-02-20)<a class="anchor" aria-label="anchor" href="#baylum-021-2022-02-20"></a></h2>
-<p><em>Note: This package version needs at least R &gt;= 4.0.</em></p>
+<h2 class="page-header" data-toc-text="0.3.0" id="baylum-030-2022-10-28">BayLum 0.3.0 (2022-10-28)<a class="anchor" aria-label="anchor" href="#baylum-030-2022-10-28"></a></h2>
+<p><strong>This version of <code>'BayLum'</code> requires R&gt;=4.1.x!</strong></p>
 <div class="section level3">
-<h3 id="bugfixes--changes-0-2-1">Bugfixes &amp; changes<a class="anchor" aria-label="anchor" href="#bugfixes--changes-0-2-1"></a></h3>
+<h3 id="new-functions-0-3-0">New functions<a class="anchor" aria-label="anchor" href="#new-functions-0-3-0"></a></h3>
+<ul><li>
+<code><a href="../reference/write_BayLumFiles.html">write_BayLumFiles()</a></code>: <a href="https://github.com/IMHarly" class="external-link">@IMHarly</a> contributed an excellent new function that creates all folders and files needed for <code>'BayLum'</code>, making it a lot easier and less error-prone to work with <code>'BayLum'</code>.</li>
+</ul></div>
+<div class="section level3">
+<h3 id="bugfixes-and-changes-0-3-0">Bugfixes and changes<a class="anchor" aria-label="anchor" href="#bugfixes-and-changes-0-3-0"></a></h3>
 <div class="section level4">
-<h4 id="ages_computation-0-2-1"><code>AgeS_Computation()</code><a class="anchor" aria-label="anchor" href="#ages_computation-0-2-1"></a></h4>
-<ul><li>The function crashed if <code>jags_method = "rjparallel"</code> with
-a runtime error due to missing information about the RNG type; fixed
-(thanks to <a href="https://github.com/IMHarly" class="external-link">@IMHarly</a> for spotting).</li>
-<li>If <code>jags_method = "rjparallel"</code> the inits were preset to
-a specific value for the random number generator. While this setting led
-to a crash of the function and probably caused no harm, the setting did
-not make any sense. Now, the random number generator settings (seed,
-type etc.) can be provided via the argument <code>inits</code>, which is
-passed to <code><a href="https://rdrr.io/pkg/runjags/man/autorun.jags.html" class="external-link">runjags::autorun.jags</a></code>. The default is
-<code>NA</code> to maintain the expected behaviour if
-<code>jags_method = "rjparallel"</code> is used.</li>
-<li>The function gained a new argument <code>model</code> to inject
-custom models to run with the parameters as already defined for the
-model. This option allows to adjust priors and likelihoods to test
-different scenarios. Please not that this option works without a safety
-net, mean the function does not check whether the parameters in the
-model are actually available.</li>
-<li>The function now returns the used model as a character string, in
-combination with the new parameter <code>model</code> it can be used to
-modify the model on the fly.</li>
+<h4 id="ages_computation-0-3-0"><code>AgeS_Computation()</code><a class="anchor" aria-label="anchor" href="#ages_computation-0-3-0"></a></h4>
+<ul><li>The function now supports parallel processing using the package <code>'rungjags'</code> (thanks to <a href="https://github.com/IMHarly" class="external-link">@IMHarly</a>)</li>
 </ul></div>
 <div class="section level4">
-<h4 id="age_oslc14-0-2-1"><code>Age_OSLC14()</code><a class="anchor" aria-label="anchor" href="#age_oslc14-0-2-1"></a></h4>
-<ul><li>Add support for <code>"rjparallel"</code> via new argument
-<code>jags_method = "rjparallel"</code>, like in
-<code><a href="../reference/AgeS_Computation.html">AgeS_Computation()</a></code> (thanks <a href="https://github.com/IMHarly" class="external-link">@IMHarly</a>, <a href="https://github.com/crp2a/BayLum/issues/20" class="external-link">#20</a>).</li>
-</ul></div>
-<div class="section level4">
-<h4 id="generate_datafile_mg-0-2-1"><code>Generate_DataFile_MG()</code><a class="anchor" aria-label="anchor" href="#generate_datafile_mg-0-2-1"></a></h4>
-<ul><li>The function gained a new argument
-<code>force_run1_at_a_time</code>. If set to <code>TRUE</code> it
-automatically orders the curves in the BIN/BINX-file following the “Run
-1 at a time” option. Regardless of whether this option was used for the
-measurement or not. Please note: this cannot work if you have assigned a
-position number more than one time to different aliquots.</li>
-<li>
-<code>verbose = FALSE</code> was not respected under all
-circumstances; fixed.</li>
-</ul></div>
-</div>
-</div>
-    <div class="section level2">
-<h2 class="page-header" data-toc-text="0.2.0" id="baylum-020-2020-12-06">BayLum 0.2.0 (2020-12-06)<small>2020-12-06</small><a class="anchor" aria-label="anchor" href="#baylum-020-2020-12-06"></a></h2>
-<p><em>Note: This package version needs at least R &gt;= 3.5.0.</em></p>
-<div class="section level3">
-<h3 id="bugfixes--changes-0-2-0">Bugfixes &amp; changes<a class="anchor" aria-label="anchor" href="#bugfixes--changes-0-2-0"></a></h3>
-<ul><li>
-<code><a href="../reference/AgeS_Computation.html">AgeS_Computation()</a></code>
-<ul><li>Now stops if a mismatch was encountered between the number of
-samples and the matrix provided via <code>THETA</code> to prevent a
-‘JAGS’ runtime error</li>
-<li>The function experimentally gained a new argument
-<code>jags_method</code> to support full automated processing in
-parallel using the R package <code>'runjags'</code>; including a
-<code>...</code> argument for a more detailed control. By default the
-calculation is done simply via <code>'rjags'</code> as usual</li>
-</ul></li>
-<li>
-<code><a href="../reference/Age_OSLC14.html">Age_OSLC14()</a></code>
-<ul><li>Add additional output to enhance output table by additional
-information (<a href="https://github.com/crp2a/BayLum/issues/11" class="external-link">#11</a>)</li>
-<li>The CSV-file option now returns the age and the HPD intervals</li>
-<li>The bugs model for the <code>gaussian</code> distribution did not
-work due to a wrongly set index (<a href="https://github.com/crp2a/BayLum/issues/13" class="external-link">#13</a>); fixed.</li>
-<li>If a small number of samples was used and the first was a C-14
-sample JAGS crashed; now it throws are more comprehensible error message
-(<a href="https://github.com/crp2a/BayLum/issues/14" class="external-link">#14</a>).</li>
-</ul></li>
-<li>
-<code><a href="../reference/Generate_DataFile_MG.html">Generate_DataFile_MG()</a></code>
-<ul><li>now works only on preselected records; the limitation of OSL only
-was removed.</li>
-</ul></li>
-<li>
-<code><a href="../reference/plot_Ages.html">plot_Ages()</a></code>
-<ul><li>The sorting of the samples in the graph did not work as expected;
-along with this a new argument <code>sample_order</code> was added.</li>
-<li>The function accepts a data.frame as alternative input, if the
-<code>data.frame</code> is similar the data frames created by the
-computation functions (e.g., <code><a href="../reference/AgeS_Computation.html">AgeS_Computation()</a></code>). This
-option enables the manual creation of age plots from self-compiled
-data.</li>
-</ul></li>
-<li>
-<code><a href="../reference/plot_MCMC.html">plot_MCMC()</a></code>
-<ul><li>Accidentally the function could not display the chains from more
-than 9 samples; fixed (thanks to Maryam Heydari)</li>
-<li>Now the function understand the output of
-<code><a href="../reference/AgeS_Computation.html">AgeS_Computation()</a></code> for an automated treatment</li>
-<li>Wrong variable names now lead to a <code>warning</code> instead of a
-<code>stop</code>. This is less aggressive and it makes the function
-easier to use by users who only use the plot functionality of
-<code>'BayLum'</code>
-</li>
-</ul></li>
-<li>
-<code><a href="../reference/plot_Scatterplots.html">plot_Scatterplots()</a></code>
-<ul><li>Line breaks and leading and trailing white space is now removed from
-the character (vector) provided via <code>sample_names</code>
-</li>
-<li>If the number of selected samples via <code>sample_selection</code>
-was shorter than the number of names provided by
-<code>sample_names</code> the function returned an
-<code>subscript out of bounds</code> error; fixed (reported by Maryam
-Heydari)</li>
-</ul></li>
-</ul><div class="section level4">
-<h4 id="internals-0-2-0">Internals<a class="anchor" aria-label="anchor" href="#internals-0-2-0"></a></h4>
-<ul><li>All models now come with an example showing how they can be
-inspected (before the examples not working)</li>
-<li>Fix a couple of documentation glitches (e.g., part of the
-documentation was missing)</li>
-<li>Smooth the creation of <code>BayLum.list</code> objects using a
-central internal function</li>
-<li>Add new C-14 calibration data and unify the names of those datasets.
-Allowed inputs are
-<code>"IntCal13"</code>,<code>"IntCal20"</code>,<code>"Marine13"</code>,<code>"Marine20"</code>,
-<code>"SHCal13"</code>, <code>"SHCal20"</code> or an own dataset which
-must be stored in a CSV-file.</li>
+<h4 id="age_oslc14-0-3-0"><code>Age_OSLC14()</code><a class="anchor" aria-label="anchor" href="#age_oslc14-0-3-0"></a></h4>
+<ul><li>Regression error, the function tried to observe more variables than were actually in the model; fixed. (thanks to <a href="https://github.com/IMHarly" class="external-link">@IMHarly</a>, <a href="https://github.com/crp2a/BayLum/issues/21" class="external-link">#21</a>)</li>
+<li>The function now supports parallel processing using the package <code>'rungjags'</code> (thanks to <a href="https://github.com/IMHarly" class="external-link">@IMHarly</a>)</li>
 </ul></div>
 </div>
 <div class="section level3">
-<h3 id="new-functions-0-2-0">New functions<a class="anchor" aria-label="anchor" href="#new-functions-0-2-0"></a></h3>
-<ul><li>
-<code><a href="../reference/create_ThetaMatrix.html">create_ThetaMatrix()</a></code> this function is a helper to
-create the theta matrix that can be provided as input for the functions
-<code><a href="../reference/AgeS_Computation.html">AgeS_Computation()</a></code> and <code><a href="../reference/Age_OSLC14.html">Age_OSLC14()</a></code>
-</li>
-<li>
-<code><a href="../reference/create_FolderTemplates.html">create_FolderTemplates()</a></code> creates the folder and file
-structures required by <code><a href="../reference/Generate_DataFile.html">Generate_DataFile()</a></code> and
-<code><a href="../reference/Generate_DataFile_MG.html">Generate_DataFile_MG()</a></code> on the user’s hard drive</li>
-</ul></div>
-</div>
-    <div class="section level2">
-<h2 class="page-header" data-toc-text="0.1.3" id="baylum-013-release-date-2018-09-14">BayLum 0.1.3 (Release date: 2018-09-14)<small>2018-09-19</small><a class="anchor" aria-label="anchor" href="#baylum-013-release-date-2018-09-14"></a></h2>
-<div class="section level3">
-<h3 id="new-functions-0-1-3">New functions<a class="anchor" aria-label="anchor" href="#new-functions-0-1-3"></a></h3>
-<ul><li>
-<code><a href="../reference/plot_Ages.html">plot_Ages()</a></code> this function replaces code used internally
-by the functions <code>AgeC14_Compution()</code> and
-<code><a href="../reference/AgeS_Computation.html">AgeS_Computation()</a></code> to create an age overview plot. Before
-the user had no control over the appearance of age plot output. This is
-still the case if the functions <code>AgeC14_Compution()</code>,
-<code><a href="../reference/AgeS_Computation.html">AgeS_Computation()</a></code> and <code><a href="../reference/Age_OSLC14.html">Age_OSLC14()</a></code> are used
-(although internally only the function <code><a href="../reference/plot_Ages.html">plot_Ages()</a></code> is
-called), however, both functions now return a new list of class
-<code>BayLum.list</code> which is recognised by the function
-<code><a href="../reference/plot_Ages.html">plot_Ages()</a></code> and can be used to plot the typical age plot
-while providing several arguments for adjusting the plot output.</li>
-</ul></div>
-<div class="section level3">
-<h3 id="bugfixes--changes-0-1-3">Bugfixes &amp; changes<a class="anchor" aria-label="anchor" href="#bugfixes--changes-0-1-3"></a></h3>
-<ul><li>The newly introduced function <code><a href="../reference/combine_DataFiles.html">combine_DataFiles()</a></code> did
-not work on R &lt; 3.5.0, which caused an error on CRAN; fixed.</li>
-<li>The function <code><a href="../reference/plot_Scatterplots.html">ScatterSamples()</a></code> is replaced by the
-function <code><a href="../reference/plot_Scatterplots.html">plot_Scatterplots()</a></code>
-</li>
-<li>All computation functions left text connections open after they have
-been exited; fixed.</li>
-<li>The output of <code>AgeC14_Compution()</code> and
-<code><a href="../reference/AgeS_Computation.html">AgeS_Computation()</a></code> gain a new class
-<code>BayLum.list</code>
-</li>
-<li>Redundant code in <code>AgeC14_Compution()</code> and
-<code><a href="../reference/AgeS_Computation.html">AgeS_Computation()</a></code> has been removed</li>
-<li>The argument <code>Nb_chaines</code> was replaced by
-<code>n.chains</code> wherever it occurred in the package (functions and
-documentation)</li>
-<li>The function <code><a href="../reference/plot_Scatterplots.html">plot_Scatterplots()</a></code> gained a new argument
-<code>plot_type</code>, allowing to switch between the default hexbin
-plot and a function developed for ’BayLum<code>(</code>plot_type =
-“smoothScatter”`)</li>
-<li>The function <code><a href="../reference/plot_Scatterplots.html">plot_Scatterplots()</a></code> gained a new argument
-<code>plot_mode</code> to allow single xy plots</li>
-<li>The function <code><a href="../reference/plot_Scatterplots.html">plot_Scatterplots()</a></code> now accepts a two
-column <code>data.frame</code> as inputbuild</li>
-</ul></div>
-<div class="section level3">
-<h3 id="internals-0-1-3">Internals<a class="anchor" aria-label="anchor" href="#internals-0-1-3"></a></h3>
-<ul><li>Add new package dependency <code>KernSmooth</code> used in
-<code><a href="../reference/plot_Scatterplots.html">plot_Scatterplots()</a></code>
+<h3 id="internals-0-3-0">Internals<a class="anchor" aria-label="anchor" href="#internals-0-3-0"></a></h3>
+<ul><li>A few fixes regarding string comparisons in <code>if()</code> conditions.</li>
+<li>Fix CRAN warning regarding <code>Escaped LaTeX specials: \&amp;</code>
 </li>
 </ul></div>
 </div>
-    <div class="section level2">
-<h2 class="page-header" data-toc-text="0.1.2" id="baylum-012-release-date-2018-06-22">BayLum 0.1.2 (Release date: 2018-06-22)<small>2018-06-22</small><a class="anchor" aria-label="anchor" href="#baylum-012-release-date-2018-06-22"></a></h2>
-<div class="section level3">
-<h3 id="new-functions-0-1-2">New functions<a class="anchor" aria-label="anchor" href="#new-functions-0-1-2"></a></h3>
-<ul><li>The function <code>MCMC_plot()</code> was replaced by the newly
-written function <code><a href="../reference/plot_MCMC.html">plot_MCMC()</a></code>
-</li>
-<li>The function <code><a href="../reference/combine_DataFiles.html">Concat_DataFile()</a></code> is deprecated and is
-basically replaced by the function <code><a href="../reference/combine_DataFiles.html">combine_DataFiles()</a></code>
-</li>
-</ul></div>
-<div class="section level3">
-<h3 id="bugfixes-0-1-2">Bugfixes<a class="anchor" aria-label="anchor" href="#bugfixes-0-1-2"></a></h3>
-<ul><li>The functions <code>AgeC14_Compution()</code> and
-<code>Age_OSL14()</code> now returns age results with two digits</li>
-<li>The function <code><a href="../reference/AgeS_Computation.html">AgeS_Computation()</a></code> now returns the MCMC
-information from all samples of the PDF output is set to
-<code>TRUE</code>
-</li>
-<li>The function <code><a href="../reference/Age_OSLC14.html">Age_OSLC14()</a></code> never returned numerical
-data; fixed</li>
-<li>Fix <code><a href="../reference/Age_OSLC14.html">Age_OSLC14()</a></code> age format, now in ka for C-14 instead
-of years</li>
-<li>The last example in <code><a href="../reference/AgeS_Computation.html">AgeS_Computation()</a></code> could not be
-run; fixed</li>
-<li>C-14 calibration datasets now show data in ‘ka’ and not ‘a’</li>
-<li>Various typo corrections.</li>
-</ul></div>
-<div class="section level3">
-<h3 id="enhancements-0-1-2">Enhancements<a class="anchor" aria-label="anchor" href="#enhancements-0-1-2"></a></h3>
-<ul><li>Allow different BIN/BINX-file names as input. The functions
-<code><a href="../reference/Generate_DataFile.html">Generate_DataFile()</a></code> and <code><a href="../reference/Generate_DataFile_MG.html">Generate_DataFile_MG()</a></code>
-do no longer expecting the name sheme bin.BIN</li>
-<li>The functions <code><a href="../reference/Generate_DataFile.html">Generate_DataFile()</a></code> and
-<code><a href="../reference/Generate_DataFile_MG.html">Generate_DataFile_MG()</a></code> now supports the <code>...</code>
-argument to pass further arguments to the function
-<code>Luminescene::read_BIN2R()</code>
-</li>
-<li>The functions <code><a href="../reference/Generate_DataFile.html">Generate_DataFile()</a></code> and
-<code><a href="../reference/Generate_DataFile_MG.html">Generate_DataFile_MG()</a></code> gained a new argument
-<code>verbose</code> to control the terminal output</li>
-<li>The function
-<code><a href="../reference/Age_Computation.html">Age_Computation()</a></code>,<code><a href="../reference/AgeS_Computation.html">AgeS_Computation()</a></code>,<code><a href="../reference/AgeC14_Computation.html">AgeC14_Computation()</a></code>,
-<code><a href="../reference/Age_OSLC14.html">Age_OSLC14()</a></code> now support the argument <code>quiet</code>
-and pipe it to <code>rjags</code> to suppress the terminal output</li>
-<li>The function <code><a href="../reference/AgeC14_Computation.html">AgeC14_Computation()</a></code> now returns a warning
-if outliers are detected.</li>
-<li>The function <code><a href="../reference/LT_RegenDose.html">LT_RegenDose()</a></code> gained two new arguments
-<code>nrow</code> and <code>ncol</code> became a little bit more user
-friendly</li>
-</ul></div>
-<div class="section level3">
-<h3 id="internals-0-1-2">Internals<a class="anchor" aria-label="anchor" href="#internals-0-1-2"></a></h3>
-<ul><li>Set patch level to 0 (for 3.3.0) to account for CRAN note</li>
-<li>Vignette was updated and corrected</li>
-</ul></div>
-</div>
-    <div class="section level2">
-<h2 class="page-header" data-toc-text="0.1.1" id="baylum-011-release-date-2017-09-01">BayLum 0.1.1 (Release date: 2017-09-01)<small>2017-09-07</small><a class="anchor" aria-label="anchor" href="#baylum-011-release-date-2017-09-01"></a></h2>
-<ul><li>Reduce required R version to 3.3.2</li>
-</ul></div>
-    <div class="section level2">
-<h2 class="page-header" data-toc-text="0.1.0" id="baylum-010-release-date-2017-08-22">BayLum 0.1.0 (Release date: 2017-08-22)<small>2017-09-01</small><a class="anchor" aria-label="anchor" href="#baylum-010-release-date-2017-08-22"></a></h2>
-<ul><li>Initial version on CRAN</li>
-</ul></div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -333,13 +103,11 @@ friendly</li>
 
 
       <footer><div class="copyright">
-  <p></p><p>Developed by Claire Christophe, Anne Philippe, Sebastian Kreutzer,
-Guillaume Guerin.</p>
+  <p></p><p>Developed by Claire Christophe, Anne Philippe, Sebastian Kreutzer, Guillaume Guérin, Frederik Harly Baumgarten.</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a>
-2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>
