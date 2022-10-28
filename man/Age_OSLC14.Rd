@@ -351,11 +351,21 @@ SigmaC14Cal <- DATA_C14$C14[1,2]
 Names <- DATA_C14$Names[1]
 
 # Prior Age
-prior=rep(c(1,60),3)
-samplenature=matrix(data=c(1,0,1,0,1,0),ncol=3,nrow=2,byrow=TRUE)
-SC <- matrix(data=c(1,1,1,0,1,1,0,0,1,0,0,0),ncol=3,nrow=4,byrow=TRUE)
+prior <- rep(c(1,60),3)
+samplenature <- matrix(
+ data = c(1,0,1,0,1,0),
+ ncol = 3,
+ nrow = 2,
+ byrow = TRUE)
+
+SC <- matrix(
+ data = c(1,1,1,0,1,1,0,0,1,0,0,0),
+ ncol = 3,
+ nrow =4 ,
+ byrow = TRUE)
 
 ## Age computation of samples
+\dontrun{
 Age <- Age_OSLC14(
  DATA = Data,
  Data_C14Cal = C14Cal,
@@ -369,11 +379,12 @@ Age <- Age_OSLC14(
  burnin = 20,
  adapt = 20,
  n.chains = 2)
+}
 
 } 
 
 \section{How to cite}{
-Christophe, C., Philippe, A., Kreutzer, S., Baumgarten, F.H., 2022. Age_OSLC14(): Bayesian analysis for age estimation of OSL measurements and C-14 ages of various samples. In: Christophe, C., Philippe, A., Kreutzer, S., Guérin, G., Baumgarten, F.H., 2022. BayLum: Chronological Bayesian Models Integrating Optically Stimulated. R package version 0.2.2.9000-21. https://CRAN.r-project.org/package=BayLum
+Christophe, C., Philippe, A., Kreutzer, S., Baumgarten, F.H., 2022. Age_OSLC14(): Bayesian analysis for age estimation of OSL measurements and C-14 ages of various samples. In: Christophe, C., Philippe, A., Kreutzer, S., Guérin, G., Baumgarten, F.H., 2022. BayLum: Chronological Bayesian Models Integrating Optically Stimulated. R package version 0.3.0. https://CRAN.r-project.org/package=BayLum
 }
 
 \references{

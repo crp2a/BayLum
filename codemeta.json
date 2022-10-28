@@ -7,13 +7,13 @@
   "codeRepository": "https://github.com/crp2a/BayLum",
   "issueTracker": "https://github.com/crp2a/BayLum/issues",
   "license": "https://spdx.org/licenses/GPL-3.0",
-  "version": "0.2.2.9000.21",
+  "version": "0.3.0",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R Under development (unstable) (2022-06-27 r82528)",
+  "runtimePlatform": "R Under development (unstable) (2022-09-26 r82921)",
   "provider": {
     "@id": "https://cran.r-project.org",
     "@type": "Organization",
@@ -66,7 +66,7 @@
       "@type": "SoftwareApplication",
       "identifier": "testthat",
       "name": "testthat",
-      "version": ">= 3.1.2",
+      "version": ">= 3.1.5",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -79,7 +79,7 @@
       "@type": "SoftwareApplication",
       "identifier": "R.rsp",
       "name": "R.rsp",
-      "version": ">= 0.44.0",
+      "version": ">= 0.45.0",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -162,7 +162,7 @@
       "@type": "SoftwareApplication",
       "identifier": "runjags",
       "name": "runjags",
-      "version": ">= 2.2.0",
+      "version": ">= 2.2.1",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -175,7 +175,7 @@
       "@type": "SoftwareApplication",
       "identifier": "Luminescence",
       "name": "Luminescence",
-      "version": ">= 0.9.18",
+      "version": ">= 0.9.20",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -188,7 +188,7 @@
       "@type": "SoftwareApplication",
       "identifier": "ArchaeoPhases",
       "name": "ArchaeoPhases",
-      "version": ">= 1.5",
+      "version": ">= 1.8",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -199,7 +199,7 @@
     },
     "SystemRequirements": "JAGS >= 4.3.1 (https://mcmc-jags.sourceforge.io/)"
   },
-  "fileSize": "3157.433KB",
+  "fileSize": "3157.393KB",
   "citation": [
     {
       "@type": "SoftwareSourceCode",
@@ -238,7 +238,7 @@
       ],
       "name": "BayLum: Chronological Bayesian Models Integrating Optically Stimulated Luminescence and Radiocarbon Age Dating",
       "url": "https://CRAN.r-project.org/package=BayLum",
-      "description": "R package version 0.2.2.9000-21"
+      "description": "R package version 0.3.0"
     },
     {
       "@type": "ScholarlyArticle",
