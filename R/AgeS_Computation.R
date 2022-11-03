@@ -412,14 +412,12 @@ AgeS_Computation <- function(
     }
 
     ##---THETA matrix ####
-    if (length(THETA[, 1]) == 0) {
-      THETA = diag(DATA$ddot_env[2, CSBinPerSample] + (DATA$ddot_env[1, CSBinPerSample]) ^
-                     2 * DATA$dLab[2, CSBinPerSample])
-    } else{
-      if (is(THETA)[1] == "character") {
-        errorMatrix = read.csv(THETA, sep = sepTHETA)
-        THETA = as.matrix(errorMatrix)
-      }
+    if (is(THETA)[1] == "character")
+      THETA <- as.matrix(read.csv(THETA, sep = sepTHETA, header = FALSE))
+
+    if (length(THETA[,1]) == 0) {
+      THETA <- diag(DATA$ddot_env[2, CSBinPerSample] +
+                      (DATA$ddot_env[1, CSBinPerSample]) ^ 2 * DATA$dLab[2, CSBinPerSample])
     }
 
     ##JAGS will crash with a runtime error if the dimension of the theta matrix does not match the
