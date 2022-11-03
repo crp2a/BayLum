@@ -10,7 +10,7 @@
 #'
 #' \deqn{\Sigma_ij = A_i * A_j * \Theta_ij}
 #'
-#' For details see Combès & Philippe, 2017 and Guérin et al. (under review).
+#' For details see Combès & Philippe, 2017 and Guérin et al. (2021).
 #'
 #' **Input modes**
 #'
@@ -46,7 +46,7 @@
 #'
 #' **Systematic uncertainties**
 #'
-#' The following table provides informaton on the named argument
+#' The following table provides information on the named argument
 #' that can be provided via the argument `sigma_s`
 #'
 #' \tabular{lll}{
@@ -93,6 +93,10 @@
 #' Combès, B., Philippe, A., 2017. Bayesian analysis of individual and systematic multiplicative errors
 #' for estimating ages with stratigraphic constraints in optically stimulated luminescence dating.
 #' Quaternary Geochronology 39, 24–34. \doi{10.1016/j.quageo.2017.02.003}
+#'
+#' Guérin, G., Lahaye, C., Heydari, M., Autzen, M., Buylaert, J.-P., Guibert, P., Jain, M., Kreutzer, S., Lebrun, B., Murray, A.S., Thomsen, K.J., Urbanova, P., Philippe, A., 2021. Towards an improvement of optically stimulated luminescence (OSL) age uncertainties: modelling OSL ages with systematic errors, stratigraphic constraints and radiocarbon ages using the R package BayLum. Geochronology 3, 229—245.
+#' \doi{10.5194/gchron-3-229-2021}
+
 #'
 #' @examples
 #' ##(1) return template data.frame (no file output)
