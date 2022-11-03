@@ -114,6 +114,6 @@ based on the function 'ScatterSamples()' by Claire Christophe, Anne Philippe, Gu
 } 
 
 \section{How to cite}{
-Kreutzer, S., Christophe, C., Philippe, A., Guérin, G., 2022. plot_Scatterplots(): Display Scatter Plot Matrix of the Bayesian Age Results. Function version 0.3.1. In: Christophe, C., Philippe, A., Kreutzer, S., Guérin, G., Baumgarten, F.H., 2022. BayLum: Chronological Bayesian Models Integrating Optically Stimulated. R package version 0.3.0. https://CRAN.r-project.org/package=BayLum
+Kreutzer, S., Christophe, C., Philippe, A., Guérin, G., 2022. plot_Scatterplots(): Display Scatter Plot Matrix of the Bayesian Age Results. Function version 0.3.1. In: Christophe, C., Philippe, A., Kreutzer, S., Guérin, G., Baumgarten, F.H., 2022. BayLum: Chronological Bayesian Models Integrating Optically Stimulated. R package version 0.3.1.9000-4. https://CRAN.r-project.org/package=BayLum
 }
 
