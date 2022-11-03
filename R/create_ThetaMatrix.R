@@ -41,13 +41,14 @@
 #' `DR_TOTAL_X` \tab standard error total dose rate  \tab Gy/ka \cr
 #' }
 #'
-#' *Note: All columns can be set to 0 or NA, no column must be left empty! If a value > 0 is provided
+#' *Note: All columns can be set to 0 or `NA` but no column must be left empty! If a value > 0 is provided
 #' for `DR_GAMMA_TOTAL` this value is taken and values in, e.g., `DR_GAMMA_K` are discarded (set to 0)!*
 #'
 #' **Systematic uncertainties**
 #'
 #' The following table provides information on the named argument
-#' that can be provided via the argument `sigma_s`
+#' that can be provided via the argument `sigma_s`. Missing values are not allowed, all
+#' values must be set.
 #'
 #' \tabular{lll}{
 #' ARGUMENT \tab DESCRIPTION \tab UNIT \cr
@@ -85,7 +86,7 @@
 #'
 #' @seealso [AgeS_Computation], [Age_OSLC14], [utils::read.table], [utils::write.table]
 #'
-#' @return A symetric \eqn{Theta} matrix or if `input` is missing, a [data.frame] with an input
+#' @return A symmetric \eqn{Theta} matrix or if `input` is missing, a [data.frame] with an input
 #' template
 #'
 #' @references
@@ -167,7 +168,6 @@ create_ThetaMatrix <- function(
   # Verify basic input --------------------------------------------------------------------------------
   # basic input
   if(missing(input)){
-
     #set data.frame
     df <- as.data.frame(matrix(NA_real_, ncol = length(df_colnames)))
     colnames(df) <- df_colnames
@@ -220,7 +220,7 @@ create_ThetaMatrix <- function(
   }
 
   ##check sigma_s
-  if(!is.null(sigma_s) && !all(names(sigma_s) %in% sigma_s_ref))
+  if(!is.null(sigma_s) && !all(sigma_s_ref %in% names(sigma_s)))
       stop("[create_ThetaMatrix()] Value names do not match in 'sigma_s', please check the manual!", call. = FALSE)
 
   ##set NULL case
@@ -231,10 +231,9 @@ create_ThetaMatrix <- function(
   }
 
 # Verify data.frame ---------------------------------------------------------------------------
-
   #verify data.frame, we hard stop here
   if(!all(colnames(df) %in% df_colnames))
-    stop("[create_ThetaMatrix()] The input data.frame has not the expected columns, please check the manual!",call. = FALSE)
+    stop("[create_ThetaMatrix()] The input data.frame does not contain the expected columns, please check the manual!",call. = FALSE)
 
   #if data.frame has only one row, it cannot work either
   if(nrow(df) < 2)
@@ -246,8 +245,6 @@ create_ThetaMatrix <- function(
     warning("[create_ThetaMatrix()] NA values found and set to 0.", call. = FALSE)
 
   }
-
-
 
   # Create matrix -------------------------------------------------------------------------------
   ##to avoid a miscalculation, we remove columns not used due to the gamma dose rate setting

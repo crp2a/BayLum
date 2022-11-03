@@ -14,12 +14,26 @@ test_that("Full function test", {
     s_CAL = 0.020,
     s_intDR = 0.030)
 
+  ## sigma_s short
+  sigma_s_short <-  c(
+    s_betaK = 0.010,
+    s_betaU = 0.007,
+    s_betaTh = 0.006,
+    s_gammaK = 0.010,
+    s_gammaU = 0.007,
+    s_gammaTh = 0.006,
+    s_gammaDR = 0.05,
+    s_CAL = 0.020)
+
   ##try to crash the function
   expect_error(create_ThetaMatrix(input = 2))
   expect_error(create_ThetaMatrix(input = "test"), regexp = "File test does not exist!")
   expect_error(create_ThetaMatrix(input = data.frame(), sigma_s = sigma_s), regexp = "The input data.frame needs at least 2 rows!")
   expect_error(create_ThetaMatrix(input = data.frame()), regexp =  "argument \"sigma_s\" is missing, with no default")
   expect_error(create_ThetaMatrix(input = data.frame(), sigma_s = c(test = 1)),
+               regexp = "Value names do not match in 'sigma_s', please check the manual!")
+
+  expect_error(create_ThetaMatrix(input = data.frame(), sigma_s = sigma_s_short),
                regexp = "Value names do not match in 'sigma_s', please check the manual!")
 
   ##create reference dataset
@@ -62,3 +76,4 @@ test_that("Full function test", {
   expect_error(create_ThetaMatrix(input = df, sigma_s = sigma_s))
 
 })
+
