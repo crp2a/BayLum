@@ -179,7 +179,7 @@ Generate_DataFile_MG <- function(
   ITimes <- list() # corresponding to observation : t_{k,j}^(i) per sample
 
   ## check if the number of BIN-files makes sense
-  if(list.files(Path) |> tolower() |> grepl(x = _, pattern = "\\.bin") |> sum() != Nb_binfile[1])
+  if(list.files(Path) |> tolower() |> grepl(pattern = "\\.bin") |> sum() != Nb_binfile[1])
     warning("[Generate_DataFile_MG()] The total number of BIN-files does not match the number specified in Nb_binfile. Please double-check and correct the number otherwise this can lead to all kind of problems!", call. = FALSE)
 
   # information on bin file
