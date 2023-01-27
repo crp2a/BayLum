@@ -59,11 +59,11 @@ jobs:
             any::covr
           needs: check
 
-       - name: Show OS
-         run: |
-           options(width = 100)
-           print(.Platform)
-         shell: Rscript {0}
+      - name: Show OS
+        run: |
+          options(width = 100)
+          print(.Platform)
+        shell: Rscript {0}
 
       - uses: r-lib/actions/check-r-package@v2
         with:
