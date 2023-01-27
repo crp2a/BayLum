@@ -33,7 +33,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">BayLum</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.3.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.3.1.9000-7</span>
       </span>
     </div>
 
@@ -90,7 +90,7 @@
 Christophe, Anne Philippe, Sebastian Kreutzer, Guillaume Guérin</h4>
             
             <h4 data-toc-skip class="date">Updated for BayLum package
-version 0.3.0 (2022-10-28)</h4>
+version 0.3.1.9000.7 (2023-01-27)</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/crp2a/BayLum/blob/HEAD/vignettes/BayLum.Rmd" class="external-link"><code>vignettes/BayLum.Rmd</code></a></small>
       <div class="hidden name"><code>BayLum.Rmd</code></div>
@@ -121,8 +121,8 @@ as possible.</p>
 <p>If you read this document before having installed <strong>R</strong>
 itself, you should first visit the <a href="https://www.r-project.org" class="external-link">R
 project</a> website and download and install <strong>R</strong>. You may
-also consider installing <a href="https://www.rstudio.com" class="external-link">Rstudio</a>,
-which provides an excellent desktop working environment for
+also consider installing <a href="https://posit.co" class="external-link">Rstudio</a>, which
+provides an excellent desktop working environment for
 <strong>R</strong>; however it is not a prerequisite.</p>
 <p>Despite, you will need the external software <em>JAGS</em> (Just
 Another Gibs Sampler). Please visit the <a href="https://mcmc-jags.sourceforge.io" class="external-link">JAGS</a> webpage and follow the
@@ -391,9 +391,9 @@ samp1
 &gt;&gt; Results of the Gelman and Rubin criterion of convergence &lt;&lt;
 ----------------------------------------------
      Point estimate Uppers confidence interval
-A    1.017       1.035 
-D    1.018       1.037 
-sD   1.029       1.044 
+A    1.008       1.013 
+D    1.008       1.014 
+sD   1.016       1.018 
 
 
 ---------------------------------------------------------------------------------------------------
@@ -402,20 +402,20 @@ sD   1.029       1.044
 
 parameter    Bayes estimate       Credible interval 
 ----------------------------------------------
-A        24.237 
+A        24.235 
                          lower bound     upper bound
-                 at level 95%    10          74.976 
-                 at level 68%    10          22.106 
+                 at level 95%    10.01       67.291 
+                 at level 68%    10.01       25.329 
 ----------------------------------------------
-D        60.094 
+D        60.031 
                          lower bound     upper bound
-                 at level 95%    20.496          184.121 
-                 at level 68%    21.974          54.894 
+                 at level 95%    20.856          167.179 
+                 at level 68%    20.856          63.973 
 ----------------------------------------------
-sD       33.719 
+sD       32.922 
                          lower bound     upper bound
-                 at level 95%    0.23        125.4 
-                 at level 68%    0.734       30.282 </code></pre>
+                 at level 95%    0.114       116.789 
+                 at level 68%    0.627       29.705 </code></pre>
 <p>This also works if <code>DATA1</code> is the output of
 <code><a href="../reference/Generate_DataFile_MG.html">Generate_DataFile_MG()</a></code>.</p>
 <div class="section level6">
@@ -553,9 +553,9 @@ samp1 samp2
 &gt;&gt; Results of the Gelman and Rubin criterion of convergence &lt;&lt;
 ----------------------------------------------
      Point estimate Uppers confidence interval
-A    1.012       1.023 
-D    1.014       1.025 
-sD   1.039       1.045 
+A    1.024       1.03 
+D    1.033       1.039 
+sD   1.011       1.012 
 
 
 ---------------------------------------------------------------------------------------------------
@@ -564,20 +564,20 @@ sD   1.039       1.045
 
 parameter    Bayes estimate       Credible interval 
 ----------------------------------------------
-A        2.304 
+A        2.283 
                          lower bound     upper bound
-                 at level 95%    1.17        3.271 
-                 at level 68%    1.7         2.705 
+                 at level 95%    1.08        3.587 
+                 at level 68%    1.65        2.666 
 ----------------------------------------------
-D        5.741 
+D        5.685 
                          lower bound     upper bound
-                 at level 95%    3.299       8.137 
-                 at level 68%    4.563       6.781 
+                 at level 95%    2.526       8.311 
+                 at level 68%    4.412       6.621 
 ----------------------------------------------
-sD       0.785 
+sD       0.777 
                          lower bound     upper bound
-                 at level 95%    0       2.503 
-                 at level 68%    0       0.8 </code></pre>
+                 at level 95%    0.001       2.482 
+                 at level 68%    0       0.75 </code></pre>
 </div>
 </div>
 <div class="section level2">
@@ -718,15 +718,15 @@ Finished running the simulation</code></pre>
 ---------------------
          Point estimate Uppers confidence interval
 A_GDB5   1       1.001 
-D_GDB5   1.003       1.01 
-sD_GDB5      1.005       1.019 
+D_GDB5   1.001       1.005 
+sD_GDB5      1.008       1.03 
 ----------------------------------------------
  Sample name:  GDB3 
 ---------------------
          Point estimate Uppers confidence interval
-A_GDB3   1       1.002 
-D_GDB3   1.004       1.016 
-sD_GDB3      1.012       1.042 
+A_GDB3   1.001       1.004 
+D_GDB3   1.006       1.022 
+sD_GDB3      1.007       1.027 
 
 
 ---------------------------------------------------------------------------------------------------
@@ -740,42 +740,42 @@ sD_GDB3      1.012       1.042
  Sample name:  GDB5 
 ---------------------
 Parameter    Bayes estimate       Credible interval 
- A_GDB5      7.146 
+ A_GDB5      7.136 
                          lower bound     upper bound
-                 at level 95%    5.791       8.638 
-                 at level 68%    6.319       7.696 
+                 at level 95%    5.757       8.576 
+                 at level 68%    6.34        7.714 
 
 Parameter    Bayes estimate       Credible interval 
- D_GDB5      17.752 
+ D_GDB5      17.817 
                          lower bound     upper bound
-                 at level 95%    16.635          18.821 
-                 at level 68%    17.162          18.333 
+                 at level 95%    16.575          18.969 
+                 at level 68%    17.256          18.453 
 
 Parameter    Bayes estimate       Credible interval 
-sD_GDB5      4.487 
+sD_GDB5      4.474 
                          lower bound     upper bound
-                 at level 95%    3.413       5.553 
-                 at level 68%    3.909       4.914 
+                 at level 95%    3.444       5.545 
+                 at level 68%    3.883       4.929 
 ----------------------------------------------
  Sample name:  GDB3 
 ---------------------
 Parameter    Bayes estimate       Credible interval 
- A_GDB3      47.308 
+ A_GDB3      47.321 
                          lower bound     upper bound
-                 at level 95%    36.671          58.205 
-                 at level 68%    40.553          51.263 
+                 at level 95%    37.688          59.425 
+                 at level 68%    40.483          51.047 
 
 Parameter    Bayes estimate       Credible interval 
- D_GDB3      105.205 
+ D_GDB3      105.626 
                          lower bound     upper bound
-                 at level 95%    97.59       113.17 
-                 at level 68%    101.279         109.036 
+                 at level 95%    98.314          113.346 
+                 at level 68%    102.365         109.844 
 
 Parameter    Bayes estimate       Credible interval 
-sD_GDB3      15.833 
+sD_GDB3      15.81 
                          lower bound     upper bound
-                 at level 95%    10.396          21.904 
-                 at level 68%    12.088          17.826 
+                 at level 95%    10.305          22.072 
+                 at level 68%    12.554          18.748 
 
 ----------------------------------------------</code></pre>
 <p><img src="BayLum_files/figure-html/unnamed-chunk-18-3.png" width="480" style="display: block; margin: auto;"></p>
@@ -914,16 +914,16 @@ Finished running the simulation</code></pre>
  Sample name:  samp1 
 ---------------------
          Point estimate Uppers confidence interval
-A_samp1      1.007       1.014 
-D_samp1      1.007       1.025 
-sD_samp1     1.003       1.012 
+A_samp1      1.001       1.002 
+D_samp1      1.003       1.007 
+sD_samp1     1.003       1.01 
 ----------------------------------------------
  Sample name:  samp2 
 ---------------------
          Point estimate Uppers confidence interval
-A_samp2      1.001       1.002 
-D_samp2      1.02        1.07 
-sD_samp2     1.001       1.004 
+A_samp2      1       1 
+D_samp2      1       1.002 
+sD_samp2     1.006       1.018 
 
 
 ---------------------------------------------------------------------------------------------------
@@ -937,42 +937,42 @@ sD_samp2     1.001       1.004
  Sample name:  samp1 
 ---------------------
 Parameter    Bayes estimate       Credible interval 
- A_samp1     9.718 
+ A_samp1     9.719 
                          lower bound     upper bound
-                 at level 95%    9.184       10 
+                 at level 95%    9.159       10 
                  at level 68%    9.68        10 
 
 Parameter    Bayes estimate       Credible interval 
- D_samp1     29.136 
+ D_samp1     29.253 
                          lower bound     upper bound
-                 at level 95%    23.359          34.194 
-                 at level 68%    26.563          31.901 
+                 at level 95%    24.049          34.774 
+                 at level 68%    26.394          31.953 
 
 Parameter    Bayes estimate       Credible interval 
-sD_samp1     68.772 
+sD_samp1     68.289 
                          lower bound     upper bound
-                 at level 95%    51.708          85.241 
-                 at level 68%    60.527          77.318 
+                 at level 95%    50.61       84.274 
+                 at level 68%    58.254          74.881 
 ----------------------------------------------
  Sample name:  samp2 
 ---------------------
 Parameter    Bayes estimate       Credible interval 
- A_samp2     10.418 
+ A_samp2     10.411 
                          lower bound     upper bound
-                 at level 95%    10.001          11.252 
-                 at level 68%    10.001          10.482 
+                 at level 95%    10          11.248 
+                 at level 68%    10          10.476 
 
 Parameter    Bayes estimate       Credible interval 
- D_samp2     18.232 
+ D_samp2     18.285 
                          lower bound     upper bound
-                 at level 95%    17.062          19.36 
-                 at level 68%    17.713          18.869 
+                 at level 95%    17.052          19.475 
+                 at level 68%    17.67       18.918 
 
 Parameter    Bayes estimate       Credible interval 
-sD_samp2     4.577 
+sD_samp2     4.594 
                          lower bound     upper bound
-                 at level 95%    3.557       5.689 
-                 at level 68%    4.069       5.129 
+                 at level 95%    3.524       5.712 
+                 at level 68%    3.875       5.025 
 
 ----------------------------------------------</code></pre>
 <p><img src="BayLum_files/figure-html/unnamed-chunk-23-3.png" width="480" style="display: block; margin: auto;"></p>
@@ -1033,7 +1033,7 @@ PloS one, 12(1), e0169418. doi: <a href="https://doi.org/10.1371/journal.pone.01
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer>

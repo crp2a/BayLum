@@ -7,12 +7,12 @@
 #' of informations concerning each BIN file. \cr
 #' It is possible to process data for various samples simultaneously and to consider more than one BIN file per sample.
 #'
-#' @param Path [character] (**required**): the path to the project folder, containing one or more subfolders in which the BIN files
+#' @param Path [character] (**required**): the path to the project folder, containing one or more sub folders in which the BIN files
 #' are located. If it is not equal to "", it must be terminated by "/".
 #'
 #' @param FolderNames [character] (**required**): list of names of the sub-folders containing the BIN files
-#' - each subfolder must contain a BIN file and associated csv files.
-#' See details for more informations on associated csv files required in the subfolders.
+#' - each sub folder must contain a BIN file and associated csv files.
+#' See details for more informations on associated csv files required in the sub folders.
 #' If there is more than one BIN file per sample, see the details section for instructions regarding how to correctly fill the
 #' \code{FolderNames} vector.
 #'
@@ -25,11 +25,11 @@
 #' fill \code{BinPerSample} vector.
 #' Otherwise, this vector must contain a list of 1 values.
 #'
-#' @param sepDP [character] (with default): column separator in the DiscPose.csv files.
+#' @param sepDP [character] (with default): column separator in the `DiscPose.csv` files.
 #'
-#' @param sepDE [character] (with default): column separator in the DoseEnv.csv files.
+#' @param sepDE [character] (with default): column separator in the `DoseEnv.csv` files.
 #'
-#' @param sepDS [character] (with default): column separator in the DoseLab.csv files.
+#' @param sepDS [character] (with default): column separator in the `DoseLab.csv`` files.
 #'
 #' @param sepR [character] (with default): column separator in the Rule.csv files.
 #'
@@ -38,12 +38,12 @@
 #' @param ... further arguments that can be passed to [Luminescence::read_BIN2R].
 #'
 #' @details
-#' With \code{Path} and \code{FolderNames}, this function goes to the subfolders containing the BIN files and associated information to compute
+#' With \code{Path} and \code{FolderNames}, this function goes to the sub folders containing the BIN files and associated information to compute
 #' the luminescence data.\cr
 #'
 #' \bold{** What are the required files in each subfolder? **}\cr
 #'
-#' Each subfolder can be named, for example, as the sample name followed by a number; it must contain:
+#' Each sub folder can be named, for example, as the sample name followed by a number; it must contain:
 #' \itemize{
 #'   \item \bold{bin.BIN}: the bin file renamed as bin.BIN (note: the name of all files matters);
 #'   \item \bold{DiscPos.csv}: a two columns csv file containing the list of disc and grain position number of the previously selected grains
@@ -216,13 +216,13 @@ Generate_DataFile <- function(
       names(XLS_file) <- c("BIN_FILE","DISC","GRAIN")
 
       # aliquot number
-      J[bf]=length(XLS_file[,1])
+      J[bf] <- length(XLS_file[,1])
 
       # data d_lab
-      dLab[,bf]=c(DL$obs[1],DL$var[1])
+      dLab[,bf] <- c(DL$obs[1],DL$var[1])
 
       # data ddot
-      ddot[,bf]=c(dd[[1]],dd[[2]])
+      ddot[,bf] <- c(dd[[1]],dd[[2]])
 
       # information for Lx/Tx
       prop=(length(c(rule[3,1]:rule[4,1]))/length(c(rule[1,1]:rule[2,1])))

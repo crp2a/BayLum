@@ -125,7 +125,7 @@ sigma_s =  c(
 } 
 
 \section{How to cite}{
-Kreutzer, S., Guérin, G., 2022. create_ThetaMatrix(): Create Theta Matrix. Function version 0.1.0. In: Christophe, C., Philippe, A., Kreutzer, S., Guérin, G., Baumgarten, F.H., 2022. BayLum: Chronological Bayesian Models Integrating Optically Stimulated. R package version 0.3.1.9000-4. https://CRAN.r-project.org/package=BayLum
+Kreutzer, S., Guérin, G., 2023. create_ThetaMatrix(): Create Theta Matrix. Function version 0.1.0. In: Christophe, C., Philippe, A., Kreutzer, S., Guérin, G., Baumgarten, F.H., 2023. BayLum: Chronological Bayesian Models Integrating Optically Stimulated. R package version 0.3.1.9000-10. https://CRAN.r-project.org/package=BayLum
 }
 
 \references{

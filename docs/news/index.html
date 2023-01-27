@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">BayLum</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.3.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.3.1.9000-7</span>
       </span>
     </div>
 
@@ -67,30 +67,13 @@
     </div>
 
     <div class="section level2">
-<h2 class="page-header" data-toc-text="0.3.0" id="baylum-030-2022-10-28">BayLum 0.3.0 (2022-10-28)<a class="anchor" aria-label="anchor" href="#baylum-030-2022-10-28"></a></h2>
+<h2 class="page-header" data-toc-text="0.3.1.9000-7" id="baylum-0319000-7-2023-01-27">BayLum 0.3.1.9000-7 (2023-01-27)<a class="anchor" aria-label="anchor" href="#baylum-0319000-7-2023-01-27"></a></h2>
 <p><strong>This version of <code>'BayLum'</code> requires R&gt;=4.1.x!</strong></p>
 <div class="section level3">
-<h3 id="new-functions-0-3-0">New functions<a class="anchor" aria-label="anchor" href="#new-functions-0-3-0"></a></h3>
-<ul><li>
-<code><a href="../reference/write_BayLumFiles.html">write_BayLumFiles()</a></code>: <a href="https://github.com/IMHarly" class="external-link">@IMHarly</a> contributed an excellent new function that creates all folders and files needed for <code>'BayLum'</code>, making it a lot easier and less error-prone to work with <code>'BayLum'</code>.</li>
-</ul></div>
-<div class="section level3">
-<h3 id="bugfixes-and-changes-0-3-0">Bugfixes and changes<a class="anchor" aria-label="anchor" href="#bugfixes-and-changes-0-3-0"></a></h3>
-<div class="section level4">
-<h4 id="ages_computation-0-3-0"><code>AgeS_Computation()</code><a class="anchor" aria-label="anchor" href="#ages_computation-0-3-0"></a></h4>
-<ul><li>The function now supports parallel processing using the package <code>'rungjags'</code> (thanks to <a href="https://github.com/IMHarly" class="external-link">@IMHarly</a>)</li>
-</ul></div>
-<div class="section level4">
-<h4 id="age_oslc14-0-3-0"><code>Age_OSLC14()</code><a class="anchor" aria-label="anchor" href="#age_oslc14-0-3-0"></a></h4>
-<ul><li>Regression error, the function tried to observe more variables than were actually in the model; fixed. (thanks to <a href="https://github.com/IMHarly" class="external-link">@IMHarly</a>, <a href="https://github.com/crp2a/BayLum/issues/21" class="external-link">#21</a>)</li>
-<li>The function now supports parallel processing using the package <code>'rungjags'</code> (thanks to <a href="https://github.com/IMHarly" class="external-link">@IMHarly</a>)</li>
-</ul></div>
-</div>
-<div class="section level3">
-<h3 id="internals-0-3-0">Internals<a class="anchor" aria-label="anchor" href="#internals-0-3-0"></a></h3>
-<ul><li>A few fixes regarding string comparisons in <code>if()</code> conditions.</li>
-<li>Fix CRAN warning regarding <code>Escaped LaTeX specials: \&amp;</code>
-</li>
+<h3 id="bugfixes-and-changes-0-3-1-9000-7">Bugfixes and changes<a class="anchor" aria-label="anchor" href="#bugfixes-and-changes-0-3-1-9000-7"></a></h3>
+<ul><li><p><code><a href="../reference/AgeS_Computation.html">AgeS_Computation()</a></code> crashed reproducibly if the THETA matrix (as one possibility) was provided indeed as a file name instead of a <code>matrix</code> object; fixed (thanks to M. Heydari for reporting)</p></li>
+<li><p><code><a href="../reference/create_ThetaMatrix.html">create_ThetaMatrix()</a></code> the function did not throw an error in all cases where <code>sigma_s</code> was obviously wrong; fixed (thanks to M. Heydari for reporting)</p></li>
+<li><p><code><a href="../reference/Generate_DataFile_MG.html">Generate_DataFile_MG()</a></code> the function now tests checks the number of specified BIN-files matches the actual number of BIN-files in the the folders. If not, a warnings is prompted because if the number is wrong this can lead to very hard to track down problems.</p></li>
 </ul></div>
 </div>
   </div>
@@ -107,7 +90,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer></div>

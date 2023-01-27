@@ -20,13 +20,13 @@ Generate_DataFile(
 )
 }
 \arguments{
-\item{Path}{\link{character} (\strong{required}): the path to the project folder, containing one or more subfolders in which the BIN files
+\item{Path}{\link{character} (\strong{required}): the path to the project folder, containing one or more sub folders in which the BIN files
 are located. If it is not equal to "", it must be terminated by "/".}
 
 \item{FolderNames}{\link{character} (\strong{required}): list of names of the sub-folders containing the BIN files
 \itemize{
-\item each subfolder must contain a BIN file and associated csv files.
-See details for more informations on associated csv files required in the subfolders.
+\item each sub folder must contain a BIN file and associated csv files.
+See details for more informations on associated csv files required in the sub folders.
 If there is more than one BIN file per sample, see the details section for instructions regarding how to correctly fill the
 \code{FolderNames} vector.
 }}
@@ -41,11 +41,11 @@ If there is more than one BIN file per sample, see the details section for instr
 fill \code{BinPerSample} vector.
 Otherwise, this vector must contain a list of 1 values.}
 
-\item{sepDP}{\link{character} (with default): column separator in the DiscPose.csv files.}
+\item{sepDP}{\link{character} (with default): column separator in the \code{DiscPose.csv} files.}
 
-\item{sepDE}{\link{character} (with default): column separator in the DoseEnv.csv files.}
+\item{sepDE}{\link{character} (with default): column separator in the \code{DoseEnv.csv} files.}
 
-\item{sepDS}{\link{character} (with default): column separator in the DoseLab.csv files.}
+\item{sepDS}{\link{character} (with default): column separator in the `DoseLab.csv`` files.}
 
 \item{sepR}{\link{character} (with default): column separator in the Rule.csv files.}
 
@@ -80,12 +80,12 @@ of informations concerning each BIN file. \cr
 It is possible to process data for various samples simultaneously and to consider more than one BIN file per sample.
 }
 \details{
-With \code{Path} and \code{FolderNames}, this function goes to the subfolders containing the BIN files and associated information to compute
+With \code{Path} and \code{FolderNames}, this function goes to the sub folders containing the BIN files and associated information to compute
 the luminescence data.\cr
 
 \bold{** What are the required files in each subfolder? **}\cr
 
-Each subfolder can be named, for example, as the sample name followed by a number; it must contain:
+Each sub folder can be named, for example, as the sample name followed by a number; it must contain:
 \itemize{
 \item \bold{bin.BIN}: the bin file renamed as bin.BIN (note: the name of all files matters);
 \item \bold{DiscPos.csv}: a two columns csv file containing the list of disc and grain position number of the previously selected grains
@@ -169,6 +169,6 @@ Claire Christophe, Sebastian Kreutzer, Anne Philippe, Guillaume Guerin
 } 
 
 \section{How to cite}{
-Christophe, C., Kreutzer, S., Philippe, A., 2022. Generate_DataFile(): Generates, from one (or several) BIN-file(s) of Single-grain OSL measurements, a list of luminescence data and information before statistical analysis. In: Christophe, C., Philippe, A., Kreutzer, S., Guérin, G., Baumgarten, F.H., 2022. BayLum: Chronological Bayesian Models Integrating Optically Stimulated. R package version 0.3.1.9000-4. https://CRAN.r-project.org/package=BayLum
+Christophe, C., Kreutzer, S., Philippe, A., 2023. Generate_DataFile(): Generates, from one (or several) BIN-file(s) of Single-grain OSL measurements, a list of luminescence data and information before statistical analysis. In: Christophe, C., Philippe, A., Kreutzer, S., Guérin, G., Baumgarten, F.H., 2023. BayLum: Chronological Bayesian Models Integrating Optically Stimulated. R package version 0.3.1.9000-10. https://CRAN.r-project.org/package=BayLum
 }
 

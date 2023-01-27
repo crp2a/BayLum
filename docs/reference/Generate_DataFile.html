@@ -23,7 +23,7 @@ It is possible to process data for various samples simultaneously and to conside
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">BayLum</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.3.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.3.1.9000-7</span>
       </span>
     </div>
 
@@ -101,13 +101,13 @@ It is possible to process data for various samples simultaneously and to conside
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>Path</dt>
-<dd><p><a href="https://rdrr.io/r/base/character.html" class="external-link">character</a> (<strong>required</strong>): the path to the project folder, containing one or more subfolders in which the BIN files
+<dd><p><a href="https://rdrr.io/r/base/character.html" class="external-link">character</a> (<strong>required</strong>): the path to the project folder, containing one or more sub folders in which the BIN files
 are located. If it is not equal to "", it must be terminated by "/".</p></dd>
 
 
 <dt>FolderNames</dt>
-<dd><p><a href="https://rdrr.io/r/base/character.html" class="external-link">character</a> (<strong>required</strong>): list of names of the sub-folders containing the BIN files</p><ul><li><p>each subfolder must contain a BIN file and associated csv files.
-See details for more informations on associated csv files required in the subfolders.
+<dd><p><a href="https://rdrr.io/r/base/character.html" class="external-link">character</a> (<strong>required</strong>): list of names of the sub-folders containing the BIN files</p><ul><li><p>each sub folder must contain a BIN file and associated csv files.
+See details for more informations on associated csv files required in the sub folders.
 If there is more than one BIN file per sample, see the details section for instructions regarding how to correctly fill the
 <code>FolderNames</code> vector.</p></li>
 </ul></dd>
@@ -130,15 +130,15 @@ Otherwise, this vector must contain a list of 1 values.</p></dd>
 
 
 <dt>sepDP</dt>
-<dd><p><a href="https://rdrr.io/r/base/character.html" class="external-link">character</a> (with default): column separator in the DiscPose.csv files.</p></dd>
+<dd><p><a href="https://rdrr.io/r/base/character.html" class="external-link">character</a> (with default): column separator in the <code>DiscPose.csv</code> files.</p></dd>
 
 
 <dt>sepDE</dt>
-<dd><p><a href="https://rdrr.io/r/base/character.html" class="external-link">character</a> (with default): column separator in the DoseEnv.csv files.</p></dd>
+<dd><p><a href="https://rdrr.io/r/base/character.html" class="external-link">character</a> (with default): column separator in the <code>DoseEnv.csv</code> files.</p></dd>
 
 
 <dt>sepDS</dt>
-<dd><p><a href="https://rdrr.io/r/base/character.html" class="external-link">character</a> (with default): column separator in the DoseLab.csv files.</p></dd>
+<dd><p><a href="https://rdrr.io/r/base/character.html" class="external-link">character</a> (with default): column separator in the `DoseLab.csv`` files.</p></dd>
 
 
 <dt>sepR</dt>
@@ -175,10 +175,10 @@ Then, to load this list you can use the function <code><a href="https://rdrr.io/
     </div>
     <div id="details">
     <h2>Details</h2>
-    <p>With <code>Path</code> and <code>FolderNames</code>, this function goes to the subfolders containing the BIN files and associated information to compute
+    <p>With <code>Path</code> and <code>FolderNames</code>, this function goes to the sub folders containing the BIN files and associated information to compute
 the luminescence data.<br></p>
 <p><b>** What are the required files in each subfolder? **</b><br></p>
-<p>Each subfolder can be named, for example, as the sample name followed by a number; it must contain:</p><ul><li><p><b>bin.BIN</b>: the bin file renamed as bin.BIN (note: the name of all files matters);</p></li>
+<p>Each sub folder can be named, for example, as the sample name followed by a number; it must contain:</p><ul><li><p><b>bin.BIN</b>: the bin file renamed as bin.BIN (note: the name of all files matters);</p></li>
 <li><p><b>DiscPos.csv</b>: a two columns csv file containing the list of disc and grain position number of the previously selected grains
 (typically this list will include the position of grains based on their sensitivity, recycling or other properties);</p></li>
 <li><p><b>DoseEnv.csv</b>: a two columns file containing the observation of the natural (or environmental),
@@ -232,7 +232,7 @@ containing the first BIN file for Sample1, <code>"Sample1-File2"</code> the name
     </div>
     <div id="how-to-cite">
     <h2>How to cite</h2>
-    <p>Christophe, C., Kreutzer, S., Philippe, A., 2022. Generate_DataFile(): Generates, from one (or several) BIN-file(s) of Single-grain OSL measurements, a list of luminescence data and information before statistical analysis. In: Christophe, C., Philippe, A., Kreutzer, S., Guérin, G., Baumgarten, F.H., 2022. BayLum: Chronological Bayesian Models Integrating Optically Stimulated. R package version 0.3.0. https://CRAN.r-project.org/package=BayLum</p>
+    <p>Christophe, C., Kreutzer, S., Philippe, A., 2023. Generate_DataFile(): Generates, from one (or several) BIN-file(s) of Single-grain OSL measurements, a list of luminescence data and information before statistical analysis. In: Christophe, C., Philippe, A., Kreutzer, S., Guérin, G., Baumgarten, F.H., 2023. BayLum: Chronological Bayesian Models Integrating Optically Stimulated. R package version 0.3.1.9000-7. https://CRAN.r-project.org/package=BayLum</p>
     </div>
 
     <div id="ref-examples">
@@ -281,7 +281,7 @@ containing the first BIN file for Sample1, <code>"Sample1-File2"</code> the name
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer></div>

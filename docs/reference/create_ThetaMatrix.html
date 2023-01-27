@@ -19,7 +19,7 @@ covariance matrix \(\Sigma\) (Combès &amp;amp; Philippe, 2017)"><!-- mathjax --
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">BayLum</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.3.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.3.1.9000-7</span>
       </span>
     </div>
 
@@ -108,7 +108,7 @@ vector is not important, but the naming!
     <h2>Value</h2>
     
 
-<p>A symetric \(Theta\) matrix or if <code>input</code> is missing, a <a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a> with an input
+<p>A symmetric \(Theta\) matrix or if <code>input</code> is missing, a <a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a> with an input
 template</p>
     </div>
     <div id="details">
@@ -117,7 +117,7 @@ template</p>
 created straight forward, e.g., base R functions such as <code><a href="https://rdrr.io/r/stats/cor.html" class="external-link">stats::cov</a></code>.
 The relationship between the covariance matrix  \(Sigma\) and \(Theta\) is given with</p>
 <p>$$\Sigma_ij = A_i * A_j * \Theta_ij$$</p>
-<p>For details see Combès &amp; Philippe, 2017 and Guérin et al. (under review).</p>
+<p>For details see Combès &amp; Philippe, 2017 and Guérin et al. (2021).</p>
 <p><strong>Input modes</strong></p>
 <p>The function supports two different operation modes:</p><ol><li><p><code>input</code> is left empty: the function returns a <a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a> template that can be used as input (the option <code>output_file</code> works as well)</p></li>
 <li><p><code>input</code> is fed with a <a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a> or a <code>character</code> (file path), the \(\Theta\) matrix is returned</p></li>
@@ -126,11 +126,12 @@ The relationship between the covariance matrix  \(Sigma\) and \(Theta\) is given
 run the function leaving the argument <code>input</code> empty (see example). Please note the format
 of the input table (<a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a>) needs to kept as specified in the template.</p>
 <p>The following table lists the meaning of the columns:</p>
-<table class="table table"><tr><td>COLUMN</td><td>DESCRIPTION</td><td>UNIT</td></tr><tr><td><code>SAMPLE_ID</code></td><td>sample name</td><td>-</td></tr><tr><td><code>DR_BETA_K</code></td><td>standard error beta-dose rate K</td><td>Gy/ka</td></tr><tr><td><code>DR_BETA_U</code></td><td>standard error beta-dose rate U</td><td>Gy/ka</td></tr><tr><td><code>DR_BETA_Th</code></td><td>standard error beta-dose rate Th</td><td>Gy/ka</td></tr><tr><td><code>DR_GAMMA_K</code></td><td>standard error gamma-dose rate K</td><td>Gy/ka</td></tr><tr><td><code>DR_GAMMA_U</code></td><td>standard error gamma-dose rate U</td><td>Gy/ka</td></tr><tr><td><code>DR_GAMMA_Th</code></td><td>standard error gamma-dose rate Th</td><td>Gy/ka</td></tr><tr><td><code>DR_GAMMA_TOTAL</code></td><td>standard error total gamma-dose rate</td><td>Gy/ka</td></tr><tr><td><code>DR_TOTAL</code></td><td>total dose rate</td><td>Gy/ka</td></tr><tr><td><code>DR_TOTAL_X</code></td><td>standard error total dose rate</td><td>Gy/ka</td></tr></table><p><em>Note: All columns can be set to 0 or NA, no column must be left empty! If a value &gt; 0 is provided
+<table class="table table"><tr><td>COLUMN</td><td>DESCRIPTION</td><td>UNIT</td></tr><tr><td><code>SAMPLE_ID</code></td><td>sample name</td><td>-</td></tr><tr><td><code>DR_BETA_K</code></td><td>standard error beta-dose rate K</td><td>Gy/ka</td></tr><tr><td><code>DR_BETA_U</code></td><td>standard error beta-dose rate U</td><td>Gy/ka</td></tr><tr><td><code>DR_BETA_Th</code></td><td>standard error beta-dose rate Th</td><td>Gy/ka</td></tr><tr><td><code>DR_GAMMA_K</code></td><td>standard error gamma-dose rate K</td><td>Gy/ka</td></tr><tr><td><code>DR_GAMMA_U</code></td><td>standard error gamma-dose rate U</td><td>Gy/ka</td></tr><tr><td><code>DR_GAMMA_Th</code></td><td>standard error gamma-dose rate Th</td><td>Gy/ka</td></tr><tr><td><code>DR_GAMMA_TOTAL</code></td><td>standard error total gamma-dose rate</td><td>Gy/ka</td></tr><tr><td><code>DR_TOTAL</code></td><td>total dose rate</td><td>Gy/ka</td></tr><tr><td><code>DR_TOTAL_X</code></td><td>standard error total dose rate</td><td>Gy/ka</td></tr></table><p><em>Note: All columns can be set to 0 or <code>NA</code> but no column must be left empty! If a value &gt; 0 is provided
 for <code>DR_GAMMA_TOTAL</code> this value is taken and values in, e.g., <code>DR_GAMMA_K</code> are discarded (set to 0)!</em></p>
 <p><strong>Systematic uncertainties</strong></p>
-<p>The following table provides informaton on the named argument
-that can be provided via the argument <code>sigma_s</code></p>
+<p>The following table provides information on the named argument
+that can be provided via the argument <code>sigma_s</code>. Missing values are not allowed, all
+values must be set.</p>
 <table class="table table"><tr><td>ARGUMENT</td><td>DESCRIPTION</td><td>UNIT</td></tr><tr><td><code>s_betaK</code></td><td>relative uncertainty K concentration</td><td>-</td></tr><tr><td><code>s_betaU</code></td><td>relative uncertainty U concentration</td><td>-</td></tr><tr><td><code>s_betaTh</code></td><td>relative uncertainty Th concentration</td><td>-</td></tr><tr><td><code>s_gammaK</code></td><td>relative uncertainty K concentration</td><td>-</td></tr><tr><td><code>s_gammaU</code></td><td>relative uncertainty U concentration</td><td>-</td></tr><tr><td><code>s_gammaTh</code></td><td>relative uncertainty Th concentration</td><td>-</td></tr><tr><td><code>s_gammaDR</code></td><td>relative uncertainty gamma-dose rate</td><td>-</td></tr><tr><td><code>s_CAL</code></td><td>relative uncertainty beta-source calibration</td><td>-</td></tr><tr><td><code>s_intDR</code></td><td>absolute uncertainty internal dose rate</td><td>Gy/ka</td></tr></table></div>
     <div id="function-version">
     <h2>Function version</h2>
@@ -138,13 +139,15 @@ that can be provided via the argument <code>sigma_s</code></p>
     </div>
     <div id="how-to-cite">
     <h2>How to cite</h2>
-    <p>Kreutzer, S., Guérin, G., 2022. create_ThetaMatrix(): Create Theta Matrix. Function version 0.1.0. In: Christophe, C., Philippe, A., Kreutzer, S., Guérin, G., Baumgarten, F.H., 2022. BayLum: Chronological Bayesian Models Integrating Optically Stimulated. R package version 0.3.0. https://CRAN.r-project.org/package=BayLum</p>
+    <p>Kreutzer, S., Guérin, G., 2023. create_ThetaMatrix(): Create Theta Matrix. Function version 0.1.0. In: Christophe, C., Philippe, A., Kreutzer, S., Guérin, G., Baumgarten, F.H., 2023. BayLum: Chronological Bayesian Models Integrating Optically Stimulated. R package version 0.3.1.9000-7. https://CRAN.r-project.org/package=BayLum</p>
     </div>
     <div id="references">
     <h2>References</h2>
     <p>Combès, B., Philippe, A., 2017. Bayesian analysis of individual and systematic multiplicative errors
 for estimating ages with stratigraphic constraints in optically stimulated luminescence dating.
 Quaternary Geochronology 39, 24–34. <a href="https://doi.org/10.1016/j.quageo.2017.02.003" class="external-link">doi:10.1016/j.quageo.2017.02.003</a></p>
+<p>Guérin, G., Lahaye, C., Heydari, M., Autzen, M., Buylaert, J.-P., Guibert, P., Jain, M., Kreutzer, S., Lebrun, B., Murray, A.S., Thomsen, K.J., Urbanova, P., Philippe, A., 2021. Towards an improvement of optically stimulated luminescence (OSL) age uncertainties: modelling OSL ages with systematic errors, stratigraphic constraints and radiocarbon ages using the R package BayLum. Geochronology 3, 229—245.
+<a href="https://doi.org/10.5194/gchron-3-229-2021" class="external-link">doi:10.5194/gchron-3-229-2021</a></p>
     </div>
     <div id="see-also">
     <h2>See also</h2>
@@ -202,7 +205,7 @@ on an 'MS Excel' sheet by Guillaume Guérin, IRAMAT-CRP2A, UMR 5060, CNRS-Univer
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer></div>
