@@ -35,6 +35,13 @@ jobs:
         if: runner.os == 'macOS'
         run: brew install jags
 
+      - name: SET JAGS_HOME homebrew
+        if: runner.os == 'macOS'
+        run: |
+          options(width = 100)
+          Sys.setenv(JAGS_HOME="/usr/local/Cellar/jags/4.3.1")
+        shell: Rscript {0}
+
       - name: Install JAGS on Windows (R release)
         if: (runner.os == 'windows') && (matrix.config.r != 'oldrel')
         run: |
@@ -59,11 +66,6 @@ jobs:
             any::covr
           needs: check
 
-      - name: Show OS
-        run: |
-          options(width = 100)
-          print(.Platform)
-        shell: Rscript {0}
 
       - uses: r-lib/actions/check-r-package@v2
         with:
