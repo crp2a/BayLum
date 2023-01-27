@@ -2,8 +2,7 @@
 % Please edit documentation in R/Generate_DataFile_MG.R
 \name{Generate_DataFile_MG}
 \alias{Generate_DataFile_MG}
-\title{Generates, from one (or several) BIN file(s) of Multi-grain OSL measurements, a list of luminescence
-data and information before statistical analysis}
+\title{Generates, from one (or several) BIN file(s) of Multi-grain OSL measurements a list of luminescence data and information before statistical analysis}
 \usage{
 Generate_DataFile_MG(
   Path,
@@ -32,7 +31,7 @@ If there is more than one BIN file per sample, see the details section for instr
 \code{FolderNames} vector.
 }}
 
-\item{Nb_sample}{\link{integer} (\strong{required}): number of}
+\item{Nb_sample}{\link{integer} (\strong{required}): number of samples}
 
 \item{Nb_binfile}{\link{integer} (with default): number of BIN files. It must be equal to, or greater than \code{Nb_sample}.}
 
@@ -41,17 +40,17 @@ The length of this vector must be equal to \code{Nb_sample} and the sum of entri
 If there is more than one BIN file per sample, see the details section for instructions regarding how to correctly fill \code{BinPerSample} vector.
 Otherwise, this vector must contain a list of 1 values.}
 
-\item{sepD}{\link{character} (with default): column separator in the DiscPose.csv files.}
+\item{sepD}{\link{character} (with default): column separator in the \code{DiscPose.csv} files.}
 
-\item{sepDE}{\link{character} (with default): column separator in the DoseEnv.csv files.}
+\item{sepDE}{\link{character} (with default): column separator in the \code{DoseEnv.csv} files.}
 
-\item{sepDS}{\link{character} (with default): column separator in the DoseLab.csv files.}
+\item{sepDS}{\link{character} (with default): column separator in the \code{DoseLab.csv} files.}
 
-\item{sepR}{\link{character} (with default): column separator in the Rule.csv files.}
+\item{sepR}{\link{character} (with default): column separator in the \code{Rule.csv} files.}
 
 \item{verbose}{\link{logical} (with default): enable/disable verbose mode}
 
-\item{force_run1_at_a_time}{(\emph{with default}): if set to \code{TRUE}, the order of the records is
+\item{force_run1_at_a_time}{\link{logical} (\emph{with default}): if set to \code{TRUE}, the order of the records is
 pushed to follow the one "Run 1 at a time" order (this is, all sequence steps were performed on
 one aliquot before moving to the next aliquot), regardless of their original sequence.
 The default is \code{FALSE} because \code{'BayLum'} assumes that the sample was measured with the
@@ -77,25 +76,25 @@ A list containing the following objects:
 \item \bold{Nb_measurement}, a vector giving, for each BIN file, the number of measurements;
 }
 
-\bold{** How to save this list **}
+** How to save this list **
 
 You can save this list in a .RData object. To do this, you can use the function \code{\link{save}}.
 Then, to load this list you can use the function \code{\link{load}} (see example section fore more details).
 }
 \description{
 This function is used to generate, from the BIN file(s), a list of values of:
-}
-\details{
+
 \bold{Multi-grain} OSL intensities and associated uncertainties, regenerative doses, etc., which will be the input of the Bayesian models.
 To be easy-to-use, this function requires a rigorous organisation - all needed files should be arranged in one folder -
 of informations concerning each BIN file.\cr
 It is possible to process data for various samples simultaneously and to consider more
 than one BIN-file per sample.
-
-With \code{Path} and \code{FolderNames}, this function goes to the subfolders containing the BIN files and associated information to compute
+}
+\details{
+With \code{Path} and \code{FolderNames}, this function goes to the sub folders containing the BIN files and associated information to compute
 the luminescence data.\cr
 
-\bold{** What are the required files in each subfolder? **}\cr
+** What are the required files in each subfolder? **\cr
 
 Each subfolder can be named, for example, as the sample name followed by a number; it must contain:
 \itemize{
@@ -109,21 +108,21 @@ with the dose rate experienced by the sample grains in nature;
 and its variance (squared error), both in Gy;
 \item \bold{rule.csv}, a csv file containing information on
 \itemize{
-\item beginSignal=  the first channel for summing the natural or regenerative OSL signal (typically 1 or 6);
-\item endSignal= the last channel for summing the natural or regenerative OSL signal (typically 5 or 10);
-\item beginBackground= the first channel for background estimation of the natural or regenerative OSL signal (typically 76 or 81);
-\item endBackground= the last channel for background estimation of the natural or regenerative OSL signal (typically 95 or 100);
-\item beginTest,
-\item endTest,
-\item beginTestBackground,
-\item endTestBackground= same values as above, for the test dose response (typically the same values should be used);
-\item inflatePercent= uncertainty arising from the instrument reproducibility (typically 0.02, i.e. 2\\%);
-\item nbOfLastCycleToRemove= number of cycles at the end of the SAR protocol which should not be included in the dose response curve fitting
+\item \verb{beginSignal=}  the first channel for summing the natural or regenerative OSL signal (typically 1 or 6);
+\item \verb{endSignal=} the last channel for summing the natural or regenerative OSL signal (typically 5 or 10);
+\item \verb{beginBackground=} the first channel for background estimation of the natural or regenerative OSL signal (typically 76 or 81);
+\item \verb{endBackground=} the last channel for background estimation of the natural or regenerative OSL signal (typically 95 or 100);
+\item \code{beginTest},
+\item \code{endTest},
+\item \code{beginTestBackground},
+\item \verb{endTestBackground=} same values as above, for the test dose response (typically the same values should be used);
+\item \verb{inflatePercent=} uncertainty arising from the instrument reproducibility (typically 0.02, i.e. 2\\%);
+\item \verb{nbOfLastCycleToRemove=} number of cycles at the end of the SAR protocol which should not be included in the dose response curve fitting
 (typically 1 if only a recycling test is performed, or 2 if both recycling and IR depletion are tested).\cr
 }
 }
 
-\bold{** How to fill the} \code{FolderNames} \bold{vector? **}\cr
+** How to fill the \code{FolderNames} vector? **\cr
 
 \code{FolderNames} is a vector of length \code{Nb_binfile}. \code{FolderNames[i]} is the name (e.g., Sample1-File1, or successive names separated by "/" signs,
 if BIN files are in subfolders, e.g. Sample1/File1) of the subfolder containing all informations on the BIN file of ID number \code{i}.
@@ -140,18 +139,18 @@ In addition, if we know that sample 1 is younger than sample 2, then \code{Folde
 If conversely, \code{FolderNames=c(noun2,noun1)}, the analysis performed by \code{\link{AgeS_Computation}} would not be consistent.\cr
 }
 
-\bold{** How to fill the} \code{BinPerSample} \bold{vector? **}\cr
+** How to fill the \code{BinPerSample} vector? **\cr
 
-\code{BinPerSample[i]} correponds to the number of BIN files for the sample whose number ID is equal to \code{i}.\cr
+\code{BinPerSample[i]} corresponds to the number of BIN files for the sample whose number ID is equal to \code{i}.\cr
 For example, let us consider a case with two samples (Sample1 and Sample2), with 2 BIN files for Sample1 and 1 for Sample2.
 In this case, \code{Nb_binfile}=3 and \code{Nb_sample}=2.
 The user may then set \code{FolderNames=c("Sample1-File1", "Sample1-File2", "Sample2-File1")}, in which case \code{"Sample1-1"} is the name of the subfolder containing the first BIN file
 for Sample1, \code{"Sample1-File2"} the name of the  subfolder for the second BIN file of Sample1; eventually, \code{"Sample2-1"} is the name of the subfolder containing the BIN file
 for the second sample. In this case, \code{BinPerSample=c(2,1)}.
 
-For the general BIN-file structure, the reader is referred to the following website:  \code{http://www.nutech.dtu.dk/}
+For the general BIN-file structure, the reader is referred to the following website:  \verb{http://www.nutech.dtu.dk/}
 
-The function \code{\link{read_BIN2R}} developed in \code{\link{Luminescence}} package is used to read the BIN files.
+The function \link[Luminescence:read_BIN2R]{Luminescence::read_BIN2R} is used to read the BIN files.
 }
 \note{
 The function imports only BIN/BINX-file records which have been previously selected.
@@ -182,6 +181,6 @@ Claire Christophe, Sebastian Kreutzer, Anne Philippe, Guillaume Guérin
 } 
 
 \section{How to cite}{
-Christophe, C., Kreutzer, S., Philippe, A., Guérin, G., 2022. Generate_DataFile_MG(): Generates, from one (or several) BIN file(s) of Multi-grain OSL measurements, a list of luminescence data and information before statistical analysis. In: Christophe, C., Philippe, A., Kreutzer, S., Guérin, G., Baumgarten, F.H., 2022. BayLum: Chronological Bayesian Models Integrating Optically Stimulated. R package version 0.3.1.9000-4. https://CRAN.r-project.org/package=BayLum
+Christophe, C., Kreutzer, S., Philippe, A., Guérin, G., 2023. Generate_DataFile_MG(): Generates, from one (or several) BIN file(s) of Multi-grain OSL measurements a list of luminescence data and information before statistical analysis. In: Christophe, C., Philippe, A., Kreutzer, S., Guérin, G., Baumgarten, F.H., 2023. BayLum: Chronological Bayesian Models Integrating Optically Stimulated. R package version 0.3.1.9000-10. https://CRAN.r-project.org/package=BayLum
 }
 
