@@ -11,6 +11,7 @@ output:
 standalone: yes
 vignette: >
   %\VignetteEncoding{UTF-8}
+  %\VignetteIndexEntry{BayLum: An Introduction}
 ---
 
 ```{r, echo = FALSE, message = FALSE}
@@ -37,7 +38,7 @@ the package `'BayLum'` as convenient as possible.
 
 If you read this document before having installed **R** itself, you should first visit the 
 [R project](https://www.r-project.org) website and download and install **R**. 
-You may also consider installing [Rstudio](https://www.rstudio.com), 
+You may also consider installing [Rstudio]( https://posit.co), 
 which provides an excellent desktop working environment for **R**; however it is not 
 a prerequisite.
 
