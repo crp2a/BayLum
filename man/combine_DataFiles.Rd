@@ -55,6 +55,6 @@ the idea from the function 'Concat_DataFile()' by Claire Christophe.
 } 
 
 \section{How to cite}{
-Kreutzer, S., Christophe, C., 2023. combine_DataFiles(): Combine objects. Function version 0.1.1. In: Christophe, C., Philippe, A., Kreutzer, S., Guérin, G., Baumgarten, F.H., 2023. BayLum: Chronological Bayesian Models Integrating Optically Stimulated. R package version 0.3.1.9000-10. https://CRAN.r-project.org/package=BayLum
+Kreutzer, S., Christophe, C., 2023. combine_DataFiles(): Combine objects. Function version 0.1.1. In: Christophe, C., Philippe, A., Kreutzer, S., Guérin, G., Baumgarten, F.H., 2023. BayLum: Chronological Bayesian Models Integrating Optically Stimulated. R package version 0.3.1.9000-12. https://CRAN.r-project.org/package=BayLum
 }
 

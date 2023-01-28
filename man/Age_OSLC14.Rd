@@ -384,7 +384,7 @@ Age <- Age_OSLC14(
 } 
 
 \section{How to cite}{
-Christophe, C., Philippe, A., Kreutzer, S., Baumgarten, F.H., 2023. Age_OSLC14(): Bayesian analysis for age estimation of OSL measurements and C-14 ages of various samples. In: Christophe, C., Philippe, A., Kreutzer, S., Guérin, G., Baumgarten, F.H., 2023. BayLum: Chronological Bayesian Models Integrating Optically Stimulated. R package version 0.3.1.9000-10. https://CRAN.r-project.org/package=BayLum
+Christophe, C., Philippe, A., Kreutzer, S., Baumgarten, F.H., 2023. Age_OSLC14(): Bayesian analysis for age estimation of OSL measurements and C-14 ages of various samples. In: Christophe, C., Philippe, A., Kreutzer, S., Guérin, G., Baumgarten, F.H., 2023. BayLum: Chronological Bayesian Models Integrating Optically Stimulated. R package version 0.3.1.9000-12. https://CRAN.r-project.org/package=BayLum
 }
 
 \references{

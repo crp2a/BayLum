@@ -146,7 +146,6 @@ plot_MCMC <- function(
   plot_settings <- modifyList(x = plot_settings, val = list(...))
 
   ##prepare the plot object, this needs to be done manually, due to special requests
-
     ##(1) trace plots
     ##extract all chain for each variable and combine them in list of matrices
     traces_list <- lapply(coda::varnames(object), function(v){
