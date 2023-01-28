@@ -5,7 +5,7 @@
 #' the [data.frame] extracted from the input object for own plots.
 #'
 #' @param object [list]  or [data.frame] (**required**): Output as created by functions like [AgeC14_Computation], which
-#' is a list of class `BayLum.list`. Alternativley the function supports a [data.frame] as input, however,
+#' is a list of class `BayLum.list`. Alternatively the function supports a [data.frame] as input, however,
 #' in such a case the [data.frame] must resemble the ages [data.frame] created by the computation functions
 #' otherwise the input will be silently ignored.
 #'
@@ -24,7 +24,7 @@
 #'
 #' @section Function version: 0.1.4
 #'
-#' @author Sebastian Kreutzer, IRAMAT-CRP2A, UMR 5060, CNRS-Université Bordeaux Montaigne (France), based on code
+#' @author Sebastian Kreutzer, Institute of Geography, Ruprecht-Karl-University of Heidelberg (Germany), based on code
 #' written by Claire Christophe
 #'
 #' @seealso [AgeC14_Computation], [AgeS_Computation]
@@ -58,7 +58,6 @@ plot_Ages <- function(
   sample_order = NULL,
   ...
 ){
-
 
   # Verify input --------------------------------------------------------------------------------
   # ## if the input is of type data.frame, we try to sanitize this object
@@ -102,12 +101,7 @@ plot_Ages <- function(
 
 
   # Plotting -----------------------------------------------------------------------------------
-
   ##PREPARATION
-    ##get par settings and make sure they get restored
-    par.default <- par(no.readonly = TRUE)
-    on.exit(suppressWarnings(par(par.default)))
-
     ##define plot settings
     plot_settings <- list(
       pch = 21,
@@ -126,21 +120,25 @@ plot_Ages <- function(
       ##overwrite settings on demand
       plot_settings <- modifyList(x = plot_settings, val = list(...))
 
-
   ##PLOTTING
-  ##adjust par
-  par(mfrow=c(1,1),las = 1, oma = c(2,5,0.5,0.5), cex = plot_settings$cex)
+  ##adjust par and make sure that it resets
+  par(
+    mfrow=c(1,1),
+    las = 1,
+    oma = c(2,5,0.5,0.5),
+    cex = plot_settings$cex)
+  on.exit(par(old_par))
 
   ##open plot area
-  plot(x = NA,
-       y = NA,
-       xlim = plot_settings$xlim,
-       ylim = c(0.5, max(df[["AT"]])),
-       main = plot_settings$main,
-       xlab = plot_settings$xlab,
-       ylab = "",
-       yaxt = "n"
-      )
+  plot(
+    x = NA,
+    y = NA,
+    xlim = plot_settings$xlim,
+    ylim = c(0.5, max(df[["AT"]])),
+    main = plot_settings$main,
+    xlab = plot_settings$xlab,
+    ylab = "",
+    yaxt = "n")
 
   ##add y-axis
   axis(
@@ -153,7 +151,6 @@ plot_Ages <- function(
      df[["SAMPLE"]][df[["AT"]] == df[["AT"]]]
     }
   )
-
 
   ##add grid
   if(plot_settings$grid)
@@ -194,20 +191,15 @@ plot_Ages <- function(
 
   ##add legend
   if(plot_settings$legend){
-    legend(plot_settings$legend.pos,
-           legend = plot_settings$legend.text,
-           pch = c(plot_settings$pch,NA_integer_,NA_integer_),
-           bty = "n",
-           lty = c(0, 1, 1),
-           lwd = 2,
-           col = plot_settings$col,
-           horiz = if(plot_settings$legend.pos == "top" || plot_settings$legend.pos == "bottom"){
-             TRUE
-           }else{
-             FALSE
-           }
-           )
-
+    legend(
+      plot_settings$legend.pos,
+      legend = plot_settings$legend.text,
+      pch = c(plot_settings$pch,NA_integer_,NA_integer_),
+      bty = "n",
+      lty = c(0, 1, 1),
+      lwd = 2,
+      col = plot_settings$col,
+      horiz = if(plot_settings$legend.pos == "top" || plot_settings$legend.pos == "bottom") TRUE else FALSE)
 
   }
 
@@ -215,3 +207,23 @@ plot_Ages <- function(
   return(df)
 
 }
+
+## load data
+#data(DATA_C14,envir = environment())
+# C14Cal <- DATA_C14$C14[,1]
+# SigmaC14Cal <- DATA_C14$C14[,2]
+# Names <- DATA_C14$Names
+# nb_sample <- length(Names)
+#
+# ## Age computation
+# Age <- AgeC14_Computation(
+#   Data_C14Cal = C14Cal,
+#   Data_SigmaC14Cal = SigmaC14Cal,
+#   SampleNames = Names,
+#   Nb_sample = nb_sample,
+#   PriorAge = rep(c(20,60),nb_sample),
+#   Iter = 500,
+#   quiet = TRUE)
+
+## plot output
+plot_Ages(Age)
