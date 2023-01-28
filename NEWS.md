@@ -24,10 +24,10 @@
   folders. If not, a warnings is prompted because if the number is wrong
   this can lead to very hard to track down problems.
 
-`plot_Ages()` gained a couple of new arguments. `plot_mode` allows to
-switch between the standard plot output `"ages"` (default) and the new
-option `"density"`. The latter showing probability density estimates.
-Further arguments specific to the `plot_mode = "density"` are `d_scale`
-to scale the density plots in height, `show_ages` to show the Bayes
-estimator. More general, `legend.cex` to scale the legend fonts and this
-work for both plot modes
+- `plot_Ages()` gained a couple of new arguments. `plot_mode` allows to
+  switch between the standard plot output `"ages"` (default) and the new
+  option `"density"`. The latter showing probability density estimates.
+  Further arguments specific to the `plot_mode = "density"` are
+  `d_scale` to scale the density plots in height, `show_ages` to show
+  the Bayes estimator. More general, `legend.cex` to scale the legend
+  fonts and this work for both plot modes
