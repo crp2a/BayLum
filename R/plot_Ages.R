@@ -15,14 +15,17 @@
 #' @param sample_order [numeric] (optional): argument to rearrange the sample order, e.g., `sample_order = c(4:1)` plots
 #' the last sample first.
 #'
+#' @param plot_mode [character] (*with default*): allows to switch from displaying ages as points with lines (`"ages"`)
+#' for the credible intervals to densities (`"density"`)
+#'
 #' @param ... further arguments to control the plot output,
 #' standard arguments are: `cex`, `xlim`, `main`, `xlab`, `col` further (non-standard) arguments
-#' are: `grid` (`TRUE`/`FALSE`), `legend` (`TRUE`/`FALSE`), `legend.text` ([character] input needed), `legend.pos` [graphics::legend]
+#' are: `grid` (`TRUE`/`FALSE`), `legend` (`TRUE`/`FALSE`), `legend.text` ([character] input needed), `legend.pos` [graphics::legend], `legend.cex`. Additional arguments: `d_scale` (scales density plots), `show_ages` (add ages to density  plots)
 #'
 #' @return
 #' The function returns a plot and the [data.frame] used to display the data
 #'
-#' @section Function version: 0.1.4
+#' @section Function version: 0.1.5
 #'
 #' @author Sebastian Kreutzer, Institute of Geography, Ruprecht-Karl-University of Heidelberg (Germany), based on code
 #' written by Claire Christophe
@@ -50,12 +53,16 @@
 #' ## plot output
 #' plot_Ages(Age)
 #'
+#' ## plot output
+#' plot_Ages(Age, plot_mode = "density")
+#'
 #' @md
 #' @export
 plot_Ages <- function(
   object,
   sample_names = NULL,
   sample_order = NULL,
+  plot_mode = "ages",
   ...
 ){
 
@@ -84,7 +91,7 @@ plot_Ages <- function(
     df <- cbind(df, AT = as.numeric(as.factor(df[["ALT_SAMPLE_NAME"]])))
 
   }else{
-    df <-  cbind(df, ALT_SAMPLE_NAME = NA)
+    df <- cbind(df, ALT_SAMPLE_NAME = NA)
     df <- cbind(df, AT = as.numeric(as.factor(df[["SAMPLE"]])))
 
   }
@@ -99,22 +106,40 @@ plot_Ages <- function(
 
   }
 
-
   # Plotting -----------------------------------------------------------------------------------
+  ## extract chain values for density option (we need the values later)
+  if(plot_mode == "density") {
+    d <- lapply(df[["AT"]], function(x) {
+      density(unlist(lapply(object$Sampling, function (y) y[,x])))
+
+    })
+  }
+
   ##PREPARATION
+    ### plot settings ##########################################################
     ##define plot settings
     plot_settings <- list(
       pch = 21,
       cex = 1,
-      xlim = c(min(df[["HPD95.MIN"]]),max(df[["HPD95.MAX"]])),
+      xlim = if(plot_mode == "density") {
+          range(vapply(d, function(x) range(x$x), numeric(2)))
+         } else {
+         c(min(df[["HPD95.MIN"]]),max(df[["HPD95.MAX"]]))
+         },
       main = "Age Results",
       xlab = "Age (ka)",
       grid = TRUE,
-      col = c("firebrick", "darkslategray3", "midnightblue"),
+      col = if(plot_mode == "density") {
+          c(rgb(0,0,0,0.1), rgb(1,0.3,0,.3), rgb(1,.6,0,.3))
+        } else {
+          c("firebrick", "darkslategray3", "midnightblue")
+        },
       legend = TRUE,
       legend.text = c("Bayes estimator", "68% credible interval", "95% credible interval"),
-      legend.pos = c("topright")
-
+      legend.pos = c("topright"),
+      legend.cex = 0.9,
+      d_scale = 0.6,
+      show_ages = FALSE
     )
 
       ##overwrite settings on demand
@@ -122,7 +147,7 @@ plot_Ages <- function(
 
   ##PLOTTING
   ##adjust par and make sure that it resets
-  par(
+  old_par <- par(
     mfrow=c(1,1),
     las = 1,
     oma = c(2,5,0.5,0.5),
@@ -134,7 +159,7 @@ plot_Ages <- function(
     x = NA,
     y = NA,
     xlim = plot_settings$xlim,
-    ylim = c(0.5, max(df[["AT"]])),
+    ylim = if(plot_mode == "density") c(0.5, max(df[["AT"]]) + 1) else c(0.5, max(df[["AT"]])),
     main = plot_settings$main,
     xlab = plot_settings$xlab,
     ylab = "",
@@ -156,74 +181,132 @@ plot_Ages <- function(
   if(plot_settings$grid)
     grid(ny = NA, lwd = plot_settings$cex * 1.5)
 
-  ##ADD HDP95 and HDP58
-  for(i in 1:nrow(df)){
-    ##HDP95
-    lines(
-      x = c(df[["HPD95.MIN"]][[i]], df[["HPD95.MAX"]][[i]]),
-      y = rep(df[["AT"]][[i]], each = 2),
-      lwd = 5,
-      col = plot_settings$col[3])
+  ## =========== DENSITY PLOTS ============
+  ## plot densities vs ages
+  if (plot_mode[1] == "density") {
+    ## base polygon
+    for(i in df[["AT"]]){
+       polygon(
+         x = c(d[[i]]$x, rev(d[[i]]$x)),
+         y = c(d[[i]]$y / max(d[[i]]$y) * plot_settings$d_scale + i, rep(i, length(d[[i]]$x))),
+         col = plot_settings$col[1],
+         border = TRUE,
+         lwd = 0.2)
+    }
 
-    ##HDP68
-    lines(
-      x = c(df[["HPD68.MIN"]][[i]], df[["HPD68.MAX"]][[i]]),
-      y = rep(df[["AT"]][[i]], each = 2),
-      lwd = 5,
-      col = plot_settings$col[2])
+    ## HPD95
+    for(i in df[["AT"]]){
+      ind <- which(
+        d[[i]]$x >= df[df[["AT"]] == i, "HPD95.MIN"] &
+        d[[i]]$x <= df[df[["AT"]] == i, "HPD95.MAX"])
 
-  }
+      polygon(
+        x = c(d[[i]]$x[ind], rev(d[[i]]$x[ind])),
+        y = c(d[[i]]$y[ind] / max(d[[i]]$y[ind]) * plot_settings$d_scale + i, rep(i, length(ind))),
+        col = plot_settings$col[3],
+        border = FALSE,
+        lwd = 0.4)
+    }
 
-  ##ADD AGES
-  points(
-    x = df[["AGE"]],
-    y = df[["AT"]],
-    col = plot_settings$col[1],
-    pch = plot_settings$pch,
-    cex = plot_settings$cex * 1.8,
-    bg = rgb(
-      col2rgb(plot_settings$col)[1,1],
-      col2rgb(plot_settings$col)[2,1],
-      col2rgb(plot_settings$col)[3,1],
-      alpha = 100, maxColorValue = 255),
-    lwd = plot_settings$cex * 2
-  )
+    ## HPD68
+    for(i in df[["AT"]]){
+      ind <- which(
+        d[[i]]$x >= df[df[["AT"]] == i, "HPD68.MIN"] &
+          d[[i]]$x <= df[df[["AT"]] == i, "HPD68.MAX"])
 
-  ##add legend
-  if(plot_settings$legend){
-    legend(
-      plot_settings$legend.pos,
-      legend = plot_settings$legend.text,
-      pch = c(plot_settings$pch,NA_integer_,NA_integer_),
-      bty = "n",
-      lty = c(0, 1, 1),
-      lwd = 2,
-      col = plot_settings$col,
-      horiz = if(plot_settings$legend.pos == "top" || plot_settings$legend.pos == "bottom") TRUE else FALSE)
+      polygon(
+        x = c(d[[i]]$x[ind], rev(d[[i]]$x[ind])),
+        y = c(d[[i]]$y[ind] / max(d[[i]]$y[ind]) * plot_settings$d_scale + i, rep(i, length(ind))),
+        col = plot_settings$col[2],
+        border = FALSE,
+        lwd = 0.4)
+    }
 
+    ## add ages
+    if(plot_settings$show_ages) {
+      ## connection lines
+      lines(
+        x = df[["AGE"]],
+        y = df[["AT"]],
+        lty = 2,
+        col = rgb(0,0,0,0.5)
+      )
+
+      ## add Bayes estimator
+      points(
+        x = df[["AGE"]],
+        y = df[["AT"]],
+        col = rgb(0, 0, 0, 0.5))
+
+    }
+
+    ##add legend
+    if(plot_settings$legend){
+      legend(
+        plot_settings$legend.pos,
+        legend = if(plot_settings$show_ages[1]) plot_settings$legend.text[1:3] else plot_settings$legend.text[2:3],
+        pch = c(if(plot_settings$show_ages) plot_settings$pch else NA_integer_, NA_integer_, NA_integer_),
+        bty = "n",
+        lty = if(plot_settings$show_ages[1]) c(0, 1, 1) else c(1,1),
+        lwd = 2,
+        cex = plot_settings$legend.cex,
+        col = if(plot_settings$show_ages[1]) plot_settings$col[1:3] else plot_settings$col[2:3],
+        horiz = if(plot_settings$legend.pos == "top" || plot_settings$legend.pos == "bottom")
+          TRUE else FALSE)
+    }
+
+  ## ======== STANDARD PLOT ============
+  } else {
+    ##ADD HDP95 and HDP58
+    for(i in 1:nrow(df)){
+      ##HDP95
+      lines(
+        x = c(df[["HPD95.MIN"]][[i]], df[["HPD95.MAX"]][[i]]),
+        y = rep(df[["AT"]][[i]], each = 2),
+        lwd = 5,
+        col = plot_settings$col[3])
+
+      ##HDP68
+      lines(
+        x = c(df[["HPD68.MIN"]][[i]], df[["HPD68.MAX"]][[i]]),
+        y = rep(df[["AT"]][[i]], each = 2),
+        lwd = 5,
+        col = plot_settings$col[2])
+
+    }
+
+    ##ADD AGES
+    points(
+      x = df[["AGE"]],
+      y = df[["AT"]],
+      col = plot_settings$col[1],
+      pch = plot_settings$pch,
+      cex = plot_settings$cex * 1.8,
+      bg = rgb(
+        col2rgb(plot_settings$col)[1,1],
+        col2rgb(plot_settings$col)[2,1],
+        col2rgb(plot_settings$col)[3,1],
+        alpha = 100, maxColorValue = 255),
+      lwd = plot_settings$cex * 2
+    )
+
+    ##add legend
+    if(plot_settings$legend){
+      legend(
+        plot_settings$legend.pos,
+        legend = plot_settings$legend.text,
+        pch = c(plot_settings$pch, NA_integer_, NA_integer_),
+        bty = "n",
+        lty = c(0, 1, 1),
+        lwd = 2,
+        cex = plot_settings$legend.cex,
+        col = plot_settings$col,
+        horiz = if(plot_settings$legend.pos == "top" || plot_settings$legend.pos == "bottom")
+          TRUE else FALSE)
+    }
   }
 
   # Return --------------------------------------------------------------------------------------
   return(df)
 
 }
-
-## load data
-#data(DATA_C14,envir = environment())
-# C14Cal <- DATA_C14$C14[,1]
-# SigmaC14Cal <- DATA_C14$C14[,2]
-# Names <- DATA_C14$Names
-# nb_sample <- length(Names)
-#
-# ## Age computation
-# Age <- AgeC14_Computation(
-#   Data_C14Cal = C14Cal,
-#   Data_SigmaC14Cal = SigmaC14Cal,
-#   SampleNames = Names,
-#   Nb_sample = nb_sample,
-#   PriorAge = rep(c(20,60),nb_sample),
-#   Iter = 500,
-#   quiet = TRUE)
-
-## plot output
-plot_Ages(Age)

@@ -35,8 +35,13 @@ test_that("Full function test", {
   expect_silent(plot_Ages(object = Age, sample_order = c(1,2)))
 
   ##check legend option
-  expect_silent(plot_Ages(object = Age, legend.pos = "top"))
+  expect_silent(plot_Ages(object = Age, legend.pos = "top", legend.cex = 0.2))
 
+  ## check density plot mode
+  expect_silent(plot_Ages(object = Age, plot_mode = "density"))
+
+  ## check density plot mode arguments
+  expect_silent(plot_Ages(object = Age, plot_mode = "density", d_scale = 0.2, show_ages = TRUE))
 
 })
 

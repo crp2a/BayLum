@@ -457,8 +457,13 @@ Age <-
   Origin_fit = FALSE,
   StratiConstraints = SC,
   Iter = 1000, 
-  jags_method = 'rjags'
-  )
+  jags_method = 'rjags')
+```
+
+Thee results can be also be used for an alternative graphical representation: 
+
+```{r, fig.width=5, fig.height=5, fig.align='center'}
+plot_Ages(Age, plot_mode = "density")
 ```
 
 # References {-}

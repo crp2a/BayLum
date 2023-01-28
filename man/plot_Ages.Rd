@@ -4,11 +4,17 @@
 \alias{plot_Ages}
 \title{Create Age Plot}
 \usage{
-plot_Ages(object, sample_names = NULL, sample_order = NULL, ...)
+plot_Ages(
+  object,
+  sample_names = NULL,
+  sample_order = NULL,
+  plot_mode = "ages",
+  ...
+)
 }
 \arguments{
 \item{object}{\link{list}  or \link{data.frame} (\strong{required}): Output as created by functions like \link{AgeC14_Computation}, which
-is a list of class \code{BayLum.list}. Alternativley the function supports a \link{data.frame} as input, however,
+is a list of class \code{BayLum.list}. Alternatively the function supports a \link{data.frame} as input, however,
 in such a case the \link{data.frame} must resemble the ages \link{data.frame} created by the computation functions
 otherwise the input will be silently ignored.}
 
@@ -18,9 +24,12 @@ If the length of the provided \link{character} vector is shorter than the real n
 \item{sample_order}{\link{numeric} (optional): argument to rearrange the sample order, e.g., \code{sample_order = c(4:1)} plots
 the last sample first.}
 
+\item{plot_mode}{\link{character} (\emph{with default}): allows to switch from displaying ages as points with lines (\code{"ages"})
+for the credible intervals to densities (\code{"density"})}
+
 \item{...}{further arguments to control the plot output,
 standard arguments are: \code{cex}, \code{xlim}, \code{main}, \code{xlab}, \code{col} further (non-standard) arguments
-are: \code{grid} (\code{TRUE}/\code{FALSE}), \code{legend} (\code{TRUE}/\code{FALSE}), \code{legend.text} (\link{character} input needed), \code{legend.pos} \link[graphics:legend]{graphics::legend}}
+are: \code{grid} (\code{TRUE}/\code{FALSE}), \code{legend} (\code{TRUE}/\code{FALSE}), \code{legend.text} (\link{character} input needed), \code{legend.pos} \link[graphics:legend]{graphics::legend}, \code{legend.cex}. Additional arguments: \code{d_scale} (scales density plots), \code{show_ages} (add ages to density  plots)}
 }
 \value{
 The function returns a plot and the \link{data.frame} used to display the data
@@ -34,7 +43,7 @@ provides various arguments to modify the plot output, however, for an ultimate c
 the \link{data.frame} extracted from the input object for own plots.
 }
 \section{Function version}{
- 0.1.4
+ 0.1.5
 }
 
 \examples{
@@ -58,16 +67,19 @@ Age <- AgeC14_Computation(
 ## plot output
 plot_Ages(Age)
 
+## plot output
+plot_Ages(Age, plot_mode = "density")
+
 }
 \seealso{
 \link{AgeC14_Computation}, \link{AgeS_Computation}
 }
 \author{
-Sebastian Kreutzer, IRAMAT-CRP2A, UMR 5060, CNRS-Université Bordeaux Montaigne (France), based on code
+Sebastian Kreutzer, Institute of Geography, Ruprecht-Karl-University of Heidelberg (Germany), based on code
 written by Claire Christophe
 } 
 
 \section{How to cite}{
-Kreutzer, S., Christophe, C., 2023. plot_Ages(): Create Age Plot. Function version 0.1.4. In: Christophe, C., Philippe, A., Kreutzer, S., Guérin, G., Baumgarten, F.H., 2023. BayLum: Chronological Bayesian Models Integrating Optically Stimulated. R package version 0.3.1.9000-10. https://CRAN.r-project.org/package=BayLum
+Kreutzer, S., Christophe, C., 2023. plot_Ages(): Create Age Plot. Function version 0.1.5. In: Christophe, C., Philippe, A., Kreutzer, S., Guérin, G., Baumgarten, F.H., 2023. BayLum: Chronological Bayesian Models Integrating Optically Stimulated. R package version 0.3.1.9000-11. https://CRAN.r-project.org/package=BayLum
 }
 
