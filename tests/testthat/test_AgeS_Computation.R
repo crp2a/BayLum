@@ -82,6 +82,20 @@ test_that("Full function test", {
     quiet = TRUE
   )), class = "BayLum.list")
 
+  ## let THETA be a data.frame
+  expect_s3_class(suppressWarnings(AgeS_Computation(
+    DATA = Data,
+    Nb_sample = 2,
+    THETA = as.data.frame(THETA),
+    SampleNames = c("GDB5","GDB3"),
+    PriorAge = c(1,10,20,60),
+    Iter = 50,
+    adapt = 50,
+    burnin = 50,
+    n.chains = 2,
+    quiet = TRUE
+  )), class = "BayLum.list")
+
 
 })
 
