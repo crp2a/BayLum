@@ -412,8 +412,13 @@ AgeS_Computation <- function(
     }
 
     ##---THETA matrix ####
+    ## cover character case
     if (is(THETA)[1] == "character")
       THETA <- as.matrix(read.csv(THETA, sep = sepTHETA, header = FALSE))
+
+    ## cover data.frame case (users should not do it but they do)
+    if (inherits(THETA, "data.frame"))
+      THETA <- as.matrix(THETA)
 
     if (length(THETA[,1]) == 0) {
       THETA <- diag(DATA$ddot_env[2, CSBinPerSample] +
