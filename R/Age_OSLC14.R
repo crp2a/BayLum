@@ -15,7 +15,7 @@
 #' \code{DATA} contains information for more than one sample.
 #' If there is stratigraphic relations between samples, informations in DATA must be ordered by order of
 #' increasing ages. See the details section to for more informations.
-#' (2): an object of class "runjags" which is provided by the output of [Age_OSLC14]. When input of class "runjags" is identified, no new JAGS model is created. Instead, the JAGS model specified by the "runjags" object is extended. Useful for when convergence was not originally achieved and a complete restart is not desirable.
+#' (2): an object of class "BayLum.list" which is provided by the output of [Age_OSLC14]. When input of class "BayLum.list" is identified, no new JAGS model is created. Instead, the JAGS model specified within the BayLum.list is extended. Useful for when convergence was not originally achieved and a complete restart is not desirable.
 #'
 #' @param Data_C14Cal [numeric] vector: corresponding to C-14 age estimate
 #' (in years, conversion in ka is automatically done in the function).
@@ -389,20 +389,23 @@ Age_OSLC14 <- function(
     roundingOfValue = 3,
     ...
 ) {
-  if (inherits(DATA, "runjags")) {
-    ind_OSL <- which(DATA$args$SampleNature[1,] == 1)
-    CS_OSL <- cumsum(DATA$args$SampleNature[1,])
-    ind_C14 <- which(DATA$args$SampleNature[2,] == 1)
-    CS_C14 <- cumsum(DATA$args$SampleNature[2,])
+  if (inherits(DATA, "BayLum.list")) {
+    ## reattach mcmc-list to runjags_object
+    DATA$runjags_object$mcmc <- DATA$Sampling
+      
+    ind_OSL <- which(DATA$runjags_object$args$SampleNature[1,] == 1)
+    CS_OSL <- cumsum(DATA$runjags_object$args$SampleNature[1,])
+    ind_C14 <- which(DATA$runjags_object$args$SampleNature[2,] == 1)
+    CS_C14 <- cumsum(DATA$runjags_object$args$SampleNature[2,])
 
 
-    AgeBP = rev(DATA$args$TableauCalib[, 1])
-    CalC14 = rev(DATA$args$TableauCalib[, 2])
-    SigmaCalC14 = rev(DATA$args$TableauCalib[, 3])
+    AgeBP = rev(DATA$runjags_object$args$TableauCalib[, 1])
+    CalC14 = rev(DATA$runjags_object$args$TableauCalib[, 2])
+    SigmaCalC14 = rev(DATA$runjags_object$args$TableauCalib[, 3])
 
     results_runjags <-
       runjags::extend.JAGS(
-        runjags.object = DATA,
+        runjags.object = DATA$runjags_object,
         adapt = adapt,
         burnin = burnin,
         sample = Iter,
@@ -414,21 +417,21 @@ Age_OSLC14 <- function(
 
     # storing the arguments used for the orignal BayLum run (as to not lose them when results are processed)
     results_runjags$args <- list(
-      "Model_OSL_GrowthCurve" = DATA$args$Model_OSL_GrowthCurve,
-      "Model_OSL_Distribution" = DATA$args$Model_OSL_Distribution,
-      "PriorAge" = DATA$args$PriorAge,
-      "StratiConstraints" = DATA$args$StratiConstraints,
-      "CovarianceMatrix" = DATA$args$CovarianceMatrix,
-      "Model_C14" = DATA$args$Model_C14,
-      "TableauCalib" = DATA$args$TableauCalib,
-      "Outlier" = DATA$args$Outlier,
-      "SampleNature" = DATA$args$SampleNature,
-      "Data_C14Cal" = DATA$args$Data_C14Cal,
-      "Nb_sample" = DATA$args$Nb_sample
+      "Model_OSL_GrowthCurve" = DATA$runjags_object$args$Model_OSL_GrowthCurve,
+      "Model_OSL_Distribution" = DATA$runjags_object$args$Model_OSL_Distribution,
+      "PriorAge" = DATA$runjags_object$args$PriorAge,
+      "StratiConstraints" = DATA$runjags_object$args$StratiConstraints,
+      "CovarianceMatrix" = DATA$runjags_object$args$CovarianceMatrix,
+      "Model_C14" = DATA$runjags_object$args$Model_C14,
+      "TableauCalib" = DATA$runjags_object$args$TableauCalib,
+      "Outlier" = DATA$runjags_object$args$Outlier,
+      "SampleNature" = DATA$runjags_object$args$SampleNature,
+      "Data_C14Cal" = DATA$runjags_object$args$Data_C14Cal,
+      "Nb_sample" = DATA$runjags_object$args$Nb_sample
     )
   }
 
-  if(!inherits(DATA, "runjags")) {
+  if(!inherits(DATA, "BayLum.list")) {
     #--- StratiConstraints matrix ####
     if (length(StratiConstraints) == 0) {
       StratiConstraints = matrix(
@@ -726,6 +729,9 @@ Age_OSLC14 <- function(
 ##extract mcmc list
 echantillon <- results_runjags$mcmc
 U <- summary(echantillon)
+
+##remove mcmc-list from runjags output to reduce output object size
+results_runjags$mcmc <- list(c("MCMC-list is not here. Go to first level -> object named *Sampling*"))
 
 ##combine chains into one data.frame
 Sample <- as.data.frame(runjags::combine.mcmc(echantillon))
