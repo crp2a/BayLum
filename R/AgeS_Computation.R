@@ -569,7 +569,7 @@ AgeS_Computation <- function(
   echantillon <- results_runjags$mcmc
   
   ##remove mcmc-list from runjags output to reduce output object size
-  results_runjags$mcmc <- list(c("MCMC-list is not here. Go to first level -> object named *Sample*"))
+  results_runjags$mcmc <- list(c("MCMC-list is not here. Go to first level -> object named *Sampling*"))
 
   ##combine chains into one data.frame
   sample <- as.data.frame(runjags::combine.mcmc(echantillon))
