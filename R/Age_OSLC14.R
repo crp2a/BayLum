@@ -297,7 +297,7 @@
 #' of the age estimates if the chains have converged.
 #'
 #' @seealso
-#' [rjags], [plot_MCMC], [SCMatrix], [plot_Ages]
+#' [runjags], [plot_MCMC], [SCMatrix], [plot_Ages]
 #'
 #' @references
 #' Reimer PJ, Bard E, Bayliss A, Beck JW, Blackwell PC, Bronl Ramsey C, Buck CE, Cheng H, Edwards RL, Friedrich M,
@@ -731,7 +731,7 @@ echantillon <- results_runjags$mcmc
 U <- summary(echantillon)
 
 ##remove mcmc-list from runjags output to reduce output object size
-results_runjags$mcmc <- list(c("MCMC-list is not here. Go to first level -> object named *Sampling*"))
+results_runjags$mcmc <- list("MCMC-list is not here. Go to first level -> object named *Sampling*")
 
 ##combine chains into one data.frame
 Sample <- as.data.frame(runjags::combine.mcmc(echantillon))
