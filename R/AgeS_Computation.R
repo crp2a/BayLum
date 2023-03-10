@@ -287,7 +287,7 @@
 #'
 #' ## extend model
 #' Age_extended <- AgeS_Computation(
-#'   DATA = Age$runjags_object,
+#'   DATA = Age,
 #'   Nb_sample = Nb_sample,
 #'   SampleNames = c("GDB5","GDB3"),
 #'   PriorAge = rep(c(1,100), 2),
