@@ -358,7 +358,7 @@ AgeS_Computation <- function(
 ) {
   #---check to see if DATA input is a runjags-object and extend if so ####
   if (inherits(DATA, "BayLum.list")) {
-      # reattach mcmc-list which were removed to reduce object size
+      # reattach mcmc-list which was removed to reduce object size
       DATA$runjags_object$mcmc <- DATA$Sampling
       
      # extend via runjags
@@ -569,7 +569,7 @@ AgeS_Computation <- function(
   echantillon <- results_runjags$mcmc
   
   ##remove mcmc-list from runjags output to reduce output object size
-  results_runjags$mcmc <- list(c("MCMC-list is not here. Go to first level -> object named *Sampling*"))
+  results_runjags$mcmc <- list("MCMC-list is not here. Go to first level -> object named *Sampling*")
 
   ##combine chains into one data.frame
   sample <- as.data.frame(runjags::combine.mcmc(echantillon))
