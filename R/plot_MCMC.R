@@ -189,7 +189,6 @@ plot_MCMC <- function(
     ##the trace plot ylab becomes the density xlab
     xlab_density <- ylab_traces
 
-
   # Plotting ------------------------------------------------------------------------------------
   ##extract real variable names
   ##in our case, e.g, A[1] and A[2] ... two samples
@@ -241,7 +240,6 @@ plot_MCMC <- function(
 
   ##plot everything in a loop
   for(v in o){
-
     ##traces
     matplot(
       x = seq(mcpar_list[[1]][1], mcpar_list[[1]][2], length.out = length(n.iter)),
@@ -302,8 +300,5 @@ plot_MCMC <- function(
       mtext(side = 3, sample_names[v], cex = plot_settings$cex * 0.8)
 
     }
-
   }
-
-
 }
