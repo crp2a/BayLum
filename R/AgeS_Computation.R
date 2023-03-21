@@ -13,7 +13,7 @@
 #' \code{DATA} contains informations for more than one sample.
 #' If there is stratigraphic relations between samples, informations in DATA must be ordered by order of increasing ages.
 #' See the details section to for more informations.
-#' (2): An object of class "BayLum.list" which is provided by the output of [AgeS_Computation]. When input of class "BayLum.list" is identified, no new JAGS model is created. Instead, the JAGS model specified by the AgeS_Computation output is extended. Useful for when convergence was not originally achieved and a complete restart is not desirable.
+#' (2): An object of class `BayLum.list` which is provided by the output of [AgeS_Computation]. When input of class `BayLum.list` is identified, no new JAGS model is created. Instead, the JAGS model specified by the [AgeS_Computation] output is extended. Useful for when convergence was not originally achieved and a complete restart is not desirable.
 #'
 #' @param SampleNames [character] vector: names of samples. The length of this vector is equal to `Nb_sample`.
 #'
