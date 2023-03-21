@@ -83,7 +83,7 @@ test_that("Full function test", {
   )), class = "BayLum.list")
 
   ## let THETA be a data.frame
-  expect_s3_class(suppressWarnings(AgeS_Computation(
+  results <- expect_s3_class(suppressWarnings(AgeS_Computation(
     DATA = Data,
     Nb_sample = 2,
     THETA = as.data.frame(THETA),
@@ -96,6 +96,10 @@ test_that("Full function test", {
     quiet = TRUE
   )), class = "BayLum.list")
 
+  ## test output for regression
+  expect_silent(plot_Ages(results))
+  expect_silent(suppressWarnings(plot_MCMC(results)))
+  plot_Scatterplots(results)
 
 })
 

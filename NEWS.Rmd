@@ -27,6 +27,10 @@ it automatically to a matrix if needed.
 
 * `create_ThetaMatrix()` the function did not throw an error in all cases where `sigma_s` was obviously wrong; fixed (thanks to M. Heydari for reporting)
 
-* `Generate_DataFile_MG()` the function now checks that the number of specified BIN/BINX-files matches the actual number of BIN/BINX-files present in the folders. If not, a warning is prompted. This prevents hard-to-track-down error messages and odd modelling results that erroneously encourage searching for problems with JAGS or the BayLum models. 
+* `Generate_DataFile_MG()` the function now checks that the number of specified BIN/BINX-files matches the actual number of BIN/BINX-files present in the folders. If not, a warning is prompted. This prevents hard-to-track-down error messages and odd modelling results that erroneously encourage searching for problems with JAGS or the `'BayLum'` models. 
 
 * `plot_Ages()` gained a couple of new arguments. First, `plot_mode` allows to switch between the standard plot output `"ages"` (the default) and the new option `"density"`. The latter draws probability density curves instead of lines. Further arguments specific to the `plot_mode = "density"` are `d_scale` to scale the density plots in height and `show_ages` to show the Bayes estimator. More generally, `legend.cex` was added to enable a convenient scaling of the legend fonts; this works for both plot modes.
+
+* `plot_MCMC()` gained additional support for `BayLum.list` returned by `Age_OSLC14()`
+
+* `plot_Scatterplots()` The functions can now handle `BayLum.list` objects if returned by certain functions. Currently: `AgesS_Computation()`, `Age_OSLC14()`
