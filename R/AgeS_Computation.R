@@ -13,7 +13,7 @@
 #' \code{DATA} contains informations for more than one sample.
 #' If there is stratigraphic relations between samples, informations in DATA must be ordered by order of increasing ages.
 #' See the details section to for more informations.
-#' (2): An object of class "runjags" which is provided by the output of [AgeS_Computation]. When input of class "runjags" is identified, no new JAGS model is created. Instead, the JAGS model specified by the "runjags" object is extended. Useful for when convergence was not originally achieved and a complete restart is not desirable.
+#' (2): An object of class `BayLum.list` which is provided by the output of [AgeS_Computation]. When input of class `BayLum.list` is identified, no new JAGS model is created. Instead, the JAGS model specified by the [AgeS_Computation] output is extended. Useful for when convergence was not originally achieved and a complete restart is not desirable.
 #'
 #' @param SampleNames [character] vector: names of samples. The length of this vector is equal to `Nb_sample`.
 #'
@@ -287,7 +287,7 @@
 #'
 #' ## extend model
 #' Age_extended <- AgeS_Computation(
-#'   DATA = Age$runjags_object,
+#'   DATA = Age,
 #'   Nb_sample = Nb_sample,
 #'   SampleNames = c("GDB5","GDB3"),
 #'   PriorAge = rep(c(1,100), 2),
@@ -357,10 +357,14 @@ AgeS_Computation <- function(
     ...
 ) {
   #---check to see if DATA input is a runjags-object and extend if so ####
-  if (inherits(DATA, "runjags")) {
+  if (inherits(DATA, "BayLum.list")) {
+      # reattach mcmc-list which was removed to reduce object size
+      DATA$runjags_object$mcmc <- DATA$Sampling
+      
+     # extend via runjags
     results_runjags <-
       runjags::extend.JAGS(
-        runjags.object = DATA,
+        runjags.object = DATA$runjags_object,
         adapt = adapt,
         burnin = burnin,
         sample = Iter,
@@ -372,16 +376,16 @@ AgeS_Computation <- function(
 
     # storing the arguments used for the original BayLum run (as to not lose them when results are processed)
     results_runjags$args <- list(
-      "Model_GrowthCurve" = DATA$args$Model_GrowthCurve,
-      "Distribution" = DATA$args$Distribution,
-      "PriorAge" = DATA$args$PriorAge,
-      "StratiConstraints" = DATA$args$StratiConstraints,
-      "CovarianceMatrix" = DATA$args$CovarianceMatrix,
-      "model" = DATA$args$model
+      "Model_GrowthCurve" = DATA$runjags_object$args$Model_GrowthCurve,
+      "Distribution" = DATA$runjags_object$args$Distribution,
+      "PriorAge" = DATA$runjags_object$args$PriorAge,
+      "StratiConstraints" = DATA$runjags_object$args$StratiConstraints,
+      "CovarianceMatrix" = DATA$runjags_object$args$CovarianceMatrix,
+      "model" = DATA$runjags_object$args$model
     )
   }
   #---check to see if DATA input is a DataFile and run JAGS ####
-  if (!inherits(DATA, "runjags")) {
+  if (!inherits(DATA, "BayLum.list")) {
     ##---Index preparation ####
     CSBinPerSample <- cumsum(BinPerSample)
     LengthSample <- c()
@@ -563,6 +567,9 @@ AgeS_Computation <- function(
   #---processing of JAGS results
   ##extract mcmc list from runjags object
   echantillon <- results_runjags$mcmc
+  
+  ##remove mcmc-list from runjags output to reduce output object size
+  results_runjags$mcmc <- list("MCMC-list is not here. Go to first level -> object named *Sampling*")
 
   ##combine chains into one data.frame
   sample <- as.data.frame(runjags::combine.mcmc(echantillon))
