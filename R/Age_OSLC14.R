@@ -15,7 +15,7 @@
 #' \code{DATA} contains information for more than one sample.
 #' If there is stratigraphic relations between samples, informations in DATA must be ordered by order of
 #' increasing ages. See the details section to for more informations.
-#' (2): an object of class "BayLum.list" which is provided by the output of [Age_OSLC14]. When input of class "BayLum.list" is identified, no new JAGS model is created. Instead, the JAGS model specified within the BayLum.list is extended. Useful for when convergence was not originally achieved and a complete restart is not desirable.
+#' (2): an object of class `BayLum.list` which is provided by the output of [Age_OSLC14]. When input of class `BayLum.list` is identified, no new JAGS model is created. Instead, the JAGS model specified within the `BayLum.list` is extended. Useful for when convergence was not originally achieved and a complete restart is not desirable.
 #'
 #' @param Data_C14Cal [numeric] vector: corresponding to C-14 age estimate
 #' (in years, conversion in ka is automatically done in the function).
