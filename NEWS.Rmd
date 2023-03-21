@@ -19,7 +19,7 @@ knitr::opts_chunk$set(
 
 ## Bugfixes and changes
 
-* `AgeS_Computation()` &  `Age_OSLC14()` had as output two instances of the MCMC-list. One has been removed. This essentially halves the amount of memory needed to store the output of these functions. (Thanks to G. Guérin for reporting)
+* `AgeS_Computation()` &  `Age_OSLC14()` had two instances of the MCMC-list. One has been removed. This essentially halves the amount of memory needed to store the output of these functions. (Thanks to G. Guérin for reporting) (#27)
 
 * `AgeS_Computation()` crashed reproducibly, if the THETA matrix (as one possibility) was provided
 indeed as a file name instead of a `matrix` object; fixed (thanks to M. Heydari for reporting)
