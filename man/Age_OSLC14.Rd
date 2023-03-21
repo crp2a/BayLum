@@ -47,7 +47,7 @@ Age_OSLC14(
 \code{DATA} contains information for more than one sample.
 If there is stratigraphic relations between samples, informations in DATA must be ordered by order of
 increasing ages. See the details section to for more informations.
-(2): an object of class "runjags" which is provided by the output of \link{Age_OSLC14}. When input of class "runjags" is identified, no new JAGS model is created. Instead, the JAGS model specified by the "runjags" object is extended. Useful for when convergence was not originally achieved and a complete restart is not desirable.}
+(2): an object of class \code{BayLum.list} which is provided by the output of \link{Age_OSLC14}. When input of class \code{BayLum.list} is identified, no new JAGS model is created. Instead, the JAGS model specified within the \code{BayLum.list} is extended. Useful for when convergence was not originally achieved and a complete restart is not desirable.}
 
 \item{Data_C14Cal}{\link{numeric} vector: corresponding to C-14 age estimate
 (in years, conversion in ka is automatically done in the function).
@@ -384,7 +384,7 @@ Age <- Age_OSLC14(
 } 
 
 \section{How to cite}{
-Christophe, C., Philippe, A., Kreutzer, S., Baumgarten, F.H., 2023. Age_OSLC14(): Bayesian analysis for age estimation of OSL measurements and C-14 ages of various samples. In: Christophe, C., Philippe, A., Kreutzer, S., Guérin, G., Baumgarten, F.H., 2023. BayLum: Chronological Bayesian Models Integrating Optically Stimulated. R package version 0.3.1.9000-14. https://CRAN.r-project.org/package=BayLum
+Christophe, C., Philippe, A., Kreutzer, S., Baumgarten, F.H., 2023. Age_OSLC14(): Bayesian analysis for age estimation of OSL measurements and C-14 ages of various samples. In: Christophe, C., Philippe, A., Kreutzer, S., Guérin, G., Baumgarten, F.H., 2023. BayLum: Chronological Bayesian Models Integrating Optically Stimulated. R package version 0.3.1.9000-17. https://CRAN.r-project.org/package=BayLum
 }
 
 \references{
@@ -397,7 +397,7 @@ Hogg AG, Hua Q, Blackwell PG, Niu M, Buck CE, Guilderson TP, Heaton TJ, Palmer J
 2013. SHCal13 Southern Hemisphere calibration, 0-50000 years cal BP. Radiocarbon 55(4):1889-1903
 }
 \seealso{
-\link{rjags}, \link{plot_MCMC}, \link{SCMatrix}, \link{plot_Ages}
+\link{runjags}, \link{plot_MCMC}, \link{SCMatrix}, \link{plot_Ages}
 }
 \author{
 Claire Christophe, Anne Philippe, Guillaume Guerin, Sebastian Kreutzer, Frederik Harly Baumgarten

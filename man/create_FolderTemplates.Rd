@@ -55,7 +55,7 @@ Sebastian Kreutzer, Geography & Earth Sciences, Aberystwyth University
 } 
 
 \section{How to cite}{
-Kreutzer, S., 2023. create_FolderTemplates(): Create Folder Templates. Function version 0.1.0. In: Christophe, C., Philippe, A., Kreutzer, S., Guérin, G., Baumgarten, F.H., 2023. BayLum: Chronological Bayesian Models Integrating Optically Stimulated. R package version 0.3.1.9000-14. https://CRAN.r-project.org/package=BayLum
+Kreutzer, S., 2023. create_FolderTemplates(): Create Folder Templates. Function version 0.1.0. In: Christophe, C., Philippe, A., Kreutzer, S., Guérin, G., Baumgarten, F.H., 2023. BayLum: Chronological Bayesian Models Integrating Optically Stimulated. R package version 0.3.1.9000-17. https://CRAN.r-project.org/package=BayLum
 }
 
 \keyword{IO}

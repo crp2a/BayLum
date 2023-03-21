@@ -43,7 +43,7 @@ provided by the function \link{Generate_DataFile}, \link{Generate_DataFile_MG} o
 \code{DATA} contains informations for more than one sample.
 If there is stratigraphic relations between samples, informations in DATA must be ordered by order of increasing ages.
 See the details section to for more informations.
-(2): An object of class "runjags" which is provided by the output of \link{AgeS_Computation}. When input of class "runjags" is identified, no new JAGS model is created. Instead, the JAGS model specified by the "runjags" object is extended. Useful for when convergence was not originally achieved and a complete restart is not desirable.}
+(2): An object of class \code{BayLum.list} which is provided by the output of \link{AgeS_Computation}. When input of class \code{BayLum.list} is identified, no new JAGS model is created. Instead, the JAGS model specified by the \link{AgeS_Computation} output is extended. Useful for when convergence was not originally achieved and a complete restart is not desirable.}
 
 \item{SampleNames}{\link{character} vector: names of samples. The length of this vector is equal to \code{Nb_sample}.}
 
@@ -315,7 +315,7 @@ Age <- AgeS_Computation(
 
 ## extend model
 Age_extended <- AgeS_Computation(
-  DATA = Age$runjags_object,
+  DATA = Age,
   Nb_sample = Nb_sample,
   SampleNames = c("GDB5","GDB3"),
   PriorAge = rep(c(1,100), 2),
@@ -354,7 +354,7 @@ Age <- AgeS_Computation(
 } 
 
 \section{How to cite}{
-Christophe, C., Philippe, A., Guérin, G., Kreutzer, S., 2023. AgeS_Computation(): Bayesian analysis for OSL age estimation of various samples. In: Christophe, C., Philippe, A., Kreutzer, S., Guérin, G., Baumgarten, F.H., 2023. BayLum: Chronological Bayesian Models Integrating Optically Stimulated. R package version 0.3.1.9000-14. https://CRAN.r-project.org/package=BayLum
+Christophe, C., Philippe, A., Guérin, G., Kreutzer, S., 2023. AgeS_Computation(): Bayesian analysis for OSL age estimation of various samples. In: Christophe, C., Philippe, A., Kreutzer, S., Guérin, G., Baumgarten, F.H., 2023. BayLum: Chronological Bayesian Models Integrating Optically Stimulated. R package version 0.3.1.9000-17. https://CRAN.r-project.org/package=BayLum
 }
 
 \references{
