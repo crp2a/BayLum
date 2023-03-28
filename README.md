@@ -14,7 +14,7 @@ developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.re
 [![CRAN](https://www.r-pkg.org/badges/version/BayLum)](https://CRAN.R-project.org/package=BayLum)
 [![Downloads](https://cranlogs.r-pkg.org/badges/grand-total/BayLum)](https://www.r-pkg.org/pkg/BayLum)
 [![R-CMD-check](https://github.com/crp2a/BayLum/workflows/GitHub%20Actions%20CI/badge.svg)](https://github.com/crp2a/BayLum/actions)
-[![codecov](https://codecov.io/gh/crp2a/BayLum/branch/master/graph/badge.svg?token=cOdZr6imKX)](https://codecov.io/gh/crp2a/BayLum)
+[![codecov](https://app.codecov.io/gh/crp2a/BayLum/branch/master/graph/badge.svg?token=cOdZr6imKX)](https://app.codecov.io/gh/crp2a/BayLum)
 
 An R package for chronological **Bay**esian models integrated for
 Optically Stimulated (OSL) **Lum**inescence Dating
