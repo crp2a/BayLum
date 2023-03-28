@@ -465,7 +465,7 @@ plot_Ages(Age, plot_mode = "density")
 ## When MCMC trajectories did not converge
 If MCMC trajectories did not converge, it means we should run additional MCMC iterations.  
 For `AgeS_computation()` and `Age_OSLC14()` models we can run additional iterations by supplying the function output back into the parent function.
-In the following, notice we are using the output of the `AgeS_computation()`-example, namely `Age`. The key argument to set/change is `DATA =`.
+In the following, notice we are using the output of the previous `AgeS_computation()` example, namely `Age`. The key argument to set/change is `DATA`.
 
 ```{r, fig.width=5, fig.height=5, fig.align='center'}
 Age <- AgeS_Computation(
@@ -480,8 +480,6 @@ Age <- AgeS_Computation(
   jags_method = "rjags"
 )
 ```
-
-
 
 # References {-}
 
