@@ -42,7 +42,7 @@ You may also consider installing [Rstudio]( https://posit.co),
 which provides an excellent desktop working environment for **R**; however it is not 
 a prerequisite.
 
-Despite, you will need the external software *JAGS* (Just Another Gibs Sampler). 
+You will also need the external software *JAGS* (Just Another Gibs Sampler). 
 Please visit the [JAGS](https://mcmc-jags.sourceforge.io) webpage and follow the installation instructions. 
 Now you are nearly ready to work with 'BayLum'. 
 
@@ -65,7 +65,7 @@ library(BayLum)
 
 ## Import information from a BIN/BINX-file.
 
-Let us consider the sample is named *samp1*, which is the example dataset coming with the package. 
+Let us consider the sample named *samp1*, which is the example dataset coming with the package. 
 All information related to this sample is stored in a subfolder called also *samp1*.
 To test the package example, first, we add the path of the example
 dataset to the object `path`.
@@ -191,7 +191,7 @@ This also works if `DATA1` is the output of `Generate_DataFile_MG()`.
 ##### Remark 1: MCMC trajectories
 
 - If MCMC trajectories did not converge, you can add more iteration with the parameter `Iter` in the function `Age_Computation()`,
-for example `Iter = 20000` or `Iter = 50000`. 
+for example `Iter = 20000` or `Iter = 50000`. If it is not desirable to re-run the model from scratch, read the 
 
 - To increase the precision of prior distribution, if not specified before you can use the argument `PriorAge`. 
 For example: `PriorAge= c(0.01,10)` for a young sample and `PriorAge = c(10,100)` for an old sample.
@@ -374,25 +374,6 @@ For example, if you know that sample named *GDB5* is a young sample whose its ag
 and *GDB3* is an old sample whose age is between 10 ka and 100 ka,
 $$PriorAge=c(\underbrace{0.01,10}_{GDB5\ prior\ age},\underbrace{10,100}_{GDB3\ prior\ age})$$
 
-## When MCMC trajectories did not converge
-If MCMC trajectories did not converge, it means we should run additional MCMC iterations.  
-For `AgeS_computation()` and `Age_OSLC14()` models we can run additional iterations by supplying the function output back into the parent function.
-In the following, notice we are using the output of the `AgeS_computation()`-example, namely `Age`. The key argument to set/change is `DATA =`.
-
-```{r, fig.width=5, fig.height=5, fig.align='center'}
-Age <- AgeS_Computation(
-  DATA = Age,
-  Nb_sample = 2,
-  SampleNames = c("GDB5", "GDB3"),
-  PriorAge = priorage,
-  distribution = "cauchy",
-  LIN_fit = TRUE,
-  Origin_fit = FALSE,
-  Iter = 1000, 
-  jags_method = "rjags"
-)
-```
-
 ## Age analysis with stratigraphic constraints
 
 With the function `AgeS_Computation()` it is possible to take the stratigraphic
@@ -481,6 +462,26 @@ Thee results can be also be used for an alternative graphical representation:
 ```{r, fig.width=5, fig.height=5, fig.align='center'}
 plot_Ages(Age, plot_mode = "density")
 ```
+## When MCMC trajectories did not converge
+If MCMC trajectories did not converge, it means we should run additional MCMC iterations.  
+For `AgeS_computation()` and `Age_OSLC14()` models we can run additional iterations by supplying the function output back into the parent function.
+In the following, notice we are using the output of the `AgeS_computation()`-example, namely `Age`. The key argument to set/change is `DATA =`.
+
+```{r, fig.width=5, fig.height=5, fig.align='center'}
+Age <- AgeS_Computation(
+  DATA = Age,
+  Nb_sample = 2,
+  SampleNames = c("GDB5", "GDB3"),
+  PriorAge = priorage,
+  distribution = "cauchy",
+  LIN_fit = TRUE,
+  Origin_fit = FALSE,
+  Iter = 1000, 
+  jags_method = "rjags"
+)
+```
+
+
 
 # References {-}
 
