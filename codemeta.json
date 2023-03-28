@@ -66,7 +66,7 @@
       "@type": "SoftwareApplication",
       "identifier": "testthat",
       "name": "testthat",
-      "version": ">= 3.1.5",
+      "version": ">= 3.1.7",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -123,7 +123,7 @@
       "@type": "SoftwareApplication",
       "identifier": "hexbin",
       "name": "hexbin",
-      "version": ">= 1.28.2",
+      "version": ">= 1.28.3",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -175,7 +175,7 @@
       "@type": "SoftwareApplication",
       "identifier": "Luminescence",
       "name": "Luminescence",
-      "version": ">= 0.9.20",
+      "version": ">= 0.9.21",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
