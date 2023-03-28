@@ -1,6 +1,6 @@
 ---
 title: "BayLum: An Introduction"
-author: "Claire Christophe, Anne Philippe, Sebastian Kreutzer, Guillaume Guérin"
+author: "Claire Christophe, Anne Philippe, Sebastian Kreutzer, Guillaume Guérin, Frederik Baumgarten"
 date: 'Updated for BayLum package version `r packageVersion("BayLum")` (`r Sys.Date()`)'
 output:
   rmarkdown::html_vignette:
@@ -340,11 +340,11 @@ LT_RegenDose(
 )
 ```
 
-*Note: In the example `DATA3` contains information from the samples 'GDB3' and 'GDB5', which are single-grain OSL measurements. For a correct treatment the argument `SG` has to be manually set be the user. Please see the function manual for further details.*
+*Note: In the example `DATA3` contains information from the samples 'GDB3' and 'GDB5', which are single-grain OSL measurements. For a correct treatment the argument `SG` has to be manually set by the user. Please see the function manual for further details.*
 
 ## Age analysis without stratigraphic constraints
 
-If there no stratigraphic constraints were set, the following code to analyse simultaneously the age of the sample *GDB5* and *GDB3*.
+If no stratigraphic constraints were set, the following code can be used to analyse the age of the sample *GDB5* and *GDB3* simultaneously.
 
 ```{r, fig.width=5, fig.height=5, fig.align='center'}
 priorage = c(1, 10, 10, 100)
@@ -365,9 +365,6 @@ Age <- AgeS_Computation(
  `jags_method = "rjparallel"`.
 
 ### Remarks
-
-If the MCMC trajectories did not converge, we refer to the comments above.
-
 As for the function `Age_computation()`, the age for each sample is set by default between 0.01 ka and 100 ka.
 If you have more informations on your samples it is possible to change `PriorAge` parameters.
 `PriorAge` is a vector of `size = 2*$Nb_sample`, the two first values of `PriorAge`
@@ -376,6 +373,25 @@ concern the 1st sample, the next two values the 2nd sample  and so on.
 For example, if you know that sample named *GDB5* is a young sample whose its age is between 0.01 ka and 10 ka,
 and *GDB3* is an old sample whose age is between 10 ka and 100 ka,
 $$PriorAge=c(\underbrace{0.01,10}_{GDB5\ prior\ age},\underbrace{10,100}_{GDB3\ prior\ age})$$
+
+## When MCMC trajectories did not converge
+If MCMC trajectories did not converge, it means we should run additional MCMC iterations.  
+For `AgeS_computation()` and `Age_OSLC14()` models we can run additional iterations by supplying the function output back into the parent function.
+In the following, notice we are using the output of the `AgeS_computation()`-example, namely `Age`. The key argument to set/change is `DATA =`.
+
+```{r, fig.width=5, fig.height=5, fig.align='center'}
+Age <- AgeS_Computation(
+  DATA = Age,
+  Nb_sample = 2,
+  SampleNames = c("GDB5", "GDB3"),
+  PriorAge = priorage,
+  distribution = "cauchy",
+  LIN_fit = TRUE,
+  Origin_fit = FALSE,
+  Iter = 1000, 
+  jags_method = "rjags"
+)
+```
 
 ## Age analysis with stratigraphic constraints
 
