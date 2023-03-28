@@ -88,7 +88,7 @@
 #' The user can also use `SCMatrix` or [SC_Ordered] (if all samples are ordered) functions
 #' to construct the `StratiConstraints` matrix.
 #'
-#' The user can also refer to a .csv file that containts the relation between samples as defined above.
+#' The user can also refer to a .csv file that contains the relation between samples as defined above.
 #' The user must take care about the separator used in the csv file using the argument `sepSC`.\cr
 #'
 #' ** More precision on `Model` **\cr
@@ -98,9 +98,9 @@
 #' the Bayesian model; if `Model = "naive"` that means only error on measurement
 #' are taken account in the mode.
 #'
-#' More precisely, the model considered here, as the one developped by Christen, JA (1994),
+#' More precisely, the model considered here, as the one developed by Christen, JA (1994),
 #' assume multiplicative effect of errors to address the problem of outliers.
-#' In addition, to not penalyse variables that are not outliers and damage theirs estimation,
+#' In addition, to not penalise variables that are not outliers and damage theirs estimation,
 #' we introduce a structure of mixture, that means only variable that are considered
 #' as outlier have in addition a multiplicative error.
 #'
@@ -157,7 +157,7 @@
 #' IntCal13 ans Marine13 radiocarbon age calibration curves 0-50000 years cal BP. Radiocarbon 55(4)=1869-1887.
 #'
 #' Hogg AG, Hua Q, Blackwell PG, Niu M, Buck CE, Guilderson TP, Heaton TJ, Palmer JG, Reimer PJ, Reimer RW, Turney CSM, Zimmerman SRH.
-#' 2013. SHCal13 Southern Hemisphere calibration, 0-50000 years cal BP. Radiocarbon 55(4):1889-1903
+#' 2013. SHCal13 Southern Hemisphere calibration, 0-50000 years cal. BP Radiocarbon 55(4):1889-1903
 #'
 #'
 #' @examples

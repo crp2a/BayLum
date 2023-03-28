@@ -150,7 +150,7 @@ Note that \verb{StratiConstraints_\{2:Nb_sample+1,1:Nb_sample\}} is a upper tria
 The user can also use \code{SCMatrix} or \link{SC_Ordered} (if all samples are ordered) functions
 to construct the \code{StratiConstraints} matrix.
 
-The user can also refer to a .csv file that containts the relation between samples as defined above.
+The user can also refer to a .csv file that contains the relation between samples as defined above.
 The user must take care about the separator used in the csv file using the argument \code{sepSC}.\cr
 
 ** More precision on \code{Model} **\cr
@@ -160,9 +160,9 @@ measurement error and error on calibration curve are taken account in
 the Bayesian model; if \code{Model = "naive"} that means only error on measurement
 are taken account in the mode.
 
-More precisely, the model considered here, as the one developped by Christen, JA (1994),
+More precisely, the model considered here, as the one developed by Christen, JA (1994),
 assume multiplicative effect of errors to address the problem of outliers.
-In addition, to not penalyse variables that are not outliers and damage theirs estimation,
+In addition, to not penalise variables that are not outliers and damage theirs estimation,
 we introduce a structure of mixture, that means only variable that are considered
 as outlier have in addition a multiplicative error.
 }
@@ -190,7 +190,12 @@ Age <- AgeC14_Computation(
  quiet = TRUE,
  roundingOfValue = 3)
 
+} 
+
+\section{How to cite}{
+Christophe, C., Philippe, A., Guérin, G., Kreutzer, S., 2023. AgeC14_Computation(): Bayesian analysis for C-14 age estimations of various samples. In: Christophe, C., Philippe, A., Kreutzer, S., Guérin, G., Baumgarten, F.H., 2023. BayLum: Chronological Bayesian Models Integrating Optically Stimulated. R package version 0.3.1. https://CRAN.r-project.org/package=BayLum
 }
+
 \references{
 Christen, JA (1994). Summarizing a set of radiocarbon determinations: a robust approach. Applied Statistics, 489-503.
 
@@ -200,7 +205,7 @@ Manning SW, Niu M, Reimer RW, Richards DA, Scott EM, Southon JR, Staff RA, Turne
 IntCal13 ans Marine13 radiocarbon age calibration curves 0-50000 years cal BP. Radiocarbon 55(4)=1869-1887.
 
 Hogg AG, Hua Q, Blackwell PG, Niu M, Buck CE, Guilderson TP, Heaton TJ, Palmer JG, Reimer PJ, Reimer RW, Turney CSM, Zimmerman SRH.
-2013. SHCal13 Southern Hemisphere calibration, 0-50000 years cal BP. Radiocarbon 55(4):1889-1903
+2013. SHCal13 Southern Hemisphere calibration, 0-50000 years cal. BP Radiocarbon 55(4):1889-1903
 }
 \seealso{
 \link{rjags}, \link{plot_MCMC}, \link{SCMatrix}, \link{plot_Ages}
