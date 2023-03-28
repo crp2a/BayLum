@@ -23,14 +23,14 @@ Depends:
   coda (>= 0.19)
 Imports: 
   methods, 
-  hexbin (>= 1.28.2), 
+  hexbin (>= 1.28.3), 
   KernSmooth (>= 2.23), 
   rjags (>= 4-13), 
   runjags (>= 2.2.1), 
-  Luminescence (>= 0.9.20),
+  Luminescence (>= 0.9.21),
   ArchaeoPhases (>= 1.8)
 Suggests: 
-  testthat (>= 3.1.5),
+  testthat (>= 3.1.7),
   R.rsp (>= 0.45.0)
 License: GPL-3
 Encoding: UTF-8
