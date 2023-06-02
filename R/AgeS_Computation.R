@@ -691,9 +691,9 @@ AgeS_Computation <- function(
       '\n'
     ))
     cat("\t\t\t\t\t\t lower bound \t upper bound\n")
-    HPD_95 = ArchaeoPhases::CredibleInterval(sample[, i], 0.95, roundingOfValue =
+    HPD_95 = CredibleInterval(sample[, i], 0.95, roundingOfValue =
                                                roundingOfValue)
-    HPD_68 = ArchaeoPhases::CredibleInterval(sample[, i], 0.68, roundingOfValue =
+    HPD_68 = CredibleInterval(sample[, i], 0.68, roundingOfValue =
                                                roundingOfValue)
     cat(
       "\t\t\t\t at level 95% \t",
@@ -731,9 +731,9 @@ AgeS_Computation <- function(
       '\n'
     ))
     cat("\t\t\t\t\t\t lower bound \t upper bound\n")
-    HPD_95 = ArchaeoPhases::CredibleInterval(sample[, (Nb_sample + i)], 0.95, roundingOfValue =
+    HPD_95 = CredibleInterval(sample[, (Nb_sample + i)], 0.95, roundingOfValue =
                                                roundingOfValue)
-    HPD_68 = ArchaeoPhases::CredibleInterval(sample[, (Nb_sample + i)], 0.68, roundingOfValue =
+    HPD_68 = CredibleInterval(sample[, (Nb_sample + i)], 0.68, roundingOfValue =
                                                roundingOfValue)
     cat(
       "\t\t\t\t at level 95% \t",
@@ -768,9 +768,9 @@ AgeS_Computation <- function(
       '\n'
     ))
     cat("\t\t\t\t\t\t lower bound \t upper bound\n")
-    HPD_95 = ArchaeoPhases::CredibleInterval(echantillon[[1]][, (2 * Nb_sample +
+    HPD_95 = CredibleInterval(echantillon[[1]][, (2 * Nb_sample +
                                                                    i)], 0.95, roundingOfValue = roundingOfValue)
-    HPD_68 = ArchaeoPhases::CredibleInterval(echantillon[[1]][, (2 * Nb_sample +
+    HPD_68 = CredibleInterval(echantillon[[1]][, (2 * Nb_sample +
                                                                    i)], 0.68, roundingOfValue = roundingOfValue)
     cat(
       "\t\t\t\t at level 95% \t",

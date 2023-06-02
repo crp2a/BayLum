@@ -335,8 +335,8 @@ AgeC14_Computation <- function(Data_C14Cal,
      cat(paste("Sample name", "\t","Bayes estimate"," Credible interval: \n"))
      cat(paste(paste("A_",SampleNames[i],sep=""),"\t",(mean(Sample[,i])),'\n'))
      cat("\t\t\t\t\t\t lower bound \t upper bound\n")
-     HPD_95=ArchaeoPhases::CredibleInterval(Sample[,i],0.95,roundingOfValue=roundingOfValue)
-     HPD_68=ArchaeoPhases::CredibleInterval(Sample[,i],0.68,roundingOfValue=roundingOfValue)
+     HPD_95=CredibleInterval(Sample[,i],0.95,roundingOfValue=roundingOfValue)
+     HPD_68=CredibleInterval(Sample[,i],0.68,roundingOfValue=roundingOfValue)
      cat("\t\t\t\t at level 95% \t",(c(HPD_95[2])),"\t\t",(c(HPD_95[3])),"\n")
      cat("\t\t\t\t at level 68% \t",(c(HPD_68[2])),"\t\t",(c(HPD_68[3])),"\n")
      AgePlot95[i,] <- HPD_95
