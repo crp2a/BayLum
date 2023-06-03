@@ -278,8 +278,8 @@ Palaeodose_Computation<-function(
     cat(paste("Parameter", "\t","Bayes estimate","\t"," Credible interval \n"))
     cat(paste(paste("D_",SampleNames[i],sep=""),"\t",round(mean(sample[,i]),3),'\n'))
     cat("\t\t\t\t\t\t lower bound \t upper bound\n")
-    HPD_95=ArchaeoPhases::CredibleInterval(sample[,i],0.95)
-    HPD_68=ArchaeoPhases::CredibleInterval(sample[,i],0.68)
+    HPD_95=CredibleInterval(sample[,i],0.95)
+    HPD_68=CredibleInterval(sample[,i],0.68)
     cat("\t\t\t\t at level 95% \t",round(c(HPD_95[2]),2),"\t\t",round(c(HPD_95[3]),2),"\n")
     cat("\t\t\t\t at level 68% \t",round(c(HPD_68[2]),2),"\t\t",round(c(HPD_68[3]),2),"\n")
     PalaeodosePlot95[i,]=HPD_95
@@ -293,8 +293,8 @@ Palaeodose_Computation<-function(
     cat(paste("\nParameter", "\t","Bayes estimate","\t"," Credible interval \n"))
     cat(paste(paste("sD_",SampleNames[i],sep=""),"\t",round(mean(sample[,(Nb_sample+i)]),3),'\n'))
     cat("\t\t\t\t\t\t lower bound \t upper bound\n")
-    HPD_95=ArchaeoPhases::CredibleInterval(sample[,(Nb_sample+i)],0.95)
-    HPD_68=ArchaeoPhases::CredibleInterval(sample[,(Nb_sample+i)],0.68)
+    HPD_95=CredibleInterval(sample[,(Nb_sample+i)],0.95)
+    HPD_68=CredibleInterval(sample[,(Nb_sample+i)],0.68)
     cat("\t\t\t\t at level 95% \t",round(c(HPD_95[2]),2),"\t\t",round(c(HPD_95[3]),2),"\n")
     cat("\t\t\t\t at level 68% \t",round(c(HPD_68[2]),2),"\t\t",round(c(HPD_68[3]),2),"\n")
 
