@@ -19,4 +19,5 @@ knitr::opts_chunk$set(
 
 ## Bugfixes and changes
 
-* dummy
+* Drop dependency to deprecated package `'ArchaeoPhases'` and make corresponding
+code an internal function (PR #33, @nfrerebeau)
