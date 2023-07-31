@@ -371,6 +371,7 @@ AgeS_Computation <- function(
         thin = t,
         method = jags_method,
         silent.jags = quiet,
+        combine = FALSE,
         ...
       )
 
