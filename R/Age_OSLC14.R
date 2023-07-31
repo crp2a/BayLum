@@ -412,6 +412,7 @@ Age_OSLC14 <- function(
         thin = t,
         method = jags_method,
         silent.jags = quiet,
+        combine = FALSE,
         ...
       )
 
