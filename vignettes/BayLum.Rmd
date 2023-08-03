@@ -46,7 +46,7 @@ You will also need the external software *JAGS* (Just Another Gibs Sampler).
 Please visit the [JAGS](https://mcmc-jags.sourceforge.io) webpage and follow the installation instructions. 
 Now you are nearly ready to work with 'BayLum'. 
 
-If you have not yet installed `BayLum', please run the following two **R** code lines to 
+If you have not yet installed 'BayLum', please run the following two **R** code lines to 
 install 'BayLum' on your computer.
 
 ```{r,eval=TRUE, message=FALSE}
@@ -62,6 +62,11 @@ library(BayLum)
 ```
 
 # First steps: age analysis of one sample
+
+Measurement data can be imported using two different options as detailed in the following: 
+
+* Option 1: Using the conventional 'BayLum' folder structure (old)
+* Option 2: Using a single-setting config file (new)
 
 ## Option 1: Import information from a BIN/BINX-file.
 
@@ -135,14 +140,14 @@ It reveals that `DATA1` is basically a list with `r length(DATA1)` elements:
 
 Element                | Content |
 ---------------------- |---------------
-`DATA1$LT`             | Lx/Tx values from each sample |
-`DATA1$sLT`            | Lx/Tx error values from each sample |
+`DATA1$LT`             | $L_x$/$T_x$ values from each sample |
+`DATA1$sLT`            | $L_x$/$T_x$ error values from each sample |
 `DATA1$ITimes`         | Irradiation times |
 `DATA1$dLab`           | The lab dose rate |
 `DATA1$ddot_env`       | The environmental dose rate and its variance |
-`DATA1$regDose`        | The regenarated dose points |
+`DATA1$regDose`        | The regenerated dose points |
 `DATA1$J`              | The number of aliquots selected for each BIN-file |
-`DATA1$K`              | The number of regenarted dose points |
+`DATA1$K`              | The number of regenerated dose points |
 `DATA1$Nb_measurement` | The number of measurements per BIN-file |
 
 #### Visualise Lx/Tx values and dose points
@@ -205,19 +210,23 @@ For single sample the file looks as follows:
         nbOfLastCycleToRemove: 1
 ```
 
+In the case above, the configuration file assumes that data for `samp1` are
+already imported and treated and a R object called `samp1` is available in the global 
+environment. The following example code reprodcues this case:
+
 ```{r}
-## TODO
-## get example file from package
+## get example file path from package
 yaml_file <- system.file("extdata/example.yml", package = "BayLum")
 samp1_file <- system.file("extdata/samp1/bin.BIN", package = "BayLum")
 
-## read YAML manually
+## read YAML manually and select only the first record 
 config_file <- yaml::read_yaml(yaml_file)[[1]]
 
-## import BIN/BINX files
+## import BIN/BINX files and select position 2 and grain 32 only
 samp1 <- Luminescence::read_BIN2R(samp1_file, verbose = FALSE) |>
     subset(POSITION == 2 & GRAIN == 32)
 
+## create the data file
 DATA1 <- create_DataFile(config_file, verbose = FALSE)
 ```
 
