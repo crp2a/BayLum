@@ -49,9 +49,9 @@ samp1_file <- system.file("extdata/samp1/bin.BIN", package = "BayLum")
 samp2_file <- system.file("extdata/samp2/bin.BIN", package = "BayLum")
 
 ## import BIN files
-samp1 <<- Luminescence::read_BIN2R(samp1_file, verbose = FALSE) |>
+samp1 <- Luminescence::read_BIN2R(samp1_file, verbose = FALSE) |>
  subset(POSITION == 2 & GRAIN == 32)
-samp2 <<- Luminescence::read_BIN2R(samp2_file, verbose = FALSE) |>
+samp2 <- Luminescence::read_BIN2R(samp2_file, verbose = FALSE) |>
  subset(POSITION == 2 & GRAIN == 32)
 
 ## create file
@@ -67,6 +67,6 @@ in parts based on the functions `Generate_DataFile_MG()` and `Generate_DataFile(
 } 
 
 \section{How to cite}{
-Kreutzer, S., Christophe, C., 2023. create_DataFile(): Prepare input data for subsequent BayLum Analysis. Function version 0.1.0. In: Christophe, C., Philippe, A., Kreutzer, S., Guérin, G., Baumgarten, F.H., 2023. BayLum: Chronological Bayesian Models Integrating Optically Stimulated. R package version 0.3.2.9000-8. https://CRAN.r-project.org/package=BayLum
+Kreutzer, S., Christophe, C., 2023. create_DataFile(): Prepare input data for subsequent BayLum Analysis. Function version 0.1.0. In: Christophe, C., Philippe, A., Kreutzer, S., Guérin, G., Baumgarten, F.H., 2023. BayLum: Chronological Bayesian Models Integrating Optically Stimulated. R package version 0.3.2.9000-10. https://CRAN.r-project.org/package=BayLum
 }
 
