@@ -4,10 +4,10 @@ author: "Claire Christophe, Anne Philippe, Sebastian Kreutzer, Guillaume Guérin
 date: 'Updated for BayLum package version `r packageVersion("BayLum")` (`r Sys.Date()`)'
 output:
   rmarkdown::html_vignette:
-  self-contained: yes
-  toc: yes
-  toc_depth: 4
-  number_sections: yes
+    self-contained: yes
+    toc: yes
+    toc_depth: 4
+    number_sections: yes
 standalone: yes
 vignette: >
   %\VignetteEncoding{UTF-8}
