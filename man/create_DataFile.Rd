@@ -25,7 +25,7 @@ for the modelling are controlled by a to supplied YAML configuration file.
 The function uses a single configuration file based on the YAML format and operates
 in two modes:
 
-* (1) the YAML file contains the path to the files and the function
+* (1) The YAML file contains the path to the files and the function
 attempts to import them. In such a case, all files must be thoroughly prepared
 (e.g., strictly follow the SAR protocol etc.).
 
@@ -67,6 +67,6 @@ in parts based on the functions `Generate_DataFile_MG()` and `Generate_DataFile(
 } 
 
 \section{How to cite}{
-Kreutzer, S., Christophe, C., 2023. create_DataFile(): Prepare input data for subsequent BayLum Analysis. Function version 0.1.0. In: Christophe, C., Philippe, A., Kreutzer, S., Guérin, G., Baumgarten, F.H., 2023. BayLum: Chronological Bayesian Models Integrating Optically Stimulated. R package version 0.3.2.9000-14. https://CRAN.r-project.org/package=BayLum
+Kreutzer, S., Christophe, C., 2023. create_DataFile(): Prepare input data for subsequent BayLum Analysis. Function version 0.1.0. In: Christophe, C., Philippe, A., Kreutzer, S., Guérin, G., Baumgarten, F.H., 2023. BayLum: Chronological Bayesian Models Integrating Optically Stimulated. R package version 0.3.2.9000-8. https://CRAN.r-project.org/package=BayLum
 }
 

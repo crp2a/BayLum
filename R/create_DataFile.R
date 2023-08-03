@@ -8,7 +8,7 @@
 #'The function uses a single configuration file based on the YAML format and operates
 #'in two modes:
 #'
-#'* (1) the YAML file contains the path to the files and the function
+#'* (1) The YAML file contains the path to the files and the function
 #'attempts to import them. In such a case, all files must be thoroughly prepared
 #'(e.g., strictly follow the SAR protocol etc.).
 #'
@@ -58,9 +58,6 @@ create_DataFile <- function(
     config_file,
     verbose = TRUE
 ){
-
-  ## TODO
-  ## - adjust vignette
 
 # Import data -------------------------------------------------------------
   ## This function has two modes:
@@ -280,8 +277,12 @@ create_DataFile <- function(
     tmp_K[1]/2
   }, numeric(1))
 
+  ## Nb_measurement --------------
+  ## from K we can derive the number of curves (which should be similar for each sample)
+  Nb_measurement <- K * 2
+
   ## J ---------
-  ## the number of records in each object list
+  ## number of aliquots for each sample
   J <- vapply(object_list, length, numeric(1))
 
   ## dLab --------
@@ -375,7 +376,8 @@ create_DataFile <- function(
     ddot_env = ddot_env,
     regDose = regDose,
     J = J,
-    K = K - 1)
+    K = K - 1,
+    Nb_measurement = Nb_measurement)
 
   ## add attribute originator
   attr(l, "originator") <- "create_DataFile"
