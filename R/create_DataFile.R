@@ -375,8 +375,9 @@ create_DataFile <- function(
       IRR_TIME <- IRR_TIME[-seq(1,length(IRR_TIME), K[x])]
 
     }
+
     ## create matrix with irradiation
-    matrix(IRR_TIME, nrow = J[x], ncol = length(IRR_TIME), byrow = TRUE)
+    matrix(IRR_TIME, nrow = J[x], ncol = K[x]-1, byrow = TRUE)
 
   })
 
