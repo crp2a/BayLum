@@ -22,8 +22,8 @@ to the function \strong{and} it returns a list that can be used a passed on to \
 }
 }
 \description{
-This little function helps to auto generate a the BayLum YAML configuration file
-or the list that can be passed to \link{create_DataFile}. If not a list, the file can be modified in any
+This little function helps to auto-generate a the BayLum YAML configuration file
+or a \link{list} that can be passed to \link{create_DataFile}. The YAML file itself can be modified in any
 text editor. The allowed parameters are extracted from the reference YAML file
 }
 \section{Function version}{
@@ -52,6 +52,6 @@ Sebastian Kreutzer, Institute of Geography, Ruprecht-Karl University of Heidelbe
 } 
 
 \section{How to cite}{
-Kreutzer, S., 2023. write_YAMLConfigFile(): Write Auto Generated YAML BayLum Configuration File to the Disc. Function version 0.1.0. In: Christophe, C., Philippe, A., Kreutzer, S., Guérin, G., Baumgarten, F.H., 2023. BayLum: Chronological Bayesian Models Integrating Optically Stimulated. R package version 0.3.2.9000-15. https://CRAN.r-project.org/package=BayLum
+Kreutzer, S., 2023. write_YAMLConfigFile(): Write Auto Generated YAML BayLum Configuration File to the Disc. Function version 0.1.0. In: Christophe, C., Philippe, A., Kreutzer, S., Guérin, G., Baumgarten, F.H., 2023. BayLum: Chronological Bayesian Models Integrating Optically Stimulated. R package version 0.3.2.9000-17. https://CRAN.r-project.org/package=BayLum
 }
 
