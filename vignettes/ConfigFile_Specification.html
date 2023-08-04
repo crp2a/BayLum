@@ -40,6 +40,107 @@ ul.task-list{list-style: none;}
 
 
 
+<style type="text/css">
+code {
+white-space: pre;
+}
+.sourceCode {
+overflow: visible;
+}
+</style>
+<style type="text/css" data-origin="pandoc">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+{ counter-reset: source-line 0; }
+pre.numberSource code > span
+{ position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+{ content: counter(source-line);
+position: relative; left: -1em; text-align: right; vertical-align: baseline;
+border: none; display: inline-block;
+-webkit-touch-callout: none; -webkit-user-select: none;
+-khtml-user-select: none; -moz-user-select: none;
+-ms-user-select: none; user-select: none;
+padding: 0 4px; width: 4em;
+color: #aaaaaa;
+}
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa; padding-left: 4px; }
+div.sourceCode
+{ }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } 
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.at { color: #7d9029; } 
+code span.bn { color: #40a070; } 
+code span.bu { color: #008000; } 
+code span.cf { color: #007020; font-weight: bold; } 
+code span.ch { color: #4070a0; } 
+code span.cn { color: #880000; } 
+code span.co { color: #60a0b0; font-style: italic; } 
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.do { color: #ba2121; font-style: italic; } 
+code span.dt { color: #902000; } 
+code span.dv { color: #40a070; } 
+code span.er { color: #ff0000; font-weight: bold; } 
+code span.ex { } 
+code span.fl { color: #40a070; } 
+code span.fu { color: #06287e; } 
+code span.im { color: #008000; font-weight: bold; } 
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.kw { color: #007020; font-weight: bold; } 
+code span.op { color: #666666; } 
+code span.ot { color: #007020; } 
+code span.pp { color: #bc7a00; } 
+code span.sc { color: #4070a0; } 
+code span.ss { color: #bb6688; } 
+code span.st { color: #4070a0; } 
+code span.va { color: #19177c; } 
+code span.vs { color: #4070a0; } 
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } 
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    var j = 0;
+    while (j < rules.length) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") {
+        j++;
+        continue;
+      }
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') {
+        j++;
+        continue;
+      }
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
 
 
 
@@ -239,7 +340,7 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 <h1 class="title toc-ignore">BayLum: Specification of the YAML config
 file</h1>
 <h4 class="author">Sebastian Kreutzer</h4>
-<h4 class="date">Updated for BayLum package version &gt;= 0.3.2.9000.10
+<h4 class="date">Updated for BayLum package version &gt;= 0.3.2.9000.16
 (2023-08-04)</h4>
 
 
@@ -266,6 +367,14 @@ level</a></li>
 level</a></li>
 </ul></li>
 <li><a href="#final-remarks" id="toc-final-remarks"><span class="toc-section-number">3.4</span> Final remarks</a></li>
+<li><a href="#auto-generate-the-config-file-using-write_yamlconfigfile" id="toc-auto-generate-the-config-file-using-write_yamlconfigfile"><span class="toc-section-number">3.5</span> Auto-generate the config file
+using <code>write_YAMLConfigFile()</code></a>
+<ul>
+<li><a href="#show-available-parameters" id="toc-show-available-parameters"><span class="toc-section-number">3.5.1</span> Show available
+parameters</a></li>
+<li><a href="#write-yaml-file" id="toc-write-yaml-file"><span class="toc-section-number">3.5.2</span> Write YAML file</a></li>
+</ul></li>
+<li><a href="#internals" id="toc-internals"><span class="toc-section-number">3.6</span> Internals</a></li>
 </ul></li>
 </ul>
 </div>
@@ -469,8 +578,8 @@ file:</p>
 <li><p><em>You should add the values as you have specified them in the
 measurement sequence, except for the natural dose point (0 s) and the
 test dose points, which must not be added.</em></p></li>
-<li><p><em>The provided vector will be shortened automatically to the
-actual number of dose points.</em></p></li>
+<li><p><em>The provided vector will be shortened automatically to fit
+the actual number of dose points.</em></p></li>
 <li><p><em>An error will be thrown if you provide not enough dose
 points</em></p></li>
 </ul>
@@ -569,6 +678,83 @@ unless you have good reasons to use different integral settings.</p>
 </div>
 <div id="final-remarks" class="section level2" number="3.4">
 <h2><span class="header-section-number">3.4</span> Final remarks</h2>
+</div>
+<div id="auto-generate-the-config-file-using-write_yamlconfigfile" class="section level2" number="3.5">
+<h2><span class="header-section-number">3.5</span> Auto-generate the
+config file using <code>write_YAMLConfigFile()</code></h2>
+<p>To ease the generation of configuration file for many samples, you
+can use the function <code>write_YAMLConfigFile()</code>.</p>
+<p>The function has two different operation modes, which are shown
+below. Important is to note that the function does not seem to have
+function parameters, because all parameters are extracted from a
+reference file within the package. All parameters in the reference file
+are allowed. However, you can only preset each parameter for all
+records, except for the parameter <code>sample</code>. The length of
+this parameter (e.g.,
+<code>write_YAMLConfigFile(sample = c(&quot;a1&quot;, &quot;a2))</code>) determines the
+number of records in the configuration file output.</p>
+<div id="show-available-parameters" class="section level3" number="3.5.1">
+<h3><span class="header-section-number">3.5.1</span> Show available
+parameters</h3>
+<p>In this mode, the function displays available parameters in the
+terminal and returns a list that can be modified in R and then passed to
+<code>create_DataFile()</code>:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a>l <span class="ot">&lt;-</span> <span class="fu">write_YAMLConfigFile</span>()</span></code></pre></div>
+<pre><code>── Allowed function parameters (start) ─────────────────────────────────────────────────────────────────────────────────</code></pre>
+<pre><code>sample
+files
+settings.dose_points
+settings.dose_source.value
+settings.dose_source.error
+settings.dose_env.value
+settings.dose_env.error
+settings.rules.beginSignal
+settings.rules.endSignal
+settings.rules.beginBackground
+settings.rules.endBackground
+settings.rules.beginTest
+settings.rules.endTest
+settings.rules.beginTestBackground
+settings.rules.endTestBackground
+settings.rules.inflatePercent
+settings.rules.nbOfLastCycleToRemove</code></pre>
+<pre><code>── Allowed function parameters (end) ───────────────────────────────────────────────────────────────────────────────────</code></pre>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a><span class="fu">str</span>(l)</span></code></pre></div>
+<pre><code>List of 1
+ $ :List of 3
+  ..$ sample  : chr &quot;reference&quot;
+  ..$ files   : NULL
+  ..$ settings:List of 4
+  .. ..$ dose_points: NULL
+  .. ..$ dose_source:List of 2
+  .. .. ..$ value: int 0
+  .. .. ..$ error: int 0
+  .. ..$ dose_env   :List of 2
+  .. .. ..$ value: int 0
+  .. .. ..$ error: int 0
+  .. ..$ rules      :List of 10
+  .. .. ..$ beginSignal          : int 0
+  .. .. ..$ endSignal            : int 0
+  .. .. ..$ beginBackground      : int 0
+  .. .. ..$ endBackground        : int 0
+  .. .. ..$ beginTest            : int 0
+  .. .. ..$ endTest              : int 0
+  .. .. ..$ beginTestBackground  : int 0
+  .. .. ..$ endTestBackground    : int 0
+  .. .. ..$ inflatePercent       : int 0
+  .. .. ..$ nbOfLastCycleToRemove: int 0</code></pre>
+</div>
+<div id="write-yaml-file" class="section level3" number="3.5.2">
+<h3><span class="header-section-number">3.5.2</span> Write YAML
+file</h3>
+<p>Alternatively, the function can be used to generate config file with
+preset values. You can then modify the generated YAML-file with any
+texteditor of your choice.</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a>l <span class="ot">&lt;-</span> <span class="fu">write_YAMLConfigFile</span>(<span class="at">output_file =</span> <span class="st">&quot;&lt;your filepath&gt;&quot;</span>)</span></code></pre></div>
+</div>
+</div>
+<div id="internals" class="section level2" number="3.6">
+<h2><span class="header-section-number">3.6</span> Internals</h2>
 <p>The YAML settings file is loaded and processed by the function
 <code>BayLum::create_DataFile()</code> using
 <code>yaml::read_yaml()</code> from the R package <code>&#39;yaml&#39;</code>.

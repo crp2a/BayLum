@@ -246,6 +246,36 @@ are usually set to identical values unless you have good reasons to use differen
 
 ## Final remarks
 
+## Auto-generate the config file using `write_YAMLConfigFile()`
+To ease the generation of configuration file for many samples, you can 
+use the function `write_YAMLConfigFile()`. 
+
+The function has two different operation modes, which are shown below. 
+Important is to note that the function does not seem to have function parameters,
+because all parameters are extracted from a reference file within the package. 
+All parameters in the reference file are allowed. However, you can only preset
+each parameter for all records, except for the parameter `sample`. 
+The length of this parameter (e.g., `write_YAMLConfigFile(sample = c("a1", "a2))`)
+determines the number of records in the configuration file output. 
+
+### Show available parameters
+In this mode, the function displays available parameters in the terminal and 
+returns a list that can be modified in R and then passed to `create_DataFile()`: 
+
+```{r}
+l <- write_YAMLConfigFile()
+str(l)
+```
+
+### Write YAML file
+Alternatively, the function can be used to generate config file with preset values. 
+You can then modify the generated YAML-file with any texteditor of your choice. 
+
+```{r, eval=FALSE}
+l <- write_YAMLConfigFile(output_file = "<your filepath>")
+```
+
+## Internals
 The YAML settings file is loaded and processed by the function `BayLum::create_DataFile()`
 using `yaml::read_yaml()` from the R package `'yaml'`. `yaml::read_yaml()` returns 
 a `list` on R, which is then processed by `BayLum::create_DataFile()`. Sometimes 

@@ -1,7 +1,7 @@
 #'@title Write Auto Generated YAML BayLum Configuration File to the Disc
 #'
-#'@description This little function helps to auto generate a the BayLum YAML configuration file
-#'or the list that can be passed to [create_DataFile]. If not a list, the file can be modified in any
+#'@description This little function helps to auto-generate a the BayLum YAML configuration file
+#'or a [list] that can be passed to [create_DataFile]. The YAML file itself can be modified in any
 #'text editor. The allowed parameters are extracted from the reference YAML file
 #'
 #'@param output_file [character] (*with default*): valid file path of the output file
@@ -133,5 +133,5 @@ write_YAMLConfigFile <- function (
   }
 
   ## return of the list
-  return(yaml_ref_raw)
+  invisible(yaml_ref_raw)
 }
