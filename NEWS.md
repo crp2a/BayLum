@@ -17,14 +17,16 @@ This function attempts to ease the very pain-stacking process of input
 data processing (BIN/BINX files) so that it can be used in the
 `'BayLum'` modelling. The function is an entirely new development and
 will replace the functions `Generate_DataFile_MG()` and
-`Generate_DataFile()` in future versions of `'BayLum'`. Key features: \*
-Only one function for single-grain and multiple-grain data \* Support
-for BIN/BINX and XSYG files and `RLum.Analysis-class` objects, i.e. the
-data can be imported independently of the data file creation \* A new
-single-file configuration based on the YAML format. This makes the old
-error-prone folder structure obsolete \* Various internal consistency
-checks to avoid input data are erroneousness; which may lead to very
-hard to-track-down error messages
+`Generate_DataFile()` in future versions of `'BayLum'`. Key features:
+
+- Only one function for single-grain and multiple-grain data
+- Support for BIN/BINX and XSYG files and `RLum.Analysis-class` objects,
+  i.e. the data can be imported independently of the data file creation
+- A new single-file configuration based on the YAML format. This makes
+  the old error-prone folder structure obsolete
+- Various internal consistency checks to avoid input data are
+  erroneousness; which may lead to very hard to-track-down error
+  messages
 
 ### `write_YAMLConfigFile()`
 
