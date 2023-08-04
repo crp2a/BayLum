@@ -3,6 +3,7 @@
 - sample: "samp1"
   files: null
   settings:
+    dose_points: null
     dose_source: { value: 0.1535, error: 0.00005891 }
     dose_env: { value: 2.512, error: 0.05626 }
     rules:
@@ -19,6 +20,7 @@
 - sample: "samp2"
   files: null
   settings:
+    dose_points: [0, 10, 20, 30, 40, 50 ]
     dose_source: { value: 0.1535, error: 0.00005891 }
     dose_env: { value: 2.512, error: 0.05626 }
     rules:

@@ -2,7 +2,8 @@
 #'
 #'@description The function pre-processes input data from BIN/BINX file, XSYG files
 #'or [RLum.Analysis-class] objects for `'BayLum'`. The parameters
-#'for the modelling are controlled by a to supplied YAML configuration file.
+#'for the modelling are controlled by a to be supplied YAML configuration file
+#'(please read package vignette).
 #'
 #'@details
 #'The function uses a single configuration file based on the YAML format and operates
@@ -91,7 +92,7 @@ create_DataFile <- function(
              call. = FALSE)
 
       ## settings level
-      t <- names(config[[i]]$settings) %in% c("dose_source", "dose_env", "rules")
+      t <- names(config[[i]]$settings) %in% c("dose_points", "dose_source", "dose_env", "rules")
       if(!all(t))
         stop(
           paste0(
@@ -350,16 +351,32 @@ create_DataFile <- function(
 
   ## ITimes -------
   ITimes <- lapply(seq_along(object_list), function(x) {
-    ## extract irradiation times
-    IRR_TIME <- Luminescence::merge_RLum(
-      Luminescence::extract_IrradiationTimes(object_list[[x]]))$irr.times$IRR_TIME
+    if(!is.null(config[[x]]$settings$dose_points)) {
+      IRR_TIME <- config[[x]]$settings$dose_points
 
-    ## remove natural (0 dose)
-    IRR_TIME <- IRR_TIME[c(1, seq(3,length(IRR_TIME),2))]
-    IRR_TIME <- IRR_TIME[-seq(1,length(IRR_TIME), K[x])]
+      ## trigger warning if the settings were wrong
+      if(length(IRR_TIME) < K[x]-1)
+      stop(paste0(
+          "[create_DataFile()] Not enough regeneration dose points specified.
+          \t -> Please check in config file '$settings$dose_points' in sample <" ,config[[x]]$sample, ">!"),
+        call. = FALSE)
 
+      ## the IRR_TIME is silently shortened to K otherwise it
+      ## becomes to complicated if the users mix up settings
+      IRR_TIME <- IRR_TIME[seq_len(K[x]-1)]
+
+    } else {
+      ## extract irradiation times
+      IRR_TIME <- Luminescence::merge_RLum(
+        Luminescence::extract_IrradiationTimes(object_list[[x]]))$irr.times$IRR_TIME
+
+      ## remove natural (0 dose)
+      IRR_TIME <- IRR_TIME[c(1, seq(3,length(IRR_TIME),2))]
+      IRR_TIME <- IRR_TIME[-seq(1,length(IRR_TIME), K[x])]
+
+    }
     ## create matrix with irradiation
-    matrix(IRR_TIME, nrow = J[x], byrow = TRUE)
+    matrix(IRR_TIME, nrow = J[x], ncol = length(IRR_TIME), byrow = TRUE)
 
   })
 
@@ -386,4 +403,3 @@ create_DataFile <- function(
   return(l)
 
 }
-

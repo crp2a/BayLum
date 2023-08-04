@@ -19,7 +19,8 @@ Returns a [list] that can be processed by the modelling functions of `'BayLum`
 \description{
 The function pre-processes input data from BIN/BINX file, XSYG files
 or [RLum.Analysis-class] objects for `'BayLum'`. The parameters
-for the modelling are controlled by a to supplied YAML configuration file.
+for the modelling are controlled by a to be supplied YAML configuration file
+(please read package vignette).
 }
 \details{
 The function uses a single configuration file based on the YAML format and operates
@@ -67,6 +68,6 @@ in parts based on the functions `Generate_DataFile_MG()` and `Generate_DataFile(
 } 
 
 \section{How to cite}{
-Kreutzer, S., Christophe, C., 2023. create_DataFile(): Prepare input data for subsequent BayLum Analysis. Function version 0.1.0. In: Christophe, C., Philippe, A., Kreutzer, S., Guérin, G., Baumgarten, F.H., 2023. BayLum: Chronological Bayesian Models Integrating Optically Stimulated. R package version 0.3.2.9000-10. https://CRAN.r-project.org/package=BayLum
+Kreutzer, S., Christophe, C., 2023. create_DataFile(): Prepare input data for subsequent BayLum Analysis. Function version 0.1.0. In: Christophe, C., Philippe, A., Kreutzer, S., Guérin, G., Baumgarten, F.H., 2023. BayLum: Chronological Bayesian Models Integrating Optically Stimulated. R package version 0.3.2.9000-11. https://CRAN.r-project.org/package=BayLum
 }
 

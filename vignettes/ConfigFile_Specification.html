@@ -239,8 +239,8 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 <h1 class="title toc-ignore">BayLum: Specification of the YAML config
 file</h1>
 <h4 class="author">Sebastian Kreutzer</h4>
-<h4 class="date">Updated for BayLum package version &gt;= 0.3.2.9000.14
-(2023-08-03)</h4>
+<h4 class="date">Updated for BayLum package version &gt;= 0.3.2.9000.10
+(2023-08-04)</h4>
 
 
 <div id="TOC">
@@ -322,6 +322,7 @@ entry</h2>
   files: 
     - &quot;/yourhardrive/yourfolder/sample_one.binx&quot;
   settings:
+    dose_points: null
     dose_source: { value: 0.1535, error: 0.00005891 }
     dose_env: { value: 2.512, error: 0.05626 }
     rules:
@@ -361,6 +362,7 @@ records is not limited, we keep it simple here; a two records entry
   files: 
     - &quot;/yourhardrive/yourfolder/sample_one.binx&quot;
   settings:
+    dose_points: null
     dose_source: { value: 0.1535, error: 0.00005891 }
     dose_env: { value: 2.512, error: 0.05626 }
     rules:
@@ -373,6 +375,7 @@ records is not limited, we keep it simple here; a two records entry
 - sample: &quot;samp2&quot;
   files: null
   settings:
+    dose_points: null
     dose_source: { value: 0.1535, error: 0.00005891 }
     dose_env: { value: 2.512, error: 0.05626 }
     rules:
@@ -445,8 +448,32 @@ of your source used for the irradiation in Gy/s
 (<code>dose_env</code>). Each value needs to be provided with its
 uncertainty, as shown in the example:</p>
 <pre><code>  settings:
+    dose_points: null
     dose_source: { value: 0.1535, error: 0.00005891 }
     dose_env: { value: 2.512, error: 0.05626 }</code></pre>
+<p>Additionally, you can set specify the regeneration dose points (in
+s). The default is <code>null</code>, because irradiation times are
+automatically extracted from the data by <code>create_DataFile()</code>.
+However, this information might be missing or, more likely, wrong and it
+is very cumbersome to fix those numbers manually in the measurement
+data. Therefore the dose points can be provided with the config
+file:</p>
+<pre><code>  settings:
+    dose_points: [10, 20, 50, 0, 10]
+    dose_source: { value: 0.1535, error: 0.00005891 }
+    dose_env: { value: 2.512, error: 0.05626 }</code></pre>
+<p>The example corresponds to 5 (five) regeneration dose points of 10 s,
+20 s, …, 10 s.</p>
+<p><em>Note</em></p>
+<ul>
+<li><p><em>You should add the values as you have specified them in the
+measurement sequence, except for the natural dose point (0 s) and the
+test dose points, which must not be added.</em></p></li>
+<li><p><em>The provided vector will be shortened automatically to the
+actual number of dose points.</em></p></li>
+<li><p><em>An error will be thrown if you provide not enough dose
+points</em></p></li>
+</ul>
 </div>
 <div id="rules-level" class="section level3" number="3.3.3">
 <h3><span class="header-section-number">3.3.3</span> <code>rules</code>

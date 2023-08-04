@@ -32,14 +32,23 @@ test_that("Full function test", {
   ## check with real import from file
   config_with_file <- config_file
 
-  ## single file
-  config_with_file[[2]]$files <- samp2_file
-  out <- expect_type(create_DataFile(config_with_file, verbose = FALSE), "list")
+    ## single file
+    config_with_file[[2]]$files <- samp2_file
+    out <- expect_type(create_DataFile(config_with_file, verbose = FALSE), "list")
 
-  ## two files
-  config_with_file[[2]]$files <- c(samp2_file, samp2_file)
-  out <- expect_type(create_DataFile(config_with_file, verbose = FALSE), "list")
-  expect_equal(nrow(out$LT[[2]]), 2)
+    ## two files
+    config_with_file[[2]]$files <- c(samp2_file, samp2_file)
+    out <- expect_type(create_DataFile(config_with_file, verbose = FALSE), "list")
+    expect_equal(nrow(out$LT[[2]]), 2)
+
+  ## provide dose points for at least one
+  config_dose_points <- config_file
+  config_dose_points[[2]]$settings$dose_points <-  c(15, 30, 60, 100, 0, 15)
+  expect_type(create_DataFile(config_dose_points, verbose = FALSE), "list")
+
+    ## variation, provide more dose points
+    config_dose_points[[2]]$settings$dose_points <-  c(15, 30, 60, 100, 0, 15, 15)
+    expect_type(create_DataFile(config_dose_points, verbose = FALSE), "list")
 
   ## check attribute
   expect_true(attributes(out)$originator == "create_DataFile")
@@ -54,21 +63,27 @@ test_that("Full function test", {
 # Try to trigger various errors -------------------------------------------
 
   ## test YAML file consistency ----
-    ## top level
+    ### top level -------
     config_err <- config_file
     names(config_err[[2]]) <- c("error", "error", "error")
     expect_error(
       object = create_DataFile(config_file = config_err, verbose = FALSE),
       regexp = "\\[create\\_DataFile\\(\\)\\] Missing or.+")
 
-    ## settings level
+    ### settings level --------
     config_err <- config_file
     names(config_err[[2]]$settings) <- c("error", "error", "error")
     expect_error(
       object = create_DataFile(config_file = config_err, verbose = FALSE),
       regexp = "\\[create\\_DataFile\\(\\)\\] Missing or.+")
 
-    ## rules level
+    ## not enough dose points
+    config_dose_points[[2]]$settings$dose_points <-  c(15, 30, 60)
+    expect_error(
+      object = create_DataFile(config_dose_points, verbose = FALSE),
+      regexp = "\\[create\\_DataFile\\(\\)\\] Not enough regeneration dose points specified.+")
+
+    ### rules level -------
     config_err <- config_file
     names(config_err[[2]]$settings$rules) <- c("error", "error", "error")
     expect_error(
