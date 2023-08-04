@@ -1,4 +1,4 @@
-## BayLUM example configuration file
+## BayLum example configuration file
 ## Please read the package vignette for details and explanations
 - sample: "samp1"
   files: null
