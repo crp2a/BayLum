@@ -53,7 +53,7 @@
 #' ## create file
 #' create_DataFile(yaml_file)
 #'
-#'@note
+#'@md
 #'@export
 create_DataFile <- function(
     config_file,

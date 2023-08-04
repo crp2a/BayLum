@@ -7,34 +7,34 @@
 create_DataFile(config_file, verbose = TRUE)
 }
 \arguments{
-\item{config_file}{[character] (**required**): path to YAML configuration file; alternatively
-the config_file can be a [list] similar to the R representation of the imported YAML file.
+\item{config_file}{\link{character} (\strong{required}): path to YAML configuration file; alternatively
+the config_file can be a \link{list} similar to the R representation of the imported YAML file.
 This enables on-the fly modifications}
 
-\item{verbose}{[logical] (*with default*): enable/disable terminal feedback}
+\item{verbose}{\link{logical} (\emph{with default}): enable/disable terminal feedback}
 }
 \value{
-Returns a [list] that can be processed by the modelling functions of `'BayLum`
+Returns a \link{list} that can be processed by the modelling functions of \verb{'BayLum}
 }
 \description{
 The function pre-processes input data from BIN/BINX file, XSYG files
-or [RLum.Analysis-class] objects for `'BayLum'`. The parameters
+or \linkS4class{RLum.Analysis} objects for \code{'BayLum'}. The parameters
 for the modelling are controlled by a to be supplied YAML configuration file
 (please read package vignette).
 }
 \details{
 The function uses a single configuration file based on the YAML format and operates
 in two modes:
-
-* (1) The YAML file contains the path to the files and the function
+\itemize{
+\item (1) The YAML file contains the path to the files and the function
 attempts to import them. In such a case, all files must be thoroughly prepared
 (e.g., strictly follow the SAR protocol etc.).
-
-* (2) Alternatively, the YAML file contains no file paths but the data
-were imported and processed before `create_DataFile()` was called (recommended).
+\item (2) Alternatively, the YAML file contains no file paths but the data
+were imported and processed before \code{create_DataFile()} was called (recommended).
 Then the function is searching for objects with the sample name in the global environment.
-Example: `samp1 <- Luminescence::read_BIN2R(...)` with `samp1` the sample name as specified
+Example: \code{samp1 <- Luminescence::read_BIN2R(...)} with \code{samp1} the sample name as specified
 in the YAML file.
+}
 
 For more details, please see the package vignette.
 }
@@ -60,14 +60,9 @@ create_DataFile(yaml_file)
 
 }
 \seealso{
-[yaml::read_yaml], [Luminescence::read_BIN2R], [Luminescence::read_XSYG2R]
+\link[yaml:read_yaml]{yaml::read_yaml}, \link[Luminescence:read_BIN2R]{Luminescence::read_BIN2R}, \link[Luminescence:read_XSYG2R]{Luminescence::read_XSYG2R}
 }
 \author{
 Sebastian Kreutzer, Institute of Geography, Ruprecht-Karl University of Heidelberg (Germany),
-in parts based on the functions `Generate_DataFile_MG()` and `Generate_DataFile()` by Claire Christophe
-} 
-
-\section{How to cite}{
-Kreutzer, S., Christophe, C., 2023. create_DataFile(): Prepare input data for subsequent BayLum Analysis. Function version 0.1.0. In: Christophe, C., Philippe, A., Kreutzer, S., Guérin, G., Baumgarten, F.H., 2023. BayLum: Chronological Bayesian Models Integrating Optically Stimulated. R package version 0.3.2.9000-17. https://CRAN.r-project.org/package=BayLum
+in parts based on the functions \code{Generate_DataFile_MG()} and \code{Generate_DataFile()} by Claire Christophe
 }
-
