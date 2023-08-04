@@ -4,10 +4,10 @@ author: "Claire Christophe, Anne Philippe, Sebastian Kreutzer, Guillaume Guérin
 date: 'Updated for BayLum package version `r packageVersion("BayLum")` (`r Sys.Date()`)'
 output:
   rmarkdown::html_vignette:
-  self-contained: yes
-  toc: yes
-  toc_depth: 4
-  number_sections: yes
+    self-contained: yes
+    toc: yes
+    toc_depth: 4
+    number_sections: yes
 standalone: yes
 vignette: >
   %\VignetteEncoding{UTF-8}
@@ -46,7 +46,7 @@ You will also need the external software *JAGS* (Just Another Gibs Sampler).
 Please visit the [JAGS](https://mcmc-jags.sourceforge.io) webpage and follow the installation instructions. 
 Now you are nearly ready to work with 'BayLum'. 
 
-If you have not yet installed `BayLum', please run the following two **R** code lines to 
+If you have not yet installed 'BayLum', please run the following two **R** code lines to 
 install 'BayLum' on your computer.
 
 ```{r,eval=TRUE, message=FALSE}
@@ -63,7 +63,12 @@ library(BayLum)
 
 # First steps: age analysis of one sample
 
-## Import information from a BIN/BINX-file.
+Measurement data can be imported using two different options as detailed in the following: 
+
+* Option 1: Using the conventional 'BayLum' folder structure (old)
+* Option 2: Using a single-setting config file (new)
+
+## Option 1: Import information from a BIN/BINX-file.
 
 Let us consider the sample named *samp1*, which is the example dataset coming with the package. 
 All information related to this sample is stored in a subfolder called also *samp1*.
@@ -135,14 +140,14 @@ It reveals that `DATA1` is basically a list with `r length(DATA1)` elements:
 
 Element                | Content |
 ---------------------- |---------------
-`DATA1$LT`             | Lx/Tx values from each sample |
-`DATA1$sLT`            | Lx/Tx error values from each sample |
+`DATA1$LT`             | $L_x$/$T_x$ values from each sample |
+`DATA1$sLT`            | $L_x$/$T_x$ error values from each sample |
 `DATA1$ITimes`         | Irradiation times |
 `DATA1$dLab`           | The lab dose rate |
 `DATA1$ddot_env`       | The environmental dose rate and its variance |
-`DATA1$regDose`        | The regenarated dose points |
+`DATA1$regDose`        | The regenerated dose points |
 `DATA1$J`              | The number of aliquots selected for each BIN-file |
-`DATA1$K`              | The number of regenarted dose points |
+`DATA1$K`              | The number of regenerated dose points |
 `DATA1$Nb_measurement` | The number of measurements per BIN-file |
 
 #### Visualise Lx/Tx values and dose points
@@ -164,11 +169,66 @@ LT_RegenDose(
 Note that here we consider only one sample, and the name of the folder is the name of the sample.
 For that reason the argumetns were set to `FolderNames = samp1` and `SampleNames = samp1`.
 
-## Generate data file from BIN/BINX-files of multi-grain OSL measurements
+### Generate data file from BIN/BINX-files of multi-grain OSL measurements
 
 For a multi-grain OSL measurements, instead of `Generate_DataFile()`, the function `Generate_DataFile_MG()` should
 be used with similar parameters. The functions differ by their expectations: *Disc.csv* instead of *DiscPos.csv* file for Single-grain OSL Measurements.
 Please check type `?Generate_DataFile_MG` for further information.
+
+## Option 2: Import data using `create_DataFile()` 
+
+With `'BayLum'` >= v0.3.2 we introduced a new function called `create_DataFile()`, which 
+will at some point in time replace the function `Generate_DataFile()` and `Generate_DataFile_MG()`.
+`create_DataFile()` works conceptionally very different from the approach detailed above. 
+Key differences are: 
+
+* The function uses a single configuration file for all samples and all measurement files
+* The very error prone subfolder structure is no longer needed
+* Measurement data can be imported with `create_DataFile()`, but also outside of the function 
+and then passed on the functions. This enables the possibility of extensive pre-processing 
+and selection of measurement data. 
+
+The configuration follows the so-called [YAML format](https://yaml.org) specification. 
+For single sample the file looks as follows:
+
+```
+- sample: "samp1"
+  files: null
+  settings:
+    dose_source: { value: 0.1535, error: 0.00005891 }
+    dose_env: { value: 2.512, error: 0.05626 }
+    rules:
+        beginSignal: 6
+        endSignal: 8
+        beginBackground: 50
+        endBackground: 55
+        beginTest: 6
+        endTest: 8
+        beginTestBackground: 50
+        endTestBackground: 55
+        inflatePercent: 0.027
+        nbOfLastCycleToRemove: 1
+```
+
+In the case above, the configuration file assumes that data for `samp1` are
+already imported and treated and a R object called `samp1` is available in the global 
+environment. The following example code reprodcues this case:
+
+```{r}
+## get example file path from package
+yaml_file <- system.file("extdata/example.yml", package = "BayLum")
+samp1_file <- system.file("extdata/samp1/bin.BIN", package = "BayLum")
+
+## read YAML manually and select only the first record 
+config_file <- yaml::read_yaml(yaml_file)[[1]]
+
+## import BIN/BINX files and select position 2 and grain 32 only
+samp1 <- Luminescence::read_BIN2R(samp1_file, verbose = FALSE) |>
+    subset(POSITION == 2 & GRAIN == 32)
+
+## create the data file
+DATA1 <- create_DataFile(config_file, verbose = FALSE)
+```
 
 ## Age computation 
 
