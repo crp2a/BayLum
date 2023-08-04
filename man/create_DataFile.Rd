@@ -14,27 +14,39 @@ This enables on-the fly modifications}
 \item{verbose}{\link{logical} (\emph{with default}): enable/disable terminal feedback}
 }
 \value{
-Returns a \link{list} that can be processed by the modelling functions of \verb{'BayLum}
+Returns a \link{list} that can be processed by the modelling functions of 'BayLum'
+
+\itemize{
+\item \bold{LT} (one list per sample); each list contains all L/T values for the corresponding sample;
+\item \bold{sLT} (one list per sample); each list contains all uncertainties on L/T values for the corresponding sample;
+\item \bold{ITimes} (one list per sample); each list contains irradiation time values for the corresponding sample;
+\item \bold{dLab}, a matrix containing in line \code{i}, the laboratory dose rate and its variance for sample \code{i};
+\item \bold{ddot_env}, a matrix containing in line \code{i}, the environmental dose rate and its variance (excluding the common error terms) for sample \code{i};
+\item \bold{regDose} (one list per sample); each list contains all regenerated doses;
+\item \bold{J}, a vector giving, for each BIN file, the number of aliquots selected for the analysis;
+\item \bold{K}, a vector giving, for each BIN file, the number of regenerative doses in the SAR protocol;
+\item \bold{Nb_measurement}, a vector giving, for each BIN file, the number of measurements;
+}
 }
 \description{
 The function pre-processes input data from BIN/BINX file, XSYG files
-or \linkS4class{RLum.Analysis} objects for \code{'BayLum'}. The parameters
-for the modelling are controlled by a to be supplied YAML configuration file
+or \linkS4class{RLum.Analysis} objects for \code{'BayLum'}. The parameters for
+the modelling are controlled by a to be supplied YAML configuration file
 (please read package vignette).
 }
 \details{
 The function uses a single configuration file based on the YAML format and operates
 in two modes:
-\itemize{
-\item (1) The YAML file contains the path to the files and the function
+
+(1) The YAML file contains the path to the files and the function
 attempts to import them. In such a case, all files must be thoroughly prepared
 (e.g., strictly follow the SAR protocol etc.).
-\item (2) Alternatively, the YAML file contains no file paths but the data
+
+(2) Alternatively, the YAML file contains no file paths but the data
 were imported and processed before \code{create_DataFile()} was called (recommended).
 Then the function is searching for objects with the sample name in the global environment.
 Example: \code{samp1 <- Luminescence::read_BIN2R(...)} with \code{samp1} the sample name as specified
 in the YAML file.
-}
 
 For more details, please see the package vignette.
 }
@@ -60,9 +72,13 @@ create_DataFile(yaml_file)
 
 }
 \seealso{
-\link[yaml:read_yaml]{yaml::read_yaml}, \link[Luminescence:read_BIN2R]{Luminescence::read_BIN2R}, \link[Luminescence:read_XSYG2R]{Luminescence::read_XSYG2R}
+\link{write_YAMLConfigFile}, \link[yaml:read_yaml]{yaml::read_yaml}, \link[Luminescence:read_BIN2R]{Luminescence::read_BIN2R}, \link[Luminescence:read_XSYG2R]{Luminescence::read_XSYG2R}, \link[Luminescence:subset_SingleGrainData]{Luminescence::subset_SingleGrainData}
 }
 \author{
-Sebastian Kreutzer, Institute of Geography, Ruprecht-Karl University of Heidelberg (Germany),
-in parts based on the functions \code{Generate_DataFile_MG()} and \code{Generate_DataFile()} by Claire Christophe
+Sebastian Kreutzer, Institute of Geography, Ruprecht-Karl University of Heidelberg (Germany), in parts based on code by Claire Christophe
+} 
+
+\section{How to cite}{
+Kreutzer, S., Christophe, C., 2023. create_DataFile(): Prepare input data for subsequent BayLum Analysis. Function version 0.1.0. In: Christophe, C., Philippe, A., Kreutzer, S., Guérin, G., Baumgarten, F.H., 2023. BayLum: Chronological Bayesian Models Integrating Optically Stimulated. R package version 0.3.2.9000-34. https://CRAN.r-project.org/package=BayLum
 }
+
