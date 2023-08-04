@@ -43,3 +43,10 @@ code an internal function (PR #33, @nfrerebeau)
 * Bump version requirement for `'Luminescence'` to >= v0.9.22
 
 * Add new external files `example.yml` and `yaml_config_reference.yml` 
+
+## Deprecated functions
+
+The following functions are deprecated and will be removed in future versions of BayLum
+
+* `Generate_DataFile()`
+* `Generate_DataFile_MG()`

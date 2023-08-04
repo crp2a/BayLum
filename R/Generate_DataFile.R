@@ -1,6 +1,6 @@
-#' Generates, from one (or several) BIN-file(s) of Single-grain OSL measurements,
-#' a list of luminescence data and information before statistical analysis
+#' @title Generates, from one (or several) BIN-file(s) of Single-grain OSL measurements, a list of luminescence data and information before statistical analysis (DEPRECATED)
 #'
+#' @description
 #' This function is used to generate, from the BIN file(s), a list of values of:
 #' \bold{Single-grain} OSL intensities and associated uncertainties, regenerative doses, etc., which will be the input of the Bayesian models.
 #' To be easy-to-use, this function requires a rigorous organisation - all needed files should be arranged in one folder -
@@ -125,6 +125,8 @@
 #' \code{\link{Age_Computation}}, \code{\link{AgeS_Computation}}, \code{\link{Palaeodose_Computation}}
 #'
 #' @examples
+#'
+#' \dontrun{
 #' ## Example for one sample with one Bin File
 #' path<- system.file("extdata/samp1", "", package="BayLum")
 #' folder=""
@@ -140,7 +142,9 @@
 #' # save(Data,file=c(paste(path,folder,'Data.RData',sep="")))
 #' ## to load information containing Data.RData object
 #' # load(file=c(paste(path,folder,"Data.RData",sep="")))
+#' }
 #'
+#' @name Generate_DataFile-deprecated
 #' @md
 #' @export
 Generate_DataFile <- function(
@@ -156,6 +160,8 @@ Generate_DataFile <- function(
   verbose = TRUE,
   ...
 ){
+
+  .Deprecated("create_DataFile()")
 
   #--- create object needed
   #---------------------------------------

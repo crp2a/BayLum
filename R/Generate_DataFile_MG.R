@@ -1,4 +1,4 @@
-#' @title Generates, from one (or several) BIN file(s) of Multi-grain OSL measurements a list of luminescence data and information before statistical analysis
+#' @title Generates, from one (or several) BIN file(s) of Multi-grain OSL measurements a list of luminescence data and information before statistical analysis (DEPRECATED)
 #'
 #' @description This function is used to generate, from the BIN file(s), a list of values of:
 #'
@@ -138,6 +138,7 @@
 #' \code{\link{Age_Computation}}, \code{\link{AgeS_Computation}}, \code{\link{Palaeodose_Computation}}
 #'
 #' @examples
+#' \dontrun{
 #' path <- system.file("extdata/FER1", "", package="BayLum")
 #' folder <- ""
 #' # give the number of sample
@@ -152,7 +153,8 @@
 #' #save(DATA,file=c(paste(path,folder,'DATA.RData',sep="")))
 #' # to load information containing DATA.RData object
 #' #load(file=c(paste(path,folder,"DATA.RData",sep="")))
-#'
+#' }
+#' @name Generate_DataFile_MG-deprecated
 #' @md
 #' @export
 Generate_DataFile_MG <- function(
@@ -169,7 +171,7 @@ Generate_DataFile_MG <- function(
   force_run1_at_a_time = FALSE,
   ...
 ){
-
+  .Deprecated("create_DataFile()")
 
   #--- create object needed
   #---------------------------------------
