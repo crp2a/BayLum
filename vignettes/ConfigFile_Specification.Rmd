@@ -247,7 +247,7 @@ are usually set to identical values unless you have good reasons to use differen
 ## Final remarks
 
 ## Auto-generate the config file using `write_YAMLConfigFile()`
-To ease the generation of configuration file for many samples, you can 
+To ease the generation of configuration files for many samples, you can 
 use the function `write_YAMLConfigFile()`. 
 
 The function has two different operation modes, which are shown below. 
@@ -268,8 +268,8 @@ str(l)
 ```
 
 ### Write YAML file
-Alternatively, the function can be used to generate config file with preset values. 
-You can then modify the generated YAML-file with any texteditor of your choice. 
+Alternatively, the function can be used to generate a config file with preset values. 
+You can then modify the generated YAML file with any text-editor. 
 
 ```{r, eval=FALSE}
 l <- write_YAMLConfigFile(output_file = "<your filepath>")
