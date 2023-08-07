@@ -22,7 +22,7 @@ Single-grain or Multi-grain OSL measurements can be analysed simultaneously."><!
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">BayLum</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.3.1.9000-7</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.3.2.9000-34</span>
       </span>
     </div>
 
@@ -39,6 +39,13 @@ Single-grain or Multi-grain OSL measurements can be analysed simultaneously."><!
     <span class=" play"></span>
      
     Get Started
+  </a>
+</li>
+<li>
+  <a href="../articles/ConfigFile_Specification.html">
+    <span class=" play"></span>
+     
+    YAML configuration
   </a>
 </li>
 <li>
@@ -75,7 +82,7 @@ Single-grain or Multi-grain OSL measurements can be analysed simultaneously."><!
     <div class="ref-description">
     <p>This function computes the age (in ka) of at least two samples
 according to the model developed in Combès and Philippe (2017),
-based on outputs of <a href="Generate_DataFile.html">Generate_DataFile</a> or <a href="Generate_DataFile_MG.html">Generate_DataFile_MG</a>
+based on outputs of <a href="Generate_DataFile-deprecated.html">Generate_DataFile</a> or <a href="Generate_DataFile_MG-deprecated.html">Generate_DataFile_MG</a>
 or both of them using <a href="combine_DataFiles.html">combine_DataFiles</a>.<br>
 Samples, for which data is available in several BIN files, can be analysed.<br>
 Single-grain or Multi-grain OSL measurements can be analysed simultaneously.</p>
@@ -120,11 +127,11 @@ Single-grain or Multi-grain OSL measurements can be analysed simultaneously.</p>
     <dl><dt>DATA</dt>
 <dd><p>(<strong>required</strong>) Two inputs are possible:
 (1): DATA <a href="https://rdrr.io/r/base/list.html" class="external-link">list</a> of objects: <code>LT</code>, <code>sLT</code>, <code>ITimes</code>, <code>dLab</code>, <code>ddot_env</code>, <code>regDose</code>, <code>J</code>, <code>K</code>, <code>Nb_measurement</code>,
-provided by the function <a href="Generate_DataFile.html">Generate_DataFile</a>, <a href="Generate_DataFile_MG.html">Generate_DataFile_MG</a> or <a href="combine_DataFiles.html">combine_DataFiles</a>.
+provided by the function <a href="Generate_DataFile-deprecated.html">Generate_DataFile</a>, <a href="Generate_DataFile_MG-deprecated.html">Generate_DataFile_MG</a> or <a href="combine_DataFiles.html">combine_DataFiles</a>.
 <code>DATA</code> contains informations for more than one sample.
 If there is stratigraphic relations between samples, informations in DATA must be ordered by order of increasing ages.
 See the details section to for more informations.
-(2): An object of class "runjags" which is provided by the output of AgeS_Computation. When input of class "runjags" is identified, no new JAGS model is created. Instead, the JAGS model specified by the "runjags" object is extended. Useful for when convergence was not originally achieved and a complete restart is not desirable.</p></dd>
+(2): An object of class <code>BayLum.list</code> which is provided by the output of AgeS_Computation. When input of class <code>BayLum.list</code> is identified, no new JAGS model is created. Instead, the JAGS model specified by the AgeS_Computation output is extended. Useful for when convergence was not originally achieved and a complete restart is not desirable.</p></dd>
 
 
 <dt>SampleNames</dt>
@@ -145,7 +152,7 @@ and <code>PriorAge[2i-1,2i]</code> corresponds to the lower and upper bounds of 
 <dd><p><a href="https://rdrr.io/r/base/integer.html" class="external-link">integer</a> vector (with default): vector with the number of BIN files per sample.
 The length of this vector is equal to <code>Nb_sample</code>.
 <code>BinPerSample[i]</code> corresponds to the number of BIN files for the sample whose number ID is equal to <code>i</code>.
-For more information to fill this vector, we refer to details in <a href="Generate_DataFile.html">Generate_DataFile</a> or in <a href="Generate_DataFile_MG.html">Generate_DataFile_MG</a>.</p></dd>
+For more information to fill this vector, we refer to details in <a href="Generate_DataFile-deprecated.html">Generate_DataFile</a> or in <a href="Generate_DataFile_MG-deprecated.html">Generate_DataFile_MG</a>.</p></dd>
 
 
 <dt>SavePdf</dt>
@@ -312,10 +319,10 @@ On each line, the plot on the left represents the MCMC trajectories, and the one
 (cf. <a href="https://rdrr.io/pkg/runjags/man/autorun.jags.html" class="external-link">runjags::autorun.jags</a>)</td></tr><tr><td><code>inits</code></td><td>named <a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></td><td><code>rjparallel</code></td><td><code>NA</code></td><td>fine control over random seeds and random number generator <a href="https://rdrr.io/pkg/runjags/man/autorun.jags.html" class="external-link">runjags::autorun.jags</a></td></tr></table><p><strong>How to fill <code>StratiConstraints</code></strong><br></p>
 <p>If there is stratigraphic relations between samples,
 <em>informations in DATA must be ordered by order of increasing ages</em>.
-To do this the user can either fill right <code>Names</code> in <a href="Generate_DataFile.html">Generate_DataFile</a>
-or in <a href="Generate_DataFile_MG.html">Generate_DataFile_MG</a> (as it is indicated in Details section of these function),
-or ordered by order of increasing ages outputs of <a href="Generate_DataFile.html">Generate_DataFile</a>
-or <a href="Generate_DataFile_MG.html">Generate_DataFile_MG</a> in <a href="combine_DataFiles.html">combine_DataFiles</a></p>
+To do this the user can either fill right <code>Names</code> in <a href="Generate_DataFile-deprecated.html">Generate_DataFile</a>
+or in <a href="Generate_DataFile_MG-deprecated.html">Generate_DataFile_MG</a> (as it is indicated in Details section of these function),
+or ordered by order of increasing ages outputs of <a href="Generate_DataFile-deprecated.html">Generate_DataFile</a>
+or <a href="Generate_DataFile_MG-deprecated.html">Generate_DataFile_MG</a> in <a href="combine_DataFiles.html">combine_DataFiles</a></p>
 <p>The user can fill the <code>StratiConstraints</code> matrix as follow.</p><ol><li><p><b>Size of the matrix</b>: row number of <code>StratiConstraints</code> matrix is equal to <code>Nb_sample+1</code>,
 and column number is equal to <code>Nb_sample</code>.</p></li>
 <li><p><b>First line of the matrix</b>:
@@ -370,7 +377,7 @@ of the age estimates if the chains have converged.</p>
     </div>
     <div id="how-to-cite">
     <h2>How to cite</h2>
-    <p>Christophe, C., Philippe, A., Guérin, G., Kreutzer, S., 2023. AgeS_Computation(): Bayesian analysis for OSL age estimation of various samples. In: Christophe, C., Philippe, A., Kreutzer, S., Guérin, G., Baumgarten, F.H., 2023. BayLum: Chronological Bayesian Models Integrating Optically Stimulated. R package version 0.3.1.9000-7. https://CRAN.r-project.org/package=BayLum</p>
+    <p>Christophe, C., Philippe, A., Guérin, G., Kreutzer, S., 2023. AgeS_Computation(): Bayesian analysis for OSL age estimation of various samples. In: Christophe, C., Philippe, A., Kreutzer, S., Guérin, G., Baumgarten, F.H., 2023. BayLum: Chronological Bayesian Models Integrating Optically Stimulated. R package version 0.3.2.9000-34. https://CRAN.r-project.org/package=BayLum</p>
     </div>
     <div id="references">
     <h2>References</h2>
@@ -383,7 +390,7 @@ Quaternary Geochronology 28, 62-70. doi:10.1016/j.quageo.2015.04.001</p>
     </div>
     <div id="see-also">
     <h2>See also</h2>
-    <div class="dont-index"><p><a href="Generate_DataFile.html">Generate_DataFile</a>, <a href="Generate_DataFile_MG.html">Generate_DataFile_MG</a>, rjags, <a href="plot_MCMC.html">plot_MCMC</a>, <a href="SCMatrix.html">SCMatrix</a>, <a href="Age_Computation.html">Age_Computation</a>, <a href="Palaeodose_Computation.html">Palaeodose_Computation</a>, <a href="plot_Ages.html">plot_Ages</a>, <a href="create_ThetaMatrix.html">create_ThetaMatrix</a>, runjags</p></div>
+    <div class="dont-index"><p><a href="Generate_DataFile-deprecated.html">Generate_DataFile</a>, <a href="Generate_DataFile_MG-deprecated.html">Generate_DataFile_MG</a>, rjags, <a href="plot_MCMC.html">plot_MCMC</a>, <a href="SCMatrix.html">SCMatrix</a>, <a href="Age_Computation.html">Age_Computation</a>, <a href="Palaeodose_Computation.html">Palaeodose_Computation</a>, <a href="plot_Ages.html">plot_Ages</a>, <a href="create_ThetaMatrix.html">create_ThetaMatrix</a>, runjags</p></div>
     </div>
     <div id="author">
     <h2>Author</h2>
@@ -423,7 +430,7 @@ Quaternary Geochronology 28, 62-70. doi:10.1016/j.quageo.2015.04.001</p>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co">## extend model</span></span></span>
 <span class="r-in"><span><span class="va">Age_extended</span> <span class="op">&lt;-</span> <span class="fu">AgeS_Computation</span><span class="op">(</span></span></span>
-<span class="r-in"><span>  DATA <span class="op">=</span> <span class="va">Age</span><span class="op">$</span><span class="va">runjags_object</span>,</span></span>
+<span class="r-in"><span>  DATA <span class="op">=</span> <span class="va">Age</span>,</span></span>
 <span class="r-in"><span>  Nb_sample <span class="op">=</span> <span class="va">Nb_sample</span>,</span></span>
 <span class="r-in"><span>  SampleNames <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"GDB5"</span>,<span class="st">"GDB3"</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>  PriorAge <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">100</span><span class="op">)</span>, <span class="fl">2</span><span class="op">)</span>,</span></span>

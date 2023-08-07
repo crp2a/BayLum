@@ -7,6 +7,9 @@ navbar:
     - icon: play
       text: "Get Started"
       href: articles/BayLum.html
+    - icon: play
+      text: "YAML configuration"
+      href: articles/ConfigFile_Specification.html
     - text: "References"
       href: reference/index.html
   right:

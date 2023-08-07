@@ -13,6 +13,9 @@
     <loc>/articles/BayLum.html</loc>
   </url>
   <url>
+    <loc>/articles/ConfigFile_Specification.html</loc>
+  </url>
+  <url>
     <loc>/articles/index.html</loc>
   </url>
   <url>
@@ -46,6 +49,9 @@
     <loc>/reference/AtmosphericSouth_CalC14.html</loc>
   </url>
   <url>
+    <loc>/reference/BayLum-deprecated.html</loc>
+  </url>
+  <url>
     <loc>/reference/BayLum-package.html</loc>
   </url>
   <url>
@@ -64,7 +70,13 @@
     <loc>/reference/DATA_C14.html</loc>
   </url>
   <url>
+    <loc>/reference/Generate_DataFile-deprecated.html</loc>
+  </url>
+  <url>
     <loc>/reference/Generate_DataFile.html</loc>
+  </url>
+  <url>
+    <loc>/reference/Generate_DataFile_MG-deprecated.html</loc>
   </url>
   <url>
     <loc>/reference/Generate_DataFile_MG.html</loc>
@@ -136,6 +148,9 @@
     <loc>/reference/combine_DataFiles.html</loc>
   </url>
   <url>
+    <loc>/reference/create_DataFile.html</loc>
+  </url>
+  <url>
     <loc>/reference/create_FolderTemplates.html</loc>
   </url>
   <url>
@@ -155,5 +170,8 @@
   </url>
   <url>
     <loc>/reference/write_BayLumFiles.html</loc>
+  </url>
+  <url>
+    <loc>/reference/write_YAMLConfigFile.html</loc>
   </url>
 </urlset>

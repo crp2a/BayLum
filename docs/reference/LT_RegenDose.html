@@ -18,7 +18,7 @@ for every selected aliquot and for each sample."><!-- mathjax --><script src="ht
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">BayLum</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.3.1.9000-7</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.3.2.9000-34</span>
       </span>
     </div>
 
@@ -35,6 +35,13 @@ for every selected aliquot and for each sample."><!-- mathjax --><script src="ht
     <span class=" play"></span>
      
     Get Started
+  </a>
+</li>
+<li>
+  <a href="../articles/ConfigFile_Specification.html">
+    <span class=" play"></span>
+     
+    YAML configuration
   </a>
 </li>
 <li>
@@ -91,17 +98,17 @@ for every selected aliquot and for each sample.</p>
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>DATA</dt>
-<dd><p><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a> (<strong>required</strong>): list of objects <code>LT</code>, <code>sLT</code>, <code>ITimes</code>, <code>dLab</code>, <code>ddot_env</code>, <code>regDose</code>, <code>J</code>, <code>K</code>, <code>Nb_measurement</code>, #' provided by <a href="Generate_DataFile.html">Generate_DataFile</a> or <a href="Generate_DataFile_MG.html">Generate_DataFile_MG</a> or <a href="combine_DataFiles.html">combine_DataFiles</a>.<code>DATA</code> can contain information from more than one sample.</p></dd>
+<dd><p><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a> (<strong>required</strong>): list of objects <code>LT</code>, <code>sLT</code>, <code>ITimes</code>, <code>dLab</code>, <code>ddot_env</code>, <code>regDose</code>, <code>J</code>, <code>K</code>, <code>Nb_measurement</code>, #' provided by <a href="Generate_DataFile-deprecated.html">Generate_DataFile</a> or <a href="Generate_DataFile_MG-deprecated.html">Generate_DataFile_MG</a> or <a href="combine_DataFiles.html">combine_DataFiles</a>.<code>DATA</code> can contain information from more than one sample.</p></dd>
 
 
 <dt>Path</dt>
 <dd><p><a href="https://rdrr.io/r/base/character.html" class="external-link">character</a> (<strong>required</strong>): path to the project folder
-(the same as the one used in <a href="Generate_DataFile.html">Generate_DataFile</a>  or <a href="Generate_DataFile_MG.html">Generate_DataFile_MG</a> to provide <code>DATA</code>)</p></dd>
+(the same as the one used in <a href="Generate_DataFile-deprecated.html">Generate_DataFile</a>  or <a href="Generate_DataFile_MG-deprecated.html">Generate_DataFile_MG</a> to provide <code>DATA</code>)</p></dd>
 
 
 <dt>FolderNames</dt>
 <dd><p><a href="https://rdrr.io/r/base/character.html" class="external-link">character</a> (<strong>required</strong>): vector of names of the sub-folders
-containing the BIN-files, which were used by <a href="Generate_DataFile.html">Generate_DataFile</a> or <a href="Generate_DataFile_MG.html">Generate_DataFile_MG</a>
+containing the BIN-files, which were used by <a href="Generate_DataFile-deprecated.html">Generate_DataFile</a> or <a href="Generate_DataFile_MG-deprecated.html">Generate_DataFile_MG</a>
 to generate the <code>DATA</code> object.</p></dd>
 
 
@@ -117,8 +124,8 @@ Required if the <code>DATA</code> object contains information for more than one 
 
 <dt>BinPerSample</dt>
 <dd><p><a href="https://rdrr.io/r/base/integer.html" class="external-link">integer</a> (with default): integer vector (with default):
-vector with the number of BIN files per sample, which was used in <a href="Generate_DataFile.html">Generate_DataFile</a> or
-<a href="Generate_DataFile_MG.html">Generate_DataFile_MG</a> to generate the <code>DATA</code> object.</p></dd>
+vector with the number of BIN files per sample, which was used in <a href="Generate_DataFile-deprecated.html">Generate_DataFile</a> or
+<a href="Generate_DataFile_MG-deprecated.html">Generate_DataFile_MG</a> to generate the <code>DATA</code> object.</p></dd>
 
 
 <dt>SG</dt>
@@ -155,12 +162,12 @@ There is not interpolation.</p>
     <div id="details">
     <h2>Details</h2>
     <p>To fill <code>FolderNames</code> and <code>BinPerSample</code>, we refer to the <b>Detail</b> section from the
-<a href="Generate_DataFile.html">Generate_DataFile</a> or <a href="Generate_DataFile_MG.html">Generate_DataFile_MG</a> function.
+<a href="Generate_DataFile-deprecated.html">Generate_DataFile</a> or <a href="Generate_DataFile_MG-deprecated.html">Generate_DataFile_MG</a> function.
 As well for a precise description of input <code>DATA</code>.</p>
     </div>
     <div id="see-also">
     <h2>See also</h2>
-    <div class="dont-index"><p><a href="Generate_DataFile.html">Generate_DataFile</a>, <a href="Generate_DataFile_MG.html">Generate_DataFile_MG</a></p></div>
+    <div class="dont-index"><p><a href="Generate_DataFile-deprecated.html">Generate_DataFile</a>, <a href="Generate_DataFile_MG-deprecated.html">Generate_DataFile_MG</a></p></div>
     </div>
     <div id="author">
     <h2>Author</h2>
@@ -168,7 +175,7 @@ As well for a precise description of input <code>DATA</code>.</p>
     </div>
     <div id="how-to-cite">
     <h2>How to cite</h2>
-    <p>Christophe, C., Kreutzer, S., Philippe, A., Guérin, G., 2023. LT_RegenDose(): Plots Lx/Tx as a function of the regenerative dose. In: Christophe, C., Philippe, A., Kreutzer, S., Guérin, G., Baumgarten, F.H., 2023. BayLum: Chronological Bayesian Models Integrating Optically Stimulated. R package version 0.3.1.9000-7. https://CRAN.r-project.org/package=BayLum</p>
+    <p>Christophe, C., Kreutzer, S., Philippe, A., Guérin, G., 2023. LT_RegenDose(): Plots Lx/Tx as a function of the regenerative dose. In: Christophe, C., Philippe, A., Kreutzer, S., Guérin, G., Baumgarten, F.H., 2023. BayLum: Chronological Bayesian Models Integrating Optically Stimulated. R package version 0.3.2.9000-34. https://CRAN.r-project.org/package=BayLum</p>
     </div>
 
     <div id="ref-examples">

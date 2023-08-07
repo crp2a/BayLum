@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">BayLum</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.3.1.9000-7</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.3.2.9000-34</span>
       </span>
     </div>
 
@@ -34,6 +34,13 @@
     <span class=" play"></span>
      
     Get Started
+  </a>
+</li>
+<li>
+  <a href="../articles/ConfigFile_Specification.html">
+    <span class=" play"></span>
+     
+    YAML configuration
   </a>
 </li>
 <li>
@@ -67,13 +74,35 @@
     </div>
 
     <div class="section level2">
-<h2 class="page-header" data-toc-text="0.3.1.9000-7" id="baylum-0319000-7-2023-01-27">BayLum 0.3.1.9000-7 (2023-01-27)<a class="anchor" aria-label="anchor" href="#baylum-0319000-7-2023-01-27"></a></h2>
+<h2 class="page-header" data-toc-text="0.3.2.9000-34" id="baylum-0329000-34-2023-08-04">BayLum 0.3.2.9000-34 (2023-08-04)<a class="anchor" aria-label="anchor" href="#baylum-0329000-34-2023-08-04"></a></h2>
 <p><strong>This version of <code>'BayLum'</code> requires R&gt;=4.1.x!</strong></p>
 <div class="section level3">
-<h3 id="bugfixes-and-changes-0-3-1-9000-7">Bugfixes and changes<a class="anchor" aria-label="anchor" href="#bugfixes-and-changes-0-3-1-9000-7"></a></h3>
-<ul><li><p><code><a href="../reference/AgeS_Computation.html">AgeS_Computation()</a></code> crashed reproducibly if the THETA matrix (as one possibility) was provided indeed as a file name instead of a <code>matrix</code> object; fixed (thanks to M. Heydari for reporting)</p></li>
-<li><p><code><a href="../reference/create_ThetaMatrix.html">create_ThetaMatrix()</a></code> the function did not throw an error in all cases where <code>sigma_s</code> was obviously wrong; fixed (thanks to M. Heydari for reporting)</p></li>
-<li><p><code><a href="../reference/Generate_DataFile_MG.html">Generate_DataFile_MG()</a></code> the function now tests checks the number of specified BIN-files matches the actual number of BIN-files in the the folders. If not, a warnings is prompted because if the number is wrong this can lead to very hard to track down problems.</p></li>
+<h3 id="new-functions-0-3-2-9000-34">New functions<a class="anchor" aria-label="anchor" href="#new-functions-0-3-2-9000-34"></a></h3>
+<div class="section level4">
+<h4 id="create_datafile-0-3-2-9000-34"><code>create_DataFile()</code><a class="anchor" aria-label="anchor" href="#create_datafile-0-3-2-9000-34"></a></h4>
+<p>This function attempts to ease the very pain-stacking process of input data processing (BIN/BINX files) so that it can be used in the <code>'BayLum'</code> modelling. The function is an entirely new development and will replace the functions <code><a href="../reference/Generate_DataFile_MG-deprecated.html">Generate_DataFile_MG()</a></code> and <code><a href="../reference/Generate_DataFile-deprecated.html">Generate_DataFile()</a></code> in future versions of <code>'BayLum'</code>. Key features:</p>
+<ul><li>Only one function for single-grain and multiple-grain data</li>
+<li>Support for BIN/BINX and XSYG files and <code>RLum.Analysis-class</code> objects, i.e. the data can be imported independently of the data file creation</li>
+<li>A new single-file configuration based on the YAML format. This makes the old error-prone folder structure obsolete</li>
+<li>Various internal consistency checks to avoid input data are erroneousness; which may lead to very hard to-track-down error messages</li>
+</ul></div>
+<div class="section level4">
+<h4 id="write_yamlconfigfile-0-3-2-9000-34"><code>write_YAMLConfigFile()</code><a class="anchor" aria-label="anchor" href="#write_yamlconfigfile-0-3-2-9000-34"></a></h4>
+<p>This function supplements <code><a href="../reference/create_DataFile.html">create_DataFile()</a></code> supporting auto-generated YAML config template files</p>
+</div>
+</div>
+<div class="section level3">
+<h3 id="bugfixes-and-changes-0-3-2-9000-34">Bugfixes and changes<a class="anchor" aria-label="anchor" href="#bugfixes-and-changes-0-3-2-9000-34"></a></h3>
+<ul><li><p>Drop dependency to deprecated package <code>'ArchaeoPhases'</code> and make corresponding code an internal function (PR <a href="https://github.com/crp2a/BayLum/issues/33" class="external-link">#33</a>, <a href="https://github.com/nfrerebeau" class="external-link">@nfrerebeau</a>)</p></li>
+<li><p>Add dependencies to the packages <code>'yaml'</code> and <code>'cli'</code></p></li>
+<li><p>Bump version requirement for <code>'Luminescence'</code> to &gt;= v0.9.22</p></li>
+<li><p>Add new external files <code>example.yml</code> and <code>yaml_config_reference.yml</code></p></li>
+</ul></div>
+<div class="section level3">
+<h3 id="deprecated-functions-0-3-2-9000-34">Deprecated functions<a class="anchor" aria-label="anchor" href="#deprecated-functions-0-3-2-9000-34"></a></h3>
+<p>The following functions are deprecated and will be removed in future versions of BayLum</p>
+<ul><li><code><a href="../reference/Generate_DataFile-deprecated.html">Generate_DataFile()</a></code></li>
+<li><code><a href="../reference/Generate_DataFile_MG-deprecated.html">Generate_DataFile_MG()</a></code></li>
 </ul></div>
 </div>
   </div>

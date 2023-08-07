@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">BayLum</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.3.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.3.2.9000-34</span>
       </span>
     </div>
 
@@ -34,6 +34,13 @@
     <span class=" play"></span>
      
     Get Started
+  </a>
+</li>
+<li>
+  <a href="../articles/ConfigFile_Specification.html">
+    <span class=" play"></span>
+     
+    YAML configuration
   </a>
 </li>
 <li>
@@ -112,14 +119,13 @@
         </td>
         <td><p>C14 cal age estiamte and its error</p></td>
       </tr><tr><td>
-          <p><code><a href="Generate_DataFile.html">Generate_DataFile()</a></code> </p>
+          <p><code><a href="Generate_DataFile-deprecated.html">Generate_DataFile()</a></code> </p>
         </td>
-        <td><p>Generates, from one (or several) BIN-file(s) of Single-grain OSL measurements,
-a list of luminescence data and information before statistical analysis</p></td>
+        <td><p>Generates, from one (or several) BIN-file(s) of Single-grain OSL measurements, a list of luminescence data and information before statistical analysis (DEPRECATED)</p></td>
       </tr><tr><td>
-          <p><code><a href="Generate_DataFile_MG.html">Generate_DataFile_MG()</a></code> </p>
+          <p><code><a href="Generate_DataFile_MG-deprecated.html">Generate_DataFile_MG()</a></code> </p>
         </td>
-        <td><p>Generates, from one (or several) BIN file(s) of Multi-grain OSL measurements a list of luminescence data and information before statistical analysis</p></td>
+        <td><p>Generates, from one (or several) BIN file(s) of Multi-grain OSL measurements a list of luminescence data and information before statistical analysis (DEPRECATED)</p></td>
       </tr><tr><td>
           <p><code><a href="IntCal13.html">IntCal13</a></code> </p>
         </td>
@@ -198,6 +204,10 @@ a list of luminescence data and information before statistical analysis</p></td>
         </td>
         <td><p>Combine objects</p></td>
       </tr><tr><td>
+          <p><code><a href="create_DataFile.html">create_DataFile()</a></code> </p>
+        </td>
+        <td><p>Prepare input data for subsequent BayLum Analysis</p></td>
+      </tr><tr><td>
           <p><code><a href="create_FolderTemplates.html">create_FolderTemplates()</a></code> </p>
         </td>
         <td><p>Create Folder Templates</p></td>
@@ -221,6 +231,10 @@ a list of luminescence data and information before statistical analysis</p></td>
           <p><code><a href="write_BayLumFiles.html">write_BayLumFiles()</a></code> </p>
         </td>
         <td><p>Write BayLum .csv-files</p></td>
+      </tr><tr><td>
+          <p><code><a href="write_YAMLConfigFile.html">write_YAMLConfigFile()</a></code> </p>
+        </td>
+        <td><p>Write Auto Generated YAML BayLum Configuration File to the Disc</p></td>
       </tr></tbody></table></div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

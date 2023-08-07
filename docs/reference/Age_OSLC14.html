@@ -24,7 +24,7 @@ Northern or Southern Hemisphere or marine atmospheric."><!-- mathjax --><script 
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">BayLum</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.3.1.9000-7</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.3.2.9000-34</span>
       </span>
     </div>
 
@@ -41,6 +41,13 @@ Northern or Southern Hemisphere or marine atmospheric."><!-- mathjax --><script 
     <span class=" play"></span>
      
     Get Started
+  </a>
+</li>
+<li>
+  <a href="../articles/ConfigFile_Specification.html">
+    <span class=" play"></span>
+     
+    YAML configuration
   </a>
 </li>
 <li>
@@ -79,7 +86,7 @@ Northern or Southern Hemisphere or marine atmospheric."><!-- mathjax --><script 
 C-14 ages of samples to get an age (in ka).<br>
 Ages of OSL data are computed according to the model given in Combes and Philippe (2017).
 Single-grain or Multi-grain OSL measurements can be analysed simultaneously
-(with output of <a href="Generate_DataFile.html">Generate_DataFile</a> or <a href="Generate_DataFile_MG.html">Generate_DataFile_MG</a> or both of them using <a href="combine_DataFiles.html">combine_DataFiles</a>).
+(with output of <a href="Generate_DataFile-deprecated.html">Generate_DataFile</a> or <a href="Generate_DataFile_MG-deprecated.html">Generate_DataFile_MG</a> or both of them using <a href="combine_DataFiles.html">combine_DataFiles</a>).
 Samples, for which data is available in several BIN files, can be analysed.<br>
 For C-14 data, the user can choose one of the following radiocarbon calibration curve:
 Northern or Southern Hemisphere or marine atmospheric.</p>
@@ -128,11 +135,11 @@ Northern or Southern Hemisphere or marine atmospheric.</p>
     <dl><dt>DATA</dt>
 <dd><p>Two types of inputs are supported.
 (1): a list of objects: <code>LT</code>, <code>sLT</code>, <code>ITimes</code>, <code>dLab</code>, <code>ddot_env</code>, <code>regDose</code>, <code>J</code>,
-<code>K</code>, <code>Nb_measurement</code>, provided by the function <a href="Generate_DataFile.html">Generate_DataFile</a>, <a href="Generate_DataFile_MG.html">Generate_DataFile_MG</a> or <a href="combine_DataFiles.html">combine_DataFiles</a>.
+<code>K</code>, <code>Nb_measurement</code>, provided by the function <a href="Generate_DataFile-deprecated.html">Generate_DataFile</a>, <a href="Generate_DataFile_MG-deprecated.html">Generate_DataFile_MG</a> or <a href="combine_DataFiles.html">combine_DataFiles</a>.
 <code>DATA</code> contains information for more than one sample.
 If there is stratigraphic relations between samples, informations in DATA must be ordered by order of
 increasing ages. See the details section to for more informations.
-(2): an object of class "runjags" which is provided by the output of Age_OSLC14. When input of class "runjags" is identified, no new JAGS model is created. Instead, the JAGS model specified by the "runjags" object is extended. Useful for when convergence was not originally achieved and a complete restart is not desirable.</p></dd>
+(2): an object of class <code>BayLum.list</code> which is provided by the output of Age_OSLC14. When input of class <code>BayLum.list</code> is identified, no new JAGS model is created. Instead, the JAGS model specified within the <code>BayLum.list</code> is extended. Useful for when convergence was not originally achieved and a complete restart is not desirable.</p></dd>
 
 
 <dt>Data_C14Cal</dt>
@@ -223,7 +230,7 @@ indicate column separator in <code>StratiConstraints</code> CSV-file.</p></dd>
 per OSL sample. The length of this vector is equal to the number of OSL samples.
 <code>BinPerSample[i]</code> corresponds to the number of BIN files for the sample whose
 number ID is equal to <code>i</code>.  For more information to fill this vector, we refer
-to details in <a href="Generate_DataFile.html">Generate_DataFile</a> or in <a href="Generate_DataFile_MG.html">Generate_DataFile_MG</a>.</p></dd>
+to details in <a href="Generate_DataFile-deprecated.html">Generate_DataFile</a> or in <a href="Generate_DataFile_MG-deprecated.html">Generate_DataFile_MG</a>.</p></dd>
 
 
 <dt>THETA</dt>
@@ -428,7 +435,7 @@ of the age estimates if the chains have converged.</p>
     </div>
     <div id="how-to-cite">
     <h2>How to cite</h2>
-    <p>Christophe, C., Philippe, A., Kreutzer, S., Baumgarten, F.H., 2023. Age_OSLC14(): Bayesian analysis for age estimation of OSL measurements and C-14 ages of various samples. In: Christophe, C., Philippe, A., Kreutzer, S., Guérin, G., Baumgarten, F.H., 2023. BayLum: Chronological Bayesian Models Integrating Optically Stimulated. R package version 0.3.1.9000-7. https://CRAN.r-project.org/package=BayLum</p>
+    <p>Christophe, C., Philippe, A., Kreutzer, S., Baumgarten, F.H., 2023. Age_OSLC14(): Bayesian analysis for age estimation of OSL measurements and C-14 ages of various samples. In: Christophe, C., Philippe, A., Kreutzer, S., Guérin, G., Baumgarten, F.H., 2023. BayLum: Chronological Bayesian Models Integrating Optically Stimulated. R package version 0.3.2.9000-34. https://CRAN.r-project.org/package=BayLum</p>
     </div>
     <div id="references">
     <h2>References</h2>
@@ -441,7 +448,7 @@ IntCal13 ans Marine13 radiocarbon age calibration curves 0-50000 years cal BP. R
     </div>
     <div id="see-also">
     <h2>See also</h2>
-    <div class="dont-index"><p>rjags, <a href="plot_MCMC.html">plot_MCMC</a>, <a href="SCMatrix.html">SCMatrix</a>, <a href="plot_Ages.html">plot_Ages</a></p></div>
+    <div class="dont-index"><p>runjags, <a href="plot_MCMC.html">plot_MCMC</a>, <a href="SCMatrix.html">SCMatrix</a>, <a href="plot_Ages.html">plot_Ages</a></p></div>
     </div>
     <div id="author">
     <h2>Author</h2>

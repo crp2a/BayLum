@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">BayLum</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.3.1.9000-7</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.3.2.9000-34</span>
       </span>
     </div>
 
@@ -34,6 +34,13 @@
     <span class=" play"></span>
      
     Get Started
+  </a>
+</li>
+<li>
+  <a href="../articles/ConfigFile_Specification.html">
+    <span class=" play"></span>
+     
+    YAML configuration
   </a>
 </li>
 <li>
@@ -72,14 +79,20 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">plot_Ages</span><span class="op">(</span><span class="va">object</span>, sample_names <span class="op">=</span> <span class="cn">NULL</span>, sample_order <span class="op">=</span> <span class="cn">NULL</span>, <span class="va">...</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">plot_Ages</span><span class="op">(</span></span>
+<span>  <span class="va">object</span>,</span>
+<span>  sample_names <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  sample_order <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  plot_mode <span class="op">=</span> <span class="st">"ages"</span>,</span>
+<span>  <span class="va">...</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>object</dt>
 <dd><p><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a>  or <a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a> (<strong>required</strong>): Output as created by functions like <a href="AgeC14_Computation.html">AgeC14_Computation</a>, which
-is a list of class <code>BayLum.list</code>. Alternativley the function supports a <a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a> as input, however,
+is a list of class <code>BayLum.list</code>. Alternatively the function supports a <a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a> as input, however,
 in such a case the <a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a> must resemble the ages <a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a> created by the computation functions
 otherwise the input will be silently ignored.</p></dd>
 
@@ -94,10 +107,15 @@ If the length of the provided <a href="https://rdrr.io/r/base/character.html" cl
 the last sample first.</p></dd>
 
 
+<dt>plot_mode</dt>
+<dd><p><a href="https://rdrr.io/r/base/character.html" class="external-link">character</a> (<em>with default</em>): allows to switch from displaying ages as points with lines (<code>"ages"</code>)
+for the credible intervals to densities (<code>"density"</code>)</p></dd>
+
+
 <dt>...</dt>
 <dd><p>further arguments to control the plot output,
 standard arguments are: <code>cex</code>, <code>xlim</code>, <code>main</code>, <code>xlab</code>, <code>col</code> further (non-standard) arguments
-are: <code>grid</code> (<code>TRUE</code>/<code>FALSE</code>), <code>legend</code> (<code>TRUE</code>/<code>FALSE</code>), <code>legend.text</code> (<a href="https://rdrr.io/r/base/character.html" class="external-link">character</a> input needed), <code>legend.pos</code> <a href="https://rdrr.io/r/graphics/legend.html" class="external-link">graphics::legend</a></p></dd>
+are: <code>grid</code> (<code>TRUE</code>/<code>FALSE</code>), <code>legend</code> (<code>TRUE</code>/<code>FALSE</code>), <code>legend.text</code> (<a href="https://rdrr.io/r/base/character.html" class="external-link">character</a> input needed), <code>legend.pos</code> <a href="https://rdrr.io/r/graphics/legend.html" class="external-link">graphics::legend</a>, <code>legend.cex</code>. Additional arguments: <code>d_scale</code> (scales density plots), <code>show_ages</code> (add ages to density  plots)</p></dd>
 
 </dl></div>
     <div id="value">
@@ -114,7 +132,7 @@ the <a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.
     </div>
     <div id="function-version">
     <h2>Function version</h2>
-    <p>0.1.4</p>
+    <p>0.1.5</p>
     </div>
     <div id="see-also">
     <h2>See also</h2>
@@ -122,12 +140,12 @@ the <a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.
     </div>
     <div id="author">
     <h2>Author</h2>
-    <p>Sebastian Kreutzer, IRAMAT-CRP2A, UMR 5060, CNRS-Université Bordeaux Montaigne (France), based on code
+    <p>Sebastian Kreutzer, Institute of Geography, Ruprecht-Karl-University of Heidelberg (Germany), based on code
 written by Claire Christophe</p>
     </div>
     <div id="how-to-cite">
     <h2>How to cite</h2>
-    <p>Kreutzer, S., Christophe, C., 2023. plot_Ages(): Create Age Plot. Function version 0.1.4. In: Christophe, C., Philippe, A., Kreutzer, S., Guérin, G., Baumgarten, F.H., 2023. BayLum: Chronological Bayesian Models Integrating Optically Stimulated. R package version 0.3.1.9000-7. https://CRAN.r-project.org/package=BayLum</p>
+    <p>Kreutzer, S., Christophe, C., 2023. plot_Ages(): Create Age Plot. Function version 0.1.5. In: Christophe, C., Philippe, A., Kreutzer, S., Guérin, G., Baumgarten, F.H., 2023. BayLum: Chronological Bayesian Models Integrating Optically Stimulated. R package version 0.3.2.9000-34. https://CRAN.r-project.org/package=BayLum</p>
     </div>
 
     <div id="ref-examples">
@@ -158,10 +176,10 @@ written by Claire Christophe</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> &gt;&gt; MCMC Convergence of Age parameters &lt;&lt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ----------------------------------------------</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Sample name   Bayes estimate   Uppers credible interval</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> A_S-EVA-26510 	 0.999 		 1.009 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> A_S-EVA-26506 	 0.996 		 0.998 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> A_S-EVA-26507 	 0.998 		 1 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> A_S-EVA-26508 	 1.013 		 1.041 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> A_S-EVA-26510 	 1.001 		 1.013 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> A_S-EVA-26506 	 1.024 		 1.047 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> A_S-EVA-26507 	 1.02 		 1.032 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> A_S-EVA-26508 	 1 		 1.005 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ---------------------------------------------------------------------------------------------------</span>
@@ -173,28 +191,28 @@ written by Claire Christophe</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> &gt;&gt; Bayes estimates of Age for each sample and credible interval &lt;&lt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ------------------------------------------------------</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Sample name 	 Bayes estimate  Credible interval: </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> A_S-EVA-26510 	 41.9700743032742 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> A_S-EVA-26510 	 41.952933479226 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 						 lower bound 	 upper bound</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 				 at level 95% 	 41.467 		 42.326 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 				 at level 68% 	 41.846 		 42.235 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 				 at level 95% 	 41.428 		 42.329 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 				 at level 68% 	 41.828 		 42.222 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ------------------------------------------------------</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Sample name 	 Bayes estimate  Credible interval: </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> A_S-EVA-26506 	 45.6931026411773 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> A_S-EVA-26506 	 45.7257899212913 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 						 lower bound 	 upper bound</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 				 at level 95% 	 44.892 		 46.241 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 				 at level 68% 	 45.391 		 45.969 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 				 at level 95% 	 44.996 		 46.171 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 				 at level 68% 	 45.489 		 45.989 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ------------------------------------------------------</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Sample name 	 Bayes estimate  Credible interval: </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> A_S-EVA-26507 	 44.8638789426238 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> A_S-EVA-26507 	 44.8261867582195 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 						 lower bound 	 upper bound</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 				 at level 95% 	 44.025 		 45.859 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 				 at level 68% 	 44.428 		 45.347 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 				 at level 95% 	 43.553 		 45.892 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 				 at level 68% 	 44.418 		 45.406 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ------------------------------------------------------</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Sample name 	 Bayes estimate  Credible interval: </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> A_S-EVA-26508 	 45.0771047216799 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> A_S-EVA-26508 	 44.9762971909054 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 						 lower bound 	 upper bound</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 				 at level 95% 	 43.948 		 46.095 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 				 at level 68% 	 44.648 		 45.588 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 				 at level 95% 	 43.656 		 46.047 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 				 at level 68% 	 44.396 		 45.365 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ------------------------------------------------------</span>
 <span class="r-plt img"><img src="plot_Ages-5.png" alt="" width="700" height="433"></span>
@@ -204,10 +222,24 @@ written by Claire Christophe</p>
 <span class="r-in"><span><span class="fu">plot_Ages</span><span class="op">(</span><span class="va">Age</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="plot_Ages-7.png" alt="" width="700" height="433"></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>        SAMPLE      AGE HPD68.MIN HPD68.MAX HPD95.MIN HPD95.MAX ALT_SAMPLE_NAME</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 S-EVA-26510 41.97007    41.846    42.235    41.467    42.326              NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2 S-EVA-26506 45.69310    45.391    45.969    44.892    46.241              NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3 S-EVA-26507 44.86388    44.428    45.347    44.025    45.859              NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4 S-EVA-26508 45.07710    44.648    45.588    43.948    46.095              NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 S-EVA-26510 41.95293    41.828    42.222    41.428    42.329              NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 S-EVA-26506 45.72579    45.489    45.989    44.996    46.171              NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3 S-EVA-26507 44.82619    44.418    45.406    43.553    45.892              NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4 S-EVA-26508 44.97630    44.396    45.365    43.656    46.047              NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   AT</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1  4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2  3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3  2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4  1</span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co">## plot output</span></span></span>
+<span class="r-in"><span><span class="fu">plot_Ages</span><span class="op">(</span><span class="va">Age</span>, plot_mode <span class="op">=</span> <span class="st">"density"</span><span class="op">)</span></span></span>
+<span class="r-plt img"><img src="plot_Ages-8.png" alt="" width="700" height="433"></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>        SAMPLE      AGE HPD68.MIN HPD68.MAX HPD95.MIN HPD95.MAX ALT_SAMPLE_NAME</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 S-EVA-26510 41.95293    41.828    42.222    41.428    42.329              NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 S-EVA-26506 45.72579    45.489    45.989    44.996    46.171              NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3 S-EVA-26507 44.82619    44.418    45.406    43.553    45.892              NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4 S-EVA-26508 44.97630    44.396    45.365    43.656    46.047              NA</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   AT</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1  4</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2  3</span>

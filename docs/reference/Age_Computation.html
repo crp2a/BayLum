@@ -19,7 +19,7 @@ A sample, for which data is available in several BIN files, can be analysed."><!
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">BayLum</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.3.1.9000-7</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.3.2.9000-34</span>
       </span>
     </div>
 
@@ -36,6 +36,13 @@ A sample, for which data is available in several BIN files, can be analysed."><!
     <span class=" play"></span>
      
     Get Started
+  </a>
+</li>
+<li>
+  <a href="../articles/ConfigFile_Specification.html">
+    <span class=" play"></span>
+     
+    YAML configuration
   </a>
 </li>
 <li>
@@ -71,7 +78,7 @@ A sample, for which data is available in several BIN files, can be analysed."><!
 
     <div class="ref-description">
     <p>This function computes the age (in ka) of a sample according to the model developed in Combes and Philippe (2017),
-based on an output of <a href="Generate_DataFile.html">Generate_DataFile</a> or <a href="Generate_DataFile_MG.html">Generate_DataFile_MG</a>.<br>
+based on an output of <a href="Generate_DataFile-deprecated.html">Generate_DataFile</a> or <a href="Generate_DataFile_MG-deprecated.html">Generate_DataFile_MG</a>.<br>
 A sample, for which data is available in several BIN files, can be analysed.</p>
     </div>
 
@@ -103,7 +110,7 @@ A sample, for which data is available in several BIN files, can be analysed.</p>
     <h2>Arguments</h2>
     <dl><dt>DATA</dt>
 <dd><p><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a> of objects: <code>LT</code>, <code>sLT</code>, <code>ITimes</code>, <code>dLab</code>, <code>ddot_env</code>, <code>regDose</code>, <code>J</code>, <code>K</code>, <code>Nb_measurement</code>,
-provided by the function <a href="Generate_DataFile.html">Generate_DataFile</a> or <a href="Generate_DataFile_MG.html">Generate_DataFile_MG</a>.</p>
+provided by the function <a href="Generate_DataFile-deprecated.html">Generate_DataFile</a> or <a href="Generate_DataFile_MG-deprecated.html">Generate_DataFile_MG</a>.</p>
 <p><code>DATA</code> can contain information for more than one sample.</p></dd>
 
 
@@ -120,7 +127,7 @@ Note that, <code>length(PriorAge)=2</code>.</p></dd>
 <dd><p><a href="https://rdrr.io/r/base/integer.html" class="external-link">integer</a> (with default): vector with the number of BIN files per sample.
 If in <code>DATA</code> there is more than one sample,
 the <code>BinPerSample</code> vector must be the same as that used to run the function
-<a href="Generate_DataFile.html">Generate_DataFile</a> or in <a href="Generate_DataFile_MG.html">Generate_DataFile_MG</a> for generating the <code>DATA</code> object.</p></dd>
+<a href="Generate_DataFile-deprecated.html">Generate_DataFile</a> or in <a href="Generate_DataFile_MG-deprecated.html">Generate_DataFile_MG</a> for generating the <code>DATA</code> object.</p></dd>
 
 
 <dt>SavePdf</dt>
@@ -265,7 +272,7 @@ of the age estimates if the chains have converged.</p>
     </div>
     <div id="how-to-cite">
     <h2>How to cite</h2>
-    <p>Christophe, C., Kreutzer, S., Philippe, A., Guérin, G., 2023. Age_Computation(): Bayesian analysis for the OSL age estimation of one sample. In: Christophe, C., Philippe, A., Kreutzer, S., Guérin, G., Baumgarten, F.H., 2023. BayLum: Chronological Bayesian Models Integrating Optically Stimulated. R package version 0.3.1.9000-7. https://CRAN.r-project.org/package=BayLum</p>
+    <p>Christophe, C., Kreutzer, S., Philippe, A., Guérin, G., 2023. Age_Computation(): Bayesian analysis for the OSL age estimation of one sample. In: Christophe, C., Philippe, A., Kreutzer, S., Guérin, G., Baumgarten, F.H., 2023. BayLum: Chronological Bayesian Models Integrating Optically Stimulated. R package version 0.3.2.9000-34. https://CRAN.r-project.org/package=BayLum</p>
     </div>
     <div id="references">
     <h2>References</h2>
@@ -279,7 +286,7 @@ Quaternary Geochronology 28, 62-70. doi:10.1016/j.quageo.2015.04.001</p>
     </div>
     <div id="see-also">
     <h2>See also</h2>
-    <div class="dont-index"><p><a href="Generate_DataFile.html">Generate_DataFile</a>, <a href="Generate_DataFile_MG.html">Generate_DataFile_MG</a>, rjags, <a href="plot_MCMC.html">plot_MCMC</a>, <a href="AgeS_Computation.html">AgeS_Computation</a>, <a href="Palaeodose_Computation.html">Palaeodose_Computation</a></p></div>
+    <div class="dont-index"><p><a href="Generate_DataFile-deprecated.html">Generate_DataFile</a>, <a href="Generate_DataFile_MG-deprecated.html">Generate_DataFile_MG</a>, rjags, <a href="plot_MCMC.html">plot_MCMC</a>, <a href="AgeS_Computation.html">AgeS_Computation</a>, <a href="Palaeodose_Computation.html">Palaeodose_Computation</a></p></div>
     </div>
     <div id="author">
     <h2>Author</h2>
@@ -308,9 +315,9 @@ Quaternary Geochronology 28, 62-70. doi:10.1016/j.quageo.2015.04.001</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> &gt;&gt; Results of the Gelman and Rubin criterion of convergence &lt;&lt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ----------------------------------------------</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 	 Point estimate Uppers confidence interval</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> A	 1.008 		 1.064 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> D	 1.125 		 1.445 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> sD	 1.027 		 1.14 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> A	 1.058 		 1.23 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> D	 1.25 		 1.764 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> sD	 0.992 		 0.999 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ---------------------------------------------------------------------------------------------------</span>
@@ -319,20 +326,20 @@ Quaternary Geochronology 28, 62-70. doi:10.1016/j.quageo.2015.04.001</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> parameter 	 Bayes estimate 	  Credible interval </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ----------------------------------------------</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> A 		 46.336 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> A 		 46.493 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 						 lower bound 	 upper bound</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 				 at level 95%	 39.83 		 55.861 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 				 at level 68%	 39.83 		 49.555 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 				 at level 95%	 39.53 		 51.896 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 				 at level 68%	 42.66 		 48.24 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ----------------------------------------------</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> D 		 104.235 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> D 		 102.295 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 						 lower bound 	 upper bound</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 				 at level 95%	 100.557 		 109.272 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 				 at level 68%	 101.588 		 106.357 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 				 at level 95%	 94.652 		 103.832 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 				 at level 68%	 98.057 		 101.888 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ----------------------------------------------</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> sD 		 15.984 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> sD 		 15.274 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 						 lower bound 	 upper bound</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 				 at level 95%	 11.75 		 20.122 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 				 at level 68%	 13.006 		 16.169 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 				 at level 95%	 11.636 		 21.013 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 				 at level 68%	 11.636 		 15.169 </span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>

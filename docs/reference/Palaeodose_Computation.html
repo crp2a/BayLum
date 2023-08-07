@@ -21,7 +21,7 @@ Single-grain or Multi-grain OSL measurements can be analysed simultaneouly."><!-
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">BayLum</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.3.1.9000-7</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.3.2.9000-34</span>
       </span>
     </div>
 
@@ -38,6 +38,13 @@ Single-grain or Multi-grain OSL measurements can be analysed simultaneouly."><!-
     <span class=" play"></span>
      
     Get Started
+  </a>
+</li>
+<li>
+  <a href="../articles/ConfigFile_Specification.html">
+    <span class=" play"></span>
+     
+    YAML configuration
   </a>
 </li>
 <li>
@@ -73,7 +80,7 @@ Single-grain or Multi-grain OSL measurements can be analysed simultaneouly."><!-
 
     <div class="ref-description">
     <p>This function computes the palaeodose (in Gy) of one or various samples according to the model developed in Combes et al (2015),
-based on an output of <code><a href="Generate_DataFile.html">Generate_DataFile</a></code> or <code><a href="Generate_DataFile_MG.html">Generate_DataFile_MG</a></code>
+based on an output of <code><a href="Generate_DataFile-deprecated.html">Generate_DataFile</a></code> or <code><a href="Generate_DataFile_MG-deprecated.html">Generate_DataFile_MG</a></code>
 or both of them using <code><a href="combine_DataFiles.html">combine_DataFiles</a></code>.<br>
 Samples, for which data is avalilable in several BIN files, can be analysed.<br>
 Single-grain or Multi-grain OSL measurements can be analysed simultaneouly.</p>
@@ -104,7 +111,7 @@ Single-grain or Multi-grain OSL measurements can be analysed simultaneouly.</p>
     <h2>Arguments</h2>
     <dl><dt>DATA</dt>
 <dd><p>list of objects: LT, sLT, ITimes, dLab, ddot_env, regDose, J, K, Nb_measurement,
-provided by <code><a href="Generate_DataFile.html">Generate_DataFile</a></code> or <code><a href="Generate_DataFile_MG.html">Generate_DataFile_MG</a></code>.
+provided by <code><a href="Generate_DataFile-deprecated.html">Generate_DataFile</a></code> or <code><a href="Generate_DataFile_MG-deprecated.html">Generate_DataFile_MG</a></code>.
 <code>DATA</code> contains information for more than one sample.</p></dd>
 
 
@@ -120,7 +127,7 @@ provided by <code><a href="Generate_DataFile.html">Generate_DataFile</a></code> 
 <dd><p>integer vector (with default): vector with the number of BIN files per sample.
 The length of this vector is equal to <code>Nb_sample</code>.
 <code>BinPerSample</code>[i] correponds to the number of BIN files for the sample whose number ID is equal to <code>i</code>.
-For more information to fill this vector, we refer to detatils in <code><a href="Generate_DataFile.html">Generate_DataFile</a></code> or <code><a href="Generate_DataFile_MG.html">Generate_DataFile_MG</a></code>.</p></dd>
+For more information to fill this vector, we refer to detatils in <code><a href="Generate_DataFile-deprecated.html">Generate_DataFile</a></code> or <code><a href="Generate_DataFile_MG-deprecated.html">Generate_DataFile_MG</a></code>.</p></dd>
 
 
 <dt>SavePdf</dt>
@@ -248,7 +255,7 @@ of the age estimates if the chains have converged.</p>
     </div>
     <div id="how-to-cite">
     <h2>How to cite</h2>
-    <p>Christophe, C., Kreutzer, S., Philippe, A., Guérin, G., 2023. Palaeodose_Computation(): Bayesian analysis for the palaeodose estimation of various samples. In: Christophe, C., Philippe, A., Kreutzer, S., Guérin, G., Baumgarten, F.H., 2023. BayLum: Chronological Bayesian Models Integrating Optically Stimulated. R package version 0.3.1.9000-7. https://CRAN.r-project.org/package=BayLum</p>
+    <p>Christophe, C., Kreutzer, S., Philippe, A., Guérin, G., 2023. Palaeodose_Computation(): Bayesian analysis for the palaeodose estimation of various samples. In: Christophe, C., Philippe, A., Kreutzer, S., Guérin, G., Baumgarten, F.H., 2023. BayLum: Chronological Bayesian Models Integrating Optically Stimulated. R package version 0.3.2.9000-34. https://CRAN.r-project.org/package=BayLum</p>
     </div>
     <div id="references">
     <h2>References</h2>
@@ -258,7 +265,7 @@ Quaternary Geochronology 28, 62-70. doi:10.1016/j.quageo.2015.04.001</p>
     </div>
     <div id="see-also">
     <h2>See also</h2>
-    <div class="dont-index"><p><code><a href="Generate_DataFile.html">Generate_DataFile</a></code>, <code><a href="Generate_DataFile_MG.html">Generate_DataFile_MG</a></code>, <code><a href="combine_DataFiles.html">combine_DataFiles</a></code>,
+    <div class="dont-index"><p><code><a href="Generate_DataFile-deprecated.html">Generate_DataFile</a></code>, <code><a href="Generate_DataFile_MG-deprecated.html">Generate_DataFile_MG</a></code>, <code><a href="combine_DataFiles.html">combine_DataFiles</a></code>,
 <code>rjags</code>, <code><a href="plot_MCMC.html">plot_MCMC</a></code>,
 <code><a href="Age_Computation.html">Age_Computation</a></code>, <code><a href="AgeS_Computation.html">AgeS_Computation</a></code></p></div>
     </div>
@@ -292,8 +299,8 @@ Quaternary Geochronology 28, 62-70. doi:10.1016/j.quageo.2015.04.001</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  Sample name:  GDB5 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ---------------------</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 		 Point estimate Uppers confidence interval</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> D_GDB5 	 8.85 		 19.1 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> sD_GDB5 	 1.97 		 3.96 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> D_GDB5 	 9.56 		 24.51 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> sD_GDB5 	 3.43 		 6.45 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ---------------------------------------------------------------------------------------------------</span>
@@ -307,16 +314,16 @@ Quaternary Geochronology 28, 62-70. doi:10.1016/j.quageo.2015.04.001</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  Sample name:  GDB5 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ---------------------</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Parameter 	 Bayes estimate 	  Credible interval </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> D_GDB5 	 127.88 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> D_GDB5 	 140.171 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 						 lower bound 	 upper bound</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 				 at level 95% 	 100 		 174 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 				 at level 68% 	 98 		 122 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 				 at level 95% 	 99 		 175 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 				 at level 68% 	 98 		 160 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Parameter 	 Bayes estimate 	  Credible interval </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> sD_GDB5 	 16.678 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> sD_GDB5 	 17.341 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 						 lower bound 	 upper bound</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 				 at level 95% 	 11 		 23 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 				 at level 68% 	 13 		 19 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 				 at level 95% 	 7 		 29 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 				 at level 68% 	 8 		 21 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ----------------------------------------------</span>
 <span class="r-in"><span></span></span>
