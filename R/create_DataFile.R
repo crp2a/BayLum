@@ -161,7 +161,7 @@ create_DataFile <- function(
 
     } else {
       ## import files as specified -------
-      out <- lapply(suppressWarnings(normalizePath(tolower(config[[x]]$files))), function(x) {
+      out <- lapply(suppressWarnings(normalizePath(config[[x]]$files)), function(x) {
         if (!file.exists(x))
           stop(paste0("[create_DataFile()] file <", x, "> does not exist!"), call. = FALSE)
 
