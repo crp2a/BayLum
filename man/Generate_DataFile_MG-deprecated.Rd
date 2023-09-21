@@ -99,7 +99,7 @@ the luminescence data.\cr
 
 Each subfolder can be named, for example, as the sample name followed by a number; it must contain:
 \itemize{
-\item \bold{bin.BIN}, the bin file renamed as bin.BIN (note: the name of all files matters);
+\item \bold{bin.bin}, the bin file renamed as bin.BIN (note: the name of all files matters);
 \item \bold{Disc.csv}, a one columns csv file containing the list of disc number of the previously selected grains
 (typically this list will include the position of grains based on their sensitivity, recycling or other properties);
 \item \bold{DoseEnv.csv}, a two columns file containing the observation of the natural (or environmental),
@@ -183,6 +183,6 @@ Claire Christophe, Sebastian Kreutzer, Anne Philippe, Guillaume Guérin
 } 
 
 \section{How to cite}{
-Christophe, C., Kreutzer, S., Philippe, A., Guérin, G., 2023. Generate_DataFile_MG-deprecated(): Generates, from one (or several) BIN file(s) of Multi-grain OSL measurements a list of luminescence data and information before statistical analysis (DEPRECATED). In: Christophe, C., Philippe, A., Kreutzer, S., Guérin, G., Baumgarten, F.H., 2023. BayLum: Chronological Bayesian Models Integrating Optically Stimulated. R package version 0.3.2.9000-34. https://CRAN.r-project.org/package=BayLum
+Christophe, C., Kreutzer, S., Philippe, A., Guérin, G., 2023. Generate_DataFile_MG-deprecated(): Generates, from one (or several) BIN file(s) of Multi-grain OSL measurements a list of luminescence data and information before statistical analysis (DEPRECATED). In: Christophe, C., Philippe, A., Kreutzer, S., Guérin, G., Baumgarten, F.H., 2023. BayLum: Chronological Bayesian Models Integrating Optically Stimulated. R package version 0.3.2.9000-35. https://CRAN.r-project.org/package=BayLum
 }
 

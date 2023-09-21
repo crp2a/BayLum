@@ -212,12 +212,12 @@ For single sample the file looks as follows:
 
 In the case above, the configuration file assumes that data for `samp1` are
 already imported and treated and a R object called `samp1` is available in the global 
-environment. The following example code reprodcues this case:
+environment. The following example code reproduces this case:
 
 ```{r}
 ## get example file path from package
 yaml_file <- system.file("extdata/example.yml", package = "BayLum")
-samp1_file <- system.file("extdata/samp1/bin.BIN", package = "BayLum")
+samp1_file <- system.file("extdata/samp1/bin.bin", package = "BayLum")
 
 ## read YAML manually and select only the first record 
 config_file <- yaml::read_yaml(yaml_file)[[1]]
@@ -346,7 +346,7 @@ simultaneously including multiple BIN/BINX-files per sample.
 We assume that we are interested in two samples named: *sample1* and *sample2*. In addition, we have 
 two BIN/BINX-files for the first sample named: *sample1-1* and *sample1-2*, and one BIN-file for the 2nd sample named *sample2-1*.
 In such case, we need three subfolders named *sample1-1*, *sample1-2* and *sample2-1*;
-which each subfolder containing only one BIN-file named **bin.BIN**, and its associated files **DiscPos.csv**, **DoseEnv.csv**, **DoseSourve.csv** and **rule.csv**.
+which each subfolder containing only one BIN-file named **bin.bin**, and its associated files **DiscPos.csv**, **DoseEnv.csv**, **DoseSourve.csv** and **rule.csv**.
 All of these 3 subfolders must be located in *path*.
 
 To fill the argument corectly `BinPerSample`: $binpersample=c(\underbrace{2}_{\text{sample 1: 2 bin files}},\underbrace{1}_{\text{sample 2: 1 bin file}})$

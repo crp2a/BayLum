@@ -58,8 +58,8 @@ For more details, please see the package vignette.
 ##set path to YAML file
 yaml_file <- system.file("extdata/example.yml", package = "BayLum")
 
-samp1_file <- system.file("extdata/samp1/bin.BIN", package = "BayLum")
-samp2_file <- system.file("extdata/samp2/bin.BIN", package = "BayLum")
+samp1_file <- system.file("extdata/samp1/bin.bin", package = "BayLum")
+samp2_file <- system.file("extdata/samp2/bin.bin", package = "BayLum")
 
 ## import BIN files
 samp1 <- Luminescence::read_BIN2R(samp1_file, verbose = FALSE) |>
@@ -79,6 +79,6 @@ Sebastian Kreutzer, Institute of Geography, Ruprecht-Karl University of Heidelbe
 } 
 
 \section{How to cite}{
-Kreutzer, S., Christophe, C., 2023. create_DataFile(): Prepare input data for subsequent BayLum Analysis. Function version 0.1.0. In: Christophe, C., Philippe, A., Kreutzer, S., Guérin, G., Baumgarten, F.H., 2023. BayLum: Chronological Bayesian Models Integrating Optically Stimulated. R package version 0.3.2.9000-34. https://CRAN.r-project.org/package=BayLum
+Kreutzer, S., Christophe, C., 2023. create_DataFile(): Prepare input data for subsequent BayLum Analysis. Function version 0.1.0. In: Christophe, C., Philippe, A., Kreutzer, S., Guérin, G., Baumgarten, F.H., 2023. BayLum: Chronological Bayesian Models Integrating Optically Stimulated. R package version 0.3.2.9000-35. https://CRAN.r-project.org/package=BayLum
 }
 

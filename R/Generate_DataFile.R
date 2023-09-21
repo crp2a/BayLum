@@ -45,7 +45,7 @@
 #'
 #' Each sub folder can be named, for example, as the sample name followed by a number; it must contain:
 #' \itemize{
-#'   \item \bold{bin.BIN}: the bin file renamed as bin.BIN (note: the name of all files matters);
+#'   \item \bold{bin.bin}: the bin file renamed as bin.BIN (note: the name of all files matters);
 #'   \item \bold{DiscPos.csv}: a two columns csv file containing the list of disc and grain position number of the previously selected grains
 #'   (typically this list will include the position of grains based on their sensitivity, recycling or other properties);
 #'   \item \bold{DoseEnv.csv}: a two columns file containing the observation of the natural (or environmental),
@@ -256,8 +256,8 @@ Generate_DataFile <- function(
 
       if((Nb_measurement[bf]-floor(Nb_measurement[bf]))!=0){
         warning(paste("Problem folder: ",FolderNames[bf],
-                      ". Check in bin.BIN file if for all aliquots the measurement of Lx and Tx is the same.
-                      If not you can create a new subfolder with the same bin.BIN, DoseEnv.csv, DoseSource.csv, rule.csv
+                      ". Check in bin.bin file if for all aliquots the measurement of Lx and Tx is the same.
+                      If not you can create a new subfolder with the same bin.bin, DoseEnv.csv, DoseSource.csv, rule.csv
                       and a new DiscPos.csv corresponding to these aliquots that had different number of measurement than the previous aliquot.
                       That means considered an other bin file for your sample.",sep=""),
                 call. = FALSE)
