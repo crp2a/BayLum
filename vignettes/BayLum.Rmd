@@ -391,13 +391,7 @@ To plot the $L/T$ as a function of the regenerative dose the function `LT_RegenD
 used again:
 
 ```{r, eval=FALSE}
-LT_RegenDose(
-  DATA = DATA3,
-  Path = path,
-  FolderNames = Names,
-  Nb_sample = nbsample,
-  SG = rep(TRUE, nbsample)
-)
+plot_RegDosePoints(DATA3)
 ```
 
 *Note: In the example `DATA3` contains information from the samples 'GDB3' and 'GDB5', which are single-grain OSL measurements. For a correct treatment the argument `SG` has to be manually set by the user. Please see the function manual for further details.*
