@@ -57,8 +57,7 @@ test_that("Interactive tests", {
 
   options("SCMatrix.con" = f_OK) # set connection option
   t <- SCMatrix(
-    Nb_sample = 2,
-    SampleNames = c("sample1","sample2"))
+    DATA = DATA)
 
   close(f_OK)
 

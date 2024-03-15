@@ -44,7 +44,10 @@ SCMatrix <- function(
   con <- getOption("SCMatrix.con", stdin())
 
   ## treat input if DATA is provided
-  if (!is.null(DATA) && inherits(DATA, "BayLum.list")) {
+  if (!is.null(DATA) &&
+      !is.null(attr(DATA, which = "originator")) &&
+      attr(DATA, which = "originator") == "create_DataFile") {
+
     if(missing(Nb_sample))
       Nb_sample <- DATA$Nb_sample
 
