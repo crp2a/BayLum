@@ -10,7 +10,6 @@
 #'
 #' @name BayLum-package
 #' @aliases BayLum-package BayLum
-#' @docType package
 #' @keywords package
 #' @details This package is based on the functions: [Generate_DataFile] and [Generate_DataFile_MG]
 #' to import luminescence data. These functions create a list containing all informations to
@@ -34,4 +33,4 @@
 #'
 #' @md
 #' @import utils stats methods graphics grDevices coda
-NULL
+"_PACKAGE"
