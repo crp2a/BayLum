@@ -2,16 +2,17 @@
 % Please edit documentation in R/SC_ordered.R
 \name{SC_Ordered}
 \alias{SC_Ordered}
-\title{Create stratigraphically ordered sample matrix}
+\title{Create Stratigraphically Ordered Sample Matrix}
 \usage{
 SC_Ordered(Nb_sample)
 }
 \arguments{
-\item{Nb_sample}{\link{integer} (\strong{required}): the number of samples}
+\item{Nb_sample}{\link{integer} (\strong{required}): the number of samples; alternatively
+an object of class \code{BayLum.list} can be provided as input (such as produced by \link{create_DataFile})}
 }
 \value{
 Stratigraphic matrix where each sample are ordered by increasing order.
-This matrix can be intergrated in the function \link{AgeS_Computation}.
+This matrix can be integrated in the function \link{AgeS_Computation}.
 Please see \link{AgeS_Computation} for more information on this matrix.
 }
 \description{
@@ -19,8 +20,6 @@ Construct the stratigraphic matrix used in the functions \link{AgeS_Computation}
 for samples that are all ordered by increasing age.
 }
 \examples{
-# compute the stratigraphic matrix for 3 samples such that the first sample is younger
-# than the second, and the second is younger than the third
 SC <- SC_Ordered(Nb_sample = 3)
 
 }
@@ -32,7 +31,7 @@ Claire Christophe, Anne Philippe, Sebastian Kreutzer, Guillaume Guérin
 } 
 
 \section{How to cite}{
-Christophe, C., Philippe, A., Kreutzer, S., Guérin, G., 2023. SC_Ordered(): Create stratigraphically ordered sample matrix. In: Christophe, C., Philippe, A., Kreutzer, S., Guérin, G., Baumgarten, F.H., 2023. BayLum: Chronological Bayesian Models Integrating Optically Stimulated. R package version 0.3.2.9000-34. https://CRAN.r-project.org/package=BayLum
+Christophe, C., Philippe, A., Kreutzer, S., Guérin, G., 2024. SC_Ordered(): Create Stratigraphically Ordered Sample Matrix. In: Christophe, C., Philippe, A., Kreutzer, S., Guérin, G., Baumgarten, F.H., 2024. BayLum: Chronological Bayesian Models Integrating Optically Stimulated. R package version 0.3.2.9000-47. https://CRAN.r-project.org/package=BayLum
 }
 
 \keyword{datagen}
