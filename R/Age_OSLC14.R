@@ -358,8 +358,8 @@ Age_OSLC14 <- function(
     DATA,
     Data_C14Cal,
     Data_SigmaC14Cal,
-    Nb_sample,
-    SampleNames,
+    Nb_sample = DATA$Nb_sample,
+    SampleNames = DATA$SampleNames,
     SampleNature,
     PriorAge = rep(c(10, 60), Nb_sample),
     SavePdf = FALSE,
@@ -392,7 +392,7 @@ Age_OSLC14 <- function(
   if (inherits(DATA, "BayLum.list")) {
     ## reattach mcmc-list to runjags_object
     DATA$runjags_object$mcmc <- DATA$Sampling
-      
+
     ind_OSL <- which(DATA$runjags_object$args$SampleNature[1,] == 1)
     CS_OSL <- cumsum(DATA$runjags_object$args$SampleNature[1,])
     ind_C14 <- which(DATA$runjags_object$args$SampleNature[2,] == 1)

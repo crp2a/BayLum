@@ -172,7 +172,7 @@
 #' @export
 Age_Computation <- function(
   DATA,
-  SampleName,
+  SampleName = DATA$SampleNames[1],
   PriorAge = c(0.01, 100),
   BinPerSample = c(1),
   SavePdf = FALSE,

@@ -36,6 +36,7 @@ template files
 
 ## Bugfixes and changes
 
+
 * Drop dependency to deprecated package `'ArchaeoPhases'` and make corresponding
 code an internal function (PR #33, @nfrerebeau)
 
@@ -45,7 +46,7 @@ code an internal function (PR #33, @nfrerebeau)
 
 * Add new external files `example.yml` and `yaml_config_reference.yml` 
 
-* `Age_Computation()` now determines the sample name automatically as default.
+* `Age_OSLC14()`, `Age_Computation()`, `AgeS_Computation()` now determines the sample name automatically as default.
 
 ## Deprecated functions
 
