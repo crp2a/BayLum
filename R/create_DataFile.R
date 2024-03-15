@@ -406,7 +406,10 @@ create_DataFile <- function(
     regDose = regDose,
     J = J,
     K = K - 1,
-    Nb_measurement = Nb_measurement)
+    Nb_measurement = Nb_measurement,
+    SampleNames = chk_samples,
+    Nb_sample = n_samples
+    )
 
   ## add attribute originator
   attr(l, "originator") <- "create_DataFile"
