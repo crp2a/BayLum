@@ -26,6 +26,8 @@ Returns a \link{list} that can be processed by the modelling functions of 'BayLu
 \item \bold{J}, a vector giving, for each BIN file, the number of aliquots selected for the analysis;
 \item \bold{K}, a vector giving, for each BIN file, the number of regenerative doses in the SAR protocol;
 \item \bold{Nb_measurement}, a vector giving, for each BIN file, the number of measurements;
+\item \bold{SampleNames}, a character vector with the sample names;
+\item \bold{Nb_sample}, the number of samples in the dataset
 }
 }
 \description{
@@ -79,6 +81,6 @@ Sebastian Kreutzer, Institute of Geography, Ruprecht-Karl University of Heidelbe
 } 
 
 \section{How to cite}{
-Kreutzer, S., Christophe, C., 2023. create_DataFile(): Prepare input data for subsequent BayLum Analysis. Function version 0.1.0. In: Christophe, C., Philippe, A., Kreutzer, S., Guérin, G., Baumgarten, F.H., 2023. BayLum: Chronological Bayesian Models Integrating Optically Stimulated. R package version 0.3.2.9000-35. https://CRAN.r-project.org/package=BayLum
+Kreutzer, S., Christophe, C., 2024. create_DataFile(): Prepare input data for subsequent BayLum Analysis. Function version 0.1.0. In: Christophe, C., Philippe, A., Kreutzer, S., Guérin, G., Baumgarten, F.H., 2024. BayLum: Chronological Bayesian Models Integrating Optically Stimulated. R package version 0.3.2.9000-55. https://CRAN.r-project.org/package=BayLum
 }
 

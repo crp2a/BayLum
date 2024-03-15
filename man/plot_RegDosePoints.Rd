@@ -37,6 +37,6 @@ Sebastian Kreutzer, Institute of Geography, Heidelberg University (Germany)
 } 
 
 \section{How to cite}{
-Kreutzer, S., 2024. plot_RegDosePoints(): Plot Regeneration Dose Points. In: Christophe, C., Philippe, A., Kreutzer, S., Guérin, G., Baumgarten, F.H., 2024. BayLum: Chronological Bayesian Models Integrating Optically Stimulated. R package version 0.3.2.9000-53. https://CRAN.r-project.org/package=BayLum
+Kreutzer, S., 2024. plot_RegDosePoints(): Plot Regeneration Dose Points. In: Christophe, C., Philippe, A., Kreutzer, S., Guérin, G., Baumgarten, F.H., 2024. BayLum: Chronological Bayesian Models Integrating Optically Stimulated. R package version 0.3.2.9000-55. https://CRAN.r-project.org/package=BayLum
 }
 

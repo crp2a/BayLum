@@ -7,13 +7,13 @@
   "codeRepository": "https://github.com/crp2a/BayLum",
   "issueTracker": "https://github.com/crp2a/BayLum/issues",
   "license": "https://spdx.org/licenses/GPL-3.0",
-  "version": "0.3.2.9000.34",
+  "version": "0.3.2.9000.55",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R Under development (unstable) (2023-07-21 r84719)",
+  "runtimePlatform": "R Under development (unstable) (2024-03-10 r86088)",
   "provider": {
     "@id": "https://cran.r-project.org",
     "@type": "Organization",
@@ -212,11 +212,11 @@
     },
     "SystemRequirements": "JAGS >= 4.3.2 (https://mcmc-jags.sourceforge.io/)"
   },
-  "fileSize": "3560.589KB",
+  "fileSize": "3564.012KB",
   "citation": [
     {
       "@type": "SoftwareSourceCode",
-      "datePublished": "2023",
+      "datePublished": "2024",
       "author": [
         {
           "@type": "Person",
@@ -251,7 +251,7 @@
       ],
       "name": "BayLum: Chronological Bayesian Models Integrating Optically Stimulated Luminescence and Radiocarbon Age Dating",
       "url": "https://CRAN.r-project.org/package=BayLum",
-      "description": "R package version 0.3.2.9000-34"
+      "description": "R package version 0.3.2.9000-55"
     },
     {
       "@type": "ScholarlyArticle",

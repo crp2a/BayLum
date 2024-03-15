@@ -6,5 +6,5 @@ all:
 	exclude = c(\
 		'module_check_ReverseDependencies',\
 		'module_add_RLumTeam'),\
-		as_cran = TRUE,\
+		as_cran = FALSE,\
 		write_Rbuildignore = TRUE)";

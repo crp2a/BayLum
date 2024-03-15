@@ -34,4 +34,24 @@ We can also estimate chronology containing 14C age and OSL samples with the func
 Philippe, A., Guérin, G., Kreutzer, S., 2019. BayLum - An R package for Bayesian analysis of OSL ages:
 An introduction. Quaternary Geochronology 49, 16–24. \doi{10.1016/j.quageo.2018.05.009}
 }
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://CRAN.r-project.org/package=BayLum}
+  \item Report bugs at \url{https://github.com/crp2a/BayLum/issues}
+}
+
+}
+\author{
+\strong{Maintainer}: Anne Philippe \email{anne.philippe@univ-nantes.fr} (\href{https://orcid.org/0000-0002-5331-5087}{ORCID})
+
+Authors:
+\itemize{
+  \item Claire Christophe
+  \item Sebastian Kreutzer (\href{https://orcid.org/0000-0002-0734-2199}{ORCID})
+  \item Guillaume Guérin (\href{https://orcid.org/0000-0001-6298-5579}{ORCID})
+  \item Frederik Harly Baumgarten (\href{https://orcid.org/0000-0002-4374-5948}{ORCID})
+}
+
+}
 \keyword{package}
