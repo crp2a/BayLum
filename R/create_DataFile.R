@@ -43,6 +43,8 @@
 #'   \item \bold{J}, a vector giving, for each BIN file, the number of aliquots selected for the analysis;
 #'   \item \bold{K}, a vector giving, for each BIN file, the number of regenerative doses in the SAR protocol;
 #'   \item \bold{Nb_measurement}, a vector giving, for each BIN file, the number of measurements;
+#'   \item \bold{SampleNames}, a character vector with the sample names;
+#'   \item \bold{Nb_sample}, the number of samples in the dataset
 #' }
 #'
 #'@seealso [write_YAMLConfigFile], [yaml::read_yaml], [Luminescence::read_BIN2R], [Luminescence::read_XSYG2R], [Luminescence::subset_SingleGrainData]
@@ -167,14 +169,16 @@ create_DataFile <- function(
 
         ## select function based on file
         switch(
-          strsplit(rev(basename(x)), split = ".", fixed = TRUE)[[1]][1],
+          tolower(rev(strsplit(basename(x), split = ".", fixed = TRUE)[[1]])[1]),
           bin = Luminescence::read_BIN2R(x, fastForward = TRUE, verbose = FALSE, zero_data.rm = TRUE),
-          xsyg = Luminescence::read_XSYG2R(x, fastForward = TRUE, verbose = FALSE)
+          xsyg = Luminescence::read_XSYG2R(x, fastForward = TRUE, verbose = FALSE),
+          stop("[create_DateFile()] Unsupported input file. Supported are BIN/BINX and XSYG files!", call. = FALSE)
         ) |> Luminescence::get_RLum(recordType = c("OSL", "IRSL"), drop = FALSE)
 
       }) |> unlist()
 
     }
+
 
     ## account for the output object nature, which might be a double list (or not)
     if (!inherits(out, "list"))
