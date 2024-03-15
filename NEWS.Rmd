@@ -30,6 +30,10 @@ This function attempts to ease the very pain-stacking process of input data proc
 * Various internal consistency checks to avoid input data are erroneousness; which may lead to very hard to-track-down error messages 
 * Carries information about the number of samples and the sample names
 
+### `plot_RegDosePoints()`
+* The function will replace the deprecated fucntion `LT_RegenDose()`, which was too error-prone
+and complicated to maintain.
+
 ### `write_YAMLConfigFile()`
 This function supplements `create_DataFile()` supporting auto-generated YAML config
 template files
@@ -72,3 +76,4 @@ The following functions are deprecated and will be removed in future versions of
 
 * `Generate_DataFile()`
 * `Generate_DataFile_MG()`
+* `LT_RegenDose()`

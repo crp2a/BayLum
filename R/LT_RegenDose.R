@@ -1,4 +1,4 @@
-#' @title Plots Lx/Tx as a function of the regenerative dose
+#' @title Plots Lx/Tx as a function of the regenerative dose (DEPRECATED)
 #'
 #' @description This function plots `Lx/Tx` values as a function of regenerative dose,
 #' for every selected aliquot and for each sample.
@@ -63,6 +63,8 @@
 #'  SampleNames = samplename,
 #'  Nb_sample = 1,
 #'  SG = FALSE)
+#'
+#' @name LT_RegenDose-deprecated
 #' @md
 #' @export
 LT_RegenDose<-function(
@@ -76,6 +78,8 @@ LT_RegenDose<-function(
   nrow = 3L,
   ncol = nrow
 ){
+
+  .Deprecated("plot_RegDosePoints()")
 
   ##get number of samples
   CSBinPerSample <- cumsum(BinPerSample)
@@ -127,3 +131,4 @@ LT_RegenDose<-function(
     }
   }
 }
+
