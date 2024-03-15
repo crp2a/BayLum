@@ -49,6 +49,9 @@ template files
 ### `AgeS_Computation()`
 * Determines the sample name automatically by default.
 
+### `combine_DataFiles()`
+* Now preserves the originator attribute
+
 ### `SCMatrix()`
 * Interactive mode is now more beautiful and consistently
 * Can now extract information from an object created by `create_DataFile()`

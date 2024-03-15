@@ -41,7 +41,6 @@
 #' @md
 #' @export
 combine_DataFiles <- function(...) {
-
   ## fix problem with R version 3.4.0 and lower
   if(as.numeric(R.version$major) == 3 && as.numeric(R.version$minor) < 5){
      ...length <- function(x = list(...)) length(x)
@@ -60,6 +59,9 @@ combine_DataFiles <- function(...) {
 
   ##get names from the first objects
   names <- names(...elt(1))
+
+  ## extract attributes
+  attr_ <- unique(unlist(lapply(list(...), attr, which = "originator")))
 
   ##test elements
   if(!all(vapply(1:...length(),function(x){all(names %in% names(...elt(x)))}, logical(1))))
@@ -96,6 +98,9 @@ combine_DataFiles <- function(...) {
   ##restore names
   names(temp) <- names
 
+  ##restore originator attribute
+  attr(temp, "originator") <- attr_
+
   # Return --------------------------------------------------------------------------------------
   return(temp)
 
@@ -115,3 +120,8 @@ Concat_DataFile <- function(...){
   combine_DataFiles(...)
 
 }
+
+data("DATA1", envir = environment())
+data("DATA2", envir = environment())
+DATA3 <- combine_DataFiles(L1 = DATA2, L2 = DATA1)
+str(DATA3)
