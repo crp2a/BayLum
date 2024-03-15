@@ -1,46 +1,90 @@
-#' Definition of the stratigraphic constraint matrix
+#' @title Construct the Stratigraphic Constrain Matrix Interactively
 #'
-#' This function helps to define the stratigraphic relation between samples, with questions.
-#' The output of this function can be used in function \code{AgeS_Computation}.
-#'
-#' @param Nb_sample interger: the sample number.
-#' @param SampleNames charcater vector: sample names.
+#' @description
+#
+#' This function helps to define the stratigraphic relation between samples using questions.
+#' The output of this function can be used in the function [AgeS_Computation].
 #'
 #' @details
-#' Ask if sample \code{i} is younger than sample \code{j} to construc the stratigraphic constrain matrix.
+#' The function will ask if sample `i` is younger than sample `j` to construct
+#' the stratigraphic constrain matrix.
 #'
-#' @return A Matrix that summarise the ordered relation between samples.
-#' This matrix can be intergrate in \code{AgeS_Computation} function.
-#' We refer to detail on \code{AgeS_Computation} for more information concerning this matrix.
+#' @param DATA `BayLum.list` (*with default*): Object of class `BayLum.list`, if provided
+#' the other parameters are not any longer mandatory.
 #'
-#' @seealso \code{AgeS_Computation}
+#' @param Nb_sample [integer] (**required**): the sample number, if `DATA` is provided,
+#' the input is not required
 #'
-#' @author Claire Christophe, Anne Philippe, Guillaume Guerin
+#' @param SampleNames [character] (**required**): sample names, if `DATA` is provided,
+#' the input is not required
+#'
+#' @return Returns a [matrix] that summarise the ordered relation between samples.
+#' This matrix can be integrate in [AgeS_Computation] function.
+#' We refer to detail on [AgeS_Computation] for more information concerning this matrix.
+#'
+#' @seealso [AgeS_Computation]
+#'
+#' @author Claire Christophe, Anne Philippe, Guillaume Guérin, Sebastian Kreutzer
 #'
 #' @examples
-#' ## Assume that "sample1" is younger than "sample2"
-#' ## That means the expected value is 1.
-#' ## It is an interactive function.
 #' \dontrun{
-#' SCMatrix(Nb_sample=2,SampleNames=c("sample1","sample2"))
-#' ## Enter the value 1
+#' SCMatrix(
+#'  Nb_sample = 2,
+#'  SampleNames = c("sample1","sample2"))
 #' }
 #'
+#' @md
 #' @export
-SCMatrix<-function(Nb_sample,SampleNames){
-  StratiConstraints=matrix(data=0,ncol=Nb_sample,nrow = (Nb_sample+1))
-  # for(i in 1:Nb_sample){
-  #   R<-readline(paste("Do you want to consider prior age for sample ",SampleNames[i],"? 1 for TRUE or 0 for FALSE --> ",sep=''))
-  #   StratiConstraints[1,i]=as.numeric(R)
-  # }
-  StratiConstraints[1,1]=1
+SCMatrix <- function(
+    DATA = NULL,
+    Nb_sample,
+    SampleNames
+){
+  # set up connection, default to stdin() if not set
+  con <- getOption("SCMatrix.con", stdin())
+
+  ## treat input if DATA is provided
+  if (!is.null(DATA) && inherits(DATA, "BayLum.list")) {
+    if(missing(Nb_sample))
+      Nb_sample <- DATA$Nb_sample
+
+    if(missing(SampleNames))
+      SampleNames <- DATA$SampleNames
+
+  }
+
+  ## set matrix
+  StratiConstraints <- matrix(data = 0, ncol = Nb_sample, nrow = (Nb_sample+1))
+  StratiConstraints[1,1] <- 1
+
+  ## start interactive session
+  cli::cat_line("[SCMatrix()]")
+  cli::cat_rule("(interactive session - start)")
   for(i in 2:Nb_sample){
-    StratiConstraints[1,i]=1
+    StratiConstraints[1,i] <- 1
     for(j in 1:(i-1)){
-      R<-readline(paste(SampleNames[j]," is younger than sample ",SampleNames[i],"? 1 for TRUE or 0 for FALSE --> ",sep=''))
-      StratiConstraints[(j+1),i]=as.numeric(R)
+      cli::cat_bullet(
+        paste0("Is sample <", SampleNames[j], "> younger than sample <", SampleNames[i],"> (y/n)?"),
+        col = "red")
+
+      ## make selection
+      R <- switch(
+        readLines(con, n = 1),
+        "y" = 1,
+        "yes" = 1,
+        "1" = 1,
+        "n" = 0,
+        "no" = 0,
+        "0" = 0,
+        stop("[SCMatrix()] Answer not supported!", call. = FALSE)
+      )
+
+      StratiConstraints[(j+1),i] <- R
     }
   }
+  cli::cat_rule("(interactive session - end)")
+
+  ## output
   return(StratiConstraints)
 }
 

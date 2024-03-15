@@ -36,6 +36,20 @@ template files
 
 ## Bugfixes and changes
 
+### `Age_OSLC14()`
+* Determines the sample name automatically by default.
+
+### `Age_Computation()`
+* Determines the sample name automatically by default.
+
+### `AgeS_Computation()`
+* Determines the sample name automatically by default.
+
+### `SCMatrix()`
+* Interactive mode is now more beautiful and consistently
+* Can now extract information from an object created by `create_DataFile()`
+
+### Miscellaneous 
 
 * Drop dependency to deprecated package `'ArchaeoPhases'` and make corresponding
 code an internal function (PR #33, @nfrerebeau)
@@ -45,8 +59,6 @@ code an internal function (PR #33, @nfrerebeau)
 * Bump version requirement for `'Luminescence'` to >= v0.9.22
 
 * Add new external files `example.yml` and `yaml_config_reference.yml` 
-
-* `Age_OSLC14()`, `Age_Computation()`, `AgeS_Computation()` now determines the sample name automatically as default.
 
 ## Deprecated functions
 
