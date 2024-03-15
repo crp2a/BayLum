@@ -63,6 +63,9 @@ code an internal function (PR #33, @nfrerebeau)
 
 * Add new external files `example.yml` and `yaml_config_reference.yml` 
 
+* Internal datasets `DATA1`, `DATA2`, `DATA3` were updated to be consistent with the 
+new function `create_DataFile()`
+
 ## Deprecated functions
 
 The following functions are deprecated and will be removed in future versions of BayLum
