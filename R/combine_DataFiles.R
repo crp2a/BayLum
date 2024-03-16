@@ -98,6 +98,9 @@ combine_DataFiles <- function(...) {
   ##restore names
   names(temp) <- names
 
+  ## correct Nb_sample
+  temp$Nb_sample <- sum(temp$Nb_sample)
+
   ##restore originator attribute
   attr(temp, "originator") <- attr_
 
@@ -120,8 +123,3 @@ Concat_DataFile <- function(...){
   combine_DataFiles(...)
 
 }
-
-data("DATA1", envir = environment())
-data("DATA2", envir = environment())
-DATA3 <- combine_DataFiles(L1 = DATA2, L2 = DATA1)
-str(DATA3)
