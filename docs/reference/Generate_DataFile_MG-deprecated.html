@@ -22,7 +22,7 @@ than one BIN-file per sample."><!-- mathjax --><script src="https://cdnjs.cloudf
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">BayLum</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.3.2.9000-34</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.3.2.9000-59</span>
       </span>
     </div>
 
@@ -195,7 +195,7 @@ Then, to load this list you can use the function <code><a href="https://rdrr.io/
     <p>With <code>Path</code> and <code>FolderNames</code>, this function goes to the sub folders containing the BIN files and associated information to compute
 the luminescence data.<br></p>
 <p>** What are the required files in each subfolder? **<br></p>
-<p>Each subfolder can be named, for example, as the sample name followed by a number; it must contain:</p><ul><li><p><b>bin.BIN</b>, the bin file renamed as bin.BIN (note: the name of all files matters);</p></li>
+<p>Each subfolder can be named, for example, as the sample name followed by a number; it must contain:</p><ul><li><p><b>bin.bin</b>, the bin file renamed as bin.BIN (note: the name of all files matters);</p></li>
 <li><p><b>Disc.csv</b>, a one columns csv file containing the list of disc number of the previously selected grains
 (typically this list will include the position of grains based on their sensitivity, recycling or other properties);</p></li>
 <li><p><b>DoseEnv.csv</b>, a two columns file containing the observation of the natural (or environmental),
@@ -243,7 +243,7 @@ for the second sample. In this case, <code>BinPerSample=c(2,1)</code>.</p>
     </div>
     <div id="see-also">
     <h2>See also</h2>
-    <div class="dont-index"><p><code>read_BIN2R</code>, <code><a href="combine_DataFiles.html">combine_DataFiles</a></code>, <code><a href="LT_RegenDose.html">LT_RegenDose</a></code>
+    <div class="dont-index"><p><code>read_BIN2R</code>, <code><a href="combine_DataFiles.html">combine_DataFiles</a></code>, <code><a href="LT_RegenDose-deprecated.html">LT_RegenDose</a></code>
 <code><a href="Age_Computation.html">Age_Computation</a></code>, <code><a href="AgeS_Computation.html">AgeS_Computation</a></code>, <code><a href="Palaeodose_Computation.html">Palaeodose_Computation</a></code></p></div>
     </div>
     <div id="author">
@@ -252,7 +252,7 @@ for the second sample. In this case, <code>BinPerSample=c(2,1)</code>.</p>
     </div>
     <div id="how-to-cite">
     <h2>How to cite</h2>
-    <p>Christophe, C., Kreutzer, S., Philippe, A., Guérin, G., 2023. Generate_DataFile_MG-deprecated(): Generates, from one (or several) BIN file(s) of Multi-grain OSL measurements a list of luminescence data and information before statistical analysis (DEPRECATED). In: Christophe, C., Philippe, A., Kreutzer, S., Guérin, G., Baumgarten, F.H., 2023. BayLum: Chronological Bayesian Models Integrating Optically Stimulated. R package version 0.3.2.9000-34. https://CRAN.r-project.org/package=BayLum</p>
+    <p>Christophe, C., Kreutzer, S., Philippe, A., Guérin, G., 2024. Generate_DataFile_MG-deprecated(): Generates, from one (or several) BIN file(s) of Multi-grain OSL measurements a list of luminescence data and information before statistical analysis (DEPRECATED). In: Christophe, C., Philippe, A., Kreutzer, S., Guérin, G., Baumgarten, F.H., 2024. BayLum: Chronological Bayesian Models Integrating Optically Stimulated. R package version 0.3.2.9000-59. https://CRAN.r-project.org/package=BayLum</p>
     </div>
 
     <div id="ref-examples">

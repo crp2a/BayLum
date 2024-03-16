@@ -22,7 +22,7 @@ Single-grain or Multi-grain OSL measurements can be analysed simultaneously."><!
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">BayLum</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.3.2.9000-34</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.3.2.9000-59</span>
       </span>
     </div>
 
@@ -91,8 +91,8 @@ Single-grain or Multi-grain OSL measurements can be analysed simultaneously.</p>
     <div id="ref-usage">
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">AgeS_Computation</span><span class="op">(</span></span>
 <span>  <span class="va">DATA</span>,</span>
-<span>  <span class="va">SampleNames</span>,</span>
-<span>  <span class="va">Nb_sample</span>,</span>
+<span>  SampleNames <span class="op">=</span> <span class="va">DATA</span><span class="op">$</span><span class="va">SampleNames</span>,</span>
+<span>  Nb_sample <span class="op">=</span> <span class="va">DATA</span><span class="op">$</span><span class="va">Nb_sample</span>,</span>
 <span>  PriorAge <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.01</span>, <span class="fl">100</span><span class="op">)</span>, <span class="va">Nb_sample</span><span class="op">)</span>,</span>
 <span>  BinPerSample <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">1</span>, <span class="va">Nb_sample</span><span class="op">)</span>,</span>
 <span>  SavePdf <span class="op">=</span> <span class="cn">FALSE</span>,</span>
@@ -377,7 +377,7 @@ of the age estimates if the chains have converged.</p>
     </div>
     <div id="how-to-cite">
     <h2>How to cite</h2>
-    <p>Christophe, C., Philippe, A., Guérin, G., Kreutzer, S., 2023. AgeS_Computation(): Bayesian analysis for OSL age estimation of various samples. In: Christophe, C., Philippe, A., Kreutzer, S., Guérin, G., Baumgarten, F.H., 2023. BayLum: Chronological Bayesian Models Integrating Optically Stimulated. R package version 0.3.2.9000-34. https://CRAN.r-project.org/package=BayLum</p>
+    <p>Christophe, C., Philippe, A., Guérin, G., Kreutzer, S., 2024. AgeS_Computation(): Bayesian analysis for OSL age estimation of various samples. In: Christophe, C., Philippe, A., Kreutzer, S., Guérin, G., Baumgarten, F.H., 2024. BayLum: Chronological Bayesian Models Integrating Optically Stimulated. R package version 0.3.2.9000-59. https://CRAN.r-project.org/package=BayLum</p>
     </div>
     <div id="references">
     <h2>References</h2>

@@ -20,7 +20,7 @@ the modelling are controlled by a to be supplied YAML configuration file
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">BayLum</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.3.2.9000-34</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.3.2.9000-59</span>
       </span>
     </div>
 
@@ -116,6 +116,8 @@ This enables on-the fly modifications</p></dd>
 <li><p><b>J</b>, a vector giving, for each BIN file, the number of aliquots selected for the analysis;</p></li>
 <li><p><b>K</b>, a vector giving, for each BIN file, the number of regenerative doses in the SAR protocol;</p></li>
 <li><p><b>Nb_measurement</b>, a vector giving, for each BIN file, the number of measurements;</p></li>
+<li><p><b>SampleNames</b>, a character vector with the sample names;</p></li>
+<li><p><b>Nb_sample</b>, the number of samples in the dataset</p></li>
 </ul></div>
     <div id="details">
     <h2>Details</h2>
@@ -145,7 +147,7 @@ in the YAML file.</p>
     </div>
     <div id="how-to-cite">
     <h2>How to cite</h2>
-    <p>Kreutzer, S., Christophe, C., 2023. create_DataFile(): Prepare input data for subsequent BayLum Analysis. Function version 0.1.0. In: Christophe, C., Philippe, A., Kreutzer, S., Guérin, G., Baumgarten, F.H., 2023. BayLum: Chronological Bayesian Models Integrating Optically Stimulated. R package version 0.3.2.9000-34. https://CRAN.r-project.org/package=BayLum</p>
+    <p>Kreutzer, S., Christophe, C., 2024. create_DataFile(): Prepare input data for subsequent BayLum Analysis. Function version 0.1.0. In: Christophe, C., Philippe, A., Kreutzer, S., Guérin, G., Baumgarten, F.H., 2024. BayLum: Chronological Bayesian Models Integrating Optically Stimulated. R package version 0.3.2.9000-59. https://CRAN.r-project.org/package=BayLum</p>
     </div>
 
     <div id="ref-examples">
@@ -153,8 +155,8 @@ in the YAML file.</p>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co">##set path to YAML file</span></span></span>
 <span class="r-in"><span><span class="va">yaml_file</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata/example.yml"</span>, package <span class="op">=</span> <span class="st">"BayLum"</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="va">samp1_file</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata/samp1/bin.BIN"</span>, package <span class="op">=</span> <span class="st">"BayLum"</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">samp2_file</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata/samp2/bin.BIN"</span>, package <span class="op">=</span> <span class="st">"BayLum"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">samp1_file</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata/samp1/bin.bin"</span>, package <span class="op">=</span> <span class="st">"BayLum"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">samp2_file</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata/samp2/bin.bin"</span>, package <span class="op">=</span> <span class="st">"BayLum"</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co">## import BIN files</span></span></span>
 <span class="r-in"><span><span class="va">samp1</span> <span class="op">&lt;-</span> <span class="fu">Luminescence</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/Luminescence/man/read_BIN2R.html" class="external-link">read_BIN2R</a></span><span class="op">(</span><span class="va">samp1_file</span>, verbose <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
@@ -166,10 +168,10 @@ in the YAML file.</p>
 <span class="r-in"><span><span class="fu">create_DataFile</span><span class="op">(</span><span class="va">yaml_file</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> ── BayLum - [create_DataFile()] ────────────────────────────────────────────────</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> ⠙ Load YAML configuration file ... </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> Load YAML configuration file ...  <span style="color: #B2B2B2;">[5ms]</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> Load YAML configuration file ...  <span style="color: #B2B2B2;">[4ms]</span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> ⠙ Sanitize sample names ... </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> Sanitize sample names ...  <span style="color: #B2B2B2;">[5ms]</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> Sanitize sample names ...  <span style="color: #B2B2B2;">[11ms]</span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> ⠙ Generate object list ... </span>
 <span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error:</span> [create_DataFile()] &lt;samp1&gt; is not a valid object in the working environment!</span>

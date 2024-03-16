@@ -88,6 +88,9 @@
     <loc>/reference/IntCal20.html</loc>
   </url>
   <url>
+    <loc>/reference/LT_RegenDose-deprecated.html</loc>
+  </url>
+  <url>
     <loc>/reference/LT_RegenDose.html</loc>
   </url>
   <url>
@@ -164,6 +167,9 @@
   </url>
   <url>
     <loc>/reference/plot_MCMC.html</loc>
+  </url>
+  <url>
+    <loc>/reference/plot_RegDosePoints.html</loc>
   </url>
   <url>
     <loc>/reference/plot_Scatterplots.html</loc>

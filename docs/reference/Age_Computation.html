@@ -19,7 +19,7 @@ A sample, for which data is available in several BIN files, can be analysed."><!
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">BayLum</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.3.2.9000-34</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.3.2.9000-59</span>
       </span>
     </div>
 
@@ -85,7 +85,7 @@ A sample, for which data is available in several BIN files, can be analysed.</p>
     <div id="ref-usage">
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">Age_Computation</span><span class="op">(</span></span>
 <span>  <span class="va">DATA</span>,</span>
-<span>  <span class="va">SampleName</span>,</span>
+<span>  SampleName <span class="op">=</span> <span class="va">DATA</span><span class="op">$</span><span class="va">SampleNames</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>,</span>
 <span>  PriorAge <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.01</span>, <span class="fl">100</span><span class="op">)</span>,</span>
 <span>  BinPerSample <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span>,</span>
 <span>  SavePdf <span class="op">=</span> <span class="cn">FALSE</span>,</span>
@@ -272,7 +272,7 @@ of the age estimates if the chains have converged.</p>
     </div>
     <div id="how-to-cite">
     <h2>How to cite</h2>
-    <p>Christophe, C., Kreutzer, S., Philippe, A., Guérin, G., 2023. Age_Computation(): Bayesian analysis for the OSL age estimation of one sample. In: Christophe, C., Philippe, A., Kreutzer, S., Guérin, G., Baumgarten, F.H., 2023. BayLum: Chronological Bayesian Models Integrating Optically Stimulated. R package version 0.3.2.9000-34. https://CRAN.r-project.org/package=BayLum</p>
+    <p>Christophe, C., Kreutzer, S., Philippe, A., Guérin, G., 2024. Age_Computation(): Bayesian analysis for the OSL age estimation of one sample. In: Christophe, C., Philippe, A., Kreutzer, S., Guérin, G., Baumgarten, F.H., 2024. BayLum: Chronological Bayesian Models Integrating Optically Stimulated. R package version 0.3.2.9000-59. https://CRAN.r-project.org/package=BayLum</p>
     </div>
     <div id="references">
     <h2>References</h2>
@@ -315,9 +315,9 @@ Quaternary Geochronology 28, 62-70. doi:10.1016/j.quageo.2015.04.001</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> &gt;&gt; Results of the Gelman and Rubin criterion of convergence &lt;&lt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ----------------------------------------------</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 	 Point estimate Uppers confidence interval</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> A	 1.058 		 1.23 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> D	 1.25 		 1.764 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> sD	 0.992 		 0.999 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> A	 1.036 		 1.144 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> D	 1.05 		 1.201 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> sD	 0.982 		 0.994 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ---------------------------------------------------------------------------------------------------</span>
@@ -326,20 +326,20 @@ Quaternary Geochronology 28, 62-70. doi:10.1016/j.quageo.2015.04.001</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> parameter 	 Bayes estimate 	  Credible interval </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ----------------------------------------------</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> A 		 46.493 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> A 		 46.452 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 						 lower bound 	 upper bound</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 				 at level 95%	 39.53 		 51.896 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 				 at level 68%	 42.66 		 48.24 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 				 at level 95%	 38.03 		 55.911 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 				 at level 68%	 41.44 		 49.998 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ----------------------------------------------</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> D 		 102.295 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> D 		 103.448 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 						 lower bound 	 upper bound</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 				 at level 95%	 94.652 		 103.832 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 				 at level 68%	 98.057 		 101.888 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 				 at level 95%	 97.897 		 108.211 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 				 at level 68%	 100.199 		 105.887 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ----------------------------------------------</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> sD 		 15.274 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> sD 		 14.996 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 						 lower bound 	 upper bound</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 				 at level 95%	 11.636 		 21.013 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 				 at level 68%	 11.636 		 15.169 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 				 at level 95%	 10.672 		 19.067 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 				 at level 68%	 13.056 		 17.538 </span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
