@@ -185,7 +185,7 @@ Age <- Age_Computation(
 } 
 
 \section{How to cite}{
-Christophe, C., Kreutzer, S., Philippe, A., Guérin, G., 2024. Age_Computation(): Bayesian analysis for the OSL age estimation of one sample. In: Christophe, C., Philippe, A., Kreutzer, S., Guérin, G., Baumgarten, F.H., 2024. BayLum: Chronological Bayesian Models Integrating Optically Stimulated. R package version 0.3.2.9000-61. https://CRAN.r-project.org/package=BayLum
+Christophe, C., Kreutzer, S., Philippe, A., Guérin, G., 2024. Age_Computation(): Bayesian analysis for the OSL age estimation of one sample. In: Christophe, C., Philippe, A., Kreutzer, S., Guérin, G., Baumgarten, F.H., 2024. BayLum: Chronological Bayesian Models Integrating Optically Stimulated. R package version 0.3.2. https://CRAN.r-project.org/package=BayLum
 }
 
 \references{
