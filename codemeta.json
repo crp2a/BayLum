@@ -44,6 +44,12 @@
       "givenName": "Frederik Harly",
       "familyName": "Baumgarten",
       "@id": "https://orcid.org/0000-0002-4374-5948"
+    },
+    {
+      "@type": "Person",
+      "givenName": "Nicolas",
+      "familyName": "Frerebeau",
+      "@id": "https://orcid.org/0000-0001-5759-4944"
     }
   ],
   "maintainer": [
@@ -206,7 +212,7 @@
     },
     "SystemRequirements": "JAGS >= 4.3.2 (https://mcmc-jags.sourceforge.io/)"
   },
-  "fileSize": "3563.793KB",
+  "fileSize": "3571.25KB",
   "citation": [
     {
       "@type": "SoftwareSourceCode",
@@ -241,6 +247,12 @@
           "givenName": "Frederik Harly",
           "familyName": "Baumgarten",
           "@id": "https://orcid.org/0000-0002-4374-5948"
+        },
+        {
+          "@type": "Person",
+          "givenName": "Nicolas",
+          "familyName": "Frerebeau",
+          "@id": "https://orcid.org/0000-0001-5759-4944"
         }
       ],
       "name": "BayLum: Chronological Bayesian Models Integrating Optically Stimulated Luminescence and Radiocarbon Age Dating",

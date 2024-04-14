@@ -172,6 +172,6 @@ Claire Christophe, Sebastian Kreutzer, Anne Philippe, Guillaume Guerin
 } 
 
 \section{How to cite}{
-Christophe, C., Kreutzer, S., Philippe, A., 2024. Generate_DataFile-deprecated(): Generates, from one (or several) BIN-file(s) of Single-grain OSL measurements, a list of luminescence data and information before statistical analysis (DEPRECATED). In: Christophe, C., Philippe, A., Kreutzer, S., Guérin, G., Baumgarten, F.H., 2024. BayLum: Chronological Bayesian Models Integrating Optically Stimulated. R package version 0.3.2. https://CRAN.r-project.org/package=BayLum
+Christophe, C., Kreutzer, S., Philippe, A., 2024. Generate_DataFile-deprecated(): Generates, from one (or several) BIN-file(s) of Single-grain OSL measurements, a list of luminescence data and information before statistical analysis (DEPRECATED). In: Christophe, C., Philippe, A., Kreutzer, S., Guérin, G., Baumgarten, F.H., Frerebeau, N., 2024. BayLum: Chronological Bayesian Models Integrating Optically Stimulated. R package version 0.3.2. https://CRAN.r-project.org/package=BayLum
 }
 
