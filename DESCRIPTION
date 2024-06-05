@@ -36,6 +36,7 @@ Suggests:
   testthat (>= 3.1.7),
   R.rsp (>= 0.45.0)
 License: GPL-3
+Language: en-GB
 Encoding: UTF-8
 URL: https://CRAN.r-project.org/package=BayLum
 BugReports: https://github.com/crp2a/BayLum/issues
