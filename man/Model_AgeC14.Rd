@@ -28,7 +28,7 @@ Reimer PJ, Bard E, Bayliss A, Beck JW, Blackwell PC, Bronl Ramsey C, Buck CE, Ch
 Hogg AG, Hua Q, Blackwell PG, Niu M, Buck CE, Guilderson TP, Heaton TJ, Palmer JG, Reimer PJ, Reimer RW, Turney CSM, Zimmerman SRH. 2013. SHCal13 Southern Hemisphere calibration, 0-50000 years cal BP. Radiocarbon 55(4):1889-1903
 }
 \seealso{
-\code{\link{rjags}}
+\link[rjags:rjags-package]{rjags::rjags-package}
 }
 \examples{
 data(Model_AgeC14)

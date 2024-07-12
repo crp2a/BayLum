@@ -60,7 +60,7 @@
 #'
 #' @param n.chains [integer] (with default): number of independent chains for the model (for more information see [rjags::jags.model].
 #'
-#' @param quiet [logical] (with default): enables/disables [rjags] messages
+#' @param quiet [logical] (with default): enables/disables [rjags::rjags-package] messages
 #'
 #' @param roundingOfValue  [integer] (with default):  Integer indicating the number of decimal places to be used, default set to 3.
 #'
@@ -146,7 +146,7 @@
 #' of the age estimates if the chains have converged.
 #'
 #' @seealso
-#' [rjags], [plot_MCMC], [SCMatrix], [plot_Ages]
+#' [rjags::rjags-package], [plot_MCMC], [SCMatrix], [plot_Ages]
 #'
 #' @references
 #' Christen, JA (1994). Summarizing a set of radiocarbon determinations: a robust approach. Applied Statistics, 489-503.

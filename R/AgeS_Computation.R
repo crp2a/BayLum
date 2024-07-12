@@ -244,7 +244,7 @@
 #' initial value generation of JAGS. This is not optimal and will be changed in future. However, it does not affect the quality
 #' of the age estimates if the chains have converged.
 #'
-#' @seealso [Generate_DataFile], [Generate_DataFile_MG], [rjags], [plot_MCMC], [SCMatrix], [Age_Computation], [Palaeodose_Computation], [plot_Ages], [create_ThetaMatrix], [runjags]
+#' @seealso [Generate_DataFile], [Generate_DataFile_MG], [rjags::rjags-package], [plot_MCMC], [SCMatrix], [Age_Computation], [Palaeodose_Computation], [plot_Ages], [create_ThetaMatrix], [runjags::autorun.jags]
 #'
 #' @references
 #' Combes, Benoit and Philippe, Anne, 2017.

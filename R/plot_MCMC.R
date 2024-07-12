@@ -54,7 +54,7 @@
 #' is a re-written version of the function 'MCMC_plot()' by Claire Christophe
 #'
 #' @seealso [Age_Computation], [AgeS_Computation], [Palaeodose_Computation],
-#' [rjags::coda.samples] and [rjags] packages.
+#' [rjags::coda.samples] and [rjags::rjags-package]
 #'
 #' @examples
 #' data(MCMCsample,envir = environment())

@@ -19,5 +19,5 @@ knitr::opts_chunk$set(
 
 
 ### Miscellaneous 
-
+* Fix various anchors in the manual with broken targed (CRAN request) 
 

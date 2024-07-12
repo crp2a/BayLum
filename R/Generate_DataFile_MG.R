@@ -127,14 +127,14 @@
 #'
 #' ** How to save this list **
 #'
-#' You can save this list in a .RData object. To do this, you can use the function \code{\link{save}}.
+#' You can save this list in a `.RData` object. To do this, you can use the function \code{\link{save}}.
 #' Then, to load this list you can use the function \code{\link{load}} (see example section fore more details).
 #'
 #' @author Claire Christophe, Sebastian Kreutzer, Anne Philippe, Guillaume Guérin
 #'
 #' @note The function imports only BIN/BINX-file records which have been previously selected.
 #'
-#' @seealso \code{\link{read_BIN2R}}, \code{\link{combine_DataFiles}}, \code{\link{LT_RegenDose}}
+#' @seealso [Luminescence::read_BIN2R], \code{\link{combine_DataFiles}}, \code{\link{LT_RegenDose}}
 #' \code{\link{Age_Computation}}, \code{\link{AgeS_Computation}}, \code{\link{Palaeodose_Computation}}
 #'
 #' @examples

@@ -1,7 +1,7 @@
 #'@title Prepare input data for subsequent BayLum Analysis
 #'
 #'@description The function pre-processes input data from BIN/BINX file, XSYG files
-#'or [RLum.Analysis-class] objects for `'BayLum'`. The parameters for
+#'or [Luminescence::RLum.Analysis-class] objects for `'BayLum'`. The parameters for
 #'the modelling are controlled by a to be supplied YAML configuration file
 #'(please read package vignette).
 #'

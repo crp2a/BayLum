@@ -34,7 +34,7 @@ Technische Universit at Wien, Austria.
 Plummer, M. (2015). JAGS Version 4.0. 0 user manual.
 }
 \seealso{
-\code{\link{rjags}}
+\link[rjags:rjags-package]{rjags::rjags-package}
 }
 \examples{
 data(Model_Palaeodose)

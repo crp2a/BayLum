@@ -118,7 +118,7 @@
 #' @param Iter [integer] (with default): the number of iterations to run and who will be used to assess convergence and ages (see [runjags::run.jags]]).
 #'
 #' @param t [numeric] (with default): 1 every `t` iterations of the MCMC is
-#' considered for sampling the posterior distribution (for more information see [[rjags::jags.model].
+#' considered for sampling the posterior distribution (for more information see [rjags::jags.model].
 #'
 #' @param n.chains [numeric] (with default): number of independent chains for the model
 #' (for more information see [[rjags::jags.model]).
@@ -127,7 +127,7 @@
 #'
 #' @param autorun [logical] (with default): choose to automate JAGS processing. JAGS model will be automatically extended until convergence is reached (for more information see [runjags::autorun.jags]).
 #'
-#' @param quiet [logical] (with default): enables/disables [rjags] messages
+#' @param quiet [logical] (with default): enables/disables [rjags::rjags-package] messages
 #'
 #' @param roundingOfValue [integer] (with default):  Integer indicating the number of decimal places to be used, default = 3.
 #
@@ -297,7 +297,7 @@
 #' of the age estimates if the chains have converged.
 #'
 #' @seealso
-#' [runjags], [plot_MCMC], [SCMatrix], [plot_Ages]
+#' [runjags::run.jags], [plot_MCMC], [SCMatrix], [plot_Ages]
 #'
 #' @references
 #' Reimer PJ, Bard E, Bayliss A, Beck JW, Blackwell PC, Bronl Ramsey C, Buck CE, Cheng H, Edwards RL, Friedrich M,

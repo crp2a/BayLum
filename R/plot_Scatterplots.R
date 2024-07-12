@@ -61,7 +61,7 @@
 #' based on the function 'ScatterSamples()' by Claire Christophe, Anne Philippe, Guillaume Guérin
 #'
 #' @seealso [Age_Computation], [AgeS_Computation], [AgeC14_Computation],
-#' and [rjags] packages.
+#' and [rjags::rjags-package] packages.
 #'
 #' @examples
 #' data(AgeS,envir = environment())
