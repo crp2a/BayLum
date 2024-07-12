@@ -83,7 +83,7 @@ The decimal of this file must be a dot, and the separator must be a comma. }
 
 \item{n.chains}{\link{integer} (with default): number of independent chains for the model (for more information see \link[rjags:jags.model]{rjags::jags.model}.}
 
-\item{quiet}{\link{logical} (with default): enables/disables \link{rjags} messages}
+\item{quiet}{\link{logical} (with default): enables/disables \link[rjags:rjags-package]{rjags::rjags-package} messages}
 
 \item{roundingOfValue}{\link{integer} (with default):  Integer indicating the number of decimal places to be used, default set to 3.}
 }
@@ -193,7 +193,7 @@ Age <- AgeC14_Computation(
 } 
 
 \section{How to cite}{
-Christophe, C., Philippe, A., Guérin, G., Kreutzer, S., 2024. AgeC14_Computation(): Bayesian analysis for C-14 age estimations of various samples. In: Christophe, C., Philippe, A., Kreutzer, S., Guérin, G., Baumgarten, F.H., Frerebeau, N., 2024. BayLum: Chronological Bayesian Models Integrating Optically Stimulated. R package version 0.3.2. https://CRAN.r-project.org/package=BayLum
+Christophe, C., Philippe, A., Guérin, G., Kreutzer, S., 2024. AgeC14_Computation(): Bayesian analysis for C-14 age estimations of various samples. In: Christophe, C., Philippe, A., Kreutzer, S., Guérin, G., Baumgarten, F.H., Frerebeau, N., 2024. BayLum: Chronological Bayesian Models Integrating Optically Stimulated. R package version 0.3.3.9000-13. https://CRAN.r-project.org/package=BayLum
 }
 
 \references{
@@ -208,7 +208,7 @@ Hogg AG, Hua Q, Blackwell PG, Niu M, Buck CE, Guilderson TP, Heaton TJ, Palmer J
 2013. SHCal13 Southern Hemisphere calibration, 0-50000 years cal. BP Radiocarbon 55(4):1889-1903
 }
 \seealso{
-\link{rjags}, \link{plot_MCMC}, \link{SCMatrix}, \link{plot_Ages}
+\link[rjags:rjags-package]{rjags::rjags-package}, \link{plot_MCMC}, \link{SCMatrix}, \link{plot_Ages}
 }
 \author{
 Claire Christophe, Anne Philippe, Guillaume Guérin, Sebastian Kreutzer

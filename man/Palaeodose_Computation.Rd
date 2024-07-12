@@ -34,8 +34,8 @@ provided by \code{\link{Generate_DataFile}} or \code{\link{Generate_DataFile_MG}
 
 \item{BinPerSample}{integer vector (with default): vector with the number of BIN files per sample.
 The length of this vector is equal to \code{Nb_sample}.
-\code{BinPerSample}[i] correponds to the number of BIN files for the sample whose number ID is equal to \code{i}.
-For more information to fill this vector, we refer to detatils in \code{\link{Generate_DataFile}} or \code{\link{Generate_DataFile_MG}}.}
+\code{BinPerSample}[i] corresponds to the number of BIN files for the sample whose number ID is equal to \code{i}.
+For more information to fill this vector, we refer to details in \code{\link{Generate_DataFile}} or \code{\link{Generate_DataFile_MG}}.}
 
 \item{SavePdf}{boolean (with default): if TRUE save graph in pdf file named \code{OutputFileName} in folder \code{OutputFilePath}.}
 
@@ -61,12 +61,12 @@ Please see details for more informations on the proposed growth curves.}
 how individual equivalent dose values are distributed around the palaeodose.
 Allowed inputs are \bold{"cauchy"}, \bold{"gaussian"}, \bold{"lognormal_A"} and \bold{"lognormal_M"}.}
 
-\item{Iter}{integer (with default): number of iterations for the MCMC computation (for more information see \code{\link{jags.model}}).}
+\item{Iter}{integer (with default): number of iterations for the MCMC computation (for more information see [rjags::jags.model]).}
 
 \item{t}{integer (with default): 1 every \code{t} iterations of the MCMC is considered for sampling the posterior distribution
-(for more information see \code{\link{jags.model}}).}
+(for more information see [rjags::jags.model]).}
 
-\item{n.chains}{integer (with default): number of independent chains for the model (for more information see \code{\link{jags.model}}).}
+\item{n.chains}{integer (with default): number of independent chains for the model (for more information see [rjags::jags.model]).}
 }
 \value{
 \bold{NUMERICAL OUTPUT}\cr
@@ -169,7 +169,7 @@ P=Palaeodose_Computation(DATA=DATA1,Nb_sample=1,SampleNames=c("GDB5"),Iter=100)
 } 
 
 \section{How to cite}{
-Christophe, C., Kreutzer, S., Philippe, A., Guérin, G., 2024. Palaeodose_Computation(): Bayesian analysis for the palaeodose estimation of various samples. In: Christophe, C., Philippe, A., Kreutzer, S., Guérin, G., Baumgarten, F.H., Frerebeau, N., 2024. BayLum: Chronological Bayesian Models Integrating Optically Stimulated. R package version 0.3.2. https://CRAN.r-project.org/package=BayLum
+Christophe, C., Kreutzer, S., Philippe, A., Guérin, G., 2024. Palaeodose_Computation(): Bayesian analysis for the palaeodose estimation of various samples. In: Christophe, C., Philippe, A., Kreutzer, S., Guérin, G., Baumgarten, F.H., Frerebeau, N., 2024. BayLum: Chronological Bayesian Models Integrating Optically Stimulated. R package version 0.3.3.9000-13. https://CRAN.r-project.org/package=BayLum
 }
 
 \references{
@@ -179,7 +179,7 @@ Quaternary Geochronology 28, 62-70. doi:10.1016/j.quageo.2015.04.001
 }
 \seealso{
 \code{\link{Generate_DataFile}}, \code{\link{Generate_DataFile_MG}}, \code{\link{combine_DataFiles}},
-\code{\link{rjags}}, \code{\link{plot_MCMC}},
+[rjags::rjags-package], [plot_MCMC],
 \code{\link{Age_Computation}}, \code{\link{AgeS_Computation}}
 }
 \author{

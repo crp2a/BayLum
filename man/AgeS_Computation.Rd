@@ -354,7 +354,7 @@ Age <- AgeS_Computation(
 } 
 
 \section{How to cite}{
-Christophe, C., Philippe, A., Guérin, G., Kreutzer, S., 2024. AgeS_Computation(): Bayesian analysis for OSL age estimation of various samples. In: Christophe, C., Philippe, A., Kreutzer, S., Guérin, G., Baumgarten, F.H., Frerebeau, N., 2024. BayLum: Chronological Bayesian Models Integrating Optically Stimulated. R package version 0.3.2. https://CRAN.r-project.org/package=BayLum
+Christophe, C., Philippe, A., Guérin, G., Kreutzer, S., 2024. AgeS_Computation(): Bayesian analysis for OSL age estimation of various samples. In: Christophe, C., Philippe, A., Kreutzer, S., Guérin, G., Baumgarten, F.H., Frerebeau, N., 2024. BayLum: Chronological Bayesian Models Integrating Optically Stimulated. R package version 0.3.3.9000-13. https://CRAN.r-project.org/package=BayLum
 }
 
 \references{
@@ -367,7 +367,7 @@ A Bayesian central equivalent dose model for optically stimulated luminescence d
 Quaternary Geochronology 28, 62-70. doi:10.1016/j.quageo.2015.04.001
 }
 \seealso{
-\link{Generate_DataFile}, \link{Generate_DataFile_MG}, \link{rjags}, \link{plot_MCMC}, \link{SCMatrix}, \link{Age_Computation}, \link{Palaeodose_Computation}, \link{plot_Ages}, \link{create_ThetaMatrix}, \link{runjags}
+\link{Generate_DataFile}, \link{Generate_DataFile_MG}, \link[rjags:rjags-package]{rjags::rjags-package}, \link{plot_MCMC}, \link{SCMatrix}, \link{Age_Computation}, \link{Palaeodose_Computation}, \link{plot_Ages}, \link{create_ThetaMatrix}, \link[runjags:autorun.jags]{runjags::autorun.jags}
 }
 \author{
 Claire Christophe, Anne Philippe, Guillaume Guérin, Sebastian Kreutzer

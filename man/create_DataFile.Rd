@@ -32,7 +32,7 @@ Returns a \link{list} that can be processed by the modelling functions of 'BayLu
 }
 \description{
 The function pre-processes input data from BIN/BINX file, XSYG files
-or \linkS4class{RLum.Analysis} objects for \code{'BayLum'}. The parameters for
+or \link[Luminescence:RLum.Analysis-class]{Luminescence::RLum.Analysis} objects for \code{'BayLum'}. The parameters for
 the modelling are controlled by a to be supplied YAML configuration file
 (please read package vignette).
 }
@@ -81,6 +81,6 @@ Sebastian Kreutzer, Institute of Geography, Ruprecht-Karl University of Heidelbe
 } 
 
 \section{How to cite}{
-Kreutzer, S., Christophe, C., 2024. create_DataFile(): Prepare input data for subsequent BayLum Analysis. Function version 0.1.0. In: Christophe, C., Philippe, A., Kreutzer, S., Guérin, G., Baumgarten, F.H., Frerebeau, N., 2024. BayLum: Chronological Bayesian Models Integrating Optically Stimulated. R package version 0.3.2. https://CRAN.r-project.org/package=BayLum
+Kreutzer, S., Christophe, C., 2024. create_DataFile(): Prepare input data for subsequent BayLum Analysis. Function version 0.1.0. In: Christophe, C., Philippe, A., Kreutzer, S., Guérin, G., Baumgarten, F.H., Frerebeau, N., 2024. BayLum: Chronological Bayesian Models Integrating Optically Stimulated. R package version 0.3.3.9000-13. https://CRAN.r-project.org/package=BayLum
 }
 

@@ -79,7 +79,7 @@ A list containing the following objects:
 
 ** How to save this list **
 
-You can save this list in a .RData object. To do this, you can use the function \code{\link{save}}.
+You can save this list in a \code{.RData} object. To do this, you can use the function \code{\link{save}}.
 Then, to load this list you can use the function \code{\link{load}} (see example section fore more details).
 }
 \description{
@@ -175,7 +175,7 @@ str(DATA)
 }
 }
 \seealso{
-\code{\link{read_BIN2R}}, \code{\link{combine_DataFiles}}, \code{\link{LT_RegenDose}}
+\link[Luminescence:read_BIN2R]{Luminescence::read_BIN2R}, \code{\link{combine_DataFiles}}, \code{\link{LT_RegenDose}}
 \code{\link{Age_Computation}}, \code{\link{AgeS_Computation}}, \code{\link{Palaeodose_Computation}}
 }
 \author{
@@ -183,6 +183,6 @@ Claire Christophe, Sebastian Kreutzer, Anne Philippe, Guillaume Guérin
 } 
 
 \section{How to cite}{
-Christophe, C., Kreutzer, S., Philippe, A., Guérin, G., 2024. Generate_DataFile_MG-deprecated(): Generates, from one (or several) BIN file(s) of Multi-grain OSL measurements a list of luminescence data and information before statistical analysis (DEPRECATED). In: Christophe, C., Philippe, A., Kreutzer, S., Guérin, G., Baumgarten, F.H., Frerebeau, N., 2024. BayLum: Chronological Bayesian Models Integrating Optically Stimulated. R package version 0.3.2. https://CRAN.r-project.org/package=BayLum
+Christophe, C., Kreutzer, S., Philippe, A., Guérin, G., 2024. Generate_DataFile_MG-deprecated(): Generates, from one (or several) BIN file(s) of Multi-grain OSL measurements a list of luminescence data and information before statistical analysis (DEPRECATED). In: Christophe, C., Philippe, A., Kreutzer, S., Guérin, G., Baumgarten, F.H., Frerebeau, N., 2024. BayLum: Chronological Bayesian Models Integrating Optically Stimulated. R package version 0.3.3.9000-13. https://CRAN.r-project.org/package=BayLum
 }
 

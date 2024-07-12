@@ -2,18 +2,24 @@
   "@context": "https://doi.org/10.5063/schema/codemeta-2.0",
   "@type": "SoftwareSourceCode",
   "identifier": "BayLum",
-  "description": "Bayesian analysis of luminescence data and C-14 age estimates. Bayesian models are based on the following publications: Combes, B. & Philippe, A. (2017) <doi:10.1016/j.quageo.2017.02.003> and Combes et al (2015) <doi:10.1016/j.quageo.2015.04.001>. This includes, amongst others, data import, export, application of age models and palaeodose model.",
+  "description": "Bayesian analysis of luminescence data and C-14 age estimates. Bayesian models are based on the following publications: Combes, B. & Philippe, A. (2017) <doi:10.1016/j.quageo.2017.02.003> and Combes et al. (2015) <doi:10.1016/j.quageo.2015.04.001>. This includes, amongst others, data import, export, application of age models and palaeodose model.",
   "name": "BayLum: Chronological Bayesian Models Integrating Optically Stimulated\n        Luminescence and Radiocarbon Age Dating",
   "codeRepository": "https://github.com/crp2a/BayLum",
   "issueTracker": "https://github.com/crp2a/BayLum/issues",
   "license": "https://spdx.org/licenses/GPL-3.0",
-  "version": "0.3.2",
+  "version": "0.3.3.9000.13",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R Under development (unstable) (2024-03-27 r86216)",
+  "runtimePlatform": "R Under development (unstable) (2024-07-11 r86890)",
+  "provider": {
+    "@id": "https://cran.r-project.org",
+    "@type": "Organization",
+    "name": "Comprehensive R Archive Network (CRAN)",
+    "url": "https://cran.r-project.org"
+  },
   "author": [
     {
       "@type": "Person",
@@ -66,7 +72,7 @@
       "@type": "SoftwareApplication",
       "identifier": "testthat",
       "name": "testthat",
-      "version": ">= 3.1.7",
+      "version": ">= 3.2.1",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -79,7 +85,7 @@
       "@type": "SoftwareApplication",
       "identifier": "R.rsp",
       "name": "R.rsp",
-      "version": ">= 0.45.0",
+      "version": ">= 0.46.0",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -94,7 +100,7 @@
       "@type": "SoftwareApplication",
       "identifier": "R",
       "name": "R",
-      "version": ">= 4.1"
+      "version": ">= 4.3"
     },
     "2": {
       "@type": "SoftwareApplication",
@@ -162,7 +168,7 @@
       "@type": "SoftwareApplication",
       "identifier": "rjags",
       "name": "rjags",
-      "version": ">= 4-13",
+      "version": ">= 4-15",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -175,7 +181,7 @@
       "@type": "SoftwareApplication",
       "identifier": "runjags",
       "name": "runjags",
-      "version": ">= 2.2.1",
+      "version": ">= 2.2.2",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -188,7 +194,7 @@
       "@type": "SoftwareApplication",
       "identifier": "Luminescence",
       "name": "Luminescence",
-      "version": ">= 0.9.22",
+      "version": ">= 0.9.24",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -201,7 +207,7 @@
       "@type": "SoftwareApplication",
       "identifier": "yaml",
       "name": "yaml",
-      "version": ">= 2.3.7",
+      "version": ">= 2.3.9",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -212,7 +218,7 @@
     },
     "SystemRequirements": "JAGS >= 4.3.2 (https://mcmc-jags.sourceforge.io/)"
   },
-  "fileSize": "3571.25KB",
+  "fileSize": "3569.95KB",
   "citation": [
     {
       "@type": "SoftwareSourceCode",
@@ -257,7 +263,7 @@
       ],
       "name": "BayLum: Chronological Bayesian Models Integrating Optically Stimulated Luminescence and Radiocarbon Age Dating",
       "url": "https://CRAN.r-project.org/package=BayLum",
-      "description": "R package version 0.3.2"
+      "description": "R package version 0.3.3.9000-13"
     },
     {
       "@type": "ScholarlyArticle",
@@ -295,8 +301,10 @@
       }
     }
   ],
-  "relatedLink": "https://CRAN.r-project.org/package=BayLum",
+  "relatedLink": ["https://CRAN.r-project.org/package=BayLum", "https://CRAN.R-project.org/package=BayLum"],
   "releaseNotes": "https://github.com/crp2a/BayLum/blob/master/NEWS.md",
+  "readme": "https://github.com/crp2a/BayLum/blob/master/README.md",
   "contIntegration": "https://app.codecov.io/gh/crp2a/BayLum",
-  "developmentStatus": "https://www.repostatus.org/#active"
+  "developmentStatus": "https://www.repostatus.org/#active",
+  "keywords": ["luminescence-dating", "bayesian-statistics", "radiocarbon-dates", "geochronology", "r-package"]
 }

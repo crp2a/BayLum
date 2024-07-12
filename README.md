@@ -45,9 +45,9 @@ change day by day. For stable branches please visit the package on [CRAN
 
 ## Funding
 
-The development of `'BayLum'` was supported by [LabEx LaScArBx (ANR
--n.ANR-10-LABX-52)](https://lascarbx.labex.u-bordeaux.fr) between 2015
-and 2018 (in particular through the MAM and COVADIM projects).
+The development of `'BayLum'` was supported by LabEx LaScArBx (ANR
+-n.ANR-10-LABX-52) between 2015 and 2018 (in particular through the MAM
+and COVADIM projects).
 
 ## License
 
