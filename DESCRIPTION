@@ -3,8 +3,8 @@ Type: Package
 Title: Chronological Bayesian Models Integrating Optically Stimulated
         Luminescence and Radiocarbon Age Dating
 Description: Bayesian analysis of luminescence data and C-14 age estimates. Bayesian models are based on the following publications: Combes, B. & Philippe, A. (2017) <doi:10.1016/j.quageo.2017.02.003> and Combes et al. (2015) <doi:10.1016/j.quageo.2015.04.001>. This includes, amongst others, data import, export, application of age models and palaeodose model.
-Date: 2024-06-04
-Version: 0.3.2
+Date: 2024-07-12
+Version: 0.3.3.9000-1
 Author: Claire Christophe [aut], 
     Anne Philippe [aut, cre] (<https://orcid.org/0000-0002-5331-5087>), 
     Sebastian Kreutzer [aut] (<https://orcid.org/0000-0002-0734-2199>), 
@@ -44,4 +44,4 @@ LazyData: true
 NeedsCompilation: no
 SystemRequirements: JAGS >= 4.3.2 (https://mcmc-jags.sourceforge.io/)
 VignetteBuilder: R.rsp
-RoxygenNote: 7.3.1
+RoxygenNote: 7.3.2
