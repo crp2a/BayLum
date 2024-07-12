@@ -20,7 +20,7 @@ Authors@R: c(
     person("Nicolas", "Frerebeau", role = "aut", comment = c(ORCID = "0000-0001-5759-4944")))
 Maintainer: Anne Philippe <anne.philippe@univ-nantes.fr>
 Depends: 
-  R(>= 4.1), 
+  R(>= 4.3), 
   utils, 
   coda (>= 0.19)
 Imports: 
@@ -28,13 +28,13 @@ Imports:
   hexbin (>= 1.28.3), 
   cli (>= 3.6.1),
   KernSmooth (>= 2.23), 
-  rjags (>= 4-13), 
-  runjags (>= 2.2.1), 
-  Luminescence (>= 0.9.22),
-  yaml (>= 2.3.7)
+  rjags (>= 4-15), 
+  runjags (>= 2.2.2), 
+  Luminescence (>= 0.9.24),
+  yaml (>= 2.3.9)
 Suggests: 
-  testthat (>= 3.1.7),
-  R.rsp (>= 0.45.0)
+  testthat (>= 3.2.1),
+  R.rsp (>= 0.46.0)
 License: GPL-3
 Language: en-GB
 Encoding: UTF-8
