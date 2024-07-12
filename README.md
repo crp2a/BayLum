@@ -10,6 +10,8 @@
 [![Project Status: Active – The project has reached a stable, usable
 state and is being actively
 developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
+[![CRAN
+DOI](https://img.shields.io/badge/doi-10.32614/CRAN.package.BayLum-blue.svg)](https://doi.org/10.32614/CRAN.package.BayLum)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.4311266.svg)](https://doi.org/10.5281/zenodo.4311266)
 [![CRAN](https://www.r-pkg.org/badges/version/BayLum)](https://CRAN.R-project.org/package=BayLum)
 [![Downloads](https://cranlogs.r-pkg.org/badges/grand-total/BayLum)](https://www.r-pkg.org/pkg/BayLum)

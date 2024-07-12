@@ -110,7 +110,7 @@
 #'  \item\bold{MCMC trajectories}
 #' A graph with the MCMC trajectories and posterior distributions of the palaeodose and equivalent dose dispersion parameters
 #' is displayed, there is one page per sample. \cr
-#' The first line of the figure correponds to the palaeodose parameter and the second to the equivalent dose dispersion parameter.
+#' The first line of the figure corresponds to the palaeodose parameter and the second to the equivalent dose dispersion parameter.
 #' On each line, the plot on the left represents the MCMC trajectories, and the one on the right the posterior distribution of the parameter.
 #'  \item \bold{Summary of palaeodose estimates}: plot credible intervals and Bayes estimate of each sample palaeodose on a same graph.
 #' }
