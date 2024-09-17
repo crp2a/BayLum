@@ -14,7 +14,6 @@ vignette: >
 ---
 
 ```{r, echo = FALSE, message = FALSE}
-rm(list = ls())
 knitr::opts_chunk$set(comment = "")
 options(max.print = 100)
 library(BayLum)
