@@ -4,20 +4,19 @@ author: "Sebastian Kreutzer"
 date: 'Updated for BayLum package version >= `r packageVersion("BayLum")` (`r Sys.Date()`)'
 output:
   rmarkdown::html_vignette:
-    self-contained: yes
     toc: yes
     toc_depth: 4
     number_sections: yes
-standalone: yes
 vignette: >
-  %\VignetteEncoding{UTF-8}
   %\VignetteIndexEntry{BayLum: Specification of the YAML config file}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
 ---
 
 ```{r, echo = FALSE, message = FALSE}
 rm(list = ls())
 knitr::opts_chunk$set(comment = "")
-options(width = 120, max.print = 100)
+options(max.print = 100)
 library(BayLum)
 ```
 
@@ -127,8 +126,7 @@ argument `files`. In the first case, a file path is given, while for record
 number two, `files` is set to `null`. Both options are possible. In the first case, the
 record specifies where the measurement data can be found. In the second case
 it is assumed that an R object with the name `samp2` can be found in the global 
-environment of your R session. 
-
+environment of your R session.
 
 ## Paramter specifcation
 
@@ -198,12 +196,8 @@ The example corresponds to 5 (five) regeneration dose points of 10 s, 20 s, ...,
 *Note* 
 
 - *You should add the values as you have specified them in the measurement sequence, except for the natural dose point (0 s) and the test dose points, which must not be added.*
-
 - *The provided vector will be shortened automatically to fit the actual number of dose points.*
-
 - *An error will be thrown if you provide not enough dose points*
-
-
 
 ### `rules` level 
 
@@ -259,15 +253,20 @@ The length of this parameter (e.g., `write_YAMLConfigFile(sample = c("a1", "a2))
 determines the number of records in the configuration file output. 
 
 ### Show available parameters
+
 In this mode, the function displays available parameters in the terminal and 
 returns a list that can be modified in R and then passed to `create_DataFile()`: 
 
-```{r}
+```{r, collapse=TRUE}
 l <- write_YAMLConfigFile()
+```
+
+```{r}
 str(l)
 ```
 
 ### Write YAML file
+
 Alternatively, the function can be used to generate a config file with preset values. 
 You can then modify the generated YAML file with any text-editor. 
 
@@ -276,6 +275,7 @@ l <- write_YAMLConfigFile(output_file = "<your filepath>")
 ```
 
 ## Internals
+
 The YAML settings file is loaded and processed by the function `BayLum::create_DataFile()`
 using `yaml::read_yaml()` from the R package `'yaml'`. `yaml::read_yaml()` returns 
 a `list` on R, which is then processed by `BayLum::create_DataFile()`. Sometimes 
@@ -283,5 +283,3 @@ it makes sense to modify the settings on the fly in R. To avoid import and expor
 of YAML files, `BayLum::create_DataFile()` always tries to process the input of
 the parameter `BayLum::create_DataFile(config_file, ...)` as a `list` before trying 
 to load a YAML file from the hard drive. While this option is usually unnecessary, this information may help in more complex R scripts. 
-
-
