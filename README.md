@@ -7,19 +7,45 @@
 
 # BayLum <img width=120px src="man/figures/BayLum_logo.png" align="right" />
 
+<!-- badges: start -->
+
+[![R-CMD-check](https://github.com/crp2a/BayLum/workflows/GitHub%20Actions%20CI/badge.svg)](https://github.com/crp2a/BayLum/actions)
+[![codecov](https://codecov.io/gh/crp2a/BayLum/graph/badge.svg?token=cOdZr6imKX)](https://app.codecov.io/gh/crp2a/BayLum)
+
+[![r-universe](https://crp2a.r-universe.dev/badges/BayLum)](https://crp2a.r-universe.dev/BayLum)
+[![CRAN
+Version](https://www.r-pkg.org/badges/version/BayLum)](https://cran.r-project.org/package=BayLum)
+[![CRAN
+checks](https://badges.cranchecks.info/worst/BayLum.svg)](https://cran.r-project.org/web/checks/check_results_BayLum.html)
+[![CRAN
+Downloads](https://cranlogs.r-pkg.org/badges/grand-total/BayLum)](https://cran.r-project.org/package=BayLum)
+
 [![Project Status: Active – The project has reached a stable, usable
 state and is being actively
 developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
+
+[![DOI
+Zenodo](https://zenodo.org/badge/DOI/10.5281/zenodo.4311266.svg)](https://doi.org/10.5281/zenodo.4311266)
 [![CRAN
 DOI](https://img.shields.io/badge/doi-10.32614/CRAN.package.BayLum-blue.svg)](https://doi.org/10.32614/CRAN.package.BayLum)
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.4311266.svg)](https://doi.org/10.5281/zenodo.4311266)
-[![CRAN](https://www.r-pkg.org/badges/version/BayLum)](https://CRAN.R-project.org/package=BayLum)
-[![Downloads](https://cranlogs.r-pkg.org/badges/grand-total/BayLum)](https://www.r-pkg.org/pkg/BayLum)
-[![R-CMD-check](https://github.com/crp2a/BayLum/workflows/GitHub%20Actions%20CI/badge.svg)](https://github.com/crp2a/BayLum/actions)
-[![codecov](https://app.codecov.io/gh/crp2a/BayLum/branch/master/graph/badge.svg?token=cOdZr6imKX)](https://app.codecov.io/gh/crp2a/BayLum)
+<!-- badges: end -->
 
 An R package for chronological **Bay**esian models integrated for
 Optically Stimulated (OSL) **Lum**inescence Dating
+
+    To cite the R package 'BayLum' please cite the R package itself and the
+    following article:
+
+      Christophe C, Philippe A, Kreutzer S, Guérin G, Baumgarten F,
+      Frerebeau N (2024). _BayLum: Chronological Bayesian Models
+      Integrating Optically Stimulated Luminescence and Radiocarbon Age
+      Dating_. R package version 0.3.2,
+      <https://CRAN.R-project.org/package=BayLum>.
+
+      Philippe A, Guerin G, Kreutzer S (2019). "BayLum - An R package for
+      Bayesian analysis of OSL ages: An introduction." _Quaternary
+      Geochronology_, *49*, 16-24. doi:10.1016/j.quageo.2018.05.009
+      <https://doi.org/10.1016/j.quageo.2018.05.009>.
 
 ## Installation
 
