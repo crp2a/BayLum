@@ -15,10 +15,10 @@ knitr::opts_chunk$set(
 library(BayLum)
 ```
  
-# BayLum <img width=120px src="man/figures/BayLum_logo.png" align="right" />
+# BayLum <img width=120px src="man/figures/logo_BayLum.png" align="right" />
 
 <!-- badges: start -->
-[![R-CMD-check](https://github.com/crp2a/BayLum/workflows/GitHub Actions CI/badge.svg)](https://github.com/crp2a/BayLum/actions)
+[![R-CMD-check](https://github.com/crp2a/BayLum/actions/workflows/GitHub_Actions_CI.yaml/badge.svg)](https://github.com/crp2a/BayLum/actions/workflows/GitHub_Actions_CI.yaml)
 [![codecov](https://codecov.io/gh/crp2a/BayLum/graph/badge.svg?token=cOdZr6imKX)](https://app.codecov.io/gh/crp2a/BayLum)
 
 [![r-universe](https://crp2a.r-universe.dev/badges/BayLum)](https://crp2a.r-universe.dev/BayLum)
@@ -63,8 +63,7 @@ the package on [CRAN 'BayLum'](https://CRAN.R-project.org/package=BayLum ).
 
 ## Funding
 
-The development of `'BayLum'`  was supported by LabEx LaScArBx (ANR -n.ANR-10-LABX-52) between
-2015 and 2018 (in particular through the MAM and COVADIM projects).
+The development of `'BayLum'` received a state financial support managed by the Agence Nationale de la Recherche (France) through the program *Investissements d'avenir* (ref. [ANR-10-LABX-52](https://lascarbx.labex.u-bordeaux.fr)) between 2015 and 2018.
 
 ## License
 
