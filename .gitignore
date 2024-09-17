@@ -42,3 +42,6 @@ BayLum.BuildResults/rdepends_*
 NEWS.html
 README.html
 cran-comments.html
+inst/doc
+docs
+

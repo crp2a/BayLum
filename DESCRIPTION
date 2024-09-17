@@ -39,7 +39,7 @@ Suggests:
 License: GPL-3
 Language: en-GB
 Encoding: UTF-8
-URL: https://CRAN.r-project.org/package=BayLum
+URL: https://CRAN.r-project.org/package=BayLum, https://crp2a.github.io/BayLum/
 BugReports: https://github.com/crp2a/BayLum/issues
 LazyData: true
 NeedsCompilation: no
