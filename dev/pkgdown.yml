@@ -4,7 +4,7 @@ pkgdown_sha: ~
 articles:
   BayLum: BayLum.html
   ConfigFile_Specification: ConfigFile_Specification.html
-last_built: 2024-09-17T23:32Z
+last_built: 2024-09-17T23:34Z
 urls:
   reference: https://crp2a.github.io/BayLum/reference
   article: https://crp2a.github.io/BayLum/articles
