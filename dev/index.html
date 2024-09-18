@@ -72,30 +72,26 @@
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
-<p>To install the latest development builds directly from GitHub, run</p>
+<p><strong>You need to have <a href="https://mcmc-jags.sourceforge.io" class="external-link">JAGS</a> installed on your computer.</strong></p>
+<p>You can install the released version of <strong>BayLum</strong> from <a href="https://CRAN.R-project.org" class="external-link">CRAN</a> with:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw">if</span><span class="op">(</span><span class="op">!</span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="st"><a href="https://devtools.r-lib.org/" class="external-link">"devtools"</a></span><span class="op">)</span><span class="op">)</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"devtools"</span><span class="op">)</span></span>
-<span><span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"crp2a/BayLum@master"</span><span class="op">)</span></span></code></pre></div>
-<p>To install a developer build other than ‘master’, replace the term ‘master’ in the codeline by the name of the wanted developer build.</p>
-<p><strong>Please note that you need to have <a href="https://mcmc-jags.sourceforge.io" class="external-link">JAGS</a> installed on your computer</strong></p>
-</div>
-<div class="section level2">
-<h2 id="note">Note<a class="anchor" aria-label="anchor" href="#note"></a>
-</h2>
-<p><strong>The package comes without any guarantee!</strong></p>
-<p>Please further note that this version is a development version and may change day by day. For stable branches please visit the package on <a href="https://CRAN.R-project.org/package=BayLum" class="external-link">CRAN ‘BayLum’</a>.</p>
-</div>
-<div class="section level2">
-<h2 id="funding">Funding<a class="anchor" aria-label="anchor" href="#funding"></a>
-</h2>
-<p>The development of <code>'BayLum'</code> received a state financial support managed by the Agence Nationale de la Recherche (France) through the program <em>Investissements d’avenir</em> (ref. <a href="https://lascarbx.labex.u-bordeaux.fr" class="external-link">ANR-10-LABX-52</a>) between 2015 and 2018.</p>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"BayLum"</span><span class="op">)</span></span></code></pre></div>
+<p>And the development version from <a href="https://github.com/" class="external-link">GitHub</a> with:</p>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># install.packages("remotes")</span></span>
+<span><span class="fu">remotes</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"crp2a/BayLum"</span><span class="op">)</span></span></code></pre></div>
+<p>Please note that development versions may change day by day.</p>
 </div>
 <div class="section level2">
 <h2 id="license">License<a class="anchor" aria-label="anchor" href="#license"></a>
 </h2>
 <p>This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or any later version.</p>
 <p>This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the <a href="https://github.com/crp2a/BayLum/blob/master/LICENSE" class="external-link">GNU General Public License</a> for more details.</p>
+</div>
+<div class="section level2">
+<h2 id="acknowledgements">Acknowledgements<a class="anchor" aria-label="anchor" href="#acknowledgements"></a>
+</h2>
+<p>The development of <strong>BayLum</strong> received a state financial support managed by the Agence Nationale de la Recherche (France) through the program <em>Investissements d’avenir</em> (ref. <a href="https://lascarbx.labex.u-bordeaux.fr" class="external-link">ANR-10-LABX-52</a>) between 2015 and 2018.</p>
 </div>
 </div>
   </main><aside class="col-md-3"><div class="links">
@@ -143,7 +139,7 @@
 <div class="dev-status">
 <h2 data-toc-skip>Dev status</h2>
 <ul class="list-unstyled">
-<li><a href="https://github.com/crp2a/BayLum/actions/workflows/GitHub_Actions_CI.yaml" class="external-link"><img src="https://github.com/crp2a/BayLum/actions/workflows/GitHub_Actions_CI.yaml/badge.svg" alt="R-CMD-check"></a></li>
+<li><a href="https://github.com/crp2a/BayLum/actions/workflows/R-CMD-check.yaml" class="external-link"><img src="https://github.com/crp2a/BayLum/actions/workflows/R-CMD-check.yaml/badge.svg" alt="R-CMD-check"></a></li>
 <li><a href="https://app.codecov.io/gh/crp2a/BayLum" class="external-link"><img src="https://codecov.io/gh/crp2a/BayLum/graph/badge.svg?token=cOdZr6imKX" alt="codecov"></a></li>
 </ul>
 </div>
