@@ -34,7 +34,7 @@ This package is based on the functions: [Generate_DataFile()] and
 \note{
 This work received a state financial support managed by the Agence Nationale
  de la Recherche (France) through the program *Investissements d'avenir*
- (ref. [ANR-10-LABX-52](https://lascarbx.labex.u-bordeaux.fr).
+ (ref. ANR-10-LABX-52).
 }
 \references{
 Philippe, A., Guérin, G., Kreutzer, S., 2019. BayLum - An R package for

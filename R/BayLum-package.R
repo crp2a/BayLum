@@ -31,7 +31,7 @@
 #' @note
 #'  This work received a state financial support managed by the Agence Nationale
 #'  de la Recherche (France) through the program *Investissements d'avenir*
-#'  (ref. [ANR-10-LABX-52](https://lascarbx.labex.u-bordeaux.fr).
+#'  (ref. ANR-10-LABX-52).
 #' @name BayLum-package
 #' @aliases BayLum-package BayLum
 #' @docType package

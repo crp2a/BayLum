@@ -77,15 +77,11 @@ version.
 
 This program is distributed in the hope that it will be useful, but
 WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the [GNU
-General Public
-License](https://github.com/crp2a/BayLum/blob/master/LICENSE) for more
-details.
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General
+Public License for more details.
 
 ## Acknowledgements
 
 The development of **BayLum** received a state financial support managed
 by the Agence Nationale de la Recherche (France) through the program
-*Investissements d’avenir* (ref.
-[ANR-10-LABX-52](https://lascarbx.labex.u-bordeaux.fr)) between 2015 and
-2018.
+*Investissements d’avenir* (ref. ANR-10-LABX-52) between 2015 and 2018.
