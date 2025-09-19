@@ -1,9 +1,9 @@
-Type: Package
 Package: BayLum
+Type: Package
 Title: Chronological Bayesian Models Integrating Optically Stimulated
     Luminescence and Radiocarbon Age Dating
-Version: 0.3.3.9000-13
-Date: 2024-07-12
+Version: 0.3.3
+Date: 2025-09-19
 Authors@R: c(
     person("Claire", "Christophe", role = "aut"),
     person("Anne", "Philippe", , "anne.philippe@univ-nantes.fr", role = c("aut", "cre"),
@@ -20,14 +20,6 @@ Authors@R: c(
     person("CNRS", role = "fnd"),
     person("LabEx Sciences archéologiques de Bordeaux", role = "fnd")
   )
-Author: Claire Christophe [aut], Anne Philippe [aut, cre]
-    (<https://orcid.org/0000-0002-5331-5087>), Sebastian Kreutzer [aut]
-    (<https://orcid.org/0000-0002-0734-2199>), Guillaume Guérin [aut]
-    (<https://orcid.org/0000-0001-6298-5579>), Frederik Harly Baumgarten
-    [aut] (<https://orcid.org/0000-0002-4374-5948>), Nicolas Frerebeau
-    [aut] (<https://orcid.org/0000-0001-5759-4944>) Université Bordeaux
-    Montaigne [cph, fnd] CNRS [fnd] LabEx Sciences archéologiques de
-    Bordeaux [fnd]
 Maintainer: Anne Philippe <anne.philippe@univ-nantes.fr>
 Description: Bayesian analysis of luminescence data and C-14 age
     estimates. Bayesian models are based on the following publications:
@@ -41,26 +33,26 @@ URL: https://CRAN.r-project.org/package=BayLum,
 BugReports: https://github.com/crp2a/BayLum/issues
 Depends: 
     coda (>= 0.19),
-    R (>= 4.3),
+    R (>= 4.4),
     utils
 Imports: 
-    cli (>= 3.6.1),
-    hexbin (>= 1.28.3),
+    cli (>= 3.6.5),
+    hexbin (>= 1.28.5),
     KernSmooth (>= 2.23),
-    Luminescence (>= 0.9.24),
+    Luminescence (>= 1.1.1),
     methods,
-    rjags (>= 4-15),
+    rjags (>= 4-17),
     runjags (>= 2.2.2),
-    yaml (>= 2.3.9)
+    yaml (>= 2.3.10)
 Suggests: 
     knitr,
     rmarkdown,
-    testthat (>= 3.2.1)
+    testthat (>= 3.2.3)
 VignetteBuilder: 
     knitr
 Encoding: UTF-8
 Language: en-GB
 LazyData: true
 NeedsCompilation: no
-RoxygenNote: 7.3.2
+RoxygenNote: 7.3.3
 SystemRequirements: JAGS >= 4.3.2 (https://mcmc-jags.sourceforge.io/)
