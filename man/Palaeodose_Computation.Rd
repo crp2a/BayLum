@@ -97,7 +97,7 @@ the palaeodose and equivalent dose dispersion parameters for each sample.
  \item\bold{MCMC trajectories}
 A graph with the MCMC trajectories and posterior distributions of the palaeodose and equivalent dose dispersion parameters
 is displayed, there is one page per sample. \cr
-The first line of the figure correponds to the palaeodose parameter and the second to the equivalent dose dispersion parameter.
+The first line of the figure corresponds to the palaeodose parameter and the second to the equivalent dose dispersion parameter.
 On each line, the plot on the left represents the MCMC trajectories, and the one on the right the posterior distribution of the parameter.
  \item \bold{Summary of palaeodose estimates}: plot credible intervals and Bayes estimate of each sample palaeodose on a same graph.
 }
@@ -166,12 +166,7 @@ data(DATA1,envir = environment())
 ## Palaeodose computation of samples GDB3
 P=Palaeodose_Computation(DATA=DATA1,Nb_sample=1,SampleNames=c("GDB5"),Iter=100)
 
-} 
-
-\section{How to cite}{
-Christophe, C., Kreutzer, S., Philippe, A., Guérin, G., 2024. Palaeodose_Computation(): Bayesian analysis for the palaeodose estimation of various samples. In: Christophe, C., Philippe, A., Kreutzer, S., Guérin, G., Baumgarten, F.H., Frerebeau, N., 2024. BayLum: Chronological Bayesian Models Integrating Optically Stimulated. R package version 0.3.3.9000-13. https://CRAN.r-project.org/package=BayLum
 }
-
 \references{
 Combes, B., Philippe, A., Lanos, P., Mercier, N., Tribolo, C., Guerin, G., Guibert, P., Lahaye, C., 2015.
 A Bayesian central equivalent dose model for optically stimulated luminescence dating.

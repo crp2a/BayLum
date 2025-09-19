@@ -42,9 +42,4 @@ SCMatrix(
 }
 \author{
 Claire Christophe, Anne Philippe, Guillaume Guérin, Sebastian Kreutzer
-} 
-
-\section{How to cite}{
-Christophe, C., Philippe, A., Guérin, G., Kreutzer, S., 2024. SCMatrix(): Construct the Stratigraphic Constrain Matrix Interactively. In: Christophe, C., Philippe, A., Kreutzer, S., Guérin, G., Baumgarten, F.H., Frerebeau, N., 2024. BayLum: Chronological Bayesian Models Integrating Optically Stimulated. R package version 0.3.3.9000-13. https://CRAN.r-project.org/package=BayLum
 }
-

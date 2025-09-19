@@ -3,17 +3,18 @@
   "@type": "SoftwareSourceCode",
   "identifier": "BayLum",
   "description": "Bayesian analysis of luminescence data and C-14 age estimates. Bayesian models are based on the following publications: Combes, B. & Philippe, A. (2017) <doi:10.1016/j.quageo.2017.02.003> and Combes et al. (2015) <doi:10.1016/j.quageo.2015.04.001>. This includes, amongst others, data import, export, application of age models and palaeodose model.",
-  "name": "BayLum: Chronological Bayesian Models Integrating Optically Stimulated\n        Luminescence and Radiocarbon Age Dating",
+  "name": "BayLum: Chronological Bayesian Models Integrating Optically Stimulated\n    Luminescence and Radiocarbon Age Dating",
+  "relatedLink": ["https://CRAN.r-project.org/package=BayLum", "https://CRAN.R-project.org/package=BayLum"],
   "codeRepository": "https://github.com/crp2a/BayLum",
   "issueTracker": "https://github.com/crp2a/BayLum/issues",
   "license": "https://spdx.org/licenses/GPL-3.0",
-  "version": "0.3.3.9000.13",
+  "version": "0.3.3",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R Under development (unstable) (2024-07-11 r86890)",
+  "runtimePlatform": "R Under development (unstable) (2025-09-18 r88857)",
   "provider": {
     "@id": "https://cran.r-project.org",
     "@type": "Organization",
@@ -58,6 +59,26 @@
       "@id": "https://orcid.org/0000-0001-5759-4944"
     }
   ],
+  "copyrightHolder": [
+    {
+      "@type": "Organization",
+      "name": "Université Bordeaux Montaigne"
+    }
+  ],
+  "funder": [
+    {
+      "@type": "Organization",
+      "name": "Université Bordeaux Montaigne"
+    },
+    {
+      "@type": "Organization",
+      "name": "CNRS"
+    },
+    {
+      "@type": "Organization",
+      "name": "LabEx Sciences archéologiques de Bordeaux"
+    }
+  ],
   "maintainer": [
     {
       "@type": "Person",
@@ -70,9 +91,33 @@
   "softwareSuggestions": [
     {
       "@type": "SoftwareApplication",
+      "identifier": "knitr",
+      "name": "knitr",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=knitr"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "rmarkdown",
+      "name": "rmarkdown",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=rmarkdown"
+    },
+    {
+      "@type": "SoftwareApplication",
       "identifier": "testthat",
       "name": "testthat",
-      "version": ">= 3.2.1",
+      "version": ">= 3.2.3",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -80,34 +125,10 @@
         "url": "https://cran.r-project.org"
       },
       "sameAs": "https://CRAN.R-project.org/package=testthat"
-    },
-    {
-      "@type": "SoftwareApplication",
-      "identifier": "R.rsp",
-      "name": "R.rsp",
-      "version": ">= 0.46.0",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Comprehensive R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      },
-      "sameAs": "https://CRAN.R-project.org/package=R.rsp"
     }
   ],
   "softwareRequirements": {
     "1": {
-      "@type": "SoftwareApplication",
-      "identifier": "R",
-      "name": "R",
-      "version": ">= 4.3"
-    },
-    "2": {
-      "@type": "SoftwareApplication",
-      "identifier": "utils",
-      "name": "utils"
-    },
-    "3": {
       "@type": "SoftwareApplication",
       "identifier": "coda",
       "name": "coda",
@@ -120,16 +141,35 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=coda"
     },
+    "2": {
+      "@type": "SoftwareApplication",
+      "identifier": "R",
+      "name": "R",
+      "version": ">= 4.4"
+    },
+    "3": {
+      "@type": "SoftwareApplication",
+      "identifier": "utils",
+      "name": "utils"
+    },
     "4": {
       "@type": "SoftwareApplication",
-      "identifier": "methods",
-      "name": "methods"
+      "identifier": "cli",
+      "name": "cli",
+      "version": ">= 3.6.5",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=cli"
     },
     "5": {
       "@type": "SoftwareApplication",
       "identifier": "hexbin",
       "name": "hexbin",
-      "version": ">= 1.28.3",
+      "version": ">= 1.28.5",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -139,19 +179,6 @@
       "sameAs": "https://CRAN.R-project.org/package=hexbin"
     },
     "6": {
-      "@type": "SoftwareApplication",
-      "identifier": "cli",
-      "name": "cli",
-      "version": ">= 3.6.1",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Comprehensive R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      },
-      "sameAs": "https://CRAN.R-project.org/package=cli"
-    },
-    "7": {
       "@type": "SoftwareApplication",
       "identifier": "KernSmooth",
       "name": "KernSmooth",
@@ -164,11 +191,29 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=KernSmooth"
     },
+    "7": {
+      "@type": "SoftwareApplication",
+      "identifier": "Luminescence",
+      "name": "Luminescence",
+      "version": ">= 1.1.1",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=Luminescence"
+    },
     "8": {
+      "@type": "SoftwareApplication",
+      "identifier": "methods",
+      "name": "methods"
+    },
+    "9": {
       "@type": "SoftwareApplication",
       "identifier": "rjags",
       "name": "rjags",
-      "version": ">= 4-15",
+      "version": ">= 4-17",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -177,7 +222,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=rjags"
     },
-    "9": {
+    "10": {
       "@type": "SoftwareApplication",
       "identifier": "runjags",
       "name": "runjags",
@@ -190,24 +235,11 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=runjags"
     },
-    "10": {
-      "@type": "SoftwareApplication",
-      "identifier": "Luminescence",
-      "name": "Luminescence",
-      "version": ">= 0.9.24",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Comprehensive R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      },
-      "sameAs": "https://CRAN.R-project.org/package=Luminescence"
-    },
     "11": {
       "@type": "SoftwareApplication",
       "identifier": "yaml",
       "name": "yaml",
-      "version": ">= 2.3.9",
+      "version": ">= 2.3.10",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -218,11 +250,11 @@
     },
     "SystemRequirements": "JAGS >= 4.3.2 (https://mcmc-jags.sourceforge.io/)"
   },
-  "fileSize": "3569.95KB",
+  "fileSize": "3365.616KB",
   "citation": [
     {
       "@type": "SoftwareSourceCode",
-      "datePublished": "2024",
+      "datePublished": "2025",
       "author": [
         {
           "@type": "Person",
@@ -263,7 +295,7 @@
       ],
       "name": "BayLum: Chronological Bayesian Models Integrating Optically Stimulated Luminescence and Radiocarbon Age Dating",
       "url": "https://CRAN.r-project.org/package=BayLum",
-      "description": "R package version 0.3.3.9000-13"
+      "description": "R package version 0.3.3"
     },
     {
       "@type": "ScholarlyArticle",
@@ -301,10 +333,9 @@
       }
     }
   ],
-  "relatedLink": ["https://CRAN.r-project.org/package=BayLum", "https://CRAN.R-project.org/package=BayLum"],
-  "releaseNotes": "https://github.com/crp2a/BayLum/blob/master/NEWS.md",
+  "releaseNotes": "https://github.com/crp2a/BayLum/blob/main/NEWS.md",
   "readme": "https://github.com/crp2a/BayLum/blob/master/README.md",
-  "contIntegration": "https://app.codecov.io/gh/crp2a/BayLum",
+  "contIntegration": ["https://github.com/crp2a/BayLum/actions/workflows/R-CMD-check.yaml", "https://app.codecov.io/gh/crp2a/BayLum"],
   "developmentStatus": "https://www.repostatus.org/#active",
-  "keywords": ["luminescence-dating", "bayesian-statistics", "radiocarbon-dates", "geochronology", "r-package"]
+  "keywords": ["luminescence-dating", "bayesian-statistics", "radiocarbon-dates", "geochronology", "r-package", "archaeometry"]
 }

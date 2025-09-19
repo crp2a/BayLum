@@ -111,9 +111,4 @@ and \link[rjags:rjags-package]{rjags::rjags-package} packages.
 \author{
 Sebastian Kreutzer, Institute of Geography, Ruprecht-Karl University of Heidelberg (Germany) ,
 based on the function 'ScatterSamples()' by Claire Christophe, Anne Philippe, Guillaume Guérin
-} 
-
-\section{How to cite}{
-Kreutzer, S., Christophe, C., Philippe, A., Guérin, G., 2024. plot_Scatterplots(): Display Scatter Plot Matrix of the Bayesian Age Results. Function version 0.3.2. In: Christophe, C., Philippe, A., Kreutzer, S., Guérin, G., Baumgarten, F.H., Frerebeau, N., 2024. BayLum: Chronological Bayesian Models Integrating Optically Stimulated. R package version 0.3.3.9000-13. https://CRAN.r-project.org/package=BayLum
 }
-

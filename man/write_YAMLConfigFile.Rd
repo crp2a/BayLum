@@ -49,9 +49,4 @@ write_YAMLConfigFile(
 }
 \author{
 Sebastian Kreutzer, Institute of Geography, Ruprecht-Karl University of Heidelberg (Germany)
-} 
-
-\section{How to cite}{
-Kreutzer, S., 2024. write_YAMLConfigFile(): Write Auto Generated YAML BayLum Configuration File to the Disc. Function version 0.1.0. In: Christophe, C., Philippe, A., Kreutzer, S., Guérin, G., Baumgarten, F.H., Frerebeau, N., 2024. BayLum: Chronological Bayesian Models Integrating Optically Stimulated. R package version 0.3.3.9000-13. https://CRAN.r-project.org/package=BayLum
 }
-
