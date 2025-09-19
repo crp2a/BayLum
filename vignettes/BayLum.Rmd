@@ -1,7 +1,7 @@
 ---
 title: "BayLum: An Introduction"
 author: "Claire Christophe, Anne Philippe, Sebastian Kreutzer, Guillaume Guérin, Frederik Baumgarten"
-date: 'Updated for BayLum package version 0.3.2 (2024-09-18)'
+date: 'Updated for BayLum package version 0.3.3 (2025-09-19)'
 output:
   rmarkdown::html_vignette:
     toc: yes
@@ -12,35 +12,35 @@ vignette: >
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
-  
+
 
 
 # Introduction
 
-`'BayLum'` provides a collection of various **R** functions for Bayesian analysis of luminescence data. 
+`'BayLum'` provides a collection of various **R** functions for Bayesian analysis of luminescence data.
 Amongst others, this includes data import, export, application of age models and palaeodose modelling.
 
 Data can be processed simultaneously for various samples, including the input of multiple BIN/BINX-files per
-sample for single grain (SG) or multi-grain (MG) OSL measurements. Stratigraphic constraints and 
+sample for single grain (SG) or multi-grain (MG) OSL measurements. Stratigraphic constraints and
 systematic errors can be added to constrain the analysis further.
 
-For those who already know how to use **R**, `'BayLum'` won't be difficult to use, 
-for all others, this brief introduction may be of help to make the first steps with **R** and 
-the package `'BayLum'` as convenient as possible. 
+For those who already know how to use **R**, `'BayLum'` won't be difficult to use,
+for all others, this brief introduction may be of help to make the first steps with **R** and
+the package `'BayLum'` as convenient as possible.
 
 ## Installing `BayLum' package
 
-If you read this document before having installed **R** itself, you should first visit the 
-[R project](https://www.r-project.org) website and download and install **R**. 
-You may also consider installing [Rstudio](https://posit.co), 
-which provides an excellent desktop working environment for **R**; however it is not 
+If you read this document before having installed **R** itself, you should first visit the
+[R project](https://www.r-project.org) website and download and install **R**.
+You may also consider installing [Rstudio](https://posit.co),
+which provides an excellent desktop working environment for **R**; however it is not
 a prerequisite.
 
-You will also need the external software *JAGS* (Just Another Gibs Sampler). 
-Please visit the [JAGS](https://mcmc-jags.sourceforge.io) webpage and follow the installation instructions. 
-Now you are nearly ready to work with 'BayLum'. 
+You will also need the external software *JAGS* (Just Another Gibs Sampler).
+Please visit the [JAGS](https://mcmc-jags.sourceforge.io) webpage and follow the installation instructions.
+Now you are nearly ready to work with 'BayLum'.
 
-If you have not yet installed 'BayLum', please run the following two **R** code lines to 
+If you have not yet installed 'BayLum', please run the following two **R** code lines to
 install 'BayLum' on your computer.
 
 
@@ -48,7 +48,7 @@ install 'BayLum' on your computer.
 install.packages("BayLum", dependencies = TRUE)
 ```
 
-Alternatively, you can load an already installed **R** package (here 'BayLum') into your session by using 
+Alternatively, you can load an already installed **R** package (here 'BayLum') into your session by using
 the following **R** call.
 
 
@@ -58,14 +58,14 @@ library(BayLum)
 
 # First steps: age analysis of one sample
 
-Measurement data can be imported using two different options as detailed in the following: 
+Measurement data can be imported using two different options as detailed in the following:
 
 * Option 1: Using the conventional 'BayLum' folder structure (old)
 * Option 2: Using a single-setting config file (new)
 
 ## Option 1: Import information from a BIN/BINX-file.
 
-Let us consider the sample named *samp1*, which is the example dataset coming with the package. 
+Let us consider the sample named *samp1*, which is the example dataset coming with the package.
 All information related to this sample is stored in a subfolder called also *samp1*.
 To test the package example, first, we add the path of the example
 dataset to the object `path`.
@@ -122,17 +122,17 @@ DATA1 <-
 ```
 
 ```
-Warning in Generate_DataFile(Path = path, FolderNames = "samp1", Nb_sample = 1, : 'Generate_DataFile' est obsolète.
-Utilisez plutôt ‘create_DataFile()’.
-Voir help("Deprecated")
+Warning in Generate_DataFile(Path = path, FolderNames = "samp1", Nb_sample = 1, : 'Generate_DataFile' is deprecated.
+Use 'create_DataFile()' instead.
+See help("Deprecated")
 ```
 
 ### Remarks
 
 #### Data import/export
 
-The import may take a while, in particular for large BIN/BINX-files. This can become annoying if you want to play with the data. 
-In such situations, it makes sense to save your imported data somewhere else before continuing. 
+The import may take a while, in particular for large BIN/BINX-files. This can become annoying if you want to play with the data.
+In such situations, it makes sense to save your imported data somewhere else before continuing.
 
 To save the obove imported data on your hardrive use
 
@@ -191,7 +191,7 @@ Element                | Content |
 
 #### Visualise Lx/Tx values and dose points
 
-To get an impression on how your data look like, you can visualise them by 
+To get an impression on how your data look like, you can visualise them by
 using the function `LT_RegenDose()`:
 
 
@@ -207,9 +207,9 @@ LT_RegenDose(
 ```
 
 ```
-Warning in LT_RegenDose(DATA = DATA1, Path = path, FolderNames = "samp1", : 'LT_RegenDose' est obsolète.
-Utilisez plutôt ‘plot_RegDosePoints()’.
-Voir help("Deprecated")
+Warning in LT_RegenDose(DATA = DATA1, Path = path, FolderNames = "samp1", : 'LT_RegenDose' is deprecated.
+Use 'plot_RegDosePoints()' instead.
+See help("Deprecated")
 ```
 
 <div class="figure" style="text-align: center">
@@ -226,20 +226,20 @@ For a multi-grain OSL measurements, instead of `Generate_DataFile()`, the functi
 be used with similar parameters. The functions differ by their expectations: *Disc.csv* instead of *DiscPos.csv* file for Single-grain OSL Measurements.
 Please check type `?Generate_DataFile_MG` for further information.
 
-## Option 2: Import data using `create_DataFile()` 
+## Option 2: Import data using `create_DataFile()`
 
-With `'BayLum'` >= v0.3.2 we introduced a new function called `create_DataFile()`, which 
+With `'BayLum'` >= v0.3.2 we introduced a new function called `create_DataFile()`, which
 will at some point in time replace the function `Generate_DataFile()` and `Generate_DataFile_MG()`.
-`create_DataFile()` works conceptionally very different from the approach detailed above. 
-Key differences are: 
+`create_DataFile()` works conceptionally very different from the approach detailed above.
+Key differences are:
 
 * The function uses a single configuration file for all samples and all measurement files
 * The very error prone subfolder structure is no longer needed
-* Measurement data can be imported with `create_DataFile()`, but also outside of the function 
-and then passed on the functions. This enables the possibility of extensive pre-processing 
-and selection of measurement data. 
+* Measurement data can be imported with `create_DataFile()`, but also outside of the function
+and then passed on the functions. This enables the possibility of extensive pre-processing
+and selection of measurement data.
 
-The configuration follows the so-called [YAML format](https://yaml.org) specification. 
+The configuration follows the so-called [YAML format](https://yaml.org) specification.
 For single sample the file looks as follows:
 
 ```
@@ -262,7 +262,7 @@ nbOfLastCycleToRemove: 1
 ```
 
 In the case above, the configuration file assumes that data for `samp1` are
-already imported and treated and a R object called `samp1` is available in the global 
+already imported and treated and a R object called `samp1` is available in the global
 environment. The following example code reproduces this case:
 
 
@@ -271,7 +271,7 @@ environment. The following example code reproduces this case:
 yaml_file <- system.file("extdata/example.yml", package = "BayLum")
 samp1_file <- system.file("extdata/samp1/bin.bin", package = "BayLum")
 
-## read YAML manually and select only the first record 
+## read YAML manually and select only the first record
 config_file <- yaml::read_yaml(yaml_file)[[1]]
 
 ## import BIN/BINX files and select position 2 and grain 32 only
@@ -282,7 +282,11 @@ samp1 <- Luminescence::read_BIN2R(samp1_file, verbose = FALSE) |>
 DATA1 <- create_DataFile(config_file, verbose = FALSE)
 ```
 
-## Age computation 
+```
+Error: [create_DataFile()] <samp1> is not a valid object in the working environment!
+```
+
+## Age computation
 
 To compute the age of the sample *samp1*, you can run the following code:
 
@@ -309,6 +313,10 @@ Graph information:
    Total graph size: 139
 
 Initializing model
+
+  |                                                          |                                                  |   0%  |                                                          |+                                                 |   2%  |                                                          |++                                                |   4%  |                                                          |+++                                               |   6%  |                                                          |++++                                              |   8%  |                                                          |+++++                                             |  10%  |                                                          |++++++                                            |  12%  |                                                          |+++++++                                           |  14%  |                                                          |++++++++                                          |  16%  |                                                          |+++++++++                                         |  18%  |                                                          |++++++++++                                        |  20%  |                                                          |+++++++++++                                       |  22%  |                                                          |++++++++++++                                      |  24%  |                                                          |+++++++++++++                                     |  26%  |                                                          |++++++++++++++                                    |  28%  |                                                          |+++++++++++++++                                   |  30%  |                                                          |++++++++++++++++                                  |  32%  |                                                          |+++++++++++++++++                                 |  34%  |                                                          |++++++++++++++++++                                |  36%  |                                                          |+++++++++++++++++++                               |  38%  |                                                          |++++++++++++++++++++                              |  40%  |                                                          |+++++++++++++++++++++                             |  42%  |                                                          |++++++++++++++++++++++                            |  44%  |                                                          |+++++++++++++++++++++++                           |  46%  |                                                          |++++++++++++++++++++++++                          |  48%  |                                                          |+++++++++++++++++++++++++                         |  50%  |                                                          |++++++++++++++++++++++++++                        |  52%  |                                                          |+++++++++++++++++++++++++++                       |  54%  |                                                          |++++++++++++++++++++++++++++                      |  56%  |                                                          |+++++++++++++++++++++++++++++                     |  58%  |                                                          |++++++++++++++++++++++++++++++                    |  60%  |                                                          |+++++++++++++++++++++++++++++++                   |  62%  |                                                          |++++++++++++++++++++++++++++++++                  |  64%  |                                                          |+++++++++++++++++++++++++++++++++                 |  66%  |                                                          |++++++++++++++++++++++++++++++++++                |  68%  |                                                          |+++++++++++++++++++++++++++++++++++               |  70%  |                                                          |++++++++++++++++++++++++++++++++++++              |  72%  |                                                          |+++++++++++++++++++++++++++++++++++++             |  74%  |                                                          |++++++++++++++++++++++++++++++++++++++            |  76%  |                                                          |+++++++++++++++++++++++++++++++++++++++           |  78%  |                                                          |++++++++++++++++++++++++++++++++++++++++          |  80%  |                                                          |+++++++++++++++++++++++++++++++++++++++++         |  82%  |                                                          |++++++++++++++++++++++++++++++++++++++++++        |  84%  |                                                          |+++++++++++++++++++++++++++++++++++++++++++       |  86%  |                                                          |++++++++++++++++++++++++++++++++++++++++++++      |  88%  |                                                          |+++++++++++++++++++++++++++++++++++++++++++++     |  90%  |                                                          |++++++++++++++++++++++++++++++++++++++++++++++    |  92%  |                                                          |+++++++++++++++++++++++++++++++++++++++++++++++   |  94%  |                                                          |++++++++++++++++++++++++++++++++++++++++++++++++  |  96%  |                                                          |+++++++++++++++++++++++++++++++++++++++++++++++++ |  98%  |                                                          |++++++++++++++++++++++++++++++++++++++++++++++++++| 100%
+  |                                                          |                                                  |   0%  |                                                          |*                                                 |   2%  |                                                          |**                                                |   4%  |                                                          |***                                               |   6%  |                                                          |****                                              |   8%  |                                                          |*****                                             |  10%  |                                                          |******                                            |  12%  |                                                          |*******                                           |  14%  |                                                          |********                                          |  16%  |                                                          |*********                                         |  18%  |                                                          |**********                                        |  20%  |                                                          |***********                                       |  22%  |                                                          |************                                      |  24%  |                                                          |*************                                     |  26%  |                                                          |**************                                    |  28%  |                                                          |***************                                   |  30%  |                                                          |****************                                  |  32%  |                                                          |*****************                                 |  34%  |                                                          |******************                                |  36%  |                                                          |*******************                               |  38%  |                                                          |********************                              |  40%  |                                                          |*********************                             |  42%  |                                                          |**********************                            |  44%  |                                                          |***********************                           |  46%  |                                                          |************************                          |  48%  |                                                          |*************************                         |  50%  |                                                          |**************************                        |  52%  |                                                          |***************************                       |  54%  |                                                          |****************************                      |  56%  |                                                          |*****************************                     |  58%  |                                                          |******************************                    |  60%  |                                                          |*******************************                   |  62%  |                                                          |********************************                  |  64%  |                                                          |*********************************                 |  66%  |                                                          |**********************************                |  68%  |                                                          |***********************************               |  70%  |                                                          |************************************              |  72%  |                                                          |*************************************             |  74%  |                                                          |**************************************            |  76%  |                                                          |***************************************           |  78%  |                                                          |****************************************          |  80%  |                                                          |*****************************************         |  82%  |                                                          |******************************************        |  84%  |                                                          |*******************************************       |  86%  |                                                          |********************************************      |  88%  |                                                          |*********************************************     |  90%  |                                                          |**********************************************    |  92%  |                                                          |***********************************************   |  94%  |                                                          |************************************************  |  96%  |                                                          |************************************************* |  98%  |                                                          |**************************************************| 100%
+  |                                                          |                                                  |   0%  |                                                          |*                                                 |   2%  |                                                          |**                                                |   4%  |                                                          |***                                               |   6%  |                                                          |****                                              |   8%  |                                                          |*****                                             |  10%  |                                                          |******                                            |  12%  |                                                          |*******                                           |  14%  |                                                          |********                                          |  16%  |                                                          |*********                                         |  18%  |                                                          |**********                                        |  20%  |                                                          |***********                                       |  22%  |                                                          |************                                      |  24%  |                                                          |*************                                     |  26%  |                                                          |**************                                    |  28%  |                                                          |***************                                   |  30%  |                                                          |****************                                  |  32%  |                                                          |*****************                                 |  34%  |                                                          |******************                                |  36%  |                                                          |*******************                               |  38%  |                                                          |********************                              |  40%  |                                                          |*********************                             |  42%  |                                                          |**********************                            |  44%  |                                                          |***********************                           |  46%  |                                                          |************************                          |  48%  |                                                          |*************************                         |  50%  |                                                          |**************************                        |  52%  |                                                          |***************************                       |  54%  |                                                          |****************************                      |  56%  |                                                          |*****************************                     |  58%  |                                                          |******************************                    |  60%  |                                                          |*******************************                   |  62%  |                                                          |********************************                  |  64%  |                                                          |*********************************                 |  66%  |                                                          |**********************************                |  68%  |                                                          |***********************************               |  70%  |                                                          |************************************              |  72%  |                                                          |*************************************             |  74%  |                                                          |**************************************            |  76%  |                                                          |***************************************           |  78%  |                                                          |****************************************          |  80%  |                                                          |*****************************************         |  82%  |                                                          |******************************************        |  84%  |                                                          |*******************************************       |  86%  |                                                          |********************************************      |  88%  |                                                          |*********************************************     |  90%  |                                                          |**********************************************    |  92%  |                                                          |***********************************************   |  94%  |                                                          |************************************************  |  96%  |                                                          |************************************************* |  98%  |                                                          |**************************************************| 100%
 ```
 
 <div class="figure" style="text-align: center">
@@ -326,9 +334,9 @@ samp1
 >> Results of the Gelman and Rubin criterion of convergence <<
 ----------------------------------------------
 	 Point estimate Uppers confidence interval
-A	 1.043 		 1.102 
-D	 1.042 		 1.098 
-sD	 1.036 		 1.058 
+A	 1.015 		 1.031 
+D	 1.017 		 1.033 
+sD	 1.036 		 1.049 
 
 
 ---------------------------------------------------------------------------------------------------
@@ -337,20 +345,20 @@ sD	 1.036 		 1.058
 
 parameter 	 Bayes estimate 	  Credible interval 
 ----------------------------------------------
-A 		 25.061 
+A 		 23.096 
 						 lower bound 	 upper bound
-				 at level 95%	 10 		 50.294 
-				 at level 68%	 10 		 21.841 
+				 at level 95%	 10 		 67.434 
+				 at level 68%	 10 		 23.422 
 ----------------------------------------------
-D 		 62.212 
+D 		 57.15 
 						 lower bound 	 upper bound
-				 at level 95%	 19.675 		 125.768 
-				 at level 68%	 22.385 		 55.487 
+				 at level 95%	 19.175 		 164.271 
+				 at level 68%	 21.475 		 58.031 
 ----------------------------------------------
-sD 		 44.674 
+sD 		 35.168 
 						 lower bound 	 upper bound
-				 at level 95%	 0.15 		 126.445 
-				 at level 68%	 0.263 		 28.94 
+				 at level 95%	 0.084 		 161.575 
+				 at level 68%	 0.949 		 30.976 
 ```
 
 This also works if `DATA1` is the output of `Generate_DataFile_MG()`.
@@ -358,10 +366,10 @@ This also works if `DATA1` is the output of `Generate_DataFile_MG()`.
 ##### Remark 1: MCMC trajectories
 
 - If MCMC trajectories did not converge, you can add more iteration with the parameter `Iter` in the function `Age_Computation()`,
-for example `Iter = 20000` or `Iter = 50000`. If it is not desirable to re-run the model from scratch, read the 
-- To increase the precision of prior distribution, if not specified before you can use the argument `PriorAge`. 
+for example `Iter = 20000` or `Iter = 50000`. If it is not desirable to re-run the model from scratch, read the
+- To increase the precision of prior distribution, if not specified before you can use the argument `PriorAge`.
 For example: `PriorAge= c(0.01,10)` for a young sample and `PriorAge = c(10,100)` for an old sample.
-- If the trajectories are still not convergering, you should whether the choice you made with the argument `distribution` and 
+- If the trajectories are still not convergering, you should whether the choice you made with the argument `distribution` and
 dose-response curves are meaningful.
 
 ##### Remark 2: `LIN_fit` and `Origin_fit`, dose-response curves option
@@ -435,9 +443,9 @@ DATA_BF <- Generate_DataFile(
 ```
 
 ```
-Warning in Generate_DataFile(Path = path, FolderNames = Names, Nb_sample = nbsample, : 'Generate_DataFile' est obsolète.
-Utilisez plutôt ‘create_DataFile()’.
-Voir help("Deprecated")
+Warning in Generate_DataFile(Path = path, FolderNames = Names, Nb_sample = nbsample, : 'Generate_DataFile' is deprecated.
+Use 'create_DataFile()' instead.
+See help("Deprecated")
 ```
 
 ``` r
@@ -459,6 +467,10 @@ Graph information:
    Total graph size: 221
 
 Initializing model
+
+  |                                                          |                                                  |   0%  |                                                          |+                                                 |   2%  |                                                          |++                                                |   4%  |                                                          |+++                                               |   6%  |                                                          |++++                                              |   8%  |                                                          |+++++                                             |  10%  |                                                          |++++++                                            |  12%  |                                                          |+++++++                                           |  14%  |                                                          |++++++++                                          |  16%  |                                                          |+++++++++                                         |  18%  |                                                          |++++++++++                                        |  20%  |                                                          |+++++++++++                                       |  22%  |                                                          |++++++++++++                                      |  24%  |                                                          |+++++++++++++                                     |  26%  |                                                          |++++++++++++++                                    |  28%  |                                                          |+++++++++++++++                                   |  30%  |                                                          |++++++++++++++++                                  |  32%  |                                                          |+++++++++++++++++                                 |  34%  |                                                          |++++++++++++++++++                                |  36%  |                                                          |+++++++++++++++++++                               |  38%  |                                                          |++++++++++++++++++++                              |  40%  |                                                          |+++++++++++++++++++++                             |  42%  |                                                          |++++++++++++++++++++++                            |  44%  |                                                          |+++++++++++++++++++++++                           |  46%  |                                                          |++++++++++++++++++++++++                          |  48%  |                                                          |+++++++++++++++++++++++++                         |  50%  |                                                          |++++++++++++++++++++++++++                        |  52%  |                                                          |+++++++++++++++++++++++++++                       |  54%  |                                                          |++++++++++++++++++++++++++++                      |  56%  |                                                          |+++++++++++++++++++++++++++++                     |  58%  |                                                          |++++++++++++++++++++++++++++++                    |  60%  |                                                          |+++++++++++++++++++++++++++++++                   |  62%  |                                                          |++++++++++++++++++++++++++++++++                  |  64%  |                                                          |+++++++++++++++++++++++++++++++++                 |  66%  |                                                          |++++++++++++++++++++++++++++++++++                |  68%  |                                                          |+++++++++++++++++++++++++++++++++++               |  70%  |                                                          |++++++++++++++++++++++++++++++++++++              |  72%  |                                                          |+++++++++++++++++++++++++++++++++++++             |  74%  |                                                          |++++++++++++++++++++++++++++++++++++++            |  76%  |                                                          |+++++++++++++++++++++++++++++++++++++++           |  78%  |                                                          |++++++++++++++++++++++++++++++++++++++++          |  80%  |                                                          |+++++++++++++++++++++++++++++++++++++++++         |  82%  |                                                          |++++++++++++++++++++++++++++++++++++++++++        |  84%  |                                                          |+++++++++++++++++++++++++++++++++++++++++++       |  86%  |                                                          |++++++++++++++++++++++++++++++++++++++++++++      |  88%  |                                                          |+++++++++++++++++++++++++++++++++++++++++++++     |  90%  |                                                          |++++++++++++++++++++++++++++++++++++++++++++++    |  92%  |                                                          |+++++++++++++++++++++++++++++++++++++++++++++++   |  94%  |                                                          |++++++++++++++++++++++++++++++++++++++++++++++++  |  96%  |                                                          |+++++++++++++++++++++++++++++++++++++++++++++++++ |  98%  |                                                          |++++++++++++++++++++++++++++++++++++++++++++++++++| 100%
+  |                                                          |                                                  |   0%  |                                                          |*                                                 |   2%  |                                                          |**                                                |   4%  |                                                          |***                                               |   6%  |                                                          |****                                              |   8%  |                                                          |*****                                             |  10%  |                                                          |******                                            |  12%  |                                                          |*******                                           |  14%  |                                                          |********                                          |  16%  |                                                          |*********                                         |  18%  |                                                          |**********                                        |  20%  |                                                          |***********                                       |  22%  |                                                          |************                                      |  24%  |                                                          |*************                                     |  26%  |                                                          |**************                                    |  28%  |                                                          |***************                                   |  30%  |                                                          |****************                                  |  32%  |                                                          |*****************                                 |  34%  |                                                          |******************                                |  36%  |                                                          |*******************                               |  38%  |                                                          |********************                              |  40%  |                                                          |*********************                             |  42%  |                                                          |**********************                            |  44%  |                                                          |***********************                           |  46%  |                                                          |************************                          |  48%  |                                                          |*************************                         |  50%  |                                                          |**************************                        |  52%  |                                                          |***************************                       |  54%  |                                                          |****************************                      |  56%  |                                                          |*****************************                     |  58%  |                                                          |******************************                    |  60%  |                                                          |*******************************                   |  62%  |                                                          |********************************                  |  64%  |                                                          |*********************************                 |  66%  |                                                          |**********************************                |  68%  |                                                          |***********************************               |  70%  |                                                          |************************************              |  72%  |                                                          |*************************************             |  74%  |                                                          |**************************************            |  76%  |                                                          |***************************************           |  78%  |                                                          |****************************************          |  80%  |                                                          |*****************************************         |  82%  |                                                          |******************************************        |  84%  |                                                          |*******************************************       |  86%  |                                                          |********************************************      |  88%  |                                                          |*********************************************     |  90%  |                                                          |**********************************************    |  92%  |                                                          |***********************************************   |  94%  |                                                          |************************************************  |  96%  |                                                          |************************************************* |  98%  |                                                          |**************************************************| 100%
+  |                                                          |                                                  |   0%  |                                                          |*                                                 |   2%  |                                                          |**                                                |   4%  |                                                          |***                                               |   6%  |                                                          |****                                              |   8%  |                                                          |*****                                             |  10%  |                                                          |******                                            |  12%  |                                                          |*******                                           |  14%  |                                                          |********                                          |  16%  |                                                          |*********                                         |  18%  |                                                          |**********                                        |  20%  |                                                          |***********                                       |  22%  |                                                          |************                                      |  24%  |                                                          |*************                                     |  26%  |                                                          |**************                                    |  28%  |                                                          |***************                                   |  30%  |                                                          |****************                                  |  32%  |                                                          |*****************                                 |  34%  |                                                          |******************                                |  36%  |                                                          |*******************                               |  38%  |                                                          |********************                              |  40%  |                                                          |*********************                             |  42%  |                                                          |**********************                            |  44%  |                                                          |***********************                           |  46%  |                                                          |************************                          |  48%  |                                                          |*************************                         |  50%  |                                                          |**************************                        |  52%  |                                                          |***************************                       |  54%  |                                                          |****************************                      |  56%  |                                                          |*****************************                     |  58%  |                                                          |******************************                    |  60%  |                                                          |*******************************                   |  62%  |                                                          |********************************                  |  64%  |                                                          |*********************************                 |  66%  |                                                          |**********************************                |  68%  |                                                          |***********************************               |  70%  |                                                          |************************************              |  72%  |                                                          |*************************************             |  74%  |                                                          |**************************************            |  76%  |                                                          |***************************************           |  78%  |                                                          |****************************************          |  80%  |                                                          |*****************************************         |  82%  |                                                          |******************************************        |  84%  |                                                          |*******************************************       |  86%  |                                                          |********************************************      |  88%  |                                                          |*********************************************     |  90%  |                                                          |**********************************************    |  92%  |                                                          |***********************************************   |  94%  |                                                          |************************************************  |  96%  |                                                          |************************************************* |  98%  |                                                          |**************************************************| 100%
 ```
 
 <div class="figure" style="text-align: center">
@@ -476,9 +488,9 @@ samp1 samp2
 >> Results of the Gelman and Rubin criterion of convergence <<
 ----------------------------------------------
 	 Point estimate Uppers confidence interval
-A	 1.018 		 1.023 
-D	 1.022 		 1.027 
-sD	 1.044 		 1.057 
+A	 1.008 		 1.018 
+D	 1.009 		 1.018 
+sD	 1.013 		 1.016 
 
 
 ---------------------------------------------------------------------------------------------------
@@ -487,20 +499,20 @@ sD	 1.044 		 1.057
 
 parameter 	 Bayes estimate 	  Credible interval 
 ----------------------------------------------
-A 		 2.312 
+A 		 2.268 
 						 lower bound 	 upper bound
-				 at level 95%	 0.86 		 3.819 
-				 at level 68%	 1.65 		 2.728 
+				 at level 95%	 1.15 		 3.691 
+				 at level 68%	 1.69 		 2.771 
 ----------------------------------------------
-D 		 5.75 
+D 		 5.641 
 						 lower bound 	 upper bound
-				 at level 95%	 2.602 		 9.545 
-				 at level 68%	 4.453 		 6.886 
+				 at level 95%	 2.684 		 8.611 
+				 at level 68%	 4.551 		 6.996 
 ----------------------------------------------
-sD 		 0.881 
+sD 		 0.793 
 						 lower bound 	 upper bound
-				 at level 95%	 0.003 		 3.318 
-				 at level 68%	 0.003 		 0.846 
+				 at level 95%	 0.001 		 2.668 
+				 at level 68%	 0.001 		 0.828 
 ```
 
 # Age analysis of various samples
@@ -508,9 +520,9 @@ sD 		 0.881
 ## Generate data file from BIN/BINX-files
 
 The function `Generate_DataFile()`  (or `Generate_DataFile_MF()`) can process multiple files
-simultaneously including multiple BIN/BINX-files per sample. 
+simultaneously including multiple BIN/BINX-files per sample.
 
-We assume that we are interested in two samples named: *sample1* and *sample2*. In addition, we have 
+We assume that we are interested in two samples named: *sample1* and *sample2*. In addition, we have
 two BIN/BINX-files for the first sample named: *sample1-1* and *sample1-2*, and one BIN-file for the 2nd sample named *sample2-1*.
 In such case, we need three subfolders named *sample1-1*, *sample1-2* and *sample2-1*;
 which each subfolder containing only one BIN-file named **bin.bin**, and its associated files **DiscPos.csv**, **DoseEnv.csv**, **DoseSourve.csv** and **rule.csv**.
@@ -535,7 +547,7 @@ DATA <- Generate_DataFile(
 
 ### Combine files using the function `combine_DataFiles()`
 
-If the user has already saved informations imported with `Generate_DataFile()` function  (or `Generate_DataFile_MG()` function) 
+If the user has already saved informations imported with `Generate_DataFile()` function  (or `Generate_DataFile_MG()` function)
 these data can be concatenate with the function `combine_DataFiles()`.
 
 For example, if `DATA1` is the output of sample named "GDB3", and `DATA2` is the output of sample "GDB5",
@@ -605,7 +617,7 @@ Age <- AgeS_Computation(
   distribution = "cauchy",
   LIN_fit = TRUE,
   Origin_fit = FALSE,
-  Iter = 1000, 
+  Iter = 1000,
   jags_method = "rjags"
 )
 ```
@@ -618,7 +630,11 @@ Warning: No initial values were provided - JAGS will use the same initial values
 Compiling rjags model...
 Calling the simulation using the rjags method...
 Adapting the model for 1000 iterations...
+  |                                                          |                                                  |   0%  |                                                          |+                                                 |   2%  |                                                          |++                                                |   4%  |                                                          |+++                                               |   6%  |                                                          |++++                                              |   8%  |                                                          |+++++                                             |  10%  |                                                          |++++++                                            |  12%  |                                                          |+++++++                                           |  14%  |                                                          |++++++++                                          |  16%  |                                                          |+++++++++                                         |  18%  |                                                          |++++++++++                                        |  20%  |                                                          |+++++++++++                                       |  22%  |                                                          |++++++++++++                                      |  24%  |                                                          |+++++++++++++                                     |  26%  |                                                          |++++++++++++++                                    |  28%  |                                                          |+++++++++++++++                                   |  30%  |                                                          |++++++++++++++++                                  |  32%  |                                                          |+++++++++++++++++                                 |  34%  |                                                          |++++++++++++++++++                                |  36%  |                                                          |+++++++++++++++++++                               |  38%  |                                                          |++++++++++++++++++++                              |  40%  |                                                          |+++++++++++++++++++++                             |  42%  |                                                          |++++++++++++++++++++++                            |  44%  |                                                          |+++++++++++++++++++++++                           |  46%  |                                                          |++++++++++++++++++++++++                          |  48%  |                                                          |+++++++++++++++++++++++++                         |  50%  |                                                          |++++++++++++++++++++++++++                        |  52%  |                                                          |+++++++++++++++++++++++++++                       |  54%  |                                                          |++++++++++++++++++++++++++++                      |  56%  |                                                          |+++++++++++++++++++++++++++++                     |  58%  |                                                          |++++++++++++++++++++++++++++++                    |  60%  |                                                          |+++++++++++++++++++++++++++++++                   |  62%  |                                                          |++++++++++++++++++++++++++++++++                  |  64%  |                                                          |+++++++++++++++++++++++++++++++++                 |  66%  |                                                          |++++++++++++++++++++++++++++++++++                |  68%  |                                                          |+++++++++++++++++++++++++++++++++++               |  70%  |                                                          |++++++++++++++++++++++++++++++++++++              |  72%  |                                                          |+++++++++++++++++++++++++++++++++++++             |  74%  |                                                          |++++++++++++++++++++++++++++++++++++++            |  76%  |                                                          |+++++++++++++++++++++++++++++++++++++++           |  78%  |                                                          |++++++++++++++++++++++++++++++++++++++++          |  80%  |                                                          |+++++++++++++++++++++++++++++++++++++++++         |  82%  |                                                          |++++++++++++++++++++++++++++++++++++++++++        |  84%  |                                                          |+++++++++++++++++++++++++++++++++++++++++++       |  86%  |                                                          |++++++++++++++++++++++++++++++++++++++++++++      |  88%  |                                                          |+++++++++++++++++++++++++++++++++++++++++++++     |  90%  |                                                          |++++++++++++++++++++++++++++++++++++++++++++++    |  92%  |                                                          |+++++++++++++++++++++++++++++++++++++++++++++++   |  94%  |                                                          |++++++++++++++++++++++++++++++++++++++++++++++++  |  96%  |                                                          |+++++++++++++++++++++++++++++++++++++++++++++++++ |  98%  |                                                          |++++++++++++++++++++++++++++++++++++++++++++++++++| 100%
+Burning in the model for 4000 iterations...
+  |                                                          |                                                  |   0%  |                                                          |*                                                 |   2%  |                                                          |**                                                |   4%  |                                                          |***                                               |   6%  |                                                          |****                                              |   8%  |                                                          |*****                                             |  10%  |                                                          |******                                            |  12%  |                                                          |*******                                           |  14%  |                                                          |********                                          |  16%  |                                                          |*********                                         |  18%  |                                                          |**********                                        |  20%  |                                                          |***********                                       |  22%  |                                                          |************                                      |  24%  |                                                          |*************                                     |  26%  |                                                          |**************                                    |  28%  |                                                          |***************                                   |  30%  |                                                          |****************                                  |  32%  |                                                          |*****************                                 |  34%  |                                                          |******************                                |  36%  |                                                          |*******************                               |  38%  |                                                          |********************                              |  40%  |                                                          |*********************                             |  42%  |                                                          |**********************                            |  44%  |                                                          |***********************                           |  46%  |                                                          |************************                          |  48%  |                                                          |*************************                         |  50%  |                                                          |**************************                        |  52%  |                                                          |***************************                       |  54%  |                                                          |****************************                      |  56%  |                                                          |*****************************                     |  58%  |                                                          |******************************                    |  60%  |                                                          |*******************************                   |  62%  |                                                          |********************************                  |  64%  |                                                          |*********************************                 |  66%  |                                                          |**********************************                |  68%  |                                                          |***********************************               |  70%  |                                                          |************************************              |  72%  |                                                          |*************************************             |  74%  |                                                          |**************************************            |  76%  |                                                          |***************************************           |  78%  |                                                          |****************************************          |  80%  |                                                          |*****************************************         |  82%  |                                                          |******************************************        |  84%  |                                                          |*******************************************       |  86%  |                                                          |********************************************      |  88%  |                                                          |*********************************************     |  90%  |                                                          |**********************************************    |  92%  |                                                          |***********************************************   |  94%  |                                                          |************************************************  |  96%  |                                                          |************************************************* |  98%  |                                                          |**************************************************| 100%
 Running the model for 5000 iterations...
+  |                                                          |                                                  |   0%  |                                                          |*                                                 |   2%  |                                                          |**                                                |   3%  |                                                          |**                                                |   5%  |                                                          |***                                               |   6%  |                                                          |****                                              |   8%  |                                                          |*****                                             |  10%  |                                                          |******                                            |  11%  |                                                          |******                                            |  13%  |                                                          |*******                                           |  14%  |                                                          |********                                          |  16%  |                                                          |*********                                         |  18%  |                                                          |**********                                        |  19%  |                                                          |**********                                        |  21%  |                                                          |***********                                       |  22%  |                                                          |************                                      |  24%  |                                                          |*************                                     |  26%  |                                                          |**************                                    |  27%  |                                                          |**************                                    |  29%  |                                                          |***************                                   |  30%  |                                                          |****************                                  |  32%  |                                                          |*****************                                 |  34%  |                                                          |******************                                |  35%  |                                                          |******************                                |  37%  |                                                          |*******************                               |  38%  |                                                          |********************                              |  40%  |                                                          |*********************                             |  42%  |                                                          |**********************                            |  43%  |                                                          |**********************                            |  45%  |                                                          |***********************                           |  46%  |                                                          |************************                          |  48%  |                                                          |*************************                         |  50%  |                                                          |**************************                        |  51%  |                                                          |**************************                        |  53%  |                                                          |***************************                       |  54%  |                                                          |****************************                      |  56%  |                                                          |*****************************                     |  58%  |                                                          |******************************                    |  59%  |                                                          |******************************                    |  61%  |                                                          |*******************************                   |  62%  |                                                          |********************************                  |  64%  |                                                          |*********************************                 |  66%  |                                                          |**********************************                |  67%  |                                                          |**********************************                |  69%  |                                                          |***********************************               |  70%  |                                                          |************************************              |  72%  |                                                          |*************************************             |  74%  |                                                          |**************************************            |  75%  |                                                          |**************************************            |  77%  |                                                          |***************************************           |  78%  |                                                          |****************************************          |  80%  |                                                          |*****************************************         |  82%  |                                                          |******************************************        |  83%  |                                                          |******************************************        |  85%  |                                                          |*******************************************       |  86%  |                                                          |********************************************      |  88%  |                                                          |*********************************************     |  90%  |                                                          |**********************************************    |  91%  |                                                          |**********************************************    |  93%  |                                                          |***********************************************   |  94%  |                                                          |************************************************  |  96%  |                                                          |************************************************* |  98%  |                                                          |**************************************************|  99%  |                                                          |**************************************************| 100%
 Simulation complete
 Calculating summary statistics...
 Calculating the Gelman-Rubin statistic for 6 variables....
@@ -641,16 +657,16 @@ Finished running the simulation
  Sample name:  GDB5 
 ---------------------
 		 Point estimate Uppers confidence interval
-A_GDB5 	 1.002 		 1.005 
-D_GDB5 	 1.003 		 1.012 
-sD_GDB5 	 1.006 		 1.021 
+A_GDB5 	 1 		 1.002 
+D_GDB5 	 1.004 		 1.015 
+sD_GDB5 	 1.01 		 1.032 
 ----------------------------------------------
  Sample name:  GDB3 
 ---------------------
 		 Point estimate Uppers confidence interval
-A_GDB3 	 1 		 1 
-D_GDB3 	 1.001 		 1.002 
-sD_GDB3 	 1.001 		 1.005 
+A_GDB3 	 1 		 1.001 
+D_GDB3 	 1.011 		 1.037 
+sD_GDB3 	 1.001 		 1.003 
 
 
 ---------------------------------------------------------------------------------------------------
@@ -664,42 +680,42 @@ sD_GDB3 	 1.001 		 1.005
  Sample name:  GDB5 
 ---------------------
 Parameter 	 Bayes estimate 	  Credible interval 
- A_GDB5 	 7.132 
+ A_GDB5 	 7.134 
 						 lower bound 	 upper bound
-				 at level 95% 	 5.783 		 8.596 
-				 at level 68% 	 6.298 		 7.677 
+				 at level 95% 	 5.719 		 8.537 
+				 at level 68% 	 6.355 		 7.702 
 
 Parameter 	 Bayes estimate 	  Credible interval 
- D_GDB5 	 17.798 
+ D_GDB5 	 17.759 
 						 lower bound 	 upper bound
-				 at level 95% 	 16.725 		 19.004 
-				 at level 68% 	 17.145 		 18.332 
+				 at level 95% 	 16.661 		 19.007 
+				 at level 68% 	 17.137 		 18.312 
 
 Parameter 	 Bayes estimate 	  Credible interval 
-sD_GDB5 	 4.53 
+sD_GDB5 	 4.513 
 						 lower bound 	 upper bound
-				 at level 95% 	 3.544 		 5.782 
-				 at level 68% 	 4.028 		 5.142 
+				 at level 95% 	 3.464 		 5.515 
+				 at level 68% 	 3.946 		 5.008 
 ----------------------------------------------
  Sample name:  GDB3 
 ---------------------
 Parameter 	 Bayes estimate 	  Credible interval 
- A_GDB3 	 46.979 
+ A_GDB3 	 47.265 
 						 lower bound 	 upper bound
-				 at level 95% 	 36.343 		 57.758 
-				 at level 68% 	 40.774 		 51.082 
+				 at level 95% 	 37.393 		 58.778 
+				 at level 68% 	 41.016 		 51.866 
 
 Parameter 	 Bayes estimate 	  Credible interval 
- D_GDB3 	 104.689 
+ D_GDB3 	 105.417 
 						 lower bound 	 upper bound
-				 at level 95% 	 96.694 		 112.104 
-				 at level 68% 	 101.184 		 108.653 
+				 at level 95% 	 98.261 		 114.099 
+				 at level 68% 	 102.198 		 109.714 
 
 Parameter 	 Bayes estimate 	  Credible interval 
-sD_GDB3 	 16.236 
+sD_GDB3 	 15.88 
 						 lower bound 	 upper bound
-				 at level 95% 	 9.985 		 21.678 
-				 at level 68% 	 12.11 		 18.146 
+				 at level 95% 	 10.044 		 21.503 
+				 at level 68% 	 13.036 		 18.982 
 
 ----------------------------------------------
 ```
@@ -727,7 +743,7 @@ $$PriorAge=c(\underbrace{0.01,10}_{GDB5\ prior\ age},\underbrace{10,100}_{GDB3\ 
 With the function `AgeS_Computation()` it is possible to take the stratigraphic
 relations between samples into account and define constraints.
 
-For example, we know that *GDB5* is in a higher stratigraphical position, hence it likely has 
+For example, we know that *GDB5* is in a higher stratigraphical position, hence it likely has
 a younger age than sample *GDB3*.
 
 ### Ordering samples
@@ -749,9 +765,9 @@ DATA3 <- Generate_DataFile(
 ```
 
 ```
-Warning in Generate_DataFile(Path = path, FolderNames = Names, Nb_sample = nbsample, : 'Generate_DataFile' est obsolète.
-Utilisez plutôt ‘create_DataFile()’.
-Voir help("Deprecated")
+Warning in Generate_DataFile(Path = path, FolderNames = Names, Nb_sample = nbsample, : 'Generate_DataFile' is deprecated.
+Use 'create_DataFile()' instead.
+See help("Deprecated")
 ```
 
 
@@ -812,7 +828,7 @@ Age <-
     LIN_fit = TRUE,
     Origin_fit = FALSE,
     StratiConstraints = SC,
-    Iter = 1000, 
+    Iter = 1000,
     jags_method = 'rjags')
 ```
 
@@ -824,7 +840,11 @@ Warning: No initial values were provided - JAGS will use the same initial values
 Compiling rjags model...
 Calling the simulation using the rjags method...
 Adapting the model for 1000 iterations...
+  |                                                          |                                                  |   0%  |                                                          |+                                                 |   2%  |                                                          |++                                                |   4%  |                                                          |+++                                               |   6%  |                                                          |++++                                              |   8%  |                                                          |+++++                                             |  10%  |                                                          |++++++                                            |  12%  |                                                          |+++++++                                           |  14%  |                                                          |++++++++                                          |  16%  |                                                          |+++++++++                                         |  18%  |                                                          |++++++++++                                        |  20%  |                                                          |+++++++++++                                       |  22%  |                                                          |++++++++++++                                      |  24%  |                                                          |+++++++++++++                                     |  26%  |                                                          |++++++++++++++                                    |  28%  |                                                          |+++++++++++++++                                   |  30%  |                                                          |++++++++++++++++                                  |  32%  |                                                          |+++++++++++++++++                                 |  34%  |                                                          |++++++++++++++++++                                |  36%  |                                                          |+++++++++++++++++++                               |  38%  |                                                          |++++++++++++++++++++                              |  40%  |                                                          |+++++++++++++++++++++                             |  42%  |                                                          |++++++++++++++++++++++                            |  44%  |                                                          |+++++++++++++++++++++++                           |  46%  |                                                          |++++++++++++++++++++++++                          |  48%  |                                                          |+++++++++++++++++++++++++                         |  50%  |                                                          |++++++++++++++++++++++++++                        |  52%  |                                                          |+++++++++++++++++++++++++++                       |  54%  |                                                          |++++++++++++++++++++++++++++                      |  56%  |                                                          |+++++++++++++++++++++++++++++                     |  58%  |                                                          |++++++++++++++++++++++++++++++                    |  60%  |                                                          |+++++++++++++++++++++++++++++++                   |  62%  |                                                          |++++++++++++++++++++++++++++++++                  |  64%  |                                                          |+++++++++++++++++++++++++++++++++                 |  66%  |                                                          |++++++++++++++++++++++++++++++++++                |  68%  |                                                          |+++++++++++++++++++++++++++++++++++               |  70%  |                                                          |++++++++++++++++++++++++++++++++++++              |  72%  |                                                          |+++++++++++++++++++++++++++++++++++++             |  74%  |                                                          |++++++++++++++++++++++++++++++++++++++            |  76%  |                                                          |+++++++++++++++++++++++++++++++++++++++           |  78%  |                                                          |++++++++++++++++++++++++++++++++++++++++          |  80%  |                                                          |+++++++++++++++++++++++++++++++++++++++++         |  82%  |                                                          |++++++++++++++++++++++++++++++++++++++++++        |  84%  |                                                          |+++++++++++++++++++++++++++++++++++++++++++       |  86%  |                                                          |++++++++++++++++++++++++++++++++++++++++++++      |  88%  |                                                          |+++++++++++++++++++++++++++++++++++++++++++++     |  90%  |                                                          |++++++++++++++++++++++++++++++++++++++++++++++    |  92%  |                                                          |+++++++++++++++++++++++++++++++++++++++++++++++   |  94%  |                                                          |++++++++++++++++++++++++++++++++++++++++++++++++  |  96%  |                                                          |+++++++++++++++++++++++++++++++++++++++++++++++++ |  98%  |                                                          |++++++++++++++++++++++++++++++++++++++++++++++++++| 100%
+Burning in the model for 4000 iterations...
+  |                                                          |                                                  |   0%  |                                                          |*                                                 |   2%  |                                                          |**                                                |   4%  |                                                          |***                                               |   6%  |                                                          |****                                              |   8%  |                                                          |*****                                             |  10%  |                                                          |******                                            |  12%  |                                                          |*******                                           |  14%  |                                                          |********                                          |  16%  |                                                          |*********                                         |  18%  |                                                          |**********                                        |  20%  |                                                          |***********                                       |  22%  |                                                          |************                                      |  24%  |                                                          |*************                                     |  26%  |                                                          |**************                                    |  28%  |                                                          |***************                                   |  30%  |                                                          |****************                                  |  32%  |                                                          |*****************                                 |  34%  |                                                          |******************                                |  36%  |                                                          |*******************                               |  38%  |                                                          |********************                              |  40%  |                                                          |*********************                             |  42%  |                                                          |**********************                            |  44%  |                                                          |***********************                           |  46%  |                                                          |************************                          |  48%  |                                                          |*************************                         |  50%  |                                                          |**************************                        |  52%  |                                                          |***************************                       |  54%  |                                                          |****************************                      |  56%  |                                                          |*****************************                     |  58%  |                                                          |******************************                    |  60%  |                                                          |*******************************                   |  62%  |                                                          |********************************                  |  64%  |                                                          |*********************************                 |  66%  |                                                          |**********************************                |  68%  |                                                          |***********************************               |  70%  |                                                          |************************************              |  72%  |                                                          |*************************************             |  74%  |                                                          |**************************************            |  76%  |                                                          |***************************************           |  78%  |                                                          |****************************************          |  80%  |                                                          |*****************************************         |  82%  |                                                          |******************************************        |  84%  |                                                          |*******************************************       |  86%  |                                                          |********************************************      |  88%  |                                                          |*********************************************     |  90%  |                                                          |**********************************************    |  92%  |                                                          |***********************************************   |  94%  |                                                          |************************************************  |  96%  |                                                          |************************************************* |  98%  |                                                          |**************************************************| 100%
 Running the model for 5000 iterations...
+  |                                                          |                                                  |   0%  |                                                          |*                                                 |   2%  |                                                          |**                                                |   3%  |                                                          |**                                                |   5%  |                                                          |***                                               |   6%  |                                                          |****                                              |   8%  |                                                          |*****                                             |  10%  |                                                          |******                                            |  11%  |                                                          |******                                            |  13%  |                                                          |*******                                           |  14%  |                                                          |********                                          |  16%  |                                                          |*********                                         |  18%  |                                                          |**********                                        |  19%  |                                                          |**********                                        |  21%  |                                                          |***********                                       |  22%  |                                                          |************                                      |  24%  |                                                          |*************                                     |  26%  |                                                          |**************                                    |  27%  |                                                          |**************                                    |  29%  |                                                          |***************                                   |  30%  |                                                          |****************                                  |  32%  |                                                          |*****************                                 |  34%  |                                                          |******************                                |  35%  |                                                          |******************                                |  37%  |                                                          |*******************                               |  38%  |                                                          |********************                              |  40%  |                                                          |*********************                             |  42%  |                                                          |**********************                            |  43%  |                                                          |**********************                            |  45%  |                                                          |***********************                           |  46%  |                                                          |************************                          |  48%  |                                                          |*************************                         |  50%  |                                                          |**************************                        |  51%  |                                                          |**************************                        |  53%  |                                                          |***************************                       |  54%  |                                                          |****************************                      |  56%  |                                                          |*****************************                     |  58%  |                                                          |******************************                    |  59%  |                                                          |******************************                    |  61%  |                                                          |*******************************                   |  62%  |                                                          |********************************                  |  64%  |                                                          |*********************************                 |  66%  |                                                          |**********************************                |  67%  |                                                          |**********************************                |  69%  |                                                          |***********************************               |  70%  |                                                          |************************************              |  72%  |                                                          |*************************************             |  74%  |                                                          |**************************************            |  75%  |                                                          |**************************************            |  77%  |                                                          |***************************************           |  78%  |                                                          |****************************************          |  80%  |                                                          |*****************************************         |  82%  |                                                          |******************************************        |  83%  |                                                          |******************************************        |  85%  |                                                          |*******************************************       |  86%  |                                                          |********************************************      |  88%  |                                                          |*********************************************     |  90%  |                                                          |**********************************************    |  91%  |                                                          |**********************************************    |  93%  |                                                          |***********************************************   |  94%  |                                                          |************************************************  |  96%  |                                                          |************************************************* |  98%  |                                                          |**************************************************|  99%  |                                                          |**************************************************| 100%
 Simulation complete
 Calculating summary statistics...
 Calculating the Gelman-Rubin statistic for 6 variables....
@@ -847,15 +867,15 @@ Finished running the simulation
  Sample name:  samp1 
 ---------------------
 		 Point estimate Uppers confidence interval
-A_samp1 	 1.003 		 1.005 
-D_samp1 	 1 		 1.002 
-sD_samp1 	 1.003 		 1.009 
+A_samp1 	 1 		 1 
+D_samp1 	 1 		 1 
+sD_samp1 	 1 		 1.001 
 ----------------------------------------------
  Sample name:  samp2 
 ---------------------
 		 Point estimate Uppers confidence interval
-A_samp2 	 1.004 		 1.008 
-D_samp2 	 1.005 		 1.017 
+A_samp2 	 1 		 1.001 
+D_samp2 	 1.003 		 1.008 
 sD_samp2 	 1.002 		 1.01 
 
 
@@ -870,42 +890,42 @@ sD_samp2 	 1.002 		 1.01
  Sample name:  samp1 
 ---------------------
 Parameter 	 Bayes estimate 	  Credible interval 
- A_samp1 	 9.711 
+ A_samp1 	 9.719 
 						 lower bound 	 upper bound
-				 at level 95% 	 9.126 		 10 
-				 at level 68% 	 9.677 		 10 
+				 at level 95% 	 9.156 		 10 
+				 at level 68% 	 9.683 		 10 
 
 Parameter 	 Bayes estimate 	  Credible interval 
- D_samp1 	 29.26 
+ D_samp1 	 29.227 
 						 lower bound 	 upper bound
-				 at level 95% 	 23.914 		 34.493 
-				 at level 68% 	 26.756 		 32.052 
+				 at level 95% 	 23.881 		 34.173 
+				 at level 68% 	 26.829 		 31.887 
 
 Parameter 	 Bayes estimate 	  Credible interval 
-sD_samp1 	 67.869 
+sD_samp1 	 67.46 
 						 lower bound 	 upper bound
-				 at level 95% 	 51.164 		 84.839 
-				 at level 68% 	 57.714 		 74.182 
+				 at level 95% 	 51.546 		 85.013 
+				 at level 68% 	 57.707 		 75.102 
 ----------------------------------------------
  Sample name:  samp2 
 ---------------------
 Parameter 	 Bayes estimate 	  Credible interval 
- A_samp2 	 10.413 
+ A_samp2 	 10.412 
 						 lower bound 	 upper bound
-				 at level 95% 	 10 		 11.236 
-				 at level 68% 	 10 		 10.469 
+				 at level 95% 	 10 		 11.233 
+				 at level 68% 	 10 		 10.477 
 
 Parameter 	 Bayes estimate 	  Credible interval 
- D_samp2 	 18.343 
+ D_samp2 	 18.356 
 						 lower bound 	 upper bound
-				 at level 95% 	 17.089 		 19.48 
-				 at level 68% 	 17.62 		 18.846 
+				 at level 95% 	 17.24 		 19.618 
+				 at level 68% 	 17.709 		 18.902 
 
 Parameter 	 Bayes estimate 	  Credible interval 
-sD_samp2 	 4.619 
+sD_samp2 	 4.606 
 						 lower bound 	 upper bound
-				 at level 95% 	 3.588 		 5.669 
-				 at level 68% 	 4.003 		 5.09 
+				 at level 95% 	 3.59 		 5.83 
+				 at level 68% 	 4.033 		 5.131 
 
 ----------------------------------------------
 ```
@@ -915,7 +935,7 @@ sD_samp2 	 4.619
 <p class="caption">plot of chunk unnamed-chunk-23</p>
 </div>
 
-Thee results can be also be used for an alternative graphical representation: 
+Thee results can be also be used for an alternative graphical representation:
 
 
 ``` r
@@ -929,13 +949,13 @@ plot_Ages(Age, plot_mode = "density")
 
 ```
   SAMPLE    AGE HPD68.MIN HPD68.MAX HPD95.MIN HPD95.MAX ALT_SAMPLE_NAME AT
-1  samp1  9.711     9.677    10.000     9.126    10.000              NA  2
-2  samp2 10.413    10.000    10.469    10.000    11.236              NA  1
+1  samp1  9.719     9.683    10.000     9.156    10.000              NA  2
+2  samp2 10.412    10.000    10.477    10.000    11.233              NA  1
 ```
 
 ## When MCMC trajectories did not converge
 
-If MCMC trajectories did not converge, it means we should run additional MCMC iterations.  
+If MCMC trajectories did not converge, it means we should run additional MCMC iterations.
 For `AgeS_computation()` and `Age_OSLC14()` models we can run additional iterations by supplying the function output back into the parent function.
 In the following, notice we are using the output of the previous `AgeS_computation()` example, namely `Age`. The key argument to set/change is `DATA`.
 
@@ -949,7 +969,7 @@ Age <- AgeS_Computation(
   distribution = "cauchy",
   LIN_fit = TRUE,
   Origin_fit = FALSE,
-  Iter = 1000, 
+  Iter = 1000,
   jags_method = "rjags"
 )
 ```
@@ -958,7 +978,9 @@ Age <- AgeS_Computation(
 Calling the simulation using the rjags method...
 Note: the model did not require adaptation
 Burning in the model for 4000 iterations...
+  |                                                          |                                                  |   0%  |                                                          |*                                                 |   2%  |                                                          |**                                                |   4%  |                                                          |***                                               |   6%  |                                                          |****                                              |   8%  |                                                          |*****                                             |  10%  |                                                          |******                                            |  12%  |                                                          |*******                                           |  14%  |                                                          |********                                          |  16%  |                                                          |*********                                         |  18%  |                                                          |**********                                        |  20%  |                                                          |***********                                       |  22%  |                                                          |************                                      |  24%  |                                                          |*************                                     |  26%  |                                                          |**************                                    |  28%  |                                                          |***************                                   |  30%  |                                                          |****************                                  |  32%  |                                                          |*****************                                 |  34%  |                                                          |******************                                |  36%  |                                                          |*******************                               |  38%  |                                                          |********************                              |  40%  |                                                          |*********************                             |  42%  |                                                          |**********************                            |  44%  |                                                          |***********************                           |  46%  |                                                          |************************                          |  48%  |                                                          |*************************                         |  50%  |                                                          |**************************                        |  52%  |                                                          |***************************                       |  54%  |                                                          |****************************                      |  56%  |                                                          |*****************************                     |  58%  |                                                          |******************************                    |  60%  |                                                          |*******************************                   |  62%  |                                                          |********************************                  |  64%  |                                                          |*********************************                 |  66%  |                                                          |**********************************                |  68%  |                                                          |***********************************               |  70%  |                                                          |************************************              |  72%  |                                                          |*************************************             |  74%  |                                                          |**************************************            |  76%  |                                                          |***************************************           |  78%  |                                                          |****************************************          |  80%  |                                                          |*****************************************         |  82%  |                                                          |******************************************        |  84%  |                                                          |*******************************************       |  86%  |                                                          |********************************************      |  88%  |                                                          |*********************************************     |  90%  |                                                          |**********************************************    |  92%  |                                                          |***********************************************   |  94%  |                                                          |************************************************  |  96%  |                                                          |************************************************* |  98%  |                                                          |**************************************************| 100%
 Running the model for 5000 iterations...
+  |                                                          |                                                  |   0%  |                                                          |*                                                 |   2%  |                                                          |**                                                |   3%  |                                                          |**                                                |   5%  |                                                          |***                                               |   6%  |                                                          |****                                              |   8%  |                                                          |*****                                             |  10%  |                                                          |******                                            |  11%  |                                                          |******                                            |  13%  |                                                          |*******                                           |  14%  |                                                          |********                                          |  16%  |                                                          |*********                                         |  18%  |                                                          |**********                                        |  19%  |                                                          |**********                                        |  21%  |                                                          |***********                                       |  22%  |                                                          |************                                      |  24%  |                                                          |*************                                     |  26%  |                                                          |**************                                    |  27%  |                                                          |**************                                    |  29%  |                                                          |***************                                   |  30%  |                                                          |****************                                  |  32%  |                                                          |*****************                                 |  34%  |                                                          |******************                                |  35%  |                                                          |******************                                |  37%  |                                                          |*******************                               |  38%  |                                                          |********************                              |  40%  |                                                          |*********************                             |  42%  |                                                          |**********************                            |  43%  |                                                          |**********************                            |  45%  |                                                          |***********************                           |  46%  |                                                          |************************                          |  48%  |                                                          |*************************                         |  50%  |                                                          |**************************                        |  51%  |                                                          |**************************                        |  53%  |                                                          |***************************                       |  54%  |                                                          |****************************                      |  56%  |                                                          |*****************************                     |  58%  |                                                          |******************************                    |  59%  |                                                          |******************************                    |  61%  |                                                          |*******************************                   |  62%  |                                                          |********************************                  |  64%  |                                                          |*********************************                 |  66%  |                                                          |**********************************                |  67%  |                                                          |**********************************                |  69%  |                                                          |***********************************               |  70%  |                                                          |************************************              |  72%  |                                                          |*************************************             |  74%  |                                                          |**************************************            |  75%  |                                                          |**************************************            |  77%  |                                                          |***************************************           |  78%  |                                                          |****************************************          |  80%  |                                                          |*****************************************         |  82%  |                                                          |******************************************        |  83%  |                                                          |******************************************        |  85%  |                                                          |*******************************************       |  86%  |                                                          |********************************************      |  88%  |                                                          |*********************************************     |  90%  |                                                          |**********************************************    |  91%  |                                                          |**********************************************    |  93%  |                                                          |***********************************************   |  94%  |                                                          |************************************************  |  96%  |                                                          |************************************************* |  98%  |                                                          |**************************************************|  99%  |                                                          |**************************************************| 100%
 Simulation complete
 Calculating summary statistics...
 Calculating the Gelman-Rubin statistic for 6 variables....
@@ -981,16 +1003,16 @@ Finished running the simulation
  Sample name:  GDB5 
 ---------------------
 		 Point estimate Uppers confidence interval
-A_GDB5 	 1 		 1 
-D_GDB5 	 1.001 		 1.004 
-sD_GDB5 	 1.001 		 1.005 
+A_GDB5 	 1.001 		 1.002 
+D_GDB5 	 1.002 		 1.007 
+sD_GDB5 	 1.001 		 1.002 
 ----------------------------------------------
  Sample name:  GDB3 
 ---------------------
 		 Point estimate Uppers confidence interval
-A_GDB3 	 1.008 		 1.012 
-D_GDB3 	 1.009 		 1.031 
-sD_GDB3 	 1.007 		 1.026 
+A_GDB3 	 1.003 		 1.004 
+D_GDB3 	 1.009 		 1.032 
+sD_GDB3 	 1.02 		 1.069 
 
 
 ---------------------------------------------------------------------------------------------------
@@ -1004,42 +1026,42 @@ sD_GDB3 	 1.007 		 1.026
  Sample name:  GDB5 
 ---------------------
 Parameter 	 Bayes estimate 	  Credible interval 
- A_GDB5 	 9.724 
+ A_GDB5 	 9.71 
 						 lower bound 	 upper bound
-				 at level 95% 	 9.154 		 10 
-				 at level 68% 	 9.687 		 10 
+				 at level 95% 	 9.126 		 10 
+				 at level 68% 	 9.675 		 10 
 
 Parameter 	 Bayes estimate 	  Credible interval 
- D_GDB5 	 29.372 
+ D_GDB5 	 29.187 
 						 lower bound 	 upper bound
-				 at level 95% 	 23.658 		 34.505 
-				 at level 68% 	 26.635 		 32.055 
+				 at level 95% 	 24.248 		 34.692 
+				 at level 68% 	 26.84 		 32.248 
 
 Parameter 	 Bayes estimate 	  Credible interval 
-sD_GDB5 	 67.561 
+sD_GDB5 	 67.728 
 						 lower bound 	 upper bound
-				 at level 95% 	 50.632 		 84.409 
-				 at level 68% 	 59.654 		 76.278 
+				 at level 95% 	 52.173 		 85.609 
+				 at level 68% 	 60.232 		 77.214 
 ----------------------------------------------
  Sample name:  GDB3 
 ---------------------
 Parameter 	 Bayes estimate 	  Credible interval 
- A_GDB3 	 10.406 
+ A_GDB3 	 10.424 
 						 lower bound 	 upper bound
-				 at level 95% 	 10 		 11.176 
-				 at level 68% 	 10 		 10.468 
+				 at level 95% 	 10 		 11.27 
+				 at level 68% 	 10 		 10.485 
 
 Parameter 	 Bayes estimate 	  Credible interval 
- D_GDB3 	 18.29 
+ D_GDB3 	 18.313 
 						 lower bound 	 upper bound
-				 at level 95% 	 17.184 		 19.532 
-				 at level 68% 	 17.675 		 18.837 
+				 at level 95% 	 17.11 		 19.482 
+				 at level 68% 	 17.588 		 18.812 
 
 Parameter 	 Bayes estimate 	  Credible interval 
-sD_GDB3 	 4.557 
+sD_GDB3 	 4.616 
 						 lower bound 	 upper bound
-				 at level 95% 	 3.526 		 5.591 
-				 at level 68% 	 3.975 		 5.059 
+				 at level 95% 	 3.421 		 5.416 
+				 at level 68% 	 4.064 		 5.147 
 
 ----------------------------------------------
 ```
@@ -1052,7 +1074,7 @@ sD_GDB3 	 4.557
 # References {-}
 
 Combès, B., Philippe, A., Lanos, P., Mercier, N., Tribolo, C., Guerin, G., Guibert, P., Lahaye, C., 2015.
-A Bayesian central equivalent dose model for optically stimulated luminescence dating. 
+A Bayesian central equivalent dose model for optically stimulated luminescence dating.
 Quaternary Geochronology 28, 62-70. doi: [10.1016/j.quageo.2015.04.001](https://doi.org/10.1016/j.quageo.2015.04.001)
 
 Combès, B., Philippe, A., 2017. Bayesian analysis of individual and systematic multiplicative errors for estimating ages with stratigraphic constraints in optically stimulated luminescence dating. Quaternary Geochronology 39, 24–34. doi: [10.1016/j.quageo.2017.02.003](https://doi.org/10.1016/j.quageo.2017.02.003)
