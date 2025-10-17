@@ -13,10 +13,3 @@ header-includes:
   **This package version requires R >= 4.4**
 
 ## Miscellaneous
-
-- Fix various anchors in the manual with broken target (CRAN request).
-
-## Internals
-
-- The vignette manual code takes very long to execute and must be pre-computed.
-  To pre-compute the vignette: make changes in `B
