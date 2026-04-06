@@ -1,0 +1,229 @@
+# BayLum ![](reference/figures/logo_BayLum.png)
+
+[![r-universe](https://crp2a.r-universe.dev/badges/BayLum)](https://crp2a.r-universe.dev/BayLum)
+[![CRAN
+Version](https://www.r-pkg.org/badges/version/BayLum)](https://cran.r-project.org/package=BayLum)
+[![CRAN
+checks](https://badges.cranchecks.info/worst/BayLum.svg)](https://cran.r-project.org/web/checks/check_results_BayLum.html)
+[![CRAN
+Downloads](https://cranlogs.r-pkg.org/badges/grand-total/BayLum)](https://cran.r-project.org/package=BayLum)
+
+[![Project Status: Active – The project has reached a stable, usable
+state and is being actively
+developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
+
+[![DOI
+Zenodo](https://zenodo.org/badge/DOI/10.5281/zenodo.4311266.svg)](https://doi.org/10.5281/zenodo.4311266)
+[![CRAN
+DOI](https://img.shields.io/badge/doi-10.32614/CRAN.package.BayLum-blue.svg)](https://doi.org/10.32614/CRAN.package.BayLum)
+
+An R package for chronological **Bay**esian models integrated for
+Optically Stimulated (OSL) **Lum**inescence Dating
+
+``` R
+To cite the R package 'BayLum' please cite the R package itself and the
+following article:
+
+  Christophe C, Philippe A, Kreutzer S, Guérin G, Baumgarten F,
+  Frerebeau N (2026). _BayLum: Chronological Bayesian Models
+  Integrating Optically Stimulated Luminescence and Radiocarbon Age
+  Dating_. R package version 0.3.3.9000-5,
+  <https://CRAN.r-project.org/package=BayLum>.
+
+  Philippe A, Guerin G, Kreutzer S (2019). "BayLum - An R package for
+  Bayesian analysis of OSL ages: An introduction." _Quaternary
+  Geochronology_, *49*, 16-24. doi:10.1016/j.quageo.2018.05.009
+  <https://doi.org/10.1016/j.quageo.2018.05.009>.
+```
+
+## Installation
+
+**You need to have [JAGS](https://mcmc-jags.sourceforge.io) installed on
+your computer.**
+
+You can install the released version of **BayLum** from
+[CRAN](https://CRAN.R-project.org) with:
+
+``` r
+install.packages("BayLum")
+```
+
+And the development version from [GitHub](https://github.com/) with:
+
+``` r
+# install.packages("remotes")
+remotes::install_github("crp2a/BayLum")
+```
+
+Please note that development versions may change day by day.
+
+## License
+
+This program is free software: you can redistribute it and/or modify it
+under the terms of the GNU General Public License as published by the
+Free Software Foundation, either version 3 of the License, or any later
+version.
+
+This program is distributed in the hope that it will be useful, but
+WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General
+Public License for more details.
+
+## Acknowledgements
+
+The development of **BayLum** received a state financial support managed
+by the Agence Nationale de la Recherche (France) through the program
+*Investissements d’avenir* (ref. ANR-10-LABX-52) between 2015 and 2018.
+
+# Package index
+
+## All functions
+
+- [`AgeC14_Computation()`](https://crp2a.github.io/BayLum/dev/reference/AgeC14_Computation.md)
+  : Bayesian analysis for C-14 age estimations of various samples
+
+- [`AgeS`](https://crp2a.github.io/BayLum/dev/reference/AgeS.md) :
+
+  Output of `AgeS_Computation` function for the samples: "GDB5" and
+  "GDB3"
+
+- [`AgeS_Computation()`](https://crp2a.github.io/BayLum/dev/reference/AgeS_Computation.md)
+  : Bayesian analysis for OSL age estimation of various samples
+
+- [`Age_Computation()`](https://crp2a.github.io/BayLum/dev/reference/Age_Computation.md)
+  : Bayesian analysis for the OSL age estimation of one sample
+
+- [`Age_OSLC14()`](https://crp2a.github.io/BayLum/dev/reference/Age_OSLC14.md)
+  : Bayesian analysis for age estimation of OSL measurements and C-14
+  ages of various samples
+
+- [`DATA1`](https://crp2a.github.io/BayLum/dev/reference/DATA1.md) :
+  DATA of sample named GDB3
+
+- [`DATA2`](https://crp2a.github.io/BayLum/dev/reference/DATA2.md) :
+  DATA on sample named GDB5
+
+- [`DATA3`](https://crp2a.github.io/BayLum/dev/reference/DATA3.md) :
+  DATA of sample named FER1
+
+- [`DATA_C14`](https://crp2a.github.io/BayLum/dev/reference/DATA_C14.md)
+  : C14 cal age estiamte and its error
+
+- [`Generate_DataFile()`](https://crp2a.github.io/BayLum/dev/reference/Generate_DataFile-deprecated.md)
+  : Generates, from one (or several) BIN-file(s) of Single-grain OSL
+  measurements, a list of luminescence data and information before
+  statistical analysis (DEPRECATED)
+
+- [`Generate_DataFile_MG()`](https://crp2a.github.io/BayLum/dev/reference/Generate_DataFile_MG-deprecated.md)
+  : Generates, from one (or several) BIN file(s) of Multi-grain OSL
+  measurements a list of luminescence data and information before
+  statistical analysis (DEPRECATED)
+
+- [`IntCal13`](https://crp2a.github.io/BayLum/dev/reference/IntCal13.md)
+  : Atmospheric North data for calibration of 14C age
+
+- [`IntCal20`](https://crp2a.github.io/BayLum/dev/reference/IntCal20.md)
+  : Atmospheric North data for calibration of 14C age
+
+- [`LT_RegenDose()`](https://crp2a.github.io/BayLum/dev/reference/LT_RegenDose-deprecated.md)
+  : Plots Lx/Tx as a function of the regenerative dose (DEPRECATED)
+
+- [`MCMCsample`](https://crp2a.github.io/BayLum/dev/reference/MCMCsample.md)
+  : MCMC sample from the posterior distribution of the dataset GDB5
+
+- [`Marine13`](https://crp2a.github.io/BayLum/dev/reference/Marine13.md)
+  : Marine data for calibration of 14C age
+
+- [`Marine20`](https://crp2a.github.io/BayLum/dev/reference/Marine20.md)
+  : Marine data for calibration of 14C age
+
+- [`ModelC14`](https://crp2a.github.io/BayLum/dev/reference/ModelC14.md)
+  :
+
+  Likelihood of C14 samples for JAGS models use in `Age_OSLC14`
+
+- [`ModelOSL`](https://crp2a.github.io/BayLum/dev/reference/ModelOSL.md)
+  :
+
+  Likelihood of OSL samples for JAGS models use in `Age_OSLC14`
+
+- [`ModelPrior`](https://crp2a.github.io/BayLum/dev/reference/ModelPrior.md)
+  :
+
+  Prior for JAGS models use in `Age_OSLC14`
+
+- [`Model_Age`](https://crp2a.github.io/BayLum/dev/reference/Model_Age.md)
+  :
+
+  JAGS models use in `Age_Computation`
+
+- [`Model_AgeC14`](https://crp2a.github.io/BayLum/dev/reference/Model_AgeC14.md)
+  :
+
+  JAGS models use in `AgeC14_Computation`
+
+- [`Model_AgeS`](https://crp2a.github.io/BayLum/dev/reference/Model_AgeS.md)
+  :
+
+  JAGS models use in `AgeS_Computation`
+
+- [`Model_Palaeodose`](https://crp2a.github.io/BayLum/dev/reference/Model_Palaeodose.md)
+  :
+
+  JAGS models use in `Palaeodose_Computation`
+
+- [`Palaeodose_Computation()`](https://crp2a.github.io/BayLum/dev/reference/Palaeodose_Computation.md)
+  : Bayesian analysis for the palaeodose estimation of various samples
+
+- [`SCMatrix()`](https://crp2a.github.io/BayLum/dev/reference/SCMatrix.md)
+  : Construct the Stratigraphic Constrain Matrix Interactively
+
+- [`SC_Ordered()`](https://crp2a.github.io/BayLum/dev/reference/SC_Ordered.md)
+  : Create Stratigraphically Ordered Sample Matrix
+
+- [`SHCal13`](https://crp2a.github.io/BayLum/dev/reference/SHCal13.md) :
+  Atmospheric South data for calibration of 14C age
+
+- [`SHCal20`](https://crp2a.github.io/BayLum/dev/reference/SHCal20.md) :
+  Atmospheric South data for calibration of 14C age
+
+- [`combine_DataFiles()`](https://crp2a.github.io/BayLum/dev/reference/combine_DataFiles.md)
+  [`Concat_DataFile()`](https://crp2a.github.io/BayLum/dev/reference/combine_DataFiles.md)
+  : Combine objects
+
+- [`create_DataFile()`](https://crp2a.github.io/BayLum/dev/reference/create_DataFile.md)
+  : Prepare input data for subsequent BayLum Analysis
+
+- [`create_FolderTemplates()`](https://crp2a.github.io/BayLum/dev/reference/create_FolderTemplates.md)
+  : Create Folder Templates
+
+- [`create_ThetaMatrix()`](https://crp2a.github.io/BayLum/dev/reference/create_ThetaMatrix.md)
+  : Create Theta Matrix
+
+- [`plot_Ages()`](https://crp2a.github.io/BayLum/dev/reference/plot_Ages.md)
+  : Create Age Plot
+
+- [`plot_MCMC()`](https://crp2a.github.io/BayLum/dev/reference/plot_MCMC.md)
+  : Plot MCMC trajectories and posterior distributions
+
+- [`plot_RegDosePoints()`](https://crp2a.github.io/BayLum/dev/reference/plot_RegDosePoints.md)
+  : Plot Regeneration Dose Points
+
+- [`plot_Scatterplots()`](https://crp2a.github.io/BayLum/dev/reference/plot_Scatterplots.md)
+  [`ScatterSamples()`](https://crp2a.github.io/BayLum/dev/reference/plot_Scatterplots.md)
+  : Display Scatter Plot Matrix of the Bayesian Age Results
+
+- [`write_BayLumFiles()`](https://crp2a.github.io/BayLum/dev/reference/write_BayLumFiles.md)
+  : Write BayLum .csv-files
+
+- [`write_YAMLConfigFile()`](https://crp2a.github.io/BayLum/dev/reference/write_YAMLConfigFile.md)
+  : Write Auto Generated YAML BayLum Configuration File to the Disc
+
+# Articles
+
+### All vignettes
+
+- [BayLum: An
+  Introduction](https://crp2a.github.io/BayLum/dev/articles/BayLum.md):
+- [BayLum: Specification of the YAML config
+  file](https://crp2a.github.io/BayLum/dev/articles/ConfigFile_Specification.md):

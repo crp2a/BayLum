@@ -1,0 +1,14 @@
+# Changelog
+
+## Changes in version 0.3.3.9000-5 (2026-04-06)
+
+**This package version requires R \>= 4.4**
+
+### Bugfixes
+
+#### `Generate_DataFile_MG()` and `Generate_DataFile()`
+
+- The deprecated functions stopped working with the latest version of
+  `Luminescence` due to changes in `read_BIN2R()`; fixed.
+
+### Miscellaneous

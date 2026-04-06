@@ -1,0 +1,76 @@
+# BayLum ![](reference/figures/logo_BayLum.png)
+
+[![r-universe](https://crp2a.r-universe.dev/badges/BayLum)](https://crp2a.r-universe.dev/BayLum)
+[![CRAN
+Version](https://www.r-pkg.org/badges/version/BayLum)](https://cran.r-project.org/package=BayLum)
+[![CRAN
+checks](https://badges.cranchecks.info/worst/BayLum.svg)](https://cran.r-project.org/web/checks/check_results_BayLum.html)
+[![CRAN
+Downloads](https://cranlogs.r-pkg.org/badges/grand-total/BayLum)](https://cran.r-project.org/package=BayLum)
+
+[![Project Status: Active – The project has reached a stable, usable
+state and is being actively
+developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
+
+[![DOI
+Zenodo](https://zenodo.org/badge/DOI/10.5281/zenodo.4311266.svg)](https://doi.org/10.5281/zenodo.4311266)
+[![CRAN
+DOI](https://img.shields.io/badge/doi-10.32614/CRAN.package.BayLum-blue.svg)](https://doi.org/10.32614/CRAN.package.BayLum)
+
+An R package for chronological **Bay**esian models integrated for
+Optically Stimulated (OSL) **Lum**inescence Dating
+
+``` R
+To cite the R package 'BayLum' please cite the R package itself and the
+following article:
+
+  Christophe C, Philippe A, Kreutzer S, Guérin G, Baumgarten F,
+  Frerebeau N (2026). _BayLum: Chronological Bayesian Models
+  Integrating Optically Stimulated Luminescence and Radiocarbon Age
+  Dating_. R package version 0.3.3.9000-5,
+  <https://CRAN.r-project.org/package=BayLum>.
+
+  Philippe A, Guerin G, Kreutzer S (2019). "BayLum - An R package for
+  Bayesian analysis of OSL ages: An introduction." _Quaternary
+  Geochronology_, *49*, 16-24. doi:10.1016/j.quageo.2018.05.009
+  <https://doi.org/10.1016/j.quageo.2018.05.009>.
+```
+
+## Installation
+
+**You need to have [JAGS](https://mcmc-jags.sourceforge.io) installed on
+your computer.**
+
+You can install the released version of **BayLum** from
+[CRAN](https://CRAN.R-project.org) with:
+
+``` r
+install.packages("BayLum")
+```
+
+And the development version from [GitHub](https://github.com/) with:
+
+``` r
+# install.packages("remotes")
+remotes::install_github("crp2a/BayLum")
+```
+
+Please note that development versions may change day by day.
+
+## License
+
+This program is free software: you can redistribute it and/or modify it
+under the terms of the GNU General Public License as published by the
+Free Software Foundation, either version 3 of the License, or any later
+version.
+
+This program is distributed in the hope that it will be useful, but
+WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General
+Public License for more details.
+
+## Acknowledgements
+
+The development of **BayLum** received a state financial support managed
+by the Agence Nationale de la Recherche (France) through the program
+*Investissements d’avenir* (ref. ANR-10-LABX-52) between 2015 and 2018.
