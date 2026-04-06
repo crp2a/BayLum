@@ -1,7 +1,7 @@
 ---
 title: "BayLum: An Introduction"
 author: "Claire Christophe, Anne Philippe, Sebastian Kreutzer, Guillaume Guérin, Frederik Baumgarten"
-date: 'Updated for BayLum package version 0.3.3 (2025-09-19)'
+date: 'Updated for BayLum package version 0.3.3.9000.2 (2026-04-06)'
 output:
   rmarkdown::html_vignette:
     toc: yes
@@ -127,6 +127,12 @@ Use 'create_DataFile()' instead.
 See help("Deprecated")
 ```
 
+```
+Error in `Luminescence::read_BIN2R(file = paste0(Path, FolderNames[bf]), duplicated.rm = read_BIN2R.settings$duplicated.rm,
+  verbose = read_BIN2R.settings$verbose)[[1]]`:
+! this S4 class is not subsettable
+```
+
 ### Remarks
 
 #### Data import/export
@@ -159,23 +165,26 @@ str(DATA1)
 ```
 
 ```
-List of 9
+List of 11
  $ LT            :List of 1
-  ..$ : num [1, 1:7] 2.042 0.842 1.678 3.826 4.258 ...
+  ..$ : num [1:101, 1:6] 5.66 6.9 4.05 3.43 4.97 ...
  $ sLT           :List of 1
-  ..$ : num [1, 1:7] 0.344 0.162 0.328 0.803 0.941 ...
+  ..$ : num [1:101, 1:6] 0.373 0.315 0.245 0.181 0.246 ...
  $ ITimes        :List of 1
-  ..$ : num [1, 1:6] 15 30 60 100 0 15
+  ..$ : num [1:101, 1:5] 160 160 160 160 160 160 160 160 160 160 ...
  $ dLab          : num [1:2, 1] 1.53e-01 5.89e-05
- $ ddot_env      : num [1:2, 1] 2.512 0.0563
+ $ ddot_env      : num [1:2, 1] 2.26 0.0617
  $ regDose       :List of 1
-  ..$ : num [1, 1:6] 2.3 4.6 9.21 15.35 0 ...
- $ J             : num 1
- $ K             : num 6
- $ Nb_measurement: num 16
+  ..$ : num [1:101, 1:5] 24.6 24.6 24.6 24.6 24.6 ...
+ $ J             : num 101
+ $ K             : num 5
+ $ Nb_measurement: num 14
+ $ SampleNames   : chr "samp 1"
+ $ Nb_sample     : num 1
+ - attr(*, "originator")= chr "create_DataFile"
 ```
 
-It reveals that `DATA1` is basically a list with 9 elements:
+It reveals that `DATA1` is basically a list with 11 elements:
 
 Element                | Content |
 ---------------------- |---------------
@@ -214,6 +223,306 @@ See help("Deprecated")
 
 <div class="figure" style="text-align: center">
 <img src="./figures/unnamed-chunk-10-1.png" alt="plot of chunk unnamed-chunk-10" width="100%" />
+<p class="caption">plot of chunk unnamed-chunk-10</p>
+</div><div class="figure" style="text-align: center">
+<img src="./figures/unnamed-chunk-10-2.png" alt="plot of chunk unnamed-chunk-10" width="100%" />
+<p class="caption">plot of chunk unnamed-chunk-10</p>
+</div><div class="figure" style="text-align: center">
+<img src="./figures/unnamed-chunk-10-3.png" alt="plot of chunk unnamed-chunk-10" width="100%" />
+<p class="caption">plot of chunk unnamed-chunk-10</p>
+</div><div class="figure" style="text-align: center">
+<img src="./figures/unnamed-chunk-10-4.png" alt="plot of chunk unnamed-chunk-10" width="100%" />
+<p class="caption">plot of chunk unnamed-chunk-10</p>
+</div><div class="figure" style="text-align: center">
+<img src="./figures/unnamed-chunk-10-5.png" alt="plot of chunk unnamed-chunk-10" width="100%" />
+<p class="caption">plot of chunk unnamed-chunk-10</p>
+</div><div class="figure" style="text-align: center">
+<img src="./figures/unnamed-chunk-10-6.png" alt="plot of chunk unnamed-chunk-10" width="100%" />
+<p class="caption">plot of chunk unnamed-chunk-10</p>
+</div><div class="figure" style="text-align: center">
+<img src="./figures/unnamed-chunk-10-7.png" alt="plot of chunk unnamed-chunk-10" width="100%" />
+<p class="caption">plot of chunk unnamed-chunk-10</p>
+</div><div class="figure" style="text-align: center">
+<img src="./figures/unnamed-chunk-10-8.png" alt="plot of chunk unnamed-chunk-10" width="100%" />
+<p class="caption">plot of chunk unnamed-chunk-10</p>
+</div><div class="figure" style="text-align: center">
+<img src="./figures/unnamed-chunk-10-9.png" alt="plot of chunk unnamed-chunk-10" width="100%" />
+<p class="caption">plot of chunk unnamed-chunk-10</p>
+</div><div class="figure" style="text-align: center">
+<img src="./figures/unnamed-chunk-10-10.png" alt="plot of chunk unnamed-chunk-10" width="100%" />
+<p class="caption">plot of chunk unnamed-chunk-10</p>
+</div><div class="figure" style="text-align: center">
+<img src="./figures/unnamed-chunk-10-11.png" alt="plot of chunk unnamed-chunk-10" width="100%" />
+<p class="caption">plot of chunk unnamed-chunk-10</p>
+</div><div class="figure" style="text-align: center">
+<img src="./figures/unnamed-chunk-10-12.png" alt="plot of chunk unnamed-chunk-10" width="100%" />
+<p class="caption">plot of chunk unnamed-chunk-10</p>
+</div><div class="figure" style="text-align: center">
+<img src="./figures/unnamed-chunk-10-13.png" alt="plot of chunk unnamed-chunk-10" width="100%" />
+<p class="caption">plot of chunk unnamed-chunk-10</p>
+</div><div class="figure" style="text-align: center">
+<img src="./figures/unnamed-chunk-10-14.png" alt="plot of chunk unnamed-chunk-10" width="100%" />
+<p class="caption">plot of chunk unnamed-chunk-10</p>
+</div><div class="figure" style="text-align: center">
+<img src="./figures/unnamed-chunk-10-15.png" alt="plot of chunk unnamed-chunk-10" width="100%" />
+<p class="caption">plot of chunk unnamed-chunk-10</p>
+</div><div class="figure" style="text-align: center">
+<img src="./figures/unnamed-chunk-10-16.png" alt="plot of chunk unnamed-chunk-10" width="100%" />
+<p class="caption">plot of chunk unnamed-chunk-10</p>
+</div><div class="figure" style="text-align: center">
+<img src="./figures/unnamed-chunk-10-17.png" alt="plot of chunk unnamed-chunk-10" width="100%" />
+<p class="caption">plot of chunk unnamed-chunk-10</p>
+</div><div class="figure" style="text-align: center">
+<img src="./figures/unnamed-chunk-10-18.png" alt="plot of chunk unnamed-chunk-10" width="100%" />
+<p class="caption">plot of chunk unnamed-chunk-10</p>
+</div><div class="figure" style="text-align: center">
+<img src="./figures/unnamed-chunk-10-19.png" alt="plot of chunk unnamed-chunk-10" width="100%" />
+<p class="caption">plot of chunk unnamed-chunk-10</p>
+</div><div class="figure" style="text-align: center">
+<img src="./figures/unnamed-chunk-10-20.png" alt="plot of chunk unnamed-chunk-10" width="100%" />
+<p class="caption">plot of chunk unnamed-chunk-10</p>
+</div><div class="figure" style="text-align: center">
+<img src="./figures/unnamed-chunk-10-21.png" alt="plot of chunk unnamed-chunk-10" width="100%" />
+<p class="caption">plot of chunk unnamed-chunk-10</p>
+</div><div class="figure" style="text-align: center">
+<img src="./figures/unnamed-chunk-10-22.png" alt="plot of chunk unnamed-chunk-10" width="100%" />
+<p class="caption">plot of chunk unnamed-chunk-10</p>
+</div><div class="figure" style="text-align: center">
+<img src="./figures/unnamed-chunk-10-23.png" alt="plot of chunk unnamed-chunk-10" width="100%" />
+<p class="caption">plot of chunk unnamed-chunk-10</p>
+</div><div class="figure" style="text-align: center">
+<img src="./figures/unnamed-chunk-10-24.png" alt="plot of chunk unnamed-chunk-10" width="100%" />
+<p class="caption">plot of chunk unnamed-chunk-10</p>
+</div><div class="figure" style="text-align: center">
+<img src="./figures/unnamed-chunk-10-25.png" alt="plot of chunk unnamed-chunk-10" width="100%" />
+<p class="caption">plot of chunk unnamed-chunk-10</p>
+</div><div class="figure" style="text-align: center">
+<img src="./figures/unnamed-chunk-10-26.png" alt="plot of chunk unnamed-chunk-10" width="100%" />
+<p class="caption">plot of chunk unnamed-chunk-10</p>
+</div><div class="figure" style="text-align: center">
+<img src="./figures/unnamed-chunk-10-27.png" alt="plot of chunk unnamed-chunk-10" width="100%" />
+<p class="caption">plot of chunk unnamed-chunk-10</p>
+</div><div class="figure" style="text-align: center">
+<img src="./figures/unnamed-chunk-10-28.png" alt="plot of chunk unnamed-chunk-10" width="100%" />
+<p class="caption">plot of chunk unnamed-chunk-10</p>
+</div><div class="figure" style="text-align: center">
+<img src="./figures/unnamed-chunk-10-29.png" alt="plot of chunk unnamed-chunk-10" width="100%" />
+<p class="caption">plot of chunk unnamed-chunk-10</p>
+</div><div class="figure" style="text-align: center">
+<img src="./figures/unnamed-chunk-10-30.png" alt="plot of chunk unnamed-chunk-10" width="100%" />
+<p class="caption">plot of chunk unnamed-chunk-10</p>
+</div><div class="figure" style="text-align: center">
+<img src="./figures/unnamed-chunk-10-31.png" alt="plot of chunk unnamed-chunk-10" width="100%" />
+<p class="caption">plot of chunk unnamed-chunk-10</p>
+</div><div class="figure" style="text-align: center">
+<img src="./figures/unnamed-chunk-10-32.png" alt="plot of chunk unnamed-chunk-10" width="100%" />
+<p class="caption">plot of chunk unnamed-chunk-10</p>
+</div><div class="figure" style="text-align: center">
+<img src="./figures/unnamed-chunk-10-33.png" alt="plot of chunk unnamed-chunk-10" width="100%" />
+<p class="caption">plot of chunk unnamed-chunk-10</p>
+</div><div class="figure" style="text-align: center">
+<img src="./figures/unnamed-chunk-10-34.png" alt="plot of chunk unnamed-chunk-10" width="100%" />
+<p class="caption">plot of chunk unnamed-chunk-10</p>
+</div><div class="figure" style="text-align: center">
+<img src="./figures/unnamed-chunk-10-35.png" alt="plot of chunk unnamed-chunk-10" width="100%" />
+<p class="caption">plot of chunk unnamed-chunk-10</p>
+</div><div class="figure" style="text-align: center">
+<img src="./figures/unnamed-chunk-10-36.png" alt="plot of chunk unnamed-chunk-10" width="100%" />
+<p class="caption">plot of chunk unnamed-chunk-10</p>
+</div><div class="figure" style="text-align: center">
+<img src="./figures/unnamed-chunk-10-37.png" alt="plot of chunk unnamed-chunk-10" width="100%" />
+<p class="caption">plot of chunk unnamed-chunk-10</p>
+</div><div class="figure" style="text-align: center">
+<img src="./figures/unnamed-chunk-10-38.png" alt="plot of chunk unnamed-chunk-10" width="100%" />
+<p class="caption">plot of chunk unnamed-chunk-10</p>
+</div><div class="figure" style="text-align: center">
+<img src="./figures/unnamed-chunk-10-39.png" alt="plot of chunk unnamed-chunk-10" width="100%" />
+<p class="caption">plot of chunk unnamed-chunk-10</p>
+</div><div class="figure" style="text-align: center">
+<img src="./figures/unnamed-chunk-10-40.png" alt="plot of chunk unnamed-chunk-10" width="100%" />
+<p class="caption">plot of chunk unnamed-chunk-10</p>
+</div><div class="figure" style="text-align: center">
+<img src="./figures/unnamed-chunk-10-41.png" alt="plot of chunk unnamed-chunk-10" width="100%" />
+<p class="caption">plot of chunk unnamed-chunk-10</p>
+</div><div class="figure" style="text-align: center">
+<img src="./figures/unnamed-chunk-10-42.png" alt="plot of chunk unnamed-chunk-10" width="100%" />
+<p class="caption">plot of chunk unnamed-chunk-10</p>
+</div><div class="figure" style="text-align: center">
+<img src="./figures/unnamed-chunk-10-43.png" alt="plot of chunk unnamed-chunk-10" width="100%" />
+<p class="caption">plot of chunk unnamed-chunk-10</p>
+</div><div class="figure" style="text-align: center">
+<img src="./figures/unnamed-chunk-10-44.png" alt="plot of chunk unnamed-chunk-10" width="100%" />
+<p class="caption">plot of chunk unnamed-chunk-10</p>
+</div><div class="figure" style="text-align: center">
+<img src="./figures/unnamed-chunk-10-45.png" alt="plot of chunk unnamed-chunk-10" width="100%" />
+<p class="caption">plot of chunk unnamed-chunk-10</p>
+</div><div class="figure" style="text-align: center">
+<img src="./figures/unnamed-chunk-10-46.png" alt="plot of chunk unnamed-chunk-10" width="100%" />
+<p class="caption">plot of chunk unnamed-chunk-10</p>
+</div><div class="figure" style="text-align: center">
+<img src="./figures/unnamed-chunk-10-47.png" alt="plot of chunk unnamed-chunk-10" width="100%" />
+<p class="caption">plot of chunk unnamed-chunk-10</p>
+</div><div class="figure" style="text-align: center">
+<img src="./figures/unnamed-chunk-10-48.png" alt="plot of chunk unnamed-chunk-10" width="100%" />
+<p class="caption">plot of chunk unnamed-chunk-10</p>
+</div><div class="figure" style="text-align: center">
+<img src="./figures/unnamed-chunk-10-49.png" alt="plot of chunk unnamed-chunk-10" width="100%" />
+<p class="caption">plot of chunk unnamed-chunk-10</p>
+</div><div class="figure" style="text-align: center">
+<img src="./figures/unnamed-chunk-10-50.png" alt="plot of chunk unnamed-chunk-10" width="100%" />
+<p class="caption">plot of chunk unnamed-chunk-10</p>
+</div><div class="figure" style="text-align: center">
+<img src="./figures/unnamed-chunk-10-51.png" alt="plot of chunk unnamed-chunk-10" width="100%" />
+<p class="caption">plot of chunk unnamed-chunk-10</p>
+</div><div class="figure" style="text-align: center">
+<img src="./figures/unnamed-chunk-10-52.png" alt="plot of chunk unnamed-chunk-10" width="100%" />
+<p class="caption">plot of chunk unnamed-chunk-10</p>
+</div><div class="figure" style="text-align: center">
+<img src="./figures/unnamed-chunk-10-53.png" alt="plot of chunk unnamed-chunk-10" width="100%" />
+<p class="caption">plot of chunk unnamed-chunk-10</p>
+</div><div class="figure" style="text-align: center">
+<img src="./figures/unnamed-chunk-10-54.png" alt="plot of chunk unnamed-chunk-10" width="100%" />
+<p class="caption">plot of chunk unnamed-chunk-10</p>
+</div><div class="figure" style="text-align: center">
+<img src="./figures/unnamed-chunk-10-55.png" alt="plot of chunk unnamed-chunk-10" width="100%" />
+<p class="caption">plot of chunk unnamed-chunk-10</p>
+</div><div class="figure" style="text-align: center">
+<img src="./figures/unnamed-chunk-10-56.png" alt="plot of chunk unnamed-chunk-10" width="100%" />
+<p class="caption">plot of chunk unnamed-chunk-10</p>
+</div><div class="figure" style="text-align: center">
+<img src="./figures/unnamed-chunk-10-57.png" alt="plot of chunk unnamed-chunk-10" width="100%" />
+<p class="caption">plot of chunk unnamed-chunk-10</p>
+</div><div class="figure" style="text-align: center">
+<img src="./figures/unnamed-chunk-10-58.png" alt="plot of chunk unnamed-chunk-10" width="100%" />
+<p class="caption">plot of chunk unnamed-chunk-10</p>
+</div><div class="figure" style="text-align: center">
+<img src="./figures/unnamed-chunk-10-59.png" alt="plot of chunk unnamed-chunk-10" width="100%" />
+<p class="caption">plot of chunk unnamed-chunk-10</p>
+</div><div class="figure" style="text-align: center">
+<img src="./figures/unnamed-chunk-10-60.png" alt="plot of chunk unnamed-chunk-10" width="100%" />
+<p class="caption">plot of chunk unnamed-chunk-10</p>
+</div><div class="figure" style="text-align: center">
+<img src="./figures/unnamed-chunk-10-61.png" alt="plot of chunk unnamed-chunk-10" width="100%" />
+<p class="caption">plot of chunk unnamed-chunk-10</p>
+</div><div class="figure" style="text-align: center">
+<img src="./figures/unnamed-chunk-10-62.png" alt="plot of chunk unnamed-chunk-10" width="100%" />
+<p class="caption">plot of chunk unnamed-chunk-10</p>
+</div><div class="figure" style="text-align: center">
+<img src="./figures/unnamed-chunk-10-63.png" alt="plot of chunk unnamed-chunk-10" width="100%" />
+<p class="caption">plot of chunk unnamed-chunk-10</p>
+</div><div class="figure" style="text-align: center">
+<img src="./figures/unnamed-chunk-10-64.png" alt="plot of chunk unnamed-chunk-10" width="100%" />
+<p class="caption">plot of chunk unnamed-chunk-10</p>
+</div><div class="figure" style="text-align: center">
+<img src="./figures/unnamed-chunk-10-65.png" alt="plot of chunk unnamed-chunk-10" width="100%" />
+<p class="caption">plot of chunk unnamed-chunk-10</p>
+</div><div class="figure" style="text-align: center">
+<img src="./figures/unnamed-chunk-10-66.png" alt="plot of chunk unnamed-chunk-10" width="100%" />
+<p class="caption">plot of chunk unnamed-chunk-10</p>
+</div><div class="figure" style="text-align: center">
+<img src="./figures/unnamed-chunk-10-67.png" alt="plot of chunk unnamed-chunk-10" width="100%" />
+<p class="caption">plot of chunk unnamed-chunk-10</p>
+</div><div class="figure" style="text-align: center">
+<img src="./figures/unnamed-chunk-10-68.png" alt="plot of chunk unnamed-chunk-10" width="100%" />
+<p class="caption">plot of chunk unnamed-chunk-10</p>
+</div><div class="figure" style="text-align: center">
+<img src="./figures/unnamed-chunk-10-69.png" alt="plot of chunk unnamed-chunk-10" width="100%" />
+<p class="caption">plot of chunk unnamed-chunk-10</p>
+</div><div class="figure" style="text-align: center">
+<img src="./figures/unnamed-chunk-10-70.png" alt="plot of chunk unnamed-chunk-10" width="100%" />
+<p class="caption">plot of chunk unnamed-chunk-10</p>
+</div><div class="figure" style="text-align: center">
+<img src="./figures/unnamed-chunk-10-71.png" alt="plot of chunk unnamed-chunk-10" width="100%" />
+<p class="caption">plot of chunk unnamed-chunk-10</p>
+</div><div class="figure" style="text-align: center">
+<img src="./figures/unnamed-chunk-10-72.png" alt="plot of chunk unnamed-chunk-10" width="100%" />
+<p class="caption">plot of chunk unnamed-chunk-10</p>
+</div><div class="figure" style="text-align: center">
+<img src="./figures/unnamed-chunk-10-73.png" alt="plot of chunk unnamed-chunk-10" width="100%" />
+<p class="caption">plot of chunk unnamed-chunk-10</p>
+</div><div class="figure" style="text-align: center">
+<img src="./figures/unnamed-chunk-10-74.png" alt="plot of chunk unnamed-chunk-10" width="100%" />
+<p class="caption">plot of chunk unnamed-chunk-10</p>
+</div><div class="figure" style="text-align: center">
+<img src="./figures/unnamed-chunk-10-75.png" alt="plot of chunk unnamed-chunk-10" width="100%" />
+<p class="caption">plot of chunk unnamed-chunk-10</p>
+</div><div class="figure" style="text-align: center">
+<img src="./figures/unnamed-chunk-10-76.png" alt="plot of chunk unnamed-chunk-10" width="100%" />
+<p class="caption">plot of chunk unnamed-chunk-10</p>
+</div><div class="figure" style="text-align: center">
+<img src="./figures/unnamed-chunk-10-77.png" alt="plot of chunk unnamed-chunk-10" width="100%" />
+<p class="caption">plot of chunk unnamed-chunk-10</p>
+</div><div class="figure" style="text-align: center">
+<img src="./figures/unnamed-chunk-10-78.png" alt="plot of chunk unnamed-chunk-10" width="100%" />
+<p class="caption">plot of chunk unnamed-chunk-10</p>
+</div><div class="figure" style="text-align: center">
+<img src="./figures/unnamed-chunk-10-79.png" alt="plot of chunk unnamed-chunk-10" width="100%" />
+<p class="caption">plot of chunk unnamed-chunk-10</p>
+</div><div class="figure" style="text-align: center">
+<img src="./figures/unnamed-chunk-10-80.png" alt="plot of chunk unnamed-chunk-10" width="100%" />
+<p class="caption">plot of chunk unnamed-chunk-10</p>
+</div><div class="figure" style="text-align: center">
+<img src="./figures/unnamed-chunk-10-81.png" alt="plot of chunk unnamed-chunk-10" width="100%" />
+<p class="caption">plot of chunk unnamed-chunk-10</p>
+</div><div class="figure" style="text-align: center">
+<img src="./figures/unnamed-chunk-10-82.png" alt="plot of chunk unnamed-chunk-10" width="100%" />
+<p class="caption">plot of chunk unnamed-chunk-10</p>
+</div><div class="figure" style="text-align: center">
+<img src="./figures/unnamed-chunk-10-83.png" alt="plot of chunk unnamed-chunk-10" width="100%" />
+<p class="caption">plot of chunk unnamed-chunk-10</p>
+</div><div class="figure" style="text-align: center">
+<img src="./figures/unnamed-chunk-10-84.png" alt="plot of chunk unnamed-chunk-10" width="100%" />
+<p class="caption">plot of chunk unnamed-chunk-10</p>
+</div><div class="figure" style="text-align: center">
+<img src="./figures/unnamed-chunk-10-85.png" alt="plot of chunk unnamed-chunk-10" width="100%" />
+<p class="caption">plot of chunk unnamed-chunk-10</p>
+</div><div class="figure" style="text-align: center">
+<img src="./figures/unnamed-chunk-10-86.png" alt="plot of chunk unnamed-chunk-10" width="100%" />
+<p class="caption">plot of chunk unnamed-chunk-10</p>
+</div><div class="figure" style="text-align: center">
+<img src="./figures/unnamed-chunk-10-87.png" alt="plot of chunk unnamed-chunk-10" width="100%" />
+<p class="caption">plot of chunk unnamed-chunk-10</p>
+</div><div class="figure" style="text-align: center">
+<img src="./figures/unnamed-chunk-10-88.png" alt="plot of chunk unnamed-chunk-10" width="100%" />
+<p class="caption">plot of chunk unnamed-chunk-10</p>
+</div><div class="figure" style="text-align: center">
+<img src="./figures/unnamed-chunk-10-89.png" alt="plot of chunk unnamed-chunk-10" width="100%" />
+<p class="caption">plot of chunk unnamed-chunk-10</p>
+</div><div class="figure" style="text-align: center">
+<img src="./figures/unnamed-chunk-10-90.png" alt="plot of chunk unnamed-chunk-10" width="100%" />
+<p class="caption">plot of chunk unnamed-chunk-10</p>
+</div><div class="figure" style="text-align: center">
+<img src="./figures/unnamed-chunk-10-91.png" alt="plot of chunk unnamed-chunk-10" width="100%" />
+<p class="caption">plot of chunk unnamed-chunk-10</p>
+</div><div class="figure" style="text-align: center">
+<img src="./figures/unnamed-chunk-10-92.png" alt="plot of chunk unnamed-chunk-10" width="100%" />
+<p class="caption">plot of chunk unnamed-chunk-10</p>
+</div><div class="figure" style="text-align: center">
+<img src="./figures/unnamed-chunk-10-93.png" alt="plot of chunk unnamed-chunk-10" width="100%" />
+<p class="caption">plot of chunk unnamed-chunk-10</p>
+</div><div class="figure" style="text-align: center">
+<img src="./figures/unnamed-chunk-10-94.png" alt="plot of chunk unnamed-chunk-10" width="100%" />
+<p class="caption">plot of chunk unnamed-chunk-10</p>
+</div><div class="figure" style="text-align: center">
+<img src="./figures/unnamed-chunk-10-95.png" alt="plot of chunk unnamed-chunk-10" width="100%" />
+<p class="caption">plot of chunk unnamed-chunk-10</p>
+</div><div class="figure" style="text-align: center">
+<img src="./figures/unnamed-chunk-10-96.png" alt="plot of chunk unnamed-chunk-10" width="100%" />
+<p class="caption">plot of chunk unnamed-chunk-10</p>
+</div><div class="figure" style="text-align: center">
+<img src="./figures/unnamed-chunk-10-97.png" alt="plot of chunk unnamed-chunk-10" width="100%" />
+<p class="caption">plot of chunk unnamed-chunk-10</p>
+</div><div class="figure" style="text-align: center">
+<img src="./figures/unnamed-chunk-10-98.png" alt="plot of chunk unnamed-chunk-10" width="100%" />
+<p class="caption">plot of chunk unnamed-chunk-10</p>
+</div><div class="figure" style="text-align: center">
+<img src="./figures/unnamed-chunk-10-99.png" alt="plot of chunk unnamed-chunk-10" width="100%" />
+<p class="caption">plot of chunk unnamed-chunk-10</p>
+</div><div class="figure" style="text-align: center">
+<img src="./figures/unnamed-chunk-10-100.png" alt="plot of chunk unnamed-chunk-10" width="100%" />
+<p class="caption">plot of chunk unnamed-chunk-10</p>
+</div><div class="figure" style="text-align: center">
+<img src="./figures/unnamed-chunk-10-101.png" alt="plot of chunk unnamed-chunk-10" width="100%" />
 <p class="caption">plot of chunk unnamed-chunk-10</p>
 </div>
 
@@ -283,7 +592,8 @@ DATA1 <- create_DataFile(config_file, verbose = FALSE)
 ```
 
 ```
-Error: [create_DataFile()] <samp1> is not a valid object in the working environment!
+Error:
+! [create_DataFile()] <samp1> is not a valid object in the working environment!
 ```
 
 ## Age computation
@@ -308,9 +618,9 @@ Compiling model graph
    Resolving undeclared variables
    Allocating nodes
 Graph information:
-   Observed stochastic nodes: 6
-   Unobserved stochastic nodes: 9
-   Total graph size: 139
+   Observed stochastic nodes: 505
+   Unobserved stochastic nodes: 609
+   Total graph size: 7225
 
 Initializing model
 
@@ -334,9 +644,9 @@ samp1
 >> Results of the Gelman and Rubin criterion of convergence <<
 ----------------------------------------------
 	 Point estimate Uppers confidence interval
-A	 1.015 		 1.031 
-D	 1.017 		 1.033 
-sD	 1.036 		 1.049 
+A	 1.001 		 1.003 
+D	 1.007 		 1.026 
+sD	 1.001 		 1.005 
 
 
 ---------------------------------------------------------------------------------------------------
@@ -345,20 +655,20 @@ sD	 1.036 		 1.049
 
 parameter 	 Bayes estimate 	  Credible interval 
 ----------------------------------------------
-A 		 23.096 
+A 		 47.284 
 						 lower bound 	 upper bound
-				 at level 95%	 10 		 67.434 
-				 at level 68%	 10 		 23.422 
+				 at level 95%	 37.94 		 58.577 
+				 at level 68%	 40.3 		 50.755 
 ----------------------------------------------
-D 		 57.15 
+D 		 105.531 
 						 lower bound 	 upper bound
-				 at level 95%	 19.175 		 164.271 
-				 at level 68%	 21.475 		 58.031 
+				 at level 95%	 97.508 		 112.485 
+				 at level 68%	 101.525 		 108.943 
 ----------------------------------------------
-sD 		 35.168 
+sD 		 15.749 
 						 lower bound 	 upper bound
-				 at level 95%	 0.084 		 161.575 
-				 at level 68%	 0.949 		 30.976 
+				 at level 95%	 10.059 		 21.741 
+				 at level 68%	 12.234 		 18.209 
 ```
 
 This also works if `DATA1` is the output of `Generate_DataFile_MG()`.
@@ -448,6 +758,12 @@ Use 'create_DataFile()' instead.
 See help("Deprecated")
 ```
 
+```
+Error in `Luminescence::read_BIN2R(file = paste0(Path, FolderNames[bf]), duplicated.rm = read_BIN2R.settings$duplicated.rm,
+  verbose = read_BIN2R.settings$verbose)[[1]]`:
+! this S4 class is not subsettable
+```
+
 ``` r
 ##calculate the age
 Age <- Age_Computation(
@@ -458,61 +774,8 @@ Age <- Age_Computation(
 ```
 
 ```
-Compiling model graph
-   Resolving undeclared variables
-   Allocating nodes
-Graph information:
-   Observed stochastic nodes: 12
-   Unobserved stochastic nodes: 15
-   Total graph size: 221
-
-Initializing model
-
-  |                                                          |                                                  |   0%  |                                                          |+                                                 |   2%  |                                                          |++                                                |   4%  |                                                          |+++                                               |   6%  |                                                          |++++                                              |   8%  |                                                          |+++++                                             |  10%  |                                                          |++++++                                            |  12%  |                                                          |+++++++                                           |  14%  |                                                          |++++++++                                          |  16%  |                                                          |+++++++++                                         |  18%  |                                                          |++++++++++                                        |  20%  |                                                          |+++++++++++                                       |  22%  |                                                          |++++++++++++                                      |  24%  |                                                          |+++++++++++++                                     |  26%  |                                                          |++++++++++++++                                    |  28%  |                                                          |+++++++++++++++                                   |  30%  |                                                          |++++++++++++++++                                  |  32%  |                                                          |+++++++++++++++++                                 |  34%  |                                                          |++++++++++++++++++                                |  36%  |                                                          |+++++++++++++++++++                               |  38%  |                                                          |++++++++++++++++++++                              |  40%  |                                                          |+++++++++++++++++++++                             |  42%  |                                                          |++++++++++++++++++++++                            |  44%  |                                                          |+++++++++++++++++++++++                           |  46%  |                                                          |++++++++++++++++++++++++                          |  48%  |                                                          |+++++++++++++++++++++++++                         |  50%  |                                                          |++++++++++++++++++++++++++                        |  52%  |                                                          |+++++++++++++++++++++++++++                       |  54%  |                                                          |++++++++++++++++++++++++++++                      |  56%  |                                                          |+++++++++++++++++++++++++++++                     |  58%  |                                                          |++++++++++++++++++++++++++++++                    |  60%  |                                                          |+++++++++++++++++++++++++++++++                   |  62%  |                                                          |++++++++++++++++++++++++++++++++                  |  64%  |                                                          |+++++++++++++++++++++++++++++++++                 |  66%  |                                                          |++++++++++++++++++++++++++++++++++                |  68%  |                                                          |+++++++++++++++++++++++++++++++++++               |  70%  |                                                          |++++++++++++++++++++++++++++++++++++              |  72%  |                                                          |+++++++++++++++++++++++++++++++++++++             |  74%  |                                                          |++++++++++++++++++++++++++++++++++++++            |  76%  |                                                          |+++++++++++++++++++++++++++++++++++++++           |  78%  |                                                          |++++++++++++++++++++++++++++++++++++++++          |  80%  |                                                          |+++++++++++++++++++++++++++++++++++++++++         |  82%  |                                                          |++++++++++++++++++++++++++++++++++++++++++        |  84%  |                                                          |+++++++++++++++++++++++++++++++++++++++++++       |  86%  |                                                          |++++++++++++++++++++++++++++++++++++++++++++      |  88%  |                                                          |+++++++++++++++++++++++++++++++++++++++++++++     |  90%  |                                                          |++++++++++++++++++++++++++++++++++++++++++++++    |  92%  |                                                          |+++++++++++++++++++++++++++++++++++++++++++++++   |  94%  |                                                          |++++++++++++++++++++++++++++++++++++++++++++++++  |  96%  |                                                          |+++++++++++++++++++++++++++++++++++++++++++++++++ |  98%  |                                                          |++++++++++++++++++++++++++++++++++++++++++++++++++| 100%
-  |                                                          |                                                  |   0%  |                                                          |*                                                 |   2%  |                                                          |**                                                |   4%  |                                                          |***                                               |   6%  |                                                          |****                                              |   8%  |                                                          |*****                                             |  10%  |                                                          |******                                            |  12%  |                                                          |*******                                           |  14%  |                                                          |********                                          |  16%  |                                                          |*********                                         |  18%  |                                                          |**********                                        |  20%  |                                                          |***********                                       |  22%  |                                                          |************                                      |  24%  |                                                          |*************                                     |  26%  |                                                          |**************                                    |  28%  |                                                          |***************                                   |  30%  |                                                          |****************                                  |  32%  |                                                          |*****************                                 |  34%  |                                                          |******************                                |  36%  |                                                          |*******************                               |  38%  |                                                          |********************                              |  40%  |                                                          |*********************                             |  42%  |                                                          |**********************                            |  44%  |                                                          |***********************                           |  46%  |                                                          |************************                          |  48%  |                                                          |*************************                         |  50%  |                                                          |**************************                        |  52%  |                                                          |***************************                       |  54%  |                                                          |****************************                      |  56%  |                                                          |*****************************                     |  58%  |                                                          |******************************                    |  60%  |                                                          |*******************************                   |  62%  |                                                          |********************************                  |  64%  |                                                          |*********************************                 |  66%  |                                                          |**********************************                |  68%  |                                                          |***********************************               |  70%  |                                                          |************************************              |  72%  |                                                          |*************************************             |  74%  |                                                          |**************************************            |  76%  |                                                          |***************************************           |  78%  |                                                          |****************************************          |  80%  |                                                          |*****************************************         |  82%  |                                                          |******************************************        |  84%  |                                                          |*******************************************       |  86%  |                                                          |********************************************      |  88%  |                                                          |*********************************************     |  90%  |                                                          |**********************************************    |  92%  |                                                          |***********************************************   |  94%  |                                                          |************************************************  |  96%  |                                                          |************************************************* |  98%  |                                                          |**************************************************| 100%
-  |                                                          |                                                  |   0%  |                                                          |*                                                 |   2%  |                                                          |**                                                |   4%  |                                                          |***                                               |   6%  |                                                          |****                                              |   8%  |                                                          |*****                                             |  10%  |                                                          |******                                            |  12%  |                                                          |*******                                           |  14%  |                                                          |********                                          |  16%  |                                                          |*********                                         |  18%  |                                                          |**********                                        |  20%  |                                                          |***********                                       |  22%  |                                                          |************                                      |  24%  |                                                          |*************                                     |  26%  |                                                          |**************                                    |  28%  |                                                          |***************                                   |  30%  |                                                          |****************                                  |  32%  |                                                          |*****************                                 |  34%  |                                                          |******************                                |  36%  |                                                          |*******************                               |  38%  |                                                          |********************                              |  40%  |                                                          |*********************                             |  42%  |                                                          |**********************                            |  44%  |                                                          |***********************                           |  46%  |                                                          |************************                          |  48%  |                                                          |*************************                         |  50%  |                                                          |**************************                        |  52%  |                                                          |***************************                       |  54%  |                                                          |****************************                      |  56%  |                                                          |*****************************                     |  58%  |                                                          |******************************                    |  60%  |                                                          |*******************************                   |  62%  |                                                          |********************************                  |  64%  |                                                          |*********************************                 |  66%  |                                                          |**********************************                |  68%  |                                                          |***********************************               |  70%  |                                                          |************************************              |  72%  |                                                          |*************************************             |  74%  |                                                          |**************************************            |  76%  |                                                          |***************************************           |  78%  |                                                          |****************************************          |  80%  |                                                          |*****************************************         |  82%  |                                                          |******************************************        |  84%  |                                                          |*******************************************       |  86%  |                                                          |********************************************      |  88%  |                                                          |*********************************************     |  90%  |                                                          |**********************************************    |  92%  |                                                          |***********************************************   |  94%  |                                                          |************************************************  |  96%  |                                                          |************************************************* |  98%  |                                                          |**************************************************| 100%
-```
-
-<div class="figure" style="text-align: center">
-<img src="./figures/unnamed-chunk-14-1.png" alt="plot of chunk unnamed-chunk-14" width="100%" />
-<p class="caption">plot of chunk unnamed-chunk-14</p>
-</div>
-
-```
-
-
->> Sample name <<
-----------------------------------------------
-samp1 samp2
-
->> Results of the Gelman and Rubin criterion of convergence <<
-----------------------------------------------
-	 Point estimate Uppers confidence interval
-A	 1.008 		 1.018 
-D	 1.009 		 1.018 
-sD	 1.013 		 1.016 
-
-
----------------------------------------------------------------------------------------------------
- *** WARNING: The following information are only valid if the MCMC chains have converged  ***
----------------------------------------------------------------------------------------------------
-
-parameter 	 Bayes estimate 	  Credible interval 
-----------------------------------------------
-A 		 2.268 
-						 lower bound 	 upper bound
-				 at level 95%	 1.15 		 3.691 
-				 at level 68%	 1.69 		 2.771 
-----------------------------------------------
-D 		 5.641 
-						 lower bound 	 upper bound
-				 at level 95%	 2.684 		 8.611 
-				 at level 68%	 4.551 		 6.996 
-----------------------------------------------
-sD 		 0.793 
-						 lower bound 	 upper bound
-				 at level 95%	 0.001 		 2.668 
-				 at level 68%	 0.001 		 0.828 
+Error:
+! object 'DATA_BF' not found
 ```
 
 # Age analysis of various samples
@@ -657,16 +920,16 @@ Finished running the simulation
  Sample name:  GDB5 
 ---------------------
 		 Point estimate Uppers confidence interval
-A_GDB5 	 1 		 1.002 
-D_GDB5 	 1.004 		 1.015 
-sD_GDB5 	 1.01 		 1.032 
+A_GDB5 	 1.003 		 1.01 
+D_GDB5 	 1.02 		 1.07 
+sD_GDB5 	 1.011 		 1.035 
 ----------------------------------------------
  Sample name:  GDB3 
 ---------------------
 		 Point estimate Uppers confidence interval
 A_GDB3 	 1 		 1.001 
-D_GDB3 	 1.011 		 1.037 
-sD_GDB3 	 1.001 		 1.003 
+D_GDB3 	 1.01 		 1.025 
+sD_GDB3 	 1.008 		 1.031 
 
 
 ---------------------------------------------------------------------------------------------------
@@ -680,42 +943,42 @@ sD_GDB3 	 1.001 		 1.003
  Sample name:  GDB5 
 ---------------------
 Parameter 	 Bayes estimate 	  Credible interval 
- A_GDB5 	 7.134 
+ A_GDB5 	 7.157 
 						 lower bound 	 upper bound
-				 at level 95% 	 5.719 		 8.537 
-				 at level 68% 	 6.355 		 7.702 
+				 at level 95% 	 5.781 		 8.583 
+				 at level 68% 	 6.32 		 7.701 
 
 Parameter 	 Bayes estimate 	  Credible interval 
- D_GDB5 	 17.759 
+ D_GDB5 	 17.809 
 						 lower bound 	 upper bound
-				 at level 95% 	 16.661 		 19.007 
-				 at level 68% 	 17.137 		 18.312 
+				 at level 95% 	 16.616 		 18.966 
+				 at level 68% 	 17.219 		 18.462 
 
 Parameter 	 Bayes estimate 	  Credible interval 
-sD_GDB5 	 4.513 
+sD_GDB5 	 4.481 
 						 lower bound 	 upper bound
-				 at level 95% 	 3.464 		 5.515 
-				 at level 68% 	 3.946 		 5.008 
+				 at level 95% 	 3.312 		 5.388 
+				 at level 68% 	 3.864 		 4.924 
 ----------------------------------------------
  Sample name:  GDB3 
 ---------------------
 Parameter 	 Bayes estimate 	  Credible interval 
- A_GDB3 	 47.265 
+ A_GDB3 	 47.021 
 						 lower bound 	 upper bound
-				 at level 95% 	 37.393 		 58.778 
-				 at level 68% 	 41.016 		 51.866 
+				 at level 95% 	 37.065 		 58.284 
+				 at level 68% 	 40.89 		 51.208 
 
 Parameter 	 Bayes estimate 	  Credible interval 
- D_GDB3 	 105.417 
+ D_GDB3 	 105.311 
 						 lower bound 	 upper bound
-				 at level 95% 	 98.261 		 114.099 
-				 at level 68% 	 102.198 		 109.714 
+				 at level 95% 	 98.048 		 112.251 
+				 at level 68% 	 101.317 		 108.586 
 
 Parameter 	 Bayes estimate 	  Credible interval 
-sD_GDB3 	 15.88 
+sD_GDB3 	 15.775 
 						 lower bound 	 upper bound
-				 at level 95% 	 10.044 		 21.503 
-				 at level 68% 	 13.036 		 18.982 
+				 at level 95% 	 10.559 		 22.546 
+				 at level 68% 	 11.962 		 17.945 
 
 ----------------------------------------------
 ```
@@ -768,6 +1031,12 @@ DATA3 <- Generate_DataFile(
 Warning in Generate_DataFile(Path = path, FolderNames = Names, Nb_sample = nbsample, : 'Generate_DataFile' is deprecated.
 Use 'create_DataFile()' instead.
 See help("Deprecated")
+```
+
+```
+Error in `Luminescence::read_BIN2R(file = paste0(Path, FolderNames[bf]), duplicated.rm = read_BIN2R.settings$duplicated.rm,
+  verbose = read_BIN2R.settings$verbose)[[1]]`:
+! this S4 class is not subsettable
 ```
 
 
@@ -867,16 +1136,16 @@ Finished running the simulation
  Sample name:  samp1 
 ---------------------
 		 Point estimate Uppers confidence interval
-A_samp1 	 1 		 1 
-D_samp1 	 1 		 1 
-sD_samp1 	 1 		 1.001 
+A_samp1 	 1.004 		 1.012 
+D_samp1 	 1.003 		 1.013 
+sD_samp1 	 1.015 		 1.054 
 ----------------------------------------------
  Sample name:  samp2 
 ---------------------
 		 Point estimate Uppers confidence interval
 A_samp2 	 1 		 1.001 
-D_samp2 	 1.003 		 1.008 
-sD_samp2 	 1.002 		 1.01 
+D_samp2 	 1.007 		 1.025 
+sD_samp2 	 1.001 		 1.003 
 
 
 ---------------------------------------------------------------------------------------------------
@@ -890,42 +1159,42 @@ sD_samp2 	 1.002 		 1.01
  Sample name:  samp1 
 ---------------------
 Parameter 	 Bayes estimate 	  Credible interval 
- A_samp1 	 9.719 
+ A_samp1 	 9.716 
 						 lower bound 	 upper bound
-				 at level 95% 	 9.156 		 10 
-				 at level 68% 	 9.683 		 10 
+				 at level 95% 	 9.123 		 10 
+				 at level 68% 	 9.686 		 10 
 
 Parameter 	 Bayes estimate 	  Credible interval 
- D_samp1 	 29.227 
+ D_samp1 	 29.154 
 						 lower bound 	 upper bound
-				 at level 95% 	 23.881 		 34.173 
-				 at level 68% 	 26.829 		 31.887 
+				 at level 95% 	 23.916 		 34.449 
+				 at level 68% 	 26.295 		 31.873 
 
 Parameter 	 Bayes estimate 	  Credible interval 
-sD_samp1 	 67.46 
+sD_samp1 	 68.574 
 						 lower bound 	 upper bound
-				 at level 95% 	 51.546 		 85.013 
-				 at level 68% 	 57.707 		 75.102 
+				 at level 95% 	 49.706 		 85.214 
+				 at level 68% 	 58.27 		 75.354 
 ----------------------------------------------
  Sample name:  samp2 
 ---------------------
 Parameter 	 Bayes estimate 	  Credible interval 
- A_samp2 	 10.412 
+ A_samp2 	 10.409 
 						 lower bound 	 upper bound
-				 at level 95% 	 10 		 11.233 
-				 at level 68% 	 10 		 10.477 
+				 at level 95% 	 10 		 11.209 
+				 at level 68% 	 10.001 		 10.465 
 
 Parameter 	 Bayes estimate 	  Credible interval 
- D_samp2 	 18.356 
+ D_samp2 	 18.28 
 						 lower bound 	 upper bound
-				 at level 95% 	 17.24 		 19.618 
-				 at level 68% 	 17.709 		 18.902 
+				 at level 95% 	 16.997 		 19.442 
+				 at level 68% 	 17.672 		 18.882 
 
 Parameter 	 Bayes estimate 	  Credible interval 
-sD_samp2 	 4.606 
+sD_samp2 	 4.583 
 						 lower bound 	 upper bound
-				 at level 95% 	 3.59 		 5.83 
-				 at level 68% 	 4.033 		 5.131 
+				 at level 95% 	 3.542 		 5.641 
+				 at level 68% 	 3.931 		 5.007 
 
 ----------------------------------------------
 ```
@@ -949,8 +1218,8 @@ plot_Ages(Age, plot_mode = "density")
 
 ```
   SAMPLE    AGE HPD68.MIN HPD68.MAX HPD95.MIN HPD95.MAX ALT_SAMPLE_NAME AT
-1  samp1  9.719     9.683    10.000     9.156    10.000              NA  2
-2  samp2 10.412    10.000    10.477    10.000    11.233              NA  1
+1  samp1  9.716     9.686    10.000     9.123    10.000              NA  2
+2  samp2 10.409    10.001    10.465    10.000    11.209              NA  1
 ```
 
 ## When MCMC trajectories did not converge
@@ -1003,16 +1272,16 @@ Finished running the simulation
  Sample name:  GDB5 
 ---------------------
 		 Point estimate Uppers confidence interval
-A_GDB5 	 1.001 		 1.002 
-D_GDB5 	 1.002 		 1.007 
-sD_GDB5 	 1.001 		 1.002 
+A_GDB5 	 1.002 		 1.003 
+D_GDB5 	 1.001 		 1.004 
+sD_GDB5 	 1.004 		 1.014 
 ----------------------------------------------
  Sample name:  GDB3 
 ---------------------
 		 Point estimate Uppers confidence interval
-A_GDB3 	 1.003 		 1.004 
-D_GDB3 	 1.009 		 1.032 
-sD_GDB3 	 1.02 		 1.069 
+A_GDB3 	 1.001 		 1.002 
+D_GDB3 	 1.015 		 1.047 
+sD_GDB3 	 1.009 		 1.032 
 
 
 ---------------------------------------------------------------------------------------------------
@@ -1026,42 +1295,42 @@ sD_GDB3 	 1.02 		 1.069
  Sample name:  GDB5 
 ---------------------
 Parameter 	 Bayes estimate 	  Credible interval 
- A_GDB5 	 9.71 
+ A_GDB5 	 9.717 
 						 lower bound 	 upper bound
-				 at level 95% 	 9.126 		 10 
-				 at level 68% 	 9.675 		 10 
+				 at level 95% 	 9.138 		 10 
+				 at level 68% 	 9.681 		 9.999 
 
 Parameter 	 Bayes estimate 	  Credible interval 
- D_GDB5 	 29.187 
+ D_GDB5 	 29.253 
 						 lower bound 	 upper bound
-				 at level 95% 	 24.248 		 34.692 
-				 at level 68% 	 26.84 		 32.248 
+				 at level 95% 	 23.729 		 34.372 
+				 at level 68% 	 26.627 		 31.959 
 
 Parameter 	 Bayes estimate 	  Credible interval 
-sD_GDB5 	 67.728 
+sD_GDB5 	 68.368 
 						 lower bound 	 upper bound
-				 at level 95% 	 52.173 		 85.609 
-				 at level 68% 	 60.232 		 77.214 
+				 at level 95% 	 52.186 		 86.396 
+				 at level 68% 	 58.845 		 77.111 
 ----------------------------------------------
  Sample name:  GDB3 
 ---------------------
 Parameter 	 Bayes estimate 	  Credible interval 
- A_GDB3 	 10.424 
+ A_GDB3 	 10.394 
 						 lower bound 	 upper bound
-				 at level 95% 	 10 		 11.27 
-				 at level 68% 	 10 		 10.485 
+				 at level 95% 	 10 		 11.189 
+				 at level 68% 	 10 		 10.438 
 
 Parameter 	 Bayes estimate 	  Credible interval 
- D_GDB3 	 18.313 
+ D_GDB3 	 18.289 
 						 lower bound 	 upper bound
-				 at level 95% 	 17.11 		 19.482 
-				 at level 68% 	 17.588 		 18.812 
+				 at level 95% 	 17.169 		 19.425 
+				 at level 68% 	 17.617 		 18.797 
 
 Parameter 	 Bayes estimate 	  Credible interval 
-sD_GDB3 	 4.616 
+sD_GDB3 	 4.602 
 						 lower bound 	 upper bound
-				 at level 95% 	 3.421 		 5.416 
-				 at level 68% 	 4.064 		 5.147 
+				 at level 95% 	 3.596 		 5.727 
+				 at level 68% 	 4.015 		 5.117 
 
 ----------------------------------------------
 ```
