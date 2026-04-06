@@ -2,8 +2,8 @@ Package: BayLum
 Type: Package
 Title: Chronological Bayesian Models Integrating Optically Stimulated
     Luminescence and Radiocarbon Age Dating
-Version: 0.3.3.9000-1
-Date: 2025-10-17
+Version: 0.3.3.9000-5
+Date: 2026-04-06
 Authors@R: c(
     person("Claire", "Christophe", role = "aut"),
     person("Anne", "Philippe", , "anne.philippe@univ-nantes.fr", role = c("aut", "cre"),
@@ -39,15 +39,15 @@ Imports:
     cli (>= 3.6.5),
     hexbin (>= 1.28.5),
     KernSmooth (>= 2.23),
-    Luminescence (>= 1.1.1),
+    Luminescence (>= 1.2.1),
     methods,
     rjags (>= 4-17),
     runjags (>= 2.2.2),
-    yaml (>= 2.3.10)
+    yaml (>= 2.3.12)
 Suggests: 
     knitr,
     rmarkdown,
-    testthat (>= 3.2.3)
+    testthat (>= 3.3.2)
 VignetteBuilder: 
     knitr
 Encoding: UTF-8

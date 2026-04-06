@@ -213,7 +213,7 @@ Generate_DataFile <- function(
         file = paste0(Path, FolderNames[bf]),
         duplicated.rm = read_BIN2R.settings$duplicated.rm,
         verbose =  read_BIN2R.settings$verbose
-      )[[1]]
+      )
 
       # csv file indicating position and disc selection and preparation to be red
       XLS_file[[3]]<-XLS_file[[2]]

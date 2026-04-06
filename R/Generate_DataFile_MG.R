@@ -227,7 +227,7 @@ Generate_DataFile_MG <- function(
         file = paste0(Path, FolderNames[bf]),
         duplicated.rm = read_BIN2R.settings$duplicated.rm,
         verbose =  read_BIN2R.settings$verbose
-      )[[1]]
+      )
 
       ##sort dataset in correct order by aliquots
       if(force_run1_at_a_time) {
