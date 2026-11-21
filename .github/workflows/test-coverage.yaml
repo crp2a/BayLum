@@ -30,6 +30,26 @@ jobs:
         with:
           use-public-rspm: true
 
+      - name: Install JAGS on Linux
+        if: runner.os == 'linux'
+        run: |
+          run: |
+          wget -O JAGS-5.0.2.tar.gz \
+            https://sourceforge.net/projects/mcmc-jags/files/JAGS/5.x/Source/JAGS-5.0.2.tar.gz/download
+
+          echo "80143e23fc6feca01d4cce440fd8f6aa865a03333ed36baf9e0ce30a8f9e3aea  JAGS-5.0.2.tar.gz" | sha256sum -c -
+
+          tar -xzf JAGS-5.0.2.tar.gz
+          cd JAGS-5.0.2
+
+          ./configure
+          make -j2
+          sudo make install
+          sudo ldconfig
+
+          cd ..
+          rm -rf JAGS-5.0.2 JAGS-5.0.2.tar.gz
+
       - uses: r-lib/actions/setup-r-dependencies@v2
         with:
           extra-packages: any::covr, any::xml2
