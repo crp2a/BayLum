@@ -1,29 +1,48 @@
 {
-  "title": "BayLum: Chronological Bayesian Models Integrating Optically Stimulated",
+  "title": "BayLum: Chronological Bayesian Models Integrating Optically Stimulated\nLuminescence and Radiocarbon Age Dating",
   "description": "<p>Bayesian analysis of luminescence data and C-14 age<\/p>",
   "creators": [
     {
-      "name": "Christophe, Claire"
+      "name": "Christophe, Claire",
+      "affiliation": "",
+      "orcid": ""
     },
     {
       "name": "Philippe, Anne",
-      "orcid": "0000-0002-5331-5087",
-      "affiliation": "Université de Nantes (France)"
+      "affiliation": "Université de Nantes (France)",
+      "orcid": "0000-0002-5331-5087"
     },
     {
       "name": "Kreutzer, Sebastian",
-      "orcid": "0000-0002-0734-2199",
-      "affiliation": "Ruprecht-Karl University of Heidelberg (Germany)"
+      "affiliation": "Ruprecht-Karl University of Heidelberg (Germany)",
+      "orcid": "0000-0002-0734-2199"
     },
     {
-      "name": "Guerin, Guillaume",
-      "orcid": "0000-0001-6298-5579",
-      "affiliation": "CNRS (France)"
+      "name": "Guérin, Guillaume",
+      "affiliation": "CNRS (France)",
+      "orcid": "0000-0001-6298-5579"
     },
     {
       "name": "Baumgarten, Frederik Harly",
-      "orcid": "0000-0002-4374-5948",
-      "affiliation": "Risø DTU (Denmarku)"
+      "affiliation": "Risø DTU (Denmarku)",
+      "orcid": "0000-0002-4374-5948"
+    },
+    {
+      "name": "Frerebeau, Nicolas",
+      "affiliation": "Université Bordeaux Montaigne",
+      "orcid": "0000-0001-5759-4944"
+    },
+    {
+      "name": "Université Bordeaux Montaigne",
+      "orcid": ""
+    },
+    {
+      "name": "CNRS",
+      "orcid": ""
+    },
+    {
+      "name": "LabEx Sciences archéologiques de Bordeaux",
+      "orcid": ""
     }
   ],
   "journal_title": "Quaternary Geochronology",
@@ -39,6 +58,6 @@
   ],
   "license": "GPL-3.0+",
   "access_right": "open",
-  "version": "0.3.3",
-  "publication_date": "2025-09-19"
+  "version": "0.3.3.9000-13",
+  "publication_date": "2026-11-21"
 }

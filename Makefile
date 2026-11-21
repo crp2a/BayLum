@@ -6,6 +6,7 @@ all:
 	exclude = c(\
 		'module_check_ReverseDependencies',\
 		'module_add_HowToCite',\
+		'module_update_datalist',\
 		'module_add_RLumTeam'),\
 		as_cran = TRUE,\
 		write_Rbuildignore = TRUE)";

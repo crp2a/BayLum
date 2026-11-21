@@ -39,7 +39,7 @@ Optically Stimulated (OSL) **Lum**inescence Dating
       Christophe C, Philippe A, Kreutzer S, Guérin G, Baumgarten F,
       Frerebeau N (2026). _BayLum: Chronological Bayesian Models
       Integrating Optically Stimulated Luminescence and Radiocarbon Age
-      Dating_. R package version 0.3.3.9000-5,
+      Dating_. R package version 0.3.3.9000-13,
       <https://CRAN.r-project.org/package=BayLum>.
 
       Philippe A, Guerin G, Kreutzer S (2019). "BayLum - An R package for
