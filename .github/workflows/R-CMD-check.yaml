@@ -62,7 +62,7 @@ jobs:
           sudo ldconfig
 
           cd /
-          rm -rf /tmp/JAGS-5.0.1 /tmp/JAGS-5.0.1.tar.gz
+          rm -rf /tmp/JAGS-5.0.2 /tmp/JAGS-5.0.2.tar.gz
 
       - uses: r-lib/actions/setup-r-dependencies@v2
         with:
