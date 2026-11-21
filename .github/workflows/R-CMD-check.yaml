@@ -49,14 +49,14 @@ jobs:
         if: runner.os == 'macOS'
         run: |
           options(width = 100)
-          Sys.setenv(JAGS_HOME="/usr/local/Cellar/jags/4.3.2")
+          Sys.setenv(JAGS_HOME="/usr/local/Cellar/jags/5.0.2")
         shell: Rscript {0}
 
       - name: Install JAGS on Windows (R release)
         if: (runner.os == 'windows') && (matrix.config.r != 'oldrel')
         run: |
-          curl --progress-bar -s -o 'C:\JAGS-4.3.1.exe' -L 'https://sourceforge.net/projects/mcmc-jags/files/JAGS/4.x/Windows/JAGS-4.3.1.exe'
-          C:\JAGS-4.3.1.exe /S
+          curl --progress-bar -s -o 'C:\JAGS-5.0.2.exe' -L 'https://sourceforge.net/projects/mcmc-jags/files/JAGS/5.x/Windows/Rtools45/JAGS-5.0.2.exe'
+          C:\JAGS-5.0.2.exe /S
 
       - uses: r-lib/actions/setup-r-dependencies@v2
         with:
