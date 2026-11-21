@@ -27,11 +27,7 @@ jobs:
       fail-fast: false
       matrix:
         config:
-          #- {os: macos-12,   r: 'release'}
-          #- {os: windows-latest, r: 'release'}
           - {os: ubuntu-latest,   r: 'devel', http-user-agent: 'release'}
-          #- {os: ubuntu-latest,   r: 'release'}
-          #- {os: ubuntu-latest,   r: 'oldrel-1'}
 
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
@@ -52,35 +48,21 @@ jobs:
         if: runner.os == 'linux'
         run: |
           run: |
-          wget -O JAGS-5.0.1.tar.gz \
-            https://sourceforge.net/projects/mcmc-jags/files/JAGS/5.x/Source/JAGS-5.0.1.tar.gz/download
+          wget -O JAGS-5.0.2.tar.gz \
+            https://sourceforge.net/projects/mcmc-jags/files/JAGS/5.x/Source/JAGS-5.0.2.tar.gz/download
 
-          echo "0888571b1812c8ce076ad6326c66f96a0ae7762497c346cd7eb32d35a62105d4  JAGS-5.0.1.tar.gz" | sha256sum -c -
+          echo "80143e23fc6feca01d4cce440fd8f6aa865a03333ed36baf9e0ce30a8f9e3aea  JAGS-5.0.2.tar.gz" | sha256sum -c -
 
-          tar -xzf JAGS-5.0.1.tar.gz
-          cd JAGS-5.0.1
+          tar -xzf JAGS-5.0.2.tar.gz
+          cd JAGS-5.0.2
 
           ./configure
           make -j2
           sudo make install
           sudo ldconfig
 
-      - name: Install JAGS on macOS
-        if: runner.os == 'macOS'
-        run: brew install jags
-
-      - name: SET JAGS_HOME homebrew
-        if: runner.os == 'macOS'
-        run: |
-          options(width = 100)
-          Sys.setenv(JAGS_HOME="/usr/local/Cellar/jags/5.0.2")
-        shell: Rscript {0}
-
-      - name: Install JAGS on Windows (R release)
-        if: (runner.os == 'windows') && (matrix.config.r != 'oldrel')
-        run: |
-          curl --progress-bar -s -o 'C:\JAGS-5.0.2.exe' -L 'https://sourceforge.net/projects/mcmc-jags/files/JAGS/5.x/Windows/Rtools45/JAGS-5.0.2.exe'
-          C:\JAGS-5.0.2.exe /S
+          cd /
+          rm -rf /tmp/JAGS-5.0.1 /tmp/JAGS-5.0.1.tar.gz
 
       - uses: r-lib/actions/setup-r-dependencies@v2
         with:
