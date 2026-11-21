@@ -153,7 +153,7 @@ file given in quotes. The number of entries under `files` is not limited. Exampl
 If the entry is `null`, the function `BayLum::create_DataFile()` that uses the settings
 from the YAML file will assume that R objects with the name specified in `sample` are 
 available in the global session environment. For instance, files are imported and  
-treated with `Luminescence::read_BIN2R(...) |> subset(...)` or similar. 
+treated with `Luminescence::read_BIN2R(..., fastForward = FALSE) |> subset(...)` or similar. 
 Setting `files` to `null` gives you all options to pre-process your measurement data
 and is the recommended mode of operation. 
 

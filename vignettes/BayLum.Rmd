@@ -1,7 +1,7 @@
 ---
 title: "BayLum: An Introduction"
 author: "Claire Christophe, Anne Philippe, Sebastian Kreutzer, Guillaume Guérin, Frederik Baumgarten"
-date: 'Updated for BayLum package version 0.3.3.9000.2 (2026-04-06)'
+date: 'Updated for BayLum package version 0.3.3.9000.13 (2026-11-21)'
 output:
   rmarkdown::html_vignette:
     toc: yes
@@ -128,9 +128,8 @@ See help("Deprecated")
 ```
 
 ```
-Error in `Luminescence::read_BIN2R(file = paste0(Path, FolderNames[bf]), duplicated.rm = read_BIN2R.settings$duplicated.rm,
-  verbose = read_BIN2R.settings$verbose)[[1]]`:
-! this S4 class is not subsettable
+Error in `object@METADATA`:
+! no applicable method for `@` applied to an object of class "list"
 ```
 
 ### Remarks
@@ -584,7 +583,7 @@ samp1_file <- system.file("extdata/samp1/bin.bin", package = "BayLum")
 config_file <- yaml::read_yaml(yaml_file)[[1]]
 
 ## import BIN/BINX files and select position 2 and grain 32 only
-samp1 <- Luminescence::read_BIN2R(samp1_file, verbose = FALSE) |>
+samp1 <- Luminescence::read_BIN2R(samp1_file, verbose = FALSE, fastForward = FALSE) |>
   subset(POSITION == 2 & GRAIN == 32)
 
 ## create the data file
@@ -618,7 +617,7 @@ Compiling model graph
    Resolving undeclared variables
    Allocating nodes
 Graph information:
-   Observed stochastic nodes: 505
+   Fully observed stochastic nodes: 505
    Unobserved stochastic nodes: 609
    Total graph size: 7225
 
@@ -644,9 +643,9 @@ samp1
 >> Results of the Gelman and Rubin criterion of convergence <<
 ----------------------------------------------
 	 Point estimate Uppers confidence interval
-A	 1.001 		 1.003 
-D	 1.007 		 1.026 
-sD	 1.001 		 1.005 
+A	 2.741 		 5.136 
+D	 9.303 		 22.739 
+sD	 5.382 		 13.063 
 
 
 ---------------------------------------------------------------------------------------------------
@@ -655,20 +654,20 @@ sD	 1.001 		 1.005
 
 parameter 	 Bayes estimate 	  Credible interval 
 ----------------------------------------------
-A 		 47.284 
+A 		 41.949 
 						 lower bound 	 upper bound
-				 at level 95%	 37.94 		 58.577 
-				 at level 68%	 40.3 		 50.755 
+				 at level 95%	 25.74 		 39.362 
+				 at level 68%	 27.81 		 34.692 
 ----------------------------------------------
-D 		 105.531 
+D 		 93.84 
 						 lower bound 	 upper bound
-				 at level 95%	 97.508 		 112.485 
-				 at level 68%	 101.525 		 108.943 
+				 at level 95%	 70.946 		 71.055 
+				 at level 68%	 71 		 71.055 
 ----------------------------------------------
-sD 		 15.749 
+sD 		 10.145 
 						 lower bound 	 upper bound
-				 at level 95%	 10.059 		 21.741 
-				 at level 68%	 12.234 		 18.209 
+				 at level 95%	 0.002 		 0.048 
+				 at level 68%	 0.002 		 0.019 
 ```
 
 This also works if `DATA1` is the output of `Generate_DataFile_MG()`.
@@ -759,9 +758,8 @@ See help("Deprecated")
 ```
 
 ```
-Error in `Luminescence::read_BIN2R(file = paste0(Path, FolderNames[bf]), duplicated.rm = read_BIN2R.settings$duplicated.rm,
-  verbose = read_BIN2R.settings$verbose)[[1]]`:
-! this S4 class is not subsettable
+Error in `object@METADATA`:
+! no applicable method for `@` applied to an object of class "list"
 ```
 
 ``` r
@@ -886,11 +884,89 @@ Age <- AgeS_Computation(
 ```
 
 ```
+Warning in structure(c(4.53680981595092, 2.72538860103627, 2.5391427559334, : Replacing special names '.Dim' is
+deprecated; use 'dim' instead.
+```
+
+```
+Warning in structure(c(0.333140908452226, 0.38625301955089, 0.127544771214916, : Replacing special names '.Dim' is
+deprecated; use 'dim' instead.
+```
+
+```
+Warning in structure(c(40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, : Replacing special names '.Dim' is
+deprecated; use 'dim' instead.
+```
+
+```
+Warning in structure(c(0.05663173058304, 0, 0, 0.062040888716), .Dim = c(2, : Replacing special names '.Dim' is
+deprecated; use 'dim' instead.
+```
+
+```
+Warning in structure(c(1, 0, 0, 1, 0, 0), .Dim = c(3, 2)): Replacing special names '.Dim' is deprecated; use 'dim'
+instead.
+```
+
+```
 Warning: No initial values were provided - JAGS will use the same initial values for all chains
 ```
 
 ```
 Compiling rjags model...
+```
+
+```
+Warning in structure(c(4.53680981595092, 2.72538860103627, 2.5391427559334, : Replacing special names '.Dim' is
+deprecated; use 'dim' instead.
+```
+
+```
+Warning in structure(c(0.333140908452226, 0.38625301955089, 0.127544771214916, : Replacing special names '.Dim' is
+deprecated; use 'dim' instead.
+```
+
+```
+Warning in structure(c(40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, : Replacing special names '.Dim' is
+deprecated; use 'dim' instead.
+```
+
+```
+Warning in structure(c(0.05663173058304, 0, 0, 0.062040888716), .Dim = c(2, : Replacing special names '.Dim' is
+deprecated; use 'dim' instead.
+```
+
+```
+Warning in structure(c(1, 0, 0, 1, 0, 0), .Dim = c(3, 2)): Replacing special names '.Dim' is deprecated; use 'dim'
+instead.
+```
+
+```
+Warning in structure(c(4.53680981595092, 2.72538860103627, 2.5391427559334, : Replacing special names '.Dim' is
+deprecated; use 'dim' instead.
+```
+
+```
+Warning in structure(c(0.333140908452226, 0.38625301955089, 0.127544771214916, : Replacing special names '.Dim' is
+deprecated; use 'dim' instead.
+```
+
+```
+Warning in structure(c(40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, : Replacing special names '.Dim' is
+deprecated; use 'dim' instead.
+```
+
+```
+Warning in structure(c(0.05663173058304, 0, 0, 0.062040888716), .Dim = c(2, : Replacing special names '.Dim' is
+deprecated; use 'dim' instead.
+```
+
+```
+Warning in structure(c(1, 0, 0, 1, 0, 0), .Dim = c(3, 2)): Replacing special names '.Dim' is deprecated; use 'dim'
+instead.
+```
+
+```
 Calling the simulation using the rjags method...
 Adapting the model for 1000 iterations...
   |                                                          |                                                  |   0%  |                                                          |+                                                 |   2%  |                                                          |++                                                |   4%  |                                                          |+++                                               |   6%  |                                                          |++++                                              |   8%  |                                                          |+++++                                             |  10%  |                                                          |++++++                                            |  12%  |                                                          |+++++++                                           |  14%  |                                                          |++++++++                                          |  16%  |                                                          |+++++++++                                         |  18%  |                                                          |++++++++++                                        |  20%  |                                                          |+++++++++++                                       |  22%  |                                                          |++++++++++++                                      |  24%  |                                                          |+++++++++++++                                     |  26%  |                                                          |++++++++++++++                                    |  28%  |                                                          |+++++++++++++++                                   |  30%  |                                                          |++++++++++++++++                                  |  32%  |                                                          |+++++++++++++++++                                 |  34%  |                                                          |++++++++++++++++++                                |  36%  |                                                          |+++++++++++++++++++                               |  38%  |                                                          |++++++++++++++++++++                              |  40%  |                                                          |+++++++++++++++++++++                             |  42%  |                                                          |++++++++++++++++++++++                            |  44%  |                                                          |+++++++++++++++++++++++                           |  46%  |                                                          |++++++++++++++++++++++++                          |  48%  |                                                          |+++++++++++++++++++++++++                         |  50%  |                                                          |++++++++++++++++++++++++++                        |  52%  |                                                          |+++++++++++++++++++++++++++                       |  54%  |                                                          |++++++++++++++++++++++++++++                      |  56%  |                                                          |+++++++++++++++++++++++++++++                     |  58%  |                                                          |++++++++++++++++++++++++++++++                    |  60%  |                                                          |+++++++++++++++++++++++++++++++                   |  62%  |                                                          |++++++++++++++++++++++++++++++++                  |  64%  |                                                          |+++++++++++++++++++++++++++++++++                 |  66%  |                                                          |++++++++++++++++++++++++++++++++++                |  68%  |                                                          |+++++++++++++++++++++++++++++++++++               |  70%  |                                                          |++++++++++++++++++++++++++++++++++++              |  72%  |                                                          |+++++++++++++++++++++++++++++++++++++             |  74%  |                                                          |++++++++++++++++++++++++++++++++++++++            |  76%  |                                                          |+++++++++++++++++++++++++++++++++++++++           |  78%  |                                                          |++++++++++++++++++++++++++++++++++++++++          |  80%  |                                                          |+++++++++++++++++++++++++++++++++++++++++         |  82%  |                                                          |++++++++++++++++++++++++++++++++++++++++++        |  84%  |                                                          |+++++++++++++++++++++++++++++++++++++++++++       |  86%  |                                                          |++++++++++++++++++++++++++++++++++++++++++++      |  88%  |                                                          |+++++++++++++++++++++++++++++++++++++++++++++     |  90%  |                                                          |++++++++++++++++++++++++++++++++++++++++++++++    |  92%  |                                                          |+++++++++++++++++++++++++++++++++++++++++++++++   |  94%  |                                                          |++++++++++++++++++++++++++++++++++++++++++++++++  |  96%  |                                                          |+++++++++++++++++++++++++++++++++++++++++++++++++ |  98%  |                                                          |++++++++++++++++++++++++++++++++++++++++++++++++++| 100%
@@ -920,16 +996,16 @@ Finished running the simulation
  Sample name:  GDB5 
 ---------------------
 		 Point estimate Uppers confidence interval
-A_GDB5 	 1.003 		 1.01 
-D_GDB5 	 1.02 		 1.07 
-sD_GDB5 	 1.011 		 1.035 
+A_GDB5 	 1.004 		 1.015 
+D_GDB5 	 25.022 		 150.901 
+sD_GDB5 	 3.413 		 19.574 
 ----------------------------------------------
  Sample name:  GDB3 
 ---------------------
 		 Point estimate Uppers confidence interval
-A_GDB3 	 1 		 1.001 
-D_GDB3 	 1.01 		 1.025 
-sD_GDB3 	 1.008 		 1.031 
+A_GDB3 	 1.003 		 1.01 
+D_GDB3 	 23.431 		 96.483 
+sD_GDB3 	 1.595 		 3.297 
 
 
 ---------------------------------------------------------------------------------------------------
@@ -943,42 +1019,42 @@ sD_GDB3 	 1.008 		 1.031
  Sample name:  GDB5 
 ---------------------
 Parameter 	 Bayes estimate 	  Credible interval 
- A_GDB5 	 7.157 
+ A_GDB5 	 3.187 
 						 lower bound 	 upper bound
-				 at level 95% 	 5.781 		 8.583 
-				 at level 68% 	 6.32 		 7.701 
+				 at level 95% 	 2.627 		 3.83 
+				 at level 68% 	 2.79 		 3.383 
 
 Parameter 	 Bayes estimate 	  Credible interval 
- D_GDB5 	 17.809 
+ D_GDB5 	 7.922 
 						 lower bound 	 upper bound
-				 at level 95% 	 16.616 		 18.966 
-				 at level 68% 	 17.219 		 18.462 
+				 at level 95% 	 7.87 		 7.957 
+				 at level 68% 	 7.87 		 7.956 
 
 Parameter 	 Bayes estimate 	  Credible interval 
-sD_GDB5 	 4.481 
+sD_GDB5 	 0.001 
 						 lower bound 	 upper bound
-				 at level 95% 	 3.312 		 5.388 
-				 at level 68% 	 3.864 		 4.924 
+				 at level 95% 	 0 		 0 
+				 at level 68% 	 0 		 0 
 ----------------------------------------------
  Sample name:  GDB3 
 ---------------------
 Parameter 	 Bayes estimate 	  Credible interval 
- A_GDB3 	 47.021 
+ A_GDB3 	 32.053 
 						 lower bound 	 upper bound
-				 at level 95% 	 37.065 		 58.284 
-				 at level 68% 	 40.89 		 51.208 
+				 at level 95% 	 25.145 		 38.685 
+				 at level 68% 	 27.934 		 34.737 
 
 Parameter 	 Bayes estimate 	  Credible interval 
- D_GDB3 	 105.311 
+ D_GDB3 	 71.464 
 						 lower bound 	 upper bound
-				 at level 95% 	 98.048 		 112.251 
-				 at level 68% 	 101.317 		 108.586 
+				 at level 95% 	 70.868 		 71.97 
+				 at level 68% 	 70.849 		 71.764 
 
 Parameter 	 Bayes estimate 	  Credible interval 
-sD_GDB3 	 15.775 
+sD_GDB3 	 0.016 
 						 lower bound 	 upper bound
-				 at level 95% 	 10.559 		 22.546 
-				 at level 68% 	 11.962 		 17.945 
+				 at level 95% 	 0 		 0.004 
+				 at level 68% 	 0 		 0.002 
 
 ----------------------------------------------
 ```
@@ -1034,9 +1110,8 @@ See help("Deprecated")
 ```
 
 ```
-Error in `Luminescence::read_BIN2R(file = paste0(Path, FolderNames[bf]), duplicated.rm = read_BIN2R.settings$duplicated.rm,
-  verbose = read_BIN2R.settings$verbose)[[1]]`:
-! this S4 class is not subsettable
+Error in `object@METADATA`:
+! no applicable method for `@` applied to an object of class "list"
 ```
 
 
@@ -1102,11 +1177,89 @@ Age <-
 ```
 
 ```
+Warning in structure(c(5.65894039735099, 6.90291465716083, 4.05413105413105, : Replacing special names '.Dim' is
+deprecated; use 'dim' instead.
+```
+
+```
+Warning in structure(c(0.373388522793026, 0.31491254628153, 0.244864486462439, : Replacing special names '.Dim' is
+deprecated; use 'dim' instead.
+```
+
+```
+Warning in structure(c(160, 160, 160, 160, 160, 160, 160, 160, 160, 160, : Replacing special names '.Dim' is
+deprecated; use 'dim' instead.
+```
+
+```
+Warning in structure(c(0.062040888716, 0, 0, 0.05663173058304), .Dim = c(2, : Replacing special names '.Dim' is
+deprecated; use 'dim' instead.
+```
+
+```
+Warning in structure(c(1, 0, 0, 1, 1, 0), .Dim = c(3, 2)): Replacing special names '.Dim' is deprecated; use 'dim'
+instead.
+```
+
+```
 Warning: No initial values were provided - JAGS will use the same initial values for all chains
 ```
 
 ```
 Compiling rjags model...
+```
+
+```
+Warning in structure(c(5.65894039735099, 6.90291465716083, 4.05413105413105, : Replacing special names '.Dim' is
+deprecated; use 'dim' instead.
+```
+
+```
+Warning in structure(c(0.373388522793026, 0.31491254628153, 0.244864486462439, : Replacing special names '.Dim' is
+deprecated; use 'dim' instead.
+```
+
+```
+Warning in structure(c(160, 160, 160, 160, 160, 160, 160, 160, 160, 160, : Replacing special names '.Dim' is
+deprecated; use 'dim' instead.
+```
+
+```
+Warning in structure(c(0.062040888716, 0, 0, 0.05663173058304), .Dim = c(2, : Replacing special names '.Dim' is
+deprecated; use 'dim' instead.
+```
+
+```
+Warning in structure(c(1, 0, 0, 1, 1, 0), .Dim = c(3, 2)): Replacing special names '.Dim' is deprecated; use 'dim'
+instead.
+```
+
+```
+Warning in structure(c(5.65894039735099, 6.90291465716083, 4.05413105413105, : Replacing special names '.Dim' is
+deprecated; use 'dim' instead.
+```
+
+```
+Warning in structure(c(0.373388522793026, 0.31491254628153, 0.244864486462439, : Replacing special names '.Dim' is
+deprecated; use 'dim' instead.
+```
+
+```
+Warning in structure(c(160, 160, 160, 160, 160, 160, 160, 160, 160, 160, : Replacing special names '.Dim' is
+deprecated; use 'dim' instead.
+```
+
+```
+Warning in structure(c(0.062040888716, 0, 0, 0.05663173058304), .Dim = c(2, : Replacing special names '.Dim' is
+deprecated; use 'dim' instead.
+```
+
+```
+Warning in structure(c(1, 0, 0, 1, 1, 0), .Dim = c(3, 2)): Replacing special names '.Dim' is deprecated; use 'dim'
+instead.
+```
+
+```
 Calling the simulation using the rjags method...
 Adapting the model for 1000 iterations...
   |                                                          |                                                  |   0%  |                                                          |+                                                 |   2%  |                                                          |++                                                |   4%  |                                                          |+++                                               |   6%  |                                                          |++++                                              |   8%  |                                                          |+++++                                             |  10%  |                                                          |++++++                                            |  12%  |                                                          |+++++++                                           |  14%  |                                                          |++++++++                                          |  16%  |                                                          |+++++++++                                         |  18%  |                                                          |++++++++++                                        |  20%  |                                                          |+++++++++++                                       |  22%  |                                                          |++++++++++++                                      |  24%  |                                                          |+++++++++++++                                     |  26%  |                                                          |++++++++++++++                                    |  28%  |                                                          |+++++++++++++++                                   |  30%  |                                                          |++++++++++++++++                                  |  32%  |                                                          |+++++++++++++++++                                 |  34%  |                                                          |++++++++++++++++++                                |  36%  |                                                          |+++++++++++++++++++                               |  38%  |                                                          |++++++++++++++++++++                              |  40%  |                                                          |+++++++++++++++++++++                             |  42%  |                                                          |++++++++++++++++++++++                            |  44%  |                                                          |+++++++++++++++++++++++                           |  46%  |                                                          |++++++++++++++++++++++++                          |  48%  |                                                          |+++++++++++++++++++++++++                         |  50%  |                                                          |++++++++++++++++++++++++++                        |  52%  |                                                          |+++++++++++++++++++++++++++                       |  54%  |                                                          |++++++++++++++++++++++++++++                      |  56%  |                                                          |+++++++++++++++++++++++++++++                     |  58%  |                                                          |++++++++++++++++++++++++++++++                    |  60%  |                                                          |+++++++++++++++++++++++++++++++                   |  62%  |                                                          |++++++++++++++++++++++++++++++++                  |  64%  |                                                          |+++++++++++++++++++++++++++++++++                 |  66%  |                                                          |++++++++++++++++++++++++++++++++++                |  68%  |                                                          |+++++++++++++++++++++++++++++++++++               |  70%  |                                                          |++++++++++++++++++++++++++++++++++++              |  72%  |                                                          |+++++++++++++++++++++++++++++++++++++             |  74%  |                                                          |++++++++++++++++++++++++++++++++++++++            |  76%  |                                                          |+++++++++++++++++++++++++++++++++++++++           |  78%  |                                                          |++++++++++++++++++++++++++++++++++++++++          |  80%  |                                                          |+++++++++++++++++++++++++++++++++++++++++         |  82%  |                                                          |++++++++++++++++++++++++++++++++++++++++++        |  84%  |                                                          |+++++++++++++++++++++++++++++++++++++++++++       |  86%  |                                                          |++++++++++++++++++++++++++++++++++++++++++++      |  88%  |                                                          |+++++++++++++++++++++++++++++++++++++++++++++     |  90%  |                                                          |++++++++++++++++++++++++++++++++++++++++++++++    |  92%  |                                                          |+++++++++++++++++++++++++++++++++++++++++++++++   |  94%  |                                                          |++++++++++++++++++++++++++++++++++++++++++++++++  |  96%  |                                                          |+++++++++++++++++++++++++++++++++++++++++++++++++ |  98%  |                                                          |++++++++++++++++++++++++++++++++++++++++++++++++++| 100%
@@ -1136,16 +1289,16 @@ Finished running the simulation
  Sample name:  samp1 
 ---------------------
 		 Point estimate Uppers confidence interval
-A_samp1 	 1.004 		 1.012 
-D_samp1 	 1.003 		 1.013 
-sD_samp1 	 1.015 		 1.054 
+A_samp1 	 1.004 		 1.016 
+D_samp1 	 63.844 		 222.782 
+sD_samp1 	 1.767 		 5.221 
 ----------------------------------------------
  Sample name:  samp2 
 ---------------------
 		 Point estimate Uppers confidence interval
-A_samp2 	 1 		 1.001 
-D_samp2 	 1.007 		 1.025 
-sD_samp2 	 1.001 		 1.003 
+A_samp2 	 1.038 		 1.124 
+D_samp2 	 3.555 		 20.756 
+sD_samp2 	 3.964 		 23.487 
 
 
 ---------------------------------------------------------------------------------------------------
@@ -1159,42 +1312,42 @@ sD_samp2 	 1.001 		 1.003
  Sample name:  samp1 
 ---------------------
 Parameter 	 Bayes estimate 	  Credible interval 
- A_samp1 	 9.716 
+ A_samp1 	 3.196 
 						 lower bound 	 upper bound
-				 at level 95% 	 9.123 		 10 
-				 at level 68% 	 9.686 		 10 
+				 at level 95% 	 2.524 		 3.965 
+				 at level 68% 	 2.759 		 3.469 
 
 Parameter 	 Bayes estimate 	  Credible interval 
- D_samp1 	 29.154 
+ D_samp1 	 7.143 
 						 lower bound 	 upper bound
-				 at level 95% 	 23.916 		 34.449 
-				 at level 68% 	 26.295 		 31.873 
+				 at level 95% 	 7.065 		 7.208 
+				 at level 68% 	 7.065 		 7.2 
 
 Parameter 	 Bayes estimate 	  Credible interval 
-sD_samp1 	 68.574 
+sD_samp1 	 0.002 
 						 lower bound 	 upper bound
-				 at level 95% 	 49.706 		 85.214 
-				 at level 68% 	 58.27 		 75.354 
+				 at level 95% 	 0 		 0.006 
+				 at level 68% 	 0 		 0.003 
 ----------------------------------------------
  Sample name:  samp2 
 ---------------------
 Parameter 	 Bayes estimate 	  Credible interval 
- A_samp2 	 10.409 
+ A_samp2 	 31.758 
 						 lower bound 	 upper bound
-				 at level 95% 	 10 		 11.209 
-				 at level 68% 	 10.001 		 10.465 
+				 at level 95% 	 25.821 		 38.052 
+				 at level 68% 	 28.195 		 34.264 
 
 Parameter 	 Bayes estimate 	  Credible interval 
- D_samp2 	 18.28 
+ D_samp2 	 78.925 
 						 lower bound 	 upper bound
-				 at level 95% 	 16.997 		 19.442 
-				 at level 68% 	 17.672 		 18.882 
+				 at level 95% 	 75.61 		 80.211 
+				 at level 68% 	 78.719 		 80.211 
 
 Parameter 	 Bayes estimate 	  Credible interval 
-sD_samp2 	 4.583 
+sD_samp2 	 1.428 
 						 lower bound 	 upper bound
-				 at level 95% 	 3.542 		 5.641 
-				 at level 68% 	 3.931 		 5.007 
+				 at level 95% 	 0 		 0 
+				 at level 68% 	 0 		 0 
 
 ----------------------------------------------
 ```
@@ -1218,8 +1371,8 @@ plot_Ages(Age, plot_mode = "density")
 
 ```
   SAMPLE    AGE HPD68.MIN HPD68.MAX HPD95.MIN HPD95.MAX ALT_SAMPLE_NAME AT
-1  samp1  9.716     9.686    10.000     9.123    10.000              NA  2
-2  samp2 10.409    10.001    10.465    10.000    11.209              NA  1
+1  samp1  3.196     2.759     3.469     2.524     3.965              NA  2
+2  samp2 31.758    28.195    34.264    25.821    38.052              NA  1
 ```
 
 ## When MCMC trajectories did not converge
@@ -1241,6 +1394,31 @@ Age <- AgeS_Computation(
   Iter = 1000,
   jags_method = "rjags"
 )
+```
+
+```
+Warning in structure(c(5.65894039735099, 6.90291465716083, 4.05413105413105, : Replacing special names '.Dim' is
+deprecated; use 'dim' instead.
+```
+
+```
+Warning in structure(c(0.373388522793026, 0.31491254628153, 0.244864486462439, : Replacing special names '.Dim' is
+deprecated; use 'dim' instead.
+```
+
+```
+Warning in structure(c(160, 160, 160, 160, 160, 160, 160, 160, 160, 160, : Replacing special names '.Dim' is
+deprecated; use 'dim' instead.
+```
+
+```
+Warning in structure(c(0.062040888716, 0, 0, 0.05663173058304), .Dim = c(2, : Replacing special names '.Dim' is
+deprecated; use 'dim' instead.
+```
+
+```
+Warning in structure(c(1, 0, 0, 1, 1, 0), .Dim = c(3, 2)): Replacing special names '.Dim' is deprecated; use 'dim'
+instead.
 ```
 
 ```
@@ -1272,16 +1450,16 @@ Finished running the simulation
  Sample name:  GDB5 
 ---------------------
 		 Point estimate Uppers confidence interval
-A_GDB5 	 1.002 		 1.003 
-D_GDB5 	 1.001 		 1.004 
-sD_GDB5 	 1.004 		 1.014 
+A_GDB5 	 1.008 		 1.027 
+D_GDB5 	 49.231 		 101.396 
+sD_GDB5 	 2.828 		 9.572 
 ----------------------------------------------
  Sample name:  GDB3 
 ---------------------
 		 Point estimate Uppers confidence interval
-A_GDB3 	 1.001 		 1.002 
-D_GDB3 	 1.015 		 1.047 
-sD_GDB3 	 1.009 		 1.032 
+A_GDB3 	 6.784 		 14.137 
+D_GDB3 	 16.496 		 102.711 
+sD_GDB3 	 14.919 		 92.83 
 
 
 ---------------------------------------------------------------------------------------------------
@@ -1295,42 +1473,42 @@ sD_GDB3 	 1.009 		 1.032
  Sample name:  GDB5 
 ---------------------
 Parameter 	 Bayes estimate 	  Credible interval 
- A_GDB5 	 9.717 
+ A_GDB5 	 3.202 
 						 lower bound 	 upper bound
-				 at level 95% 	 9.138 		 10 
-				 at level 68% 	 9.681 		 9.999 
+				 at level 95% 	 2.536 		 3.914 
+				 at level 68% 	 2.791 		 3.47 
 
 Parameter 	 Bayes estimate 	  Credible interval 
- D_GDB5 	 29.253 
+ D_GDB5 	 7.147 
 						 lower bound 	 upper bound
-				 at level 95% 	 23.729 		 34.372 
-				 at level 68% 	 26.627 		 31.959 
+				 at level 95% 	 7.065 		 7.214 
+				 at level 68% 	 7.065 		 7.206 
 
 Parameter 	 Bayes estimate 	  Credible interval 
-sD_GDB5 	 68.368 
+sD_GDB5 	 0.005 
 						 lower bound 	 upper bound
-				 at level 95% 	 52.186 		 86.396 
-				 at level 68% 	 58.845 		 77.111 
+				 at level 95% 	 0.003 		 0.013 
+				 at level 68% 	 0.004 		 0.009 
 ----------------------------------------------
  Sample name:  GDB3 
 ---------------------
 Parameter 	 Bayes estimate 	  Credible interval 
- A_GDB3 	 10.394 
+ A_GDB3 	 25.22 
 						 lower bound 	 upper bound
-				 at level 95% 	 10 		 11.189 
-				 at level 68% 	 10 		 10.438 
+				 at level 95% 	 10 		 36.686 
+				 at level 68% 	 10 		 32.091 
 
 Parameter 	 Bayes estimate 	  Credible interval 
- D_GDB3 	 18.289 
+ D_GDB3 	 61.649 
 						 lower bound 	 upper bound
-				 at level 95% 	 17.169 		 19.425 
-				 at level 68% 	 17.617 		 18.797 
+				 at level 95% 	 21.66 		 80.211 
+				 at level 68% 	 38.304 		 80.211 
 
 Parameter 	 Bayes estimate 	  Credible interval 
-sD_GDB3 	 4.602 
+sD_GDB3 	 3.776 
 						 lower bound 	 upper bound
-				 at level 95% 	 3.596 		 5.727 
-				 at level 68% 	 4.015 		 5.117 
+				 at level 95% 	 0 		 0 
+				 at level 68% 	 0 		 0 
 
 ----------------------------------------------
 ```

@@ -228,7 +228,7 @@ samp1_file <- system.file("extdata/samp1/bin.bin", package = "BayLum")
 config_file <- yaml::read_yaml(yaml_file)[[1]]
 
 ## import BIN/BINX files and select position 2 and grain 32 only
-samp1 <- Luminescence::read_BIN2R(samp1_file, verbose = FALSE) |>
+samp1 <- Luminescence::read_BIN2R(samp1_file, verbose = FALSE, fastForward = FALSE) |>
   subset(POSITION == 2 & GRAIN == 32)
 
 ## create the data file
