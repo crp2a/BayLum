@@ -11,6 +11,13 @@ on:
 
 name: pkgdown.yaml
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+env:
+  cache-version: v1
+
 permissions: read-all
 
 jobs:

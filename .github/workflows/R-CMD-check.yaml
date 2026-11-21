@@ -8,6 +8,13 @@ on:
 
 name: R-CMD-check.yaml
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+env:
+  cache-version: v1
+
 permissions: read-all
 
 jobs:
@@ -40,6 +47,12 @@ jobs:
           r-version: ${{ matrix.config.r }}
           http-user-agent: ${{ matrix.config.http-user-agent }}
           use-public-rspm: true
+
+      - name: Install JAGS
+        if: runner.os == 'ubunto'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y jags pkg-config
 
       - name: Install JAGS on macOS
         if: runner.os == 'macOS'

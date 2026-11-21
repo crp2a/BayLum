@@ -54,5 +54,5 @@ Encoding: UTF-8
 Language: en-GB
 LazyData: true
 NeedsCompilation: no
-SystemRequirements: JAGS >= 5.0.1 (https://mcmc-jags.sourceforge.io/)
+SystemRequirements: JAGS >= 5.0.2 (https://mcmc-jags.sourceforge.io/)
 Config/roxygen2/version: 8.1.1
