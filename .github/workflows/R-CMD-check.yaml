@@ -51,8 +51,19 @@ jobs:
       - name: Install JAGS on Linux
         if: runner.os == 'linux'
         run: |
-          sudo apt-get update
-          sudo apt-get install -y jags pkg-config
+          run: |
+          wget -O JAGS-5.0.1.tar.gz \
+            https://sourceforge.net/projects/mcmc-jags/files/JAGS/5.x/Source/JAGS-5.0.1.tar.gz/download
+
+          echo "0888571b1812c8ce076ad6326c66f96a0ae7762497c346cd7eb32d35a62105d4  JAGS-5.0.1.tar.gz" | sha256sum -c -
+
+          tar -xzf JAGS-5.0.1.tar.gz
+          cd JAGS-5.0.1
+
+          ./configure
+          make -j2
+          sudo make install
+          sudo ldconfig
 
       - name: Install JAGS on macOS
         if: runner.os == 'macOS'
