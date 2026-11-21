@@ -25,4 +25,4 @@ Luminescence \>= 1.3.1**
 
 ## Miscellaneous
 
-- Bump dependencies.
+- Bump dependencies and add support for JAGS \>=5.x.

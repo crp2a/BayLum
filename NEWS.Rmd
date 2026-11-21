@@ -26,5 +26,5 @@ of `Luminescence` due to changes in `read_BIN2R()`; fixed.
 
 ## Miscellaneous
 
-* Bump dependencies. 
+* Bump dependencies and add support for JAGS >=5.x.
 
