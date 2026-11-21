@@ -118,10 +118,10 @@ samp2 <- Luminescence::read_BIN2R(samp2_file, verbose = FALSE, fastForward = FAL
 create_DataFile(yaml_file)
 #> ── BayLum - [create_DataFile()] ────────────────────────────────────────────────
 #> ⠙ Load YAML configuration file ... 
-#> ✔ Load YAML configuration file ...  [6ms]
+#> ✔ Load YAML configuration file ...  [5ms]
 #> 
 #> ⠙ Sanitize sample names ... 
-#> ✔ Sanitize sample names ...  [10ms]
+#> ✔ Sanitize sample names ...  [9ms]
 #> 
 #> ⠙ Generate object list ... 
 #> Error: [create_DataFile()] <samp1> is not a valid object in the working environment!

@@ -340,10 +340,10 @@ Age <- AgeC14_Computation(
 #> >> MCMC Convergence of Age parameters <<
 #> ----------------------------------------------
 #> Sample name   Bayes estimate   Uppers credible interval
-#> A_S-EVA-26510     1.013       1.041 
-#> A_S-EVA-26506     1.009       1.034 
-#> A_S-EVA-26507     0.998       1 
-#> A_S-EVA-26508     1.002       1.016 
+#> A_S-EVA-26510     1.035       1.128 
+#> A_S-EVA-26506     1.014       1.019 
+#> A_S-EVA-26507     1.057       1.098 
+#> A_S-EVA-26508     1.01        1.043 
 #> 
 #> 
 #> ---------------------------------------------------------------------------------------------------
@@ -355,28 +355,28 @@ Age <- AgeC14_Computation(
 #> >> Bayes estimates of Age for each sample and credible interval <<
 #> ------------------------------------------------------
 #> Sample name   Bayes estimate  Credible interval: 
-#> A_S-EVA-26510     41.9331181273741 
+#> A_S-EVA-26510     41.9803038078611 
 #>                       lower bound     upper bound
-#>               at level 95%    41.401          42.355 
-#>               at level 68%    41.81       42.242 
+#>               at level 95%    41.489          42.321 
+#>               at level 68%    41.873          42.235 
 #> ------------------------------------------------------
 #> Sample name   Bayes estimate  Credible interval: 
-#> A_S-EVA-26506     45.7024193617392 
+#> A_S-EVA-26506     45.7130176675199 
 #>                       lower bound     upper bound
-#>               at level 95%    45.016          46.215 
-#>               at level 68%    45.454          46.003 
+#>               at level 95%    45.032          46.313 
+#>               at level 68%    45.459          46.01 
 #> ------------------------------------------------------
 #> Sample name   Bayes estimate  Credible interval: 
-#> A_S-EVA-26507     44.8669005002073 
+#> A_S-EVA-26507     44.9104204076522 
 #>                       lower bound     upper bound
-#>               at level 95%    44.017          45.999 
-#>               at level 68%    44.415          45.406 
+#>               at level 95%    43.489          45.858 
+#>               at level 68%    44.322          45.364 
 #> ------------------------------------------------------
 #> Sample name   Bayes estimate  Credible interval: 
-#> A_S-EVA-26508     45.0102713173532 
+#> A_S-EVA-26508     45.0381445647239 
 #>                       lower bound     upper bound
-#>               at level 95%    43.759          45.903 
-#>               at level 68%    44.351          45.319 
+#>               at level 95%    44.096          46.189 
+#>               at level 68%    44.349          45.368 
 #> 
 #> ------------------------------------------------------
 

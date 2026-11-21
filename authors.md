@@ -31,7 +31,7 @@
 ## Citation
 
 Source:
-[`inst/CITATION`](https://github.com/crp2a/BayLum/blob/master/inst/CITATION)
+[`inst/CITATION`](https://github.com/crp2a/BayLum/blob/v0.3.4/inst/CITATION)
 
 Christophe C, Philippe A, Kreutzer S, Guérin G, Baumgarten F, Frerebeau
 N (2026). *BayLum: Chronological Bayesian Models Integrating Optically
