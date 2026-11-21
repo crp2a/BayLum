@@ -299,8 +299,8 @@ P=Palaeodose_Computation(DATA=DATA1,Nb_sample=1,SampleNames=c("GDB5"),Iter=100)
 #>  Sample name:  GDB5 
 #> ---------------------
 #>       Point estimate Uppers confidence interval
-#> D_GDB5    177.67          1080.54 
-#> sD_GDB5   2.63        14.53 
+#> D_GDB5    142.4       402.88 
+#> sD_GDB5   4.14        10 
 #> 
 #> 
 #> ---------------------------------------------------------------------------------------------------
@@ -314,13 +314,13 @@ P=Palaeodose_Computation(DATA=DATA1,Nb_sample=1,SampleNames=c("GDB5"),Iter=100)
 #>  Sample name:  GDB5 
 #> ---------------------
 #> Parameter     Bayes estimate       Credible interval 
-#> D_GDB5    200.856 
+#> D_GDB5    200.631 
 #>                       lower bound     upper bound
 #>               at level 95%    200         202 
-#>               at level 68%    200         201 
+#>               at level 68%    200         200 
 #> 
 #> Parameter     Bayes estimate       Credible interval 
-#> sD_GDB5   0.008 
+#> sD_GDB5   0.025 
 #>                       lower bound     upper bound
 #>               at level 95%    0       0 
 #>               at level 68%    0       0 
