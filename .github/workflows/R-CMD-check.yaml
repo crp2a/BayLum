@@ -61,8 +61,8 @@ jobs:
           sudo make install
           sudo ldconfig
 
-          cd /
-          rm -rf /tmp/JAGS-5.0.2 /tmp/JAGS-5.0.2.tar.gz
+          cd ..
+          rm -rf JAGS-5.0.2 JAGS-5.0.2.tar.gz
 
       - uses: r-lib/actions/setup-r-dependencies@v2
         with:
