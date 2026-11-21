@@ -103,17 +103,17 @@ added in the function call. Example, for disabling the
 `smoothScatter` you can type `plot_Scatterplots(..., rug = FALSE)`
 Please note that not all arguments are supported by all plot types.
 
-|                    |                              |                                                                                                                            |
-|--------------------|------------------------------|----------------------------------------------------------------------------------------------------------------------------|
-| **ARGUMENT**       | **SUPPORTED BY PLOT TYPE**   | **DESCRIPTION**                                                                                                            |
-| `colramp`          | `hexbin` and `smoothScatter` | Option to define an own colour ramp, by defining an own function, e.g., `function(n) heat.colors(n, alpha = 1)`.           |
-| `pscales`          | `hexbin` and `smoothScatter` | Controls the number of ticks shown on the plot axes, please note that the number works proportionally.                     |
-| `bw_smoothScatter` | `smoothScatter`              | Controls the bandwidth of the smooth scatter, cf. [graphics::smoothScatter](https://rdrr.io/r/graphics/smoothScatter.html) |
-| `rug`              | `smoothScatter`              | enables/disables rugs                                                                                                      |
-| `nlevels`          | `smoothScatter`              | controls the number of isolines shown (cf. [graphics::contour](https://rdrr.io/r/graphics/contour.html))                   |
-| `nrpoints`         | `smoothScatter`              | defines the number of `nrpoints` to be plotted [graphics::smoothScatter](https://rdrr.io/r/graphics/smoothScatter.html)    |
-| `col_contour`      | `smoothScatter`              | defines the colour of the contour lines                                                                                    |
-| `col_nrpoints`     | `smoothScatter`              | sets colour of the `nrpoints` in the scatter plot                                                                          |
+|  |  |  |
+|----|----|----|
+| **ARGUMENT** | **SUPPORTED BY PLOT TYPE** | **DESCRIPTION** |
+| `colramp` | `hexbin` and `smoothScatter` | Option to define an own colour ramp, by defining an own function, e.g., `function(n) heat.colors(n, alpha = 1)`. |
+| `pscales` | `hexbin` and `smoothScatter` | Controls the number of ticks shown on the plot axes, please note that the number works proportionally. |
+| `bw_smoothScatter` | `smoothScatter` | Controls the bandwidth of the smooth scatter, cf. [graphics::smoothScatter](https://rdrr.io/r/graphics/smoothScatter.html) |
+| `rug` | `smoothScatter` | enables/disables rugs |
+| `nlevels` | `smoothScatter` | controls the number of isolines shown (cf. [graphics::contour](https://rdrr.io/r/graphics/contour.html)) |
+| `nrpoints` | `smoothScatter` | defines the number of `nrpoints` to be plotted [graphics::smoothScatter](https://rdrr.io/r/graphics/smoothScatter.html) |
+| `col_contour` | `smoothScatter` | defines the colour of the contour lines |
+| `col_nrpoints` | `smoothScatter` | sets colour of the `nrpoints` in the scatter plot |
 
 ## Function version
 

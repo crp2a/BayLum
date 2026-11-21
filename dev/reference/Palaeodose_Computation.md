@@ -284,7 +284,7 @@ P=Palaeodose_Computation(DATA=DATA1,Nb_sample=1,SampleNames=c("GDB5"),Iter=100)
 #>    Resolving undeclared variables
 #>    Allocating nodes
 #> Graph information:
-#>    Observed stochastic nodes: 505
+#>    Fully observed stochastic nodes: 505
 #>    Unobserved stochastic nodes: 608
 #>    Total graph size: 7216
 #> 
@@ -299,8 +299,8 @@ P=Palaeodose_Computation(DATA=DATA1,Nb_sample=1,SampleNames=c("GDB5"),Iter=100)
 #>  Sample name:  GDB5 
 #> ---------------------
 #>       Point estimate Uppers confidence interval
-#> D_GDB5    9.08        30.81 
-#> sD_GDB5   1.45        2.55 
+#> D_GDB5    177.67          1080.54 
+#> sD_GDB5   2.63        14.53 
 #> 
 #> 
 #> ---------------------------------------------------------------------------------------------------
@@ -314,16 +314,16 @@ P=Palaeodose_Computation(DATA=DATA1,Nb_sample=1,SampleNames=c("GDB5"),Iter=100)
 #>  Sample name:  GDB5 
 #> ---------------------
 #> Parameter     Bayes estimate       Credible interval 
-#> D_GDB5    125.417 
+#> D_GDB5    200.856 
 #>                       lower bound     upper bound
-#>               at level 95%    99          182 
-#>               at level 68%    96          114 
+#>               at level 95%    200         202 
+#>               at level 68%    200         201 
 #> 
 #> Parameter     Bayes estimate       Credible interval 
-#> sD_GDB5   15.669 
+#> sD_GDB5   0.008 
 #>                       lower bound     upper bound
-#>               at level 95%    12          20 
-#>               at level 68%    15          19 
+#>               at level 95%    0       0 
+#>               at level 68%    0       0 
 #> 
 #> ----------------------------------------------
 ```

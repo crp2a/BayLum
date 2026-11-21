@@ -36,13 +36,13 @@ Source:
 Christophe C, Philippe A, Kreutzer S, Guérin G, Baumgarten F, Frerebeau
 N (2026). *BayLum: Chronological Bayesian Models Integrating Optically
 Stimulated Luminescence and Radiocarbon Age Dating*. R package version
-0.3.3.9000-5, <https://CRAN.r-project.org/package=BayLum>.
+0.3.3.9000-13, <https://CRAN.r-project.org/package=BayLum>.
 
     @Manual{,
       title = {BayLum: Chronological Bayesian Models Integrating Optically Stimulated Luminescence and Radiocarbon Age Dating},
       author = {Claire Christophe and Anne Philippe and Sebastian Kreutzer and Guillaume Guérin and Frederik Harly Baumgarten and Nicolas Frerebeau},
       year = {2026},
-      note = {R package version 0.3.3.9000-5},
+      note = {R package version 0.3.3.9000-13},
       url = {https://CRAN.r-project.org/package=BayLum},
     }
 

@@ -60,6 +60,7 @@ Heidelberg (Germany)
 ## Examples
 
 ``` r
+
 ## generate list
 write_YAMLConfigFile(
 sample = c("samp1", "samp2"),
@@ -89,5 +90,5 @@ write_YAMLConfigFile(
  output_file = tempfile("configuration.yml"),
  sample = c("samp1", "samp2"),
  settings.rules.endTest = 10)
-#> [1] "/tmp/RtmpuRrOip/configuration.yml1c8255f045da.yml"
+#> [1] "/tmp/RtmpMuIZso/configuration.ymlb21ec7643a3.yml"
 ```

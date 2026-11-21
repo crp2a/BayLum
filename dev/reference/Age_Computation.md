@@ -338,9 +338,9 @@ Age <- Age_Computation(
 #> >> Results of the Gelman and Rubin criterion of convergence <<
 #> ----------------------------------------------
 #>   Point estimate Uppers confidence interval
-#> A     1.008       1.087 
-#> D     1.112       1.377 
-#> sD    1.113       1.383 
+#> A     1.016       1.109 
+#> D     637.608         2701.819 
+#> sD    1.226       1.894 
 #> 
 #> 
 #> ---------------------------------------------------------------------------------------------------
@@ -349,18 +349,18 @@ Age <- Age_Computation(
 #> 
 #> parameter     Bayes estimate       Credible interval 
 #> ----------------------------------------------
-#> A         46.09 
+#> A         24.853 
 #>                       lower bound     upper bound
-#>               at level 95%    38.42       55.223 
-#>               at level 68%    42.77       51.621 
+#>               at level 95%    19.07       27.755 
+#>               at level 68%    22.86       27.342 
 #> ----------------------------------------------
-#> D         102.514 
+#> D         55.327 
 #>                       lower bound     upper bound
-#>               at level 95%    97.522          106.463 
-#>               at level 68%    98.573          104.329 
+#>               at level 95%    55.038          55.039 
+#>               at level 68%    55.039          55.039 
 #> ----------------------------------------------
-#> sD        15.968 
+#> sD        0.001 
 #>                       lower bound     upper bound
-#>               at level 95%    11.942          18.631 
-#>               at level 68%    14.537          17.969 
+#>               at level 95%    0       0.002 
+#>               at level 68%    0       0.001 
 ```

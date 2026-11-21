@@ -399,14 +399,14 @@ There are arguments for information concerning all the samples:
 
 **Supported `...` arguments**
 
-|               |                                                    |              |         |                                                                                                                                              |
-|---------------|----------------------------------------------------|--------------|---------|----------------------------------------------------------------------------------------------------------------------------------------------|
-| ARGUMENT      | INPUT                                              | METHOD       | DEFAULT | DESCRIPTION                                                                                                                                  |
-| `max.time`    | [character](https://rdrr.io/r/base/character.html) | `rjparallel` | `Inf`   | maximum allowed processing time, e.g., `10m` for 10 minutes (cf. [runjags::autorun.jags](https://rdrr.io/pkg/runjags/man/autorun.jags.html)) |
-| `interactive` | [logical](https://rdrr.io/r/base/logical.html)     | `rjparallel` | `FALSE` | enable/disable interactive mode (cf. [runjags::autorun.jags](https://rdrr.io/pkg/runjags/man/autorun.jags.html))                             |
-| `startburnin` | [integer](https://rdrr.io/r/base/integer.html)     | `rjparallel` | `4000`  | number of burn-in iterations (cf. [runjags::autorun.jags](https://rdrr.io/pkg/runjags/man/autorun.jags.html))                                |
-| `startsample` | [integer](https://rdrr.io/r/base/integer.html)     | `rjparallel` | `10000` | total number of samples to assess convergence (cf. [runjags::autorun.jags](https://rdrr.io/pkg/runjags/man/autorun.jags.html))               |
-| `inits`       | named [list](https://rdrr.io/r/base/list.html)     | `rjparallel` | `NA`    | fine control over random seeds and random number generator [runjags::autorun.jags](https://rdrr.io/pkg/runjags/man/autorun.jags.html)        |
+|  |  |  |  |  |
+|----|----|----|----|----|
+| ARGUMENT | INPUT | METHOD | DEFAULT | DESCRIPTION |
+| `max.time` | [character](https://rdrr.io/r/base/character.html) | `rjparallel` | `Inf` | maximum allowed processing time, e.g., `10m` for 10 minutes (cf. [runjags::autorun.jags](https://rdrr.io/pkg/runjags/man/autorun.jags.html)) |
+| `interactive` | [logical](https://rdrr.io/r/base/logical.html) | `rjparallel` | `FALSE` | enable/disable interactive mode (cf. [runjags::autorun.jags](https://rdrr.io/pkg/runjags/man/autorun.jags.html)) |
+| `startburnin` | [integer](https://rdrr.io/r/base/integer.html) | `rjparallel` | `4000` | number of burn-in iterations (cf. [runjags::autorun.jags](https://rdrr.io/pkg/runjags/man/autorun.jags.html)) |
+| `startsample` | [integer](https://rdrr.io/r/base/integer.html) | `rjparallel` | `10000` | total number of samples to assess convergence (cf. [runjags::autorun.jags](https://rdrr.io/pkg/runjags/man/autorun.jags.html)) |
+| `inits` | named [list](https://rdrr.io/r/base/list.html) | `rjparallel` | `NA` | fine control over random seeds and random number generator [runjags::autorun.jags](https://rdrr.io/pkg/runjags/man/autorun.jags.html) |
 
 **How to fill \`StratiConstraints?**  
 

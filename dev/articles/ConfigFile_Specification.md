@@ -149,9 +149,10 @@ If the entry is `null`, the function
 that uses the settings from the YAML file will assume that R objects
 with the name specified in `sample` are available in the global session
 environment. For instance, files are imported and  
-treated with `Luminescence::read_BIN2R(...) |> subset(...)` or similar.
-Setting `files` to `null` gives you all options to pre-process your
-measurement data and is the recommended mode of operation.
+treated with
+`Luminescence::read_BIN2R(..., fastForward = FALSE) |> subset(...)` or
+similar. Setting `files` to `null` gives you all options to pre-process
+your measurement data and is the recommended mode of operation.
 
 If `files` comes with file path entries, then
 [`BayLum::create_DataFile()`](https://crp2a.github.io/BayLum/dev/reference/create_DataFile.md)
@@ -205,18 +206,18 @@ s, …, 10 s.
 The rules level enables you to provide a couple of parameters, which are
 used in Bayesian modelling.
 
-| PARAMETER               | TYPE    | COMMENT                                                                  |
-|-------------------------|---------|--------------------------------------------------------------------------|
-| `beginSignal`           | integer | Channel number start OSL signal integral ($L_{x}$)                       |
-| `endSignal`             | integer | Channel number end OSL signal integral ($L_{x}$)                         |
-| `beginBackground`       | integer | Channel number start OSL background integral ($L_{x}$)                   |
-| `endBackground`         | integer | Channel number end OSL background integral ($L_{x}$)                     |
-| `beginTest`             | integer | Channel number start OSL signal integral ($T_{x}$)                       |
-| `endTest`               | integer | Channel number end OSL signal integral ($T_{x}$)                         |
-| `beginTestBackground`   | integer | Channel number start OSL background integral ($T_{x}$)                   |
-| `endTestBackground`     | integer | Channel number end OSL background integral ($T_{x}$)                     |
-| `inflatePercent`        | double  | Additional overdispersion value to inflate the uncertainty in percentage |
-| `nbOfLastCycleToRemove` | integer | Number of SAR cycles to be removed from the measurement file             |
+| PARAMETER | TYPE | COMMENT |
+|----|----|----|
+| `beginSignal` | integer | Channel number start OSL signal integral ($`L_x`$) |
+| `endSignal` | integer | Channel number end OSL signal integral ($`L_x`$) |
+| `beginBackground` | integer | Channel number start OSL background integral ($`L_x`$) |
+| `endBackground` | integer | Channel number end OSL background integral ($`L_x`$) |
+| `beginTest` | integer | Channel number start OSL signal integral ($`T_x`$) |
+| `endTest` | integer | Channel number end OSL signal integral ($`T_x`$) |
+| `beginTestBackground` | integer | Channel number start OSL background integral ($`T_x`$) |
+| `endTestBackground` | integer | Channel number end OSL background integral ($`T_x`$) |
+| `inflatePercent` | double | Additional overdispersion value to inflate the uncertainty in percentage |
+| `nbOfLastCycleToRemove` | integer | Number of SAR cycles to be removed from the measurement file |
 
 Example:
 
@@ -235,8 +236,8 @@ Example:
 Please ensure that the set values correspond to your measurement data.
 For instance, if your OSL curve has only 100 channels (data points), it
 does not make sense to set larger integral settings (e.g., 1000), and
-such a setting will lead to an error. Integral values for ($L_{x}$) and
-($T_{x}$) are usually set to identical values unless you have good
+such a setting will lead to an error. Integral values for ($`L_x`$) and
+($`T_x`$) are usually set to identical values unless you have good
 reasons to use different integral settings.
 
 ### Final remarks
@@ -286,6 +287,7 @@ settings.rules.nbOfLastCycleToRemove
 ```
 
 ``` r
+
 str(l)
 ```
 
@@ -320,6 +322,7 @@ preset values. You can then modify the generated YAML file with any
 text-editor.
 
 ``` r
+
 l <- write_YAMLConfigFile(output_file = "<your filepath>")
 ```
 

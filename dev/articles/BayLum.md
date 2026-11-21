@@ -33,6 +33,7 @@ If you have not yet installed ‘BayLum’, please run the following two
 **R** code lines to install ‘BayLum’ on your computer.
 
 ``` r
+
 install.packages("BayLum", dependencies = TRUE)
 ```
 
@@ -40,6 +41,7 @@ Alternatively, you can load an already installed **R** package (here
 ‘BayLum’) into your session by using the following **R** call.
 
 ``` r
+
 library(BayLum)
 ```
 
@@ -59,6 +61,7 @@ stored in a subfolder called also *samp1*. To test the package example,
 first, we add the path of the example dataset to the object `path`.
 
 ``` r
+
 path <- paste0(system.file("extdata/", package = "BayLum"), "/")
 ```
 
@@ -66,6 +69,7 @@ Please note that for your own dataset (i.e. not included in the package)
 you have to replace this call by something like:
 
 ``` r
+
 path <- "Users/Master_of_luminescence/Documents/MyFamousOSLData"
 ```
 
@@ -99,6 +103,7 @@ To import your data, simply call the function
 [`Generate_DataFile()`](https://crp2a.github.io/BayLum/dev/reference/Generate_DataFile-deprecated.md):
 
 ``` r
+
 DATA1 <-
   Generate_DataFile(
     Path = path,
@@ -111,9 +116,8 @@ DATA1 <-
     Use 'create_DataFile()' instead.
     See help("Deprecated")
 
-    Error in `Luminescence::read_BIN2R(file = paste0(Path, FolderNames[bf]), duplicated.rm = read_BIN2R.settings$duplicated.rm,
-      verbose = read_BIN2R.settings$verbose)[[1]]`:
-    ! this S4 class is not subsettable
+    Error in `object@METADATA`:
+    ! no applicable method for `@` applied to an object of class "list"
 
 #### Remarks
 
@@ -127,12 +131,14 @@ before continuing.
 To save the obove imported data on your hardrive use
 
 ``` r
+
 save(DATA1, file = "YourPath/DATA1.RData")
 ```
 
 To load the data use
 
 ``` r
+
 load(DATA1, file = "YourPath/DATA1.RData")
 ```
 
@@ -143,6 +149,7 @@ BIN/BINX-file and the associated CSV-files, the following call can be
 used:
 
 ``` r
+
 str(DATA1)
 ```
 
@@ -168,8 +175,8 @@ It reveals that `DATA1` is basically a list with 11 elements:
 
 | Element                | Content                                           |
 |------------------------|---------------------------------------------------|
-| `DATA1$LT`             | $L_{x}$/$T_{x}$ values from each sample           |
-| `DATA1$sLT`            | $L_{x}$/$T_{x}$ error values from each sample     |
+| `DATA1$LT`             | $`L_x`$/$`T_x`$ values from each sample           |
+| `DATA1$sLT`            | $`L_x`$/$`T_x`$ error values from each sample     |
 | `DATA1$ITimes`         | Irradiation times                                 |
 | `DATA1$dLab`           | The lab dose rate                                 |
 | `DATA1$ddot_env`       | The environmental dose rate and its variance      |
@@ -185,6 +192,7 @@ by using the function
 [`LT_RegenDose()`](https://crp2a.github.io/BayLum/dev/reference/LT_RegenDose-deprecated.md):
 
 ``` r
+
 LT_RegenDose(
   DATA = DATA1,
   Path = path,
@@ -666,6 +674,7 @@ available in the global environment. The following example code
 reproduces this case:
 
 ``` r
+
 ## get example file path from package
 yaml_file <- system.file("extdata/example.yml", package = "BayLum")
 samp1_file <- system.file("extdata/samp1/bin.bin", package = "BayLum")
@@ -674,7 +683,7 @@ samp1_file <- system.file("extdata/samp1/bin.bin", package = "BayLum")
 config_file <- yaml::read_yaml(yaml_file)[[1]]
 
 ## import BIN/BINX files and select position 2 and grain 32 only
-samp1 <- Luminescence::read_BIN2R(samp1_file, verbose = FALSE) |>
+samp1 <- Luminescence::read_BIN2R(samp1_file, verbose = FALSE, fastForward = FALSE) |>
   subset(POSITION == 2 & GRAIN == 32)
 
 ## create the data file
@@ -690,6 +699,7 @@ To compute the age of the sample *samp1*, you can run the following
 code:
 
 ``` r
+
 Age <- Age_Computation(
   DATA = DATA1,
   SampleName = "samp1",
@@ -705,7 +715,7 @@ Age <- Age_Computation(
        Resolving undeclared variables
        Allocating nodes
     Graph information:
-       Observed stochastic nodes: 505
+       Fully observed stochastic nodes: 505
        Unobserved stochastic nodes: 609
        Total graph size: 7225
 
@@ -1026,6 +1036,7 @@ Age <- Age_Computation(
 plot of chunk unnamed-chunk-12
 
 
+
     >> Sample name <<
     ----------------------------------------------
     samp1
@@ -1033,9 +1044,9 @@ plot of chunk unnamed-chunk-12
     >> Results of the Gelman and Rubin criterion of convergence <<
     ----------------------------------------------
          Point estimate Uppers confidence interval
-    A    1.001       1.003 
-    D    1.007       1.026 
-    sD   1.001       1.005 
+    A    2.741       5.136 
+    D    9.303       22.739 
+    sD   5.382       13.063 
 
 
     ---------------------------------------------------------------------------------------------------
@@ -1044,20 +1055,20 @@ plot of chunk unnamed-chunk-12
 
     parameter    Bayes estimate       Credible interval 
     ----------------------------------------------
-    A        47.284 
+    A        41.949 
                              lower bound     upper bound
-                     at level 95%    37.94       58.577 
-                     at level 68%    40.3        50.755 
+                     at level 95%    25.74       39.362 
+                     at level 68%    27.81       34.692 
     ----------------------------------------------
-    D        105.531 
+    D        93.84 
                              lower bound     upper bound
-                     at level 95%    97.508          112.485 
-                     at level 68%    101.525         108.943 
+                     at level 95%    70.946          71.055 
+                     at level 68%    71          71.055 
     ----------------------------------------------
-    sD       15.749 
+    sD       10.145 
                              lower bound     upper bound
-                     at level 95%    10.059          21.741 
-                     at level 68%    12.234          18.209 
+                     at level 95%    0.002       0.048 
+                     at level 68%    0.002       0.019 
 
 This also works if `DATA1` is the output of
 [`Generate_DataFile_MG()`](https://crp2a.github.io/BayLum/dev/reference/Generate_DataFile_MG-deprecated.md).
@@ -1119,7 +1130,7 @@ accordingly.
 
 For example, if you know that the sample is an older, you can set
 `PriorAge=c(10,120)`. In contrast, if you know that the sample is
-younger, you may want to set `PriorAge=c(0.001,10)`. Ages of $< = 0$ are
+younger, you may want to set `PriorAge=c(0.001,10)`. Ages of $`<=0`$ are
 not possible. The minimum bound is 0.001.
 
 **Please note that the setting of `PriorAge` is not trivial, wrongly set
@@ -1136,6 +1147,7 @@ BIN/BINX-files, the names of the subfolders need to beset in argument
 For the case
 
 ``` r
+
 Names <- c("samp1", "samp2")
 ```
 
@@ -1146,6 +1158,7 @@ the call
 becomes as follows:
 
 ``` r
+
 ##argument setting
 nbsample <- 1
 nbbinfile <- length(Names)
@@ -1166,11 +1179,11 @@ DATA_BF <- Generate_DataFile(
     Use 'create_DataFile()' instead.
     See help("Deprecated")
 
-    Error in `Luminescence::read_BIN2R(file = paste0(Path, FolderNames[bf]), duplicated.rm = read_BIN2R.settings$duplicated.rm,
-      verbose = read_BIN2R.settings$verbose)[[1]]`:
-    ! this S4 class is not subsettable
+    Error in `object@METADATA`:
+    ! no applicable method for `@` applied to an object of class "list"
 
 ``` r
+
 ##calculate the age
 Age <- Age_Computation(
   DATA = DATA_BF,
@@ -1201,9 +1214,10 @@ containing only one BIN-file named **bin.bin**, and its associated files
 All of these 3 subfolders must be located in *path*.
 
 To fill the argument corectly `BinPerSample`:
-$binpersample = c\left( \underset{\text{sample 1: 2 bin files}}{\underbrace{2}},\underset{\text{sample 2: 1 bin file}}{\underbrace{1}} \right)$
+$`binpersample=c(\underbrace{2}_{\text{sample 1: 2 bin files}},\underbrace{1}_{\text{sample 2: 1 bin file}})`$
 
 ``` r
+
 Names <-
   c("sample1-1", "sample1-2", "sample2-1") # give the name of the folder datat
 nbsample <- 2    # give the number of samples
@@ -1231,6 +1245,7 @@ For example, if `DATA1` is the output of sample named “GDB3”, and
 following call:
 
 ``` r
+
 data("DATA1", envir = environment())
 data("DATA2", envir = environment())
 DATA3 <- combine_DataFiles(L1 = DATA2, L2 = DATA1)
@@ -1269,12 +1284,13 @@ The data structure should become as follows
   sample) for `DATA1$J`, `DATA1$K`, `DATA1$Nb_measurement`.
 
 Single-grain and multiple-grain OSL measurements can be merged in the
-same way. To plot the $L/T$ as a function of the regenerative dose the
+same way. To plot the $`L/T`$ as a function of the regenerative dose the
 function
 [`LT_RegenDose()`](https://crp2a.github.io/BayLum/dev/reference/LT_RegenDose-deprecated.md)
 can be used again:
 
 ``` r
+
 plot_RegDosePoints(DATA3)
 ```
 
@@ -1289,6 +1305,7 @@ If no stratigraphic constraints were set, the following code can be used
 to analyse the age of the sample *GDB5* and *GDB3* simultaneously.
 
 ``` r
+
 priorage = c(1, 10, 10, 100)
 Age <- AgeS_Computation(
   DATA = DATA3,
@@ -1303,9 +1320,55 @@ Age <- AgeS_Computation(
 )
 ```
 
+    Warning in structure(c(4.53680981595092, 2.72538860103627, 2.5391427559334, : Replacing special names '.Dim' is
+    deprecated; use 'dim' instead.
+
+    Warning in structure(c(0.333140908452226, 0.38625301955089, 0.127544771214916, : Replacing special names '.Dim' is
+    deprecated; use 'dim' instead.
+
+    Warning in structure(c(40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, : Replacing special names '.Dim' is
+    deprecated; use 'dim' instead.
+
+    Warning in structure(c(0.05663173058304, 0, 0, 0.062040888716), .Dim = c(2, : Replacing special names '.Dim' is
+    deprecated; use 'dim' instead.
+
+    Warning in structure(c(1, 0, 0, 1, 0, 0), .Dim = c(3, 2)): Replacing special names '.Dim' is deprecated; use 'dim'
+    instead.
+
     Warning: No initial values were provided - JAGS will use the same initial values for all chains
 
     Compiling rjags model...
+
+    Warning in structure(c(4.53680981595092, 2.72538860103627, 2.5391427559334, : Replacing special names '.Dim' is
+    deprecated; use 'dim' instead.
+
+    Warning in structure(c(0.333140908452226, 0.38625301955089, 0.127544771214916, : Replacing special names '.Dim' is
+    deprecated; use 'dim' instead.
+
+    Warning in structure(c(40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, : Replacing special names '.Dim' is
+    deprecated; use 'dim' instead.
+
+    Warning in structure(c(0.05663173058304, 0, 0, 0.062040888716), .Dim = c(2, : Replacing special names '.Dim' is
+    deprecated; use 'dim' instead.
+
+    Warning in structure(c(1, 0, 0, 1, 0, 0), .Dim = c(3, 2)): Replacing special names '.Dim' is deprecated; use 'dim'
+    instead.
+
+    Warning in structure(c(4.53680981595092, 2.72538860103627, 2.5391427559334, : Replacing special names '.Dim' is
+    deprecated; use 'dim' instead.
+
+    Warning in structure(c(0.333140908452226, 0.38625301955089, 0.127544771214916, : Replacing special names '.Dim' is
+    deprecated; use 'dim' instead.
+
+    Warning in structure(c(40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, : Replacing special names '.Dim' is
+    deprecated; use 'dim' instead.
+
+    Warning in structure(c(0.05663173058304, 0, 0, 0.062040888716), .Dim = c(2, : Replacing special names '.Dim' is
+    deprecated; use 'dim' instead.
+
+    Warning in structure(c(1, 0, 0, 1, 0, 0), .Dim = c(3, 2)): Replacing special names '.Dim' is deprecated; use 'dim'
+    instead.
+
     Calling the simulation using the rjags method...
     Adapting the model for 1000 iterations...
 
@@ -1659,21 +1722,22 @@ plot of chunk unnamed-chunk-18
 plot of chunk unnamed-chunk-18
 
 
+
     >> Results of the Gelman and Rubin criterion of convergence <<
     ----------------------------------------------
      Sample name:  GDB5 
     ---------------------
              Point estimate Uppers confidence interval
-    A_GDB5   1.003       1.01 
-    D_GDB5   1.02        1.07 
-    sD_GDB5      1.011       1.035 
+    A_GDB5   1.004       1.015 
+    D_GDB5   25.022          150.901 
+    sD_GDB5      3.413       19.574 
     ----------------------------------------------
      Sample name:  GDB3 
     ---------------------
              Point estimate Uppers confidence interval
-    A_GDB3   1       1.001 
-    D_GDB3   1.01        1.025 
-    sD_GDB3      1.008       1.031 
+    A_GDB3   1.003       1.01 
+    D_GDB3   23.431          96.483 
+    sD_GDB3      1.595       3.297 
 
 
     ---------------------------------------------------------------------------------------------------
@@ -1687,42 +1751,42 @@ plot of chunk unnamed-chunk-18
      Sample name:  GDB5 
     ---------------------
     Parameter    Bayes estimate       Credible interval 
-     A_GDB5      7.157 
+     A_GDB5      3.187 
                              lower bound     upper bound
-                     at level 95%    5.781       8.583 
-                     at level 68%    6.32        7.701 
+                     at level 95%    2.627       3.83 
+                     at level 68%    2.79        3.383 
 
     Parameter    Bayes estimate       Credible interval 
-     D_GDB5      17.809 
+     D_GDB5      7.922 
                              lower bound     upper bound
-                     at level 95%    16.616          18.966 
-                     at level 68%    17.219          18.462 
+                     at level 95%    7.87        7.957 
+                     at level 68%    7.87        7.956 
 
     Parameter    Bayes estimate       Credible interval 
-    sD_GDB5      4.481 
+    sD_GDB5      0.001 
                              lower bound     upper bound
-                     at level 95%    3.312       5.388 
-                     at level 68%    3.864       4.924 
+                     at level 95%    0       0 
+                     at level 68%    0       0 
     ----------------------------------------------
      Sample name:  GDB3 
     ---------------------
     Parameter    Bayes estimate       Credible interval 
-     A_GDB3      47.021 
+     A_GDB3      32.053 
                              lower bound     upper bound
-                     at level 95%    37.065          58.284 
-                     at level 68%    40.89       51.208 
+                     at level 95%    25.145          38.685 
+                     at level 68%    27.934          34.737 
 
     Parameter    Bayes estimate       Credible interval 
-     D_GDB3      105.311 
+     D_GDB3      71.464 
                              lower bound     upper bound
-                     at level 95%    98.048          112.251 
-                     at level 68%    101.317         108.586 
+                     at level 95%    70.868          71.97 
+                     at level 68%    70.849          71.764 
 
     Parameter    Bayes estimate       Credible interval 
-    sD_GDB3      15.775 
+    sD_GDB3      0.016 
                              lower bound     upper bound
-                     at level 95%    10.559          22.546 
-                     at level 68%    11.962          17.945 
+                     at level 95%    0       0.004 
+                     at level 68%    0       0.002 
 
     ----------------------------------------------
 
@@ -1744,7 +1808,9 @@ concern the 1st sample, the next two values the 2nd sample and so on.
 For example, if you know that sample named *GDB5* is a young sample
 whose its age is between 0.01 ka and 10 ka, and *GDB3* is an old sample
 whose age is between 10 ka and 100 ka,
-$$PriorAge = c\left( \underset{GDB5\ prior\ age}{\underbrace{0.01,10}},\underset{GDB3\ prior\ age}{\underbrace{10,100}} \right)$$
+``` math
+PriorAge=c(\underbrace{0.01,10}_{GDB5\ prior\ age},\underbrace{10,100}_{GDB3\ prior\ age})
+```
 
 ### Age analysis with stratigraphic constraints
 
@@ -1768,6 +1834,7 @@ informations of each sample in
 ordered by increasing ages.
 
 ``` r
+
 # using Generate_DataFile function
 Names <- c("samp1", "samp2")
 nbsample <- 2
@@ -1783,11 +1850,11 @@ DATA3 <- Generate_DataFile(
     Use 'create_DataFile()' instead.
     See help("Deprecated")
 
-    Error in `Luminescence::read_BIN2R(file = paste0(Path, FolderNames[bf]), duplicated.rm = read_BIN2R.settings$duplicated.rm,
-      verbose = read_BIN2R.settings$verbose)[[1]]`:
-    ! this S4 class is not subsettable
+    Error in `object@METADATA`:
+    ! no applicable method for `@` applied to an object of class "list"
 
 ``` r
+
 # using the function combine_DataFiles()
 data(DATA1, envir = environment()) # .RData on sample GDB3
 data(DATA2, envir = environment()) # .RData on sample GDB5
@@ -1800,21 +1867,22 @@ Let `SC` be the matrix containing all information on stratigraphic
 relations for this two samples. This matrix is defined as follows:
 
 - matrix dimensions: the row number of `StratiConstraints` matrix is
-  equal to `Nb_sample+1`, and column number is equal to $Nb\_ sample$.
+  equal to `Nb_sample+1`, and column number is equal to $`Nb\_sample`$.
 
-- first matrix row: for all $i$ in $\{ 1,...,Nb\_ Sample\}$,
+- first matrix row: for all $`i`$ in $`\{1,...,Nb\_Sample\}`$,
   `StratiConstraints[1,i] <- 1`, means that the lower bound of the
   sample age given in `PriorAge[2i-1]` for the sample whose number ID is
-  equal to $i$ is taken into account
+  equal to $`i`$ is taken into account
 
-- sample relations: for all $j$ in \${2,…,Nb_Sample+1}\$ and all $i$ in
-  $\{ j,...,Nb\_ Sample\}$, `StratiConstraints[j,i] <- 1` if the sample
-  age whose ID is equal to $j - 1$ is lower than the sample age whose ID
-  is equal to $i$. Otherwise, `StratiConstraints[j,i] <- 0`.
+- sample relations: for all $`j`$ in \${2,…,Nb_Sample+1}\$ and all $`i`$
+  in $`\{j,...,Nb\_Sample\}`$, `StratiConstraints[j,i] <- 1` if the
+  sample age whose ID is equal to $`j-1`$ is lower than the sample age
+  whose ID is equal to $`i`$. Otherwise, `StratiConstraints[j,i] <- 0`.
 
 To the define such matrix the function *SCMatrix()* can be used:
 
 ``` r
+
 SC <- SCMatrix(Nb_sample = 2,
                SampleNames = c("samp1", "samp2"))
 ```
@@ -1828,6 +1896,7 @@ sample 1, here named *samp1*). We can also fill the matrix with the
 stratigraphic relations as follow:
 
 ``` r
+
 SC <- matrix(
   data = c(1, 1, 0, 1, 0, 0),
   ncol = 2,
@@ -1839,6 +1908,7 @@ SC <- matrix(
 #### Age computation
 
 ``` r
+
 Age <-
   AgeS_Computation(
     DATA = DATA3,
@@ -1853,9 +1923,55 @@ Age <-
     jags_method = 'rjags')
 ```
 
+    Warning in structure(c(5.65894039735099, 6.90291465716083, 4.05413105413105, : Replacing special names '.Dim' is
+    deprecated; use 'dim' instead.
+
+    Warning in structure(c(0.373388522793026, 0.31491254628153, 0.244864486462439, : Replacing special names '.Dim' is
+    deprecated; use 'dim' instead.
+
+    Warning in structure(c(160, 160, 160, 160, 160, 160, 160, 160, 160, 160, : Replacing special names '.Dim' is
+    deprecated; use 'dim' instead.
+
+    Warning in structure(c(0.062040888716, 0, 0, 0.05663173058304), .Dim = c(2, : Replacing special names '.Dim' is
+    deprecated; use 'dim' instead.
+
+    Warning in structure(c(1, 0, 0, 1, 1, 0), .Dim = c(3, 2)): Replacing special names '.Dim' is deprecated; use 'dim'
+    instead.
+
     Warning: No initial values were provided - JAGS will use the same initial values for all chains
 
     Compiling rjags model...
+
+    Warning in structure(c(5.65894039735099, 6.90291465716083, 4.05413105413105, : Replacing special names '.Dim' is
+    deprecated; use 'dim' instead.
+
+    Warning in structure(c(0.373388522793026, 0.31491254628153, 0.244864486462439, : Replacing special names '.Dim' is
+    deprecated; use 'dim' instead.
+
+    Warning in structure(c(160, 160, 160, 160, 160, 160, 160, 160, 160, 160, : Replacing special names '.Dim' is
+    deprecated; use 'dim' instead.
+
+    Warning in structure(c(0.062040888716, 0, 0, 0.05663173058304), .Dim = c(2, : Replacing special names '.Dim' is
+    deprecated; use 'dim' instead.
+
+    Warning in structure(c(1, 0, 0, 1, 1, 0), .Dim = c(3, 2)): Replacing special names '.Dim' is deprecated; use 'dim'
+    instead.
+
+    Warning in structure(c(5.65894039735099, 6.90291465716083, 4.05413105413105, : Replacing special names '.Dim' is
+    deprecated; use 'dim' instead.
+
+    Warning in structure(c(0.373388522793026, 0.31491254628153, 0.244864486462439, : Replacing special names '.Dim' is
+    deprecated; use 'dim' instead.
+
+    Warning in structure(c(160, 160, 160, 160, 160, 160, 160, 160, 160, 160, : Replacing special names '.Dim' is
+    deprecated; use 'dim' instead.
+
+    Warning in structure(c(0.062040888716, 0, 0, 0.05663173058304), .Dim = c(2, : Replacing special names '.Dim' is
+    deprecated; use 'dim' instead.
+
+    Warning in structure(c(1, 0, 0, 1, 1, 0), .Dim = c(3, 2)): Replacing special names '.Dim' is deprecated; use 'dim'
+    instead.
+
     Calling the simulation using the rjags method...
     Adapting the model for 1000 iterations...
 
@@ -2209,21 +2325,22 @@ plot of chunk unnamed-chunk-23
 plot of chunk unnamed-chunk-23
 
 
+
     >> Results of the Gelman and Rubin criterion of convergence <<
     ----------------------------------------------
      Sample name:  samp1 
     ---------------------
              Point estimate Uppers confidence interval
-    A_samp1      1.004       1.012 
-    D_samp1      1.003       1.013 
-    sD_samp1     1.015       1.054 
+    A_samp1      1.004       1.016 
+    D_samp1      63.844          222.782 
+    sD_samp1     1.767       5.221 
     ----------------------------------------------
      Sample name:  samp2 
     ---------------------
              Point estimate Uppers confidence interval
-    A_samp2      1       1.001 
-    D_samp2      1.007       1.025 
-    sD_samp2     1.001       1.003 
+    A_samp2      1.038       1.124 
+    D_samp2      3.555       20.756 
+    sD_samp2     3.964       23.487 
 
 
     ---------------------------------------------------------------------------------------------------
@@ -2237,42 +2354,42 @@ plot of chunk unnamed-chunk-23
      Sample name:  samp1 
     ---------------------
     Parameter    Bayes estimate       Credible interval 
-     A_samp1     9.716 
+     A_samp1     3.196 
                              lower bound     upper bound
-                     at level 95%    9.123       10 
-                     at level 68%    9.686       10 
+                     at level 95%    2.524       3.965 
+                     at level 68%    2.759       3.469 
 
     Parameter    Bayes estimate       Credible interval 
-     D_samp1     29.154 
+     D_samp1     7.143 
                              lower bound     upper bound
-                     at level 95%    23.916          34.449 
-                     at level 68%    26.295          31.873 
+                     at level 95%    7.065       7.208 
+                     at level 68%    7.065       7.2 
 
     Parameter    Bayes estimate       Credible interval 
-    sD_samp1     68.574 
+    sD_samp1     0.002 
                              lower bound     upper bound
-                     at level 95%    49.706          85.214 
-                     at level 68%    58.27       75.354 
+                     at level 95%    0       0.006 
+                     at level 68%    0       0.003 
     ----------------------------------------------
      Sample name:  samp2 
     ---------------------
     Parameter    Bayes estimate       Credible interval 
-     A_samp2     10.409 
+     A_samp2     31.758 
                              lower bound     upper bound
-                     at level 95%    10          11.209 
-                     at level 68%    10.001          10.465 
+                     at level 95%    25.821          38.052 
+                     at level 68%    28.195          34.264 
 
     Parameter    Bayes estimate       Credible interval 
-     D_samp2     18.28 
+     D_samp2     78.925 
                              lower bound     upper bound
-                     at level 95%    16.997          19.442 
-                     at level 68%    17.672          18.882 
+                     at level 95%    75.61       80.211 
+                     at level 68%    78.719          80.211 
 
     Parameter    Bayes estimate       Credible interval 
-    sD_samp2     4.583 
+    sD_samp2     1.428 
                              lower bound     upper bound
-                     at level 95%    3.542       5.641 
-                     at level 68%    3.931       5.007 
+                     at level 95%    0       0 
+                     at level 68%    0       0 
 
     ----------------------------------------------
 
@@ -2284,6 +2401,7 @@ Thee results can be also be used for an alternative graphical
 representation:
 
 ``` r
+
 plot_Ages(Age, plot_mode = "density")
 ```
 
@@ -2292,8 +2410,8 @@ plot_Ages(Age, plot_mode = "density")
 plot of chunk unnamed-chunk-24
 
       SAMPLE    AGE HPD68.MIN HPD68.MAX HPD95.MIN HPD95.MAX ALT_SAMPLE_NAME AT
-    1  samp1  9.716     9.686    10.000     9.123    10.000              NA  2
-    2  samp2 10.409    10.001    10.465    10.000    11.209              NA  1
+    1  samp1  3.196     2.759     3.469     2.524     3.965              NA  2
+    2  samp2 31.758    28.195    34.264    25.821    38.052              NA  1
 
 ### When MCMC trajectories did not converge
 
@@ -2306,6 +2424,7 @@ output of the previous `AgeS_computation()` example, namely `Age`. The
 key argument to set/change is `DATA`.
 
 ``` r
+
 Age <- AgeS_Computation(
   DATA = Age,
   Nb_sample = 2,
@@ -2318,6 +2437,21 @@ Age <- AgeS_Computation(
   jags_method = "rjags"
 )
 ```
+
+    Warning in structure(c(5.65894039735099, 6.90291465716083, 4.05413105413105, : Replacing special names '.Dim' is
+    deprecated; use 'dim' instead.
+
+    Warning in structure(c(0.373388522793026, 0.31491254628153, 0.244864486462439, : Replacing special names '.Dim' is
+    deprecated; use 'dim' instead.
+
+    Warning in structure(c(160, 160, 160, 160, 160, 160, 160, 160, 160, 160, : Replacing special names '.Dim' is
+    deprecated; use 'dim' instead.
+
+    Warning in structure(c(0.062040888716, 0, 0, 0.05663173058304), .Dim = c(2, : Replacing special names '.Dim' is
+    deprecated; use 'dim' instead.
+
+    Warning in structure(c(1, 0, 0, 1, 1, 0), .Dim = c(3, 2)): Replacing special names '.Dim' is deprecated; use 'dim'
+    instead.
 
     Calling the simulation using the rjags method...
     Note: the model did not require adaptation
@@ -2569,21 +2703,22 @@ plot of chunk unnamed-chunk-25
 plot of chunk unnamed-chunk-25
 
 
+
     >> Results of the Gelman and Rubin criterion of convergence <<
     ----------------------------------------------
      Sample name:  GDB5 
     ---------------------
              Point estimate Uppers confidence interval
-    A_GDB5   1.002       1.003 
-    D_GDB5   1.001       1.004 
-    sD_GDB5      1.004       1.014 
+    A_GDB5   1.008       1.027 
+    D_GDB5   49.231          101.396 
+    sD_GDB5      2.828       9.572 
     ----------------------------------------------
      Sample name:  GDB3 
     ---------------------
              Point estimate Uppers confidence interval
-    A_GDB3   1.001       1.002 
-    D_GDB3   1.015       1.047 
-    sD_GDB3      1.009       1.032 
+    A_GDB3   6.784       14.137 
+    D_GDB3   16.496          102.711 
+    sD_GDB3      14.919          92.83 
 
 
     ---------------------------------------------------------------------------------------------------
@@ -2597,42 +2732,42 @@ plot of chunk unnamed-chunk-25
      Sample name:  GDB5 
     ---------------------
     Parameter    Bayes estimate       Credible interval 
-     A_GDB5      9.717 
+     A_GDB5      3.202 
                              lower bound     upper bound
-                     at level 95%    9.138       10 
-                     at level 68%    9.681       9.999 
+                     at level 95%    2.536       3.914 
+                     at level 68%    2.791       3.47 
 
     Parameter    Bayes estimate       Credible interval 
-     D_GDB5      29.253 
+     D_GDB5      7.147 
                              lower bound     upper bound
-                     at level 95%    23.729          34.372 
-                     at level 68%    26.627          31.959 
+                     at level 95%    7.065       7.214 
+                     at level 68%    7.065       7.206 
 
     Parameter    Bayes estimate       Credible interval 
-    sD_GDB5      68.368 
+    sD_GDB5      0.005 
                              lower bound     upper bound
-                     at level 95%    52.186          86.396 
-                     at level 68%    58.845          77.111 
+                     at level 95%    0.003       0.013 
+                     at level 68%    0.004       0.009 
     ----------------------------------------------
      Sample name:  GDB3 
     ---------------------
     Parameter    Bayes estimate       Credible interval 
-     A_GDB3      10.394 
+     A_GDB3      25.22 
                              lower bound     upper bound
-                     at level 95%    10          11.189 
-                     at level 68%    10          10.438 
+                     at level 95%    10          36.686 
+                     at level 68%    10          32.091 
 
     Parameter    Bayes estimate       Credible interval 
-     D_GDB3      18.289 
+     D_GDB3      61.649 
                              lower bound     upper bound
-                     at level 95%    17.169          19.425 
-                     at level 68%    17.617          18.797 
+                     at level 95%    21.66       80.211 
+                     at level 68%    38.304          80.211 
 
     Parameter    Bayes estimate       Credible interval 
-    sD_GDB3      4.602 
+    sD_GDB3      3.776 
                              lower bound     upper bound
-                     at level 95%    3.596       5.727 
-                     at level 68%    4.015       5.117 
+                     at level 95%    0       0 
+                     at level 68%    0       0 
 
     ----------------------------------------------
 

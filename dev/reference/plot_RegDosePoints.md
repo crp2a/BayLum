@@ -49,6 +49,7 @@ Sebastian Kreutzer, Institute of Geography, Heidelberg University
 ## Examples
 
 ``` r
+
 data(DATA3,envir = environment())
 plot_RegDosePoints(DATA3)
 

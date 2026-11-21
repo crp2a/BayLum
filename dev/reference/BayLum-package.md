@@ -55,6 +55,9 @@ Useful links:
 
 Authors:
 
+- Anne Philippe <anne.philippe@univ-nantes.fr>
+  ([ORCID](https://orcid.org/0000-0002-5331-5087))
+
 - Claire Christophe
 
 - Sebastian Kreutzer ([ORCID](https://orcid.org/0000-0002-0734-2199))

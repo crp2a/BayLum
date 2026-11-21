@@ -261,6 +261,7 @@ Claire Christophe, Sebastian Kreutzer, Anne Philippe, Guillaume Guerin
 ## Examples
 
 ``` r
+
 if (FALSE) { # \dontrun{
 ## Example for one sample with one Bin File
 path<- system.file("extdata/samp1", "", package="BayLum")
