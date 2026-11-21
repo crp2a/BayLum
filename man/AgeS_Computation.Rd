@@ -122,7 +122,7 @@ see details section for more informations.}
 \item{roundingOfValue}{\link{integer} (with default):  Integer indicating the number of decimal places to be used, default = 3.}
 
 \item{...}{further arguments that can be passed to control the Bayesian process. 1) When creating a new JAGS model, see details
-for supported arguments. 2) If extending a JAGS model see arguments of \link[runjags:run.jags]{runjags::extend.JAGS}.}
+for supported arguments. 2) If extending a JAGS model see arguments of \link[runjags:extend.JAGS]{runjags::extend.JAGS}.}
 }
 \value{
 \strong{NUMERICAL OUTPUT}

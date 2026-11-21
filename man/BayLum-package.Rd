@@ -55,6 +55,7 @@ Useful links:
 
 Authors:
 \itemize{
+  \item Anne Philippe \email{anne.philippe@univ-nantes.fr} (\href{https://orcid.org/0000-0002-5331-5087}{ORCID})
   \item Claire Christophe
   \item Sebastian Kreutzer (\href{https://orcid.org/0000-0002-0734-2199}{ORCID})
   \item Guillaume Guérin (\href{https://orcid.org/0000-0001-6298-5579}{ORCID})
