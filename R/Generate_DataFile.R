@@ -212,7 +212,8 @@ Generate_DataFile <- function(
       object <- Luminescence::read_BIN2R(
         file = paste0(Path, FolderNames[bf]),
         duplicated.rm = read_BIN2R.settings$duplicated.rm,
-        verbose =  read_BIN2R.settings$verbose
+        verbose =  read_BIN2R.settings$verbose,
+        fastForward = FALSE
       )
 
       # csv file indicating position and disc selection and preparation to be red
