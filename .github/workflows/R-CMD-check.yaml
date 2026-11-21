@@ -48,8 +48,8 @@ jobs:
           http-user-agent: ${{ matrix.config.http-user-agent }}
           use-public-rspm: true
 
-      - name: Install JAGS
-        if: runner.os == 'ubunto'
+      - name: Install JAGS on Linux
+        if: runner.os == 'ubuntu'
         run: |
           sudo apt-get update
           sudo apt-get install -y jags pkg-config
