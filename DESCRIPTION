@@ -2,7 +2,7 @@ Package: BayLum
 Type: Package
 Title: Chronological Bayesian Models Integrating Optically Stimulated
     Luminescence and Radiocarbon Age Dating
-Version: 0.3.3.9000-13
+Version: 0.3.4
 Date: 2026-11-21
 Authors@R: c(
     person("Claire", "Christophe", role = "aut"),
