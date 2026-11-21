@@ -1,0 +1,23 @@
+# Changelog
+
+## Changes in version 0.3.4 (2026-11-21)
+
+**This package version requires R \>= 4.6, JAGS \>= 5.0, and
+Luminescence \>= 1.3.1**
+
+### Bugfixes
+
+#### create_DataFile()
+
+- Fix examples to work with ‘Luminescence’ where `read_BIN2R` sets now
+  `fastForward = TRUE` as default, but we need `fastForward = FALSE` to
+  work.
+
+#### `Generate_DataFile_MG()` and `Generate_DataFile()`
+
+- The deprecated functions stopped working with the latest version of
+  `Luminescence` due to changes in `read_BIN2R()`; fixed.
+
+### Miscellaneous
+
+- Bump dependencies and add support for JAGS \>=5.x.
