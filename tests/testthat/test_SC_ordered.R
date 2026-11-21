@@ -18,9 +18,9 @@ test_that("Interactive tests", {
   samp2_file <- system.file("extdata/samp2/bin.bin", package = "BayLum")
 
   ## import BIN files
-  samp1 <<- Luminescence::read_BIN2R(samp1_file, verbose = FALSE) |>
+  samp1 <<- Luminescence::read_BIN2R(samp1_file, verbose = FALSE, fastForward = FALSE) |>
     subset(POSITION == 2 & GRAIN == 32)
-  samp2 <<- Luminescence::read_BIN2R(samp2_file, verbose = FALSE) |>
+  samp2 <<- Luminescence::read_BIN2R(samp2_file, verbose = FALSE, fastForward = FALSE) |>
     subset(POSITION == 2 & GRAIN == 32)
 
   DATA <- expect_type(create_DataFile(yaml_file), "list")
